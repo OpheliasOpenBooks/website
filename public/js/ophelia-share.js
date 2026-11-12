@@ -13,9 +13,13 @@ function build() {
   if (dialog) return;
   const css = document.createElement('style');
   css.textContent =
-'.ob-share-button{border:1px solid #8ea691;border-radius:24px;background:#eef1e8;color:#294b3e;padding:9px 17px;font:600 13px Arial,sans-serif;cursor:pointer;min-height:36px}' +
-'.ob-share-button:hover,.ob-share-button:focus-visible{background:#dfe8da;outline-offset:3px}' +
-'.ob-share-holder{margin:14px auto 0;display:flex;gap:10px;justify-content:center}.ob-share-holder.home-share{margin:0}' +
+/* A quiet engraved bookplate rather than a generic device button. */
+'.ob-share-holder{margin:17px auto 0;display:flex;justify-content:center;align-items:center;gap:8px;max-width:100%}.ob-share-holder.home-share{margin:0}' +
+'.ob-share-button{appearance:none!important;-webkit-appearance:none!important;display:inline-flex!important;align-items:center;justify-content:center;gap:.7em;min-height:39px;max-width:100%;margin:0;padding:8px 20px!important;border:1px solid #bda77f!important;border-radius:30px!important;background:#f9f4e8!important;color:#405c4e!important;font:italic 15px/1.25 Georgia,Times New Roman,serif!important;letter-spacing:.01em;white-space:normal;box-shadow:inset 0 0 0 2px #fffdf7,0 1px 2px #5f533519;cursor:pointer;transition:background-color .18s,border-color .18s,box-shadow .18s}' +
+'.ob-share-button::before,.ob-share-button::after{content:"❦";font:normal 14px/1 Georgia,serif;color:#967039;opacity:.9}' +
+'.ob-share-button:hover{background:#f0e6cf!important;border-color:#94783e!important;box-shadow:inset 0 0 0 2px #faf5e9,0 2px 5px #5f533522}' +
+'.ob-share-button:focus-visible{outline:3px solid #b7782d!important;outline-offset:4px!important}' +
+'@media(prefers-reduced-motion:reduce){.ob-share-button{transition:none}}' +
 '.ob-share-dialog{border:1px solid #c6ccbe;border-radius:12px;max-width:520px;width:calc(100vw - 28px);max-height:min(690px,88dvh);overflow-y:auto;padding:26px;color:#253f32;background:#fffcf6;box-shadow:0 15px 60px #1b2a2059;font:14px/1.5 Arial,sans-serif}' +
 '.ob-share-dialog::backdrop{background:#15251ac0}.ob-share-dialog h2{font:normal 27px Georgia,serif;color:#263e35;margin:0 34px 7px 0;letter-spacing:normal}' +
 '.ob-share-dialog p{margin:5px 0 14px;color:#59665c}.ob-share-dialog .ob-close{position:absolute;right:17px;top:15px;border:0;border-radius:50%;background:#eff0e9;width:35px;height:35px;font-size:23px;cursor:pointer}' +
@@ -98,11 +102,13 @@ function addPageButton(){
  if(document.querySelector('[data-ophelia-share]'))return;
  const host=document.querySelector('.book-heading')||document.querySelector('.hero .actions')||document.querySelector('#catalog-share-target');
  if(!host)return;
+ // Install the stylesheet before displaying the button, not only when clicked.
+ build();
  const holder=document.createElement('div');
  holder.className='ob-share-holder'+(host.matches('.actions')?' home-share':'');
  holder.setAttribute('data-ophelia-share','');
  const button=document.createElement('button');button.type='button';button.className='ob-share-button';
- button.textContent='↗ Share this '+(document.querySelector('.book-heading')?'book':'library');
+ button.textContent='Share this '+(document.querySelector('.book-heading')?'book':'library');
  button.addEventListener('click',()=>open());holder.appendChild(button);host.appendChild(holder);
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',addPageButton);else addPageButton();
