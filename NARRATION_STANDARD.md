@@ -38,6 +38,7 @@ All book readers must use the **one shared spoken-text normalization module**:
 - Frankenstein — `frankenstein.html`
 - The Adventures of Tom Sawyer — `tom-sawyer.html`
 - Adventures of Huckleberry Finn — `huckleberry-finn.html`
+- David Copperfield — `david-copperfield.html`
 
 A new standalone reader does not inherit this JavaScript automatically unless it uses a reader template with the shared script tag. Keep this dependency in future readers so one update to `ophelia-narration.js` improves all books.
 
