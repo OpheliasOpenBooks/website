@@ -1,5 +1,5 @@
 /* Ophelia's Open Book — shared spoken-text preparation.
- * Version 1.1.0. Load before each reader's inline narration code.
+ * Version 1.2.0. Load before each reader's inline narration code.
  *
  * Normalize only the words sent to speech synthesis: the printed book,
  * headings, pagination, bookmarks and original manuscripts are unchanged.
@@ -75,11 +75,123 @@
     text=text.replace(/\b([MDCLXVI]+)(?=\.\s+[A-Z][A-Z\s’'\-]{3,})/g,
       numeral=>cardinalRoman(numeral));
     // Print-era all-cap opening words should not be spelled letter-by-letter.
-    return text.replace(capitalizedWord,word=>{
+    text=text.replace(capitalizedWord,word=>{
       if(acronyms.has(word)||roman.test(word))return word;
       if(!/[AEIOUY]/.test(word)&&!commonVowellessWords.has(word))return word;
       return word[0]+word.slice(1).toLowerCase();
     });
+    return contextualPronunciations(text);
   }
-  root.OpheliaNarration=Object.freeze({version:'1.1.0',normalizeForSpeech});
+
+  // Apply high-confidence context rules ONLY to the spoken copy.
+  // The visual manuscript stays original; ambiguous cases stay untouched.
+  function contextualPronunciations(text){
+    return text.replace(/\b(bow)\b/gi,(word,offset,all)=>{
+      const prior=all.slice(Math.max(0,offset-110),offset).toLowerCase();
+      const following=all.slice(offset+word.length,offset+word.length+105).toLowerCase();
+      const respectAfter=/^\s+(?:to|before|down|low|deeply|respectfully|humbly|in\s+(?:homage|respect))\b/.test(following);
+      const respectBefore=/\b(?:make|made|making|give|gave|giving|offer|offered|offering|return|returned|returning|take|took|taking)\s+(?:(?:him|her|them)\s+)?(?:a|the|his|her|their|another)\s+(?:(?:low|deep|slight|little|graceful|respectful|courtly)\s+)?$/.test(prior);
+      const shipBow=/^\s+of\s+(?:the|a|his|her)\s+(?:ship|boat|vessel|barge)\b/.test(following)||/\b(?:ship['’]s|boat['’]s|vessel['’]s)\s+$/.test(prior);
+      const obviousArchery=/^\s+(?:and\s+(?:arrow|quiver)|string|stave|wood|of\s+yew|in\s+(?:his|her)\s+hand)\b/.test(following);
+      const hairBow=/\b(?:hair|ribbon|satin|silk|velvet)\s+$/.test(prior);
+      if(obviousArchery||hairBow||/\bBow\s+Street\b/.test(all.slice(offset,offset+25)))return word;
+      if(respectAfter||respectBefore||shipBow)return word[0]==='B'?'Bough':'bough';
+      return word;
+    });
+  }
+
+  // Grammar-led speech units: complete sentences when possible; natural
+  // breaths at selected clause punctuation for very long Victorian sentences.
+  // Do not split within a word, abbreviation, decimal number, or quote tag.
+  function speechChunks(value){
+    const clean=normalizeForSpeech(value).replace(/\*\s*/g,'').replace(/\s+/g,' ').trim();
+    if(!clean)return [];
+    const protectedText=clean
+      .replace(/\b(?:Mr|Mrs|Ms|Dr|Prof|Rev|St|Capt|Lt|Col|Gen|Sr|Jr|Messrs)\./gi,m=>m.replace(/\./g,'\uE000'))
+      .replace(/\b(?:[A-Za-z]\.){2,}/g,m=>m.replace(/\./g,'\uE000'))
+      .replace(/\b[A-Z]\.(?=\s+(?:[A-Z]\.|[A-Z][a-z]))/g,m=>m.replace(/\./g,'\uE000'))
+      .replace(/(\d)\.(?=\d)/g,'$1\uE000');
+    let pieces=[];
+    if(typeof Intl!=='undefined'&&typeof Intl.Segmenter==='function'){
+      pieces=Array.from(new Intl.Segmenter('en',{granularity:'sentence'}).segment(protectedText),p=>clean.slice(p.index,p.index+p.segment.length).trim());
+    }else{
+      let start=0,m;const ends=/[.!?]+[”’"')\]]*(?:\s+|$)/g;
+      while((m=ends.exec(protectedText))){pieces.push(clean.slice(start,ends.lastIndex).trim());start=ends.lastIndex;}
+      if(start<clean.length)pieces.push(clean.slice(start).trim());
+    }
+    const sentences=[];
+    for(const part of pieces.filter(Boolean)){
+      const last=sentences.at(-1)||'';
+      if(last&&(/^[a-z,;:—–)\]]/.test(part)||/(?:\.\.\.|…)\s*[”’"']?$/.test(last)))sentences[sentences.length-1]+=' '+part;
+      else sentences.push(part);
+    }
+    const result=[];
+    for(const sentence of sentences){
+      let remaining=sentence;
+      while(remaining.length>340){
+        let cut=0;
+        // Prefer strong punctuation before splitting a long sentence.
+        const r=/[;:—–,][”’"']?\s+/g;let m;
+        while((m=r.exec(remaining))){
+          const pos=m.index+m[0].length;
+          if(pos>=105&&pos<=310){
+            if(m[0].includes(',')&&!/^\s*(?:and|but|or|yet|while|although|which|who|when|where|because|as|if)\b/i.test(remaining.slice(pos)))continue;
+            cut=pos;
+          }
+        }
+        if(!cut){
+          const i=remaining.lastIndexOf(' ',310);
+          if(i>=160)cut=i+1;
+        }
+        if(!cut)break;
+        result.push(remaining.slice(0,cut).trim());remaining=remaining.slice(cut).trimStart();
+      }
+      // A moderate-length, multi-clause sentence may warrant a semicolon breath.
+      if(remaining.length>=175&&/[;—–]\s+/.test(remaining)){
+        const split=remaining.match(/^([\s\S]{70,220}?[;—–])\s+([\s\S]{45,})$/);
+        if(split){result.push(split[1].trim());remaining=split[2].trim();}
+      }
+      if(remaining)result.push(remaining);
+    }
+    return result;
+  }
+
+  function pauseAfter(text){
+    const value=String(text||'').trim();
+    if(!value)return 120;
+    const words=value.replace(/[.!?]+[”’"']?$/,'').trim().split(/\s+/);
+    const clean=value.replace(/[”’"' )\]]+$/,'').trim();
+    const heading=words.length>=2&&words.length<=13&&/^[A-Z][^.!?]*\.$/.test(value)&&
+      words.filter(w=>/^[A-Z][a-z]+/.test(w)).length>=Math.max(2,words.length-3)&&
+      !/[“”"?!]/.test(value);
+    if(heading)return 630;
+    if(/[?!]$/.test(clean))return 400;
+    if(/[.!]$/.test(clean))return 305;
+    if(/[;:]$/.test(clean))return 265;
+    if(/[—–]$/.test(clean))return 230;
+    if(/,$/.test(clean))return 165;
+    return 150;
+  }
+  // Queue one utterance at a time, rather than starting every sentence
+  // back-to-back. Respect manual pause, stop and page changes via callbacks.
+  function speakWithPauses(synth,utterances,isCurrent,isPaused){
+    if(!utterances||!utterances.length)return;
+    let i=0;
+    function play(){
+      if(!isCurrent()||i>=utterances.length)return;
+      if(isPaused&&isPaused()){setTimeout(play,90);return;}
+      const u=utterances[i];
+      const oldEnd=u.onend;
+      u.onend=e=>{
+        if(typeof oldEnd==='function')oldEnd(e);
+        if(!isCurrent())return;
+        i++;
+        if(i<utterances.length)setTimeout(play,pauseAfter(u.text));
+      };
+      synth.speak(u);
+    }
+    play();
+  }
+
+  root.OpheliaNarration=Object.freeze({version:'1.2.0',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter});
 })(window);
