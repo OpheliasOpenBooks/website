@@ -80,7 +80,7 @@ function parseText(raw){
   }
   if(!Array.isArray(paragraphs)||!paragraphs.length||!part.name)throw Error('A published section is missing');
   const words=paragraphs.join(' ').split(/\s+/).length;
-  if(words<150)throw Error('Section '+part.name+' is incomplete');
+  if(words<150 && !(i===0 && /^Preface$/i.test(part.name) && words>=75))throw Error('Section '+part.name+' is incomplete');
   return {name:part.name,paragraphs};
  });
  const totalWords=parts.reduce((n,p)=>n+p.paragraphs.join(' ').split(/\s+/).length,0);
