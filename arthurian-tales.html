@@ -24,7 +24,7 @@
  <div class="footer-nav"><button type="button" id="prev2" disabled>← Previous page</button><span id="footcount">Malory · Le Morte d’Arthur</span><button type="button" id="next2" disabled>Next page →</button></div>
 </main>
 <aside class="reader-controls" aria-label="Reading and listening controls">
- <label for="section">Books I–XXI</label><select id="section" aria-label="Select Arthurian book" disabled><option>Preparing book…</option></select>
+ <label for="section">Books I–XXI &amp; Glossary</label><select id="section" aria-label="Select Arthurian book" disabled><option>Preparing book…</option></select>
  <div class="progress" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="progressbar"></div></div><p id="progresslabel">0% read · Book I</p>
  <div id="pagecount" class="pagecount">Page 1</div>
  <div class="transport"><button type="button" class="nav-arrow" id="prev" disabled aria-label="Previous page" title="Previous page">←</button><button type="button" id="play" class="play" disabled>▶ Read aloud</button><button type="button" class="nav-arrow" id="next" disabled aria-label="Next page" title="Next page">→</button></div>
@@ -43,7 +43,7 @@
  <div class="load hidden" id="loadbox"><strong>Unable to load the book from this library</strong><p>Both volumes are included in the site. If your connection failed, refresh the page. You can also read the original public-domain transcripts at <a href="https://www.gutenberg.org/ebooks/1251">Volume I</a> and <a href="https://www.gutenberg.org/ebooks/1252">Volume II</a>.</p></div>
  </aside>
 </div>
-<div class="source">The complete 21 narrative books of <em>Le Morte d’Arthur</em> by Sir Thomas Malory (published by William Caxton in 1485), from the public-domain Project Gutenberg transcripts <a href="https://www.gutenberg.org/ebooks/1251" target="_blank" rel="noopener">Volume I</a> and <a href="https://www.gutenberg.org/ebooks/1252" target="_blank" rel="noopener">Volume II</a>. The original Arthurian legends predate Malory. A distinct <a href="https://books.google.com/books?id=vny7txF90W4C" target="_blank" rel="noopener">1905 anthology is titled <em>The Arthurian Tales</em></a>. Illustration: <a href="https://commons.wikimedia.org/wiki/File:Accolade_by_Edmund_Blair_Leighton_-_complete.jpg" target="_blank" rel="noopener">Edmund Blair Leighton’s <em>The Accolade</em> (1901)</a>, public domain, depicting medieval knighthood but not Arthur. Read-aloud uses your device’s browser voices.</div>
+<div class="source">The complete 21 narrative books and historical glossary of <em>Le Morte d’Arthur</em> by Sir Thomas Malory (published by William Caxton in 1485), from the public-domain Project Gutenberg transcripts <a href="https://www.gutenberg.org/ebooks/1251" target="_blank" rel="noopener">Volume I</a> and <a href="https://www.gutenberg.org/ebooks/1252" target="_blank" rel="noopener">Volume II</a>. The original Arthurian legends predate Malory. A distinct <a href="https://books.google.com/books?id=vny7txF90W4C" target="_blank" rel="noopener">1905 anthology is titled <em>The Arthurian Tales</em></a>. Illustration: <a href="https://commons.wikimedia.org/wiki/File:Accolade_by_Edmund_Blair_Leighton_-_complete.jpg" target="_blank" rel="noopener">Edmund Blair Leighton’s <em>The Accolade</em> (1901)</a>, public domain, depicting medieval knighthood but not Arthur. Read-aloud uses your device’s browser voices.</div>
 </div>
 <script src="public/js/ophelia-narration.js"></script>
 <script>
@@ -60,16 +60,23 @@ let segments=[],pages=[],voiceList=[],speechToken=0, speaking=false,paused=false
 const note=text=>{$('message').textContent=text};
 function parseText(raw){
  const t=raw.replace(/\r\n?/g,'\n').replace(/\u00ad/g,'');
+ const glossaryStart=t.lastIndexOf('\nGLOSSARY\n');
+ if(glossaryStart<0)throw Error('The complete historical glossary is missing.');
+ const main=t.slice(0,glossaryStart);
+ const glossary=t.slice(glossaryStart+'\nGLOSSARY\n'.length);
  const heading=/^BOOK\s+([IVXLCDM]+)\.?\s*$/gm;
- const matches=[...t.matchAll(heading)];
+ const matches=[...main.matchAll(heading)];
  const expected=['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV','XVI','XVII','XVIII','XIX','XX','XXI'];
  if(matches.length!==21||matches.some((m,i)=>m[1]!==expected[i]))throw Error('All twenty-one books must be present, from Book I to Book XXI.');
- return matches.map((m,i)=>{
-  const block=t.slice(m.index+m[0].length,matches[i+1]?.index??t.length).trim();
+ const books=matches.map((m,i)=>{
+  const block=main.slice(m.index+m[0].length,matches[i+1]?.index??main.length).trim();
   const paragraphs=block.split(/\n\s*\n+/).map(p=>p.replace(/\n\s*/g,' ').replace(/\s{2,}/g,' ').trim()).filter(Boolean);
   if(paragraphs.length<8)throw Error('Book '+m[1]+' is incomplete.');
   return {name:'Book '+m[1],paragraphs};
  });
+ const terms=glossary.trim().split(/\n+/).map(p=>p.trim()).filter(Boolean);
+ if(terms.length<100)throw Error('The original glossary appears incomplete.');
+ return [...books,{name:'Glossary',paragraphs:terms}];
 }
 function paginate(sections){
  const out=[];
@@ -215,13 +222,13 @@ function render(){if(!pages.length)return;const page=pages[state.page];
 }
 function setupBook(raw){
  const parsed=parseText(raw),paged=paginate(parsed);
- if(parsed.length!==21||paged.length<350)throw Error('The Arthurian romance appears incomplete. Both volumes and all twenty-one books are required.');
+ if(parsed.length!==22||paged.length<350)throw Error('The Arthurian romance appears incomplete. Both volumes and all twenty-one books are required.');
  segments=parsed;pages=paged;
  $('section').replaceChildren(...segments.map((s,i)=>new Option(s.name,i)));
  $('page').replaceChildren(...pages.map((_,i)=>new Option('Page '+(i+1),i)));
  $('section').disabled=$('page').disabled=$('play').disabled=false;
  state.page=Math.max(0,Math.min(state.page,pages.length-1));
- $('loadbox').classList.add('hidden');render();save();note('All twenty-one books are ready. Press Read aloud to begin.');
+ $('loadbox').classList.add('hidden');render();save();note('All twenty-one books and the glossary are ready. Press Read aloud to begin.');
 }
 function updateVoices(){if(!('speechSynthesis' in window))return;voiceList=speechSynthesis.getVoices();$('voice').replaceChildren(new Option('Automatic English voice',''),...voiceList.filter(v=>/^en/i.test(v.lang)).map(v=>new Option(v.name+' · '+v.lang,v.voiceURI)));$('voice').value=state.voice;}
 function applySettings(){$('speed').value=state.speed;$('speedview').value=state.speed+'×';$('size').value=state.size;$('sizeview').value=state.size+' px';$('dark').checked=state.night;$('autoturn').checked=state.autoTurn;document.body.classList.toggle('night',state.night);document.documentElement.style.setProperty('--text-size',state.size+'px');}
