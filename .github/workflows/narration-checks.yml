@@ -31,3 +31,5 @@ jobs:
         run: node tests/arrowsmith.test.cjs
       - name: Verify unabridged 1929 All Quiet on the Western Front translation
         run: node tests/all-quiet-on-the-western-front.test.cjs
+      - name: Verify complete 67-chapter Vanity Fair, its parser and narration
+        run: node tests/vanity-fair.test.cjs
