@@ -63,7 +63,10 @@ function romanToNumber(s){
  return n;
 }
 function parseText(raw){
- const t=raw.replace(/\r\n?/g,'\n').trim();
+ const normalized=raw.replace(/\r\n?/g,'\n');
+ const titleAt=normalized.indexOf('\nLIFE ON THE MISSISSIPPI\n');
+ if(titleAt<0)throw Error('Original book title missing');
+ const t=normalized.slice(titleAt+1).trim();
  if(!t.startsWith('LIFE ON THE MISSISSIPPI\n')||!t.includes("THE 'BODY OF THE NATION'"))throw Error('Original text missing');
  const chapters=[...t.matchAll(/^CHAPTER (\d+)\s*$/gm)],appendices=[...t.matchAll(/^APPENDIX ([A-D])\s*$/gm)];
  if(chapters.length!==60||appendices.length!==4||!chapters.every((m,i)=>Number(m[1])===i+1))throw Error('Missing chapter');
@@ -76,7 +79,7 @@ function parseText(raw){
   const heading=paragraphs[0];
   sections.push({name:m[0].startsWith('CHAPTER')?'Chapter '+m[1]+': '+heading:'Appendix '+m[1]+': '+heading,heading,paragraphs});
  }
- if(sections.length!==65||(t.match(/\S+/g)||[]).length<125000||!sections.at(-1).paragraphs.join(' ').includes('Peboan'))throw Error('Complete text validation failed');
+ if(sections.length!==65||(t.match(/\S+/g)||[]).length<125000||!sections.at(-1).paragraphs.join(' ').includes('descended into the depths below.'))throw Error('Complete text validation failed');
  return sections;
 }
 function paginate(sections){
