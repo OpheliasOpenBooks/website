@@ -55,7 +55,7 @@ function platformLinks(title,url) {
   ['Facebook','https://www.facebook.com/sharer/sharer.php?u='+E(url)],
   ['X','https://twitter.com/intent/tweet?text='+E(text)+'&url='+E(url)],
   ['Bluesky','https://bsky.app/intent/compose?text='+E(words)],
-  ['Threads','https://www.threads.net/intent/post?text='+E(words)],
+  ['Threads','https://www.threads.com/intent/post?text='+E(words)],
   ['Pinterest','https://pinterest.com/pin/create/button/?url='+E(url)+'&description='+E(text)],
   ['Reddit','https://www.reddit.com/submit?url='+E(url)+'&title='+E(title)],
   ['LinkedIn','https://www.linkedin.com/sharing/share-offsite/?url='+E(url)],
