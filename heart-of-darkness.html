@@ -69,7 +69,7 @@ function parseText(raw){
  for(let i=0;i<marks.length;i++){
    const content=t.slice(marks[i].index,marks[i+1]?.index??t.length);
    const paragraphs=parseParagraphs(content);
-   if(paragraphs.length<70)throw Error('Part '+marks[i][1]+' is truncated.');
+   if(paragraphs.length<25)throw Error('Part '+marks[i][1]+' is truncated.');
    out.push({name:'Part '+marks[i][1],paragraphs});
  }
  const total=out.reduce((n,p)=>n+(p.paragraphs.join(' ').match(/\S+/g)||[]).length,0);
