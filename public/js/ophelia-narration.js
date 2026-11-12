@@ -142,31 +142,40 @@
     }
     const result=[];
     for(const sentence of sentences){
-      let remaining=sentence;
-      while(remaining.length>340){
-        let cut=0;
-        // Prefer strong punctuation before splitting a long sentence.
-        const r=/[;:—–,][”’"']?\s+/g;let m;
-        while((m=r.exec(remaining))){
-          const pos=m.index+m[0].length;
-          if(pos>=105&&pos<=310){
-            if(m[0].includes(',')&&!/^\s*(?:and|but|or|yet|while|although|which|who|when|where|because|as|if)\b/i.test(remaining.slice(pos)))continue;
-            cut=pos;
+      const clauses=[];
+      const boundary=/[;:—–][”’"']?\s+/g;
+      let previous=0,match;
+      // A semicolon or colon signals a rhetorical breath even in a
+      // moderately short sentence, provided both sides are real clauses.
+      while((match=boundary.exec(sentence))){
+        const end=match.index+match[0].trimEnd().length;
+        if(end-previous>=35&&sentence.length-end>=22){
+          clauses.push(sentence.slice(previous,end).trim());
+          previous=end;
+        }
+      }
+      clauses.push(sentence.slice(previous).trim());
+      for(const clause of clauses.filter(Boolean)){
+        let remaining=clause;
+        while(remaining.length>340){
+          let cut=0;
+          const r=/[;:—–,][”’"']?\s+/g;let m;
+          while((m=r.exec(remaining))){
+            const pos=m.index+m[0].length;
+            if(pos>=105&&pos<=310){
+              if(m[0].includes(',')&&!/^\s*(?:and|but|or|yet|while|although|which|who|when|where|because|as|if)\b/i.test(remaining.slice(pos)))continue;
+              cut=pos;
+            }
           }
+          if(!cut){
+            const i=remaining.lastIndexOf(' ',310);
+            if(i>=160)cut=i+1;
+          }
+          if(!cut)break;
+          result.push(remaining.slice(0,cut).trim());remaining=remaining.slice(cut).trimStart();
         }
-        if(!cut){
-          const i=remaining.lastIndexOf(' ',310);
-          if(i>=160)cut=i+1;
-        }
-        if(!cut)break;
-        result.push(remaining.slice(0,cut).trim());remaining=remaining.slice(cut).trimStart();
+        if(remaining)result.push(remaining);
       }
-      // A moderate-length, multi-clause sentence may warrant a semicolon breath.
-      if(remaining.length>=175&&/[;—–]\s+/.test(remaining)){
-        const split=remaining.match(/^([\s\S]{70,220}?[;—–])\s+([\s\S]{45,})$/);
-        if(split){result.push(split[1].trim());remaining=split[2].trim();}
-      }
-      if(remaining)result.push(remaining);
     }
     return result;
   }
