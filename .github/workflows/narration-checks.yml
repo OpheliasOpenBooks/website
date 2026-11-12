@@ -23,3 +23,5 @@ jobs:
         run: node tests/library-reader-audit.cjs
       - name: Verify Emerson volumes, essays and reading pagination
         run: node tests/emerson-essays.test.cjs
+      - name: Verify the full 1927 Giants in the Earth novel and reader
+        run: node tests/giants-in-the-earth.test.cjs
