@@ -4,7 +4,8 @@ on:
   push:
     paths:
       - 'public/js/ophelia-narration.js'
-      - 'tests/narration.test.cjs'
+      - 'tests/*.cjs'
+      - '*.html'
       - '.github/workflows/narration-checks.yml'
   workflow_dispatch:
 
@@ -18,3 +19,5 @@ jobs:
           node-version: '22'
       - name: Check grammatical speech normalization and pacing
         run: node tests/narration.test.cjs
+      - name: Check all speaking reader pages for shared implementation
+        run: node tests/library-reader-audit.cjs
