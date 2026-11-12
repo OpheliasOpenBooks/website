@@ -86,7 +86,7 @@
   // Apply high-confidence context rules ONLY to the spoken copy.
   // The visual manuscript stays original; ambiguous cases stay untouched.
   function contextualPronunciations(text){
-    const bowText=text.replace(/\b(bow)\b/gi,(word,offset,all)=>{
+    const bowText=text.replace(/\bbow\b/gi,(word,offset,all)=>{
       const prior=all.slice(Math.max(0,offset-110),offset).toLowerCase();
       const following=all.slice(offset+word.length,offset+word.length+105).toLowerCase();
       // Clearly named archery equipment and hair ribbons remain ordinary "bow".
@@ -105,7 +105,7 @@
       if(action)return word[0]==='B'?'Bough':'bough'; // spoken-only /baʊ/
       return word; // leave ambiguous cases for the user's selected voice
     });
-    return bowText.replace(/\b(read)\b/gi,(word,offset,all)=>{
+    return bowText.replace(/\bread\b/gi,(word,offset,all)=>{
       const prior=all.slice(Math.max(0,offset-45),offset);
       const after=all.slice(offset+word.length,offset+word.length+75);
       // Perfect-tense "had read" is pronounced "red", not "reed".
