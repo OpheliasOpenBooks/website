@@ -52,7 +52,7 @@
 </div>
 <div class="source">Franklin’s surviving, unfinished autobiography presented in the 1916 public-domain edition edited by Frank Woodworth Pine, including the introduction, nineteen chapters, historical appendix, bibliography, and period newspaper transcriptions. The printed edition’s illustration placeholders are omitted in this online text. Portrait by Joseph-Siffred Duplessis, circa 1785, from the National Portrait Gallery (Smithsonian), public domain. <a href="https://www.gutenberg.org/ebooks/20203" target="_blank" rel="noopener">Historical edition and public-domain text</a> · <a href="https://commons.wikimedia.org/wiki/File:Benjamin_Franklin_by_Joseph_Duplessis_1778.jpg" target="_blank" rel="noopener">Portrait source and rights</a>.</div>
 </div>
-<script src="public/js/ophelia-narration.js"></script>
+<script src="public/js/ophelia-narration.js?v=1.2.0"></script>
 <script>
 'use strict';
 /* All source is editable. Narration reuses Alice’s grammar-aware sentence segmentation and queued speech strategy. Browser/device voices provide the actual spoken sound. */
@@ -116,6 +116,7 @@ function pickVoice(){return voiceList.find(v=>v.voiceURI===state.voice)||voiceLi
 // This function is copied from the original Alice reader to preserve its exact
 // sentence-boundary, abbreviation, punctuation, and Victorian-clause rules.
 function speechChunks(text){
+ if(window.OpheliaNarration&&window.OpheliaNarration.speechChunks)return window.OpheliaNarration.speechChunks(text);
  const spokenText=window.OpheliaNarration ? window.OpheliaNarration.normalizeForSpeech(text) : text;
  const clean=spokenText.replace(/\*\s*/g,'').replace(/\s+/g,' ').trim();
  if(!clean)return [];
@@ -208,7 +209,7 @@ function startSpeech(startAt=speechResumeAt){
    return u;
  });
  note('Starting narration…');
- try{for(const u of speechQueue){if(token!==speechToken)break;synth.speak(u);}}
+ try{if(window.OpheliaNarration&&window.OpheliaNarration.speakWithPauses){window.OpheliaNarration.speakWithPauses(synth,speechQueue,()=>token===speechToken,()=>paused);}else{for(const u of speechQueue){if(token!==speechToken)break;synth.speak(u);}}}
  catch{stop();note('Narration could not start in this browser.');return;}
  if(token===speechToken&&!started)startTimer=setTimeout(()=>{if(token===speechToken&&!started&&!paused){stop();note('No narration started. Choose another English voice in Settings.');}},10000);
  updatePlay();
