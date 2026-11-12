@@ -32,10 +32,10 @@ header nav{display:flex;gap:25px;flex-wrap:wrap;font:14px Arial,sans-serif}heade
 .reset{border:1px solid #b8c4b0;background:transparent;color:var(--ink);padding:8px 13px;border-radius:4px;font:13px Arial,sans-serif}
 .catalog-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:19px}
 .book-card{display:flex;flex-direction:column;background:var(--white);border:1px solid var(--line);border-radius:5px;overflow:hidden;min-width:0}
-/* Antique bookplate: strict image frame so oversized artwork never covers lettering. */
-.cover{height:220px;flex:0 0 220px;position:relative;overflow:hidden;background:#f1ecdf}
-.cover img{position:absolute;inset:12px;width:calc(100% - 24px);height:calc(100% - 24px);max-width:none;max-height:none;display:block;object-fit:contain;object-position:center}
-.book-info{padding:18px;display:flex;flex-direction:column;flex:1;gap:9px;min-width:0;position:relative;z-index:1;background:var(--white);border-top:1px solid #ded9ca}
+/* Fixed antique bookplate: cover art is a background, never a flowing image.
+   This prevents even unusually tall or oversized original artwork overlapping text. */
+.cover{height:245px;flex:0 0 245px;min-height:0;max-height:245px;overflow:hidden;position:relative;isolation:isolate;background-color:#f1ecdf;background-position:center;background-repeat:no-repeat;background-size:contain;background-origin:content-box;background-clip:content-box;padding:12px;border-bottom:1px solid #ded9ca}
+.book-info{padding:18px;display:flex;flex-direction:column;flex:1 1 auto;gap:9px;min-width:0;position:relative;z-index:1;background:#fffdf8}
 .book-info .genre{font:700 10px Arial,sans-serif;letter-spacing:1px;text-transform:uppercase;color:#8b6c43}
 .book-info h3{font:normal 23px/1.24 Georgia,serif;margin:0;overflow-wrap:break-word}
 .book-info .author{font:13px/1.45 Arial,sans-serif;color:var(--muted);margin:0}
@@ -50,8 +50,8 @@ footer{border-top:1px solid var(--line);padding:29px 0;font:13px Arial,sans-seri
 footer .wrap{display:flex;gap:18px;flex-wrap:wrap;justify-content:space-between}
 [hidden]{display:none!important}
 @media(max-width:1000px){.catalog-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(max-width:720px){.wrap{padding-inline:19px}.header{align-items:flex-start;flex-direction:column}.hero{padding-top:40px}.control-row{grid-template-columns:1fr}.catalog-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.cover{height:180px;flex-basis:180px}.book-info{padding:12px}.book-info h3{font-size:20px}.book-info .blurb{font-size:13px}}
-@media(max-width:450px){.catalog-grid{grid-template-columns:1fr}.cover{height:235px;flex-basis:235px}.book-info{padding:18px}.book-info h3{font-size:25px}}
+@media(max-width:720px){.wrap{padding-inline:19px}.header{align-items:flex-start;flex-direction:column}.hero{padding-top:40px}.control-row{grid-template-columns:1fr}.catalog-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.cover{height:205px;flex-basis:205px;max-height:205px}.book-info{padding:12px}.book-info h3{font-size:20px}.book-info .blurb{font-size:13px}}
+@media(max-width:450px){.catalog-grid{grid-template-columns:1fr}.cover{height:255px;flex-basis:255px;max-height:255px}.book-info{padding:18px}.book-info h3{font-size:25px}}
 </style>
 <script defer src="public/js/ophelia-share.js"></script>
 </head>
@@ -158,7 +158,10 @@ function renderAlphabet(){
 function card(book){
  const el=document.createElement('article');el.className='book-card';
  const cover=document.createElement('div');cover.className='cover';
- if(book.image){const img=document.createElement('img');img.src=book.image;img.alt=book.alt;img.loading='lazy';cover.appendChild(img);}
+ cover.setAttribute('role','img');cover.setAttribute('aria-label',book.alt||'Cover artwork for '+book.title);
+ // Original book art is displayed as a constrained, uncropped background.
+ // It cannot escape its frame or obscure the separate text panel.
+ if(book.image){cover.style.backgroundImage='url('+JSON.stringify(book.image)+')';}
  const info=document.createElement('div');info.className='book-info';
  const genre=document.createElement('div');genre.className='genre';genre.textContent=book.genre;
  const title=document.createElement('h3');title.textContent=book.title;
