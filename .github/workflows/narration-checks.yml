@@ -29,3 +29,5 @@ jobs:
         run: node tests/heart-of-darkness.test.cjs
       - name: Verify Arrowsmith's 40 complete chapters and pagination
         run: node tests/arrowsmith.test.cjs
+      - name: Verify unabridged 1929 All Quiet on the Western Front translation
+        run: node tests/all-quiet-on-the-western-front.test.cjs
