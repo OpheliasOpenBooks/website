@@ -33,3 +33,5 @@ jobs:
         run: node tests/all-quiet-on-the-western-front.test.cjs
       - name: Verify complete 67-chapter Vanity Fair, its parser and narration
         run: node tests/vanity-fair.test.cjs
+      - name: Verify all 365 War and Peace chapters and two epilogues
+        run: node tests/war-and-peace.test.cjs
