@@ -88,8 +88,10 @@ function parseText(raw){
  if(totalChapters!==365||output.length!==368)throw Error('The complete 365 chapters and three supplements are required.');
  return output;
 }
+let sectionPickerVolume=0;
 function buildSectionPicker(volume){
- $('section').replaceChildren(...segments.flatMap((s,i)=>s.volume===Number(volume)?[new Option(s.name,i)]:[]));
+ sectionPickerVolume=Number(volume);
+ $('section').replaceChildren(...segments.flatMap((s,i)=>s.volume===sectionPickerVolume?[new Option(s.name,i)]:[]));
 }
 function paginate(sections){
  const out=[];
@@ -230,7 +232,7 @@ function render(){if(!pages.length)return;const page=pages[state.page];
  ['prev','prev2'].forEach(id=>$(id).disabled=state.page<=0);['next','next2'].forEach(id=>$(id).disabled=state.page>=pages.length-1);
  $('page').value=String(state.page);
  const volume=segments[page.section].volume;
- if($('volume').value!==String(volume)){$('volume').value=String(volume);buildSectionPicker(volume);}
+ if($('volume').value!==String(volume)||sectionPickerVolume!==volume){$('volume').value=String(volume);buildSectionPicker(volume);}
  $('section').value=String(page.section);$('progressbar').style.width=((state.page+1)/pages.length*100).toFixed(2)+'%';
  document.querySelector('.progress').setAttribute('aria-valuenow',Math.round((state.page+1)/pages.length*100));
  $('bookmark').textContent=state.bookmark===state.page?'♥ Bookmarked':'♡ Bookmark this page';$('bookmarkhint').textContent=state.bookmark>=0?'Saved bookmark: page '+(state.bookmark+1):'No bookmark set';
