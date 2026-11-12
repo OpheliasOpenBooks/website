@@ -19,7 +19,7 @@
 <div class="shell">
 <div class="reading-layout">
 <main class="book" aria-label="Capital Volume 3 reader">
- <div class="book-heading"><div class="eyebrow">OPHELIA’S OPEN BOOK</div><h1>Capital · Volume 3</h1><p class="byline">Karl Marx · 1894 · Early English translation · Ernest Untermann, edited by Friedrich Engels</p><p class="fine">The Process of Capitalist Production as a Whole · 52 original chapters · Unabridged English text</p></div>
+ <div class="book-heading"><div class="eyebrow">OPHELIA’S OPEN BOOK<p class="fine" style="margin-top:14px">Explore: <a href="capital-volume-1.html">Volume I</a> · <a href="capital-volume-2.html">Volume II</a> · <a href="capital-volume-3.html">Volume III</a></p></div><h1>Capital · Volume 3</h1><p class="byline">Karl Marx · 1894 · Early English translation · Ernest Untermann, edited by Friedrich Engels</p><p class="fine">The Process of Capitalist Production as a Whole · 52 original chapters · Unabridged English text</p></div>
  <figure id="story-figure" hidden><img id="opening-art" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Karl_Marx_001.jpg" alt="Historical portrait of Karl Marx" loading="lazy"><figcaption>Historical portrait of Karl Marx · <a href="https://commons.wikimedia.org/wiki/File:Karl_Marx_001.jpg" target="_blank" rel="noopener">Wikimedia Commons · Public domain</a></figcaption></figure>
  <article class="content" id="content"><div class="chapter-row"><span id="chaptername" class="chapter"></span></div><div id="prose"><p>Preparing all 52 chapters…</p></div><div class="endmark" aria-hidden="true">— ❧ —</div></article>
  <div class="footer-nav"><button type="button" id="prev2" disabled>← Previous page</button><span id="footcount">Karl Marx · Capital Volume 3</span><button type="button" id="next2" disabled>Next page →</button></div>
@@ -252,7 +252,7 @@ function setupBook(items){
  $('page').replaceChildren(...pages.map((_,i)=>new Option('Page '+(i+1),i)));
  $('section').disabled=$('page').disabled=$('play').disabled=false;
  state.page=Math.max(0,Math.min(state.page,pages.length-1));
- $('loadbox').classList.add('hidden');render();save();note('All 36 chapters are ready. Press Read aloud to begin.');
+ $('loadbox').classList.add('hidden');render();save();note('All 52 chapters are ready. Press Read aloud to begin.');
 }
 function updateVoices(){if(!('speechSynthesis' in window))return;voiceList=speechSynthesis.getVoices();$('voice').replaceChildren(new Option('Automatic English voice',''),...voiceList.filter(v=>/^en/i.test(v.lang)).map(v=>new Option(v.name+' · '+v.lang,v.voiceURI)));$('voice').value=state.voice;}
 function applySettings(){$('speed').value=state.speed;$('speedview').value=state.speed+'×';$('size').value=state.size;$('sizeview').value=state.size+' px';$('dark').checked=state.night;$('autoturn').checked=state.autoTurn;document.body.classList.toggle('night',state.night);document.documentElement.style.setProperty('--text-size',state.size+'px');}
