@@ -11,7 +11,7 @@
 #story-figure{background:#f4edda;border-radius:3px;padding:8px}#story-figure img{max-height:520px;width:100%;object-fit:contain}#story-figure figcaption{margin:10px 0 2px}
 #story-figure img{max-height:480px;width:100%;object-fit:contain;background:#f4edda}#story-figure{background:#f4edda;padding:6px;border-radius:3px}
 #prose p{white-space:pre-line;margin-bottom:22px;overflow-wrap:break-word}#prose p.speaker{font:700 .73em/1.5 Arial,sans-serif;letter-spacing:.13em;color:var(--gold);margin-bottom:8px}#prose p.stage{font-style:italic;color:var(--muted)}
-.whitman-bookplate{max-width:620px;min-height:300px;margin:auto;padding:35px 20px;background:linear-gradient(140deg,#dae1cd,#f4e7cf 52%,#c4d4bc);border:9px double #938464;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:#2c4c38;gap:18px;font-family:Georgia,serif}.leaf-ornament{font-size:34px;color:#748b61;letter-spacing:12px}.leaf-title{font-size:clamp(32px,5vw,52px);line-height:1.1}.leaf-author{font:italic 17px Georgia,serif}</style>
+.whitman-bookplate{max-width:620px;min-height:300px;margin:auto;padding:35px 20px;background:linear-gradient(140deg,#dae1cd,#f4e7cf 52%,#c4d4bc);border:9px double #938464;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:#2c4c38;gap:18px;font-family:Georgia,serif}.leaf-ornament{font-size:34px;color:#748b61;letter-spacing:12px}.leaf-title{font-size:clamp(32px,5vw,52px);line-height:1.1}.leaf-author{font:italic 17px Georgia,serif}#prose p.poem-title{font:normal 1.08em/1.4 Georgia,serif;text-align:center;color:var(--gold);margin:22px 0 20px}#prose p:not(.poem-title){white-space:pre-wrap}</style>
 </head>
 <body>
 <a class="home" href="index.html">← Home</a>
@@ -52,7 +52,7 @@ try{Object.assign(state,JSON.parse(localStorage.getItem(STORAGE)||'{}'));}catch{
 const save=()=>{try{localStorage.setItem(STORAGE,JSON.stringify(state));}catch{}};
 let soundOn=true;
 let initialRender=true;
-let segments=[],pages=[],voiceList=[],speechToken=0, speaking=false,paused=false, speechQueue=[],speechCursor=0,speechResumeAt=0,pageSpeechDone=false,startTimer=null,utterance=null;
+let segments=[],pages=[],voiceList=[],speechToken=0, speaking=false,paused=false, speechQueue=[],speechCursor=0,speechResumeAt=0,pageSpeechDone=false,startTimer=null,utterance=null,speechDelayTimer=null;
 const note=text=>{$('message').textContent=text};
 function romanToNumber(s){const v={I:1,V:5,X:10,L:50,C:100,D:500,M:1000};let n=0;for(let i=0;i<s.length;i++)n+=(v[s[i]]||0)<(v[s[i+1]]||0)?-v[s[i]]:v[s[i]];return n;}
 function parseText(raw){
@@ -91,70 +91,52 @@ function paginate(sections){
  return out;
 }
 function stop(){
- speechToken++;clearTimeout(startTimer);if('speechSynthesis' in window)window.speechSynthesis.cancel();
+ speechToken++;clearTimeout(startTimer);clearTimeout(speechDelayTimer);speechDelayTimer=null;if('speechSynthesis' in window)window.speechSynthesis.cancel();
  speaking=false;paused=false;speechQueue=[];speechCursor=0;pageSpeechDone=false;utterance=null;updatePlay();
 }
 function updatePlay(){$('play').textContent=speaking?(paused?'▶ Resume':'Ⅱ Pause'):'▶ Read aloud';}
-function getText(){return pages[state.page]?.paragraphs.join(' ')||'';}
-function pickVoice(){return voiceList.find(v=>v.voiceURI===state.voice)||voiceList.find(v=>/^en-GB/i.test(v.lang))||voiceList.find(v=>/^en/i.test(v.lang))||null;}
-// This function is copied from the original Alice reader to preserve its exact
-// sentence-boundary, abbreviation, punctuation, and Victorian-clause rules.
-function speechChunks(text){
- const spokenText=window.OpheliaNarration ? window.OpheliaNarration.normalizeForSpeech(text) : text;
- const clean=spokenText.replace(/\*\s*/g,'').replace(/\s+/g,' ').trim();
- if(!clean)return [];
- // Mask non-terminal periods for segmentation only; slice the untouched source.
- const protectedText=clean
-  .replace(/\b(?:Mr|Mrs|Ms|Dr|Prof|Rev|St|Capt|Lt|Col|Gen|Sr|Jr)\./gi,m=>m.replace(/\./g,'\uE000'))
-  .replace(/\b(?:[A-Za-z]\.){2,}/g,m=>m.replace(/\./g,'\uE000'))
-  .replace(/\b[A-Z]\.(?=\s+(?:[A-Z]\.|[A-Z][a-z]))/g,m=>m.replace('.','\uE000'))
-  .replace(/(\d)\.(?=\d)/g,'$1\uE000');
- let segments;
- if(typeof Intl!=='undefined'&&typeof Intl.Segmenter==='function'){
-  segments=Array.from(new Intl.Segmenter('en',{granularity:'sentence'}).segment(protectedText),x=>clean.slice(x.index,x.index+x.segment.length).trim());
- }else{
-  // Fallback for older browsers: terminal punctuation plus its closing quotes.
-  segments=[];let start=0;const ends=/[.!?]+[”’"')\]]*(?:\s+|$)/g;let m;
-  while((m=ends.exec(protectedText))){segments.push(clean.slice(start,ends.lastIndex).trim());start=ends.lastIndex;}
-  if(start<clean.length)segments.push(clean.slice(start).trim());
- }
- // A quotation followed by “said Alice” is still one spoken sentence.
- // Likewise keep parenthetical continuations and ellipses with their continuation.
- const sentences=[];
- for(const part of segments.filter(Boolean)){
-  const previous=sentences.at(-1)||'';
-  if(previous&&(/^[a-z,;:—–)\]]/.test(part)||/(?:\.\.\.|…)\s*[”’"']?$/.test(previous)))sentences[sentences.length-1]+=' '+part;
-  else sentences.push(part);
- }
- const chunks=[];
- for(const sentence of sentences){
-  if(sentence.length<=360){chunks.push(sentence);continue;}
-  // Long Victorian sentences may need breaths. Use a clause boundary only;
-  // never cut a word, name, unpunctuated phrase, or parenthetical aside in half.
-  const cuts=[];let depth=0;
-  for(let i=0;i<sentence.length;i++){
-   const c=sentence[i];if(c==='('||c==='[')depth++;
-   if(c===')'||c===']')depth=Math.max(0,depth-1);
-   if(depth)continue;
-   const tail=sentence.slice(i+1);
-   if(/[;:—–]/.test(c)||c===','&&/^\s+(?:and|but|or|so|yet|for|while|although|which|who|when|where|because|as|if)\b/i.test(tail)){
-    let end=i+1;while(/[”’"']/.test(sentence[end]||'')&&end<sentence.length)end++;
-    // Require existing whitespace: joining chunks must reproduce the source.
-    if(/\s/.test(sentence[end]||''))cuts.push(end);
-   }
-  }
-  let start=0;
-  while(sentence.length-start>360){
-   const nearby=cuts.filter(c=>c-start>=100&&c-start<=320);
-   const cut=nearby.at(-1)||cuts.find(c=>c-start>320);
-   if(!cut||sentence.length-cut<40)break;
-   chunks.push(sentence.slice(start,cut).trim());start=cut;
-  }
-  if(sentence.slice(start).trim())chunks.push(sentence.slice(start).trim());
- }
- return chunks;
+function pickVoice(){return voiceList.find(v=>v.voiceURI===state.voice)||voiceList.find(v=>/^en-US/i.test(v.lang))||voiceList.find(v=>/^en/i.test(v.lang))||null;}
+// The source text is never changed. This creates a separate reading score for the voice.
+// Distinguish flush-left poem titles from indented poetic lines, and keep sentence
+// punctuation meaningful while allowing small breaths at natural verse boundaries.
+function isPoemTitle(paragraph,index,all){
+ const text=paragraph.trim();
+ if(!text||text.includes('\n')||text.length>100||/[.!?;:,]$/.test(text))return false;
+ if(/^\[[^\]]+\]$/.test(text)||/^\d+$/.test(text))return false;
+ const next=all[index+1]||'';
+ return !!next&&/^\s{2,}\S/.test(next);
 }
-
+function narrationScore(){
+ const page=pages[state.page];if(!page)return [];
+ const result=[];
+ const add=(text,afterMs)=>{
+   const clean=text.replace(/\s+/g,' ').trim();if(!clean)return;
+   const normalized=window.OpheliaNarration?window.OpheliaNarration.normalizeForSpeech(clean):clean;
+   if(normalized.trim())result.push({text:normalized.trim(),afterMs});
+ };
+ page.paragraphs.forEach((par,i)=>{
+   if(isPoemTitle(par,i,page.paragraphs)){
+     add(par.trim(),900);return;
+   }
+   // Wrapped source lines are not editorial full stops; use existing punctuation
+   // to choose between a breath and a sentence ending.
+   const lines=par.split('\n');
+   for(let j=0;j<lines.length;j++){
+     const line=lines[j].trim();if(!line)continue;
+     // Do not break very long lines at arbitrary letters. Prefer punctuation,
+     // then leave the browser to phrase the continuous line naturally.
+     const slices=line.length>280?line.match(/.{1,250}(?:\s|$)|.{1,250}/g)||[line]:[line];
+     for(let k=0;k<slices.length;k++){
+       const part=slices[k].trim();if(!part)continue;
+       const finalLine=j===lines.length-1&&k===slices.length-1;
+       let pause=/[.!?][”"')\]]*$/.test(part)?450:/[;:][”"')\]]*$/.test(part)?330:/[,—–-][”"')\]]*$/.test(part)?215:135;
+       if(finalLine)pause=Math.max(pause,650);
+       add(part,pause);
+     }
+   }
+ });
+ return result;
+}
 function finishPage(token){
  if(token!==speechToken)return;
  speaking=false;paused=false;pageSpeechDone=false;speechQueue=[];updatePlay();
@@ -165,43 +147,50 @@ function finishPage(token){
 function startSpeech(startAt=speechResumeAt){
  if(!soundOn){note('Sound is off. Select Sound on before starting narration.');return;}
  if(!pages.length)return;
- if(!('speechSynthesis' in window)){note('This browser has no read-aloud support. Try Chrome or Edge.');return;}
- // Cancel stale events from previous readings, just as in Alice.
+ if(!('speechSynthesis' in window)){note('This browser does not support read-aloud narration.');return;}
  stop();
- const synth=window.speechSynthesis;
- synth.resume();
- const chunks=speechChunks(getText()).slice(startAt);
- speechResumeAt=0;speechCursor=startAt;pageSpeechDone=false;
- if(!chunks.length){note('There is no text to narrate on this page.');return;}
- speaking=true;paused=false;const token=speechToken;
- let started=false,completed=0;
- const voice=pickVoice();
- // Queue all grammatical sentences for this page, as Alice does.
- speechQueue=chunks.map((t,i)=>{
-   const u=new SpeechSynthesisUtterance(t);let ended=false;
-   u.lang=voice?.lang||'en-GB';if(voice)u.voice=voice;
-   u.rate=state.speed;u.volume=1;
-   u.onstart=()=>{if(token!==speechToken||!speaking)return;
-     started=true;utterance=u;speechCursor=startAt+i;clearTimeout(startTimer);
-     note('Reading page '+(state.page+1)+' of '+pages.length+'…');updatePlay();};
-   u.onend=()=>{if(token!==speechToken||!speaking||ended)return;
-     ended=true;completed++;
-     if(completed===chunks.length){clearTimeout(startTimer);pageSpeechDone=true;if(!paused)finishPage(token);}
+ const score=narrationScore(),voice=pickVoice(),token=speechToken;
+ speechQueue=score;speechResumeAt=0;speechCursor=Math.max(0,Math.min(startAt,score.length));
+ pageSpeechDone=false;
+ if(!score.length){note('There is no text to narrate on this page.');return;}
+ speaking=true;paused=false;
+ const speakNext=()=>{
+   if(token!==speechToken||!speaking||paused)return;
+   if(speechCursor>=score.length){finishPage(token);return;}
+   const item=score[speechCursor],index=speechCursor;
+   const u=new SpeechSynthesisUtterance(item.text);
+   utterance=u;u.lang=voice?.lang||'en-US';if(voice)u.voice=voice;
+   u.rate=state.speed;u.pitch=1;u.volume=1;
+   u.onstart=()=>{if(token!==speechToken)return;note('Reading page '+(state.page+1)+' of '+pages.length+'…');updatePlay();};
+   u.onend=()=>{
+     if(token!==speechToken||!speaking)return;
+     speechCursor=index+1;
+     // Run one utterance at a time. A queued batch ignores rhythmic pauses
+     // in some browser voices and can race the page-turn events.
+     if(paused)return;
+     speechDelayTimer=setTimeout(()=>{speechDelayTimer=null;speakNext();},item.afterMs/Math.max(.6,state.speed));
    };
    u.onerror=e=>{if(token!==speechToken)return;stop();note('Narration stopped ('+(e.error||'speech error')+'). Choose another voice and try again.');};
-   return u;
- });
- note('Starting narration…');
- try{for(const u of speechQueue){if(token!==speechToken)break;synth.speak(u);}}
- catch{stop();note('Narration could not start in this browser.');return;}
- if(token===speechToken&&!started)startTimer=setTimeout(()=>{if(token===speechToken&&!started&&!paused){stop();note('No narration started. Choose another English voice in Settings.');}},10000);
- updatePlay();
+   try{window.speechSynthesis.speak(u);}catch{stop();note('The browser could not play this passage.');}
+ };
+ // Store the advance callback so pause/resume can continue after a silent break.
+ resumeNarration=speakNext;
+ note('Starting poetry narration…');speakNext();updatePlay();
 }
+let resumeNarration=null;
 function togglePlay(){
  if(!speaking){startSpeech(speechResumeAt);return;}
- if(!paused){speechSynthesis.pause();paused=true;note('Narration paused.');}
- else{paused=false;if(pageSpeechDone){finishPage(speechToken);return;}
-   speechSynthesis.resume();note('Narration resumed.');}
+ if(!paused){
+   paused=true;clearTimeout(speechDelayTimer);speechDelayTimer=null;
+   if('speechSynthesis' in window)speechSynthesis.pause();
+   note('Narration paused.');
+ }else{
+   paused=false;
+   if('speechSynthesis' in window)speechSynthesis.resume();
+   // If a sentence was already completed when the user paused, advance.
+   if(!speechSynthesis.speaking)resumeNarration?.();
+   note('Narration resumed.');
+ }
  updatePlay();
 }
 function go(p){if(!pages.length)return;stop();speechResumeAt=0;state.page=Math.max(0,Math.min(p,pages.length-1));save();render();}
@@ -209,7 +198,7 @@ function render(){if(!pages.length)return;const page=pages[state.page];
  const isFirstRender=initialRender;initialRender=false;
  $('story-figure').hidden=state.page!==0;
  $('progresslabel').textContent=Math.round((state.page+1)/pages.length*100)+'% read · '+page.sectionName;$('chaptername').textContent=page.sectionName;
- $('prose').replaceChildren(...page.paragraphs.map(p=>{const el=document.createElement('p');el.textContent=p;if(/^[A-Z][A-Z .'-]{2,36}$/.test(p.trim()))el.classList.add('speaker');else if(/^\[.*\]$/s.test(p.trim()))el.classList.add('stage');return el}));
+ $('prose').replaceChildren(...page.paragraphs.map(p=>{const el=document.createElement('p');el.textContent=p;if(isPoemTitle(p,page.paragraphs.indexOf(p),page.paragraphs))el.classList.add('poem-title');if(/^[A-Z][A-Z .'-]{2,36}$/.test(p.trim()))el.classList.add('speaker');else if(/^\[.*\]$/s.test(p.trim()))el.classList.add('stage');return el}));
  $('pagecount').textContent='Page '+(state.page+1)+' of '+pages.length;$('footcount').textContent=page.sectionName;
  ['prev','prev2'].forEach(id=>$(id).disabled=state.page<=0);['next','next2'].forEach(id=>$(id).disabled=state.page>=pages.length-1);
  $('page').value=String(state.page);$('section').value=String(page.section);$('progressbar').style.width=((state.page+1)/pages.length*100).toFixed(2)+'%';
@@ -235,7 +224,7 @@ $('play').onclick=togglePlay;
 $('section').onchange=()=>go(pages.findIndex(p=>p.section===Number($('section').value)));
 $('page').onchange=()=>go(Number($('page').value));
 $('voice').onchange=()=>{stop();speechResumeAt=0;state.voice=$('voice').value;save();note('Voice selected. Press Read aloud to hear this page.');};
-$('speed').oninput=()=>{const hadSpeech=speaking,wasPlaying=speaking&&!paused,cursor=speechCursor;state.speed=Number($('speed').value);$('speedview').value=state.speed+'×';save();if(hadSpeech){stop();speechResumeAt=cursor;if(wasPlaying)startSpeech(cursor);else note('Speed changed. Press Read aloud to resume this spoken sentence.');}};
+$('speed').oninput=()=>{const hadSpeech=speaking,wasPlaying=speaking&&!paused,cursor=speechCursor;state.speed=Number($('speed').value);$('speedview').value=state.speed+'×';save();if(hadSpeech){stop();speechResumeAt=cursor;if(wasPlaying)startSpeech(cursor);else note('Speed changed. Press Read aloud to resume this line.');}};
 $('size').oninput=()=>{state.size=Number($('size').value);applySettings();save();};
 $('dark').onchange=()=>{state.night=$('dark').checked;applySettings();save();};
 $('autoturn').onchange=()=>{state.autoTurn=$('autoturn').checked;save();};
