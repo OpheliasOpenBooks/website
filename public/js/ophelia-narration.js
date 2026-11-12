@@ -86,16 +86,31 @@
   // Apply high-confidence context rules ONLY to the spoken copy.
   // The visual manuscript stays original; ambiguous cases stay untouched.
   function contextualPronunciations(text){
-    return text.replace(/\b(bow)\b/gi,(word,offset,all)=>{
+    const bowText=text.replace(/\b(bow)\b/gi,(word,offset,all)=>{
       const prior=all.slice(Math.max(0,offset-110),offset).toLowerCase();
       const following=all.slice(offset+word.length,offset+word.length+105).toLowerCase();
+      // Clearly named archery equipment and hair ribbons remain ordinary "bow".
+      if(/^\s+(?:and\s+(?:arrow|quiver)|string|stave|wood|of\s+yew|in\s+(?:his|her)\s+hand)\b/.test(following)||
+        /\b(?:hair|ribbon|satin|silk|velvet)\s+$/.test(prior)||
+        /^\s+street\b/.test(following))return word;
       const respectAfter=/^\s+(?:to|before|down|low|deeply|respectfully|humbly|in\s+(?:homage|respect))\b/.test(following);
-      const respectBefore=/\b(?:make|made|making|give|gave|giving|offer|offered|offering|return|returned|returning|take|took|taking)\s+(?:(?:him|her|them)\s+)?(?:a|the|his|her|their|another)\s+(?:(?:low|deep|slight|little|graceful|respectful|courtly)\s+)?$/.test(prior);
-      const shipBow=/^\s+of\s+(?:the|a|his|her)\s+(?:ship|boat|vessel|barge)\b/.test(following)||/\b(?:ship['’]s|boat['’]s|vessel['’]s)\s+$/.test(prior);
-      const obviousArchery=/^\s+(?:and\s+(?:arrow|quiver)|string|stave|wood|of\s+yew|in\s+(?:his|her)\s+hand)\b/.test(following);
-      const hairBow=/\b(?:hair|ribbon|satin|silk|velvet)\s+$/.test(prior);
-      if(obviousArchery||hairBow||/\bBow\s+Street\b/.test(all.slice(offset,offset+25)))return word;
-      if(respectAfter||respectBefore||shipBow)return word[0]==='B'?'Bough':'bough';
+      const respectBefore=/\b(?:make|made|making|offer|offered|offering)\s+(?:a|an|the)\s+(?:(?:low|deep|slight|little|graceful|respectful|courtly)\s+)?$/.test(prior);
+      const bowedSubject=/\b(?:they|we|you|ye|thou|others|people|men|women|servants|guests|courtiers|all|who|whom)\s+$/.test(prior)&&
+        /^\s+(?:and|to|before|down|low)\b/.test(following);
+      const shipBow=/^\s+of\s+(?:the|a|his|her)\s+(?:ship|boat|vessel|barge)\b/.test(following)||
+        /\b(?:ship['’]s|boat['’]s|vessel['’]s)\s+$/.test(prior);
+      // "his bow to the target" is usually a weapon, not the act of bowing.
+      const objectContext=/\b(?:his|her|their|our|thy|my|your|stout|yew|long|strong|good)\s+$/.test(prior);
+      const action=(respectAfter&&!objectContext)||respectBefore||bowedSubject||shipBow;
+      if(action)return word[0]==='B'?'Bough':'bough'; // spoken-only /baʊ/
+      return word; // leave ambiguous cases for the user's selected voice
+    });
+    return bowText.replace(/\b(read)\b/gi,(word,offset,all)=>{
+      const prior=all.slice(Math.max(0,offset-45),offset);
+      const after=all.slice(offset+word.length,offset+word.length+75);
+      // Perfect-tense "had read" is pronounced "red", not "reed".
+      if(/\b(?:has|have|had)\s+$/i.test(prior)||/\b(?:yesterday|last\s+(?:night|week|year)|earlier)\b/i.test(after)&&
+        /\b(?:I|he|she|we|they)\s+$/i.test(prior))return word[0]==='R'?'Red':'red';
       return word;
     });
   }
