@@ -21,3 +21,5 @@ jobs:
         run: node tests/narration.test.cjs
       - name: Check all speaking reader pages for shared implementation
         run: node tests/library-reader-audit.cjs
+      - name: Verify Emerson volumes, essays and reading pagination
+        run: node tests/emerson-essays.test.cjs
