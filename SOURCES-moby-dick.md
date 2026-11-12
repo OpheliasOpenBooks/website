@@ -21,11 +21,13 @@
 - Narration: `public/js/ophelia-narration.js?v=1.1.0` (the shared case and Roman-numeral normalizer). Sharing: `public/js/ophelia-share.js`. Reading position is stored locally under `ophelia-moby-dick-melville-1851-alice-voice-v1`.
 - Historical book is classified as **Adventure** in the searchable library catalog and appears as book number **25** on the homepage.
 
-## Public-domain original cover
-- **Artwork:** original title page of *Moby-Dick; or, The Whale*, first U.S. edition, Harper & Brothers, New York, 1851.
-- **Source:** [Wikimedia Commons scan, Moby-Dick (1851) US edition.djvu](https://commons.wikimedia.org/wiki/File:Moby-Dick_(1851)_US_edition.djvu), specifically the original title page on page 9.
-- **Rights:** Public-domain historical publication (1851).
-- The original title page is displayed at a constrained maximum height, with `object-fit: contain` to protect the book-like proportions.
+## Original illustration for this website
+- **Artwork:** *Captain Ahab and the White Whale* — original AI-generated illustration created for Ophelia’s Open Book on November 12, 2026.
+- **Image stored in this website’s GitHub repository:** `public/art/moby-dick-original.avif`.
+- **Original generated file:** a detailed portrait-format image of Ahab confronting the white whale amid stormy seas. The on-site AVIF is an optimized 360 × 450 version (8,908 bytes) intended for catalog and reader use.
+- **Presentation:** catalog art uses `object-fit: contain`; the reader page limits image height to 370px without cropping.
+- **Attribution:** do not identify this new artwork as an actual 1851 illustration or historical first-edition title page. It was newly generated for the website.
+- **Technical:** The illustration is now hosted locally, so there is no dependency on a third-party Wikimedia thumbnail address.
 
 ## Verification
 - Verified 138 text sections: Etymology + Extracts + 135 chapters + Epilogue.
