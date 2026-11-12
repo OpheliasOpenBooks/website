@@ -98,7 +98,14 @@ function stop(){
  speaking=false;paused=false;speechQueue=[];speechCursor=0;pageSpeechDone=false;utterance=null;updatePlay();
 }
 function updatePlay(){$('play').textContent=speaking?(paused?'▶ Resume':'Ⅱ Pause'):'▶ Read aloud';}
-function getText(){const page=pages[state.page];if(!page)return '';const first=state.page===0||pages[state.page-1].section!==page.section;const heading=first&&page.section!==0?segments[page.section].name+'. ':'';return heading+page.paragraphs.join(' ');}
+function getText(){
+ const page=pages[state.page];if(!page)return '';
+ const first=state.page===0||pages[state.page-1].section!==page.section;
+ const title=state.page===0?'The Merry Adventures of Robin Hood. By Howard Pyle. ':'';
+ const heading=first?segments[page.section].name+'. ':'';
+ const paragraphs=page.paragraphs.map(p=>/^(?:PREFACE|PROLOGUE|FROM THE AUTHOR TO THE READER|CONTENTS)$/i.test(p.trim())?p.trim()+'.':p);
+ return title+heading+paragraphs.join(' ');
+}
 function pickVoice(){return voiceList.find(v=>v.voiceURI===state.voice)||voiceList.find(v=>/^en-GB/i.test(v.lang))||voiceList.find(v=>/^en/i.test(v.lang))||null;}
 // This function is copied from the original Alice reader to preserve its exact
 // sentence-boundary, abbreviation, punctuation, and Victorian-clause rules.
