@@ -91,7 +91,7 @@ function parseText(raw){
      if(romanToNumber(headings[j][1])!==j+1)throw Error('Missing '+bookTitle+' chapter '+(j+1));
      const text=part.slice(headings[j].index+headings[j][0].length,headings[j+1]?.index??part.length);
      const paragraphs=paras(text);
-     if(paragraphs.length<3)throw Error('Truncated '+bookTitle+' chapter '+(j+1));
+     if(!paragraphs.length||(text.match(/\S+/g)||[]).length<120)throw Error('Truncated '+bookTitle+' chapter '+(j+1));
      sections.push({name:bookTitle+' · Chapter '+(j+1),paragraphs});
    }
  }
