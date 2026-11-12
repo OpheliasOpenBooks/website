@@ -80,7 +80,6 @@ footer .wrap{display:flex;gap:18px;flex-wrap:wrap;justify-content:space-between}
 'use strict';
 const $=id=>document.getElementById(id);
 const genreByPage={
- 'hiroshima-hersey.html':'Literary Journalism · Reference',
  'she-stoops-to-conquer.html':'Drama & Comedy',
  'great-expectations.html':'Literary Fiction',
  'leaves-of-grass.html':'Poetry',
@@ -217,7 +216,7 @@ function card(book){
  const by=document.createElement('p');by.className='author';by.textContent=book.author;
  const desc=document.createElement('p');desc.className='blurb';desc.textContent=book.description;
  const actions=document.createElement('div');actions.className='book-actions';
- const read=document.createElement('a');read.className='read-button';read.href=book.href;read.textContent=book.href==='hiroshima-hersey.html'?'Explore book →':'Read & Listen →';
+ const read=document.createElement('a');read.className='read-button';read.href=book.href;read.textContent='Read & Listen →';
  const share=document.createElement('button');share.type='button';share.className='card-share';share.textContent='Share';
  share.setAttribute('aria-label','Share '+book.title);
  share.addEventListener('click',()=>window.OpheliaShare?.open({title:book.title,url:new URL(book.href,location.href).href}));
