@@ -1,5 +1,5 @@
 /* Ophelia's Open Book — shared spoken-text preparation.
- * Version 1.2.0. Load before each reader's inline narration code.
+ * Version 1.2.1. Load before each reader's inline narration code.
  *
  * Normalize only the words sent to speech synthesis: the printed book,
  * headings, pagination, bookmarks and original manuscripts are unchanged.
@@ -83,7 +83,35 @@
       if(!/[AEIOUY]/.test(word)&&!commonVowellessWords.has(word))return word;
       return word[0]+word.slice(1).toLowerCase();
     });
-    return contextualPronunciations(text);
+    return contextualPronunciations(speechGrammar(text));
+  }
+
+  // Pronunciation-friendly grammar for speech only. Printed book text is unchanged.
+  // A regular noun possessive is pronounced like its plural ("art's" => "arts").
+  // For sibilant endings, use the equivalent -es sound ("James's" => "Jameses").
+  // Never rewrite common contractions such as "it's", "he's" or "there's".
+  const contractionBases=new Set([
+    'it','he','she','that','what','who','there','here','where','how','let',
+    'when','why','this','everything','something','nothing','someone',
+    'everyone','anyone','anybody','everybody','somebody','nobody'
+  ]);
+  function speechGrammar(text){
+    text=text.replace(/\b([A-Za-z]+(?:-[A-Za-z]+)*)['’]s\b/g,(whole,noun)=>{
+      if(contractionBases.has(noun.toLowerCase()))return whole;
+      return noun+(/(?:s|x|z|ch|sh)$/i.test(noun)?'es':'s');
+    });
+    // Honorific abbreviations have unambiguous spoken meanings.
+    // Leave context-dependent abbreviations (e.g. St., No.) untouched.
+    const titles={Mr:'Mister',Mrs:'Missus',Ms:'Miz',Dr:'Doctor',
+      Prof:'Professor',Rev:'Reverend',Capt:'Captain',Lt:'Lieutenant',
+      Col:'Colonel',Gen:'General',Jr:'Junior',Sr:'Senior'};
+    text=text.replace(/\b(Mrs|Mr|Ms|Dr|Prof|Rev|Capt|Lt|Col|Gen|Jr|Sr)\./gi,
+      (whole,title)=>titles[title[0].toUpperCase()+title.slice(1).toLowerCase()]||whole);
+    // Keep ordinary editorial abbreviations as meaningful words.
+    text=text.replace(/\be\.g\./gi,'for example')
+      .replace(/\bi\.e\./gi,'that is')
+      .replace(/\betc\./gi,'et cetera');
+    return text;
   }
 
   // Apply high-confidence context rules ONLY to the spoken copy.
@@ -220,5 +248,5 @@
     play();
   }
 
-  root.OpheliaNarration=Object.freeze({version:'1.2.0',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter});
+  root.OpheliaNarration=Object.freeze({version:'1.2.1',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter});
 })(window);
