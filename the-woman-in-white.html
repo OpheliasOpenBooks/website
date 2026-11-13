@@ -83,6 +83,18 @@ function parseText(raw){
   sections.push({name,speechHeading,paragraphs});
   lastEpoch=epoch;lastNarrator=narrator;
  }
+ // A few narrator headings are followed by a short parenthetical credential
+ // before Section I. Keep the credential with Section I rather than producing
+ // an almost-empty page and duplicating the narration heading.
+ for(let i=1;i<sections.length-1;i++){
+  const current=sections[i],next=sections[i+1];
+  const words=(current.paragraphs.join(' ').match(/\\S+/g)||[]).length;
+  if(words<12&&next.name.startsWith(current.name+' · Section ')){
+   next.paragraphs=[...current.paragraphs,...next.paragraphs];
+   next.speechHeading=current.speechHeading+next.speechHeading;
+   sections.splice(i,1);i--;
+  }
+ }
  if(sections.length<60||sections.length>90)throw Error('Incorrect narrative section count.');
  return sections;
 }
