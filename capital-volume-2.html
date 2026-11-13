@@ -43,7 +43,7 @@
  <p class="status" id="message" role="status">Preparing Volume 2…</p>
  <div class="load hidden" id="loadbox"><strong>Unable to load Volume 2</strong><p>Refresh the page or consult the <a href="https://www.marxists.org/archive/marx/works/1885-c2/" target="_blank" rel="noopener">full public-domain edition</a>.</p></div></aside>
 </div>
-<div class="source">Complete Volume 2 of <em>Capital: A Critique of Political Economy</em> by Karl Marx. 21 chapters and original Engels prefaces. Early public-domain English translation: Ernest Untermann, edited by Friedrich Engels. Text transcribed and proofread by the <a href="https://www.marxists.org/archive/marx/works/1885-c2/" target="_blank" rel="noopener">Marxists Internet Archive</a> and <a href="https://github.com/MARX-EBOOKS/marx-ebooks.github.io" target="_blank" rel="noopener">MARX-EBOOKS</a>; digitized text and its processing are attributed under <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener">CC BY-SA 2.0</a>. Pages are hosted locally, using Ophelia's grammar-aware browser narration.</div></div></div><script src="public/js/ophelia-narration.js?v=1.3.0"></script>
+<div class="source">Complete Volume 2 of <em>Capital: A Critique of Political Economy</em> by Karl Marx. 21 chapters and original Engels prefaces. Early public-domain English translation: Ernest Untermann, edited by Friedrich Engels. Text transcribed and proofread by the <a href="https://www.marxists.org/archive/marx/works/1885-c2/" target="_blank" rel="noopener">Marxists Internet Archive</a> and <a href="https://github.com/MARX-EBOOKS/marx-ebooks.github.io" target="_blank" rel="noopener">MARX-EBOOKS</a>; digitized text and its processing are attributed under <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener">CC BY-SA 2.0</a>. Pages are hosted locally, using Ophelia's grammar-aware browser narration.</div></div></div><script src="public/js/ophelia-narration.js?v=1.4.0"></script>
 <script>
 'use strict';
 /* All source is editable. Narration reuses Alice’s grammar-aware sentence segmentation and queued speech strategy. Browser/device voices provide the actual spoken sound. */
@@ -110,7 +110,7 @@ function paginate(sections){
  });
  return out;
 }
-function stop(){
+function stop(){window.OpheliaNarration?.clearReading?.();
  speechToken++;clearTimeout(startTimer);if('speechSynthesis' in window)window.speechSynthesis.cancel();
  speaking=false;paused=false;speechQueue=[];speechCursor=0;pageSpeechDone=false;utterance=null;updatePlay();
 }
@@ -226,9 +226,9 @@ function startSpeech(startAt=speechResumeAt){
 }
 function togglePlay(){
  if(!speaking){startSpeech(speechResumeAt);return;}
- if(!paused){speechSynthesis.pause();paused=true;note('Narration paused.');}
+ if(!paused){if(!window.OpheliaNarration?.pauseReading?.())speechSynthesis.pause();paused=true;note('Narration paused.');}
  else{paused=false;if(pageSpeechDone){finishPage(speechToken);return;}
-   speechSynthesis.resume();note('Narration resumed.');}
+   if(!window.OpheliaNarration?.resumeReading?.())speechSynthesis.resume();note('Narration resumed.');}
  updatePlay();
 }
 function go(p){if(!pages.length)return;stop();speechResumeAt=0;state.page=Math.max(0,Math.min(p,pages.length-1));save();render();}
