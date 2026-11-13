@@ -43,6 +43,9 @@ jobs:
       - name: Verify complete Veblen edition and preface
         run: node tests/theory-of-the-leisure-class.test.cjs
 
+      - name: Verify complete Madame Bovary in Eleanor Marx-Aveling translation
+        run: node tests/madame-bovary.test.cjs
+
       - name: Verify Julius Caesar five acts, eighteen scenes and narration
         run: node tests/julius-caesar.test.cjs
 
