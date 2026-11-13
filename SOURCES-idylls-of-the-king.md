@@ -1,0 +1,9 @@
+# Idylls of the King — public-domain edition and provenance
+
+- **Author and text:** Alfred, Lord Tennyson, *Idylls of the King*, completed in installments 1859–1885. The original English cycle is public domain in the United States.
+- **Text source:** Project Gutenberg eBook 610, https://www.gutenberg.org/ebooks/610; GITenberg mirror https://github.com/GITenberg/Idylls-of-the-King_610/blob/master/610.txt.
+- **Hosted unabridged source:** `public/books/idylls-of-the-king-tennyson.txt`, preserving the source's original 84,000+ words, poetic line breaks, stanza divisions, title, contents, dedication, twelve narrative idylls, and concluding *To the Queen*. Gutenberg distribution license boilerplate removed, not authorial material.
+- **Verified headings:** Dedication; The Coming of Arthur; Gareth and Lynette; The Marriage of Geraint; Geraint and Enid; Balin and Balan; Merlin and Vivien; Lancelot and Elaine; The Holy Grail; Pelleas and Ettarre; The Last Tournament; Guinevere; The Passing of Arthur; To the Queen.
+- **Historical illustration:** A genuine Gustave Doré engraving prepared for the 1868 *Idylls of the King*, Wikimedia Commons file https://commons.wikimedia.org/wiki/File:Idylls_of_the_King_16.jpg. Artwork itself is public domain; it is **not** claimed as an illustration of the eventual 1885 completed cycle.
+- **Reader:** `idylls-of-the-king.html` uses Ophelia's browser/device-generated speech (not recorded audiobooks), with saved reading progress, bookmarking and adjustable voice/speed. CSS renders poetry with original line breaks. Catalog item under Poetry & Mythology.
+- **Verification:** Reader parser exercised on locally committed text and returned 15 sections (title/contents + dedication + twelve idylls + To the Queen), paginated into 329 reader pages. JS syntax checked. Live browser loading and actual audio not separately verified.
