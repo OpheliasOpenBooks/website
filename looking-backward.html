@@ -19,7 +19,7 @@
 <div class="shell">
 <div class="reading-layout">
 <main class="book" aria-label="Looking Backward reader">
- <div class="book-heading"><div class="eyebrow">OPHELIA’S OPEN BOOK</div><h1>Looking Backward</h1><p class="byline">Edward Bellamy · 1888 · 2000–1887</p><p class="fine">Complete unabridged novel · All 28 chapters · Author’s introduction and footnotes</p></div>
+ <div class="book-heading"><div class="eyebrow">OPHELIA’S OPEN BOOK</div><h1>Looking Backward</h1><p class="byline">Edward Bellamy · 1888 · 2000–1887</p><p class="fine">Complete unabridged novel · All 28 chapters · Author’s preface</p></div>
  <figure id="story-figure" hidden><img id="opening-art" src="https://raw.githubusercontent.com/GITenberg/Looking-Backward-2000-to-1887_624/master/cover.png" alt="Cover graphic for Looking Backward by Edward Bellamy from GITenberg" loading="lazy"><figcaption>Cover image · <a href="https://www.gutenberg.org/ebooks/624" target="_blank" rel="noopener">Project Gutenberg</a></figcaption></figure>
  <article class="content" id="content"><div class="chapter-row"><span id="chaptername" class="chapter"></span></div><div id="prose"><p>Preparing 28 chapters…</p></div><div class="endmark" aria-hidden="true">— ❧ —</div></article>
  <div class="footer-nav"><button type="button" id="prev2" disabled>← Previous page</button><span id="footcount">Edward Bellamy · Complete 1888 novel</span><button type="button" id="next2" disabled>Next page →</button></div>
@@ -229,7 +229,7 @@ function render(){if(!pages.length)return;const page=pages[state.page];
 }
 function setupBook(raw){
  const parsed=parseText(raw),paged=paginate(parsed);
- if(parsed.length!==29||paged.length<175)throw Error('Expected the author's preface and all 28 chapters.');
+ if(parsed.length!==29||paged.length<175)throw Error("Expected the author’s preface and all 28 chapters.");
  segments=parsed;pages=paged;
  $('section').replaceChildren(...segments.map((s,i)=>new Option(s.name,i)));
  $('page').replaceChildren(...pages.map((_,i)=>new Option('Page '+(i+1),i)));
