@@ -44,7 +44,7 @@
  <p class="status" id="message" role="status">Preparing 21 adventures and epilogue…</p>
  <div class="load hidden" id="loadbox"><strong>Unable to load the complete edition</strong><p>Please refresh the page, or <a href="https://www.gutenberg.org/ebooks/10148" target="_blank" rel="noopener">read the complete book at Project Gutenberg</a>.</p></div></aside>
 </div>
-<div class="source">Complete public-domain 1883 text of <em>The Merry Adventures of Robin Hood</em> by Howard Pyle, including the preface, prologue, all 21 adventures and epilogue. <a href="https://www.gutenberg.org/ebooks/10148" target="_blank" rel="noopener">Project Gutenberg eBook 10148</a> (locally preserved; distribution notices omitted). Original historical art by Howard Pyle, with <a href="https://commons.wikimedia.org/wiki/File:1883_decorative_title_page.jpg" target="_blank" rel="noopener">1883 decorative title page</a> and <a href="https://github.com/GITenberg/The-Merry-Adventures-of-Robin-Hood_10148" target="_blank" rel="noopener">Gutenberg illustrated transcription</a>. Read-aloud uses the library’s grammatical narration and the English voice available on your device.</div></div><script src="public/js/ophelia-narration.js?v=1.3.0"></script>
+<div class="source">Complete public-domain 1883 text of <em>The Merry Adventures of Robin Hood</em> by Howard Pyle, including the preface, prologue, all 21 adventures and epilogue. <a href="https://www.gutenberg.org/ebooks/10148" target="_blank" rel="noopener">Project Gutenberg eBook 10148</a> (locally preserved; distribution notices omitted). Original historical art by Howard Pyle, with <a href="https://commons.wikimedia.org/wiki/File:1883_decorative_title_page.jpg" target="_blank" rel="noopener">1883 decorative title page</a> and <a href="https://github.com/GITenberg/The-Merry-Adventures-of-Robin-Hood_10148" target="_blank" rel="noopener">Gutenberg illustrated transcription</a>. Read-aloud uses the library’s grammatical narration and the English voice available on your device.</div></div><script src="public/js/ophelia-narration.js?v=1.4.0"></script>
 <script>
 'use strict';
 /* All source is editable. Narration reuses Alice’s grammar-aware sentence segmentation and queued speech strategy. Browser/device voices provide the actual spoken sound. */
@@ -93,7 +93,7 @@ function paginate(sections){
  });
  return out;
 }
-function stop(){
+function stop(){window.OpheliaNarration?.clearReading?.();
  speechToken++;clearTimeout(startTimer);if('speechSynthesis' in window)window.speechSynthesis.cancel();
  speaking=false;paused=false;speechQueue=[];speechCursor=0;pageSpeechDone=false;utterance=null;updatePlay();
 }
@@ -210,9 +210,9 @@ function startSpeech(startAt=speechResumeAt){
 }
 function togglePlay(){
  if(!speaking){startSpeech(speechResumeAt);return;}
- if(!paused){speechSynthesis.pause();paused=true;note('Narration paused.');}
+ if(!paused){if(!window.OpheliaNarration?.pauseReading?.())speechSynthesis.pause();paused=true;note('Narration paused.');}
  else{paused=false;if(pageSpeechDone){finishPage(speechToken);return;}
-   speechSynthesis.resume();note('Narration resumed.');}
+   if(!window.OpheliaNarration?.resumeReading?.())speechSynthesis.resume();note('Narration resumed.');}
  updatePlay();
 }
 function go(p){if(!pages.length)return;stop();speechResumeAt=0;state.page=Math.max(0,Math.min(p,pages.length-1));save();render();}
