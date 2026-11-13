@@ -43,7 +43,7 @@
  <p class="status" id="message" role="status">Preparing all 41 chapters…</p>
  <div class="load hidden" id="loadbox"><strong>Unable to load the complete book</strong><p>Please refresh or <a href="https://www.gutenberg.org/ebooks/1606" target="_blank" rel="noopener">read the complete text at Project Gutenberg</a>.</p></div></aside>
 </div>
-<div class="source">Complete public-domain <em>Kenilworth</em> by Sir Walter Scott (1821), including introduction, historical notes and all 41 chapters, loaded from the public-domain <a href="https://www.gutenberg.org/ebooks/1606" target="_blank" rel="noopener">Project Gutenberg eBook 1606</a> transcription. The illustration depicts a scene from the same novel. Shared narration and saved reading progress.</div></div></div><script src="public/js/ophelia-narration.js?v=1.2.0"></script>
+<div class="source">Complete public-domain <em>Kenilworth</em> by Sir Walter Scott (1821), including introduction, historical notes and all 41 chapters, hosted on this website from the public-domain <a href="https://www.gutenberg.org/ebooks/1606" target="_blank" rel="noopener">Project Gutenberg eBook 1606</a> transcription. The illustration depicts a scene from the same novel. Shared narration and saved reading progress.</div></div></div><script src="public/js/ophelia-narration.js?v=1.2.0"></script>
 <script>
 'use strict';
 /* All source is editable. Narration reuses Alice’s grammar-aware sentence segmentation and queued speech strategy. Browser/device voices provide the actual spoken sound. */
@@ -64,21 +64,18 @@ function romanToNumber(s){
 }
 function parseText(raw){
  const t=raw.replace(/\r\n?/g,'\n').trim();
- const title=t.indexOf('\nKENILWORTH.');
- if(title<0)throw Error('Original title missing');
- const end=t.search(/\*\*\*\s*END OF (?:THE|THIS) PROJECT GUTENBERG/i);
- const book=t.slice(title+1,end>title?end:undefined).replace(/\nEnd of (?:the )?Project Gutenberg[^\n]*[\s\S]*$/i,'').trim();
- const marks=[...book.matchAll(/^CHAPTER\s+([IVXLCDM]+)\.?\s*$/gm)];
+ if(!t.startsWith('KENILWORTH\n\nINTRODUCTION\n'))throw Error('Original title and introduction missing');
+ const marks=[...t.matchAll(/^CHAPTER\s+([IVXLCDM]+)\.?\s*$/gm)];
  function roman(x){const d={I:1,V:5,X:10,L:50,C:100,D:500,M:1000};let n=0;for(let i=0;i<x.length;i++)n+=(d[x[i]]||0)<(d[x[i+1]]||0)?-d[x[i]]:d[x[i]];return n;}
- if(marks.length!==41||!marks.every((m,i)=>roman(m[1])===i+1))throw Error('All 41 chapters missing or out of sequence');
+ if(marks.length!==41||!marks.every((m,i)=>roman(m[1])===i+1))throw Error('Expected 41 original chapters in sequence');
  function paras(x){return x.trim().split(/\n\s*\n+/).map(block=>block.split('\n').map(line=>line.trim()).join(' ').replace(/ {2,}/g,' ').trim()).filter(Boolean);}
- const sections=[{name:'Title & Original Introduction',paragraphs:paras(book.slice(0,marks[0].index))}];
+ const sections=[{name:'Title & Original Introduction',paragraphs:paras(t.slice(0,marks[0].index))}];
  for(let i=0;i<marks.length;i++){
-  const part=book.slice(marks[i].index+marks[i][0].length,marks[i+1]?.index??book.length);
-  if(part.length<1300)throw Error('Chapter '+(i+1)+' appears truncated');
+  const part=t.slice(marks[i].index+marks[i][0].length,marks[i+1]?.index??t.length);
+  if(part.length<1500)throw Error('Chapter '+(i+1)+' appears truncated');
   sections.push({name:'Chapter '+(i+1),heading:'Chapter '+(i+1),paragraphs:paras(part)});
  }
- if(sections.length!==42||(book.match(/\S+/g)||[]).length<140000)throw Error('Complete unabridged text validation failed');
+ if(sections.length!==42||(t.match(/\S+/g)||[]).length<180000||!t.includes('NOTES.'))throw Error('Complete unabridged text validation failed');
  return sections;
 }
 function paginate(sections){
@@ -260,8 +257,8 @@ $('sound').onclick=()=>{soundOn=!soundOn;if(!soundOn&&speaking){stop();} $('soun
 window.addEventListener('pagehide',stop);if('speechSynthesis' in window){updateVoices();speechSynthesis.addEventListener('voiceschanged',updateVoices)}
 applySettings();
 (async()=>{
- // The complete Kenilworth transcription is fetched from the public-domain Project Gutenberg mirror. Narration uses the local browser speech system; no audio file is loaded.
- try{const r=await fetch('https://raw.githubusercontent.com/GITenberg/Kenilworth_1606/master/1606-0.txt');if(!r.ok)throw Error('Source text unavailable');setupBook(await r.text());}
+ // The complete Kenilworth transcription is hosted locally on this website. Narration uses the local browser speech system; no audio file is loaded.
+ try{const r=await fetch('public/books/kenilworth-scott-1821.txt');if(!r.ok)throw Error('Local text unavailable');setupBook(await r.text());}
  catch{$('loadbox').classList.remove('hidden');note('Kenilworth could not be loaded. Refresh or consult Project Gutenberg.');}
 })();
 
