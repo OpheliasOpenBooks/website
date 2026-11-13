@@ -73,11 +73,11 @@ function parseText(raw){
  const expected=[5,2,4,7,2],roman={I:1,II:2,III:3,IV:4,V:5};let totalScenes=0;
  for(let a=0;a<acts.length;a++){
   const actText=t.slice(acts[a].index+acts[a][0].length,acts[a+1]?.index??t.length);
-  const marks=[...actText.matchAll(/^SCENE (I|II|III|IV|V)\.[^\n]*$/gm)];
+  const marks=[...actText.matchAll(/^SCENE ([IVXLCDM]+)\.[^\n]*$/gm)];
   if(marks.length!==expected[a])throw Error('Incorrect scene count in Act '+(a+1));
   for(let j=0;j<marks.length;j++){
    const part=actText.slice(marks[j].index,marks[j+1]?.index??actText.length);
-   const n=roman[marks[j][1]];
+   const n=romanToNumber(marks[j][1]);
    if(n!==j+1||part.length<300)throw Error('Scene numbering/content invalid in Act '+(a+1));
    sections.push({name:'Act '+(a+1)+', Scene '+n,paragraphs:paras(part)});
    totalScenes++;
