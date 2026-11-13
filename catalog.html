@@ -80,6 +80,7 @@ footer .wrap{display:flex;gap:18px;flex-wrap:wrap;justify-content:space-between}
 'use strict';
 const $=id=>document.getElementById(id);
 const genreByPage={
+ 'fathers-and-sons.html':'Russian Literature',
  'theory-of-the-leisure-class.html':'Economics & Philosophy',
  'capital-volume-1.html':'Economics & Philosophy',
  'capital-volume-2.html':'Economics & Philosophy',
@@ -149,6 +150,7 @@ const genreByPage={
  'oedipus-rex.html':'Ancient Classics'
 };
 const progressByPage={
+ 'fathers-and-sons.html':'ophelia-fathers-and-sons-hogarth-1921-v1',
  'theory-of-the-leisure-class.html':'ophelia-veblen-leisure-class-1899-v1',
  'capital-volume-1.html':'ophelia-capital-marx-volume-1-v1',
  'capital-volume-2.html':'ophelia-capital-marx-volume-2-v1',
@@ -190,6 +192,8 @@ const progressByPage={
  'oedipus-rex.html':'ophelia-oedipus-rex-storr-1912-alice-voice-v1'
 };
 const catalogOnlyBooks=[
+ {title:'Fathers and Sons',author:'Ivan Turgenev · 1862 · C. J. Hogarth, 1921 translation',href:'fathers-and-sons.html',image:'https://www.gutenberg.org/cache/epub/47935/images/cover.jpg',alt:'Original 1921 illustrated title page for Fathers and Sons',description:'Turgenev’s Russian classic about generational conflict, love, and nihilism. Complete 28 chapters in the 1921 English translation, including introduction and notes.',genre:'Russian Literature'},
+
  {title:'The Theory of the Leisure Class',author:'Thorstein Veblen · 1899 · Economics and Sociology',href:'theory-of-the-leisure-class.html',image:'https://commons.wikimedia.org/wiki/Special:FilePath/The_Theory_of_the_Leisure_Class_first_edition_title_page.jpg',alt:'First-edition 1899 title page of The Theory of the Leisure Class',description:'A foundational study of conspicuous consumption, prestige and social institutions. Unabridged 1899 work, with original preface and all 14 chapters.',genre:'Economics & Philosophy'},
 
  {title:'Capital · Volume I',author:'Karl Marx · 1867 · English translation 1887',href:'capital-volume-1.html',image:'https://upload.wikimedia.org/wikipedia/commons/d/d4/Karl_Marx_001.jpg',alt:'Historical portrait of Karl Marx',description:'The Process of Production of Capital. Complete public-domain English translation with 33 chapters, original prefaces and appendix.',genre:'Economics & Philosophy'},
