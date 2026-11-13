@@ -109,7 +109,7 @@
       (whole,title)=>titles[title[0].toUpperCase()+title.slice(1).toLowerCase()]||whole);
     // Print-era time abbreviations: "8:35 P. M." should be heard as "8:35 PM".
     // Do not send an extra period after M to the speech engine.
-    text=text.replace(/\b([AP])\.\s*M\.(?=[\s,;:!?)]|$)/gi,
+    text=text.replace(/\b([AP])\.\s*M\.(?![A-Za-z])/gi,
       (_,letter)=>letter.toUpperCase()+'M');
     // Keep ordinary editorial abbreviations as meaningful words.
     text=text.replace(/\be\.g\./gi,'for example')
