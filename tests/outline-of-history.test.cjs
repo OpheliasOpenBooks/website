@@ -32,7 +32,7 @@ for(const v of volumes){
  assert.equal(headings.at(-1)[1],v.end,'Final Roman-numbered chapter Volume '+v.n);
  assert.ok(reader.includes("fetch('public/books/"+v.file+"')"),'Volume '+v.n+' hosted locally');
  assert.ok(reader.includes("fetch('public/books/outline-of-history-1920-illustrations.json')"),'Volume '+v.n+' original illustration mapping');
- assert.ok(reader.includes('public/js/ophelia-narration.js?v=1.2.0'),'Standard narration Volume '+v.n);
+ assert.ok(reader.includes('public/js/ophelia-narration.js?v=1.4.0'),'Standard narration Volume '+v.n);
  assert.ok(reader.includes('public/js/ophelia-share.js'),'Period sharing style Volume '+v.n);
  assert.ok(reader.includes("const STORAGE='ophelia-outline-of-history-wells-volume-"+v.n+"-v1'"),'Independent saved reading place Volume '+v.n);
  assert.ok(catalog.includes("href:'"+v.reader+"'"),'Volume '+v.n+' listed in catalog');

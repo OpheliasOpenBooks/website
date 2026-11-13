@@ -23,7 +23,7 @@ for(const [i,w] of works.entries()){
  assert.ok(source.trimEnd().endsWith(w.end),w.title+' original ending');
  assert.ok(!source.includes('*** END OF THIS PROJECT GUTENBERG'),w.title+' no license boilerplate');
  assert.ok(reader.includes("fetch('public/books/"+w.path+"')"),w.title+' hosted locally');
- assert.ok(reader.includes('public/js/ophelia-narration.js?v=1.2.0'),w.title+' established narration');
+ assert.ok(reader.includes('public/js/ophelia-narration.js?v=1.4.0'),w.title+' established narration');
  assert.ok(reader.includes('public/js/ophelia-share.js'),w.title+' established sharing');
  assert.ok(reader.includes("const STORAGE='ophelia-forsyte-"+w.slug+"-v1'"),w.title+' independent saved progress');
  assert.ok(/(?:titlepage[13]|titlpage2)\.jpg/.test(reader)&&/frontis[123]\.jpg/.test(reader),w.title+' historic illustrations');

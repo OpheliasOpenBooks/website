@@ -20,7 +20,7 @@ assert.ok(source.split(/\s+/).length>110000,'Full-length unabridged translation'
 assert.ok(source.trimEnd().endsWith('He has just received the cross of the Legion of Honour.'),'Original novel conclusion');
 assert.ok(html.includes("fetch('public/books/madame-bovary-flaubert-marx-aveling.txt')"),'Local source avoids cross-origin loading');
 assert.ok(html.includes("const STORAGE='ophelia-madame-bovary-flaubert-marx-aveling-v1'"),'Independent reading progress and bookmarks');
-assert.ok(html.includes('public/js/ophelia-narration.js?v=1.2.0'),'Established grammar-aware narration');
+assert.ok(html.includes('public/js/ophelia-narration.js?v=1.4.0'),'Established grammar-aware narration');
 assert.ok(html.includes('public/js/ophelia-share.js'),'Established literary share widget');
 assert.ok(html.includes('MadameBovary01.jpg')&&html.includes('Carlo Chessa'),'Authentic 1905 engraved illustration and attribution');
 const inline=[...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)].map(m=>m[1]).find(s=>s.includes('function parseText(raw)'));
