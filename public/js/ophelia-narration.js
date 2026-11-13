@@ -1,5 +1,5 @@
 /* Ophelia's Open Book — shared spoken-text preparation.
- * Version 1.3.3. Load before each reader's inline narration code.
+ * Version 1.4.0. Load before each reader's inline narration code.
  *
  * Normalize only the words sent to speech synthesis: the printed book,
  * headings, pagination, bookmarks and original manuscripts are unchanged.
@@ -289,32 +289,201 @@
     if(/,$/.test(clean))return 165;
     return 150;
   }
-  // Queue one utterance at a time, rather than starting every sentence
-  // back-to-back. Respect manual pause, stop and page changes via callbacks.
+  // Resume marker: exact word when the browser emits word boundaries.
+  // The marked-up text is not saved to the manuscript or reading progress.
+  let activeReading=null,pausedWordMark=null;
+  function clearPausedHighlight(){
+    if(pausedWordMark){
+      const mark=pausedWordMark;pausedWordMark=null;
+      if(mark.parentNode){
+        const parent=mark.parentNode;
+        parent.replaceChild(document.createTextNode(mark.textContent),mark);
+        parent.normalize();
+      }
+    }
+  }
+  function wordSpans(value){
+    const spans=[],re=/[\p{L}\p{N}]+(?:[’'-][\p{L}\p{N}]+)*/gu;
+    for(const m of String(value).matchAll(re))
+      spans.push({word:m[0],start:m.index,end:m.index+m[0].length});
+    return spans;
+  }
+  function comparableWord(value){
+    const clean=String(value).toLowerCase().replace(/['’]/g,'').replace(/-/g,'');
+    const aliases={meena:'mina',meenas:'minas',bough:'bow',wined:'wind',
+      wineds:'winds',mister:'mr',doctor:'dr',missus:'mrs',miz:'ms',
+      one:'1',two:'2',three:'3',four:'4',five:'5',six:'6',
+      seven:'7',eight:'8',nine:'9',ten:'10'};
+    return aliases[clean]||clean;
+  }
+  function locateVisualWord(spokenWords,position){
+    const body=document.getElementById('prose')||document.getElementById('passage');
+    if(!body)return null;
+    const title=document.getElementById('chaptername')||document.getElementById('read-chapter');
+    const containers=[];
+    if(title){
+      const titleWords=wordSpans(title.textContent).map(x=>comparableWord(x.word));
+      // The heading is visible on every page but usually spoken only on its first page.
+      if(titleWords.length&&spokenWords.length&&
+        (titleWords[0]===comparableWord(spokenWords[0].word)||
+         (titleWords[0]==='chapter'&&comparableWord(spokenWords[0].word)==='chapter')))
+        containers.push(title);
+    }
+    containers.push(body);
+    const visible=[];
+    for(const container of containers){
+      const walker=document.createTreeWalker(container,NodeFilter.SHOW_TEXT);
+      let node;
+      while((node=walker.nextNode())){
+        for(const span of wordSpans(node.textContent))
+          visible.push({...span,node,key:comparableWord(span.word)});
+      }
+    }
+    if(!visible.length||!spokenWords.length)return null;
+    const spoken=spokenWords.map(x=>comparableWord(x.word));
+    const target=Math.max(0,Math.min(position,spoken.length-1));
+    // Align the spoken-only normalization and the original printed words.
+    // A lookahead skips extra heading tokens and abbreviation expansions.
+    let i=0,j=0;
+    while(i<=target&&j<visible.length){
+      if(spoken[i]===visible[j].key){
+        if(i===target)return visible[j];
+        i++;j++;continue;
+      }
+      let skipVisual=-1,skipSpoken=-1;
+      for(let k=1;k<=4&&j+k<visible.length;k++)
+        if(spoken[i]===visible[j+k].key){skipVisual=k;break;}
+      for(let k=1;k<=4&&i+k<spoken.length;k++)
+        if(spoken[i+k]===visible[j].key){skipSpoken=k;break;}
+      if(skipVisual>=0&&(skipSpoken<0||skipVisual<=skipSpoken)){j+=skipVisual;continue;}
+      if(skipSpoken>=0){i+=skipSpoken;continue;}
+      if(i===target)return visible[j];
+      i++;j++;
+    }
+    return visible[Math.min(visible.length-1,Math.max(0,j))];
+  }
+  function markPausedWord(utterances,index,offset){
+    clearPausedHighlight();
+    if(typeof document==='undefined'||typeof document.createTreeWalker!=='function')return;
+    const spokenWords=[];let selected=0,seen=0;
+    for(let i=0;i<utterances.length;i++){
+      const words=wordSpans(utterances[i].text.replace(/—\s*$/,''));
+      if(i===index){
+        const at=words.findIndex(w=>w.start<=offset&&w.end>offset);
+        const next=words.findIndex(w=>w.start>=offset);
+        selected=seen+(at>=0?at:next>=0?next:Math.max(0,words.length-1));
+      }
+      spokenWords.push(...words);
+      seen+=words.length;
+    }
+    const target=locateVisualWord(spokenWords,selected);
+    if(!target?.node?.parentNode)return;
+    const node=target.node,tail=node.splitText(target.end);
+    const exact=node.splitText(target.start);
+    const mark=document.createElement('mark');
+    mark.className='ophelia-paused-word';
+    mark.setAttribute('aria-label','Paused at '+exact.textContent);
+    mark.textContent=exact.textContent;
+    exact.parentNode.replaceChild(mark,exact);
+    pausedWordMark=mark;
+    if(!document.getElementById('ophelia-paused-word-style')){
+      const style=document.createElement('style');
+      style.id='ophelia-paused-word-style';
+      style.textContent='mark.ophelia-paused-word{background:#ffdf58!important;color:#222!important;border-radius:3px;padding:0 1px;box-shadow:0 0 0 1px #b08e14}';
+      document.head.appendChild(style);
+    }
+  }
+  // Queue one sentence/phrase at a time; keep our own word-level cursor.
+  // Browser-native pause/resume can restart unpredictably in some OS voices.
   function speakWithPauses(synth,utterances,isCurrent,isPaused){
-    if(!utterances||!utterances.length)return;
-    let i=0;
+    clearReading();
+    if(!utterances||!utterances.length)return null;
+    let index=0,offset=0,paused=false,disposed=false,serial=0,timer=null;
+    let current=null,lastBoundary=0;
+    const session={
+      pause(){
+        if(disposed||paused||!isCurrent())return false;
+        paused=true;
+        if(timer!==null){clearTimeout(timer);timer=null;}
+        if(current){
+          offset=lastBoundary;
+          serial++;current=null;
+          // Intentionally stop TTS and retain the last reported word.
+          try{synth.cancel();}catch{}
+        }
+        markPausedWord(utterances,index,offset);
+        return true;
+      },
+      resume(){
+        if(disposed||!paused||!isCurrent())return false;
+        paused=false;clearPausedHighlight();
+        try{synth.resume();}catch{}
+        play();return true;
+      },
+      clear(){
+        disposed=true;serial++;
+        if(timer!==null){clearTimeout(timer);timer=null;}
+        clearPausedHighlight();
+      },
+      getPosition(){return {index,offset,paused};}
+    };
+    activeReading=session;
     function play(){
-      if(!isCurrent()||i>=utterances.length)return;
-      if(isPaused&&isPaused()){setTimeout(play,90);return;}
-      const u=utterances[i];
-      const afterDash=/—\s*$/.test(u.text);
-      if(afterDash)u.text=u.text.replace(/—\s*$/,'').trimEnd();
-      // A question must finish its own utterance with its '?' intact.
-      // A gentle pitch lift improves interrogative delivery on voices that
-      // support pitch; no browser SpeechSynthesis voice guarantees a contour.
-      if(/\?[”’"')\]]*\s*$/.test(u.text))u.pitch=Math.min(1.15,Math.max(1.11,u.pitch||1));
-      const oldEnd=u.onend;
-      u.onend=e=>{
-        if(typeof oldEnd==='function')oldEnd(e);
-        if(!isCurrent())return;
-        i++;
-        if(i<utterances.length)setTimeout(play,afterDash?Math.max(430,pauseAfter(u.text)):pauseAfter(u.text));
+      if(disposed||paused||!isCurrent()||index>=utterances.length)return;
+      const source=utterances[index],raw=String(source.text);
+      const tail=raw.slice(offset);
+      const leading=tail.length-tail.trimStart().length;
+      const start=offset+leading;
+      const spoken=tail.trimStart().replace(/—\s*$/,'').trimEnd();
+      if(!spoken){complete(null);return;}
+      const id=++serial,base=start;
+      const VoiceUtterance=root.SpeechSynthesisUtterance;
+      const u=VoiceUtterance?new VoiceUtterance(spoken):{text:spoken};
+      for(const key of ['voice','lang','rate','pitch','volume'])
+        if(source[key]!==undefined)u[key]=source[key];
+      // Preserve the original book's narration lifecycle and controls.
+      u.onstart=e=>{if(id!==serial||disposed)return;source.onstart?.(e);};
+      u.onboundary=e=>{
+        if(id!==serial||disposed||paused)return;
+        if(typeof e?.charIndex==='number'&&e.charIndex>=0&&
+          (!e.name||e.name==='word')){
+          lastBoundary=base+e.charIndex;
+        }
+        source.onboundary?.(e);
       };
+      u.onend=e=>{if(id!==serial||disposed||paused)return;complete(e);};
+      u.onerror=e=>{if(id!==serial||disposed||paused)return;source.onerror?.(e);};
+      current=u;lastBoundary=base;
       synth.speak(u);
     }
+    function complete(e){
+      if(disposed||paused)return;
+      const original=utterances[index];
+      current=null;offset=0;index++;
+      const trailingDash=/—\s*$/.test(original.text);
+      const delay=trailingDash?Math.max(430,pauseAfter(original.text)):pauseAfter(original.text);
+      original.onend?.(e||{});
+      if(disposed||!isCurrent())return;
+      if(index<utterances.length){
+        timer=setTimeout(()=>{timer=null;play();},delay);
+      }else if(activeReading===session){
+        activeReading=null;
+      }
+    }
     play();
+    return session;
+  }
+  function pauseReading(){
+    return activeReading?.pause()===true;
+  }
+  function resumeReading(){
+    return activeReading?.resume()===true;
+  }
+  function clearReading(){
+    const session=activeReading;activeReading=null;
+    if(session)session.clear();
+    else clearPausedHighlight();
   }
 
-  root.OpheliaNarration=Object.freeze({version:'1.3.3',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter});
+  root.OpheliaNarration=Object.freeze({version:'1.4.0',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
 })(window);
