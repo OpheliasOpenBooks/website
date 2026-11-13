@@ -56,9 +56,7 @@ The original inline implementation remains only as a compatibility fallback.
   are voiced with the \`bough\` pronunciation. Archery, ribbon, musical,
   Bow Street and bow-window meanings remain untouched; uncertain cases
   remain voice-dependent. Perfect-tense \`had read\` is voiced as \`red\`.
-  Add examples to the regression tests before adding new homographs. Perfect-tense \`had read\`
-  is voiced as \`red\`. Add examples to the regression tests before making
-  additional changes to homographs.
+  Add examples to the regression tests before adding new homographs.
 - **Respect original editions:** only the off-screen copy sent to the
   device TTS is adjusted. Printed prose and poetry, illustrations,
   bookmarks, page positions and selected narrator voices are unaffected.
