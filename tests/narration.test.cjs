@@ -56,6 +56,18 @@ assert.equal(n.normalizeForSpeech('He had read the letter.'),
 assert.equal(n.normalizeForSpeech('CHAPTER VIII'), 'Chapter eight');
 assert.equal(n.normalizeForSpeech('I shall read it.'),'I shall read it.');
 
+// The mechanical verb "wind" rhymes with "kind"; weather wind does not.
+assert.equal(n.normalizeForSpeech('My watch was still unwound, and I am rigorously accustomed to wind it the last thing before going to bed.'),
+  'My watch was still unwound, and I am rigorously accustomed to wined it the last thing before going to bed.');
+assert.equal(n.normalizeForSpeech('He winds his watch.'), 'He wineds his watch.');
+assert.equal(n.normalizeForSpeech('I wind the clock each night.'), 'I wined the clock each night.');
+assert.equal(n.normalizeForSpeech('Wind up the pocket-watch.'), 'Wined up the pocket-watch.');
+assert.equal(n.normalizeForSpeech('The wind howled through the castle.'), 'The wind howled through the castle.');
+assert.equal(n.normalizeForSpeech('The winter winds blew violently.'), 'The winter winds blew violently.');
+assert.equal(n.normalizeForSpeech('The road winds through the mountains.'), 'The road winds through the mountains.');
+assert.equal(n.normalizeForSpeech('I heard the wind and saw my watch on the table.'),
+  'I heard the wind and saw my watch on the table.');
+
 // Sentence boundaries, honorifics and chapter/title pause handling.
 assert.equal(n.speechChunks('Mr. Darcy spoke. Then Elizabeth replied.').length,2);
 assert.equal(n.speechChunks('Chapter One. The evening fell.').length,2);

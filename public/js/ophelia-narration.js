@@ -1,5 +1,5 @@
 /* Ophelia's Open Book — shared spoken-text preparation.
- * Version 1.3.1. Load before each reader's inline narration code.
+ * Version 1.3.2. Load before each reader's inline narration code.
  *
  * Normalize only the words sent to speech synthesis: the printed book,
  * headings, pagination, bookmarks and original manuscripts are unchanged.
@@ -162,7 +162,23 @@
         return word[0]==='B'?'Bough':'bough'; // voice-only /baʊ/
       return word; // Leave other ambiguous contexts to the selected device voice.
     });
-    return bowText.replace(/\bread\b/gi,(word,offset,all)=>{
+    // "Wind" means /waɪnd/ ("kind") when turning a watch or clock.
+    // Spoken-only homophone disambiguation: do not alter printed prose.
+    const windText=bowText.replace(/\bwinds?\b/gi,(word,offset,all)=>{
+      const prior=all.slice(Math.max(0,offset-220),offset);
+      const after=all.slice(offset+word.length,offset+word.length+100);
+      const timepieceAfter=/^\s+(?:(?:up|back)\s+)?(?:(?:the|a|an|my|his|her|their|our|your|its)\s+)?(?:pocket[- ]?watch|watches|watch|clocks|clock|timepiece|mainspring|music\s+box)\b/i.test(after);
+      // "My watch was still unwound ... accustomed to wind it."
+      const nearbyTimepiece=/\b(?:pocket[- ]?watch|watches|watch|clocks|clock|timepiece|mainspring|music\s+box)\b/i.test(prior);
+      const actionBefore=/\b(?:to|can|could|will|would|shall|should|must|may|might|often|usually|always|regularly|daily|I|he|she|we|they|you)\s+$/i.test(prior);
+      const pronounAfter=/^\s+(?:(?:up|back)\s+)?(?:it|them)\b/i.test(after);
+      if(timepieceAfter||(nearbyTimepiece&&actionBefore&&pronounAfter)){
+        const phonetic=word.toLowerCase()==='winds'?'wineds':'wined';
+        return word[0]===word[0].toUpperCase()?phonetic[0].toUpperCase()+phonetic.slice(1):phonetic;
+      }
+      return word;
+    });
+    return windText.replace(/\bread\b/gi,(word,offset,all)=>{
       const prior=all.slice(Math.max(0,offset-45),offset);
       const after=all.slice(offset+word.length,offset+word.length+75);
       // Perfect-tense "had read" is pronounced "red", not "reed".
@@ -296,5 +312,5 @@
     play();
   }
 
-  root.OpheliaNarration=Object.freeze({version:'1.3.1',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter});
+  root.OpheliaNarration=Object.freeze({version:'1.3.2',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter});
 })(window);

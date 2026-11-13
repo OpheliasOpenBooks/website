@@ -113,3 +113,18 @@ UK and US voice choices. The printed editions stay exactly as published.
 The `dracula.html` reader now uses `?v=1.3.1` to refresh the module immediately;
 other readers that reference the same shared file automatically receive the
 fix after their browsers refresh/revalidate the script cache.
+
+## Watch and clock pronunciation (v1.3.2, November 2026)
+
+The shared voice-only normalizer distinguishes the mechanical verb *wind*
+(/waɪnd/, rhyming with *kind*) from the weather noun *wind* (/wɪnd/).
+The line in *Dracula*, Chapter IV, about Jonathan Harker's watch now uses a
+homophonic spoken-only substitution (`wined`) to guide device TTS;
+a corresponding `wineds` case handles clear clock/watch sentences.
+Atmospheric wind and ambiguous contexts stay unchanged. The printed book,
+voice options, bookmarks and reading positions remain untouched.
+
+`dracula.html` requests the shared module with `?v=1.3.2` to refresh
+the script cache immediately. Other readers using the shared script will
+pick up the improvement after their browsers fetch the latest module.
+Browser-specific voices cannot guarantee any one phonetic rendering.
