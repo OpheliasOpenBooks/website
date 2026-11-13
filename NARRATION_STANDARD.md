@@ -51,9 +51,12 @@ The original inline implementation remains only as a compatibility fallback.
 - **Sentence construction:** recognize periods, questions, abbreviations such as
   Mr. and Dr., quotations and chapter headings. Long Victorian sentences
   may be broken at actual punctuation, never in the middle of a word.
-- **High-confidence context-only homographs:** respectful bowing and the
-  forward of a vessel are voiced with the \`bough\` pronunciation; archery
-  bows and uncertain contexts remain untouched. Perfect-tense \`had read\`
+- **High-confidence context-only homographs:** respectful bowing (including
+  Dracula’s courteous, courtly and grateful bows) and the front of a vessel
+  are voiced with the \`bough\` pronunciation. Archery, ribbon, musical,
+  Bow Street and bow-window meanings remain untouched; uncertain cases
+  remain voice-dependent. Perfect-tense \`had read\` is voiced as \`red\`.
+  Add examples to the regression tests before adding new homographs. Perfect-tense \`had read\`
   is voiced as \`red\`. Add examples to the regression tests before making
   additional changes to homographs.
 - **Respect original editions:** only the off-screen copy sent to the
@@ -102,3 +105,13 @@ A new standalone reader does not inherit this JavaScript automatically unless it
 ## Preservation
 
 Do not alter the source manuscripts for voice fixes, as capital letters in an original edition may reflect intentional period typography and dialogue emphasis. Spoken-text normalization leaves the on-screen edition intact. Keep the module external and editable; do not paste separate differing versions into individual books.
+
+## Bow pronunciation refinement (v1.3.1, November 2026)
+
+The single shared narration module now recognizes polite gestures such as
+"with a courteous bow", "with a courtly bow", and "with a grateful bow".
+Its voice-only substitution rhymes with "cow" and remains consistent across
+UK and US voice choices. The printed editions stay exactly as published.
+The `dracula.html` reader now uses `?v=1.3.1` to refresh the module immediately;
+other readers that reference the same shared file automatically receive the
+fix after their browsers refresh/revalidate the script cache.
