@@ -103,7 +103,7 @@ function updatePlay(){$('play').textContent=speaking?(paused?'▶ Resume':'Ⅱ P
 function getText(){
  const page=pages[state.page];if(!page)return '';
  const first=state.page===0||pages[state.page-1].section!==page.section;
- const intro=first?segments[page.section].name+'. ':'';
+ const intro=first?segments[page.section].name.replace(/\s*[·×]\s*/g,'. ').replace(/\s+/g,' ').trim()+'. ':'';
  const spoken=first&&page.section>0&&page.paragraphs[0]===segments[page.section].heading?page.paragraphs.slice(1):page.paragraphs;
  return intro+spoken.map(p=>/^[IVXLCDM]+$/.test(p.trim())?'Section '+romanToNumber(p.trim())+'.':p.replace(/_([^_]+)_/g,'$1')).join(' ');
 }
