@@ -91,7 +91,15 @@ function stop(){
  speaking=false;paused=false;speechQueue=[];speechCursor=0;pageSpeechDone=false;utterance=null;updatePlay();
 }
 function updatePlay(){$('play').textContent=speaking?(paused?'▶ Resume':'Ⅱ Pause'):'▶ Read aloud';}
-function getText(){return pages[state.page]?.paragraphs.join(' ')||'';}
+function getText(){
+ const page=pages[state.page];
+ if(!page)return '';
+ const firstPageOfChapter=page.section>0&&(state.page===0||pages[state.page-1].section!==page.section);
+ // Speak the chapter heading once at the start of each chapter, not on every reading page.
+ // This also works when a reader jumps directly to a chapter from the chapter selector.
+ const heading=firstPageOfChapter?'Chapter '+page.section+'. ':'';
+ return heading+page.paragraphs.join(' ');
+}
 function pickVoice(){return voiceList.find(v=>v.voiceURI===state.voice)||voiceList.find(v=>/^en-GB/i.test(v.lang))||voiceList.find(v=>/^en/i.test(v.lang))||null;}
 // This function is copied from the original Alice reader to preserve its exact
 // sentence-boundary, abbreviation, punctuation, and Victorian-clause rules.
