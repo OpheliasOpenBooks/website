@@ -11,6 +11,7 @@ const vm=require('node:vm');
 const timers=[];
 const sandbox={
   window:{},
+  document:{readyState:'complete',querySelectorAll:()=>[],addEventListener:()=>{}},
   setTimeout(fn,ms){timers.push({fn,ms});return timers.length;},
 };
 const source=fs.readFileSync(path.join(__dirname,'..','public','js','ophelia-narration.js'),'utf8');
@@ -29,6 +30,27 @@ assert.equal(n.normalizeForSpeech('Robin took his bow to shoot.'),
   'Robin took his bow to shoot.');
 assert.equal(n.normalizeForSpeech('Robin drew his bow and arrow.'),
   'Robin drew his bow and arrow.');
+// Dracula examples: a courteous/courtly/grateful gesture uses the vowel in "cow".
+assert.equal(n.normalizeForSpeech('With a courteous bow, he opened the door.'),
+  'With a courteous bough, he opened the door.');
+assert.equal(n.normalizeForSpeech('with a courtly bow, he quickly left me.'),
+  'with a courtly bough, he quickly left me.');
+assert.equal(n.normalizeForSpeech('He took it with a grateful bow, and said hello.'),
+  'He took it with a grateful bough, and said hello.');
+assert.equal(n.normalizeForSpeech('What could I do but bow acceptance?'),
+  'What could I do but bough acceptance?');
+assert.equal(n.normalizeForSpeech('His Last Bow'), 'His Last Bough');
+assert.equal(n.normalizeForSpeech('On deck, the sailor stood at the bow.'),
+  'On deck, the sailor stood at the bough.');
+// Other senses must never be accidentally converted.
+assert.equal(n.normalizeForSpeech('The musician played with her violin bow.'),
+  'The musician played with her violin bow.');
+assert.equal(n.normalizeForSpeech('The bow-window overlooked the street.'),
+  'The bow-window overlooked the street.');
+assert.equal(n.normalizeForSpeech('The shop stood on Bow Street.'),
+  'The shop stood on Bow Street.');
+assert.equal(n.normalizeForSpeech('A stone front with a bow on it.'),
+  'A stone front with a bow on it.');
 assert.equal(n.normalizeForSpeech('He had read the letter.'),
   'He had red the letter.');
 assert.equal(n.normalizeForSpeech('CHAPTER VIII'), 'Chapter eight');
