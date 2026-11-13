@@ -1,0 +1,24 @@
+/* Full public-domain Chekhov Three Sisters text and reader regression check. */
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
+const root=path.resolve(__dirname,'..');
+const source=fs.readFileSync(path.join(root,'public/books/the-three-sisters-chekhov-julius-west.txt'),'utf8');
+const html=fs.readFileSync(path.join(root,'the-three-sisters.html'),'utf8');
+assert.equal([...source.matchAll(/^ACT (I|II|III|IV)\s*$/gm)].length,4,'Four acts');
+assert.ok(source.split(/\s+/).length>20000,'Complete four-act play');
+assert.match(source,/^CHARACTERS$/m,'Original cast');
+assert.match(source,/OLGA\./,'Original dialogue');
+assert.match(source,/Curtain\.\s*$/,'Play ending');
+assert.ok(html.includes("fetch('public/books/the-three-sisters-chekhov-julius-west.txt')"),'Locally served text');
+assert.ok(html.includes('public/js/ophelia-narration.js?v=1.2.0'),'Shared narrator');
+assert.ok(html.includes('public/js/ophelia-share.js'),'Shared literary share button');
+const inline=[...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)].map(m=>m[1]).find(s=>s.includes('function parseText(raw)'));
+assert.ok(inline,'Parser present');
+new vm.Script(inline,{filename:'the-three-sisters.html'});
+const ctx={};vm.runInNewContext(inline.slice(inline.indexOf('function parseText(raw)'),inline.indexOf('function stop()')),ctx);
+const sections=ctx.parseText(source);
+assert.equal(sections.length,5,'Cast plus four acts');
+assert.ok(ctx.paginate(sections).length>=50,'Complete play paginated');
+const catalog=fs.readFileSync(path.join(root,'catalog.html'),'utf8');
+assert.ok(catalog.includes("href:'the-three-sisters.html'"),'Catalog entry');
+console.log('The Three Sisters: all four complete acts, '+source.split(/\s+/).length+' words.');
