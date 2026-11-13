@@ -1,0 +1,9 @@
+# David Balfour (Catriona) — complete public-domain text and artwork
+
+- **Work:** Robert Louis Stevenson, *David Balfour*, also published in Britain as *Catriona* (1893); sequel to *Kidnapped*. Public domain in the United States. Project Gutenberg entry for the US-titled novel: https://www.gutenberg.org/ebooks/14133; alternative public-domain transcription https://www.gutenberg.org/ebooks/589.
+- **Hosted complete text:** `public/books/david-balfour-stevenson-1893.txt`, from Project Gutenberg eBook #589 (transcription of a **1904 Cassell** edition), mirrored at https://github.com/GITenberg/Catriona_589/blob/master/589-0.txt. Gutenberg distribution license excluded; original Stevenson dedication, the two novel parts, all 30 consecutive chapters, and the full set of 26 footnotes retained. The 1904 source is disclosed instead of claiming a verbatim American first edition.
+- **Structure:** Part I, *The Lord Advocate* (chapters I–XX); Part II, *Father and Daughter* (chapters XXI–XXX); original footnotes.
+- **Historical artwork:** William Brassey Hole's 1893 illustration from *Catriona*, https://commons.wikimedia.org/wiki/File:Catriona_(novel).jpg , which Wikimedia Commons identifies as public domain. This is a period artwork from the novel, not a verified reproduction of the original 1893 US binding.
+- **Reader:** `david-balfour.html`, locally hosted complete text and existing Ophelia narration normalizer, browser generated voices, configurable speed, bookmarking and saved place, automatic page turn. No prerecorded third-party audiobook.
+- **Catalog:** entry in `index.html` automatically discovered by `catalog.html`, genre Adventure.
+- **Checks:** 32 sections (title/dedication + 30 chapters + original footnotes), 376 generated reading pages. Script compiles, reader parser exercised on saved text. Live browser/device audio not independently tested.
