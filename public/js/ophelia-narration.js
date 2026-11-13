@@ -58,6 +58,9 @@
   }
   function normalizeForSpeech(value){
     let text=String(value==null?'':value);
+    // An ornamental chapter-title separator is a pause, not multiplication.
+    // Normalize for speech only: keep the printed title unchanged.
+    text=text.replace(/\b(Chapter|CHAPTER|Book|BOOK|Part|PART|Act|ACT|Scene|SCENE)\s+(\d+|[MDCLXVI]+)\s*[·×]\s*/g, '$1 $2. ');
     // A label such as "CHAPTER I", "Part II", "Book XXI" or "Section IV".
     // Do not match lowercase "book I": "the book I read" uses a pronoun.
     text=text.replace(/\b((?:CHAPTER|Chapter|BOOK|Book|PART|Part|VOLUME|Volume|VOL\.?|Vol\.?|ACT|Act|SCENE|Scene|SECTION|Section|CANTO|Canto|APPENDIX|Appendix|LETTER|Letter|ARTICLE|Article|PSALM|Psalm)\s+)([MDCLXVI]+)\b/g,
