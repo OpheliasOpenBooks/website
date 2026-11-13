@@ -1,0 +1,66 @@
+name: Import verified Adam Bede text
+on:
+  push:
+    paths:
+      - ".github/workflows/import-adam-bede.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import-text:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Import complete unabridged public-domain text
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import pathlib, re, urllib.request
+          sources = [
+              'https://www.gutenberg.org/cache/epub/507/pg507.txt',
+              'https://raw.githubusercontent.com/GITenberg/Adam-Bede_507/master/507-0.txt',
+          ]
+          raw = None
+          for url in sources:
+              try:
+                  req = urllib.request.Request(url, headers={'User-Agent':'OpheliasOpenBooks/1.0 (public-domain import)'})
+                  with urllib.request.urlopen(req,timeout=45) as resp:
+                      raw = resp.read().decode('utf-8-sig')
+                  print('Downloaded source from:',url)
+                  break
+              except Exception as e:
+                  print('Source unavailable:', url, str(e))
+          if not raw:
+              raise SystemExit('No source downloaded')
+          raw = raw.replace('\r\n','\n').replace('\r','\n')
+          m = re.search(r'\*\*\* START OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[^\n]*\*\*\*',raw,re.I)
+          if m: raw=raw[m.end():]
+          m = re.search(r'\*\*\* END OF (?:THE|THIS) PROJECT GUTENBERG EBOOK',raw,re.I)
+          if m: raw=raw[:m.start()]
+          # Do not shorten or paraphrase the work; only remove Gutenberg distribution boilerplate.
+          headings = re.findall(r'^\s*CHAPTER\s+([IVXLCDM]+)\.?\s*$',raw,re.I|re.M)
+          if len(headings) != 55:
+              raise SystemExit('Expected 55 chapter headings, found '+str(len(headings)))
+          values={'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}
+          def roman(s):
+              s=s.upper()
+              return sum((-1 if i+1<len(s) and values[x]<values[s[i+1]] else 1)*values[x] for i,x in enumerate(s))
+          if [roman(x) for x in headings] != list(range(1,56)):
+              raise SystemExit('Chapters are not sequential')
+          if not re.search(r'^\s*EPILOGUE\s*$',raw,re.I|re.M):
+              raise SystemExit('Epilogue absent')
+          if len(re.findall(r'\S+',raw)) < 160000:
+              raise SystemExit('Text appears truncated')
+          path=pathlib.Path('public/books/adam-bede-eliot-1859.txt')
+          path.parent.mkdir(parents=True,exist_ok=True)
+          path.write_text(raw.strip()+'\n',encoding='utf-8')
+          print('Saved',path,'chars',len(raw),'words',len(raw.split()))
+          PY
+      - name: Commit locally hosted complete novel
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/books/adam-bede-eliot-1859.txt
+          git diff --staged --quiet || (git commit -m "Host complete Adam Bede public-domain text locally" && git push)
