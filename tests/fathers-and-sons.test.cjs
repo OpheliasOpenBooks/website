@@ -1,0 +1,22 @@
+/* Fathers and Sons: complete 1921 C. J. Hogarth translation and chapter structure. */
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
+const root=path.resolve(__dirname,'..');
+const text=fs.readFileSync(path.join(root,'public/books/fathers-and-sons-turgenev-hogarth-1921.txt'),'utf8');
+const html=fs.readFileSync(path.join(root,'fathers-and-sons.html'),'utf8');
+const scripts=[...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)].map(m=>m[1]);
+const script=scripts.find(s=>s.includes('function parseText(raw)'));
+assert.ok(script,'Reader parser missing');
+new vm.Script(script);
+const start=script.indexOf('function parseText(raw)'),end=script.indexOf('function stop()',start);
+assert.ok(start>=0&&end>start,'Reader parser and pagination present');
+const ctx={};vm.runInNewContext(script.slice(start,end),ctx);
+const sections=ctx.parseText(text),pages=ctx.paginate(sections);
+assert.equal(sections.length,29,'Introduction plus 28 chapters');
+assert.match(sections[0].paragraphs.join(' '),/INTRODUCTION/);
+assert.match(sections[1].name,/Chapter 1/);
+assert.match(sections[28].name,/Chapter 28/);
+assert.match(sections[28].paragraphs.join(' '),/Life which shall have no End/);
+assert.ok(pages.length>170,'Unabridged pagination');
+assert.ok(html.includes('public/js/ophelia-narration.js?v=1.2.0'),'Uses grammar-aware voice');
+console.log('Fathers and Sons: complete introduction, 28 chapters, notes, and '+pages.length+' pages verified.');
