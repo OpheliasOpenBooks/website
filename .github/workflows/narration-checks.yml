@@ -43,6 +43,9 @@ jobs:
       - name: Verify complete Veblen edition and preface
         run: node tests/theory-of-the-leisure-class.test.cjs
 
+      - name: Verify complete Chekhov Three Sisters play and reader
+        run: node tests/the-three-sisters.test.cjs
+
       - name: Verify Kenilworth complete locally hosted novel and reader
         run: node tests/kenilworth.test.cjs
 
