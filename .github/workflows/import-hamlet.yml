@@ -1,0 +1,40 @@
+name: Import public-domain Hamlet text
+on:
+  push:
+    paths:
+      - '.github/workflows/import-hamlet.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import-hamlet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Fetch and validate the complete Project Gutenberg edition
+        run: |
+          python3 - <<'PY'
+          from urllib.request import Request,urlopen
+          from pathlib import Path
+          import re
+          url='https://www.gutenberg.org/cache/epub/1524/pg1524.txt'
+          req=Request(url,headers={'User-Agent':'OpheliasOpenBook/1.0 (public-domain reading)'})
+          text=urlopen(req,timeout=45).read().decode('utf-8-sig')
+          beginning=re.search(r'^THE TRAGEDY OF HAMLET, PRINCE OF DENMARK\\s*$',text,re.M)
+          if beginning is None: raise RuntimeError('Hamlet title is missing')
+          text=text[beginning.start():]
+          text=re.split(r'^\\*\\*\\* END OF (?:THE )?PROJECT GUTENBERG EBOOK',text,flags=re.M)[0].strip()+'\\n'
+          acts=re.findall(r'^ACT (I|II|III|IV|V)\\s*$',text,re.M)
+          scene_counts=[len(re.findall(r'^SCENE [IVXLCDM]+\\.',part,re.M)) for part in re.split(r'^ACT (?:I|II|III|IV|V)\\s*$',text,flags=re.M)[1:]]
+          if acts!=['I','II','III','IV','V'] or scene_counts!=[5,2,4,7,2] or len(text.split())<25000 or 'The rest is silence' not in text: raise RuntimeError(f'Incomplete Hamlet: acts {acts}, scenes {scene_counts}')
+          path=Path('public/books/hamlet-shakespeare-1524.txt');path.parent.mkdir(parents=True,exist_ok=True);path.write_text(text,encoding='utf-8')
+          print(f'Saved validated Hamlet ({len(text.split())} words)')
+          PY
+      - name: Commit the source text
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/books/hamlet-shakespeare-1524.txt
+          if ! git diff --cached --quiet; then git commit -m "Add full public-domain Hamlet (Gutenberg 1524)"; git push; fi
