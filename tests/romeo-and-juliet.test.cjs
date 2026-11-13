@@ -1,0 +1,25 @@
+/* Verify complete public-domain illustrated Romeo and Juliet. */
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
+const root=path.resolve(__dirname,'..');
+const source=fs.readFileSync(path.join(root,'public/books/romeo-and-juliet-shakespeare-rolfe.txt'),'utf8');
+const html=fs.readFileSync(path.join(root,'romeo-and-juliet.html'),'utf8');
+const play=source.slice(0,source.search(/^NOTES\s*$/m));
+assert.deepEqual([...play.matchAll(/^ACT (I|II|III|IV|V)\s*$/gm)].map(m=>m[1]),['I','II','III','IV','V'],'Original five acts');
+assert.match(play,/PROLOGUE/,'Original prologue');
+assert.match(play,/For never was a story of more woe/,'Original tragic ending');
+assert.ok(source.split(/\s+/).length>74000,'Complete public-domain edited volume');
+assert.match(source,/^NOTES$/m,'Original notes retained');
+assert.ok(html.includes("fetch('public/books/romeo-and-juliet-shakespeare-rolfe.txt')"),'Locally hosted text');
+assert.ok(html.includes('public/js/ophelia-narration.js?v=1.2.0'),'Shared grammatical narration');
+assert.ok(html.includes('DickseeRomeoandJuliet.jpg'),'Public-domain authentic story illustration');
+const inline=[...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)].map(m=>m[1]).find(s=>s.includes('function parseText(raw)'));
+assert.ok(inline,'Reader script');
+new vm.Script(inline,{filename:'romeo-and-juliet.html'});
+const ctx={};vm.runInNewContext(inline.slice(inline.indexOf('function parseText(raw)'),inline.indexOf('function stop()')),ctx);
+const sections=ctx.parseText(source);
+assert.equal(sections.length,7,'Introduction, five acts and original notes');
+assert.ok(ctx.paginate(sections).length>=130,'Unabridged pagination');
+const catalog=fs.readFileSync(path.join(root,'catalog.html'),'utf8');
+assert.ok(catalog.includes("href:'romeo-and-juliet.html'"),'Catalog entry');
+console.log('Romeo and Juliet: all five acts, original prologue and editorial notes.');
