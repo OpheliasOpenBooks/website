@@ -39,3 +39,6 @@ jobs:
 
       - name: Verify all three complete volumes of Capital
         run: node tests/capital-volumes.test.cjs
+
+      - name: Verify complete Veblen edition and preface
+        run: node tests/theory-of-the-leisure-class.test.cjs
