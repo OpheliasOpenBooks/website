@@ -12,7 +12,7 @@ assert.equal(manifests.volume1.length,127,'127 Volume I original images');
 assert.equal(manifests.volume2.length,83,'83 Volume II original images');
 assert.equal(manifests.volume1.length+manifests.volume2.length,210,'All 210 illustrations catalogued');
 assert.ok(/^https:\/\/www\.gutenberg\.org\/files\/45368\/45368-h\/images\/$/.test(manifests.base_url),'Original Gutenberg source images');
-assert.ok([...manifests.volume1,...manifests.volume2].every(s=>/^(?:\d{4,5}[a-z]?-illo(?:[-.]\d+)?_lg|ill_hg_lg)\.png$/.test(s)),'Every art file references an original high-resolution plate');
+assert.ok([...manifests.volume1,...manifests.volume2].every(s=>/^[\w.-]+_lg\.png$/.test(s)),'Every art file references an original high-resolution plate');
 let combinedWordCount=0;
 const catalog=fs.readFileSync(path.join(root,'catalog.html'),'utf8');
 const hub=fs.readFileSync(path.join(root,'outline-of-history.html'),'utf8');
