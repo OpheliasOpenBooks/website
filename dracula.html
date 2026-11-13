@@ -11,7 +11,13 @@
 #story-figure{background:#f4edda;border-radius:3px;padding:8px}#story-figure img{max-height:520px;width:100%;object-fit:contain}#story-figure figcaption{margin:10px 0 2px}
 #story-figure img{max-height:480px;width:100%;object-fit:contain;background:#f4edda}#story-figure{background:#f4edda;padding:6px;border-radius:3px}
 #prose p{white-space:pre-line;margin-bottom:22px;overflow-wrap:break-word}#prose p.speaker{font:700 .73em/1.5 Arial,sans-serif;letter-spacing:.13em;color:var(--gold);margin-bottom:8px}#prose p.stage{font-style:italic;color:var(--muted)}
-.vintage-art{max-width:670px;min-height:250px;margin:auto;padding:30px;background:linear-gradient(145deg,#eee5d2,#cfdbc8);border:9px double #b9aa8b;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:#304937;text-align:center;font-family:Georgia,serif}.art-title{font-size:clamp(27px,4vw,44px);line-height:1.15}.art-author{font-style:italic;font-size:15px}.ornament{font-size:28px;color:#647a60}</style>
+.vintage-art{max-width:670px;min-height:250px;margin:auto;padding:30px;background:linear-gradient(145deg,#eee5d2,#cfdbc8);border:9px double #b9aa8b;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:#304937;text-align:center;font-family:Georgia,serif}.art-title{font-size:clamp(27px,4vw,44px);line-height:1.15}.art-author{font-style:italic;font-size:15px}.ornament{font-size:28px;color:#647a60}/* Chapter-opening illustrations: appear only on the first page of the matching chapter. */
+#chapter-figure{max-width:800px;margin:5px auto 26px;padding:7px;background:#f4edda;border:1px solid #ded3bf;border-radius:4px}
+#chapter-figure img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain;border-radius:2px}
+#chapter-figure figcaption{margin:10px 6px 4px;font:italic 12px/1.45 Georgia,serif;color:#726b58;text-align:center}
+@media(max-width:780px){#chapter-figure{margin:4px auto 21px;padding:5px}#chapter-figure img{max-height:340px}}
+.night #chapter-figure figcaption{color:#5a594e}
+</style>
 </head>
 <body>
 <a class="home" href="index.html">← Home</a>
@@ -19,7 +25,9 @@
 <div class="reading-layout">
 <main class="book" aria-label="Dracula reader">
  <div class="book-heading"><div class="eyebrow">OPHELIA’S OPEN BOOK</div><h1>Dracula</h1><p class="byline">Bram Stoker · 1897 · Gothic novel</p><p class="fine">Complete unabridged novel · 27 chapters · Journals, letters and concluding note · Ophelia’s illustrated edition</p></div><figure id="story-figure" hidden><img id="opening-art" src="public/art/dracula-ophelias-open-book-cover.jpg" width="480" height="720" alt="Ophelia’s Open Book illustrated Dracula cover: moonlit Carpathian mountains, a mist-shrouded Gothic castle and a horse-drawn carriage, framed in Victorian gold ornament" loading="eager" decoding="async" style="max-height:480px;width:100%;object-fit:contain"><figcaption><em>Dracula</em> · Original Byronic Romantic-Gothic cover created for Ophelia’s Open Book. The <a href="https://commons.wikimedia.org/wiki/File:Dracula-First-Edition-1897.jpg" target="_blank" rel="noopener">1897 first-edition cover</a> remains available as a historical reference.</figcaption></figure>
- <article class="content" id="content"><div class="chapter-row"><span id="chaptername" class="chapter"></span></div><div id="prose"><p>Preparing all 27 chapters…</p></div><div class="endmark" aria-hidden="true">— ❧ —</div></article>
+ <article class="content" id="content"><div class="chapter-row"><span id="chaptername" class="chapter"></span></div>
+ <figure id="chapter-figure" hidden aria-label="Chapter opening illustration"><img id="chapter-art" width="1200" height="800" alt="" decoding="async" loading="lazy"><figcaption id="chapter-art-caption"></figcaption></figure>
+ <div id="prose"><p>Preparing all 27 chapters…</p></div><div class="endmark" aria-hidden="true">— ❧ —</div></article>
  <div class="footer-nav"><button type="button" id="prev2" disabled>← Previous page</button><span id="footcount">Anonymous · Bram Stoker translation, 1919</span><button type="button" id="next2" disabled>Next page →</button></div>
 </main>
 <aside class="reader-controls" aria-label="Reading and listening controls">
@@ -210,9 +218,28 @@ function togglePlay(){
  updatePlay();
 }
 function go(p){if(!pages.length)return;stop();speechResumeAt=0;state.page=Math.max(0,Math.min(p,pages.length-1));save();render();}
+// Original chapter-opening illustrations. Add approved, spoiler-free art here
+// one chapter at a time; never change the original text or listening queue.
+const chapterIllustrations={
+  1:{
+    src:'public/art/dracula-chapter-01-harker-by-the-danube.jpg',
+    alt:'Jonathan Harker in a late-Victorian train compartment, keeping his journal while the Danube, a bridge and Buda-Pesth appear beyond the window, framed with intricate gilded ornament',
+    caption:'Jonathan Harker’s journey through Buda-Pesth · Original illustration for Ophelia’s Open Book'
+  }
+};
 function render(){if(!pages.length)return;const page=pages[state.page];
  const isFirstRender=initialRender;initialRender=false;
  $('story-figure').hidden=state.page!==0;
+ // The illustration belongs to the opening page of its own chapter only.
+ const atChapterOpening=page.section>0&&(state.page===0||pages[state.page-1].section!==page.section);
+ const chapterArt=atChapterOpening?chapterIllustrations[page.section]:null;
+ $('chapter-figure').hidden=!chapterArt;
+ if(chapterArt){
+   const picture=$('chapter-art');
+   if(picture.getAttribute('src')!==chapterArt.src)picture.setAttribute('src',chapterArt.src);
+   picture.alt=chapterArt.alt;
+   $('chapter-art-caption').textContent=chapterArt.caption;
+ }
  $('progresslabel').textContent=Math.round((state.page+1)/pages.length*100)+'% read · '+page.sectionName;$('chaptername').textContent=page.sectionName;
  $('prose').replaceChildren(...page.paragraphs.map(p=>{const el=document.createElement('p');el.textContent=p;if(/^[A-Z][A-Z .'-]{2,36}$/.test(p.trim()))el.classList.add('speaker');else if(/^\[.*\]$/s.test(p.trim()))el.classList.add('stage');return el}));
  $('pagecount').textContent='Page '+(state.page+1)+' of '+pages.length;$('footcount').textContent=page.sectionName;
