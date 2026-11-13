@@ -99,4 +99,72 @@ assert.ok(timers.length&&timers[0].ms>=250);
 timers.shift().fn();
 assert.deepEqual(heard,['A Chapter Title.','He made a low bow.']);
 assert.deepEqual(ended,['title','body']);
+
+// Pause/resume keeps the active word, ignores cancelled utterance events and
+// replays only the unfinished portion with the original voice and speed.
+const contentEl={children:[],normalize(){for(let i=this.children.length-1;i>0;i--){
+  const a=this.children[i-1],b=this.children[i];
+  if(a.kind==='text'&&b.kind==='text'){a.textContent+=b.textContent;this.children.splice(i,1);}
+}},replaceChild(next,old){const at=this.children.indexOf(old);
+  assert.ok(at>=0,'highlight is attached to the visible page');
+  this.children.splice(at,1,next);next.parentNode=this;old.parentNode=null;
+}};
+function textNode(value){
+  return {kind:'text',textContent:value,parentNode:null,
+    splitText(at){const tail=textNode(this.textContent.slice(at));this.textContent=this.textContent.slice(0,at);
+      tail.parentNode=this.parentNode;const items=this.parentNode.children;
+      items.splice(items.indexOf(this)+1,0,tail);return tail;}
+  };
+}
+const visibleText=textNode('He spoke to Mina quietly.');
+visibleText.parentNode=contentEl;contentEl.children.push(visibleText);
+sandbox.NodeFilter={SHOW_TEXT:4};
+sandbox.document.getElementById=id=>id==='prose'?contentEl:null;
+sandbox.document.createTreeWalker=container=>{
+  const nodes=container.children.filter(c=>c.kind==='text');let k=0;
+  return {nextNode:()=>nodes[k++]||null};
+};
+sandbox.document.createElement=tag=>({kind:tag,textContent:'',parentNode:null,
+  setAttribute(){}});
+sandbox.document.createTextNode=textNode;
+sandbox.document.head={appendChild(){}};
+let cancels=0;
+const spoken=[];
+const resumableSynth={
+  speak(u){spoken.push(u);},
+  cancel(){cancels++;},
+  resume(){}
+};
+let finished=0;
+const toRead=[{text:'He spoke to Meena quietly.',lang:'en-GB',rate:1.1,
+  onend(){finished++;}}];
+n.speakWithPauses(resumableSynth,toRead,()=>true,()=>false);
+assert.equal(spoken.length,1);
+spoken[0].onboundary({name:'word',charIndex:12});
+assert.equal(n.pauseReading(),true);
+const yellowMark=contentEl.children.find(x=>x.kind==='mark');
+assert.ok(yellowMark,'the paused word is marked in the visible page');
+assert.equal(yellowMark.textContent,'Mina','printed spelling stays original');
+assert.equal(yellowMark.className,'ophelia-paused-word');
+assert.equal(cancels,1,'the browser voice is cancelled at its word boundary');
+spoken[0].onend({}); // late browser cancellation must not finish the sentence
+assert.equal(finished,0);
+assert.equal(n.resumeReading(),true);
+assert.equal(contentEl.children.find(x=>x.kind==='mark'),undefined);
+assert.equal(contentEl.children.map(x=>x.textContent).join(''),'He spoke to Mina quietly.');
+assert.equal(spoken[1].text,'Meena quietly.','resume from tracked word, not sentence start');
+assert.equal(spoken[1].rate,1.1,'the chosen reading speed is retained');
+assert.equal(spoken[1].lang,'en-GB','the chosen narrator locale is retained');
+spoken[1].onend({});
+assert.equal(finished,1,'a finished utterance is counted exactly once');
+assert.equal(n.pauseReading(),false,'completed speech has no stale pause session');
+n.clearReading();
+
+// Keep the question pitch rule, even when playback is restarted mid-sentence.
+const questions=[];
+n.speakWithPauses({speak:u=>questions.push(u),cancel(){},resume(){}},
+  [{text:'Is it safe?',pitch:1}],()=>true,()=>false);
+assert.ok(questions[0].pitch>=1.11,'question receives a gentle rising-pitch cue');
+n.clearReading();
+
 console.log('Narration checks passed. Actual pronunciation remains device-voice dependent.');

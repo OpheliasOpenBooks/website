@@ -441,6 +441,9 @@
       const u=VoiceUtterance?new VoiceUtterance(spoken):{text:spoken};
       for(const key of ['voice','lang','rate','pitch','volume'])
         if(source[key]!==undefined)u[key]=source[key];
+      // Preserve interrogative intonation on every chosen narrator voice.
+      if(/\?[”’"')\]]*\s*$/.test(spoken))
+        u.pitch=Math.min(1.15,Math.max(1.11,u.pitch||1));
       // Preserve the original book's narration lifecycle and controls.
       u.onstart=e=>{if(id!==serial||disposed)return;source.onstart?.(e);};
       u.onboundary=e=>{

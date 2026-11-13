@@ -139,3 +139,29 @@ historical spelling **Mina**. The `dracula.html` reader requests version
 `1.3.3` to refresh the speech script cache. This rule is shared by book readers
 that load `public/js/ophelia-narration.js`; selected English voices still
 have device-specific synthesis differences.
+
+## Word-level pause/resume with a visible yellow marker (v1.4.0)
+
+Every standalone audiobook reader (including the Alice/Pride reader design and
+the line-paced Leaves of Grass reader) now calls the shared
+`pauseReading()`, `resumeReading()`, and `clearReading()` methods.
+
+When the browser emits `SpeechSynthesisUtterance.onboundary` word events,
+Pause cancels the active utterance and records the start of the current word.
+The corresponding word in the **original visible manuscript** is temporarily
+wrapped in a yellow `<mark>`; its original spelling is preserved. Resume
+removes the marker and speaks again from that word using the same voice,
+language, speed and punctuation. Stale cancellation events cannot advance
+the reading queue. Navigation and Stop clear the marker. Existing saved
+page-progress keys and original manuscripts are unchanged.
+
+**Browser limitation:** some installed/device voices do not provide usable word
+boundary events. In those voices, the system uses the start of the current
+utterance as a conservative fallback; it cannot truthfully promise exact
+word-level resumption for every operating-system voice. Imported audio
+recordings in the Alice reader do not expose word timestamps and keep their
+existing media pause/resume behavior.
+
+Run `node tests/narration.test.cjs` and
+`node tests/library-reader-audit.cjs` after changes. Listen in Edge and
+Chrome with representative UK/US narrators before claiming acoustic accuracy.

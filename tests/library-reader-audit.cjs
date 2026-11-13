@@ -12,10 +12,13 @@ const html=fs.readdirSync(root).filter(file=>file.endsWith('.html')&&!hubs.has(f
 assert.ok(html.length>=50,'expected the complete active reader collection');
 for(const file of html){
   const code=fs.readFileSync(path.join(root,file),'utf8');
-  assert.ok(code.includes('public/js/ophelia-narration.js?v=1.2.0'),
+  assert.ok(code.includes('public/js/ophelia-narration.js?v=1.4.0'),
     file+' must load the current shared narrator, with a cache-busting version');
+  assert.ok(code.includes('pauseReading?.()')&&code.includes('resumeReading?.()')&&code.includes('clearReading?.()'),
+    file+' must use the shared word-resumable pause controls');
   if(verse.has(file)){
     assert.ok(code.includes('function narrationScore()'),file+' must preserve poetry-line timing');
+    assert.ok(code.includes('speakWithPauses(window.speechSynthesis,[u]'),file+' must track line positions');
   }else{
     assert.ok(code.includes('OpheliaNarration.speechChunks(text)'),
       file+' must delegate sentence segmentation to shared grammar engine');
