@@ -1,5 +1,5 @@
 /* Ophelia's Open Book — shared spoken-text preparation.
- * Version 1.2.1. Load before each reader's inline narration code.
+ * Version 1.3.0. Load before each reader's inline narration code.
  *
  * Normalize only the words sent to speech synthesis: the printed book,
  * headings, pagination, bookmarks and original manuscripts are unchanged.
@@ -107,6 +107,10 @@
       Col:'Colonel',Gen:'General',Jr:'Junior',Sr:'Senior'};
     text=text.replace(/\b(Mrs|Mr|Ms|Dr|Prof|Rev|Capt|Lt|Col|Gen|Jr|Sr)\./gi,
       (whole,title)=>titles[title[0].toUpperCase()+title.slice(1).toLowerCase()]||whole);
+    // Print-era time abbreviations: "8:35 P. M." should be heard as "8:35 PM".
+    // Do not send an extra period after M to the speech engine.
+    text=text.replace(/\b([AP])\.\s*M\.(?=[\s,;:!?)]|$)/gi,
+      (_,letter)=>letter.toUpperCase()+'M');
     // Keep ordinary editorial abbreviations as meaningful words.
     text=text.replace(/\be\.g\./gi,'for example')
       .replace(/\bi\.e\./gi,'that is')
@@ -150,7 +154,10 @@
   // breaths at selected clause punctuation for very long Victorian sentences.
   // Do not split within a word, abbreviation, decimal number, or quote tag.
   function speechChunks(value){
-    const clean=normalizeForSpeech(value).replace(/\*\s*/g,'').replace(/\s+/g,' ').trim();
+    // Gutenberg uses "--" for a typographic em dash. Normalize the punctuation
+    // only in narration; never alter the printed manuscript.
+    const clean=normalizeForSpeech(value).replace(/\*+\s*/g,'')
+      .replace(/--+/g,' — ').replace(/\s+/g,' ').trim();
     if(!clean)return [];
     const protectedText=clean
       .replace(/\b(?:Mr|Mrs|Ms|Dr|Prof|Rev|St|Capt|Lt|Col|Gen|Sr|Jr|Messrs)\./gi,m=>m.replace(/\./g,'\uE000'))
@@ -208,7 +215,20 @@
         if(remaining)result.push(remaining);
       }
     }
-    return result;
+    // Treat every em dash, including Gutenberg's --, as a real rhetorical
+    // pause even in short sentences; ordinary clause splitting misses these.
+    // The dash is an internal cue: speakWithPauses strips it before TTS.
+    const phrased=[];
+    for(const phrase of result){
+      const parts=phrase.split(/\s*—\s*/);
+      for(let j=0;j<parts.length;j++){
+        const part=parts[j].trim();
+        if(part)phrased.push(part+(j<parts.length-1?'—':''));
+        else if(j>0&&j<parts.length-1&&phrased.length&&!phrased.at(-1).endsWith('—'))
+          phrased[phrased.length-1]+='—';
+      }
+    }
+    return phrased;
   }
 
   function pauseAfter(text){
@@ -236,17 +256,23 @@
       if(!isCurrent()||i>=utterances.length)return;
       if(isPaused&&isPaused()){setTimeout(play,90);return;}
       const u=utterances[i];
+      const afterDash=/—\s*$/.test(u.text);
+      if(afterDash)u.text=u.text.replace(/—\s*$/,'').trimEnd();
+      // A question must finish its own utterance with its '?' intact.
+      // A gentle pitch lift improves interrogative delivery on voices that
+      // support pitch; no browser SpeechSynthesis voice guarantees a contour.
+      if(/\?[”’"')\]]*\s*$/.test(u.text))u.pitch=Math.min(1.15,Math.max(1.11,u.pitch||1));
       const oldEnd=u.onend;
       u.onend=e=>{
         if(typeof oldEnd==='function')oldEnd(e);
         if(!isCurrent())return;
         i++;
-        if(i<utterances.length)setTimeout(play,pauseAfter(u.text));
+        if(i<utterances.length)setTimeout(play,afterDash?Math.max(430,pauseAfter(u.text)):pauseAfter(u.text));
       };
       synth.speak(u);
     }
     play();
   }
 
-  root.OpheliaNarration=Object.freeze({version:'1.2.1',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter});
+  root.OpheliaNarration=Object.freeze({version:'1.3.0',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter});
 })(window);
