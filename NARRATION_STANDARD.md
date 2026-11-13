@@ -128,3 +128,14 @@ voice options, bookmarks and reading positions remain untouched.
 the script cache immediately. Other readers using the shared script will
 pick up the improvement after their browsers fetch the latest module.
 Browser-specific voices cannot guarantee any one phonetic rendering.
+
+## Mina Murray/Harker pronunciation (v1.3.3, November 2026)
+
+The proper name **Mina** is pronounced *Meena*, with a long "ee" sound.
+A voice-only substitution in `normalizeForSpeech` changes the name to
+`Meena` (including capitalized headings and possessives) before the browser
+speech engine reads it. The printed manuscripts still show the correct
+historical spelling **Mina**. The `dracula.html` reader requests version
+`1.3.3` to refresh the speech script cache. This rule is shared by book readers
+that load `public/js/ophelia-narration.js`; selected English voices still
+have device-specific synthesis differences.

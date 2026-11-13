@@ -68,6 +68,15 @@ assert.equal(n.normalizeForSpeech('The road winds through the mountains.'), 'The
 assert.equal(n.normalizeForSpeech('I heard the wind and saw my watch on the table.'),
   'I heard the wind and saw my watch on the table.');
 
+// Dracula name: "Mina" should be spoken with a long "ee" like "Meena".
+assert.equal(n.normalizeForSpeech('Mina Murray'), 'Meena Murray');
+assert.equal(n.normalizeForSpeech('Dear Mina,'), 'Dear Meena,');
+assert.equal(n.normalizeForSpeech('MINA'), 'Meena');
+assert.equal(n.normalizeForSpeech("Mina's diary"), 'Meenas diary');
+assert.equal(n.normalizeForSpeech('The miners worked in the mine.'),
+  'The miners worked in the mine.');
+assert.equal(n.speechChunks('Mina was waiting.').join(' '), 'Meena was waiting.');
+
 // Sentence boundaries, honorifics and chapter/title pause handling.
 assert.equal(n.speechChunks('Mr. Darcy spoke. Then Elizabeth replied.').length,2);
 assert.equal(n.speechChunks('Chapter One. The evening fell.').length,2);

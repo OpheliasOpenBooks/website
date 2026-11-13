@@ -1,5 +1,5 @@
 /* Ophelia's Open Book — shared spoken-text preparation.
- * Version 1.3.2. Load before each reader's inline narration code.
+ * Version 1.3.3. Load before each reader's inline narration code.
  *
  * Normalize only the words sent to speech synthesis: the printed book,
  * headings, pagination, bookmarks and original manuscripts are unchanged.
@@ -90,6 +90,10 @@
       if(!/[AEIOUY]/.test(word)&&!commonVowellessWords.has(word))return word;
       return word[0]+word.slice(1).toLowerCase();
     });
+    // Mina Murray / Mina Harker: pronounced "Meena" (long ee).
+    // This change is made ONLY for speech; the displayed edition stays "Mina".
+    // It also prepares Mina's for correct possessive pronunciation downstream.
+    text=text.replace(/\bMina\b/g,'Meena');
     return contextualPronunciations(speechGrammar(text));
   }
 
@@ -312,5 +316,5 @@
     play();
   }
 
-  root.OpheliaNarration=Object.freeze({version:'1.3.2',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter});
+  root.OpheliaNarration=Object.freeze({version:'1.3.3',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter});
 })(window);
