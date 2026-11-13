@@ -8,6 +8,13 @@
  */
 (function(root) {
   'use strict';
+  // Book-reader UX: remove the floating Home pill on every book page.
+  // The catalog remains reachable through normal site navigation.
+  function removeFloatingHome(){
+    document.querySelectorAll('a.home').forEach(link=>link.remove());
+  }
+  removeFloatingHome();
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',removeFloatingHome,{once:true});
   const acronyms=new Set([
     'AI','API','ATM','BBC','CEO','CIA','CNN','CPU','DNA','DVD','EU','FBI',
     'FAQ','GPS','HTML','HTTP','HTTPS','ID','ISBN','JPEG','JPG','NASA',
