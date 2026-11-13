@@ -45,3 +45,6 @@ jobs:
 
       - name: Verify full Fathers and Sons English translation
         run: node tests/fathers-and-sons.test.cjs
+
+      - name: Verify all three complete Katherine Mansfield story collections
+        run: node tests/katherine-mansfield-short-stories.test.cjs
