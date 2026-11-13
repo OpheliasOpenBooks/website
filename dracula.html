@@ -244,7 +244,7 @@ window.addEventListener('pagehide',stop);if('speechSynthesis' in window){updateV
 applySettings();
 (async()=>{
  // The complete Dracula text is served from this website. Narration uses the local browser speech system; no audio file is loaded.
- try{const r=await fetch('public/books/dracula-dickens-1897.txt');if(!r.ok)throw Error('Local text file not found');setupBook(await r.text());}
+ try{const r=await fetch('public/books/dracula-stoker-345.txt');if(!r.ok)throw Error('Local text file not found');setupBook(await r.text());}
  catch{$('loadbox').classList.remove('hidden');note('Dracula could not be loaded. Refresh or consult Project Gutenberg.');}
 })();
 
