@@ -48,7 +48,7 @@
 'use strict';
 /* All source is editable. Narration reuses Alice’s grammar-aware sentence segmentation and queued speech strategy. Browser/device voices provide the actual spoken sound. */
 const $=id=>document.getElementById(id);
-const STORAGE='ophelia-the-talisman-walter-scott-1821-v1';
+const STORAGE='ophelia-kenilworth-walter-scott-1821-v1';
 let state={page:0, voice:'', speed:1, size:20, night:false, autoTurn:true, bookmark:-1};
 try{Object.assign(state,JSON.parse(localStorage.getItem(STORAGE)||'{}'));}catch{}
 const save=()=>{try{localStorage.setItem(STORAGE,JSON.stringify(state));}catch{}};
