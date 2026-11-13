@@ -42,3 +42,6 @@ jobs:
 
       - name: Verify complete Veblen edition and preface
         run: node tests/theory-of-the-leisure-class.test.cjs
+
+      - name: Verify full Fathers and Sons English translation
+        run: node tests/fathers-and-sons.test.cjs
