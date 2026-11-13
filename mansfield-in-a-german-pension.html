@@ -65,7 +65,7 @@ function romanToNumber(s){
 function parseText(raw){
  const items=JSON.parse(raw);
  if(!Array.isArray(items)||items.length!==14)throw Error('Expected all 13 original stories');
- if(!items[0].text.includes('CONTENTS'))throw Error('Original contents missing');
+ if(!/contents/i.test(items[0].text))throw Error('Original contents missing');
  function paras(t){return t.trim().split(/\n\s*\n+/).map(x=>x.split('\n').map(line=>line.trim()).join(' ').replace(/ {2,}/g,' ').trim()).filter(Boolean);}
  const sections=items.map((item,i)=>({name:item.name,heading:i?item.name:undefined,paragraphs:paras(item.text)}));
  const total=items.reduce((sum,item)=>sum+(item.text.match(/\S+/g)||[]).length,0);
