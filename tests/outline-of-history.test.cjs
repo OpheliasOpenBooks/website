@@ -56,7 +56,7 @@ for(const v of volumes){
   assert.ok(sections[1].name.includes('Book 1 · Chapter 1'),'Book I begins with chapter I');
   assert.ok(sections.at(-1).name.includes('Chapter 31'),'First volume ends with chapter XXXI');
  }else{
-  assert.deepEqual(sections.slice(-3).map(s=>s.name),['Original Time Charts & Chronology','Original Index & Pronunciation Guide','Footnotes & Editorial Corrections'],'All original end matter');
+  assert.deepEqual(Array.from(sections.slice(-3),s=>s.name),['Original Time Charts & Chronology','Original Index & Pronunciation Guide','Footnotes & Editorial Corrections'],'All original end matter');
   assert.ok(sections[1].name.includes('Book 6 · Chapter 32'),'Volume II continues book VI');
   assert.ok(sections[10].name.includes('Book 9 · Chapter 41'),'Volume II ends with book IX');
   assert.match(original,/^FOOTNOTES:$/m,'Original footnotes');
