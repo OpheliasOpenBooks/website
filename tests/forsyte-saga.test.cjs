@@ -26,7 +26,7 @@ for(const [i,w] of works.entries()){
  assert.ok(reader.includes('public/js/ophelia-narration.js?v=1.2.0'),w.title+' established narration');
  assert.ok(reader.includes('public/js/ophelia-share.js'),w.title+' established sharing');
  assert.ok(reader.includes("const STORAGE='ophelia-forsyte-"+w.slug+"-v1'"),w.title+' independent saved progress');
- assert.ok(reader.includes('titlepage')&&reader.includes('frontis'),w.title+' historic illustrations');
+ assert.ok(/(?:titlepage[13]|titlpage2)\.jpg/.test(reader)&&/frontis[123]\.jpg/.test(reader),w.title+' historic illustrations');
  assert.ok(reader.includes('1922')&&reader.includes('gutenberg.org/ebooks/4397'),w.title+' historic source attribution');
  assert.ok(reader.includes('href="the-forsyte-saga.html"'),w.title+' collection navigation');
  assert.ok(hub.includes('href="'+w.slug+'.html"'),w.title+' accessible from the saga');
