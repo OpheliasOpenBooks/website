@@ -15,6 +15,13 @@ for(const b of books){
  const html=fs.readFileSync(path.join(root,'mansfield-'+b.slug+'.html'),'utf8');
  assert.equal(source.length,b.count+1,'Original front matter plus all stories');
  const front=source[0].text;
+ if(b.id==='garden'){
+  for(let i=1;i<source.length;i++){
+   assert.doesNotMatch(source[i].text,/Chapter\s+\d+\.[IVXLCDM]+\./,'No fabricated chapter-and-Roman headings');
+   assert.doesNotMatch(source[i].text,new RegExp('^'+i+'\\.\\s+'),'No duplicate numbered story headings');
+  }
+  assert.ok(html.includes('/^[IVXLCDM]+\\.?$/'),'Reader recognizes period-terminated Roman section headings');
+ }
  assert.match(front,/CONTENTS/i,'Original table of contents');
  for(let i=0;i<b.count;i++){
   assert.match(source[i+1].name,new RegExp('^Story '+(i+1)+': '),'Sequential story headings');
