@@ -1,0 +1,27 @@
+/* Verify Sir Walter Scott's complete public-domain The Talisman. */
+'use strict';
+const assert=require('node:assert/strict');
+const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
+const root=path.resolve(__dirname,'..');
+const source=fs.readFileSync(path.join(root,'public/books/the-talisman-walter-scott-1825.txt'),'utf8');
+const html=fs.readFileSync(path.join(root,'the-talisman.html'),'utf8');
+const marks=[...source.matchAll(/^CHAPTER\s+([IVXLCDM]+)\.?\s*$/gm)];
+const value=s=>{const d={I:1,V:5,X:10,L:50,C:100,D:500,M:1000};let n=0;for(let i=0;i<s.length;i++)n+=(d[s[i]]||0)<(d[s[i+1]]||0)?-d[s[i]]:d[s[i]];return n;};
+assert.equal(marks.length,28,'28 unabridged chapters');
+assert.ok(marks.every((m,i)=>value(m[1])===i+1),'Correct chapter numbering');
+assert.ok(source.split(/\s+/).length>125000,'Complete novel length');
+assert.match(source,/INTRODUCTION TO THE TALISMAN\./,'Original introduction');
+assert.match(source,/APPENDIX TO INTRODUCTION\./,'Original appendix');
+assert.match(source,/Our Story closes here/,'Original ending');
+assert.ok(html.includes('public/js/ophelia-narration.js?v=1.2.0'),'Shared narrator');
+assert.ok(html.includes('public/js/ophelia-share.js'),'Literary share');
+const inline=[...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)].map(m=>m[1]).find(s=>s.includes('function parseText(raw)'));
+assert.ok(inline,'Reader parser');
+new vm.Script(inline,{filename:'the-talisman.html'});
+const context={};vm.runInNewContext(inline.slice(inline.indexOf('function parseText(raw)'),inline.indexOf('function stop()')),context);
+const sections=context.parseText(source);
+assert.equal(sections.length,29,'Intro plus all 28 chapters');
+assert.ok(context.paginate(sections).length>=225,'Complete reading pagination');
+const catalog=fs.readFileSync(path.join(root,'catalog.html'),'utf8');
+assert.ok(catalog.includes("href:'the-talisman.html'"),'Library catalog entry');
+console.log('The Talisman: all 28 chapters, '+source.split(/\s+/).length+' words.');
