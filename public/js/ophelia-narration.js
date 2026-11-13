@@ -1,5 +1,5 @@
 /* Ophelia's Open Book — shared spoken-text preparation.
- * Version 1.3.0. Load before each reader's inline narration code.
+ * Version 1.3.1. Load before each reader's inline narration code.
  *
  * Normalize only the words sent to speech synthesis: the printed book,
  * headings, pagination, bookmarks and original manuscripts are unchanged.
@@ -129,23 +129,38 @@
   // The visual manuscript stays original; ambiguous cases stay untouched.
   function contextualPronunciations(text){
     const bowText=text.replace(/\bbow\b/gi,(word,offset,all)=>{
-      const prior=all.slice(Math.max(0,offset-110),offset).toLowerCase();
-      const following=all.slice(offset+word.length,offset+word.length+105).toLowerCase();
-      // Clearly named archery equipment and hair ribbons remain ordinary "bow".
-      if(/^\s+(?:and\s+(?:arrow|quiver)|string|stave|wood|of\s+yew|in\s+(?:his|her)\s+hand)\b/.test(following)||
-        /\b(?:hair|ribbon|satin|silk|velvet)\s+$/.test(prior)||
-        /^\s+street\b/.test(following))return word;
-      const respectAfter=/^\s+(?:to|before|down|low|deeply|respectfully|humbly|in\s+(?:homage|respect))\b/.test(following);
-      const respectBefore=/\b(?:make|made|making|offer|offered|offering)\s+(?:a|an|the)\s+(?:(?:low|deep|slight|little|graceful|respectful|courtly)\s+)?$/.test(prior);
-      const bowedSubject=/\b(?:they|we|you|ye|thou|others|people|men|women|servants|guests|courtiers|all|who|whom)\s+$/.test(prior)&&
+      const prior=all.slice(Math.max(0,offset-160),offset).toLowerCase();
+      const following=all.slice(offset+word.length,offset+word.length+130).toLowerCase();
+
+      // BOW pronounced like "go": an archer's weapon, a ribbon, a musical
+      // bow, Bow Street and a curved architectural "bow-window".
+      const weaponAfter=/^\s+(?:and\s+(?:an?\s+)?(?:arrow|arrows|quiver)\b|strings?\b|stave\b|wood\b|of\s+yew\b|to\s+(?:shoot|hunt|draw|fire|the\s+(?:target|mark|range))\b|in\s+(?:his|her)\s+hand\b)/.test(following);
+      const weaponBefore=/\b(?:archer's|hunters?'|hair|ribbon|satin|silk|velvet|violin|fiddle|cello|musical)\s+$/.test(prior)||
+        /\b(?:drew|draw|drawing|strung|aimed|loosed|string|bend|bent)\s+(?:(?:his|her|their|a|the|my|thy)\s+)?$/.test(prior);
+      const bowWindow=/^\s*[- ]\s*window\b/.test(following)||
+        (/^\s+on\s+it\b/.test(following)&&/\b(?:stone\s+front|house|building)\b/.test(prior));
+      const bowInstrument=/^\s+(?:the|a|his|her)\s+(?:violin|cello|strings?|fiddle|instrument)\b/.test(following);
+      if(weaponAfter||weaponBefore||bowWindow||bowInstrument||/^\s+street\b/.test(following))return word;
+
+      // BOW pronounced like "cow": a gesture, act of deference or ship's bow.
+      // The descriptive nouns below cover Dracula's "with a courteous bow",
+      // "with a courtly bow", and "with a grateful bow".
+      const gestureAfter=/^\s+(?:to|before|down|low|deeply|respectfully|humbly|in\s+(?:homage|respect)|acceptance|assent|submission)\b/.test(following);
+      const gestureBefore=/\b(?:make|makes|made|making|offer|offered|offering|give|gave|given|giving|return|returned|returning|with|after|in|by|from|at)\s+(?:a|an|the)\s+(?:(?:very|most)\s+)?(?:(?:low|deep|slight|little|graceful|respectful|courtly|courteous|grateful|ceremonious|formal|polite|solemn|stiff|quick|humble|profound|mock|elegant)\s+){0,2}$/.test(prior);
+      const describedGesture=/\b(?:a|an|the|his|her|their|my|your|our)\s+(?:(?:low|deep|slight|little|graceful|respectful|courtly|courteous|grateful|ceremonious|formal|polite|solemn|stiff|quick|humble|profound|mock|elegant)\s+)$/.test(prior);
+      const finalGesture=/\b(?:his|her|their|my|our|your)\s+(?:last|final|farewell)\s+$/.test(prior);
+      const promptedGesture=/\b(?:make|makes|made|making|let|saw|see|watched|watch|bid|bade|asked|forced|ordered)\s+(?:me|him|her|us|them|you|one)\s+$/.test(prior);
+      const peopleGesture=/\b(?:they|we|you|ye|thou|others|people|men|women|servants|guests|courtiers|all|who|whom)\s+$/.test(prior)&&
         /^\s+(?:and|to|before|down|low)\b/.test(following);
+      const verbGesture=/\b(?:must|should|could|would|will|shall|may|might|can|cannot|did|do|does|to|but|please)\s+$/.test(prior);
       const shipBow=/^\s+of\s+(?:the|a|his|her)\s+(?:ship|boat|vessel|barge)\b/.test(following)||
-        /\b(?:ship['’]s|boat['’]s|vessel['’]s)\s+$/.test(prior);
-      // "his bow to the target" is usually a weapon, not the act of bowing.
-      const objectContext=/\b(?:his|her|their|our|thy|my|your|stout|yew|long|strong|good)\s+$/.test(prior);
-      const action=(respectAfter&&!objectContext)||respectBefore||bowedSubject||shipBow;
-      if(action)return word[0]==='B'?'Bough':'bough'; // spoken-only /baʊ/
-      return word; // leave ambiguous cases for the user's selected voice
+        /\b(?:ship['’]s|boat['’]s|vessel['’]s)\s+$/.test(prior)||
+        (/\b(?:deck|hull|stern|mast|masts|sail|sails|ship|boat|vessel|shrouds)\b/.test(prior.slice(-110))&&
+          (/^\s+(?:throws?|cuts?|rose|broke|pointed|on|into|through|over|forward)\b/.test(following)||
+            /\b(?:from|at|on|in|towards?|by|off)\s+(?:the|a|her|his|its)\s+$/.test(prior)));
+      if(gestureAfter||gestureBefore||describedGesture||finalGesture||promptedGesture||peopleGesture||verbGesture||shipBow)
+        return word[0]==='B'?'Bough':'bough'; // voice-only /baʊ/
+      return word; // Leave other ambiguous contexts to the selected device voice.
     });
     return bowText.replace(/\bread\b/gi,(word,offset,all)=>{
       const prior=all.slice(Math.max(0,offset-45),offset);
@@ -281,5 +296,5 @@
     play();
   }
 
-  root.OpheliaNarration=Object.freeze({version:'1.3.0',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter});
+  root.OpheliaNarration=Object.freeze({version:'1.3.1',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter});
 })(window);
