@@ -21,7 +21,7 @@ assert.match(text,/\[Exeunt\.\]\s*$/,'Original closing stage direction');
 assert.ok(html.includes("fetch('public/books/merchant-of-venice-shakespeare-oxford.txt')"),'Locally hosted play');
 assert.ok(html.includes('public/js/ophelia-narration.js?v=1.2.0'),'Shared grammatical narration');
 assert.ok(html.includes('public/js/ophelia-share.js'),'Literary share control');
-assert.ok(html.includes('Portia_and_Shylock_'),'Original artwork from 1835');
+assert.ok(html.includes('Edward_Alcock_-_Portia_and_Shylock'),'Public-domain original artwork circa 1778');
 assert.ok(html.includes("const STORAGE='ophelia-merchant-of-venice-shakespeare-v1'"),'Independent bookmark key');
 const inline=[...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)].map(m=>m[1]).find(s=>s.includes('function parseText(raw)'));
 assert.ok(inline,'Reader parser present');
