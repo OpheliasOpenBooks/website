@@ -6,7 +6,7 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
 const root=path.resolve(__dirname,'..');
-const hubs=new Set(['index.html','catalog.html','leatherstocking-tales.html','the-forsyte-saga.html']);
+const hubs=new Set(['index.html','catalog.html','leatherstocking-tales.html','the-forsyte-saga.html','outline-of-history.html']);
 const verse=new Set(['leaves-of-grass.html']);
 const html=fs.readdirSync(root).filter(file=>file.endsWith('.html')&&!hubs.has(file));
 assert.ok(html.length>=50,'expected the complete active reader collection');
