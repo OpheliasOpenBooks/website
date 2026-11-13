@@ -1,0 +1,9 @@
+# A Tale of Two Cities — public-domain provenance and reader validation
+
+- **Work:** Charles Dickens, *A Tale of Two Cities: A Story of the French Revolution* (1859), public domain in the United States; Project Gutenberg eBook #98: https://www.gutenberg.org/ebooks/98.
+- **Complete text:** `public/books/a-tale-of-two-cities-dickens-1859.txt`, adapted from public-domain GITenberg transcription https://github.com/GITenberg/A-Tale-of-Two-Cities_98/blob/master/98-0.txt. The Gutenberg distribution boilerplate was excluded. Title, subtitle, contents, all three books, and all 45 chapters retained.
+- **Structure:** Book First, *Recalled to Life* (6 chapters); Book Second, *The Golden Thread* (24 chapters); Book Third, *The Track of a Storm* (15 chapters). Full local text approximately 135,843 words. Includes original celebrated opening and closing sentences.
+- **Historical image:** John McLenan's 1859 illustration, Gaspard scrawling BLOOD on the wall, from the original American serial illustrations of *A Tale of Two Cities*. Wikimedia Commons original scan: https://commons.wikimedia.org/wiki/File:T2C,_Scrawling_%27BLOOD%27_on_the_Wall_(John_McLenan).jpeg . Not claimed to be the original British edition cover.
+- **Reader:** `a-tale-of-two-cities.html` uses the existing Ophelia browser speech narration and shared grammar-aware speech normalizer. Headings are converted for spoken pauses instead of reading decorative interpuncts as multiplication. Includes bookmarking, saved reading position, voice/speed controls and auto-turn. No recorded audio.
+- **Catalog:** `index.html` entry; `catalog.html` genre Historical Fiction.
+- **Validation:** Reader parser tested against complete local text: 46 sections (title/contents + 45 chapters) and 494 pages. JavaScript syntax checks passed; live browser playback not independently tested.
