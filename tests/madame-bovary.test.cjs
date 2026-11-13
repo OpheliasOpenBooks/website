@@ -1,0 +1,42 @@
+/* Complete public-domain Madame Bovary and illustrated-reader regression. */
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
+const root=path.resolve(__dirname,'..');
+const source=fs.readFileSync(path.join(root,'public/books/madame-bovary-flaubert-marx-aveling.txt'),'utf8');
+const html=fs.readFileSync(path.join(root,'madame-bovary.html'),'utf8');
+assert.match(source,/^MADAME BOVARY\n/,'Original novel title');
+assert.match(source,/Translated from the French by Eleanor Marx-Aveling/,'Historical public-domain translator credited');
+assert.match(source,/To Marie-Antoine-Jules Senard/,'Original dedication retained');
+const parts=[...source.matchAll(/^Part (I|II|III)\s*$/gm)];
+assert.deepEqual(parts.map(p=>p[1]),['I','II','III'],'Three original parts');
+const words=['One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve','Thirteen','Fourteen','Fifteen'];
+for(let i=0;i<3;i++){
+ const part=source.slice(parts[i].index+parts[i][0].length,parts[i+1]?.index??source.length);
+ const chapters=[...part.matchAll(/^Chapter (One|Two|Three|Four|Five|Six|Seven|Eight|Nine|Ten|Eleven|Twelve|Thirteen|Fourteen|Fifteen)\s*$/gm)];
+ assert.equal(chapters.length,[9,15,11][i],'Original chapters in part '+(i+1));
+ assert.ok(chapters.every((m,j)=>m[1]===words[j]),'Complete original sequence in part '+(i+1));
+}
+assert.ok(source.split(/\s+/).length>110000,'Full-length unabridged translation');
+assert.ok(source.trimEnd().endsWith('He has just received the cross of the Legion of Honour.'),'Original novel conclusion');
+assert.ok(html.includes("fetch('public/books/madame-bovary-flaubert-marx-aveling.txt')"),'Local source avoids cross-origin loading');
+assert.ok(html.includes("const STORAGE='ophelia-madame-bovary-flaubert-marx-aveling-v1'"),'Independent reading progress and bookmarks');
+assert.ok(html.includes('public/js/ophelia-narration.js?v=1.2.0'),'Established grammar-aware narration');
+assert.ok(html.includes('public/js/ophelia-share.js'),'Established literary share widget');
+assert.ok(html.includes('MadameBovary01.jpg')&&html.includes('Carlo Chessa'),'Authentic 1905 engraved illustration and attribution');
+const inline=[...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)].map(m=>m[1]).find(s=>s.includes('function parseText(raw)'));
+assert.ok(inline,'Novel parser present');
+new vm.Script(inline,{filename:'madame-bovary.html'});
+const ctx={};
+vm.runInNewContext(inline.slice(inline.indexOf('function parseText(raw)'),inline.indexOf('function stop()')),ctx);
+const sections=ctx.parseText(source);
+assert.equal(sections.length,36,'Dedication plus 35 chapters');
+assert.equal(sections[1].name,'Part I · Chapter One','First chapter');
+assert.equal(sections[35].name,'Part III · Chapter Eleven','Last chapter');
+assert.equal(sections[35].spokenTitle,'Part 3, Chapter 11','Numerals spoken as numbers');
+const pages=ctx.paginate(sections);
+assert.ok(pages.length>=280,'Full novel is paginated');
+assert.equal(pages[0].section,0,'First page is title and dedication');
+assert.equal(pages.at(-1).section,35,'Last page is Part III Chapter Eleven');
+const cat=fs.readFileSync(path.join(root,'catalog.html'),'utf8');
+assert.ok(cat.includes("href:'madame-bovary.html'"),'Catalog listing');
+console.log('Madame Bovary: complete 35 chapters across three parts, '+pages.length+' reading pages.');
