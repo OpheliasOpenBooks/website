@@ -43,7 +43,7 @@
  <p class="status" id="message" role="status">Preparing 35 chapters…</p>
  <div class="load hidden" id="loadbox"><strong>Unable to load the complete book</strong><p>Please refresh the page, or <a href="https://www.gutenberg.org/ebooks/1368" target="_blank" rel="noopener">read the complete book at Project Gutenberg</a>.</p></div></aside>
 </div>
-<div class="source">Complete public-domain novel <em>The Spy: A Tale of the Neutral Ground</em> by James Fenimore Cooper (1821). The reading text follows the unabridged Project Gutenberg eBook 9845, including its editorial material, Cooper’s 1849 introduction, all 35 chapters and original footnotes. <a href="https://www.gutenberg.org/ebooks/9845" target="_blank" rel="noopener">Source: Project Gutenberg</a>. Narration uses the selected device voice.</div></div></div><script src="public/js/ophelia-narration.js?v=1.3.0"></script>
+<div class="source">Complete public-domain novel <em>The Spy: A Tale of the Neutral Ground</em> by James Fenimore Cooper (1821). The reading text follows the unabridged Project Gutenberg eBook 9845, including its editorial material, Cooper’s 1849 introduction, all 35 chapters and original footnotes. <a href="https://www.gutenberg.org/ebooks/9845" target="_blank" rel="noopener">Source: Project Gutenberg</a>. Narration uses the selected device voice.</div></div></div><script src="public/js/ophelia-narration.js?v=1.4.0"></script>
 <script>
 'use strict';
 /* All source is editable. Narration reuses Alice’s grammar-aware sentence segmentation and queued speech strategy. Browser/device voices provide the actual spoken sound. */
@@ -94,7 +94,7 @@ function paginate(sections){
  });
  return out;
 }
-function stop(){
+function stop(){window.OpheliaNarration?.clearReading?.();
  speechToken++;clearTimeout(startTimer);if('speechSynthesis' in window)window.speechSynthesis.cancel();
  speaking=false;paused=false;speechQueue=[];speechCursor=0;pageSpeechDone=false;utterance=null;updatePlay();
 }
@@ -210,9 +210,9 @@ function startSpeech(startAt=speechResumeAt){
 }
 function togglePlay(){
  if(!speaking){startSpeech(speechResumeAt);return;}
- if(!paused){speechSynthesis.pause();paused=true;note('Narration paused.');}
+ if(!paused){if(!window.OpheliaNarration?.pauseReading?.())speechSynthesis.pause();paused=true;note('Narration paused.');}
  else{paused=false;if(pageSpeechDone){finishPage(speechToken);return;}
-   speechSynthesis.resume();note('Narration resumed.');}
+   if(!window.OpheliaNarration?.resumeReading?.())speechSynthesis.resume();note('Narration resumed.');}
  updatePlay();
 }
 function go(p){if(!pages.length)return;stop();speechResumeAt=0;state.page=Math.max(0,Math.min(p,pages.length-1));save();render();}
