@@ -80,6 +80,9 @@ footer .wrap{display:flex;gap:18px;flex-wrap:wrap;justify-content:space-between}
 'use strict';
 const $=id=>document.getElementById(id);
 const genreByPage={
+ 'capital-volume-1.html':'Economics & Philosophy',
+ 'capital-volume-2.html':'Economics & Philosophy',
+ 'capital-volume-3.html':'Economics & Philosophy',
  'war-and-peace.html':'Historical Fiction',
  'vanity-fair.html':'Victorian Satire',
  'all-quiet-on-the-western-front.html':'Historical Fiction',
@@ -145,6 +148,9 @@ const genreByPage={
  'oedipus-rex.html':'Ancient Classics'
 };
 const progressByPage={
+ 'capital-volume-1.html':'ophelia-capital-marx-volume-1-v1',
+ 'capital-volume-2.html':'ophelia-capital-marx-volume-2-v1',
+ 'capital-volume-3.html':'ophelia-capital-marx-volume-3-v1',
  'war-and-peace.html':'ophelia-war-and-peace-tolstoy-maude-full-alice-voice-v1',
  'vanity-fair.html':'ophelia-vanity-fair-thackeray-1848-alice-voice-v1',
  'all-quiet-on-the-western-front.html':'ophelia-all-quiet-on-the-western-front-remarque-wheen-1929-alice-voice-v1',
@@ -181,6 +187,11 @@ const progressByPage={
  'cyrano-de-bergerac.html':'ophelia-cyrano-de-bergerac-1898-alice-voice-v1',
  'oedipus-rex.html':'ophelia-oedipus-rex-storr-1912-alice-voice-v1'
 };
+const catalogOnlyBooks=[
+ {title:'Capital · Volume I',author:'Karl Marx · 1867 · English translation 1887',href:'capital-volume-1.html',image:'https://upload.wikimedia.org/wikipedia/commons/d/d4/Karl_Marx_001.jpg',alt:'Historical portrait of Karl Marx',description:'The Process of Production of Capital. Complete public-domain English translation with 33 chapters, original prefaces and appendix.',genre:'Economics & Philosophy'},
+ {title:'Capital · Volume II',author:'Karl Marx · 1885 · English translation 1907',href:'capital-volume-2.html',image:'https://upload.wikimedia.org/wikipedia/commons/d/d4/Karl_Marx_001.jpg',alt:'Historical portrait of Karl Marx',description:'The Process of Circulation of Capital. Complete public-domain English translation with 21 chapters and editorial introduction.',genre:'Economics & Philosophy'},
+ {title:'Capital · Volume III',author:'Karl Marx · 1894 · Early English translation',href:'capital-volume-3.html',image:'https://upload.wikimedia.org/wikipedia/commons/d/d4/Karl_Marx_001.jpg',alt:'Historical portrait of Karl Marx',description:'The Process of Capitalist Production as a Whole. Complete public-domain English translation with 52 chapters, preface and supplement.',genre:'Economics & Philosophy'}
+];
 let books=[],letter='';
 const alphabet=['All',...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'];
 const normalize=s=>(s||'').replace(/^(the|a|an)\s+/i,'').toLocaleLowerCase();
@@ -199,6 +210,7 @@ function extract(doc){
   const description=card.querySelector('p:not(.fine)')?.textContent.replace(/\s+/g,' ').trim()||'Discover this public-domain classic.';
   items.push({title,author,href,image:image?.getAttribute('src')||'',alt:image?.getAttribute('alt')||title+' illustration',description,genre:genreByPage[href]||'Classic Literature'});
  }
+ for(const entry of catalogOnlyBooks){if(!seen.has(entry.href)){seen.add(entry.href);items.push(entry);}}
  return items;
 }
 function readProgress(book){
