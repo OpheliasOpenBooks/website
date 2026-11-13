@@ -43,7 +43,7 @@
  <p class="status" id="message" role="status">Preparing 55 chapters…</p>
  <div class="load hidden" id="loadbox"><strong>Unable to load the complete book</strong><p>Please refresh the page, or <a href="https://www.gutenberg.org/ebooks/507" target="_blank" rel="noopener">read the complete book at Project Gutenberg</a>.</p></div></aside>
 </div>
-<div class="source">Complete 1859 public-domain novel <em>Adam Bede</em> by George Eliot, including six books, all 55 chapters and the epilogue. Text from <a href="https://www.gutenberg.org/ebooks/507" target="_blank" rel="noopener">Project Gutenberg eBook 507</a>, fetched as a public-domain transcription. Narration is created by this site's browser reader, not a prerecorded audiobook.</div></div></div><script src="public/js/ophelia-narration.js?v=1.2.0"></script>
+<div class="source">Complete 1859 public-domain novel <em>Adam Bede</em> by George Eliot, including six books, all 55 chapters and the epilogue. Text from <a href="https://www.gutenberg.org/ebooks/507" target="_blank" rel="noopener">Project Gutenberg eBook 507</a>, stored locally. Narration is created by this site's browser reader, not a prerecorded audiobook.</div></div></div><script src="public/js/ophelia-narration.js?v=1.2.0"></script>
 <script>
 'use strict';
 /* All source is editable. Narration reuses Alice’s grammar-aware sentence segmentation and queued speech strategy. Browser/device voices provide the actual spoken sound. */
@@ -86,7 +86,7 @@ function parseText(raw){
  for(let i=0;i<marks.length;i++){
   const stop=marks[i+1]?.index??epilogue.index;
   const part=t.slice(marks[i].index+marks[i][0].length,stop);
-  if(part.length<3000)throw Error('Chapter '+(i+1)+' appears truncated');
+  if(part.length<1000)throw Error('Chapter '+(i+1)+' appears truncated');
   sections.push({name:'Chapter '+(i+1),paragraphs:paras(part)});
  }
  sections.push({name:'Epilogue',paragraphs:paras(t.slice(epilogue.index+epilogue[0].length))});
@@ -272,8 +272,8 @@ $('sound').onclick=()=>{soundOn=!soundOn;if(!soundOn&&speaking){stop();} $('soun
 window.addEventListener('pagehide',stop);if('speechSynthesis' in window){updateVoices();speechSynthesis.addEventListener('voiceschanged',updateVoices)}
 applySettings();
 (async()=>{
- // The public-domain Adam Bede text is loaded from the GITenberg transcription. Narration uses the local browser speech system; no audio file is loaded.
- try{const r=await fetch('https://raw.githubusercontent.com/GITenberg/Adam-Bede_507/master/507-0.txt');if(!r.ok)throw Error('Public-domain source text could not be reached');setupBook(await r.text());}
+ // The complete public-domain Adam Bede text is served locally from this website. Narration uses the local browser speech system; no audio file is loaded.
+ try{const r=await fetch('public/books/adam-bede-eliot-1859.txt');if(!r.ok)throw Error('Local book text file not found');setupBook(await r.text());}
  catch{$('loadbox').classList.remove('hidden');note('Adam Bede could not be loaded. Refresh or consult Project Gutenberg.');}
 })();
 
