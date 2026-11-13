@@ -80,7 +80,7 @@ function parseText(raw){
   const changed=epoch!==lastEpoch||narrator!==lastNarrator;
   const spokenHeading=(epoch!==lastEpoch?epoch+'. ':'')+(changed?story+'. ':'')+(roman?'Section '+romanToNumber(roman)+'. ':'');
   const name=epoch+' · '+story+(roman?' · Section '+roman:'');
-  sections.push({name,speechHeading,paragraphs});
+  sections.push({name,speechHeading:spokenHeading,paragraphs});
   lastEpoch=epoch;lastNarrator=narrator;
  }
  // A few narrator headings are followed by a short parenthetical credential
