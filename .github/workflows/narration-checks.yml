@@ -43,6 +43,9 @@ jobs:
       - name: Verify complete Veblen edition and preface
         run: node tests/theory-of-the-leisure-class.test.cjs
 
+      - name: Verify both complete Outline of History volumes, all 41 chapters and 210 images
+        run: node tests/outline-of-history.test.cjs
+
       - name: Verify all five complete Forsyte Saga texts and illustrated readers
         run: node tests/forsyte-saga.test.cjs
 
