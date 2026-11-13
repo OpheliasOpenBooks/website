@@ -41,7 +41,7 @@
  <p class="status" id="message" role="status">Preparing Whitman’s poetry…</p>
  <div class="load hidden" id="loadbox"><strong>Unable to load the poems</strong><p>Refresh to try again, or <a href="https://www.gutenberg.org/ebooks/1322" target="_blank" rel="noopener">read the public-domain poetry at Project Gutenberg</a>.</p></div></aside>
 </div>
-<div class="source">Walt Whitman, <em>Leaves of Grass</em> (originally 1855; revised through 1891–1892). Full poetry transcription hosted from <a href="https://www.gutenberg.org/ebooks/1322">Project Gutenberg eBook 1322</a> and its GITenberg preservation copy, retaining spelling, lineation, and 34 book divisions. This text includes “Sands at Seventy” and “Good-Bye My Fancy!” but does <strong>not</strong> include the prose essay <em>A Backward Glance O'er Travel'd Roads</em>. For the final volume’s exact contents, consult <a href="https://whitmanarchive.org/item/ppp.00707">the Walt Whitman Archive’s 1891–1892 facsimile</a>. Historic 1855 frontispiece engraving from the Library of Congress. Read-aloud uses your browser's voice.</div></div><script src="public/js/ophelia-narration.js?v=1.3.0"></script>
+<div class="source">Walt Whitman, <em>Leaves of Grass</em> (originally 1855; revised through 1891–1892). Full poetry transcription hosted from <a href="https://www.gutenberg.org/ebooks/1322">Project Gutenberg eBook 1322</a> and its GITenberg preservation copy, retaining spelling, lineation, and 34 book divisions. This text includes “Sands at Seventy” and “Good-Bye My Fancy!” but does <strong>not</strong> include the prose essay <em>A Backward Glance O'er Travel'd Roads</em>. For the final volume’s exact contents, consult <a href="https://whitmanarchive.org/item/ppp.00707">the Walt Whitman Archive’s 1891–1892 facsimile</a>. Historic 1855 frontispiece engraving from the Library of Congress. Read-aloud uses your browser's voice.</div></div><script src="public/js/ophelia-narration.js?v=1.4.0"></script>
 <script>
 'use strict';
 /* All source is editable. Narration reuses Alice’s grammar-aware sentence segmentation and queued speech strategy. Browser/device voices provide the actual spoken sound. */
@@ -90,7 +90,7 @@ function paginate(sections){
  });
  return out;
 }
-function stop(){
+function stop(){window.OpheliaNarration?.clearReading?.();
  speechToken++;clearTimeout(startTimer);clearTimeout(speechDelayTimer);speechDelayTimer=null;if('speechSynthesis' in window)window.speechSynthesis.cancel();
  speaking=false;paused=false;speechQueue=[];speechCursor=0;pageSpeechDone=false;utterance=null;updatePlay();
 }
@@ -171,7 +171,7 @@ function startSpeech(startAt=speechResumeAt){
      speechDelayTimer=setTimeout(()=>{speechDelayTimer=null;speakNext();},item.afterMs/Math.max(.6,state.speed));
    };
    u.onerror=e=>{if(token!==speechToken)return;stop();note('Narration stopped ('+(e.error||'speech error')+'). Choose another voice and try again.');};
-   try{window.speechSynthesis.speak(u);}catch{stop();note('The browser could not play this passage.');}
+   try{window.OpheliaNarration.speakWithPauses(window.speechSynthesis,[u],()=>token===speechToken,()=>paused);}catch{stop();note('The browser could not play this passage.');}
  };
  // Store the advance callback so pause/resume can continue after a silent break.
  resumeNarration=speakNext;
@@ -182,13 +182,12 @@ function togglePlay(){
  if(!speaking){startSpeech(speechResumeAt);return;}
  if(!paused){
    paused=true;clearTimeout(speechDelayTimer);speechDelayTimer=null;
-   if('speechSynthesis' in window)speechSynthesis.pause();
+   if('speechSynthesis' in window&&!window.OpheliaNarration?.pauseReading?.())speechSynthesis.pause();
    note('Narration paused.');
  }else{
    paused=false;
-   if('speechSynthesis' in window)speechSynthesis.resume();
-   // If a sentence was already completed when the user paused, advance.
-   if(!speechSynthesis.speaking)resumeNarration?.();
+   const resumed=window.OpheliaNarration?.resumeReading?.();
+   if(!resumed&&'speechSynthesis' in window){speechSynthesis.resume();if(!speechSynthesis.speaking)resumeNarration?.();}
    note('Narration resumed.');
  }
  updatePlay();
