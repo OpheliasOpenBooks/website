@@ -266,7 +266,7 @@ $('sound').onclick=()=>{soundOn=!soundOn;if(!soundOn&&speaking){stop();} $('soun
 window.addEventListener('pagehide',stop);if('speechSynthesis' in window){updateVoices();speechSynthesis.addEventListener('voiceschanged',updateVoices)}
 applySettings();
 (async()=>{
- // The complete Merchant of Venice text is hosted on this website. Narration uses the local browser speech system; no audio file is loaded.
+ // The complete Julius Caesar text is hosted on this website. Narration uses the local browser speech system; no audio file is loaded.
  try{const r=await fetch('public/books/julius-caesar-shakespeare-1522.txt');if(!r.ok)throw Error('Local text file missing');setupBook(await r.text());}
  catch{$('loadbox').classList.remove('hidden');note('Julius Caesar could not be loaded. Refresh or consult Project Gutenberg.');}
 })();
