@@ -25,7 +25,7 @@
  <div class="footer-nav"><button type="button" id="prev2" disabled>← Previous page</button><span id="footcount">Shakespeare · Complete five-act tragedy</span><button type="button" id="next2" disabled>Next page →</button></div>
 </main>
 <aside class="reader-controls" aria-label="Reading and listening controls">
- <label for="section">All Five Acts & 18 Scenes</label><select id="section" aria-label="Choose an act and scene" disabled><option>Preparing all 20 scenes…</option></select>
+ <label for="section">All Five Acts & 20 Scenes</label><select id="section" aria-label="Choose an act and scene" disabled><option>Preparing all 20 scenes…</option></select>
  <div class="progress" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="progressbar"></div></div><p id="progresslabel">0% read · Title &amp; Introduction</p>
  <div id="pagecount" class="pagecount">Page 1</div>
  <div class="transport"><button type="button" class="nav-arrow" id="prev" disabled aria-label="Previous page" title="Previous page">←</button><button type="button" id="play" class="play" disabled>▶ Read aloud</button><button type="button" class="nav-arrow" id="next" disabled aria-label="Next page" title="Next page">→</button></div>
@@ -83,7 +83,7 @@ function parseText(raw){
    totalScenes++;
   }
  }
- if(totalScenes!==20||sections.length!==21||(t.match(/\S+/g)||[]).length<20000||!t.includes('The rest is silence'))throw Error('Complete Hamlet validation failed');
+ if(totalScenes!==20||sections.length!==21||(t.match(/\S+/g)||[]).length<20000||!/The rest is\s+silence\./.test(t))throw Error('Complete Hamlet validation failed');
  return sections;
 }
 function paginate(sections){
