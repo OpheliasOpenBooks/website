@@ -1,0 +1,25 @@
+/* Verify locally hosted complete Kenilworth and chapter parsing. */
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
+const root=path.resolve(__dirname,'..');
+const src=fs.readFileSync(path.join(root,'public/books/kenilworth-scott-1821.txt'),'utf8');
+const html=fs.readFileSync(path.join(root,'kenilworth.html'),'utf8');
+const marks=[...src.matchAll(/^CHAPTER\s+([IVXLCDM]+)\.?\s*$/gm)];
+const roman=s=>{const d={I:1,V:5,X:10,L:50,C:100,D:500,M:1000};let n=0;for(let i=0;i<s.length;i++)n+=(d[s[i]]||0)<(d[s[i+1]]||0)?-d[s[i]]:d[s[i]];return n;};
+assert.equal(marks.length,41,'Only the 41 real chapters, not 41 contents entries');
+assert.ok(marks.every((m,i)=>roman(m[1])===i+1),'Roman chapters in order');
+assert.ok(src.split(/\s+/).length>180000,'Full unabridged text');
+assert.match(src,/^KENILWORTH\n\nINTRODUCTION/m,'Original introduction');
+assert.match(src,/NOTES\./,'Historical notes retained');
+assert.match(html,/fetch\('public\/books\/kenilworth-scott-1821\.txt'\)/,'Book loads locally');
+assert.ok(html.includes('public/js/ophelia-narration.js?v=1.2.0'),'Shared narrator');
+const inline=[...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)].map(m=>m[1]).find(s=>s.includes('function parseText(raw)'));
+assert.ok(inline,'Parser present');
+new vm.Script(inline,{filename:'kenilworth.html'});
+const ctx={};vm.runInNewContext(inline.slice(inline.indexOf('function parseText(raw)'),inline.indexOf('function stop()')),ctx);
+const sections=ctx.parseText(src);
+assert.equal(sections.length,42,'Intro plus 41 chapters');
+assert.ok(ctx.paginate(sections).length>280,'Book pages populated');
+const catalog=fs.readFileSync(path.join(root,'catalog.html'),'utf8');
+assert.ok(catalog.includes("href:'kenilworth.html'"),'Catalog listing');
+console.log('Kenilworth: 41 chapters, '+src.split(/\s+/).length+' words; reader parses successfully.');
