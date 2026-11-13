@@ -13,7 +13,7 @@ assert.ok(source.split(/\s+/).length>125000,'Complete novel length');
 assert.match(source,/INTRODUCTION TO THE TALISMAN\./,'Original introduction');
 assert.match(source,/APPENDIX TO INTRODUCTION\./,'Original appendix');
 assert.match(source,/Our Story closes here/,'Original ending');
-assert.ok(html.includes('public/js/ophelia-narration.js?v=1.2.0'),'Shared narrator');
+assert.ok(html.includes('public/js/ophelia-narration.js?v=1.4.0'),'Shared narrator');
 assert.ok(html.includes('public/js/ophelia-share.js'),'Literary share');
 const inline=[...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)].map(m=>m[1]).find(s=>s.includes('function parseText(raw)'));
 assert.ok(inline,'Reader parser');

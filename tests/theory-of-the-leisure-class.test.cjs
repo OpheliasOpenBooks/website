@@ -17,5 +17,5 @@ assert.match(sections[1].name,/Chapter 1: Introductory/);
 assert.match(sections[14].name,/Chapter 14: The Higher Learning/);
 assert.match(sections[14].paragraphs.join(' '),/need of direct and forcible speech/);
 assert.ok(pages.length>220,'all original chapters must paginate');
-assert.ok(html.includes('public/js/ophelia-narration.js?v=1.2.0'),'shared narration');
+assert.ok(html.includes('public/js/ophelia-narration.js?v=1.4.0'),'shared narration');
 console.log('Veblen validated: original preface, 14 complete chapters, '+pages.length+' pages');
