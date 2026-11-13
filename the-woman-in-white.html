@@ -88,7 +88,7 @@ function parseText(raw){
  // an almost-empty page and duplicating the narration heading.
  for(let i=1;i<sections.length-1;i++){
   const current=sections[i],next=sections[i+1];
-  const words=(current.paragraphs.join(' ').match(/\\S+/g)||[]).length;
+  const words=(current.paragraphs.join(' ').match(/\S+/g)||[]).length;
   if(words<12&&next.name.startsWith(current.name+' · Section ')){
    next.paragraphs=[...current.paragraphs,...next.paragraphs];
    next.speechHeading=current.speechHeading+next.speechHeading;
