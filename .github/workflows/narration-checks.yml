@@ -43,6 +43,9 @@ jobs:
       - name: Verify complete Veblen edition and preface
         run: node tests/theory-of-the-leisure-class.test.cjs
 
+      - name: Verify Merchant of Venice five acts, twenty scenes and narration
+        run: node tests/merchant-of-venice.test.cjs
+
       - name: Verify complete illustrated Romeo and Juliet play and reader
         run: node tests/romeo-and-juliet.test.cjs
 
