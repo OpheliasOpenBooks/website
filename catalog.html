@@ -254,7 +254,11 @@ const catalogOnlyBooks=[
 let books=[],letter='';
 const alphabet=['All',...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'];
 const normalize=s=>(s||'').replace(/^(the|a|an)\s+/i,'').toLocaleLowerCase();
-const initial=b=>(normalize(b.title).charAt(0)||'#').toUpperCase();
+// One intentional series exception: keep Stevenson's Kidnapped and sequel
+// David Balfour (Catriona) together under K without changing their real titles.
+// All other works retain the usual alphabetical sorting.
+const seriesSortTitle=b=>b.href==='david-balfour.html'?'kidnapped 2':b.href==='kidnapped.html'?'kidnapped 1':normalize(b.title);
+const initial=b=>(seriesSortTitle(b).charAt(0)||'#').toUpperCase();
 function extract(doc){
  const cards=[...doc.querySelectorAll('#books > article.book')],seen=new Set(),items=[];
  for(const card of cards){
@@ -319,8 +323,8 @@ function render(){
  const term=$('book-search').value.trim().toLocaleLowerCase();
  const selected=$('genre').value,order=$('sort').value;
  let matches=books.filter(b=>(!term||(b.title+' '+b.author+' '+b.description+' '+b.genre).toLocaleLowerCase().includes(term))&&(!selected||b.genre===selected)&&(!letter||initial(b)===letter));
- if(order==='title')matches.sort((a,b)=>normalize(a.title).localeCompare(normalize(b.title)));
- if(order==='author')matches.sort((a,b)=>a.author.localeCompare(b.author)||normalize(a.title).localeCompare(normalize(b.title)));
+ if(order==='title')matches.sort((a,b)=>seriesSortTitle(a).localeCompare(seriesSortTitle(b)));
+ if(order==='author')matches.sort((a,b)=>a.author.localeCompare(b.author)||seriesSortTitle(a).localeCompare(seriesSortTitle(b)));
  if(order==='new')matches.sort((a,b)=>books.indexOf(b)-books.indexOf(a));
  $('catalog-grid').replaceChildren(...matches.map(card));
  $('result-count').textContent=matches.length+' of '+books.length+' works';
