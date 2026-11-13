@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>The Three Sisters · Anton Chekhov · Ophelia’s Open Book</title>
-<meta property="og:type" content="article"><meta property="og:title" content="The Three Sisters · Anton Chekhov"><meta property="og:description" content="Read and listen to Anton Chekhov's complete four-act play The Three Sisters, translated by Julius West."><meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Three_Sisters_first_edition_cover.jpg/500px-Three_Sisters_first_edition_cover.jpg">
+<meta property="og:type" content="article"><meta property="og:title" content="The Three Sisters · Anton Chekhov"><meta property="og:description" content="Read and listen to Anton Chekhov's complete four-act play The Three Sisters, translated by Julius West."><meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/1/13/Three_Sisters_cover_1901.jpg">
 <meta name="description" content="The Three Sisters by Anton Chekhov (1901), in Julius West's public-domain English translation. Complete four acts with spoken narration.">
 <style>
 :root{--paper:#f8f5ed;--ink:#263e35;--green:#294b3e;--muted:#6c736b;--gold:#967039;--line:#dcded3;--white:#fffdf7}
@@ -20,7 +20,7 @@
 <div class="reading-layout">
 <main class="book" aria-label="The Three Sisters reader">
  <div class="book-heading"><div class="eyebrow">OPHELIA’S OPEN BOOK</div><h1>The Three Sisters</h1><p class="byline">Anton Chekhov · 1901 · Julius West's early English translation</p><p class="fine">Complete unabridged play · Four acts · Original cast of characters and stage directions</p></div>
- <figure id="story-figure" hidden><div class="vintage-art"><div class="ornament">❧</div><div class="art-title">Три сестры</div><div class="art-author">The Three Sisters · Anton Chekhov · 1901</div></div><figcaption>Literary title ornament inspired by the play's original Russian title</figcaption></figure>
+ <figure id="story-figure" hidden><img id="opening-art" src="https://upload.wikimedia.org/wikipedia/commons/1/13/Three_Sisters_cover_1901.jpg" alt="Original 1901 Russian first-edition cover of Three Sisters, featuring portraits of the original Moscow Art Theatre actresses" loading="lazy"><figcaption>Original 1901 first-edition cover · Public domain · <a href="https://commons.wikimedia.org/wiki/File:Three_Sisters_cover_1901.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></figcaption></figure>
  <article class="content" id="content"><div class="chapter-row"><span id="chaptername" class="chapter"></span></div><div id="prose"><p>Preparing all four acts…</p></div><div class="endmark" aria-hidden="true">— ❧ —</div></article>
  <div class="footer-nav"><button type="button" id="prev2" disabled>← Previous page</button><span id="footcount">Anton Chekhov · Complete 1901 play</span><button type="button" id="next2" disabled>Next page →</button></div>
 </main>
@@ -230,7 +230,7 @@ function render(){if(!pages.length)return;const page=pages[state.page];
 }
 function setupBook(raw){
  const parsed=parseText(raw),paged=paginate(parsed);
- if(parsed.length!==5||paged.length<50)throw Error('Expected the full introduction and all 4 acts.');
+ if(parsed.length!==5||paged.length<50)throw Error('Expected the complete cast and all four acts.');
  segments=parsed;pages=paged;
  $('section').replaceChildren(...segments.map((s,i)=>new Option(s.name,i)));
  $('page').replaceChildren(...pages.map((_,i)=>new Option('Page '+(i+1),i)));
