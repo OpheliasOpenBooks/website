@@ -43,6 +43,9 @@ jobs:
       - name: Verify complete Veblen edition and preface
         run: node tests/theory-of-the-leisure-class.test.cjs
 
+      - name: Verify complete 28-chapter The Talisman novel and reader
+        run: node tests/the-talisman.test.cjs
+
       - name: Verify complete 35-chapter The Spy novel and reader
         run: node tests/the-spy.test.cjs
 
