@@ -74,7 +74,7 @@ function parseText(raw){
  function romanValue(s){const d={I:1,V:5,X:10,L:50,C:100,D:500,M:1000};let v=0;for(let i=0;i<s.length;i++)v+=(d[s[i]]||0)<(d[s[i+1]]||0)?-d[s[i]]:d[s[i]];return v;}
  function pars(x){return x.trim().split(/\n\s*\n+/).map(p=>p.split('\n').map(l=>l.trim()).join(' ').replace(/ {2,}/g,' ').trim()).filter(Boolean);}
  const parts=[...t.matchAll(/^PART (I|II|III|1)\s*$/gm)],expected=[14,14,14],words=['I','II','III'];
- if(parts.length!==3||!parts.every((p,i)=>romanValue(p[1])===i+1))throw Error('Three parts must be present in sequence');
+ if(parts.length!==3||!parts.every((p,i)=>(p[1]==='1'?1:romanValue(p[1]))===i+1))throw Error('Three parts must be present in sequence');
  const sections=[{name:'Title, Preface & Dedication',spokenTitle:'In Chancery. Original front matter',paragraphs:pars(t.slice(0,parts[0].index))}];
  for(let i=0;i<3;i++){
   const block=t.slice(parts[i].index+parts[i][0].length,parts[i+1]?.index??t.length);
