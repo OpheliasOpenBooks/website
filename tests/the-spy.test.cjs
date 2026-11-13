@@ -1,0 +1,27 @@
+/* Regression check for the complete public-domain 1821 novel The Spy. */
+'use strict';
+const assert=require('node:assert/strict');
+const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
+const root=path.resolve(__dirname,'..');
+const source=fs.readFileSync(path.join(root,'public/books/the-spy-cooper-1821.txt'),'utf8');
+const html=fs.readFileSync(path.join(root,'the-spy.html'),'utf8');
+const chapterMarks=[...source.matchAll(/^CHAPTER\s+([IVXLCDM]+)\s*$/gm)];
+const value=s=>{const d={I:1,V:5,X:10,L:50,C:100,D:500,M:1000};let n=0;for(let i=0;i<s.length;i++)n+=d[s[i]]<(d[s[i+1]]||0)?-d[s[i]]:d[s[i]];return n;};
+assert.equal(chapterMarks.length,35,'All 35 chapters present');
+assert.ok(chapterMarks.every((m,i)=>value(m[1])===i+1),'Chapters numbered in order');
+assert.ok(source.split(/\s+/).length>145000,'Unabridged text');
+assert.match(source,/COOPERSTOWN, March 29, 1849\./,'Cooper introduction preserved');
+assert.match(source,/martyr to her liberties\./,'Original ending preserved');
+assert.ok(html.includes('public/js/ophelia-narration.js?v=1.2.0'),'Shared audio implementation');
+assert.ok(html.includes('public/js/ophelia-share.js'),'Literary sharing');
+assert.ok(html.includes('public/books/the-spy-cooper-1821.txt'),'Locally hosted text');
+const inline=[...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)].map(m=>m[1]).find(s=>s.includes('function parseText(raw)'));
+assert.ok(inline,'Reader parser present');
+new vm.Script(inline,{filename:'the-spy.html'});
+const context={};vm.runInNewContext(inline.slice(inline.indexOf('function parseText(raw)'),inline.indexOf('function stop()')),context);
+const sections=context.parseText(source);
+assert.equal(sections.length,36,'Introductions plus 35 chapters');
+assert.ok(context.paginate(sections).length>=300,'Book is fully paginated');
+const catalog=fs.readFileSync(path.join(root,'catalog.html'),'utf8');
+assert.ok(catalog.includes("href:'the-spy.html'"),'Catalog entry');
+console.log('The Spy: 35 complete chapters, '+source.split(/\s+/).length+' words.');
