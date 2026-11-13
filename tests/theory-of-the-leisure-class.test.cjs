@@ -1,0 +1,21 @@
+/* The Theory of the Leisure Class (1899): full original preface + all fourteen chapters. */
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
+const root=path.resolve(__dirname,'..');
+const source=fs.readFileSync(path.join(root,'public/books/theory-of-the-leisure-class-veblen-1899.txt'),'utf8');
+const html=fs.readFileSync(path.join(root,'theory-of-the-leisure-class.html'),'utf8');
+const scripts=[...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)].map(m=>m[1]);
+const script=scripts.find(s=>s.includes('function parseText(raw)'));
+assert.ok(script,'Book parser present');new vm.Script(script);
+const start=script.indexOf('function parseText(raw)'),end=script.indexOf('function stop()',start);
+assert.ok(end>start);
+const ctx={};vm.runInNewContext(script.slice(start,end),ctx);
+const sections=ctx.parseText(source),pages=ctx.paginate(sections);
+assert.equal(sections.length,15);
+assert.match(sections[0].paragraphs.join(' '),/PREFACE/);
+assert.match(sections[1].name,/Chapter 1: Introductory/);
+assert.match(sections[14].name,/Chapter 14: The Higher Learning/);
+assert.match(sections[14].paragraphs.join(' '),/need of direct and forcible speech/);
+assert.ok(pages.length>220,'all original chapters must paginate');
+assert.ok(html.includes('public/js/ophelia-narration.js?v=1.2.0'),'shared narration');
+console.log('Veblen validated: original preface, 14 complete chapters, '+pages.length+' pages');
