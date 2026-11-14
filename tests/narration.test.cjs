@@ -184,6 +184,26 @@ assert.equal(n.normalizeForSpeech('L1a is a label.'), 'L1a is a label.');
 assert.equal(n.normalizeForSpeech('£2.50'), '£2.50');
 assert.ok(n.speechChunks('Cheque L1 17s. 9d was returned.').join(' ').includes('one pound, seventeen shillings and nine pence'));
 
+// Dracula IX: no false sentence pause in St. Joseph and Ste. Mary.
+assert.equal(n.normalizeForSpeech('Hospital of St. Joseph and Ste. Mary, Buda-Pesth.'),
+  'Hospital of Saint Joseph and Saint Mary, Buda-Pesth.');
+assert.equal(n.normalizeForSpeech('thanks to God and St. Joseph and Ste. Mary.'),
+  'thanks to God and Saint Joseph and Saint Mary.');
+assert.equal(n.normalizeForSpeech('I pray God and St. Joseph and Ste. Mary, many, many, happy years.'),
+  'I pray God and Saint Joseph and Saint Mary, many, many, happy years.');
+assert.equal(n.normalizeForSpeech("St. Mary's Church"),"Saint Marys Church");
+assert.equal(n.normalizeForSpeech("St. George's Day"),"Saint Georges Day");
+assert.equal(n.normalizeForSpeech("St. Peter's Church"),"Saint Peters Church");
+assert.equal(n.normalizeForSpeech("St. Louis, Missouri"),"St. Louis, Missouri");
+assert.equal(n.normalizeForSpeech("St. Main Street"),"St. Main Street");
+assert.equal(n.normalizeForSpeech("Ste. 210, New York"),"Ste. 210, New York");
+assert.equal(n.normalizeForSpeech("Mr. Smith and Mrs. Smith spoke."),
+  "Mister Smith and Missus Smith spoke.");
+const saints=n.speechChunks('Hospital of St. Joseph and Ste. Mary, Buda-Pesth. I write by desire of Mr. Harker.');
+assert.equal(saints.length,2,'no extra pause at St. or Ste.');
+assert.equal(saints[0],'Hospital of Saint Joseph and Saint Mary, Buda-Pesth.');
+assert.equal(saints[1],'I write by desire of Mister Harker.');
+
 // Existing lower-case honorific readings remain valid after the Hon. rule.
 assert.equal(n.normalizeForSpeech('mr. Jones met dr. Watson.'),
   'Mister Jones met Doctor Watson.');
@@ -439,6 +459,28 @@ for(const [visible,spokenWord,printed] of [
  assert.equal(marker.textContent,printed,'original printed adjective remains visible');
  assert.equal(n.resumeReading(),true);
  assert.equal(contentEl.children.map(x=>x.textContent).join(''),visible);
+ n.clearReading();
+}
+
+// Pause/resume still highlights Stoker's printed St. and Ste. abbreviations.
+for(const [visible,title,expected] of [
+ ['Hospital of St. Joseph and Ste. Mary, Buda-Pesth.', 'Saint Joseph', 'St'],
+ ['Hospital of St. Joseph and Ste. Mary, Buda-Pesth.', 'Saint Mary', 'Ste'],
+ ["At St. Mary's Church, the light appeared.",'Saint Mary','St']
+]){
+ const node=textNode(visible);node.parentNode=contentEl;contentEl.children=[node];
+ const spoken=n.normalizeForSpeech(visible),utterances=[];
+ n.speakWithPauses({speak:u=>utterances.push(u),cancel(){},resume(){}},
+   [{text:spoken,lang:'en-GB',onend(){}}],()=>true,()=>false);
+ const pos=spoken.indexOf(title);
+ assert.ok(pos>=0,'saint title is present in spoken text');
+ utterances[0].onboundary({name:'word',charIndex:pos});
+ assert.equal(n.pauseReading(),true);
+ const marker=contentEl.children.find(item=>item.kind==='mark');
+ assert.ok(marker,'saint title is highlighted');
+ assert.equal(marker.textContent,expected,'the historical abbreviation stays printed');
+ assert.equal(n.resumeReading(),true);
+ assert.equal(contentEl.children.map(item=>item.textContent).join(''),visible);
  n.clearReading();
 }
 

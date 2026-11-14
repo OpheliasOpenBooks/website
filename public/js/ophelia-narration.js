@@ -162,6 +162,11 @@
     'everyone','anyone','anybody','everybody','somebody','nobody'
   ]);
   function speechGrammar(text){
+    // In a saint's name, St. and the French feminine Ste. are abbreviations,
+    // not sentence-ending periods. Expand before removing possessive apostrophes.
+    // Limit "St." to confirmed names so "St." for Street stays untouched.
+    // "Ste." is also a common abbreviation for Suite, so avoid other contexts.
+    text=text.replace(/\b(?:St|Ste)\.\s+(?=(?:George|Joseph|Mary|Peter)\b)/g,'Saint ');
     text=text.replace(/\b([A-Za-z]+(?:-[A-Za-z]+)*)['’]s\b/g,(whole,noun)=>{
       if(contractionBases.has(noun.toLowerCase()))return whole;
       return noun+(/(?:s|x|z|ch|sh)$/i.test(noun)?'es':'s');
@@ -447,7 +452,10 @@
     // A lookahead skips extra heading tokens and abbreviation expansions.
     let i=0,j=0;
     while(i<=target&&j<visible.length){
-      if(spoken[i]===visible[j].key){
+      // The spoken title "Saint" represents printed "St." or "Ste.".
+      const saintTitle=spoken[i]==='saint'&&
+        (visible[j].key==='st'||visible[j].key==='ste');
+      if(spoken[i]===visible[j].key||saintTitle){
         if(i===target)return visible[j];
         i++;j++;continue;
       }
