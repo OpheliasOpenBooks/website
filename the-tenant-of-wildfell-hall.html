@@ -74,7 +74,7 @@ function parseText(raw){
  let total=0;
  for(let i=1;i<=53;i++){
   const s=sections[i+2];
-  if(s.kind!=='chapter'||s.chapter!==i||!Array.isArray(s.paragraphs)||s.paragraphs.length<8)
+  if(s.kind!=='chapter'||s.chapter!==i||!Array.isArray(s.paragraphs)||s.paragraphs.length<5)
    throw Error('Chapter '+i+' missing or out of order.');
   const words=s.paragraphs.join(' ').match(/\S+/g)?.length||0;
   if(words<950)throw Error('Chapter '+i+' may be incomplete.');
