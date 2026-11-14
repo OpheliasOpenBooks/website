@@ -85,7 +85,7 @@ function parseText(raw){
   }
  }
  if(pos!==240||words<335000||words>370000||
-    !sections[1].paragraphs[0].startsWith('Happy families are all alike')||
+    !sections[1].paragraphs[1].startsWith('Happy families are all alike')||
     !sections[239].paragraphs.at(-1).includes('positive meaning of goodness'))
   throw Error('The complete Garnett translation or Tolstoy’s ending is missing.');
  return sections.map(s=>({name:s.name,kind:s.kind,part:s.part,chapter:s.chapter,paragraphs:s.paragraphs}));
