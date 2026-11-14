@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" role="img" aria-labelledby="title desc">
+<title id="title">Anna Karenina — Leo Tolstoy</title><desc id="desc">An original antique-inspired book cover with decorative gold flourishes, cream paper, and deep burgundy lettering.</desc>
+<rect width="600" height="900" fill="#e8d8b8"/><rect x="24" y="24" width="552" height="852" fill="#f7eed9" stroke="#7b5b3c" stroke-width="3"/>
+<rect x="43" y="43" width="514" height="814" fill="none" stroke="#b18e57" stroke-width="2"/>
+<path d="M96 160 Q200 75 300 160 Q400 75 504 160 M96 730 Q200 815 300 730 Q400 815 504 730" fill="none" stroke="#ad8645" stroke-width="3"/>
+<g fill="none" stroke="#ad8645" stroke-width="2"><path d="M300 121 l-28 -22 28 8 28 -8z M300 771 l-28 22 28 -8 28 8z"/><circle cx="300" cy="144" r="7"/><circle cx="300" cy="748" r="7"/></g>
+<g font-family="Georgia,'Times New Roman',serif" text-anchor="middle" fill="#572e36">
+<text x="300" y="292" font-size="30" letter-spacing="7">LEO TOLSTOY</text>
+<path d="M177 326 H423" stroke="#b18e57" stroke-width="2"/>
+<text x="300" y="424" font-size="70" font-weight="bold">ANNA</text><text x="300" y="516" font-size="67" font-weight="bold">KARENINA</text>
+<text x="300" y="583" font-size="22" font-style="italic" letter-spacing="2">A NOVEL</text>
+<text x="300" y="681" font-size="20" letter-spacing="4">1878</text></g>
+<g fill="#ab884e" opacity=".8"><path d="M120 424 Q145 389 169 411 Q142 414 137 441 Q155 457 169 480 Q137 469 120 444z"/><path d="M480 424 Q455 389 431 411 Q458 414 463 441 Q445 457 431 480 Q463 469 480 444z"/></g>
+</svg>
