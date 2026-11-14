@@ -10,6 +10,13 @@
 - Do not remove hidden cards from the homepage; the catalog depends on them.
 - Without JavaScript, the homepage restores its full bookshelf. The catalog needs JavaScript for its interactive search.
 
+## Book-description voice
+
+- In the public library catalog and home-page book cards, write a warm, inviting, **story-first** synopsis about the characters, setting, central conflict, atmosphere, and themes. For essays or nonfiction, describe the ideas and questions the work explores.
+- Aim for one or two charming, readable sentences that make someone want to open the book, without spoiling the ending. Match the restrained literary tone of the earlier Ophelia’s catalog cards.
+- **Do not** clutter promotional summaries with “complete,” “unabridged,” chapter counts, publication/translation metadata, audiobook features, bookmarks, saved progress, artwork credits, or implementation details.
+- Preserve verified edition, rights, source, and completeness information in the reader's edition notes and `SOURCES-<title>.md` documentation, rather than in the public-facing story blurb.
+
 ## Share buttons
 
 - Include `<script defer src="public/js/ophelia-share.js"></script>` on every book reader. The script automatically inserts a **Share this book** button near `.book-heading`.
