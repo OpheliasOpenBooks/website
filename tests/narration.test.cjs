@@ -120,6 +120,21 @@ assert.equal(n.normalizeForSpeech('Men and women are alike.'),'Men and women are
 assert.equal(n.normalizeForSpeech('The two men look like women.'),'The two men look like women.');
 assert.equal(n.normalizeForSpeech('I like women.'),'I like women.');
 
+// Dracula IX, British commercial correspondence: Messrs. is the plural
+// of Mr (from French messieurs), pronounced "messers", not letter by letter.
+assert.equal(n.normalizeForSpeech('Letter, Samuel F. Billington & Son, Solicitors, Whitby, to Messrs. Carter, Paterson & Co., London.'),
+  'Letter, Samuel F. Billington & Son, Solicitors, Whitby, to Messers Carter, Paterson & Co., London.');
+assert.equal(n.normalizeForSpeech('Letter, Messrs. Carter, Paterson & Co., London, to Messrs. Billington & Son, Whitby.'),
+  'Letter, Messers Carter, Paterson & Co., London, to Messers Billington & Son, Whitby.');
+assert.equal(n.normalizeForSpeech('Messrs. Mackenzie & Steinkoff were more than kind.'),
+  'Messers Mackenzie & Steinkoff were more than kind.');
+assert.equal(n.normalizeForSpeech('Messrs Smith and Jones agreed.'),'Messers Smith and Jones agreed.');
+assert.equal(n.normalizeForSpeech('Mrs. Smith and Mr. Carter met.'),
+  'Missus Smith and Mister Carter met.');
+assert.equal(n.normalizeForSpeech('The messenger arrived.'),
+  'The messenger arrived.');
+assert.ok(n.speechChunks('Messrs. Carter, Paterson & Co. replied.').join(' ').startsWith('Messers Carter'));
+
 // Existing lower-case honorific readings remain valid after the Hon. rule.
 assert.equal(n.normalizeForSpeech('mr. Jones met dr. Watson.'),
   'Mister Jones met Doctor Watson.');
@@ -314,6 +329,23 @@ assert.equal(leadMarker.textContent,'lead','the printed spelling is preserved');
 assert.equal(n.resumeReading(),true);
 assert.ok(leadUtterances[1].text.startsWith('led.'),'the spoken metal has a short e');
 assert.equal(contentEl.children.map(node=>node.textContent).join(''),leadVisible);
+n.clearReading();
+
+// The yellow pause marker maps spoken "Messers" back to printed "Messrs.".
+const messrsVisible='Messrs. Carter wrote to Whitby.';
+const messrsNode=textNode(messrsVisible);messrsNode.parentNode=contentEl;
+contentEl.children=[messrsNode];
+const messrsSpoken=n.normalizeForSpeech(messrsVisible),messrsVoice=[];
+n.speakWithPauses({speak:u=>messrsVoice.push(u),cancel(){},resume(){}},
+  [{text:messrsSpoken,lang:'en-GB',onend(){}}],()=>true,()=>false);
+messrsVoice[0].onboundary({name:'word',charIndex:0});
+assert.equal(n.pauseReading(),true);
+const messrsMarker=contentEl.children.find(node=>node.kind==='mark');
+assert.ok(messrsMarker,'spoken plural title highlights printed abbreviation');
+assert.equal(messrsMarker.textContent,'Messrs','the original abbreviation stays visible');
+assert.equal(n.resumeReading(),true);
+assert.ok(messrsVoice[1].text.startsWith('Messers'),'resumption retains the plural title pronunciation');
+assert.equal(contentEl.children.map(node=>node.textContent).join(''),messrsVisible);
 n.clearReading();
 
 console.log('Narration checks passed. Actual pronunciation remains device-voice dependent.');

@@ -129,6 +129,10 @@
     });
     // Honorific abbreviations have unambiguous spoken meanings.
     // Leave context-dependent abbreviations (e.g. St., No.) untouched.
+    // The English plural title Messrs. (from French messieurs) is spoken
+    // 'Messers' (/MES-erz/), not as individual letters or 'Mister'.
+    // Include British Messrs without a period; the printed text stays unchanged.
+    text=text.replace(/\bMessrs\.?(?=\s+[A-Z])/gi,'Messers');
     // The capitalized title Hon. expands in narration, not in the book.
     text=text.replace(/\bHon\./g,'Honorable');
     const titles={Mr:'Mister',Mrs:'Missus',Ms:'Miz',Dr:'Doctor',
@@ -333,7 +337,7 @@
   }
   function comparableWord(value){
     const clean=String(value).toLowerCase().replace(/['’]/g,'').replace(/-/g,'');
-    const aliases={meena:'mina',meenas:'minas',bough:'bow',party:'parti',tare:'tear',led:'lead',honorable:'hon',wined:'wind',
+    const aliases={meena:'mina',meenas:'minas',bough:'bow',party:'parti',tare:'tear',led:'lead',messers:'messrs',honorable:'hon',wined:'wind',
       wineds:'winds',mister:'mr',doctor:'dr',missus:'mrs',miz:'ms',
       one:'1',two:'2',three:'3',four:'4',five:'5',six:'6',
       seven:'7',eight:'8',nine:'9',ten:'10'};
