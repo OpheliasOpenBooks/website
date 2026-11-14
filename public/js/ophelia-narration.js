@@ -1,5 +1,5 @@
 /* Ophelia's Open Book — shared spoken-text preparation.
- * Version 1.4.2. Load before each reader's inline narration code.
+ * Version 1.4.3. Load before each reader's inline narration code.
  *
  * Normalize only the words sent to speech synthesis: the printed book,
  * headings, pagination, bookmarks and original manuscripts are unchanged.
@@ -103,6 +103,13 @@
     // Only explicit paper/letter objects trigger this voice-only change.
     text=text.replace(/\btear\b(?=\s+(?:(?:up|apart|open|out)\s+)?(?:(?:the|a|an|my|his|her|our|your|their|this|that|some)\s+)?(?:letter|paper|page|note|document|envelope|photograph|photo|book|sheet|card)s?\b)/gi,
       word=>word[0]===word[0].toUpperCase()?'Tare':'tare');
+    // Dracula V, Lucy to Mina: "Men like women, certainly their wives,
+    // to be quite as fair as they are" means men WANT women to be fair;
+    // "like" is a preference verb, not the comparative "men like women".
+    // Add a quiet auxiliary only to the SPOKEN version of this exact clause.
+    // Keep Stoker's printed words and all unrelated "like" usages intact.
+    text=text.replace(/\bMen like women(?=,\s+certainly their wives,\s+to be quite as fair as they are\b)/g,
+      'Men would like women');
     return contextualPronunciations(speechGrammar(text));
   }
 
@@ -497,5 +504,5 @@
     else clearPausedHighlight();
   }
 
-  root.OpheliaNarration=Object.freeze({version:'1.4.2',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
+  root.OpheliaNarration=Object.freeze({version:'1.4.3',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
 })(window);

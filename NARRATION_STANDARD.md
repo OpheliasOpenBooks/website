@@ -194,3 +194,20 @@ untouched. The original manuscript remains unmodified.
 The yellow paused-word marker aligns spoken **tare** to visible **tear**.
 Dracula loads shared narration v1.4.2 immediately; other readers reuse
 the same module upon refresh. Acoustic output still varies with browser voices.
+
+## Dracula Chapter V: Lucy's preference verb "like" (v1.4.3, November 2026)
+
+In Lucy Westenra's letter to Mina she says, "Men like women, certainly
+their wives, to be quite as fair as they are; and women, I am afraid, are
+not always quite as fair as they should be." Here **like** is the verb
+"would like / wish / want", with **fair** meaning honest or equitable,
+not the comparison "men [are] like women" or purely romantic adoration.
+
+To disambiguate the spoken clause for voices that pause misleadingly
+after "women", the narration-only text adds the auxiliary **would**:
+"Men would like women, certainly their wives, to be quite as fair..."
+No visible words, punctuation, bookmarks or author text are modified.
+The yellow paused-word alignment skips the spoken-only auxiliary while
+tracking the original printed "like". The rule only matches Lucy's exact
+construction; ordinary comparative "like" and unrelated books are left alone.
+Dracula loads shared narration v1.4.3 to refresh the script cache.

@@ -97,6 +97,16 @@ assert.equal(n.normalizeForSpeech('I tear up when I read sad stories.'),'I tear 
 assert.equal(n.normalizeForSpeech('Tears welled in her eyes.'),'Tears welled in her eyes.');
 assert.equal(n.speechChunks('I should tear up the letter.').join(' '),'I should tare up the letter.');
 
+// Dracula V, Lucy: "like" is a desire/preference verb, not comparative.
+const lucyPreference='Men like women, certainly their wives, to be quite as fair as they are; and women, I am afraid, are not always quite as fair as they should be.';
+const spokenPreference='Men would like women, certainly their wives, to be quite as fair as they are; and women, I am afraid, are not always quite as fair as they should be.';
+assert.equal(n.normalizeForSpeech(lucyPreference),spokenPreference);
+assert.ok(n.speechChunks(lucyPreference)[0].startsWith('Men would like women,'));
+assert.equal(n.normalizeForSpeech('Men like women.'),'Men like women.');
+assert.equal(n.normalizeForSpeech('Men and women are alike.'),'Men and women are alike.');
+assert.equal(n.normalizeForSpeech('The two men look like women.'),'The two men look like women.');
+assert.equal(n.normalizeForSpeech('I like women.'),'I like women.');
+
 // Sentence boundaries, honorifics and chapter/title pause handling.
 assert.equal(n.speechChunks('Mr. Darcy spoke. Then Elizabeth replied.').length,2);
 assert.equal(n.speechChunks('Chapter One. The evening fell.').length,2);
@@ -225,6 +235,24 @@ assert.equal(tearMarker.textContent,'tear','the printed word remains unaltered')
 assert.equal(n.resumeReading(),true);
 assert.ok(tearVoices[1].text.startsWith('tare up the letter'),'resume from spoken rip verb');
 assert.equal(contentEl.children.map(node=>node.textContent).join(''),tearOriginal);
+n.clearReading();
+
+// The additional voice-only "would" must not displace the yellow
+// highlighting of the original printed "like" and "women".
+const preferOriginal='Men like women, certainly their wives, to be quite as fair as they are;';
+const preferNode=textNode(preferOriginal);
+preferNode.parentNode=contentEl;contentEl.children=[preferNode];
+const preferSpoken=n.normalizeForSpeech(preferOriginal),preferUtterances=[];
+n.speakWithPauses({speak:u=>preferUtterances.push(u),cancel(){},resume(){}},
+  [{text:preferSpoken,lang:'en-GB',onend(){}}],()=>true,()=>false);
+preferUtterances[0].onboundary({name:'word',charIndex:preferSpoken.indexOf('like')});
+assert.equal(n.pauseReading(),true);
+const preferMarked=contentEl.children.find(node=>node.kind==='mark');
+assert.ok(preferMarked,'paused word highlighted');
+assert.equal(preferMarked.textContent,'like','original printed verb highlighted');
+assert.equal(n.resumeReading(),true);
+assert.ok(preferUtterances[1].text.startsWith('like women'),'resume at the verb');
+assert.equal(contentEl.children.map(node=>node.textContent).join(''),preferOriginal);
 n.clearReading();
 
 console.log('Narration checks passed. Actual pronunciation remains device-voice dependent.');
