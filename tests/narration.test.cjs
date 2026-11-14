@@ -81,6 +81,23 @@ assert.equal(n.normalizeForSpeech('They lead the horses.'),'They lead the horses
 assert.equal(n.normalizeForSpeech('He had led the horses.'),'He had led the horses.');
 assert.equal(n.normalizeForSpeech('A lead pipe was found.'),'A lead pipe was found.');
 
+// Dracula IX and later: wan = pale /wɒn/ or /wɑːn/, not wane.
+assert.equal(n.normalizeForSpeech('Lucy is still sadly pale and wan-looking.'),
+  'Lucy is still sadly pale and wahn-looking.');
+assert.equal(n.normalizeForSpeech('more horribly white and wan-looking than ever.'),
+  'more horribly white and wahn-looking than ever.');
+assert.equal(n.normalizeForSpeech('her wan-eyed husband asked.'),
+  'her wahn-eyed husband asked.');
+assert.equal(n.normalizeForSpeech('A Wan-looking stranger arrived.'),
+  'A Wahn-looking stranger arrived.');
+assert.equal(n.normalizeForSpeech('The moon began to wane.'),
+  'The moon began to wane.');
+assert.equal(n.normalizeForSpeech('The WAN network is offline.'),
+  'The Wan network is offline.'); // existing all-caps normalization is unaffected
+assert.equal(n.normalizeForSpeech('He won the competition.'),
+  'He won the competition.');
+assert.ok(n.speechChunks('Lucy was pale and wan-looking.').join(' ').includes('wahn-looking'));
+
 // Dracula name: "Mina" should be spoken with a long "ee" like "Meena".
 assert.equal(n.normalizeForSpeech('Mina Murray'), 'Meena Murray');
 assert.equal(n.normalizeForSpeech('Dear Mina,'), 'Dear Meena,');
@@ -401,6 +418,25 @@ for(const [visible,search,expectedWord] of [
  const marker=contentEl.children.find(x=>x.kind==='mark');
  assert.ok(marker,'paused word highlighted in printed text');
  assert.equal(marker.textContent,expectedWord,'highlight is the historical source notation');
+ assert.equal(n.resumeReading(),true);
+ assert.equal(contentEl.children.map(x=>x.textContent).join(''),visible);
+ n.clearReading();
+}
+
+// The pause marker keeps the original "wan-looking" despite narration "wahn".
+for(const [visible,spokenWord,printed] of [
+ ['Lucy is still sadly pale and wan-looking.','wahn-looking','wan-looking'],
+ ['her wan-eyed husband asked.','wahn-eyed','wan-eyed']
+]){
+ const node=textNode(visible);node.parentNode=contentEl;contentEl.children=[node];
+ const spoken=n.normalizeForSpeech(visible),record=[];
+ n.speakWithPauses({speak:u=>record.push(u),cancel(){},resume(){}},
+   [{text:spoken,lang:'en-GB',onend(){}}],()=>true,()=>false);
+ record[0].onboundary({name:'word',charIndex:spoken.indexOf(spokenWord)});
+ assert.equal(n.pauseReading(),true);
+ const marker=contentEl.children.find(x=>x.kind==='mark');
+ assert.ok(marker,'pause marker highlights the visual word');
+ assert.equal(marker.textContent,printed,'original printed adjective remains visible');
  assert.equal(n.resumeReading(),true);
  assert.equal(contentEl.children.map(x=>x.textContent).join(''),visible);
  n.clearReading();

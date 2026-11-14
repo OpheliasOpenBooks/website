@@ -144,6 +144,11 @@
     // Keep Stoker's printed words and all unrelated "like" usages intact.
     text=text.replace(/\bMen like women(?=,\s+certainly their wives,\s+to be quite as fair as they are\b)/g,
       'Men would like women');
+    // Dracula IX and elsewhere: "wan" means pale/sickly, not "wane".
+    // Some device voices pronounce "wan-looking" as "wun-looking".
+    // Use a speech-only approximation to /wɒn/ (UK) /wɑːn/ (US).
+    text=text.replace(/\bwan(?=-(?:looking|eyed)\b)/gi,
+      word=>word[0]==='W'?'Wahn':'wahn');
     return contextualPronunciations(speechGrammar(preDecimalMoney(text)));
   }
 
@@ -376,7 +381,7 @@
   }
   function comparableWord(value){
     const clean=String(value).toLowerCase().replace(/['’]/g,'').replace(/-/g,'');
-    const aliases={meena:'mina',meenas:'minas',bough:'bow',party:'parti',tare:'tear',led:'lead',messers:'messrs',honorable:'hon',wined:'wind',
+    const aliases={meena:'mina',meenas:'minas',bough:'bow',party:'parti',tare:'tear',led:'lead',messers:'messrs',honorable:'hon',wahnlooking:'wanlooking',wahneyed:'waneyed',wined:'wind',
       wineds:'winds',mister:'mr',doctor:'dr',missus:'mrs',miz:'ms',
       one:'1',two:'2',three:'3',four:'4',five:'5',six:'6',
       seven:'7',eight:'8',nine:'9',ten:'10'};
