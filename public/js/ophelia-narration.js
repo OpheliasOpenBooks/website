@@ -63,6 +63,40 @@
     const n=romanValue(token);
     return n===null?token:'the '+ordinal(n);
   }
+  // Read pre-decimal British currency aloud. Project Gutenberg sometimes
+  // transcribes the printed pound sign as "L" (L1 = £1); s is shillings
+  // and d is pence. Never change the displayed historical source.
+  function preDecimalMoney(value){
+    const unit=(raw,kind)=>{
+      const n=Number(raw),spoken=cardinal(n);
+      if(kind==='pound')return spoken+(n===1?' pound':' pounds');
+      if(kind==='shilling')return spoken+(n===1?' shilling':' shillings');
+      return spoken+(n===1?' penny':' pence');
+    };
+    const combine=(p,s,d)=>{
+      const parts=[];
+      if(p!==undefined)parts.push(unit(p,'pound'));
+      if(s!==undefined)parts.push(unit(s,'shilling'));
+      if(d!==undefined)parts.push(unit(d,'penny'));
+      return parts.length===3?parts[0]+', '+parts[1]+' and '+parts[2]:
+        parts.length===2?parts.join(' and '):parts[0];
+    };
+    let text=value;
+    // "L1 17s. 9d" => "one pound, seventeen shillings and nine pence".
+    // Guard against decimal notation and labels such as "L1a".
+    text=text.replace(/(?:£|\bL)\s*(\d{1,6})(?:\s+(\d{1,4})s\.?)?(?:\s+(\d{1,3})d\.?)?(?![A-Za-z0-9]|\.\d)/g,
+      (whole,p,s,d)=>{
+        const phrase=combine(p,s,d);
+        return phrase+(whole.endsWith('.')?'.':'');
+      });
+    // A shilling-and-pence sum without pounds, e.g. "17s. 9d".
+    text=text.replace(/\b(\d{1,4})s\.?(?:\s+(\d{1,3})d\.?)?(?![A-Za-z0-9]|\.\d)/g,
+      (whole,s,d)=>combine(undefined,s,d)+(whole.endsWith('.')?'.':''));
+    text=text.replace(/\b(\d{1,3})d\.?(?![A-Za-z0-9]|\.\d)/g,
+      (whole,d)=>combine(undefined,undefined,d)+(whole.endsWith('.')?'.':''));
+    return text;
+  }
+
   function normalizeForSpeech(value){
     let text=String(value==null?'':value);
     // An ornamental chapter-title separator is a pause, not multiplication.
@@ -110,7 +144,7 @@
     // Keep Stoker's printed words and all unrelated "like" usages intact.
     text=text.replace(/\bMen like women(?=,\s+certainly their wives,\s+to be quite as fair as they are\b)/g,
       'Men would like women');
-    return contextualPronunciations(speechGrammar(text));
+    return contextualPronunciations(speechGrammar(preDecimalMoney(text)));
   }
 
   // Pronunciation-friendly grammar for speech only. Printed book text is unchanged.
@@ -127,6 +161,11 @@
       if(contractionBases.has(noun.toLowerCase()))return whole;
       return noun+(/(?:s|x|z|ch|sh)$/i.test(noun)?'es':'s');
     });
+    // Dracula IX: "marked 'A' on rough diagram" refers to the map's
+    // capital-letter label, not the article "a"; say the letter name "ay".
+    // Only labels expressly "marked" on a diagram get the spoken expansion.
+    text=text.replace(/\bmarked\s+['‘“]([A-Z])['’”](?=\s+on\s+(?:(?:a|an|the|this)\s+)?(?:rough\s+)?diagram\b)/g,
+      (_,letter)=>'marked with the letter '+letter);
     // Honorific abbreviations have unambiguous spoken meanings.
     // Leave context-dependent abbreviations (e.g. St., No.) untouched.
     // The English plural title Messrs. (from French messieurs) is spoken
@@ -343,6 +382,33 @@
       seven:'7',eight:'8',nine:'9',ten:'10'};
     return aliases[clean]||clean;
   }
+  // One historical currency token may expand to several spoken words:
+  // L1 -> "one pound"; 17s. -> "seventeen shillings"; 9d -> "nine pence".
+  // Give each spoken word the SAME original visual span so a paused reading
+  // always highlights the source abbreviation, never an adjacent word.
+  function currencyVisualKeys(span,source){
+    const token=span.word;
+    let amount=null,kind=null;
+    let match=/^L(\d{1,6})$/.exec(token);
+    if(match){amount=Number(match[1]);kind='pound';}
+    else if(source[span.start-1]==='£'&&/^\d{1,6}$/.test(token)&&
+      !/^\.\d/.test(source.slice(span.end))){
+      amount=Number(token);kind='pound';
+    }
+    else if((match=/^(\d{1,4})s$/.exec(token))){
+      amount=Number(match[1]);kind='shilling';
+    }
+    else if((match=/^(\d{1,3})d$/.exec(token))){
+      amount=Number(match[1]);kind='penny';
+    }
+    if(kind===null)return null;
+    const spoken=cardinal(amount)+' '+
+      (kind==='pound'?(amount===1?'pound':'pounds'):
+       kind==='shilling'?(amount===1?'shilling':'shillings'):
+       amount===1?'penny':'pence');
+    return wordSpans(spoken).map(w=>comparableWord(w.word));
+  }
+
   function locateVisualWord(spokenWords,position){
     const body=document.getElementById('prose')||document.getElementById('passage');
     if(!body)return null;
@@ -362,8 +428,11 @@
       const walker=document.createTreeWalker(container,NodeFilter.SHOW_TEXT);
       let node;
       while((node=walker.nextNode())){
-        for(const span of wordSpans(node.textContent))
-          visible.push({...span,node,key:comparableWord(span.word)});
+        for(const span of wordSpans(node.textContent)){
+          const money=currencyVisualKeys(span,node.textContent);
+          if(money)for(const key of money)visible.push({...span,node,key});
+          else visible.push({...span,node,key:comparableWord(span.word)});
+        }
       }
     }
     if(!visible.length||!spokenWords.length)return null;

@@ -135,6 +135,38 @@ assert.equal(n.normalizeForSpeech('The messenger arrived.'),
   'The messenger arrived.');
 assert.ok(n.speechChunks('Messrs. Carter, Paterson & Co. replied.').join(' ').startsWith('Messers Carter'));
 
+// Dracula IX: the diagram label 'A' must be spoken as a letter name.
+const diagram='and marked \'A\' on rough diagram enclosed.';
+assert.equal(n.normalizeForSpeech(diagram),
+  'and marked with the letter A on rough diagram enclosed.');
+assert.equal(n.normalizeForSpeech("marked 'B' on the diagram."),
+  'marked with the letter B on the diagram.');
+assert.equal(n.normalizeForSpeech("A book was marked 'A' on rough diagram."),
+  'A book was marked with the letter A on rough diagram.');
+assert.equal(n.normalizeForSpeech("'A' is the first letter."),"'A' is the first letter.");
+assert.equal(n.normalizeForSpeech("He marked a book."),'He marked a book.');
+assert.ok(n.speechChunks(diagram).join(' ').includes('letter A'));
+
+// Dracula IX: the novel's old sterling notation is read as money, never
+// "L one seventeen ess nine dee". Shillings are /s/ and pence /d/.
+assert.equal(n.normalizeForSpeech('L1 17s. 9d'),
+  'one pound, seventeen shillings and nine pence');
+assert.equal(n.normalizeForSpeech('L10 received'), 'ten pounds received');
+assert.equal(n.normalizeForSpeech('ten pounds (L10),'), 'ten pounds (ten pounds),');
+assert.equal(n.normalizeForSpeech('We return cheque L1 17s. 9d, amount of overplus.'),
+  'We return cheque one pound, seventeen shillings and nine pence, amount of overplus.');
+assert.equal(n.normalizeForSpeech('£1 17s. 9d'), 'one pound, seventeen shillings and nine pence');
+assert.equal(n.normalizeForSpeech('£1'), 'one pound');
+assert.equal(n.normalizeForSpeech('L2 1s. 1d'), 'two pounds, one shilling and one penny');
+assert.equal(n.normalizeForSpeech('10s. 6d.'), 'ten shillings and six pence.');
+assert.equal(n.normalizeForSpeech('9d.'), 'nine pence.');
+assert.equal(n.normalizeForSpeech('1d'), 'one penny');
+assert.equal(n.normalizeForSpeech('L100'), 'one hundred pounds');
+assert.equal(n.normalizeForSpeech('1st May'), '1st May');
+assert.equal(n.normalizeForSpeech('L1a is a label.'), 'L1a is a label.');
+assert.equal(n.normalizeForSpeech('£2.50'), '£2.50');
+assert.ok(n.speechChunks('Cheque L1 17s. 9d was returned.').join(' ').includes('one pound, seventeen shillings and nine pence'));
+
 // Existing lower-case honorific readings remain valid after the Hon. rule.
 assert.equal(n.normalizeForSpeech('mr. Jones met dr. Watson.'),
   'Mister Jones met Doctor Watson.');
@@ -347,5 +379,31 @@ assert.equal(n.resumeReading(),true);
 assert.ok(messrsVoice[1].text.startsWith('Messers'),'resumption retains the plural title pronunciation');
 assert.equal(contentEl.children.map(node=>node.textContent).join(''),messrsVisible);
 n.clearReading();
+
+
+// Restore pause markers to the visible 1897 notation after spoken expansion.
+for(const [visible,search,expectedWord] of [
+ ["and marked 'A' on rough diagram enclosed.", 'letter A', 'A'],
+ ['We return cheque L1 17s. 9d, amount of overplus.', 'one pound', 'L1'],
+ ['We return cheque L1 17s. 9d, amount of overplus.', 'shillings', '17s'],
+ ['We return cheque L1 17s. 9d, amount of overplus.', 'pence', '9d'],
+ ['We return cheque 10s. 6d. today.', 'shillings', '10s'],
+ ['We return cheque 10s. 6d. today.', 'pence', '6d'],
+]){
+ const node=textNode(visible);node.parentNode=contentEl;contentEl.children=[node];
+ const spoken=n.normalizeForSpeech(visible),utterances=[];
+ n.speakWithPauses({speak:u=>utterances.push(u),cancel(){},resume(){}},
+   [{text:spoken,lang:'en-GB',onend(){}}],()=>true,()=>false);
+ assert.ok(spoken.includes(search),'expected spoken expansion exists');
+ const index=spoken.indexOf(search)+(search==='letter A'?7:0);
+ utterances[0].onboundary({name:'word',charIndex:index});
+ assert.equal(n.pauseReading(),true);
+ const marker=contentEl.children.find(x=>x.kind==='mark');
+ assert.ok(marker,'paused word highlighted in printed text');
+ assert.equal(marker.textContent,expectedWord,'highlight is the historical source notation');
+ assert.equal(n.resumeReading(),true);
+ assert.equal(contentEl.children.map(x=>x.textContent).join(''),visible);
+ n.clearReading();
+}
 
 console.log('Narration checks passed. Actual pronunciation remains device-voice dependent.');
