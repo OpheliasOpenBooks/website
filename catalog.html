@@ -52,6 +52,14 @@ footer .wrap{display:flex;gap:18px;flex-wrap:wrap;justify-content:space-between}
 @media(max-width:1000px){.catalog-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:720px){.wrap{padding-inline:19px}.header{align-items:flex-start;flex-direction:column}.hero{padding-top:40px}.control-row{grid-template-columns:1fr}.catalog-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.cover{height:205px;flex-basis:205px;max-height:205px}.book-info{padding:12px}.book-info h3{font-size:20px}.book-info .blurb{font-size:13px}}
 @media(max-width:450px){.catalog-grid{grid-template-columns:1fr}.cover{height:255px;flex-basis:255px;max-height:255px}.book-info{padding:18px}.book-info h3{font-size:25px}}
+
+/* Small reading-room style return-to-top control; only appears after scrolling. */
+.back-to-top{position:fixed;right:22px;bottom:22px;z-index:20;width:43px;height:43px;display:grid;place-items:center;border:1px solid #9e8a62;border-radius:50%;background:#faf4e9;color:var(--ink);box-shadow:0 3px 12px #263e3526;font:24px/1 Georgia,serif;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(8px);transition:opacity .2s ease,transform .2s ease,visibility .2s ease}
+.back-to-top.is-visible{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
+.back-to-top:hover{background:#e9eddf;border-color:#718a79}
+.back-to-top:focus-visible{outline:3px solid #b7782d;outline-offset:3px}
+@media(max-width:600px){.back-to-top{right:14px;bottom:14px;width:40px;height:40px;font-size:22px}}
+@media(prefers-reduced-motion:reduce){.back-to-top{transition:none}}
 </style>
 <script defer src="public/js/ophelia-share.js"></script>
 </head>
@@ -413,6 +421,17 @@ $('reset').addEventListener('click',()=>{$('book-search').value='';$('genre').va
   $('empty').append(p,link);
  }
 })();
+})();
+</script>
+
+<button type="button" id="back-to-top" class="back-to-top" aria-label="Back to top of catalog" title="Back to top">↑</button>
+<script>
+(() => {
+ const button=document.getElementById('back-to-top');
+ const refresh=()=>button.classList.toggle('is-visible', window.scrollY>450);
+ window.addEventListener('scroll',refresh,{passive:true});
+ button.addEventListener('click',()=>window.scrollTo({top:0,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'}));
+ refresh();
 })();
 </script>
 </body></html>
