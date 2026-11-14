@@ -12,7 +12,7 @@ assert.ok(src.split(/\s+/).length>180000,'Full unabridged text');
 assert.match(src,/^KENILWORTH\n\nINTRODUCTION/m,'Original introduction');
 assert.match(src,/NOTES\./,'Historical notes retained');
 assert.match(html,/fetch\('public\/books\/kenilworth-scott-1821\.txt'\)/,'Book loads locally');
-assert.ok(html.includes('public/js/ophelia-narration.js?v=1.4.0'),'Shared narrator');
+assert.ok(html.includes('public/js/ophelia-narration.js?v=1.4.4'),'Shared narrator');
 const inline=[...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)].map(m=>m[1]).find(s=>s.includes('function parseText(raw)'));
 assert.ok(inline,'Parser present');
 new vm.Script(inline,{filename:'kenilworth.html'});

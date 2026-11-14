@@ -18,5 +18,5 @@ assert.match(sections[1].name,/Chapter 1/);
 assert.match(sections[28].name,/Chapter 28/);
 assert.match(sections[28].paragraphs.join(' '),/Life which shall have no End/);
 assert.ok(pages.length>170,'Unabridged pagination');
-assert.ok(html.includes('public/js/ophelia-narration.js?v=1.4.0'),'Uses grammar-aware voice');
+assert.ok(html.includes('public/js/ophelia-narration.js?v=1.4.4'),'Uses grammar-aware voice');
 console.log('Fathers and Sons: complete introduction, 28 chapters, notes, and '+pages.length+' pages verified.');

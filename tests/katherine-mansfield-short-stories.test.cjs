@@ -29,7 +29,7 @@ for(const b of books){
  }
  const wordCount=source.reduce((sum,s)=>sum+(s.text.match(/\S+/g)||[]).length,0);
  assert.ok(wordCount>b.minWords,'Complete original book word count');
- assert.ok(html.includes('public/js/ophelia-narration.js?v=1.4.0'),'Shared grammatical narration');
+ assert.ok(html.includes('public/js/ophelia-narration.js?v=1.4.4'),'Shared grammatical narration');
  assert.ok(html.includes('public/js/ophelia-share.js'),'Literary share component');
  const inline=[...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)].map(m=>m[1]).find(s=>s.includes('function parseText(raw)'));
  assert.ok(inline,'Reader parser exists');

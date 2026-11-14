@@ -19,7 +19,7 @@ assert.ok((text.match(/\S+/g)||[]).length>20000,'Complete public-domain text');
 assert.match(text,/This was the noblest Roman of them all\./,'Original final speech');
 assert.match(text,/\[_Exeunt\._\]\s*$/,'Original stage direction ending');
 assert.ok(html.includes("fetch('public/books/julius-caesar-shakespeare-1522.txt')"),'Locally hosted text');
-assert.ok(html.includes('public/js/ophelia-narration.js?v=1.4.0'),'Shared speech system');
+assert.ok(html.includes('public/js/ophelia-narration.js?v=1.4.4'),'Shared speech system');
 assert.ok(html.includes('public/js/ophelia-share.js'),'Shared illustrated reader widget');
 assert.ok(html.includes('Vincenzo_Camuccini_-_La_morte_di_Cesare.jpg'),'Public-domain historical illustration');
 assert.ok(html.includes("const STORAGE='ophelia-julius-caesar-shakespeare-v1'"),'Independent saved progress');

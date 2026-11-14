@@ -12,7 +12,7 @@ const config=[{v:1,parts:4,chapters:33,sections:35,minWords:270000},
 {v:3,parts:5,chapters:52,sections:54,minWords:220000}];
 for(const c of config){
  const html=fs.readFileSync(path.join(root,'capital-volume-'+c.v+'.html'),'utf8');
- assert.ok(html.includes('ophelia-narration.js?v=1.4.0'),'shared speech engine');
+ assert.ok(html.includes('ophelia-narration.js?v=1.4.4'),'shared speech engine');
  assert.ok(html.includes('public/js/ophelia-share.js'),'literary share control');
  const js=[...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)].map(m=>m[1]).find(s=>s.includes('function parseText(items)'));
  assert.ok(js,'reader script must exist');
