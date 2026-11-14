@@ -87,6 +87,16 @@ assert.equal(n.normalizeForSpeech('Part I'), 'Part one');
 assert.equal(n.normalizeForSpeech('I went to a party.'),'I went to a party.');
 assert.equal(n.normalizeForSpeech('particular circumstances'),'particular circumstances');
 
+// Dracula, Chapter V: Lucy means to rip up a letter, not cry.
+assert.equal(n.normalizeForSpeech("I am afraid to stop, or I should tear up the letter, and I don't want to stop."),
+  "I am afraid to stop, or I should tare up the letter, and I don't want to stop.");
+assert.equal(n.normalizeForSpeech('Tear up the paper.'),'Tare up the paper.');
+assert.equal(n.normalizeForSpeech('She might tear the document.'),'She might tare the document.');
+assert.equal(n.normalizeForSpeech('A tear rolled down her cheek.'),'A tear rolled down her cheek.');
+assert.equal(n.normalizeForSpeech('I tear up when I read sad stories.'),'I tear up when I read sad stories.');
+assert.equal(n.normalizeForSpeech('Tears welled in her eyes.'),'Tears welled in her eyes.');
+assert.equal(n.speechChunks('I should tear up the letter.').join(' '),'I should tare up the letter.');
+
 // Sentence boundaries, honorifics and chapter/title pause handling.
 assert.equal(n.speechChunks('Mr. Darcy spoke. Then Elizabeth replied.').length,2);
 assert.equal(n.speechChunks('Chapter One. The evening fell.').length,2);
@@ -196,6 +206,25 @@ assert.equal(pariMark.textContent,'parti','the visible original spelling is unch
 assert.equal(n.resumeReading(),true);
 assert.equal(partiSpeech[1].text.startsWith('party,'),true,'resume with the correct audible word');
 assert.equal(contentEl.children.map(node=>node.textContent).join(''),originalPassage);
+n.clearReading();
+
+// Pause marker must show Stoker's original "tear", while narration says "tare".
+const tearOriginal='I should tear up the letter.';
+const tearTextNode=textNode(tearOriginal);
+tearTextNode.parentNode=contentEl;
+contentEl.children=[tearTextNode];
+const tearUtterance=n.normalizeForSpeech(tearOriginal);
+const tearVoices=[];
+n.speakWithPauses({speak:u=>tearVoices.push(u),cancel(){},resume(){}},
+  [{text:tearUtterance,lang:'en-GB',onend(){}}],()=>true,()=>false);
+tearVoices[0].onboundary({name:'word',charIndex:tearUtterance.indexOf('tare')});
+assert.equal(n.pauseReading(),true);
+const tearMarker=contentEl.children.find(node=>node.kind==='mark');
+assert.ok(tearMarker,'paused torn-letter word is highlighted');
+assert.equal(tearMarker.textContent,'tear','the printed word remains unaltered');
+assert.equal(n.resumeReading(),true);
+assert.ok(tearVoices[1].text.startsWith('tare up the letter'),'resume from spoken rip verb');
+assert.equal(contentEl.children.map(node=>node.textContent).join(''),tearOriginal);
 n.clearReading();
 
 console.log('Narration checks passed. Actual pronunciation remains device-voice dependent.');

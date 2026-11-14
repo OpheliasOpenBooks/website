@@ -180,3 +180,17 @@ spoken "party" back to written "parti" so yellow highlighting marks the correct
 visible word. The legitimate "Part I" heading remains spoken "Part one".
 Dracula requests v1.4.1 to defeat caching. Other readers use the same shared
 module and receive this rule when they refresh the cached narration script.
+
+## Dracula Chapter V, "tear up the letter" (v1.4.2, November 2026)
+
+In Lucy's letter to Mina, "I should tear up the letter" uses the verb
+**tear** meaning *rip*, pronounced /tɛər/ (rhyming with **bear**).
+The browser was incorrectly using the tear-of-crying pronunciation /tɪər/.
+The shared narration normalizer now supplies the spoken-only homophone
+**tare** when "tear" precedes a physical paper/letter/book/document object.
+It deliberately leaves emotional **tear**, **tears**, and **tear up at**
+untouched. The original manuscript remains unmodified.
+
+The yellow paused-word marker aligns spoken **tare** to visible **tear**.
+Dracula loads shared narration v1.4.2 immediately; other readers reuse
+the same module upon refresh. Acoustic output still varies with browser voices.

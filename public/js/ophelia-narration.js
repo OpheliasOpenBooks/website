@@ -1,5 +1,5 @@
 /* Ophelia's Open Book — shared spoken-text preparation.
- * Version 1.4.1. Load before each reader's inline narration code.
+ * Version 1.4.2. Load before each reader's inline narration code.
  *
  * Normalize only the words sent to speech synthesis: the printed book,
  * headings, pagination, bookmarks and original manuscripts are unchanged.
@@ -98,6 +98,11 @@
     // not the heading "Part I". Its English sound is like "party".
     // Preserve Stoker's original spelling in the visible manuscript.
     text=text.replace(/\bparti\b/gi,word=>word[0]===word[0].toUpperCase()?'Party':'party');
+    // Context-sensitive "tear": Lucy's "tear up the letter" means rip
+    // (rhymes with bear), not shed a tear (rhymes with deer).
+    // Only explicit paper/letter objects trigger this voice-only change.
+    text=text.replace(/\btear\b(?=\s+(?:(?:up|apart|open|out)\s+)?(?:(?:the|a|an|my|his|her|our|your|their|this|that|some)\s+)?(?:letter|paper|page|note|document|envelope|photograph|photo|book|sheet|card)s?\b)/gi,
+      word=>word[0]===word[0].toUpperCase()?'Tare':'tare');
     return contextualPronunciations(speechGrammar(text));
   }
 
@@ -314,7 +319,7 @@
   }
   function comparableWord(value){
     const clean=String(value).toLowerCase().replace(/['’]/g,'').replace(/-/g,'');
-    const aliases={meena:'mina',meenas:'minas',bough:'bow',party:'parti',wined:'wind',
+    const aliases={meena:'mina',meenas:'minas',bough:'bow',party:'parti',tare:'tear',wined:'wind',
       wineds:'winds',mister:'mr',doctor:'dr',missus:'mrs',miz:'ms',
       one:'1',two:'2',three:'3',four:'4',five:'5',six:'6',
       seven:'7',eight:'8',nine:'9',ten:'10'};
@@ -492,5 +497,5 @@
     else clearPausedHighlight();
   }
 
-  root.OpheliaNarration=Object.freeze({version:'1.4.1',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
+  root.OpheliaNarration=Object.freeze({version:'1.4.2',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
 })(window);
