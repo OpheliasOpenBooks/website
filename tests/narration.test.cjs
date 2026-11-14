@@ -98,6 +98,35 @@ assert.equal(n.normalizeForSpeech('He won the competition.'),
   'He won the competition.');
 assert.ok(n.speechChunks('Lucy was pale and wan-looking.').join(' ').includes('wahn-looking'));
 
+// Dracula, injury noun: "wound" must rhyme with "swooned", not "round".
+// Keep the different past tense of "wind" unchanged.
+const bandagedWound='By-and-by he bound up my wound, and sent me downstairs.';
+assert.equal(n.normalizeForSpeech(bandagedWound),
+  'By-and-by he bound up my woond, and sent me downstairs.');
+assert.equal(n.normalizeForSpeech('I dressed the wound and took his arm.'),
+  'I dressed the woond and took his arm.');
+assert.equal(n.normalizeForSpeech('The two little wounds were visible.'),
+  'The two little woonds were visible.');
+assert.equal(n.normalizeForSpeech('The thin open wound in her neck.'),
+  'The thin open woond in her neck.');
+assert.equal(n.normalizeForSpeech('He had a wound.'),
+  'He had a woond.');
+assert.equal(n.normalizeForSpeech('I found his old wound.'),
+  'I found his old woond.');
+assert.equal(n.normalizeForSpeech('As we wound on our serpentine way.'),
+  'As we wound on our serpentine way.');
+assert.equal(n.normalizeForSpeech('the river wound its way.'),
+  'the river wound its way.');
+assert.equal(n.normalizeForSpeech('I wound the clock before bed.'),
+  'I wound the clock before bed.');
+assert.equal(n.normalizeForSpeech('He wound up the watch.'),
+  'He wound up the watch.');
+assert.equal(n.normalizeForSpeech('I did not like to wound him.'),
+  'I did not like to wound him.');
+assert.equal(n.normalizeForSpeech('The wound clock still ticked.'),
+  'The wound clock still ticked.');
+assert.ok(n.speechChunks(bandagedWound).join(' ').includes('my woond,'));
+
 // Dracula name: "Mina" should be spoken with a long "ee" like "Meena".
 assert.equal(n.normalizeForSpeech('Mina Murray'), 'Meena Murray');
 assert.equal(n.normalizeForSpeech('Dear Mina,'), 'Dear Meena,');
@@ -481,6 +510,27 @@ for(const [visible,title,expected] of [
  assert.equal(marker.textContent,expected,'the historical abbreviation stays printed');
  assert.equal(n.resumeReading(),true);
  assert.equal(contentEl.children.map(item=>item.textContent).join(''),visible);
+ n.clearReading();
+}
+
+// Pause marker must point at the ORIGINAL printed "wound"/"wounds".
+for(const [visual,spokenWord,originalWord] of [
+  ['By-and-by he bound up my wound, and sent me downstairs.', 'woond', 'wound'],
+  ['The two little wounds were visible.', 'woonds', 'wounds']
+]){
+ const node=textNode(visual);node.parentNode=contentEl;contentEl.children=[node];
+ const narrated=n.normalizeForSpeech(visual),speeches=[];
+ n.speakWithPauses({speak:u=>speeches.push(u),cancel(){},resume(){}},
+   [{text:narrated,lang:'en-GB',onend(){}}],()=>true,()=>false);
+ const index=narrated.indexOf(spokenWord);
+ assert.ok(index>=0,'expected voice-only phonetic spelling');
+ speeches[0].onboundary({name:'word',charIndex:index});
+ assert.equal(n.pauseReading(),true);
+ const marker=contentEl.children.find(x=>x.kind==='mark');
+ assert.ok(marker,'original word is highlighted');
+ assert.equal(marker.textContent,originalWord,'printed original remains intact');
+ assert.equal(n.resumeReading(),true);
+ assert.equal(contentEl.children.map(x=>x.textContent).join(''),visual);
  n.clearReading();
 }
 
