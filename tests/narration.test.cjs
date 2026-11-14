@@ -68,6 +68,19 @@ assert.equal(n.normalizeForSpeech('The road winds through the mountains.'), 'The
 assert.equal(n.normalizeForSpeech('I heard the wind and saw my watch on the table.'),
   'I heard the wind and saw my watch on the table.');
 
+// Dracula VIII, Mina: the noun "lead" is the heavy metal and rhymes
+// with "Ted"; the verb "lead" retains its long-ee pronunciation.
+const minaLead='It seemed to me as if my feet were weighted with lead, and as though every joint in my body were rusty.';
+const spokenLead='It seemed to me as if my feet were weighted with led, and as though every joint in my body were rusty.';
+assert.equal(n.normalizeForSpeech(minaLead),spokenLead);
+assert.ok(n.speechChunks(minaLead).join(' ').includes('weighted with led'));
+assert.equal(n.normalizeForSpeech('My feet were weighted with\nlead.'),
+  'My feet were weighted with\nled.');
+assert.equal(n.normalizeForSpeech('She will lead us up the steps.'),'She will lead us up the steps.');
+assert.equal(n.normalizeForSpeech('They lead the horses.'),'They lead the horses.');
+assert.equal(n.normalizeForSpeech('He had led the horses.'),'He had led the horses.');
+assert.equal(n.normalizeForSpeech('A lead pipe was found.'),'A lead pipe was found.');
+
 // Dracula name: "Mina" should be spoken with a long "ee" like "Meena".
 assert.equal(n.normalizeForSpeech('Mina Murray'), 'Meena Murray');
 assert.equal(n.normalizeForSpeech('Dear Mina,'), 'Dear Meena,');
@@ -285,6 +298,22 @@ assert.equal(honMarked.textContent,'Hon','abbreviated original visible text is p
 assert.equal(n.resumeReading(),true);
 assert.ok(honUtterances[1].text.startsWith('Honorable Arthur'),'resume with expanded honorific');
 assert.equal(contentEl.children.map(node=>node.textContent).join(''),honVisible);
+n.clearReading();
+
+// A pause at spoken "led" must still select the printed heavy-metal "lead".
+const leadVisible='My feet were weighted with lead.';
+const leadNode=textNode(leadVisible);leadNode.parentNode=contentEl;contentEl.children=[leadNode];
+const leadSpoken=n.normalizeForSpeech(leadVisible),leadUtterances=[];
+n.speakWithPauses({speak:u=>leadUtterances.push(u),cancel(){},resume(){}},
+  [{text:leadSpoken,lang:'en-GB',onend(){}}],()=>true,()=>false);
+leadUtterances[0].onboundary({name:'word',charIndex:leadSpoken.lastIndexOf('led')});
+assert.equal(n.pauseReading(),true);
+const leadMarker=contentEl.children.find(node=>node.kind==='mark');
+assert.ok(leadMarker,'the metal noun is highlighted despite speech normalization');
+assert.equal(leadMarker.textContent,'lead','the printed spelling is preserved');
+assert.equal(n.resumeReading(),true);
+assert.ok(leadUtterances[1].text.startsWith('led.'),'the spoken metal has a short e');
+assert.equal(contentEl.children.map(node=>node.textContent).join(''),leadVisible);
 n.clearReading();
 
 console.log('Narration checks passed. Actual pronunciation remains device-voice dependent.');

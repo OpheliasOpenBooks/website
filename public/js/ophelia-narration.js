@@ -200,7 +200,12 @@
       }
       return word;
     });
-    return windText.replace(/\bread\b/gi,(word,offset,all)=>{
+    // Dracula VIII: Mina says her feet felt weighted with the heavy metal
+    // "lead" (rhymes with "Ted"), never the verb "lead" (rhymes with "seed").
+    // Change only this unmistakable phrase in the speech copy, not the book.
+    const leadText=windText.replace(/(\bfeet\s+were\s+weighted\s+with\s+)lead\b/gi,
+      (_,prefix)=>prefix+'led');
+    return leadText.replace(/\bread\b/gi,(word,offset,all)=>{
       const prior=all.slice(Math.max(0,offset-45),offset);
       const after=all.slice(offset+word.length,offset+word.length+75);
       // Perfect-tense "had read" is pronounced "red", not "reed".
@@ -328,7 +333,7 @@
   }
   function comparableWord(value){
     const clean=String(value).toLowerCase().replace(/['’]/g,'').replace(/-/g,'');
-    const aliases={meena:'mina',meenas:'minas',bough:'bow',party:'parti',tare:'tear',honorable:'hon',wined:'wind',
+    const aliases={meena:'mina',meenas:'minas',bough:'bow',party:'parti',tare:'tear',led:'lead',honorable:'hon',wined:'wind',
       wineds:'winds',mister:'mr',doctor:'dr',missus:'mrs',miz:'ms',
       one:'1',two:'2',three:'3',four:'4',five:'5',six:'6',
       seven:'7',eight:'8',nine:'9',ten:'10'};
