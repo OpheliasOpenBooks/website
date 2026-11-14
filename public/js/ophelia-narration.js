@@ -1,5 +1,5 @@
 /* Ophelia's Open Book — shared spoken-text preparation.
- * Version 1.4.3. Load before each reader's inline narration code.
+ * Version 1.4.4. Load before each reader's inline narration code.
  *
  * Normalize only the words sent to speech synthesis: the printed book,
  * headings, pagination, bookmarks and original manuscripts are unchanged.
@@ -129,10 +129,10 @@
     });
     // Honorific abbreviations have unambiguous spoken meanings.
     // Leave context-dependent abbreviations (e.g. St., No.) untouched.
-    const titles={Mr:'Mister',Mrs:'Missus',Ms:'Miz',Dr:'Doctor',
+    const titles={Hon:'Honorable',Mr:'Mister',Mrs:'Missus',Ms:'Miz',Dr:'Doctor',
       Prof:'Professor',Rev:'Reverend',Capt:'Captain',Lt:'Lieutenant',
       Col:'Colonel',Gen:'General',Jr:'Junior',Sr:'Senior'};
-    text=text.replace(/\b(Mrs|Mr|Ms|Dr|Prof|Rev|Capt|Lt|Col|Gen|Jr|Sr)\./gi,
+    text=text.replace(/\b(Hon|Mrs|Mr|Ms|Dr|Prof|Rev|Capt|Lt|Col|Gen|Jr|Sr)\./g,
       (whole,title)=>titles[title[0].toUpperCase()+title.slice(1).toLowerCase()]||whole);
     // Print-era time abbreviations: "8:35 P. M." should be heard as "8:35 PM".
     // Do not send an extra period after M to the speech engine.
@@ -326,7 +326,7 @@
   }
   function comparableWord(value){
     const clean=String(value).toLowerCase().replace(/['’]/g,'').replace(/-/g,'');
-    const aliases={meena:'mina',meenas:'minas',bough:'bow',party:'parti',tare:'tear',wined:'wind',
+    const aliases={meena:'mina',meenas:'minas',bough:'bow',party:'parti',tare:'tear',honorable:'hon',wined:'wind',
       wineds:'winds',mister:'mr',doctor:'dr',missus:'mrs',miz:'ms',
       one:'1',two:'2',three:'3',four:'4',five:'5',six:'6',
       seven:'7',eight:'8',nine:'9',ten:'10'};
@@ -504,5 +504,5 @@
     else clearPausedHighlight();
   }
 
-  root.OpheliaNarration=Object.freeze({version:'1.4.3',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
+  root.OpheliaNarration=Object.freeze({version:'1.4.4',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
 })(window);

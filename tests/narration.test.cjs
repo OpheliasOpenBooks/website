@@ -107,6 +107,18 @@ assert.equal(n.normalizeForSpeech('Men and women are alike.'),'Men and women are
 assert.equal(n.normalizeForSpeech('The two men look like women.'),'The two men look like women.');
 assert.equal(n.normalizeForSpeech('I like women.'),'I like women.');
 
+// Printed Victorian "Hon." is the honorific Honorable, never "Hon".
+assert.equal(n.normalizeForSpeech('The Hon. Arthur Holmwood visited.'),
+  'The Honorable Arthur Holmwood visited.');
+assert.equal(n.normalizeForSpeech('The Hon. Mr. Smith arrived.'),
+  'The Honorable Mister Smith arrived.');
+assert.equal(n.normalizeForSpeech('HON. Arthur Holmwood.'),
+  'Honorable Arthur Holmwood.');
+assert.equal(n.normalizeForSpeech('Her dear hon. friend sent a note.'),
+  'Her dear hon. friend sent a note.');
+assert.deepEqual(n.speechChunks('The Hon. Arthur Holmwood visited. Then he left.'),
+  ['The Honorable Arthur Holmwood visited.','Then he left.']);
+
 // Sentence boundaries, honorifics and chapter/title pause handling.
 assert.equal(n.speechChunks('Mr. Darcy spoke. Then Elizabeth replied.').length,2);
 assert.equal(n.speechChunks('Chapter One. The evening fell.').length,2);
@@ -253,6 +265,22 @@ assert.equal(preferMarked.textContent,'like','original printed verb highlighted'
 assert.equal(n.resumeReading(),true);
 assert.ok(preferUtterances[1].text.startsWith('like women'),'resume at the verb');
 assert.equal(contentEl.children.map(node=>node.textContent).join(''),preferOriginal);
+n.clearReading();
+
+// Spoken "Honorable" must highlight the *original* printed "Hon.".
+const honVisible='The Hon. Arthur Holmwood visited.';
+const honText=textNode(honVisible);honText.parentNode=contentEl;contentEl.children=[honText];
+const honSpoken=n.normalizeForSpeech(honVisible),honUtterances=[];
+n.speakWithPauses({speak:u=>honUtterances.push(u),cancel(){},resume(){}},
+  [{text:honSpoken,lang:'en-GB',onend(){}}],()=>true,()=>false);
+honUtterances[0].onboundary({name:'word',charIndex:honSpoken.indexOf('Honorable')});
+assert.equal(n.pauseReading(),true);
+const honMarked=contentEl.children.find(node=>node.kind==='mark');
+assert.ok(honMarked,'paused Hon. honorific marked in visible manuscript');
+assert.equal(honMarked.textContent,'Hon','abbreviated original visible text is preserved');
+assert.equal(n.resumeReading(),true);
+assert.ok(honUtterances[1].text.startsWith('Honorable Arthur'),'resume with expanded honorific');
+assert.equal(contentEl.children.map(node=>node.textContent).join(''),honVisible);
 n.clearReading();
 
 console.log('Narration checks passed. Actual pronunciation remains device-voice dependent.');

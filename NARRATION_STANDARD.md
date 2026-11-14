@@ -211,3 +211,17 @@ The yellow paused-word alignment skips the spoken-only auxiliary while
 tracking the original printed "like". The rule only matches Lucy's exact
 construction; ordinary comparative "like" and unrelated books are left alone.
 Dracula loads shared narration v1.4.3 to refresh the script cache.
+
+## Honorific Hon. expansion (v1.4.4, November 2026)
+
+Written `Hon.` is a period abbreviation of the title **Honorable**. The shared
+text-to-speech grammar expands capitalized `Hon.` to `Honorable` *only in the
+voice-only speech copy*. In original books, the abbreviation is left exactly
+as printed, including its full stop. Lowercase colloquial `hon.` is
+untouched; ordinary honorifics, chapter numeral labels, and the previously
+approved Dracula pronunciation fixes are unaffected. Spoken-word position
+tracking maps `Honorable` back to `Hon` in the visible text, so the yellow
+paused-word marker still works.
+
+Shared module version 1.4.4 is loaded via cache-busting query parameter to
+apply the correction across all active standalone audiobook readers.
