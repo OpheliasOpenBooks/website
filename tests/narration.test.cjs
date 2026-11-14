@@ -107,6 +107,10 @@ assert.equal(n.normalizeForSpeech('Men and women are alike.'),'Men and women are
 assert.equal(n.normalizeForSpeech('The two men look like women.'),'The two men look like women.');
 assert.equal(n.normalizeForSpeech('I like women.'),'I like women.');
 
+// Existing lower-case honorific readings remain valid after the Hon. rule.
+assert.equal(n.normalizeForSpeech('mr. Jones met dr. Watson.'),
+  'Mister Jones met Doctor Watson.');
+
 // Printed Victorian "Hon." is the honorific Honorable, never "Hon".
 assert.equal(n.normalizeForSpeech('The Hon. Arthur Holmwood visited.'),
   'The Honorable Arthur Holmwood visited.');

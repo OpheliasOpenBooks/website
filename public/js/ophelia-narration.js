@@ -129,10 +129,12 @@
     });
     // Honorific abbreviations have unambiguous spoken meanings.
     // Leave context-dependent abbreviations (e.g. St., No.) untouched.
-    const titles={Hon:'Honorable',Mr:'Mister',Mrs:'Missus',Ms:'Miz',Dr:'Doctor',
+    // The capitalized title Hon. expands in narration, not in the book.
+    text=text.replace(/\bHon\./g,'Honorable');
+    const titles={Mr:'Mister',Mrs:'Missus',Ms:'Miz',Dr:'Doctor',
       Prof:'Professor',Rev:'Reverend',Capt:'Captain',Lt:'Lieutenant',
       Col:'Colonel',Gen:'General',Jr:'Junior',Sr:'Senior'};
-    text=text.replace(/\b(Hon|Mrs|Mr|Ms|Dr|Prof|Rev|Capt|Lt|Col|Gen|Jr|Sr)\./g,
+    text=text.replace(/\b(Mrs|Mr|Ms|Dr|Prof|Rev|Capt|Lt|Col|Gen|Jr|Sr)\./gi,
       (whole,title)=>titles[title[0].toUpperCase()+title.slice(1).toLowerCase()]||whole);
     // Print-era time abbreviations: "8:35 P. M." should be heard as "8:35 PM".
     // Do not send an extra period after M to the speech engine.
