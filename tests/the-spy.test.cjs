@@ -12,7 +12,7 @@ assert.ok(chapterMarks.every((m,i)=>value(m[1])===i+1),'Chapters numbered in ord
 assert.ok(source.split(/\s+/).length>145000,'Unabridged text');
 assert.match(source,/COOPERSTOWN, March 29, 1849\./,'Cooper introduction preserved');
 assert.match(source,/martyr to her liberties\./,'Original ending preserved');
-assert.ok(html.includes('public/js/ophelia-narration.js?v=1.4.0'),'Shared audio implementation');
+assert.ok(html.includes('public/js/ophelia-narration.js?v=1.4.4'),'Shared audio implementation');
 assert.ok(html.includes('public/js/ophelia-share.js'),'Literary sharing');
 assert.ok(html.includes('public/books/the-spy-cooper-1821.txt'),'Locally hosted text');
 const inline=[...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)].map(m=>m[1]).find(s=>s.includes('function parseText(raw)'));

@@ -10,7 +10,7 @@ assert.match(source,/^CHARACTERS$/m,'Original cast');
 assert.match(source,/OLGA\./,'Original dialogue');
 assert.match(source,/Curtain\.\s*$/,'Play ending');
 assert.ok(html.includes("fetch('public/books/the-three-sisters-chekhov-julius-west.txt')"),'Locally served text');
-assert.ok(html.includes('public/js/ophelia-narration.js?v=1.4.0'),'Shared narrator');
+assert.ok(html.includes('public/js/ophelia-narration.js?v=1.4.4'),'Shared narrator');
 assert.ok(html.includes('public/js/ophelia-share.js'),'Shared literary share button');
 const inline=[...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)].map(m=>m[1]).find(s=>s.includes('function parseText(raw)'));
 assert.ok(inline,'Parser present');

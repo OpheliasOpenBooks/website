@@ -11,7 +11,7 @@ assert.match(play,/For never was a story of more woe/,'Original tragic ending');
 assert.ok(source.split(/\s+/).length>74000,'Complete public-domain edited volume');
 assert.match(source,/^NOTES$/m,'Original notes retained');
 assert.ok(html.includes("fetch('public/books/romeo-and-juliet-shakespeare-rolfe.txt')"),'Locally hosted text');
-assert.ok(html.includes('public/js/ophelia-narration.js?v=1.4.0'),'Shared grammatical narration');
+assert.ok(html.includes('public/js/ophelia-narration.js?v=1.4.4'),'Shared grammatical narration');
 assert.ok(html.includes('DickseeRomeoandJuliet.jpg'),'Public-domain authentic story illustration');
 const inline=[...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)].map(m=>m[1]).find(s=>s.includes('function parseText(raw)'));
 assert.ok(inline,'Reader script');
