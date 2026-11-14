@@ -120,7 +120,7 @@ assert.equal(n.normalizeForSpeech('HON. Arthur Holmwood.'),
   'Honorable Arthur Holmwood.');
 assert.equal(n.normalizeForSpeech('Her dear hon. friend sent a note.'),
   'Her dear hon. friend sent a note.');
-assert.deepEqual(n.speechChunks('The Hon. Arthur Holmwood visited. Then he left.'),
+assert.deepEqual(Array.from(n.speechChunks('The Hon. Arthur Holmwood visited. Then he left.')),
   ['The Honorable Arthur Holmwood visited.','Then he left.']);
 
 // Sentence boundaries, honorifics and chapter/title pause handling.
