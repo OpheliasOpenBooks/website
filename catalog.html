@@ -80,6 +80,7 @@ footer .wrap{display:flex;gap:18px;flex-wrap:wrap;justify-content:space-between}
 'use strict';
 const $=id=>document.getElementById(id);
 const genreByPage={
+ 'the-tenant-of-wildfell-hall.html':'Literary Fiction',
  'the-maltese-falcon.html':'Mystery & Suspense',
  'the-woman-in-white.html':'Mystery & Suspense',
  'the-picture-of-dorian-gray.html':'Gothic & Horror',
@@ -184,6 +185,7 @@ const genreByPage={
  'oedipus-rex.html':'Ancient Classics'
 };
 const progressByPage={
+ 'the-tenant-of-wildfell-hall.html':'ophelia-tenant-of-wildfell-hall-bronte-1848-v1',
  'the-maltese-falcon.html':'ophelia-maltese-falcon-hammett-1930-v1',
  'mansfield-in-a-german-pension.html':'ophelia-mansfield-pension-1911-v1',
  'mansfield-bliss-and-other-stories.html':'ophelia-mansfield-bliss-1920-v1',
@@ -230,6 +232,7 @@ const progressByPage={
  'oedipus-rex.html':'ophelia-oedipus-rex-storr-1912-alice-voice-v1'
 };
 const catalogOnlyBooks=[
+ {title:'The Tenant of Wildfell Hall',author:'Anne Brontë (Acton Bell) · 1848 · Victorian Fiction',href:'the-tenant-of-wildfell-hall.html',image:'https://commons.wikimedia.org/wiki/Special:FilePath/The_Tenant_of_Wildfell_Hall.jpg',alt:'Authentic first edition 1848 title page of The Tenant of Wildfell Hall, published under the name Acton Bell',description:'The complete unabridged 53-chapter novel, with Anne’s 1848 second-edition preface, 1920 introduction, authentic first-edition title page, narration and bookmarks.',genre:'Literary Fiction'},
  {title:'The Maltese Falcon',author:'Dashiell Hammett · 1930 · Detective Fiction',href:'the-maltese-falcon.html',image:'https://commons.wikimedia.org/wiki/Special:FilePath/The_Maltese_Falcon_(1st_ed_cover).jpg',alt:'Authentic yellow and black 1930 first-edition dust jacket of The Maltese Falcon, featuring a black falcon and orange beads',description:'Hammett’s complete unabridged 20-chapter detective novel, with Sam Spade in San Francisco, the original 1930 book cover, grammar-aware read-aloud and saved reading progress.',genre:'Mystery & Suspense'},
  {title:'The Woman in White',author:'Wilkie Collins · 1860 · Victorian Mystery',href:'the-woman-in-white.html',image:'https://upload.wikimedia.org/wikipedia/commons/0/0b/The_woman_in_white%2C_a_novel_%281873%29_%2814797576513%29.jpg',alt:'Original Victorian line engraving from an 1873 edition of Wilkie Collins’s The Woman in White',description:'Collins’s unabridged Victorian sensation novel, all three epochs and original witness narratives, with genuine nineteenth-century illustration, narrated sections, bookmarks and saved progress.',genre:'Mystery & Suspense'},
  {title:'The Picture of Dorian Gray',author:'Oscar Wilde · 1891 · Gothic Fiction',href:'the-picture-of-dorian-gray.html',image:'https://commons.wikimedia.org/wiki/Special:FilePath/Doriangray.jpg',alt:'1908 wood-engraved illustration for The Picture of Dorian Gray by Eugène Dété after Paul Thiriat, public domain',description:'Oscar Wilde’s complete unabridged 1891 novel with original preface and all twenty chapters, historical 1908 engraving, narrated reading and saved progress.',genre:'Gothic & Horror'},
