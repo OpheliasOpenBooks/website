@@ -185,7 +185,7 @@ function finishPage(token){
  speaking=false;paused=false;pageSpeechDone=false;speechQueue=[];updatePlay();
  note('Finished page '+(state.page+1)+'.');
  if(state.autoTurn&&state.page<pages.length-1){state.page++;save();render();startSpeech(0);}
- else if(state.page===pages.length-1)note('You have finished A Room of One's Own.');
+ else if(state.page===pages.length-1)note("You have finished A Room of One's Own.");
 }
 function startSpeech(startAt=speechResumeAt){
  if(!soundOn){note('Sound is off. Select Sound on before starting narration.');return;}
