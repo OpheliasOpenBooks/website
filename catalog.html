@@ -80,6 +80,7 @@ footer .wrap{display:flex;gap:18px;flex-wrap:wrap;justify-content:space-between}
 'use strict';
 const $=id=>document.getElementById(id);
 const genreByPage={
+ 'the-secret-of-the-old-clock.html':'Children’s Classics',
  'strong-poison.html':'Mystery & Suspense',
  'the-murder-at-the-vicarage.html':'Mystery & Suspense',
  'the-tenant-of-wildfell-hall.html':'Literary Fiction',
@@ -187,6 +188,7 @@ const genreByPage={
  'oedipus-rex.html':'Ancient Classics'
 };
 const progressByPage={
+ 'the-secret-of-the-old-clock.html':'ophelia-secret-of-the-old-clock-keene-1930-v1',
  'strong-poison.html':'ophelia-strong-poison-sayers-1930-v1',
  'the-murder-at-the-vicarage.html':'ophelia-murder-at-the-vicarage-christie-1930-v1',
  'the-tenant-of-wildfell-hall.html':'ophelia-tenant-of-wildfell-hall-bronte-1848-v1',
@@ -236,6 +238,7 @@ const progressByPage={
  'oedipus-rex.html':'ophelia-oedipus-rex-storr-1912-alice-voice-v1'
 };
 const catalogOnlyBooks=[
+ {title:'The Secret of the Old Clock',author:'Carolyn Keene (Mildred Wirt Benson) · 1930 · Nancy Drew Mystery',href:'the-secret-of-the-old-clock.html',image:'https://commons.wikimedia.org/wiki/Special:FilePath/The_Secret_of_the_Old_Clock_%281930%29_front_cover_HQ.jpg',alt:'Original illustrated 1930 Russell H. Tandy cover of The Secret of the Old Clock, with young Nancy Drew holding an antique clock in a woodland',description:'The unabridged original 1930 Nancy Drew mystery, all 25 chapters—not the revised 1959 text—with the authentic Russell H. Tandy cover, narration and saved reading progress.',genre:'Children’s Classics'},
  {title:'Strong Poison',author:'Dorothy L. Sayers · 1930 · Lord Peter Wimsey',href:'strong-poison.html',image:'https://jmichaelsbooks.cdn.bibliopolis.com/pictures/901393.jpg?auto=webp&v=1662148020',alt:'Authentic 1930 first American edition Strong Poison dust jacket, yellow with a black poison vial, red hand and angular title typography',description:'Dorothy L. Sayers’s complete 23-chapter Lord Peter Wimsey mystery introducing Harriet Vane, with original opening ballad, authentic first-edition jacket, narration and saved reading progress.',genre:'Mystery & Suspense'},
  {title:'The Murder at the Vicarage',author:'Agatha Christie · 1930 · Miss Marple',href:'the-murder-at-the-vicarage.html',image:'https://www.nocloo.com/art/christie-1930-vicarage/Christie-Murder-at-the-Vicarage-1930-US-DJ.jpg',alt:'1930 first American edition dust jacket for The Murder at the Vicarage, showing the decorated title and the author’s name against navy and gold',description:'Christie’s first full-length Miss Marple mystery: all 32 original chapters and dedication, an authentic 1930 first-edition jacket, grammar-aware narration and saved reading progress.',genre:'Mystery & Suspense'},
  {title:'The Tenant of Wildfell Hall',author:'Anne Brontë (Acton Bell) · 1848 · Victorian Fiction',href:'the-tenant-of-wildfell-hall.html',image:'https://commons.wikimedia.org/wiki/Special:FilePath/The_Tenant_of_Wildfell_Hall.jpg',alt:'Authentic first edition 1848 title page of The Tenant of Wildfell Hall, published under the name Acton Bell',description:'The complete unabridged 53-chapter novel, with Anne’s 1848 second-edition preface, 1920 introduction, authentic first-edition title page, narration and bookmarks.',genre:'Literary Fiction'},
