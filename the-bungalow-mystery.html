@@ -238,15 +238,15 @@ function render(){if(!pages.length)return;const page=pages[state.page];
  if(!isFirstRender)document.querySelector('.book').scrollIntoView({behavior:'instant',block:'start'});
 }
 function setupBook(parsed){
- if(parsed.length!==13)throw Error('All 25 chapters and an epilogue are required.');
+ if(parsed.length!==25)throw Error('All 25 original chapters are required.');
  const paged=paginate(parsed);
- if(paged.length<13)throw Error('The complete book could not be prepared.');
+ if(paged.length<25)throw Error('The complete book could not be prepared.');
  segments=parsed;pages=paged;
  $('section').replaceChildren(...segments.map((part,i)=>new Option(part.name,i)));
  $('page').replaceChildren(...pages.map((_,i)=>new Option('Page '+(i+1),i)));
  $('section').disabled=$('page').disabled=$('play').disabled=false;
  state.page=Math.max(0,Math.min(state.page,pages.length-1));
- $('loadbox').classList.add('hidden');render();save();note('All 25 chapters and an epilogue are ready. Press Read aloud to begin.');
+ $('loadbox').classList.add('hidden');render();save();note('All 25 original chapters are ready. Press Read aloud to begin.');
 }
 function updateVoices(){if(!('speechSynthesis' in window))return;voiceList=speechSynthesis.getVoices();$('voice').replaceChildren(new Option('Automatic English voice',''),...voiceList.filter(v=>/^en/i.test(v.lang)).map(v=>new Option(v.name+' · '+v.lang,v.voiceURI)));$('voice').value=state.voice;}
 function applySettings(){$('speed').value=state.speed;$('speedview').value=state.speed+'×';$('size').value=state.size;$('sizeview').value=state.size+' px';$('dark').checked=state.night;$('autoturn').checked=state.autoTurn;document.body.classList.toggle('night',state.night);document.documentElement.style.setProperty('--text-size',state.size+'px');}
