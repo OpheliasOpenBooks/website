@@ -165,3 +165,18 @@ existing media pause/resume behavior.
 Run `node tests/narration.test.cjs` and
 `node tests/library-reader-audit.cjs` after changes. Listen in Edge and
 Chrome with representative UK/US narrators before claiming acoustic accuracy.
+
+## Dracula's "parti" (v1.4.1, November 2026)
+
+Lucy Westenra's letter to Mina in Chapter V uses the correctly spelled,
+French-derived nineteenth-century noun **parti**, an eligible or desirable
+marriage prospect: "He is an excellent parti, being handsome, well off, and
+of good birth." Its English pronunciation corresponds to **party**, not
+**Part I** (a Roman-numeral heading spoken "part one").
+
+Keep **parti** in the displayed manuscript. The shared voice-only normalizer
+supplies "party" to browser text-to-speech. The paused-word alignment maps
+spoken "party" back to written "parti" so yellow highlighting marks the correct
+visible word. The legitimate "Part I" heading remains spoken "Part one".
+Dracula requests v1.4.1 to defeat caching. Other readers use the same shared
+module and receive this rule when they refresh the cached narration script.

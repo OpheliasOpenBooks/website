@@ -77,6 +77,16 @@ assert.equal(n.normalizeForSpeech('The miners worked in the mine.'),
   'The miners worked in the mine.');
 assert.equal(n.speechChunks('Mina was waiting.').join(' '), 'Meena was waiting.');
 
+// Dracula, Chapter V: French-derived "parti" means an eligible marriage prospect.
+const lucySentence='He is an excellent parti, being handsome, well off, and of good birth.';
+assert.equal(n.normalizeForSpeech(lucySentence),
+  'He is an excellent party, being handsome, well off, and of good birth.');
+assert.ok(n.speechChunks(lucySentence).join(' ').includes('excellent party'));
+assert.equal(n.normalizeForSpeech('An eligible parti.'),'An eligible party.');
+assert.equal(n.normalizeForSpeech('Part I'), 'Part one');
+assert.equal(n.normalizeForSpeech('I went to a party.'),'I went to a party.');
+assert.equal(n.normalizeForSpeech('particular circumstances'),'particular circumstances');
+
 // Sentence boundaries, honorifics and chapter/title pause handling.
 assert.equal(n.speechChunks('Mr. Darcy spoke. Then Elizabeth replied.').length,2);
 assert.equal(n.speechChunks('Chapter One. The evening fell.').length,2);
@@ -165,6 +175,27 @@ const questions=[];
 n.speakWithPauses({speak:u=>questions.push(u),cancel(){},resume(){}},
   [{text:'Is it safe?',pitch:1}],()=>true,()=>false);
 assert.ok(questions[0].pitch>=1.11,'question receives a gentle rising-pitch cue');
+n.clearReading();
+
+// The yellow pause marker must still point to the *printed* "parti" even
+// though the voice-only text says "party".
+const originalPassage='He is an excellent parti, being handsome, well off, and of good birth.';
+const originalNode=textNode(originalPassage);
+originalNode.parentNode=contentEl;
+contentEl.children=[originalNode];
+const voicePassage=n.normalizeForSpeech(originalPassage);
+const partiSpeech=[];
+const activeParti=[{text:voicePassage,lang:'en-GB',onend(){}}];
+n.speakWithPauses({speak:u=>partiSpeech.push(u),cancel(){},resume(){}},
+  activeParti,()=>true,()=>false);
+partiSpeech[0].onboundary({name:'word',charIndex:voicePassage.indexOf('party')});
+assert.equal(n.pauseReading(),true);
+const pariMark=contentEl.children.find(node=>node.kind==='mark');
+assert.ok(pariMark,'the paused marriage-prospect noun has a visible mark');
+assert.equal(pariMark.textContent,'parti','the visible original spelling is unchanged');
+assert.equal(n.resumeReading(),true);
+assert.equal(partiSpeech[1].text.startsWith('party,'),true,'resume with the correct audible word');
+assert.equal(contentEl.children.map(node=>node.textContent).join(''),originalPassage);
 n.clearReading();
 
 console.log('Narration checks passed. Actual pronunciation remains device-voice dependent.');

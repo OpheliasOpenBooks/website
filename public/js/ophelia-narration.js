@@ -1,5 +1,5 @@
 /* Ophelia's Open Book — shared spoken-text preparation.
- * Version 1.4.0. Load before each reader's inline narration code.
+ * Version 1.4.1. Load before each reader's inline narration code.
  *
  * Normalize only the words sent to speech synthesis: the printed book,
  * headings, pagination, bookmarks and original manuscripts are unchanged.
@@ -94,6 +94,10 @@
     // This change is made ONLY for speech; the displayed edition stays "Mina".
     // It also prepares Mina's for correct possessive pronunciation downstream.
     text=text.replace(/\bMina\b/g,'Meena');
+    // "parti" is the French-derived marriage-prospect noun (Dracula V),
+    // not the heading "Part I". Its English sound is like "party".
+    // Preserve Stoker's original spelling in the visible manuscript.
+    text=text.replace(/\bparti\b/gi,word=>word[0]===word[0].toUpperCase()?'Party':'party');
     return contextualPronunciations(speechGrammar(text));
   }
 
@@ -310,7 +314,7 @@
   }
   function comparableWord(value){
     const clean=String(value).toLowerCase().replace(/['’]/g,'').replace(/-/g,'');
-    const aliases={meena:'mina',meenas:'minas',bough:'bow',wined:'wind',
+    const aliases={meena:'mina',meenas:'minas',bough:'bow',party:'parti',wined:'wind',
       wineds:'winds',mister:'mr',doctor:'dr',missus:'mrs',miz:'ms',
       one:'1',two:'2',three:'3',four:'4',five:'5',six:'6',
       seven:'7',eight:'8',nine:'9',ten:'10'};
@@ -488,5 +492,5 @@
     else clearPausedHighlight();
   }
 
-  root.OpheliaNarration=Object.freeze({version:'1.4.0',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
+  root.OpheliaNarration=Object.freeze({version:'1.4.1',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
 })(window);
