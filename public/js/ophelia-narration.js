@@ -1,5 +1,5 @@
 /* Ophelia's Open Book — shared spoken-text preparation.
- * Version 1.4.5. Load before each reader's inline narration code.
+ * Version 1.4.6. Load before each reader's inline narration code.
  *
  * Normalize only the words sent to speech synthesis: the printed book,
  * headings, pagination, bookmarks and original manuscripts are unchanged.
@@ -99,6 +99,11 @@
 
   function normalizeForSpeech(value){
     let text=String(value==null?'':value);
+    // Dracula's recurring "Un-Dead" names the undead: one word, not
+    // separately spoken letters "U N". Preserve the author's hyphenated
+    // spelling in the visible edition; join it ONLY for speech synthesis.
+    text=text.replace(/\bun[-\u2010\u2011\u2012\u2013\u2014]dead\b/gi,
+      word=>word[0]===word[0].toUpperCase()?'Undead':'undead');
     // An ornamental chapter-title separator is a pause, not multiplication.
     // Normalize for speech only: keep the printed title unchanged.
     text=text.replace(/\b(Chapter|CHAPTER|Book|BOOK|Part|PART|Act|ACT|Scene|SCENE)\s+(\d+|[MDCLXVI]+)\s*[·×]\s*/g, '$1 $2. ');
@@ -607,5 +612,5 @@
     else clearPausedHighlight();
   }
 
-  root.OpheliaNarration=Object.freeze({version:'1.4.5',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
+  root.OpheliaNarration=Object.freeze({version:'1.4.6',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
 })(window);
