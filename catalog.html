@@ -88,6 +88,7 @@ footer .wrap{display:flex;gap:18px;flex-wrap:wrap;justify-content:space-between}
 'use strict';
 const $=id=>document.getElementById(id);
 const genreByPage={
+ 'cakes-and-ale.html':'Literary Fiction',
  'swallows-and-amazons.html':'Children’s Classics',
  'anna-karenina.html':'Russian Literature',
  'middlemarch.html':'Literary Fiction',
@@ -211,6 +212,7 @@ const genreByPage={
  'oedipus-rex.html':'Ancient Classics'
 };
 const progressByPage={
+ 'cakes-and-ale.html':'ophelia-cakes-and-ale-1930-classic-v1',
  'swallows-and-amazons.html':'ophelia-swallows-and-amazons-1930-classic-v1',
  'anna-karenina.html':'ophelia-anna-karenina-garnett-1901-v1',
  'middlemarch.html':'ophelia-middlemarch-eliot-1871-72-v1',
@@ -276,6 +278,7 @@ const progressByPage={
  'oedipus-rex.html':'ophelia-oedipus-rex-storr-1912-alice-voice-v1'
 };
 const catalogOnlyBooks=[
+ {title:'Cakes and Ale',author:'W. Somerset Maugham · 1930 · Literary Satire',href:'cakes-and-ale.html',image:'public/art/cakes-and-ale-cover.svg',alt:'Vintage-inspired cream and red 1930 first-edition-style jacket for Cakes and Ale with a horse-drawn carriage',description:"Behind the polished reputation of a celebrated novelist lies a livelier story—and the unforgettable Rosie Driffield, whose generosity, independence, and love of life unsettle the literary establishment.",genre:'Literary Fiction'},
  {title:'Swallows and Amazons',author:'Arthur Ransome · 1930 · Children’s Adventure',href:'swallows-and-amazons.html',image:'public/art/swallows-and-amazons-cover.svg',alt:'Original period-inspired cover echoing Steven Spurrier’s 1930 map-style Swallows and Amazons dust jacket',description:"Four Walker children sail to their own island in the English Lake District, where two daring sisters, a pair of little boats, and a mysterious houseboat turn one summer holiday into a marvelous adventure.",genre:'Children’s Classics'},
  {title:'Last and First Men',author:'W. Olaf Stapledon · 1930 · Science Fiction',href:'last-and-first-men.html',image:'https://upload.wikimedia.org/wikipedia/commons/7/74/Lastandfirstmen_firstedition.jpg',alt:'Historical original 1930 Methuen first-edition yellow marbled dust jacket for Last and First Men by Olaf Stapledon',description:"Across immense ages, humanity rises, falls, and transforms in a visionary journey through future civilizations, distant worlds, and the fragile persistence of hope.",genre:'Science Fiction & Fantasy'},
  {title:'The Hidden Staircase',author:'Carolyn Keene (Mildred Wirt Benson) · 1930 · Nancy Drew Mystery',href:'the-hidden-staircase.html',image:'https://commons.wikimedia.org/wiki/Special:FilePath/The_Hidden_Staircase_-_Cover.png?width=650',alt:'Authentic original 1930 The Hidden Staircase Nancy Drew hardcover edition artwork preserved in a historical scan',description:"Strange happenings at an old mansion draw Nancy Drew into a mystery of secret passages, elusive clues, and a family whose troubles are more complicated than they appear.",genre:'Children’s Classics'},
