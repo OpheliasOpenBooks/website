@@ -1,5 +1,5 @@
 /* Ophelia's Open Book — shared spoken-text preparation.
- * Version 1.4.7. Load before each reader's inline narration code.
+ * Version 1.4.8. Load before each reader's inline narration code.
  *
  * Normalize only the words sent to speech synthesis: the printed book,
  * headings, pagination, bookmarks and original manuscripts are unchanged.
@@ -107,6 +107,9 @@
     // punctuation and spelling; insert a sound cue only into narration.
     text=text.replace(/\b(a keen)\s+["“]S(?:-s){3,}!["”]/g,
       (_,lead)=>lead+' '+HISS_MARKER);
+    // Dracula XVII: pronounce the carter's "Blyme!" as "Blimey!".
+    // Speech-only spelling; retain Bram Stoker's printed wording.
+    text=text.replace(/\bBlyme!(?=\s|$)/g,'Blimey!');
     // Dracula's recurring "Un-Dead" names the undead: one word, not
     // separately spoken letters "U N". Preserve the author's hyphenated
     // spelling in the visible edition; join it ONLY for speech synthesis.
@@ -690,5 +693,5 @@
     else clearPausedHighlight();
   }
 
-  root.OpheliaNarration=Object.freeze({version:'1.4.7',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
+  root.OpheliaNarration=Object.freeze({version:'1.4.8',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
 })(window);
