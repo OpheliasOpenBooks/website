@@ -1,5 +1,5 @@
 /* Ophelia's Open Book — shared spoken-text preparation.
- * Version 1.4.6. Load before each reader's inline narration code.
+ * Version 1.4.7. Load before each reader's inline narration code.
  *
  * Normalize only the words sent to speech synthesis: the printed book,
  * headings, pagination, bookmarks and original manuscripts are unchanged.
@@ -22,6 +22,9 @@
     'UNESCO','URL','USB','USA','US','UTC','VIP','WHO','WWW','XML'
   ]);
   const commonVowellessWords=new Set(['SH','SHH','SHHH','PST','PSST']);
+  // Internal narration-only cue for Van Helsing's sustained, voiceless hiss.
+  // It is never written into the book text or read aloud as letters.
+  const HISS_MARKER='\uE320';
   const roman=/^(?=[MDCLXVI]+$)M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$/;
   const capitalizedWord=/\b[A-Z]{2,}(?:['’][A-Z]+)?\b/g;
   const small=['zero','one','two','three','four','five','six','seven','eight','nine',
@@ -99,6 +102,11 @@
 
   function normalizeForSpeech(value){
     let text=String(value==null?'':value);
+    // Dracula XVI: "a keen \"S-s-s-s!\"" is ONE extended sibilant /s/,
+    // not four separately pronounced letter names. Keep the printed
+    // punctuation and spelling; insert a sound cue only into narration.
+    text=text.replace(/\b(a keen)\s+["“]S(?:-s){3,}!["”]/g,
+      (_,lead)=>lead+' '+HISS_MARKER);
     // Dracula's recurring "Un-Dead" names the undead: one word, not
     // separately spoken letters "U N". Preserve the author's hyphenated
     // spelling in the visible edition; join it ONLY for speech synthesis.
@@ -361,7 +369,18 @@
           phrased[phrased.length-1]+='—';
       }
     }
-    return phrased;
+    // Keep the hiss between the surrounding spoken phrases, so browser
+    // voices never receive the repeated letters or the internal marker.
+    const withHiss=[];
+    for(const phrase of phrased){
+      const parts=phrase.split(HISS_MARKER);
+      for(let i=0;i<parts.length;i++){
+        const spoken=parts[i].trim();
+        if(spoken)withHiss.push(spoken);
+        if(i<parts.length-1)withHiss.push(HISS_MARKER);
+      }
+    }
+    return withHiss;
   }
 
   function pauseAfter(text){
@@ -524,6 +543,33 @@
     if(!utterances||!utterances.length)return null;
     let index=0,offset=0,paused=false,disposed=false,serial=0,timer=null;
     let current=null,lastBoundary=0;
+    // Unlock Web Audio from the reader's Play gesture, but only on the
+    // page containing the hiss. Other books and pages use ordinary TTS.
+    let hissContext=null,hissNode=null;
+    if(utterances.some(u=>u.text===HISS_MARKER)){
+      const AudioCtor=root.AudioContext||root.webkitAudioContext;
+      if(AudioCtor){
+        try{
+          hissContext=new AudioCtor();
+          if(hissContext.state==='suspended')
+            hissContext.resume().catch(()=>{});
+        }catch{hissContext=null;}
+      }
+    }
+    function stopHiss(){
+      if(!hissNode)return;
+      const node=hissNode;hissNode=null;
+      node.onended=null;
+      try{node.stop();}catch{}
+      try{node.disconnect();}catch{}
+    }
+    function closeHiss(){
+      stopHiss();
+      if(hissContext){
+        const ctx=hissContext;hissContext=null;
+        try{ctx.close().catch(()=>{});}catch{}
+      }
+    }
     const session={
       pause(){
         if(disposed||paused||!isCurrent())return false;
@@ -531,7 +577,7 @@
         if(timer!==null){clearTimeout(timer);timer=null;}
         if(current){
           offset=lastBoundary;
-          serial++;current=null;
+          serial++;current=null;stopHiss();
           // Intentionally stop TTS and retain the last reported word.
           try{synth.cancel();}catch{}
         }
@@ -547,7 +593,7 @@
       clear(){
         disposed=true;serial++;
         if(timer!==null){clearTimeout(timer);timer=null;}
-        clearPausedHighlight();
+        clearPausedHighlight();closeHiss();
       },
       getPosition(){return {index,offset,paused};}
     };
@@ -555,10 +601,42 @@
     function play(){
       if(disposed||paused||!isCurrent()||index>=utterances.length)return;
       const source=utterances[index],raw=String(source.text);
+      // A sustained sibilant must sound like air escaping, not the names
+      // of several letters. High-passed soft noise gives one long /s/.
+      // If Web Audio is unavailable, TTS says "hiss" rather than S S S S.
+      if(raw===HISS_MARKER&&hissContext?.state==='running'){
+        try{
+          const ctx=hissContext;
+          const duration=Math.max(.8,Math.min(1.5,1.2/(source.rate||1)));
+          const buffer=ctx.createBuffer(1,Math.ceil(ctx.sampleRate*duration),ctx.sampleRate);
+          const samples=buffer.getChannelData(0);
+          for(let i=0;i<samples.length;i++)samples[i]=Math.random()*2-1;
+          const noise=ctx.createBufferSource();
+          noise.buffer=buffer;
+          const highpass=ctx.createBiquadFilter();
+          highpass.type='highpass';highpass.frequency.value=3200;
+          const volume=ctx.createGain(),now=ctx.currentTime;
+          const level=Math.min(.16,Math.max(.06,.14*(source.volume??1)));
+          volume.gain.setValueAtTime(0,now);
+          volume.gain.linearRampToValueAtTime(level,now+.08);
+          volume.gain.setValueAtTime(level,now+duration-.16);
+          volume.gain.linearRampToValueAtTime(0,now+duration);
+          noise.connect(highpass);highpass.connect(volume);volume.connect(ctx.destination);
+          const id=++serial;
+          hissNode=noise;current=noise;lastBoundary=0;
+          noise.onended=e=>{
+            if(id!==serial||disposed||paused)return;
+            hissNode=null;complete(e);
+          };
+          noise.start();
+          source.onstart?.({});
+          return;
+        }catch{stopHiss();}
+      }
       const tail=raw.slice(offset);
       const leading=tail.length-tail.trimStart().length;
       const start=offset+leading;
-      const spoken=tail.trimStart().replace(/—\s*$/,'').trimEnd();
+      const spoken=raw===HISS_MARKER?'hiss':tail.trimStart().replace(/—\s*$/,'').trimEnd();
       if(!spoken){complete(null);return;}
       const id=++serial,base=start;
       const VoiceUtterance=root.SpeechSynthesisUtterance;
@@ -594,7 +672,7 @@
       if(index<utterances.length){
         timer=setTimeout(()=>{timer=null;play();},delay);
       }else if(activeReading===session){
-        activeReading=null;
+        activeReading=null;closeHiss();
       }
     }
     play();
@@ -612,5 +690,5 @@
     else clearPausedHighlight();
   }
 
-  root.OpheliaNarration=Object.freeze({version:'1.4.6',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
+  root.OpheliaNarration=Object.freeze({version:'1.4.7',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
 })(window);
