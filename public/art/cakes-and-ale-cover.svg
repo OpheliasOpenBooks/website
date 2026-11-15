@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" role="img" aria-labelledby="coverTitle coverDesc">
+<title id="coverTitle">Cakes and Ale by W. Somerset Maugham, vintage-inspired 1930 cover</title>
+<desc id="coverDesc">A cream-colored 1930-style jacket with large black serif lettering and a red horse-drawn cab beside a London street lamp, recalling the original Heinemann first-edition design.</desc>
+<rect width="600" height="900" fill="#e9d7b4"/>
+<rect x="20" y="20" width="560" height="860" fill="#e8d4aa" stroke="#bb9a68" stroke-width="2"/>
+<rect x="34" y="34" width="532" height="832" fill="#efdfbb" stroke="#a7855d" stroke-width="1"/>
+<g fill="#201e1c" font-family="Georgia,'Times New Roman',serif" text-anchor="middle">
+<text x="300" y="165" font-size="75" letter-spacing="3">CAKES AND</text>
+<text x="300" y="255" font-size="88" letter-spacing="8">ALE</text>
+</g>
+<g fill="none" stroke="#a62c30" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M55 660H548"/>
+<path d="M405 376v285"/>
+<path d="M396 419h18"/>
+<path d="M392 363h26l8 29h-42z" fill="#a62c30"/>
+<path d="M397 365v-29h16v29M393 335l12-22 12 22M387 403h37"/>
+</g>
+<g fill="#a62c30">
+<!-- stylized cab with open driver's seat and two high wheels -->
+<path d="M82 524 L97 443 Q105 419 127 419 L205 420 Q230 425 237 453 L245 538 L209 553 L83 555Z"/>
+<rect x="110" y="445" width="91" height="68" fill="#ecd9b1" rx="2"/>
+<path d="M120 454 Q150 428 194 453 L194 501 L120 501Z" fill="#a62c30"/>
+<path d="M116 525l-27 34h173l-15-24z"/>
+<circle cx="128" cy="590" r="46"/><circle cx="128" cy="590" r="34" fill="#ebd8b0"/><circle cx="128" cy="590" r="8"/>
+<path d="M128 556v68M94 590h68M103 565l48 49M151 565l-48 49" stroke="#a62c30" stroke-width="5" fill="none"/>
+<circle cx="236" cy="591" r="25"/><circle cx="236" cy="591" r="17" fill="#ebd8b0"/><circle cx="236" cy="591" r="5"/>
+<path d="M241 536L318 528 350 545L370 536 L372 557 L333 557 L316 540 L248 550"/>
+<!-- small driver and reins -->
+<circle cx="90" cy="417" r="12"/>
+<path d="M80 405q13-24 26 2l-3 7h-28Z"/>
+<path d="M83 430l-16 43 44 5 13-31 -20-19Z"/>
+<path d="M99 444l46 28-7 13-53-28Z"/>
+<path d="M145 467Q241 427 345 478" stroke="#a62c30" stroke-width="3" fill="none"/>
+<!-- horse's arched neck, forward head and body silhouette -->
+<path d="M355 491 Q375 468 410 470 Q424 452 437 418 L451 392 L466 400 L469 433 L482 449 L499 454 L506 468 L492 479 L477 474 L461 464 L454 476 L450 498 Q459 510 468 520 Q473 537 471 549 L454 560 L441 533 L417 525 L387 523 L380 557 L356 559 L365 520 Q350 513 355 491 Z"/>
+<path d="M447 400l-5-29 13 9 6 23z"/>
+<path d="M437 416l-19-23 15 3 16 21z"/>
+<path d="M480 452l14-8 11 11-3 9z"/>
+<path d="M376 482 Q335 468 320 462 Q335 486 356 500"/>
+<path d="M395 518L384 594 L370 642 L382 650 L401 597 L420 532Z"/>
+<path d="M436 527l-2 65 10 51 13 1-8-55 13-56z"/>
+<path d="M358 526l-19 54 13 58 14 0-9-61 19-41z"/>
+<path d="M466 543l22 52-9 49 13 0 10-49 -22-66z"/>
+<path d="M366 480l-17-36q-17 13 1 38z"/>
+</g>
+<g stroke="#ecd9b1" stroke-width="2" fill="none"><path d="M449 428Q462 438 474 453"/><path d="M474 465h8"/></g>
+<g fill="#211c19" font-family="Georgia,'Times New Roman',serif" text-anchor="middle">
+<text x="300" y="754" font-size="54" letter-spacing="3">W. SOMERSET</text>
+<text x="300" y="815" font-size="60" letter-spacing="3">MAUGHAM</text>
+</g>
+<text x="300" y="852" text-anchor="middle" font-family="Georgia,serif" font-size="12" letter-spacing="2.4" fill="#7e463b">OPHELIA’S OPEN BOOK · 1930 CLASSIC</text>
+</svg>
