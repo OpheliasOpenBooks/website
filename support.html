@@ -37,6 +37,14 @@ nav a:hover,nav a[aria-current="page"]{text-decoration:underline;text-decoration
 .giving{border:1px solid #b8c9b7;background:var(--sage);padding:26px;margin-top:26px}
 .giving h3{font:normal 28px Georgia,serif;margin:0 0 10px}
 .giving p{margin:0 0 16px}
+ .giving-actions{display:flex;gap:25px;align-items:center;flex-wrap:wrap}
+ .giving-actions .donate-button{border:1px solid #9b854c;border-radius:24px;background:var(--ink);color:#fffdf8;text-decoration:none;padding:13px 24px;font:italic 17px/1.45 Georgia,serif;display:inline-block}
+ .giving-actions .donate-button:hover{background:#365d4b}
+ .qr-option{display:flex;align-items:center;gap:14px;background:#fffdf8;border:1px solid var(--line);border-radius:6px;padding:12px 14px}
+ .qr-option img{display:block;width:132px;height:132px;background:#fff}
+ .qr-option p{font:13px/1.5 Arial,sans-serif;color:var(--muted);max-width:170px;margin:0}
+ .qr-option a{font:13px/1.5 Arial,sans-serif}
+ .donate-safety{font:13px/1.7 Arial,sans-serif;color:var(--muted);margin-top:16px!important}
 .button{display:inline-block;background:var(--ink);color:white;text-decoration:none;padding:12px 19px;border-radius:4px;font:15px/1.5 Arial,sans-serif}
 .button:hover{background:#365d4b}
 .fine{font:13px/1.65 Arial,sans-serif;color:var(--muted);margin-top:17px!important}
@@ -60,9 +68,18 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px}
 <article><div class="eyebrow">III · A future possibility</div><h3>Welcome more stories</h3><p>Explore licensing copyrighted works for free reading and listening, only after the appropriate rights are secured.</p></article>
 </div>
 <div class="giving" aria-labelledby="giving-heading">
-<h3 id="giving-heading">PayPal giving is being prepared.</h3>
-<p>We are preparing a secure PayPal donation link. Once it is ready, you will find it here under “❦ Help Keep the Stories Alive.” Until then, sharing the library with another reader is a lovely way to help.</p>
-<a class="button" href="catalog.html">Explore &amp; share the library →</a>
+<h3 id="giving-heading">A little gift can keep the stories alive.</h3>
+<p>If you would like to help, you can choose a one-time, monthly, or yearly contribution through PayPal. Gifts are always voluntary, and the library remains free to read and listen to.</p>
+<div class="giving-actions">
+  <a class="donate-button" href="https://www.paypal.com/donate/?hosted_button_id=VXVK7J9WYCE5C" target="_blank" rel="noopener noreferrer" aria-label="Help Keep the Stories Alive: donate securely through PayPal (opens a new tab)">❦ Help Keep the Stories Alive</a>
+  <div class="qr-option">
+    <a href="https://www.paypal.com/donate/?hosted_button_id=VXVK7J9WYCE5C" target="_blank" rel="noopener noreferrer" aria-label="Open the Ophelia's Open Book PayPal donation page">
+      <img src="public/ophelia-donation-qr.svg" width="132" height="132" alt="QR code for Ophelia’s Open Book PayPal donation page" loading="lazy">
+    </a>
+    <div><p>On another device? Scan this code to open our PayPal donation page.</p><a href="public/ophelia-donation-qr.svg" download="ophelia-donation-qr.svg">Save the QR code</a></div>
+  </div>
+</div>
+<p class="donate-safety">Donations are processed on PayPal’s secure website. You choose the amount and whether to make a recurring gift. No payment details are collected on this site.</p>
 </div>
 <p class="fine">Ophelia’s Open Book is an independently run project, not presented as a registered charity. Please do not treat contributions as tax-deductible charitable donations. Supporting the library will never be required to read or listen.</p>
 </section>
