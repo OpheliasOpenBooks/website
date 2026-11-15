@@ -88,6 +88,7 @@ footer .wrap{display:flex;gap:18px;flex-wrap:wrap;justify-content:space-between}
 'use strict';
 const $=id=>document.getElementById(id);
 const genreByPage={
+ 'a-passage-to-india.html':'Literary Fiction',
  'dubliners.html':'Short Stories',
  'howards-end.html':'Literary Fiction',
  'tess-of-the-durbervilles.html':'Literary Fiction',
@@ -222,6 +223,7 @@ const genreByPage={
  'oedipus-rex.html':'Ancient Classics'
 };
 const progressByPage={
+ 'a-passage-to-india.html':'ophelia-a-passage-to-india-1924-classic-v1',
  'dubliners.html':'ophelia-dubliners-1914-classic-v1',
  'howards-end.html':'ophelia-howards-end-1910-classic-v1',
  'tess-of-the-durbervilles.html':'ophelia-tess-of-the-durbervilles-1891-classic-v1',
@@ -298,6 +300,7 @@ const progressByPage={
  'oedipus-rex.html':'ophelia-oedipus-rex-storr-1912-alice-voice-v1'
 };
 const catalogOnlyBooks=[
+ {title:'A Passage to India',author:'E. M. Forster · 1924 · British Literary Fiction',href:'a-passage-to-india.html',image:'public/art/a-passage-to-india-cover.svg',alt:'Historically inspired 1924 Edward Arnold first-edition A Passage to India cover with red cloth and understated black lettering',description:"In British-ruled India, a friendship between Dr. Aziz and an English schoolmaster promises understanding across colonial divisions—until a mysterious incident at the Marabar Caves unsettles their lives and loyalties.",genre:'Literary Fiction'},
  {title:'Dubliners',author:'James Joyce · 1914 · Irish Short Stories',href:'dubliners.html',image:'public/art/dubliners-cover.svg',alt:'Historically inspired 1914 Dubliners first-edition maroon cloth cover with understated gold-stamped title and gilt spine',description:"Along Dublin’s lively streets and quiet rooms, fifteen stories reveal ordinary lives touched by longing, disappointment, humor, and moments of sudden insight, from The Sisters to The Dead.",genre:'Short Stories'},
  {title:'Howards End',author:'E. M. Forster · 1910 · Edwardian Literary Fiction',href:'howards-end.html',image:'public/art/howards-end-cover.svg',alt:'Historically inspired Howards End 1910 Edward Arnold first-edition maroon cloth cover with simple gilt title and E. M. Forster lettering',description:"As the idealistic Schlegel sisters become entangled with the wealthy Wilcoxes and the struggling Leonard Bast, an old country house draws three very different families into a moving story of class, love, inheritance, and human connection.",genre:'Literary Fiction'},
  {title:'Tess of the d’Urbervilles',author:'Thomas Hardy · 1891 · English Literary Fiction',href:'tess-of-the-durbervilles.html',image:'public/art/tess-of-the-durbervilles-cover.svg',alt:'Historically inspired 1891 first-edition tan cloth Tess of the d’Urbervilles cover with gold honeysuckle stems and Victorian title panel',description:"In the beautiful yet unforgiving countryside of Victorian England, young Tess Durbeyfield struggles against poverty, love, and society’s harsh judgments as she tries to shape a future of her own.",genre:'Literary Fiction'},
