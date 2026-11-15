@@ -89,7 +89,7 @@ async function fetchChapters(){
   return walk(el).replace(/\s+/g,' ').replace(/ *\uE001 */g,'\n').trim();
  }
  const sections=ids.map((id,index)=>{
-  const root=doc.getElementById(id);
+  const root=doc.querySelector('[id="'+id+'"]');
   if(!root || root.localName.toLowerCase()!=='section')throw Error('Section missing: '+id);
   const kind=/^passing-[123]$/.test(id)?'part':'text';
   if(kind==='part')return {name:chapterTitles[index],paragraphs:[{kind:'subheading',text:chapterTitles[index]}]};
