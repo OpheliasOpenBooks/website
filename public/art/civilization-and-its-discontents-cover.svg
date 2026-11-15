@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" role="img" aria-labelledby="t d">
+<title id="t">Civilization and Its Discontents — Sigmund Freud, 1930 first-American-edition-inspired cover</title>
+<desc id="d">A warm tobacco-brown, early modernist typography-only jacket with geometric black dot motifs, recalling the restrained black-on-tan first American edition of 1930.</desc>
+<rect width="600" height="900" fill="#8e5e38"/>
+<rect x="19" y="19" width="562" height="862" fill="#b17b4c"/>
+<rect x="38" y="38" width="524" height="824" fill="#b88353"/>
+<g fill="#211d1b">
+<circle cx="205" cy="107" r="13"/><circle cx="300" cy="107" r="13"/><circle cx="395" cy="107" r="13"/>
+</g>
+<g font-family="'Century Gothic','Futura','Gill Sans',Arial,sans-serif" fill="#221b18" text-anchor="middle" font-weight="300">
+<text x="300" y="191" font-size="53" letter-spacing="6">SIGMUND</text>
+<text x="300" y="263" font-size="62" letter-spacing="8">FREUD</text>
+</g>
+<g fill="#221b18"><circle cx="205" cy="320" r="13"/><circle cx="300" cy="320" r="13"/><circle cx="395" cy="320" r="13"/></g>
+<g font-family="'Century Gothic','Futura','Gill Sans',Arial,sans-serif" fill="#211b18" text-anchor="middle" font-weight="300">
+<text x="300" y="418" font-size="64" letter-spacing="6">CIVILIZATION</text>
+<text x="300" y="499" font-size="69" letter-spacing="9">AND ITS</text>
+<text x="300" y="581" font-size="54" letter-spacing="5">DISCONTENTS</text>
+</g>
+<g fill="#221b18"><circle cx="205" cy="646" r="13"/><circle cx="300" cy="646" r="13"/><circle cx="395" cy="646" r="13"/></g>
+<g fill="#2b211b" font-family="Georgia,'Times New Roman',serif" text-anchor="middle">
+<text x="300" y="752" font-size="21" letter-spacing="1.8">TRANSLATED BY JOAN RIVIERE</text>
+<text x="300" y="794" font-size="19" letter-spacing="2">1930 · FIRST AMERICAN EDITION</text>
+<text x="300" y="837" font-size="14" letter-spacing="1.8">OPHELIA’S OPEN BOOK</text>
+</g>
+</svg>
