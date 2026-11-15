@@ -1,5 +1,5 @@
 /* Ophelia's Open Book — shared spoken-text preparation.
- * Version 1.4.4. Load before each reader's inline narration code.
+ * Version 1.4.5. Load before each reader's inline narration code.
  *
  * Normalize only the words sent to speech synthesis: the printed book,
  * headings, pagination, bookmarks and original manuscripts are unchanged.
@@ -253,11 +253,15 @@
       }
       return word;
     });
-    // Dracula VIII: Mina says her feet felt weighted with the heavy metal
-    // "lead" (rhymes with "Ted"), never the verb "lead" (rhymes with "seed").
-    // Change only this unmistakable phrase in the speech copy, not the book.
-    const leadText=windText.replace(/(\bfeet\s+were\s+weighted\s+with\s+)lead\b/gi,
-      (_,prefix)=>prefix+'led');
+    // "Lead" is the heavy metal (rhymes with "bed") in these clear
+    // coffin/metal contexts. Say "led" ONLY in speech; keep Stoker's
+    // printed words unchanged, and leave verbs like "lead him" alone.
+    const leadText=windText
+      .replace(/(\bfeet\s+were\s+weighted\s+with\s+)lead\b/gi,(_,prefix)=>prefix+'led')
+      .replace(/(\b(?:casing\s+of|through\s+the|rent\s+in\s+the)\s+)lead\b/gi,
+        (_,prefix)=>prefix+'led')
+      .replace(/\blead\b(?=\s+(?:coffin|casing|lining)\b)/gi,
+        word=>word[0]==='L'?'Led':'led');
     // "Wound" (an injury, /wuːnd/) rhymes approximately with "swooned",
     // whereas "wound" as the past tense of "wind" is /waʊnd/.
     // Change clear injury nouns ONLY in the spoken copy; do not rewrite
@@ -603,5 +607,5 @@
     else clearPausedHighlight();
   }
 
-  root.OpheliaNarration=Object.freeze({version:'1.4.4',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
+  root.OpheliaNarration=Object.freeze({version:'1.4.5',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
 })(window);
