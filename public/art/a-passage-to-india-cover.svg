@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" role="img" aria-labelledby="cover-title cover-description">
+<title id="cover-title">A Passage to India by E. M. Forster — 1924 Edward Arnold first-edition-inspired red cloth cover</title>
+<desc id="cover-description">Plain rich red-maroon publisher’s ribbed cloth with black-stamped A PASSAGE TO INDIA across the upper front board and E. M. FORSTER near the lower right. A darker narrow spine shows the title, author and ARNOLD in black, honoring the authentic 1924 Edward Arnold and Company first edition.</desc>
+<defs>
+ <linearGradient id="maroon" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#71303b"/><stop offset=".10" stop-color="#a54b58"/><stop offset=".38" stop-color="#9c3b4c"/><stop offset=".83" stop-color="#a64254"/><stop offset="1" stop-color="#7e3240"/></linearGradient>
+ <linearGradient id="spine" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#5a2735"/><stop offset=".5" stop-color="#913b49"/><stop offset=".96" stop-color="#73303d"/><stop offset="1" stop-color="#3b1d2b"/></linearGradient>
+ <pattern id="ribs" width="5" height="13" patternUnits="userSpaceOnUse"><path d="M1 0v13 M3.2 0v13" stroke="#28131e" opacity=".15" stroke-width=".56"/><path d="M2 0v13" stroke="#dda1a5" stroke-width=".42" opacity=".08"/></pattern>
+ <pattern id="crosshatch" width="9" height="7" patternUnits="userSpaceOnUse"><path d="M0 4h9" stroke="#2e1820" opacity=".065" stroke-width=".6"/></pattern>
+</defs>
+<rect width="600" height="900" fill="#5c2531"/>
+<rect x="9" y="10" width="582" height="878" fill="url(#maroon)" stroke="#652735" stroke-width="2"/>
+<rect x="9" y="10" width="582" height="878" fill="url(#ribs)"/>
+<rect x="9" y="10" width="582" height="878" fill="url(#crosshatch)"/>
+<rect x="9" y="10" width="83" height="878" fill="url(#spine)"/>
+<path d="M14 13v871" stroke="#ce7981" opacity=".28" stroke-width="2"/>
+<path d="M89 10v878" stroke="#38202b" opacity=".54" stroke-width="4"/>
+<path d="M99 10v878" stroke="#c07079" opacity=".26" stroke-width="1.5"/>
+<g fill="#271820" font-family="Georgia,'Times New Roman',serif">
+ <text x="341" y="174" text-anchor="middle" font-size="35" letter-spacing="1.45">A PASSAGE TO INDIA</text>
+ <text x="374" y="756" text-anchor="middle" font-size="30" letter-spacing="1.7">E. M. FORSTER</text>
+</g>
+<g transform="translate(51 0)" fill="#261821" text-anchor="middle" font-family="Georgia,'Times New Roman',serif">
+ <text x="0" y="85" font-size="19" letter-spacing=".8">A</text>
+ <text x="0" y="113" font-size="17.5" letter-spacing=".6">PASSAGE</text>
+ <text x="0" y="141" font-size="19">TO</text>
+ <text x="0" y="170" font-size="19" letter-spacing=".6">INDIA</text>
+ <text x="0" y="258" font-size="18" letter-spacing=".3">E. M.</text>
+ <text x="0" y="288" font-size="17" letter-spacing=".5">FORSTER</text>
+ <text x="0" y="856" font-size="17" letter-spacing=".3">ARNOLD</text>
+</g>
+</svg>
