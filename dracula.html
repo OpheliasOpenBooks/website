@@ -15,8 +15,12 @@
 #chapter-figure{max-width:800px;margin:5px auto 26px;padding:7px;background:#f4edda;border:1px solid #ded3bf;border-radius:4px}
 #chapter-figure img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain;border-radius:2px}
 #chapter-figure figcaption{margin:10px 6px 4px;font:italic 12px/1.45 Georgia,serif;color:#726b58;text-align:center}
-@media(max-width:780px){#chapter-figure{margin:4px auto 21px;padding:5px}#chapter-figure img{max-height:340px}}
-.night #chapter-figure figcaption{color:#5a594e}
+/* Rare scene illustrations appear at their exact story moment, not the chapter opening. */
+#scene-figure{max-width:800px;margin:20px auto 26px;padding:7px;background:#f4edda;border:1px solid #ded3bf;border-radius:4px}
+#scene-figure img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain;border-radius:2px}
+#scene-figure figcaption{margin:10px 6px 4px;font:italic 12px/1.45 Georgia,serif;color:#726b58;text-align:center}
+@media(max-width:780px){#chapter-figure{margin:4px auto 21px;padding:5px}#chapter-figure img{max-height:340px}#scene-figure{margin:16px auto 21px;padding:5px}#scene-figure img{max-height:340px}}
+.night #chapter-figure figcaption,.night #scene-figure figcaption{color:#5a594e}
 </style>
 </head>
 <body>
@@ -27,7 +31,9 @@
  <div class="book-heading"><div class="eyebrow">OPHELIA’S OPEN BOOK</div><h1>Dracula</h1><p class="byline">Bram Stoker · 1897 · Gothic novel</p><p class="fine">Complete unabridged novel · 27 chapters · Journals, letters and concluding note · Ophelia’s illustrated edition</p></div><figure id="story-figure" hidden><img id="opening-art" src="public/art/dracula-ophelias-open-book-cover.jpg" width="480" height="720" alt="Ophelia’s Open Book illustrated Dracula cover: moonlit Carpathian mountains, a mist-shrouded Gothic castle and a horse-drawn carriage, framed in Victorian gold ornament" loading="eager" decoding="async" style="max-height:480px;width:100%;object-fit:contain"><figcaption><em>Dracula</em> · Original Byronic Romantic-Gothic cover created for Ophelia’s Open Book. The <a href="https://commons.wikimedia.org/wiki/File:Dracula-First-Edition-1897.jpg" target="_blank" rel="noopener">1897 first-edition cover</a> remains available as a historical reference.</figcaption></figure>
  <article class="content" id="content"><div class="chapter-row"><span id="chaptername" class="chapter"></span></div>
  <figure id="chapter-figure" hidden aria-label="Chapter opening illustration"><img id="chapter-art" width="1200" height="800" alt="" decoding="async" loading="lazy"><figcaption id="chapter-art-caption"></figcaption></figure>
- <div id="prose"><p>Preparing all 27 chapters…</p></div><div class="endmark" aria-hidden="true">— ❧ —</div></article>
+ <div id="prose"><p>Preparing all 27 chapters…</p></div>
+ <figure id="scene-figure" hidden aria-label="Special illustration for Chapter 16"><img src="public/art/dracula-chapter-16-lucy-staking-scene.avif" alt="Arthur Holmwood drives a wooden stake into the vampire Lucy Westenra's heart as she screams and writhes inside her coffin; Professor Van Helsing reads prayers while Dr. Seward and Quincey Morris look on in the stone tomb" width="1536" height="1024" loading="lazy" decoding="async"><figcaption>Arthur frees Lucy from the curse of the Un-Dead · Original illustration for Ophelia’s Open Book</figcaption></figure>
+ <div class="endmark" aria-hidden="true">— ❧ —</div></article>
  <div class="footer-nav"><button type="button" id="prev2" disabled>← Previous page</button><span id="footcount">Anonymous · Bram Stoker translation, 1919</span><button type="button" id="next2" disabled>Next page →</button></div>
 </main>
 <aside class="reader-controls" aria-label="Reading and listening controls">
@@ -322,6 +328,10 @@ function render(){if(!pages.length)return;const page=pages[state.page];
  }
  $('progresslabel').textContent=Math.round((state.page+1)/pages.length*100)+'% read · '+page.sectionName;$('chaptername').textContent=page.sectionName;
  $('prose').replaceChildren(...page.paragraphs.map(p=>{const el=document.createElement('p');el.textContent=p;if(/^[A-Z][A-Z .'-]{2,36}$/.test(p.trim()))el.classList.add('speaker');else if(/^\[.*\]$/s.test(p.trim()))el.classList.add('stage');return el}));
+ // One approved surprise image, after the exact passage on page 354.
+ // Match the source text instead of a fragile fixed page index.
+ const atLucyStaking=page.section===16&&page.paragraphs.some(p=>p.includes('Arthur placed the point over the heart')&&p.includes('Then he struck with all his might.'));
+ $('scene-figure').hidden=!atLucyStaking;
  $('pagecount').textContent='Page '+(state.page+1)+' of '+pages.length;$('footcount').textContent=page.sectionName;
  ['prev','prev2'].forEach(id=>$(id).disabled=state.page<=0);['next','next2'].forEach(id=>$(id).disabled=state.page>=pages.length-1);
  $('page').value=String(state.page);$('section').value=String(page.section);$('progressbar').style.width=((state.page+1)/pages.length*100).toFixed(2)+'%';
