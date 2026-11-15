@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" role="img" aria-labelledby="coverTitle coverDesc">
+<title id="coverTitle">Howards End by E. M. Forster — original cover inspired by the 1910 Edward Arnold first edition</title>
+<desc id="coverDesc">A restrained Edwardian binding in deep maroon ribbed cloth, with HOWARDS END stamped in small elegant gilt capitals near the top and E. M. FORSTER near the lower right, closely following the 1910 London first edition.</desc>
+<defs>
+ <linearGradient id="cloth" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#501526"/><stop offset=".07" stop-color="#792338"/><stop offset=".34" stop-color="#83283e"/><stop offset=".65" stop-color="#852b3d"/><stop offset="1" stop-color="#672032"/></linearGradient>
+ <linearGradient id="gold" x1="0" y1="0" x2=".8" y2="1"><stop offset="0" stop-color="#e9d5a1"/><stop offset=".45" stop-color="#caab69"/><stop offset=".85" stop-color="#ebd09b"/><stop offset="1" stop-color="#9d814a"/></linearGradient>
+ <pattern id="ribbing" width="4.8" height="13" patternUnits="userSpaceOnUse"><path d="M1 0v13M3.5 0v13" stroke="#2f0e1b" opacity=".17" stroke-width=".6"/><path d="M2.1 0v13" stroke="#e5a7ac" opacity=".055" stroke-width=".5"/></pattern>
+ <pattern id="weave" width="15" height="9" patternUnits="userSpaceOnUse"><path d="M0 4h15" stroke="#c07b7f" opacity=".045" stroke-width=".6"/></pattern>
+</defs>
+<rect width="600" height="900" fill="#471522"/>
+<rect x="11" y="11" width="578" height="878" rx="2.5" fill="url(#cloth)" stroke="#481925" stroke-width="3"/>
+<rect x="11" y="11" width="578" height="878" fill="url(#ribbing)"/>
+<rect x="11" y="11" width="578" height="878" fill="url(#weave)"/>
+<path d="M21 17v865" stroke="#3d1321" opacity=".50" stroke-width="5"/>
+<path d="M36 17v865" stroke="#ac5760" opacity=".20" stroke-width="2"/>
+<path d="M581 17v865" stroke="#ac5760" opacity=".16" stroke-width="2"/>
+<g font-family="Georgia,'Times New Roman',serif" fill="url(#gold)">
+ <text x="305" y="137" text-anchor="middle" font-size="42" letter-spacing="5.2">HOWARDS END</text>
+ <text x="309" y="783" text-anchor="middle" font-size="35" letter-spacing="3.2">E. M. FORSTER</text>
+</g>
+<text x="300" y="861" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" fill="#d2b27c" opacity=".65" letter-spacing="1.5" font-size="11">1910 EDWARD ARNOLD FIRST-EDITION HOMAGE</text>
+</svg>
