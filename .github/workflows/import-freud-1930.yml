@@ -1,8 +1,7 @@
 name: Import 1930 Freud public-domain text (one time)
 on:
   push:
-    paths:
-      - '.github/workflows/import-freud-1930.yml'
+    branches: [main]
   workflow_dispatch:
 permissions:
   contents: write
