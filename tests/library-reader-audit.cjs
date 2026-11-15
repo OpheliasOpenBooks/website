@@ -12,8 +12,11 @@ const html=fs.readdirSync(root).filter(file=>file.endsWith('.html')&&!hubs.has(f
 assert.ok(html.length>=50,'expected the complete active reader collection');
 for(const file of html){
   const code=fs.readFileSync(path.join(root,file),'utf8');
-  assert.ok(code.includes('public/js/ophelia-narration.js?v=1.4.4'),
-    file+' must load the current shared narrator, with a cache-busting version');
+  // Different readers may have separate cache tags as speech rules evolve.
+  // Require a versioned shared script, rather than pinning the whole library
+  // to an obsolete exact tag after Dracula receives a speech correction.
+  assert.ok(/public\/js\/ophelia-narration\.js\?v=1\.4\.\d+(?:[-.][\w-]+)?/.test(code),
+    file+' must load the shared narrator with a versioned cache-busting URL');
   assert.ok(code.includes('pauseReading?.()')&&code.includes('resumeReading?.()')&&code.includes('clearReading?.()'),
     file+' must use the shared word-resumable pause controls');
   if(verse.has(file)){
