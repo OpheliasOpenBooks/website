@@ -88,6 +88,7 @@ footer .wrap{display:flex;gap:18px;flex-wrap:wrap;justify-content:space-between}
 'use strict';
 const $=id=>document.getElementById(id);
 const genreByPage={
+ 'the-house-of-mirth.html':'Literary Fiction',
  'the-awakening.html':'Literary Fiction',
  'little-women.html':'Children’s Classics',
  'civilization-and-its-discontents.html':'Psychology & Philosophy',
@@ -215,6 +216,7 @@ const genreByPage={
  'oedipus-rex.html':'Ancient Classics'
 };
 const progressByPage={
+ 'the-house-of-mirth.html':'ophelia-the-house-of-mirth-1905-classic-v1',
  'the-awakening.html':'ophelia-the-awakening-1899-classic-v1',
  'little-women.html':'ophelia-little-women-1868-69-classic-v1',
  'civilization-and-its-discontents.html':'ophelia-civilization-and-its-discontents-1930-classic-v1',
@@ -284,6 +286,7 @@ const progressByPage={
  'oedipus-rex.html':'ophelia-oedipus-rex-storr-1912-alice-voice-v1'
 };
 const catalogOnlyBooks=[
+ {title:'The House of Mirth',author:'Edith Wharton · 1905 · American Literary Fiction',href:'the-house-of-mirth.html',image:'public/art/the-house-of-mirth-cover.svg',alt:'Historically inspired 1905 red cloth and gold-bordered title panel first edition cover of The House of Mirth by Edith Wharton',description:"Beautiful, penniless Lily Bart moves through New York’s glittering high society, where reputation is everything and the pursuit of wealth threatens the very freedom she longs to keep.",genre:'Literary Fiction'},
  {title:'The Awakening',author:'Kate Chopin · 1899 · American Literary Fiction',href:'the-awakening.html',image:'public/art/the-awakening-cover.svg',alt:'Historically inspired Kate Chopin first-edition cover with pale green cloth, dark green grapevines and red lettering',description:"On Louisiana’s sun-drenched coast, Edna Pontellier discovers an unexpected longing for freedom, art, and love, and begins to question the quiet expectations that have shaped her life.",genre:'Literary Fiction'},
  {title:'Little Women',author:'Louisa May Alcott · 1868–1869 · Family Classic',href:'little-women.html',image:'public/art/little-women-cover.svg',alt:'Historically inspired deep-green Victorian cloth and gilt title-medallion cover for Louisa May Alcott’s 1868 Little Women first edition',description:"Four sisters—Meg, Jo, Beth, and Amy—share their hopes, heartaches, small adventures, and everyday triumphs as they grow from girlhood to womanhood in a loving New England home.",genre:'Children’s Classics'},
  {title:'Civilization and Its Discontents',author:'Sigmund Freud · 1930 · Joan Riviere translation',href:'civilization-and-its-discontents.html',image:'public/art/civilization-and-its-discontents-cover.svg',alt:'Historically inspired brown and black typographic 1930 first American edition cover for Civilization and Its Discontents',description:"Why does the promise of civilization so often leave humanity restless? Freud considers happiness, love, guilt, and the struggle between our deepest desires and the demands of living together.",genre:'Psychology & Philosophy'},
