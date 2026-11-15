@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" role="img" aria-labelledby="coverTitle coverDesc">
+<title id="coverTitle">Orlando: A Biography, Virginia Woolf — historically inspired Hogarth Press first-edition dust jacket, 1928</title>
+<desc id="coverDesc">Cream Edwardian-style printed jacket with ORLANDO A BIOGRAPHY VIRGINIA WOOLF in black classical capitals above an engraved, black-and-white Elizabethan courtier in dark costume with a large armorial shield; Hogarth Press London imprint at foot. An original drawing informed by the historical 1928 Hogarth Press jacket, not a facsimile.</desc>
+<defs>
+ <linearGradient id="paper" x1="0" x2="1" y1="0" y2=".6"><stop offset="0" stop-color="#eee7d5"/><stop offset=".5" stop-color="#fbf5e5"/><stop offset="1" stop-color="#dfd7c4"/></linearGradient>
+ <linearGradient id="portrait" x1="0" y1="0" x2=".9" y2="1"><stop offset="0" stop-color="#403f3b"/><stop offset=".53" stop-color="#1c1e1f"/><stop offset="1" stop-color="#6f6d66"/></linearGradient>
+ <pattern id="scratches" width="13" height="17" patternUnits="userSpaceOnUse"><path d="M1 0v17M7 0v17M12 0v17" stroke="#191819" opacity=".07" stroke-width=".5"/></pattern>
+</defs>
+<rect width="600" height="900" fill="#bf6e42"/>
+<rect x="13" y="12" width="574" height="874" fill="url(#paper)" stroke="#bbb19c" stroke-width="1.4"/>
+<rect x="27" y="24" width="545" height="850" fill="none" stroke="#514d47" stroke-width="1.15"/>
+<rect x="37" y="35" width="526" height="831" fill="none" stroke="#888076" stroke-width=".5" opacity=".5"/>
+<g font-family="Georgia, 'Times New Roman', serif" text-anchor="middle" fill="#181a1b">
+ <text x="300" y="116" font-size="48" letter-spacing="8.2">ORLANDO</text>
+ <text x="300" y="160" font-size="25" letter-spacing="4.5">A BIOGRAPHY</text>
+ <text x="300" y="204" font-size="22" letter-spacing="2.3">VIRGINIA WOOLF</text>
+</g>
+<rect x="93" y="239" width="414" height="534" fill="#1b1d1d" stroke="#69675f" stroke-width="1"/>
+<rect x="100" y="246" width="400" height="520" fill="url(#portrait)"/>
+<path d="M102 308q72 -24 160 -5t226 -13" stroke="#d6d0c4" stroke-width=".6" opacity=".07" fill="none"/><path d="M102 326q72 -24 160 -5t226 -13" stroke="#d6d0c4" stroke-width=".6" opacity=".07" fill="none"/><path d="M102 344q72 -24 160 -5t226 -13" stroke="#d6d0c4" stroke-width=".6" opacity=".07" fill="none"/><path d="M102 362q72 -24 160 -5t226 -13" stroke="#d6d0c4" stroke-width=".6" opacity=".07" fill="none"/><path d="M102 380q72 -24 160 -5t226 -13" stroke="#d6d0c4" stroke-width=".6" opacity=".07" fill="none"/><path d="M102 398q72 -24 160 -5t226 -13" stroke="#d6d0c4" stroke-width=".6" opacity=".07" fill="none"/><path d="M102 416q72 -24 160 -5t226 -13" stroke="#d6d0c4" stroke-width=".6" opacity=".07" fill="none"/><path d="M102 434q72 -24 160 -5t226 -13" stroke="#d6d0c4" stroke-width=".6" opacity=".07" fill="none"/><path d="M102 452q72 -24 160 -5t226 -13" stroke="#d6d0c4" stroke-width=".6" opacity=".07" fill="none"/><path d="M102 470q72 -24 160 -5t226 -13" stroke="#d6d0c4" stroke-width=".6" opacity=".07" fill="none"/><path d="M102 488q72 -24 160 -5t226 -13" stroke="#d6d0c4" stroke-width=".6" opacity=".07" fill="none"/><path d="M102 506q72 -24 160 -5t226 -13" stroke="#d6d0c4" stroke-width=".6" opacity=".07" fill="none"/><path d="M102 524q72 -24 160 -5t226 -13" stroke="#d6d0c4" stroke-width=".6" opacity=".07" fill="none"/><path d="M102 542q72 -24 160 -5t226 -13" stroke="#d6d0c4" stroke-width=".6" opacity=".07" fill="none"/><path d="M102 560q72 -24 160 -5t226 -13" stroke="#d6d0c4" stroke-width=".6" opacity=".07" fill="none"/><path d="M102 578q72 -24 160 -5t226 -13" stroke="#d6d0c4" stroke-width=".6" opacity=".07" fill="none"/><path d="M102 596q72 -24 160 -5t226 -13" stroke="#d6d0c4" stroke-width=".6" opacity=".07" fill="none"/><path d="M102 614q72 -24 160 -5t226 -13" stroke="#d6d0c4" stroke-width=".6" opacity=".07" fill="none"/><path d="M102 632q72 -24 160 -5t226 -13" stroke="#d6d0c4" stroke-width=".6" opacity=".07" fill="none"/><path d="M102 650q72 -24 160 -5t226 -13" stroke="#d6d0c4" stroke-width=".6" opacity=".07" fill="none"/><path d="M102 668q72 -24 160 -5t226 -13" stroke="#d6d0c4" stroke-width=".6" opacity=".07" fill="none"/>
+<path d="M112 259q60 92 24 257t19 228M492 258q-38 106-20 255t-18 240" fill="none" stroke="#b4ada4" stroke-width="4" opacity=".23"/>
+<path d="M310 271q-58 23-75 97t3 93q13 22 42 27l68-4q36-18 44-48 11-71-24-117z" fill="#111315" stroke="#ada89e" stroke-width="1"/>
+<path d="M281 321q-21 9-27 34l-3 45q-8 27 11 44l20 13 27 11 24-11q32-9 38-48l-5-58q-10-33-39-34z" fill="#c4b8a4" stroke="#47413a" stroke-width="3"/>
+<path d="M276 341q14-43 34-42l28 16q17 10 27 39l-11 11-15-22q-10-8-32-4l-30 27-18-10z" fill="#141516"/>
+<path d="M261 358q-18 36-5 72 8 20 32 28-15-25-9-53zM352 359q24 23 24 60-4 26-35 37l13-39z" fill="#141516"/>
+<path d="M268 410q23 8 42 7t40-8q-2 35-36 64-32-10-46-44z" fill="#3e3a35" stroke="#6b6458" stroke-width="2"/>
+<path d="M266 384q15-7 31-1M323 382q17-7 35 0" fill="none" stroke="#292724" stroke-width="4"/>
+<ellipse cx="292" cy="385" rx="4" ry="2.5" fill="#23221f"/><ellipse cx="338" cy="384" rx="4" ry="2.5" fill="#23221f"/>
+<path d="M313 390l-6 22 12 1M299 433q15 9 32-3" fill="none" stroke="#5a4b41" stroke-width="2.2"/>
+<path d="M280 469q-100 19-123 101l-22 153 143-3 37-103 37 104 131 1-19-159q-38-75-109-96l-31 11z" fill="#151718" stroke="#b4aca0" stroke-width="3"/>
+<path d="M270 478l48 86 40-90-11 113-29 71-34-71z" fill="#272929" stroke="#d3cab9" stroke-width="2.5"/>
+<path d="M311 478 L239 512" stroke="#e2dcd0" stroke-width="2.2" opacity=".7"/><path d="M311 478 L250 512" stroke="#e2dcd0" stroke-width="2.2" opacity=".7"/><path d="M311 478 L261 512" stroke="#e2dcd0" stroke-width="2.2" opacity=".7"/><path d="M311 478 L272 512" stroke="#e2dcd0" stroke-width="2.2" opacity=".7"/><path d="M311 478 L283 512" stroke="#e2dcd0" stroke-width="2.2" opacity=".7"/><path d="M311 478 L294 512" stroke="#e2dcd0" stroke-width="2.2" opacity=".7"/><path d="M311 478 L305 512" stroke="#e2dcd0" stroke-width="2.2" opacity=".7"/><path d="M311 478 L316 512" stroke="#e2dcd0" stroke-width="2.2" opacity=".7"/><path d="M311 478 L327 512" stroke="#e2dcd0" stroke-width="2.2" opacity=".7"/><path d="M311 478 L338 512" stroke="#e2dcd0" stroke-width="2.2" opacity=".7"/><path d="M311 478 L349 512" stroke="#e2dcd0" stroke-width="2.2" opacity=".7"/><path d="M311 478 L360 512" stroke="#e2dcd0" stroke-width="2.2" opacity=".7"/><path d="M311 478 L371 512" stroke="#e2dcd0" stroke-width="2.2" opacity=".7"/><path d="M311 478 L382 512" stroke="#e2dcd0" stroke-width="2.2" opacity=".7"/><path d="M311 478 L393 512" stroke="#e2dcd0" stroke-width="2.2" opacity=".7"/>
+<path d="M227 520q15 31 24 70M398 516q-18 31-24 68" fill="none" stroke="#c7c0b4" stroke-width="5" opacity=".75"/>
+<path d="M174 615L478 390" stroke="#cbc4b7" stroke-width="6"/>
+<path d="M167 620L485 391" stroke="#454744" stroke-width="2"/>
+<path d="M458 376l43-3-13 35-15-14z" fill="#d2c9b7" stroke="#5c574f" stroke-width="2"/>
+<path d="M330 576q84 5 139-2l-13 109q-27 40-78 65-50-18-66-61z" fill="#c3bdb1" stroke="#242426" stroke-width="7"/>
+<path d="M333 585q72 7 119-2l-12 95q-16 31-62 51-43-19-54-46z" fill="#e2d9c5" stroke="#454540" stroke-width="2.3"/>
+<path d="M375 589v136M327 626h120" fill="none" stroke="#48463e" stroke-width="4.2"/>
+<path d="M346 605l15-12 16 15-16 17z M390 605l14-11 19 13-18 18z" fill="#303230" stroke="#ada697" stroke-width="1.5"/>
+<path d="M352 662q18-17 24 0l-12 34-15-3z M400 662q17-22 27-1l-11 35-15-4z" fill="#292a28" stroke="#716d65" stroke-width="1"/>
+<path d="M365 600q44 25 85 3" stroke="#d9d4ca" fill="none" opacity=".33" stroke-width="1.2"/><path d="M365 614q44 25 85 3" stroke="#d9d4ca" fill="none" opacity=".33" stroke-width="1.2"/><path d="M365 628q44 25 85 3" stroke="#d9d4ca" fill="none" opacity=".33" stroke-width="1.2"/><path d="M365 642q44 25 85 3" stroke="#d9d4ca" fill="none" opacity=".33" stroke-width="1.2"/><path d="M365 656q44 25 85 3" stroke="#d9d4ca" fill="none" opacity=".33" stroke-width="1.2"/><path d="M365 670q44 25 85 3" stroke="#d9d4ca" fill="none" opacity=".33" stroke-width="1.2"/><path d="M365 684q44 25 85 3" stroke="#d9d4ca" fill="none" opacity=".33" stroke-width="1.2"/><path d="M365 698q44 25 85 3" stroke="#d9d4ca" fill="none" opacity=".33" stroke-width="1.2"/>
+<path d="M151 751l10-132 44-9-11 140" fill="#41403b" stroke="#d4c9b4" stroke-width="2"/>
+<path d="M109 740q35-30 69 0m297-15q16-25 31 10" fill="none" stroke="#c7beb1" stroke-width="2.4" opacity=".6"/>
+<rect x="100" y="246" width="400" height="520" fill="url(#scratches)" opacity=".65"/>
+<g font-family="Georgia,'Times New Roman',serif" fill="#222220" text-anchor="middle">
+ <text x="300" y="802" font-size="13.3" letter-spacing="1.1">THE HOGARTH PRESS, 52 TAVISTOCK SQUARE, W.C.1</text>
+ <text x="300" y="831" font-size="14" letter-spacing="2.2">LONDON · 1928</text>
+</g>
+</svg>
