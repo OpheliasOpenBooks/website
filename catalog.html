@@ -16,9 +16,11 @@ header{border-bottom:1px solid var(--line);background:#faf8f2}.header{display:fl
 .brand{text-decoration:none;display:flex;gap:12px;align-items:center;font-size:24px;line-height:1.13}.seal{border:1px solid #9cae94;border-radius:50%;width:51px;height:51px;display:grid;place-items:center;font-style:italic;font-size:28px}
 .brand small{display:block;font:10px/2.5 Arial,sans-serif;letter-spacing:2.7px}
 header nav{display:flex;gap:25px;flex-wrap:wrap;font:14px Arial,sans-serif}header nav a{text-decoration:none}header nav a:hover{text-decoration:underline}
+header nav a.support-link{color:var(--gold);font-style:italic;font-family:Georgia,serif;font-size:15px}
 .eyebrow{font:700 11px/1.5 Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
 .hero{padding-top:58px;padding-bottom:36px;text-align:center}.hero h1{font:normal clamp(41px,5vw,60px)/1.13 Georgia,serif;margin:14px 0 15px;letter-spacing:-1.2px}
-.hero p{max-width:700px;margin:0 auto 20px;color:var(--muted)}.hero .quicklinks{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;align-items:center;font:14px Arial,sans-serif}
+.hero p{max-width:700px;margin:0 auto 20px;color:var(--muted)}
+.hero a.support-link{display:inline-block;border:1px solid #bea981;border-radius:22px;padding:7px 16px;background:#faf4e9;color:var(--ink);text-decoration:none;font:italic 15px Georgia,serif}.hero a.support-link:hover{background:#f0e6d0}.hero .quicklinks{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;align-items:center;font:14px Arial,sans-serif}
 .catalog-tools{background:var(--sage);border-block:1px solid var(--line);padding:26px 0 23px}
 .control-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(200px,250px) minmax(190px,220px);gap:13px}
 .field label{display:block;margin:0 0 7px;font:700 12px Arial,sans-serif;color:var(--ink)}
@@ -64,9 +66,9 @@ footer .wrap{display:flex;gap:18px;flex-wrap:wrap;justify-content:space-between}
 <script defer src="public/js/ophelia-share.js"></script>
 </head>
 <body>
-<header><div class="wrap header"><a class="brand" href="index.html" aria-label="Ophelia’s Open Book home"><span class="seal" aria-hidden="true">O.</span><span>Ophelia’s<small>OPEN BOOK</small></span></a><nav aria-label="Main navigation"><a href="index.html">Home</a><a href="catalog.html" aria-current="page">Browse books</a><a href="index.html#braille">Braille resources</a><a href="index.html#about">Our story</a></nav></div></header>
+<header><div class="wrap header"><a class="brand" href="index.html" aria-label="Ophelia’s Open Book home"><span class="seal" aria-hidden="true">O.</span><span>Ophelia’s<small>OPEN BOOK</small></span></a><nav aria-label="Main navigation"><a href="index.html">Home</a><a href="catalog.html" aria-current="page">Browse books</a><a href="index.html#braille">Braille resources</a><a href="index.html#about">Our story</a><a class="support-link" href="support.html">Support the library ❦</a></nav></div></header>
 <main>
- <section class="wrap hero"><div class="eyebrow">All stories welcome here</div><h1>Find your next great read.</h1><p>Explore our growing collection of free public-domain classics. Search an author or title, browse by subject, or wander through the alphabet. Every book is yours to read and listen to.</p><div class="quicklinks"><a href="index.html">← Back to the welcome page</a><div id="catalog-share-target"></div></div></section>
+ <section class="wrap hero"><div class="eyebrow">All stories welcome here</div><h1>Find your next great read.</h1><p>Explore our growing collection of free public-domain classics. Search an author or title, browse by subject, or wander through the alphabet. Every book is yours to read and listen to.</p><div class="quicklinks"><a href="index.html">← Back to the welcome page</a><div id="catalog-share-target"></div><a class="support-link" href="support.html">Support the library ❦</a></div></section>
  <section class="catalog-tools" aria-label="Find a book"><div class="wrap">
   <div class="control-row">
    <div class="field"><label for="book-search">Search by title, author, or description</label><input type="search" id="book-search" autocomplete="off" placeholder="Try Austen, Poe, Oedipus…" autofocus></div>
@@ -82,7 +84,7 @@ footer .wrap{display:flex;gap:18px;flex-wrap:wrap;justify-content:space-between}
   <noscript><p>Enable JavaScript to use the search and filters, or <a href="index.html#books">browse the full original bookshelf</a>.</p></noscript>
  </section>
 </main>
-<footer><div class="wrap"><span>Ophelia’s Open Book · Literature for everyone, always free to read.</span><span><a href="index.html">Home</a> · <a href="index.html#about">About</a></span></div></footer>
+<footer><div class="wrap"><span>Ophelia’s Open Book · Literature for everyone, always free to read.</span><span><a href="index.html">Home</a> · <a href="index.html#about">About</a> · <a href="support.html">Support the library</a></span></div></footer>
 <script>
 (() => {
 'use strict';
