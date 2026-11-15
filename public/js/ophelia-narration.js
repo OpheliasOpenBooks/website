@@ -1,5 +1,5 @@
 /* Ophelia's Open Book — shared spoken-text preparation.
- * Version 1.4.12. Load before each reader's inline narration code.
+ * Version 1.4.13. Load before each reader's inline narration code.
  *
  * Normalize only the words sent to speech synthesis: the printed book,
  * headings, pagination, bookmarks and original manuscripts are unchanged.
@@ -128,6 +128,12 @@
     // that punctuation as "dot". Keep the period as a sentence pause;
     // omit only the apostrophe in narration, never the printed manuscript.
     text=text.replace(/\bcussin['’](?=\.)/gi,'cussin');
+    // Dracula XX: "For a good while we sat and smoked" is a time phrase,
+    // not a separate description of "good". A speech-only comma after
+    // "while" keeps "for a good while" together as one temporal unit.
+    // The published words and punctuation remain exactly Stoker's.
+    text=text.replace(/\bFor a good while(?=\s+we sat and smoked\b)/g,
+      'For a good while,');
     // Dracula's recurring "Un-Dead" names the undead: one word, not
     // separately spoken letters "U N". Preserve the author's hyphenated
     // spelling in the visible edition; join it ONLY for speech synthesis.
@@ -711,5 +717,5 @@
     else clearPausedHighlight();
   }
 
-  root.OpheliaNarration=Object.freeze({version:'1.4.12',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
+  root.OpheliaNarration=Object.freeze({version:'1.4.13',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
 })(window);
