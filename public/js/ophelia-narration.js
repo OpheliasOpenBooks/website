@@ -1,5 +1,5 @@
 /* Ophelia's Open Book — shared spoken-text preparation.
- * Version 1.4.11. Load before each reader's inline narration code.
+ * Version 1.4.12. Load before each reader's inline narration code.
  *
  * Normalize only the words sent to speech synthesis: the printed book,
  * headings, pagination, bookmarks and original manuscripts are unchanged.
@@ -123,6 +123,11 @@
     // The nearby "'igh steps" drops the H too. Speech only.
     text=text.replace(/['’]igh\s+['’]un\b/gi,'eye unn')
       .replace(/['’]igh\b(?=\s+steps\b)/gi,'eye');
+    // Dracula XX: the Cockney word "cussin'." ends with a dropped-G
+    // apostrophe immediately before a full stop. Some browsers announce
+    // that punctuation as "dot". Keep the period as a sentence pause;
+    // omit only the apostrophe in narration, never the printed manuscript.
+    text=text.replace(/\bcussin['’](?=\.)/gi,'cussin');
     // Dracula's recurring "Un-Dead" names the undead: one word, not
     // separately spoken letters "U N". Preserve the author's hyphenated
     // spelling in the visible edition; join it ONLY for speech synthesis.
@@ -706,5 +711,5 @@
     else clearPausedHighlight();
   }
 
-  root.OpheliaNarration=Object.freeze({version:'1.4.11',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
+  root.OpheliaNarration=Object.freeze({version:'1.4.12',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
 })(window);
