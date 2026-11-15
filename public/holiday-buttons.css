@@ -1,0 +1,82 @@
+/*
+  Ophelia's Open Book — Victorian Christmas card-inspired button colors
+  Seasonal override only. To return to the regular design, remove the
+  <link href="public/holiday-buttons.css"> line and the ophelia-holiday
+  class from the home, catalog, and support pages.
+  No changes are made to book pages, narration, or reading controls.
+*/
+body.ophelia-holiday{
+  --holiday-cranberry:#762d3c;
+  --holiday-cranberry-hover:#5c2030;
+  --holiday-holly:#23513e;
+  --holiday-holly-hover:#173e30;
+  --holiday-gilt:#c8a565;
+  --holiday-ivory:#fffcf3;
+}
+
+/* Rich oxblood and fine gilded keylines, like a Victorian printed card. */
+body.ophelia-holiday .actions > .button:not(.support-button),
+body.ophelia-holiday .catalog-cta .button,
+body.ophelia-holiday .catalog-grid .read-button,
+body.ophelia-holiday .support-note .support-button {
+  background:var(--holiday-cranberry);
+  color:var(--holiday-ivory);
+  border:2px solid var(--holiday-gilt);
+  border-radius:7px;
+  box-shadow:inset 0 0 0 3px var(--holiday-cranberry), inset 0 0 0 4px #e2c992,0 3px 8px rgba(68,31,34,.16);
+  text-decoration:none;
+}
+body.ophelia-holiday .actions > .button:not(.support-button):hover,
+body.ophelia-holiday .catalog-cta .button:hover,
+body.ophelia-holiday .catalog-grid .read-button:hover,
+body.ophelia-holiday .support-note .support-button:hover {
+  background:var(--holiday-cranberry-hover);
+  box-shadow:inset 0 0 0 3px var(--holiday-cranberry-hover),inset 0 0 0 4px #e2c992,0 3px 8px rgba(68,31,34,.2);
+  color:var(--holiday-ivory);
+}
+
+/* Holly green for voluntary giving, framed with a restrained gold trim. */
+body.ophelia-holiday .actions .support-button,
+body.ophelia-holiday .hero a.support-link,
+body.ophelia-holiday .giving-actions .donate-button {
+  background:var(--holiday-holly);
+  color:var(--holiday-ivory);
+  border:2px solid var(--holiday-gilt);
+  border-radius:24px;
+  box-shadow:inset 0 0 0 3px var(--holiday-holly),inset 0 0 0 4px #e2c992,0 3px 8px rgba(22,54,38,.17);
+  text-decoration:none;
+}
+body.ophelia-holiday .actions .support-button:hover,
+body.ophelia-holiday .hero a.support-link:hover,
+body.ophelia-holiday .giving-actions .donate-button:hover {
+  background:var(--holiday-holly-hover);
+  box-shadow:inset 0 0 0 3px var(--holiday-holly-hover),inset 0 0 0 4px #e2c992,0 3px 8px rgba(22,54,38,.22);
+  color:var(--holiday-ivory);
+}
+
+/* Subtle garnet lettering in the navigation, without repainting the page. */
+body.ophelia-holiday .support-nav,
+body.ophelia-holiday header nav a.support-link,
+body.ophelia-holiday header nav a[aria-current="page"] {
+  color:var(--holiday-cranberry);
+}
+
+/* Keep sharing approachable; festive trim rather than a garish badge. */
+body.ophelia-holiday .catalog-grid .card-share{
+  border-color:#b9a074;
+  background:#fbf3e3;
+  color:var(--holiday-holly);
+}
+body.ophelia-holiday .catalog-grid .card-share:hover{background:#f4e7d0}
+
+/* Keyboard users always receive a distinct focus indicator. */
+body.ophelia-holiday a:focus-visible,
+body.ophelia-holiday button:focus-visible{
+  outline:3px solid #876024;
+  outline-offset:4px;
+}
+@media(prefers-reduced-motion:reduce){
+  body.ophelia-holiday .actions .button,
+  body.ophelia-holiday .read-button,
+  body.ophelia-holiday .donate-button{transition:none}
+}
