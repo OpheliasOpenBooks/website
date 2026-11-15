@@ -88,6 +88,7 @@ footer .wrap{display:flex;gap:18px;flex-wrap:wrap;justify-content:space-between}
 'use strict';
 const $=id=>document.getElementById(id);
 const genreByPage={
+ 'little-women.html':'Children’s Classics',
  'civilization-and-its-discontents.html':'Psychology & Philosophy',
  'cakes-and-ale.html':'Literary Fiction',
  'swallows-and-amazons.html':'Children’s Classics',
@@ -213,6 +214,7 @@ const genreByPage={
  'oedipus-rex.html':'Ancient Classics'
 };
 const progressByPage={
+ 'little-women.html':'ophelia-little-women-1868-69-classic-v1',
  'civilization-and-its-discontents.html':'ophelia-civilization-and-its-discontents-1930-classic-v1',
  'cakes-and-ale.html':'ophelia-cakes-and-ale-1930-classic-v1',
  'swallows-and-amazons.html':'ophelia-swallows-and-amazons-1930-classic-v1',
@@ -280,6 +282,7 @@ const progressByPage={
  'oedipus-rex.html':'ophelia-oedipus-rex-storr-1912-alice-voice-v1'
 };
 const catalogOnlyBooks=[
+ {title:'Little Women',author:'Louisa May Alcott · 1868–1869 · Family Classic',href:'little-women.html',image:'public/art/little-women-cover.svg',alt:'Historically inspired deep-green Victorian cloth and gilt title-medallion cover for Louisa May Alcott’s 1868 Little Women first edition',description:"Four sisters—Meg, Jo, Beth, and Amy—share their hopes, heartaches, small adventures, and everyday triumphs as they grow from girlhood to womanhood in a loving New England home.",genre:'Children’s Classics'},
  {title:'Civilization and Its Discontents',author:'Sigmund Freud · 1930 · Joan Riviere translation',href:'civilization-and-its-discontents.html',image:'public/art/civilization-and-its-discontents-cover.svg',alt:'Historically inspired brown and black typographic 1930 first American edition cover for Civilization and Its Discontents',description:"Why does the promise of civilization so often leave humanity restless? Freud considers happiness, love, guilt, and the struggle between our deepest desires and the demands of living together.",genre:'Psychology & Philosophy'},
  {title:'Cakes and Ale',author:'W. Somerset Maugham · 1930 · Literary Satire',href:'cakes-and-ale.html',image:'public/art/cakes-and-ale-cover.svg',alt:'Vintage-inspired cream and red 1930 first-edition-style jacket for Cakes and Ale with a horse-drawn carriage',description:"Behind the polished reputation of a celebrated novelist lies a livelier story—and the unforgettable Rosie Driffield, whose generosity, independence, and love of life unsettle the literary establishment.",genre:'Literary Fiction'},
  {title:'Swallows and Amazons',author:'Arthur Ransome · 1930 · Children’s Adventure',href:'swallows-and-amazons.html',image:'public/art/swallows-and-amazons-cover.svg',alt:'Original period-inspired cover echoing Steven Spurrier’s 1930 map-style Swallows and Amazons dust jacket',description:"Four Walker children sail to their own island in the English Lake District, where two daring sisters, a pair of little boats, and a mysterious houseboat turn one summer holiday into a marvelous adventure.",genre:'Children’s Classics'},
