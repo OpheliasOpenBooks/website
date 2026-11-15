@@ -88,6 +88,7 @@ footer .wrap{display:flex;gap:18px;flex-wrap:wrap;justify-content:space-between}
 'use strict';
 const $=id=>document.getElementById(id);
 const genreByPage={
+ 'passing.html':'Literary Fiction',
  'cane.html':'Literary Fiction',
  'the-house-of-mirth.html':'Literary Fiction',
  'the-awakening.html':'Literary Fiction',
@@ -217,6 +218,7 @@ const genreByPage={
  'oedipus-rex.html':'Ancient Classics'
 };
 const progressByPage={
+ 'passing.html':'ophelia-passing-1929-classic-v1',
  'cane.html':'ophelia-cane-1923-classic-v1',
  'the-house-of-mirth.html':'ophelia-the-house-of-mirth-1905-classic-v1',
  'the-awakening.html':'ophelia-the-awakening-1899-classic-v1',
@@ -288,6 +290,7 @@ const progressByPage={
  'oedipus-rex.html':'ophelia-oedipus-rex-storr-1912-alice-voice-v1'
 };
 const catalogOnlyBooks=[
+ {title:'Passing',author:'Nella Larsen · 1929 · Harlem Renaissance',href:'passing.html',image:'public/art/passing-cover.svg',alt:'Historically faithful 1929 Knopf first-edition-inspired Passing jacket with ivory ground, deep red Art Deco borders, and red lettering',description:"When childhood acquaintances Irene Redfield and Clare Kendry meet again, their friendship becomes a delicate web of secrecy, loyalty, and social ambition, revealing the perilous boundaries of race and belonging in 1920s Harlem.",genre:'Literary Fiction'},
  {title:'Cane',author:'Jean Toomer · 1923 · Harlem Renaissance',href:'cane.html',image:'public/art/cane-cover.svg',alt:'Historically inspired original 1923 Cane cover with tan cloth, golden sun and bold black diagonal CANE title band',description:"From rural Georgia to Washington’s restless streets, haunting poems, vivid portraits, and intimate stories trace desire, identity, and the transforming African American South in a landmark of the Harlem Renaissance.",genre:'Literary Fiction'},
  {title:'The House of Mirth',author:'Edith Wharton · 1905 · American Literary Fiction',href:'the-house-of-mirth.html',image:'public/art/the-house-of-mirth-cover.svg',alt:'Historically inspired 1905 red cloth and gold-bordered title panel first edition cover of The House of Mirth by Edith Wharton',description:"Beautiful, penniless Lily Bart moves through New York’s glittering high society, where reputation is everything and the pursuit of wealth threatens the very freedom she longs to keep.",genre:'Literary Fiction'},
  {title:'The Awakening',author:'Kate Chopin · 1899 · American Literary Fiction',href:'the-awakening.html',image:'public/art/the-awakening-cover.svg',alt:'Historically inspired Kate Chopin first-edition cover with pale green cloth, dark green grapevines and red lettering',description:"On Louisiana’s sun-drenched coast, Edna Pontellier discovers an unexpected longing for freedom, art, and love, and begins to question the quiet expectations that have shaped her life.",genre:'Literary Fiction'},
