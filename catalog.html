@@ -37,6 +37,9 @@ header nav a.support-link{color:var(--gold);font-style:italic;font-family:Georgi
 /* Fixed antique bookplate: cover art is a background, never a flowing image.
    This prevents even unusually tall or oversized original artwork overlapping text. */
 .cover{height:245px;flex:0 0 245px;min-height:0;max-height:245px;overflow:hidden;position:relative;isolation:isolate;background-color:#f1ecdf;background-position:center;background-repeat:no-repeat;background-size:contain;background-origin:content-box;background-clip:content-box;padding:12px;border-bottom:1px solid #ded9ca}
+.cover[data-image-status="missing"]{background-image:radial-gradient(ellipse at center,#f5efdf 0%,#e8dac0 100%)!important;border:9px double #bca778;padding:12px}
+.cover[data-image-status="missing"]::before{content:"❦";display:block;position:absolute;top:30px;left:0;right:0;text-align:center;color:#957443;font:normal 64px Georgia,serif}
+.cover[data-image-status="missing"]::after{inset:auto 16px 40px!important;padding:11px!important;font:italic 18px/1.3 Georgia,serif!important;background:transparent!important}
 .cover::after{content:attr(data-fallback);position:absolute;inset:auto 10px 10px;z-index:0;padding:5px 7px;background:rgba(255,253,248,.9);font:italic 12px/1.25 Georgia,serif;color:#3d5947;text-align:center;pointer-events:none}.book-info{padding:18px;display:flex;flex-direction:column;flex:1 1 auto;gap:9px;min-width:0;position:relative;z-index:1;background:#fffdf8}
 .book-info .genre{font:700 10px Arial,sans-serif;letter-spacing:1px;text-transform:uppercase;color:#8b6c43}
 .book-info h3{font:normal 23px/1.24 Georgia,serif;margin:0;overflow-wrap:break-word}
@@ -404,6 +407,25 @@ function renderAlphabet(){
   $('alphabet').appendChild(b);
  }
 }
+// Try the originally chosen historical cover first, then Wikimedia's
+// canonical file endpoint when a third-party thumbnail does not load.
+function coverCandidates(src){
+ if(!src)return [];
+ const urls=[src];
+ try{
+  const u=new URL(src,location.href);
+  if(u.hostname==='thumb.wikimedia.org'||
+    (u.hostname==='upload.wikimedia.org'&&u.pathname.includes('/thumb/'))){
+   const path=decodeURIComponent(u.pathname);
+   const match=path.match(/\/([^/]+\.(?:jpe?g|png|webp|tiff?|svg))\//i);
+   if(match)urls.push('https://commons.wikimedia.org/wiki/Special:FilePath/'+encodeURIComponent(match[1]));
+  }
+  if(u.hostname==='commons.wikimedia.org'&&u.pathname.includes('/Special:FilePath/')&&u.search){
+    urls.push(u.origin+u.pathname);
+  }
+ }catch{}
+ return [...new Set(urls)];
+}
 function card(book){
  const el=document.createElement('article');el.className='book-card';
  const cover=document.createElement('div');cover.className='cover';
@@ -416,9 +438,27 @@ function card(book){
  }
  // Original book art is displayed as a constrained, uncropped background.
  // It cannot escape its frame or obscure the separate text panel.
- if(book.image){cover.style.backgroundImage='url('+JSON.stringify(book.image)+')'; cover.style.backgroundColor='#e9e1d0';}
- // Keep a readable vintage fallback if an image source cannot load.
+ // CSS background images cannot report failures. Preload each candidate
+ // explicitly so a bad remote URL never leaves an unexplained blank panel.
  cover.dataset.fallback=book.title;
+ cover.dataset.imageStatus='loading';
+ const options=coverCandidates(book.image);
+ const tryCover=(index)=>{
+   if(index>=options.length){
+     cover.style.backgroundImage='none';
+     cover.dataset.imageStatus='missing';
+     return;
+   }
+   const probe=new Image();
+   probe.onload=()=>{
+     if(!cover.isConnected)return;
+     cover.style.backgroundImage='url('+JSON.stringify(options[index])+')';
+     cover.dataset.imageStatus='loaded';
+   };
+   probe.onerror=()=>tryCover(index+1);
+   probe.src=options[index];
+ };
+ if(options.length)tryCover(0);else cover.dataset.imageStatus='missing';
  const info=document.createElement('div');info.className='book-info';
  const genre=document.createElement('div');genre.className='genre';genre.textContent=book.genre;
  const title=document.createElement('h3');title.textContent=book.title;
