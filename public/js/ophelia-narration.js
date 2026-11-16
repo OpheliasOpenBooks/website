@@ -1,5 +1,5 @@
 /* Ophelia's Open Book — shared spoken-text preparation.
- * Version 1.4.22. Load before each reader's inline narration code.
+ * Version 1.4.23. Load before each reader's inline narration code.
  *
  * Normalize only the words sent to speech synthesis: the printed book,
  * headings, pagination, bookmarks and original manuscripts are unchanged.
@@ -125,6 +125,11 @@
 
   function normalizeForSpeech(value){
     let text=removeFootnoteMarkersForSpeech(value);
+    // Across the library, the address "ma'am" is one syllable, rhyming
+    // with "Pam" (/mæm/), not "may-am" or two separate syllables.
+    // Only the speech copy changes; preserve straight/curly apostrophes
+    // and the author's spelling in the displayed original.
+    text=text.replace(/\bma['’]am\b/gi, word=>word[0]==='M'?'Mam':'mam');
     // Huckleberry Finn, Chapter IV, page 25: voice-only guidance for
     // Jim's Southern dialect. Do not alter Twain's displayed original text.
     text=text.replace(/\bYo['’]?\s+ole\s+father\s+doan['’]\s+know\s+yit\s+what\s+he['’]s\s+a-gwyne\s+to\s+do\b/gi,
@@ -845,5 +850,5 @@
     else clearPausedHighlight();
   }
 
-  root.OpheliaNarration=Object.freeze({version:'1.4.22',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
+  root.OpheliaNarration=Object.freeze({version:'1.4.23',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
 })(window);
