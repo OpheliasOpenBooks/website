@@ -272,9 +272,44 @@ $('settings-toggle').onclick=()=>{const show=$('reader-options').hidden;$('reade
 $('sound').onclick=()=>{soundOn=!soundOn;if(!soundOn&&speaking){stop();} $('sound').textContent=soundOn?'Sound on':'Sound off';$('sound').setAttribute('aria-pressed',String(!soundOn));note(soundOn?'Sound is on.':'Sound is off.');};
 window.addEventListener('pagehide',stop);if('speechSynthesis' in window){updateVoices();speechSynthesis.addEventListener('voiceschanged',updateVoices)}
 applySettings();
+// The GitHub-hosted, public-domain transcription is a temporary resilience
+// fallback until our own checked-in copy of the translation is available.
+async function loadSwannText(){
+ try{
+   const local=await fetch('public/books/swanns-way.json');
+   if(local.ok)return await local.text();
+ }catch(e){console.info('Local Swann text unavailable; trying the source mirror',e)}
+ const mirror=await fetch('https://raw.githubusercontent.com/GITenberg/Swann-s-Way_7178/master/7178.txt');
+ if(!mirror.ok)throw Error('Original text mirror unavailable');
+ // The historical GITenberg transcription uses an older Western encoding.
+ const raw=new TextDecoder('windows-1252').decode(await mirror.arrayBuffer()).replace(/\r\n?/g,'\n');
+ const start=raw.search(/^\*\*\*\s*START\s+OF\s+.*PROJECT GUTENBERG.*$/im);
+ const end=raw.search(/^\*\*\*\s*END\s+OF\s+.*PROJECT GUTENBERG.*$/im);
+ if(start<0||end<start)throw Error('Incomplete original English text');
+ const body=raw.slice(start,end);
+ const headings=[...body.matchAll(/^[ \t]*(OVERTURE|COMBRAY|SWANN IN LOVE|PLACE-NAMES:\s*THE NAME)[ \t]*$/gm)];
+ const first=headings.find(m=>m[1]==='OVERTURE'&&/For a long time I used to go to bed early/i.test(body.slice(m.index+m[0].length,m.index+m[0].length+1200)));
+ if(!first)throw Error('The opening of the novel was not found');
+ const selected=[first];
+ for(const title of ['COMBRAY','SWANN IN LOVE','PLACE-NAMES: THE NAME']){
+   const match=headings.find(m=>m.index>selected.at(-1).index&&m[1].replace(/\s+/g,' ')===title);
+   if(!match)throw Error('Missing original section '+title);
+   selected.push(match);
+ }
+ const sections=selected.map((m,i)=>{
+   const from=m.index+m[0].length;
+   const to=i+1<selected.length?selected[i+1].index:body.length;
+   const paragraphs=body.slice(from,to).trim().split(/\n\s*\n+/).map(p=>p.replace(/\s+/g,' ').trim()).filter(Boolean);
+   return {name:m[1].replace(/\s+/g,' ').replace('OVERTURE','Overture').replace('COMBRAY','Combray').replace('SWANN IN LOVE','Swann in Love').replace('PLACE-NAMES: THE NAME','Place-Names: The Name'),paragraphs};
+ });
+ const total=sections.reduce((n,p)=>n+p.paragraphs.join(' ').trim().split(/\s+/).length,0);
+ if(total<140000||total>260000||sections.some(p=>!p.paragraphs.length))throw Error('Source text incomplete');
+ return JSON.stringify({title:'Swann’s Way',author:'Marcel Proust',translator:'C. K. Scott Moncrieff',sections});
+}
+
 (async()=>{
- // The entire original published book is served from this website. Speech uses device voices.
- try{const r=await fetch('public/books/swanns-way.json');if(!r.ok)throw Error('Local text file not found');setupBook(await r.text());}
+ // Prefer the locally hosted full edition, with a verified public-domain mirror fallback.
+ try{setupBook(await loadSwannText());}
  catch(e){$('loadbox').classList.remove('hidden');note('The complete book could not be loaded. Refresh or read from the source linked below.');console.error(e);}
 })();
 
