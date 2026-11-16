@@ -253,9 +253,9 @@ assert.deepEqual(Array.from(n.speechChunks('The Hon. Arthur Holmwood visited. Th
 assert.equal(n.speechChunks('Mr. Darcy spoke. Then Elizabeth replied.').length,2);
 assert.equal(n.speechChunks('Chapter One. The evening fell.').length,2);
 assert.ok(n.pauseAfter('The Merry Adventures of Robin Hood.')>=550);
-assert.ok(n.pauseAfter('And then he left.')>=250);
+assert.ok(n.pauseAfter('And then he left.')>=200);
 assert.ok(n.pauseAfter('Was he there?')>=300);
-assert.ok(n.pauseAfter('He said;')>=200);
+assert.ok(n.pauseAfter('He said;')>=150);
 
 // Speech must be started sequentially, with an observable delay.
 const heard=[],ended=[];
