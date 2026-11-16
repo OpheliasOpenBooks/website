@@ -31,7 +31,7 @@ a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible{ou
 <figure class="art"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/KJV-King-James-Version-Bible-first-edition-title-page-1611.jpg?width=720" width="480" height="750" loading="eager" alt="Genuine engraved first-edition King James Bible title page, printed by Robert Barker in 1611"><figcaption>Original engraved title page · Cornelis Boel, 1611</figcaption></figure>
 <div><div class="kicker">Ophelia's Open Book · Historical Editions</div><h1 id="book-name">The Holy Bible</h1><p class="sub">King James Version · First published 1611</p><p class="short">The Authorized Version, in its early seventeenth-century spelling.</p><div class="orn" aria-hidden="true">— ❧ —</div>
 <p>Read and listen to the complete <strong>80-book scripture collection</strong> in the 1611 edition's order: the Old Testament, the Apocrypha, and the New Testament. Find your place by book and chapter; Ophelia remembers where you left off.</p>
-<div class="edition-pills"><span>1611 spelling</span><span>80 books</span><span>1,355 chapters</span><span>Original engraved title page</span><span>Read aloud</span></div>
+<div class="edition-pills"><span>1611 spelling</span><span>80 books</span><span>1,362 chapters</span><span>Original engraved title page</span><span>Read aloud</span></div>
 <p class="notes"><strong>About this edition:</strong> This is a text transcription of the 1611-scripture wording and spelling, not a scanned facsimile. Original print layout, marginal notes, chapter summaries, and preliminary essays are not reproduced in the reader; see the historical sources below. English browser voices will not always reproduce seventeenth-century pronunciations.</p></div></section>
 <section class="reader" aria-label="King James Bible text and narration">
 <div class="reading-menu"><h2>Open the Scriptures</h2><div class="selectors">
@@ -104,7 +104,14 @@ async function loadBook(index){
   if(!Array.isArray(obj.books))throw Error('The book file could not be read.');
   shard=obj.books;cache.set(info.shard,shard);
  }
- const data=shard.find(b=>b.book===info.name);
+ let data=shard.find(b=>b.book===info.name);
+ // In the 1611 printing, the Epistle of Jeremiah belongs to Baruch.
+ if(info.name==='Baruch with the Epistle of Jeremiah'){
+  const baruch=shard.find(b=>b.book==='Baruch');
+  const epistle=shard.find(b=>b.book==='Letter of Jeremiah');
+  if(!baruch||!epistle||epistle.chapters.length!==1)throw Error('Baruch is incomplete.');
+  data={book:info.name,chapters:[...baruch.chapters,{chapter:6,verses:epistle.chapters[0].verses}]};
+ }
  if(!data||data.chapters.length!==info.chapters)throw Error('The book appears incomplete: '+info.name);
  return data;
 }
@@ -114,11 +121,11 @@ function render(){
  state.page=Math.max(0,Math.min(chapterPages()-1,Math.floor(state.page)||0));
  const meta=bookMeta(),chapter=currentChapter();
  pageVerses=chapter.verses.slice(state.page*PAGE_SIZE,(state.page+1)*PAGE_SIZE);
- fillSelect('chapter',current.chapters.map((c,i)=>({label:'Chapter '+(i+1),value:i+1})),state.chapter);
+ fillSelect('chapter',current.chapters.map((c,i)=>({label:'Chapter '+c.chapter,value:i+1})),state.chapter);
  fillSelect('page',Array.from({length:chapterPages()},(_,i)=>({label:'Page '+(i+1),value:i})),state.page);
  $('book').value=String(state.book);
  $('section').textContent=sectionName();
- $('chaptertitle').textContent=meta.name+' · Chapter '+state.chapter;
+ $('chaptertitle').textContent=meta.name+' · Chapter '+chapter.chapter;
  const from=pageVerses[0]?.verse||0,to=pageVerses.at(-1)?.verse||0;
  $('pagelabel').textContent='Reading page '+(state.page+1)+' of '+chapterPages()+' · Verses '+from+'–'+to;
  const verses=$('verses');verses.replaceChildren();
@@ -149,7 +156,11 @@ async function navigate(direction,automatic){
  if(direction>0){
    if(state.page+1<pages)state.page++;
    else if(state.chapter<current.chapters.length){state.chapter++;state.page=0;}
-   else if(state.book<manifest.books.length-1){await showBook(state.book+1);if(automatic)window.scrollTo(0,$('reader-anchor')?.offsetTop||Math.max(0,$('verses').getBoundingClientRect().top+scrollY-120));return true;}
+   else if(state.book<manifest.books.length-1){
+    // Do not invalidate the speech token when auto-turning between books.
+    state.book++;state.chapter=1;state.page=0;
+    current=await loadBook(state.book);render();return true;
+   }
    else return false;
  }else{
    if(state.page>0)state.page--;
@@ -172,7 +183,7 @@ function start(){
  }
  stop(true);playing=true;paused=false;const thisToken=token;
  const voice=speechSynthesis.getVoices().find(v=>v.voiceURI===state.voice);
- const intro=state.page===0?[bookMeta().name+'. Chapter '+state.chapter+'.']:[];
+ const intro=state.page===0?[bookMeta().name+'. Chapter '+currentChapter().chapter+'.']:[];
  const words=[...intro];
  for(const verse of pageVerses){
   const parts=window.OpheliaNarration?.speechChunks?.(verse.text)||[verse.text];
