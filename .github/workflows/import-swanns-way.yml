@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - '.github/workflows/import-swanns-way.yml'
+      - 'scripts/import_swanns_way.py'
   workflow_dispatch:
 permissions:
   contents: write
