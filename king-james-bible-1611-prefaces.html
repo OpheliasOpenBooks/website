@@ -6,7 +6,7 @@
 </style></head>
 <body><header class="top"><a href="index.html">Ophelia's Open Book</a><nav><a href="king-james-bible-1611.html">Return to the Bible</a><a href="catalog.html">Library</a></nav></header>
 <main class="wrap"><div class="intro"><div class="subtitle">London · Robert Barker · 1611</div><h1>Dedication and Preface</h1><p>Two original front-matter texts that accompanied the first publication of the King James Bible: the translators' dedication to King James and their address to readers.</p></div>
-<div class="guide"><strong>Reader's note:</strong> The spelling and wording of these public-domain writings have been preserved from an early-printing transcription, but their decorative layout and marginal features are not reproduced. Select a section to listen using your browser's English voices. <label for="voice">Narrator:</label> <select id="voice" aria-label="Select narrator voice"><option value="">Browser's default English voice</option></select> <label for="speed">Speed:</label> <select id="speed"><option value="0.8">Relaxed</option><option value="1" selected>Normal</option><option value="1.2">Brisk</option></select> <button id="stop" type="button">Stop narration</button><div id="status" class="label" aria-live="polite">Choose a section below.</div></div>
+<div class="guide"><strong>Reader's note:</strong> The spelling and wording of these public-domain writings have been preserved from an early-printing transcription, but their decorative layout and marginal features are not reproduced. Select a section to listen using your browser's English voices. <label for="voice">Narrator:</label> <select id="voice" aria-label="Select narrator voice"><option value="">Browser's default English voice</option></select> <label for="speed">Speed:</label> <select id="speed"><option value="0.8">Relaxed</option><option value="1" selected>Normal</option><option value="1.2">Brisk</option></select> <button id="pause" type="button" disabled>Ⅱ Pause</button> <button id="stop" type="button">Stop narration</button><div id="status" class="label" aria-live="polite">Choose a section below.</div></div>
 <section id="dedication" class="section"><h2>The Epistle Dedicatory</h2><p class="subtitle" style="text-align:center">To King James I</p><div class="narration"><button type="button" data-listen="dedication">▶ Listen to the dedication</button></div><div id="dedication-text">
 <p>To the most high and mightie Prince, James by the grace of God King of Great Britaine, France and Ireland, Defender of the Faith, &amp;c. The translators of The Bible, wish Grace, Mercie, and Peace, through Jesus Christ our Lord.</p>
 <p>Great and manifold were the blessings (most dread Soveraigne) which Almighty GOD, the Father of all Mercies, bestowed upon us the people of ENGLAND, when first he sent your Majesties Royall person to rule and raigne over us. For whereas it was the expectation of many, who wished not well unto our ZION, that upon the setting of that bright Occidentall Starre Queene ELIZABETH of most happy memory, some thicke and palpable cloudes of darkenesse would so have overshadowed this land, that men should have bene in doubt which way they were to walke, and that it should hardly be knowen, who was to direct the unsetled State: the appearance of your MAJESTIE, as of the Sunne in his strength, instantly dispelled those supposed and surmised mists, and gave unto all that were well affected, exceeding cause of comfort; especially when we beheld the government established in your HIGHNESSE, and your hopefull Seed, by an undoubted Title, and this also accompanied with Peace and tranquillitie, at home and abroad.</p>
@@ -38,26 +38,31 @@
 <p class="source">Text transcription: <a href="https://github.com/lb42/KJV_1611" target="_blank" rel="noopener noreferrer">TEI 1611 KJV project</a>, from public-domain seventeenth-century writings. The <a href="king-james-bible-1611.html">80-book Bible reader</a> hosts the scripture itself.</p></main>
 <footer class="foot">Ophelia's Open Book · <a href="king-james-bible-1611.html">Back to the King James Bible</a></footer>
 <script src="public/js/ophelia-narration.js?v=1.4.22"></script><script>
-'use strict';(()=>{let token=0;const $=s=>document.getElementById(s);
+'use strict';(()=>{let token=0,playing=false,paused=false;const $=s=>document.getElementById(s);
 function updateVoices(){if(!('speechSynthesis'in window))return;
  const old=$('voice').value;$('voice').replaceChildren(new Option('Browser default English',''));
  speechSynthesis.getVoices().filter(v=>/^en[-_]/i.test(v.lang)).forEach(v=>$('voice').add(new Option(v.name+' · '+v.lang,v.voiceURI)));
  $('voice').value=old;
 }
-function stop(){token++;window.OpheliaNarration?.clearReading?.();if('speechSynthesis'in window)speechSynthesis.cancel();$('status').textContent='Narration stopped.';}
+function stop(){token++;playing=false;paused=false;window.OpheliaNarration?.clearReading?.();if('speechSynthesis'in window)speechSynthesis.cancel();$('pause').disabled=true;$('pause').textContent='Ⅱ Pause';$('status').textContent='Narration stopped.';}
 document.getElementById('stop').onclick=stop;
+$('pause').onclick=()=>{
+ if(!playing)return;
+ if(paused){if(window.OpheliaNarration?.resumeReading?.()||speechSynthesis.resume()){paused=false;$('pause').textContent='Ⅱ Pause';$('status').textContent='Narration resumed.';}}
+ else if(window.OpheliaNarration?.pauseReading?.()||speechSynthesis.pause()){paused=true;$('pause').textContent='▶ Resume';$('status').textContent='Narration paused.';}
+};
 document.querySelectorAll('[data-listen]').forEach(button=>button.onclick=()=>{
  if(!('speechSynthesis'in window)){ $('status').textContent='Spoken narration is not supported here.';return;}
  stop();const who=button.dataset.listen;const text=$(who+'-text').textContent;
  const words=window.OpheliaNarration?.speechChunks?.(text)||[text];
- if(!words.length)return;const my=token;let complete=0;
+ if(!words.length)return;playing=true;paused=false;$('pause').disabled=false;const my=token;let complete=0;
  const voice=speechSynthesis.getVoices().find(v=>v.voiceURI===$('voice').value);
  const utterances=words.map(word=>{const u=new SpeechSynthesisUtterance(word);
  u.lang=voice?.lang||'en-GB';if(voice)u.voice=voice;u.rate=Number($('speed').value)||1;
- u.onend=()=>{if(token!==my)return;if(++complete===words.length)$('status').textContent='Finished the '+who+'.';};
+ u.onend=()=>{if(token!==my)return;if(++complete===words.length){playing=false;paused=false;$('pause').disabled=true;$('pause').textContent='Ⅱ Pause';$('status').textContent='Finished the '+who+'.';}};
  u.onerror=()=>{if(token===my)stop();};return u;});
  $('status').textContent='Reading the '+who+'…';
- if(window.OpheliaNarration?.speakWithPauses)window.OpheliaNarration.speakWithPauses(speechSynthesis,utterances,()=>my===token,()=>false);
+ if(window.OpheliaNarration?.speakWithPauses)window.OpheliaNarration.speakWithPauses(speechSynthesis,utterances,()=>my===token,()=>paused);
  else utterances.forEach(u=>speechSynthesis.speak(u));
 });
 if('speechSynthesis'in window){updateVoices();speechSynthesis.addEventListener?.('voiceschanged',updateVoices);}
