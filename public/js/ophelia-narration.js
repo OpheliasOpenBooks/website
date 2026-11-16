@@ -1,5 +1,5 @@
 /* Ophelia's Open Book — shared spoken-text preparation.
- * Version 1.4.19. Load before each reader's inline narration code.
+ * Version 1.4.20. Load before each reader's inline narration code.
  *
  * Normalize only the words sent to speech synthesis: the printed book,
  * headings, pagination, bookmarks and original manuscripts are unchanged.
@@ -125,6 +125,10 @@
 
   function normalizeForSpeech(value){
     let text=removeFootnoteMarkersForSpeech(value);
+    // Huckleberry Finn, Chapter IV, page 25: voice-only guidance for
+    // Jim's Southern dialect. Do not alter Twain's displayed original text.
+    text=text.replace(/\bYo['’]?\s+ole\s+father\s+doan['’]\s+know\s+yit\s+what\s+he['’]s\s+a-gwyne\s+to\s+do\b/gi,
+      'Yo ol father dun know wit what he\'s a gonna to do');
     // Spanish literary name: Don Quixote / Don Quijote is pronounced
     // approximately "Don kee-HOH-teh" (Spanish /don kiˈxote/).
     // Speech-only phonetics; printed titles and manuscript remain unchanged.
@@ -818,5 +822,5 @@
     else clearPausedHighlight();
   }
 
-  root.OpheliaNarration=Object.freeze({version:'1.4.19',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
+  root.OpheliaNarration=Object.freeze({version:'1.4.20',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
 })(window);
