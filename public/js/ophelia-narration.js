@@ -1,5 +1,5 @@
 /* Ophelia's Open Book — shared spoken-text preparation.
- * Version 1.4.18. Load before each reader's inline narration code.
+ * Version 1.4.19. Load before each reader's inline narration code.
  *
  * Normalize only the words sent to speech synthesis: the printed book,
  * headings, pagination, bookmarks and original manuscripts are unchanged.
@@ -125,6 +125,10 @@
 
   function normalizeForSpeech(value){
     let text=removeFootnoteMarkersForSpeech(value);
+    // Spanish literary name: Don Quixote / Don Quijote is pronounced
+    // approximately "Don kee-HOH-teh" (Spanish /don kiˈxote/).
+    // Speech-only phonetics; printed titles and manuscript remain unchanged.
+    text=text.replace(/\bDon[ \t]+(?:Quixote|Quijote)\b/gi,'Don Kee-hoh-teh');
     // Huckleberry Finn, Chapter IV, page 21: the ability to "spell and
     // read and write" uses present-tense /reed/, not past-tense /red/.
     // Spell only the spoken copy "reed"; preserve Twain's printed "read".
@@ -814,5 +818,5 @@
     else clearPausedHighlight();
   }
 
-  root.OpheliaNarration=Object.freeze({version:'1.4.18',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
+  root.OpheliaNarration=Object.freeze({version:'1.4.19',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
 })(window);
