@@ -1,5 +1,5 @@
 /* Ophelia's Open Book — shared spoken-text preparation.
- * Version 1.4.21. Load before each reader's inline narration code.
+ * Version 1.4.22. Load before each reader's inline narration code.
  *
  * Normalize only the words sent to speech synthesis: the printed book,
  * headings, pagination, bookmarks and original manuscripts are unchanged.
@@ -129,6 +129,16 @@
     // Jim's Southern dialect. Do not alter Twain's displayed original text.
     text=text.replace(/\bYo['’]?\s+ole\s+father\s+doan['’]\s+know\s+yit\s+what\s+he['’]s\s+a-gwyne\s+to\s+do\b/gi,
       'Yo ol father dun know wit what he\'s a gonna to do');
+    // Huckleberry Finn, Chapter V (page 28): spoken "git" needs the
+    // extended /ee/ vowel requested for this dialect, not short "get".
+    // Pap means "get that money to me"; articulate his demand naturally.
+    // Limit this to Huck's narration; never rewrite any printed book text.
+    if(/(?:^|\/)huckleberry-finn\.html$/i.test(root.location?.pathname||'')){
+      text=text.replace(/\bYou git me that money to-morrow\b/gi,
+        'You geet that money to me tomorrow');
+      text=text.replace(/\bgit\b/gi,
+        word=>word[0]==='G'?'Geet':'geet');
+    }
     // Huckleberry Finn, Chapter IV, page 25: Jim's hair-ball fortune.
     // Pronounce Twain's Southern dialect in speech only. Limit these
     // phonetic cues to this fortune, not unrelated dialogue or other books.
@@ -835,5 +845,5 @@
     else clearPausedHighlight();
   }
 
-  root.OpheliaNarration=Object.freeze({version:'1.4.21',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
+  root.OpheliaNarration=Object.freeze({version:'1.4.22',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
 })(window);
