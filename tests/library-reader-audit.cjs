@@ -8,6 +8,7 @@ const path=require('node:path');
 const root=path.resolve(__dirname,'..');
 const hubs=new Set(['index.html','catalog.html','support.html','leatherstocking-tales.html','the-forsyte-saga.html','outline-of-history.html']);
 const verse=new Set(['leaves-of-grass.html']);
+const verseReaders=new Set(['king-james-bible-1611.html','king-james-bible-1611-prefaces.html']);
 const html=fs.readdirSync(root).filter(file=>file.endsWith('.html')&&!hubs.has(file));
 assert.ok(html.length>=50,'expected the complete active reader collection');
 for(const file of html){
@@ -19,6 +20,15 @@ for(const file of html){
     file+' must load the shared narrator with a versioned cache-busting URL');
   assert.ok(code.includes('pauseReading?.()')&&code.includes('resumeReading?.()')&&code.includes('clearReading?.()'),
     file+' must use the shared word-resumable pause controls');
+  // Historical Bible readers use the same shared speech engine but their
+  // chapter/verse and long-preface queues differ from the novel template.
+  if(verseReaders.has(file)){
+    assert.ok(code.includes('OpheliaNarration?.speechChunks')||code.includes('OpheliaNarration.speechChunks'),
+      file+' must delegate text segmentation to the shared speech grammar engine');
+    assert.ok(code.includes('OpheliaNarration.speakWithPauses('),
+      file+' must use the shared sequential pause scheduler');
+    continue;
+  }
   if(verse.has(file)){
     assert.ok(code.includes('function narrationScore()'),file+' must preserve poetry-line timing');
     assert.ok(code.includes('speakWithPauses(window.speechSynthesis,[u]'),file+' must track line positions');
