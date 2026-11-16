@@ -1,5 +1,5 @@
 /* Ophelia's Open Book — shared spoken-text preparation.
- * Version 1.4.16. Load before each reader's inline narration code.
+ * Version 1.4.17. Load before each reader's inline narration code.
  *
  * Normalize only the words sent to speech synthesis: the printed book,
  * headings, pagination, bookmarks and original manuscripts are unchanged.
@@ -125,6 +125,12 @@
 
   function normalizeForSpeech(value){
     let text=removeFootnoteMarkersForSpeech(value);
+    // Huckleberry Finn, Chapter I: "the book winds up" means "concludes".
+    // Browser voices sometimes read "winds" like the outdoor breeze.
+    // A narration-only long-i spelling forces the sound of "winding up".
+    // The original printed words and manuscript remain unchanged.
+    text=text.replace(/\b(the book )winds(?= up is this\b)/gi,
+      (_,lead)=>lead+'wineds');
     // Dracula XVI: "a keen \"S-s-s-s!\"" is ONE extended sibilant /s/,
     // not four separately pronounced letter names. Keep the printed
     // punctuation and spelling; insert a sound cue only into narration.
@@ -803,5 +809,5 @@
     else clearPausedHighlight();
   }
 
-  root.OpheliaNarration=Object.freeze({version:'1.4.16',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
+  root.OpheliaNarration=Object.freeze({version:'1.4.17',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
 })(window);
