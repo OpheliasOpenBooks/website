@@ -50,9 +50,12 @@ function speak(){
     v=voices.find(x=>x.voiceURI===$('voice').value),
     rate=Number($('speed').value)||1;
   // Match the library's natural punctuation and brief rhetorical breaths.
-  const chunks=window.OpheliaNarration?.speechChunks
+  // Speak this book's section heading once before the section's original prose.
+  const opening='Section '+(selected+1)+'. '+labels[selected].replace(/\s*·\s*/,'. ')+'.';
+  const bodyChunks=window.OpheliaNarration?.speechChunks
     ?window.OpheliaNarration.speechChunks(paragraphs.join(' '))
     :paragraphs.flatMap(p=>(p.match(/.{1,220}(?:\s|$)/gu)||[p]).map(x=>x.trim()).filter(Boolean));
+  const chunks=bodyChunks.length?[opening,...bodyChunks]:[];
   const finish=()=>{
     if(token!==thisToken||!active)return;
     active=false;$('play').textContent='▶ Read aloud';
