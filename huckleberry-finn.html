@@ -95,6 +95,14 @@ function stop(){window.OpheliaNarration?.clearReading?.();
 }
 function updatePlay(){$('play').textContent=speaking?(paused?'▶ Resume':'Ⅱ Pause'):'▶ Read aloud';}
 function getText(){return pages[state.page]?.paragraphs.join(' ')||'';}
+// Announce a section only on its first reading page, never on subsequent pages.
+function openingAnnouncementForSpeech(){
+ const page=pages[state.page];
+ if(!page||(state.page>0&&pages[state.page-1].section===page.section))return '';
+ if(page.section===0)return 'Explanatory Note.';
+ if(page.section===43)return 'Chapter 43. The Last.';
+ return 'Chapter '+page.section+'.';
+}
 function pickVoice(){return voiceList.find(v=>v.voiceURI===state.voice)||voiceList.find(v=>/^en-GB/i.test(v.lang))||voiceList.find(v=>/^en/i.test(v.lang))||null;}
 // This function is copied from the original Alice reader to preserve its exact
 // sentence-boundary, abbreviation, punctuation, and Victorian-clause rules.
@@ -170,7 +178,10 @@ function startSpeech(startAt=speechResumeAt){
  stop();
  const synth=window.speechSynthesis;
  synth.resume();
- const chunks=speechChunks(getText()).slice(startAt);
+ // Queue the chapter announcement separately before the untouched prose.
+ // It shares the same speech queue for pause, resume, voice changes and auto-turn.
+ const announcement=openingAnnouncementForSpeech();
+ const chunks=(announcement?[announcement,...speechChunks(getText())]:speechChunks(getText())).slice(startAt);
  speechResumeAt=0;speechCursor=startAt;pageSpeechDone=false;
  if(!chunks.length){note('There is no text to narrate on this page.');return;}
  speaking=true;paused=false;const token=speechToken;
