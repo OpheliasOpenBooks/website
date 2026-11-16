@@ -575,14 +575,25 @@
   // Announce section headings without inserting them into the manuscript or
   // the reader's paragraph pagination. All standard readers share this queue.
   function openingSectionAnnouncement(utterances){
-    if(!utterances?.length||typeof pages==='undefined'||typeof state==='undefined'||
-       !Array.isArray(pages)||!Number.isInteger(state?.page))return '';
-    const page=pages[state.page];
-    if(!page||page.section===undefined)return '';
-    if(state.page>0&&pages[state.page-1]?.section===page.section)return '';
+    if(!utterances?.length||typeof state==='undefined'||
+       !Number.isInteger(state?.page))return '';
+    // Most books paginate \`pages\`; Alice and Pride and Prejudice use a
+    // four-page-per-chapter \`catalog\` in their original studio reader.
+    const readings=typeof pages!=='undefined'&&Array.isArray(pages)?pages:
+      typeof catalog!=='undefined'&&Array.isArray(catalog)?catalog:null;
+    const page=readings?.[state.page];
+    if(!page)return '';
+    const section=page.section??page.ci;
+    if(section===undefined)return '';
+    if(state.page>0&&(readings[state.page-1]?.section??readings[state.page-1]?.ci)===section)return '';
     // Restarting in the middle of an utterance should resume the prose, not the heading.
     if(typeof speechCursor!=='undefined'&&speechCursor>0)return '';
-    let name=String(page.sectionName||document.getElementById('chaptername')?.textContent||'').trim();
+    const chapterTitle=String(page.chapter||'').trim();
+    const studioHeading=chapterTitle?
+      (/^(?:chapter|book|act|part)\b/i.test(chapterTitle)?
+        chapterTitle:'Chapter '+(Number(page.ci)+1)+'. '+chapterTitle):'';
+    let name=String(page.sectionName||studioHeading||
+      document.getElementById('chaptername')?.textContent||'').trim();
     if(!name)return '';
     if(/^explanatory$/i.test(name))name='Explanatory Note';
     if(/^chapter\s+the\s+last$/i.test(name))
