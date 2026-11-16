@@ -66,7 +66,9 @@ let initialRender=true;
 let segments=[],pages=[],voiceList=[],speechToken=0, speaking=false,paused=false, speechQueue=[],speechCursor=0,speechResumeAt=0,pageSpeechDone=false,startTimer=null,utterance=null;
 const note=text=>{$('message').textContent=text};
 function parseText(raw){
- const t=raw.replace(/\r\n?/g,'\n').replace(/\u00ad/g,'');
+ // Remove only numbered editorial footnote markers from the reader and speech text.
+ // The complete historical source TXT (and its notes) remains unchanged.
+ const t=raw.replace(/\r\n?/g,'\n').replace(/\u00ad/g,'').replace(/\[\d+\]/g,'');
  const heading=/^(EDITOR'S INTRODUCTION|CHAPTER (?:I|II|III|IV|V|VI|VII|VIII|IX|X|XI|XII|XIII|XIV|XV|XVI|XVII|XVIII|XIX) — .+|HISTORICAL APPENDIX|EDITOR'S BIBLIOGRAPHY|PERIOD NEWSPAPER TRANSCRIPTIONS)$/gm;
  const matches=[...t.matchAll(heading)];
  const roman=['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV','XVI','XVII','XVIII','XIX'];
