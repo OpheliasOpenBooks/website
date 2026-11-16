@@ -8,7 +8,8 @@ const path=require('node:path');
 const root=path.resolve(__dirname,'..');
 const hubs=new Set(['index.html','catalog.html','support.html','leatherstocking-tales.html','the-forsyte-saga.html','outline-of-history.html']);
 const verse=new Set(['leaves-of-grass.html']);
-const verseReaders=new Set(['king-james-bible-1611.html','king-james-bible-1611-prefaces.html']);
+const verseReaders=new Set(['king-james-bible-1611.html','king-james-bible-1611-prefaces.html',
+  'the-sound-and-the-fury.html','to-the-lighthouse.html','the-sun-also-rises.html']);
 const html=fs.readdirSync(root).filter(file=>file.endsWith('.html')&&!hubs.has(file));
 assert.ok(html.length>=50,'expected the complete active reader collection');
 for(const file of html){
