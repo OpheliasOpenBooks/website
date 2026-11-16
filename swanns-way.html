@@ -25,7 +25,7 @@
 <div class="reading-layout">
 <main class="book" aria-label="Swann’s Way reader">
  <div class="book-heading"><div class="eyebrow">OPHELIA’S OPEN BOOK</div><h1>Swann’s Way</h1><p class="byline">Marcel Proust · First published 1913</p><p class="edition-note">Original French publication: 1913 · Complete English translation: C. K. Scott Moncrieff, 1922 · Volume One of <em>In Search of Lost Time</em>.</p></div>
- <figure id="story-figure" hidden><img id="opening-art" src="https://commons.wikimedia.org/wiki/Special:FilePath/Proust_1913.jpg" alt="Authentic pale yellow original 1913 Bernard Grasset cover of Du côté de chez Swann by Marcel Proust" loading="lazy" onerror="this.onerror=null;this.src='public/art/historical-cover-fallback.svg'"><figcaption>Bernard Grasset · Original 1913 French first-edition wrapper · Public domain</figcaption></figure>
+ <figure id="story-figure"><img id="opening-art" src="https://commons.wikimedia.org/wiki/Special:FilePath/Proust_1913.jpg" alt="Authentic pale yellow original 1913 Bernard Grasset cover of Du côté de chez Swann by Marcel Proust" loading="lazy" onerror="this.onerror=null;this.src='public/art/historical-cover-fallback.svg'"><figcaption>Bernard Grasset · Original 1913 French first-edition wrapper · Public domain</figcaption></figure>
  <article class="content" id="content"><div class="chapter-row"><span id="chaptername" class="chapter"></span></div><div id="prose"><p>Preparing the complete novel…</p></div><div class="endmark" aria-hidden="true">— ❧ —</div></article>
  <div class="footer-nav"><button type="button" id="prev2" disabled>← Previous page</button><span id="footcount">Swann’s Way · Complete 1913 edition</span><button type="button" id="next2" disabled>Next page →</button></div>
 </main>
@@ -46,7 +46,7 @@
  </div>
  <div class="bookmarker"><button class="quiet" type="button" id="bookmark">♡ Bookmark page</button><p class="hint" id="bookmarkhint">Your place and bookmark are saved on this device.</p></div>
  <p class="status" id="message" role="status">Preparing Swann’s Way…</p>
- <div class="load hidden" id="loadbox"><strong>Unable to load the complete book</strong><p>This book is hosted on the website. Refresh to try again, or see <a href="https://www.gutenberg.org/ebooks/45" target="_blank" rel="noopener">the original public-domain source</a>.</p></div>
+ <div class="load hidden" id="loadbox"><strong>Unable to load the complete book</strong><p>This book requires its complete public-domain text. Refresh to retry, or see <a href="https://www.gutenberg.org/ebooks/7178" target="_blank" rel="noopener">the original public-domain source</a>.</p></div>
  </aside>
 </div>
 <div class="source"><em>Swann’s Way</em> (<em>Du côté de chez Swann</em>) by Marcel Proust, the first volume of <em>In Search of Lost Time</em>, originally published by Bernard Grasset in 1913. English text: the complete public-domain translation by C. K. Scott Moncrieff published by Henry Holt in 1922, transcribed by <a href="https://www.gutenberg.org/ebooks/7178" target="_blank" rel="noopener">Project Gutenberg #7178</a>. This volume is complete but is not the entire seven-volume cycle. Historical cover: <a href="https://commons.wikimedia.org/wiki/File:Proust_1913.jpg" target="_blank" rel="noopener">1913 Grasset edition (Wikimedia Commons)</a>. Narration uses browser/device voices.</div>
@@ -272,45 +272,97 @@ $('settings-toggle').onclick=()=>{const show=$('reader-options').hidden;$('reade
 $('sound').onclick=()=>{soundOn=!soundOn;if(!soundOn&&speaking){stop();} $('sound').textContent=soundOn?'Sound on':'Sound off';$('sound').setAttribute('aria-pressed',String(!soundOn));note(soundOn?'Sound is on.':'Sound is off.');};
 window.addEventListener('pagehide',stop);if('speechSynthesis' in window){updateVoices();speechSynthesis.addEventListener('voiceschanged',updateVoices)}
 applySettings();
-// The GitHub-hosted, public-domain transcription is a temporary resilience
-// fallback until our own checked-in copy of the translation is available.
+// Swann's Way loading is resilient to the slow one-time local text import.
+// Each candidate is checked for the complete four-part English volume.
+const SWANN_SOURCES=[
+  'https://raw.githubusercontent.com/GITenberg/Swann-s-Way_7178/master/7178.txt',
+  'https://www.gutenberg.org/cache/epub/7178/pg7178.txt',
+  'https://www.gutenberg.org/files/7178/7178.txt',
+  'https://gutenberg.org/cache/epub/7178/pg7178.txt'
+];
+async function checkedFetch(url,timeout=14000){
+  const controller=new AbortController();
+  const id=setTimeout(()=>controller.abort(),timeout);
+  try{
+    const response=await fetch(url,{signal:controller.signal,cache:'default'});
+    if(!response.ok)throw Error('HTTP '+response.status);
+    if(response.headers.get('content-type')?.includes('text/html') && url.endsWith('.json'))
+      throw Error('Unexpected HTML instead of JSON');
+    return response;
+  }finally{clearTimeout(id)}
+}
+function normalizeSwannText(raw){
+  raw=raw.replace(/\uFEFF/g,'').replace(/\r\n?/g,'\n').replace(/\u00A0/g,' ');
+  const start=raw.search(/\*{3}\s*START\s+OF\s+.*PROJECT\s+GUTENBERG/i);
+  const end=raw.search(/\*{3}\s*END\s+OF\s+.*PROJECT\s+GUTENBERG/i);
+  if(start<0||end<=start)throw Error('Book source is missing its full-text boundaries');
+  return raw.slice(start,end);
+}
+function parseSwannSource(source){
+  const body=normalizeSwannText(source);
+  const candidates=[...body.matchAll(/^[ \t]*(OVERTURE|COMBRAY|SWANN\s+IN\s+LOVE|PLACE[-–—]NAMES:\s*THE\s+NAME)\s*$/gim)];
+  const label=m=>m[1].replace(/\s+/g,' ').replace(/[–—]/g,'-').toUpperCase();
+  const sequence=['OVERTURE','COMBRAY','SWANN IN LOVE','PLACE-NAMES: THE NAME'];
+  const first=candidates.find(m=>label(m)==='OVERTURE' &&
+    /for a long time i used to go to bed early/i.test(body.slice(m.index+m[0].length,m.index+m[0].length+5000)));
+  if(!first)throw Error('Could not locate the beginning of the English novel');
+  const selected=[first];
+  for(const wanted of sequence.slice(1)){
+    const heading=candidates.find(m=>label(m)===wanted && m.index>selected.at(-1).index+5000);
+    if(!heading)throw Error('Missing complete section: '+wanted);
+    selected.push(heading);
+  }
+  const names=['Overture','Combray','Swann in Love','Place-Names: The Name'];
+  const sections=selected.map((heading,i)=>{
+    const from=heading.index+heading[0].length;
+    const to=selected[i+1]?.index??body.length;
+    const paragraphs=body.slice(from,to).trim().split(/\n[ \t]*\n+/)
+      .map(p=>p.replace(/\s+/g,' ').trim()).filter(Boolean);
+    return {name:names[i],paragraphs};
+  });
+  const wordCount=sections.reduce((n,p)=>n+p.paragraphs.join(' ').split(/\s+/).length,0);
+  if(wordCount<130000||wordCount>270000||sections.some(p=>p.paragraphs.length<10))
+    throw Error('The translation is incomplete ('+wordCount+' words)');
+  return JSON.stringify({title:'Swann’s Way',author:'Marcel Proust',
+    translator:'C. K. Scott Moncrieff (1922)',sections});
+}
 async function loadSwannText(){
- try{
-   const local=await fetch('public/books/swanns-way.json');
-   if(local.ok)return await local.text();
- }catch(e){console.info('Local Swann text unavailable; trying the source mirror',e)}
- const mirror=await fetch('https://raw.githubusercontent.com/GITenberg/Swann-s-Way_7178/master/7178.txt');
- if(!mirror.ok)throw Error('Original text mirror unavailable');
- // The historical GITenberg transcription uses an older Western encoding.
- const raw=new TextDecoder('windows-1252').decode(await mirror.arrayBuffer()).replace(/\r\n?/g,'\n');
- const start=raw.search(/^\*\*\*\s*START\s+OF\s+.*PROJECT GUTENBERG.*$/im);
- const end=raw.search(/^\*\*\*\s*END\s+OF\s+.*PROJECT GUTENBERG.*$/im);
- if(start<0||end<start)throw Error('Incomplete original English text');
- const body=raw.slice(start,end);
- const headings=[...body.matchAll(/^[ \t]*(OVERTURE|COMBRAY|SWANN IN LOVE|PLACE-NAMES:\s*THE NAME)[ \t]*$/gm)];
- const first=headings.find(m=>m[1]==='OVERTURE'&&/For a long time I used to go to bed early/i.test(body.slice(m.index+m[0].length,m.index+m[0].length+1200)));
- if(!first)throw Error('The opening of the novel was not found');
- const selected=[first];
- for(const title of ['COMBRAY','SWANN IN LOVE','PLACE-NAMES: THE NAME']){
-   const match=headings.find(m=>m.index>selected.at(-1).index&&m[1].replace(/\s+/g,' ')===title);
-   if(!match)throw Error('Missing original section '+title);
-   selected.push(match);
- }
- const sections=selected.map((m,i)=>{
-   const from=m.index+m[0].length;
-   const to=i+1<selected.length?selected[i+1].index:body.length;
-   const paragraphs=body.slice(from,to).trim().split(/\n\s*\n+/).map(p=>p.replace(/\s+/g,' ').trim()).filter(Boolean);
-   return {name:m[1].replace(/\s+/g,' ').replace('OVERTURE','Overture').replace('COMBRAY','Combray').replace('SWANN IN LOVE','Swann in Love').replace('PLACE-NAMES: THE NAME','Place-Names: The Name'),paragraphs};
- });
- const total=sections.reduce((n,p)=>n+p.paragraphs.join(' ').trim().split(/\s+/).length,0);
- if(total<140000||total>260000||sections.some(p=>!p.paragraphs.length))throw Error('Source text incomplete');
- return JSON.stringify({title:'Swann’s Way',author:'Marcel Proust',translator:'C. K. Scott Moncrieff',sections});
+  note('Loading the complete translation…');
+  try{
+    const local=await checkedFetch('public/books/swanns-way.json',3500);
+    const raw=await local.text();
+    // The regular book reader enforces all four sections and their full length.
+    const data=JSON.parse(raw);
+    if(data.sections?.length===4 && data.sections.every(s=>s.paragraphs?.length>10))
+      return raw;
+  }catch(e){console.info('Local Swann file not ready; checking original public-domain source:',e)}
+  const problems=[];
+  for(const address of SWANN_SOURCES){
+    note('Retrieving the complete public-domain translation…');
+    try{
+      const response=await checkedFetch(address);
+      const binary=await response.arrayBuffer();
+      if(binary.byteLength<500000)throw Error('Downloaded text is too short');
+      let text;
+      // This older transcription can contain Western-encoded punctuation.
+      try{
+        text=new TextDecoder('utf-8',{fatal:true}).decode(binary);
+      }catch(e){
+        text=new TextDecoder('windows-1252').decode(binary);
+      }
+      return parseSwannSource(text);
+    }catch(e){
+      problems.push(new URL(address).hostname+': '+e.message);
+      console.warn('Swann source unavailable:',address,e);
+    }
+  }
+  throw Error('No complete source could be reached. '+problems.join('; '));
 }
 
 (async()=>{
  // Prefer the locally hosted full edition, with a verified public-domain mirror fallback.
  try{setupBook(await loadSwannText());}
- catch(e){$('loadbox').classList.remove('hidden');note('The complete book could not be loaded. Refresh or read from the source linked below.');console.error(e);}
+ catch(e){$('loadbox').classList.remove('hidden');$('prose').replaceChildren(Object.assign(document.createElement('p'),{textContent:'The book text is temporarily unavailable. Use the Project Gutenberg source linked beside the reader, or refresh to retry.'}));note('The book text could not be retrieved. Please retry.');console.error('Swann’s Way text load failed:',e);}
 })();
 
 </script>
