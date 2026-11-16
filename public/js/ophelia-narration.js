@@ -1,5 +1,5 @@
 /* Ophelia's Open Book — shared spoken-text preparation.
- * Version 1.4.13. Load before each reader's inline narration code.
+ * Version 1.4.14. Load before each reader's inline narration code.
  *
  * Normalize only the words sent to speech synthesis: the printed book,
  * headings, pagination, bookmarks and original manuscripts are unchanged.
@@ -216,8 +216,11 @@
     // Only labels expressly "marked" on a diagram get the spoken expansion.
     text=text.replace(/\bmarked\s+['‘“]([A-Z])['’”](?=\s+on\s+(?:(?:a|an|the|this)\s+)?(?:rough\s+)?diagram\b)/g,
       (_,letter)=>'marked with the letter '+letter);
+    // Address and list labels such as "No. 347, Piccadilly" mean
+    // "Number 347", never the standalone word "no". Keep the book text.
+    text=text.replace(/\bNo\.\s*(?=\d{1,6}\b)/g,'Number ');
     // Honorific abbreviations have unambiguous spoken meanings.
-    // Leave context-dependent abbreviations (e.g. St., No.) untouched.
+    // Leave other context-dependent abbreviations (e.g. St.) untouched.
     // The English plural title Messrs. (from French messieurs) is spoken
     // 'Messers' (/MES-erz/), not as individual letters or 'Mister'.
     // Include British Messrs without a period; the printed text stays unchanged.
@@ -412,19 +415,21 @@
 
   function pauseAfter(text){
     const value=String(text||'').trim();
-    if(!value)return 120;
+    if(!value)return 75;
     const words=value.replace(/[.!?]+[”’"']?$/,'').trim().split(/\s+/);
     const clean=value.replace(/[”’"' )\]]+$/,'').trim();
     const heading=words.length>=2&&words.length<=13&&/^[A-Z][^.!?]*\.$/.test(value)&&
       words.filter(w=>/^[A-Z][a-z]+/.test(w)).length>=Math.max(2,words.length-3)&&
       !/[“”"?!]/.test(value);
     if(heading)return 630;
-    if(/[?!]$/.test(clean))return 400;
-    if(/[.!]$/.test(clean))return 305;
-    if(/[;:]$/.test(clean))return 265;
-    if(/[—–]$/.test(clean))return 230;
-    if(/,$/.test(clean))return 165;
-    return 150;
+    // Briefer inter-utterance gaps: keep punctuation meaningful without
+    // breaking the narrative between short clauses or em dashes.
+    if(/[?!]$/.test(clean))return 310;
+    if(/[.!]$/.test(clean))return 230;
+    if(/[;:]$/.test(clean))return 155;
+    if(/[—–]$/.test(clean))return 140;
+    if(/,$/.test(clean))return 85;
+    return 75;
   }
   // Resume marker: exact word when the browser emits word boundaries.
   // The marked-up text is not saved to the manuscript or reading progress.
@@ -692,8 +697,8 @@
       if(disposed||paused)return;
       const original=utterances[index];
       current=null;offset=0;index++;
-      const trailingDash=/—\s*$/.test(original.text);
-      const delay=trailingDash?Math.max(430,pauseAfter(original.text)):pauseAfter(original.text);
+      // A double dash is a short rhetorical beat, not a 430 ms silence.
+      const delay=pauseAfter(original.text);
       original.onend?.(e||{});
       if(disposed||!isCurrent())return;
       if(index<utterances.length){
@@ -717,5 +722,5 @@
     else clearPausedHighlight();
   }
 
-  root.OpheliaNarration=Object.freeze({version:'1.4.13',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
+  root.OpheliaNarration=Object.freeze({version:'1.4.14',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
 })(window);

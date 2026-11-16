@@ -11,6 +11,7 @@
 <div class="layout"><main class="reader"><div class="eyebrow" style="text-align:center">Ophelia’s Open Book · Read & Listen</div><h2 id="chapter-title">Opening pages</h2><div id="prose" class="prose"><p>Preparing the novel…</p></div><div class="nav"><button id="prev">← Previous</button><button id="next">Next chapter →</button></div></main>
 <aside class="controls"><div class="eyebrow">Your reading desk</div><label for="chapter">Select chapter</label><select id="chapter"></select><label for="voice">Narrator</label><select id="voice"><option value="">Your browser’s default voice</option></select><label for="speed">Reading speed</label><select id="speed"><option value="0.8">Relaxed</option><option value="0.9">Gentle</option><option value="1" selected>Normal</option><option value="1.1">Lively</option><option value="1.2">Brisk</option></select><div class="actions"><button id="play">▶ Read aloud</button><button class="secondary" id="stop">■ Stop</button></div><progress id="progress" max="20" value="0"></progress><p id="status" class="status" role="status">Opening the book…</p><p class="fine">Your chapter is remembered on this device. Read-aloud uses the voices installed in your browser and respects pauses between paragraphs.</p><hr style="border:0;border-top:1px solid var(--line);margin:20px 0"><p class="fine">Source: Standard Ebooks’ carefully proofread public-domain edition of William Faulkner’s 1929 novel, based primarily on the British first edition. The decorative cover is an original period-inspired interpretation, not a facsimile of the first-edition dust jacket.</p><p class="fine"><a href="https://standardebooks.org/ebooks/william-faulkner/the-sound-and-the-fury" target="_blank" rel="noopener">View the source edition at Standard Ebooks</a></p></aside></div></div>
 <footer><div class="wrap">Ophelia’s Open Book · Literature for everyone, always free to read. <a href="catalog.html">Return to the library</a></div></footer>
+<script src="public/js/ophelia-narration.js?v=1.4.14-pacing-number"></script>
 <script>
 'use strict';
 'use strict';
@@ -21,16 +22,69 @@ let selected=0,paragraphs=[],token=0,active=false,paused=false;
 for(let i=0;i<labels.length;i++)$('chapter').add(new Option(labels[i],String(i)));
 const saved=Number(localStorage.getItem(key));if(Number.isInteger(saved)&&saved>=0&&saved<labels.length)selected=saved;
 $('progress').max=4;
-function stop(){token++;active=false;paused=false;if('speechSynthesis'in window)window.speechSynthesis.cancel();$('play').textContent='▶ Read aloud'}
+function stop(){token++;active=false;paused=false;window.OpheliaNarration?.clearReading?.();if('speechSynthesis'in window)window.speechSynthesis.cancel();$('play').textContent='▶ Read aloud'}
 function updateVoices(){const el=$('voice'),old=el.value;el.replaceChildren(new Option('Your browser’s default voice',''));if(!('speechSynthesis'in window))return;const voices=speechSynthesis.getVoices();voices.forEach(v=>el.add(new Option(v.name+' · '+v.lang,v.voiceURI)));if(voices.some(v=>v.voiceURI===old))el.value=old;else{const preferred=voices.find(v=>/^en-GB/i.test(v.lang)&&/female|sonia|libby|hazel|serena/i.test(v.name))||voices.find(v=>/^en-GB/i.test(v.lang));if(preferred)el.value=preferred.voiceURI}}
 if('speechSynthesis'in window){updateVoices();speechSynthesis.addEventListener('voiceschanged',updateVoices)}
 async function showChapter(n){stop();selected=n;localStorage.setItem(key,String(n));$('chapter').value=String(n);$('chapter-title').textContent=labels[n];$('progress').value=n+1;$('prev').disabled=n===0;$('next').disabled=n===3;$('prose').replaceChildren();$('status').textContent='Loading '+labels[n]+'…';
 try{const res=await fetch('public/books/the-sound-and-the-fury/chapter-'+(n+1)+'.xhtml');if(!res.ok)throw Error('Section file unavailable');const raw=await res.text();const doc=new DOMParser().parseFromString(raw,'application/xhtml+xml');if(doc.querySelector('parsererror'))throw Error('Invalid source text');const section=doc.querySelector('section');if(!section)throw Error('Missing section');const frag=document.createDocumentFragment();paragraphs=[];
 for(const node of section.querySelectorAll('p,blockquote')){if(node.closest('blockquote')&&node.tagName.toLowerCase()==='p')continue;const p=document.createElement(node.tagName.toLowerCase()==='blockquote'?'blockquote':'p');p.innerHTML=node.innerHTML;for(const unwanted of p.querySelectorAll('script,iframe,object,form,style'))unwanted.remove();p.querySelectorAll('*').forEach(el=>{for(const attr of [...el.attributes])if(attr.name.startsWith('on')||attr.name==='style')el.removeAttribute(attr.name)});const txt=(p.textContent||'').replace(/\s+/g,' ').trim();if(txt){paragraphs.push(txt);frag.appendChild(p)}}
 $('prose').appendChild(frag);$('status').textContent=labels[n]+' · '+paragraphs.length+' passages';window.scrollTo({top:0,behavior:'instant'})}catch(e){$('status').textContent='Unable to load this section. Refresh to retry.';$('prose').textContent='This section is temporarily unavailable.'}}
-function speak(){if(!('speechSynthesis'in window)){$('status').textContent='This browser does not support spoken narration.';return}if(active&&paused){speechSynthesis.resume();paused=false;$('play').textContent='Ⅱ Pause';return}if(active){speechSynthesis.pause();paused=true;$('play').textContent='▶ Resume';return}
-stop();active=true;const thisToken=token;$('play').textContent='Ⅱ Pause';$('status').textContent='Reading '+labels[selected]+' aloud…';
-const voices=speechSynthesis.getVoices(),v=voices.find(x=>x.voiceURI===$('voice').value),rate=Number($('speed').value)||1;
-const chunks=paragraphs.flatMap(p=>(p.match(/.{1,220}(?:\s|$)/gu)||[p]).map(x=>x.trim()).filter(Boolean));let i=0;function next(){if(token!==thisToken||!active)return;if(i>=chunks.length){active=false;$('play').textContent='▶ Read aloud';$('status').textContent='Finished '+labels[selected];return}const u=new SpeechSynthesisUtterance(chunks[i++]);u.lang=v?.lang||'en-US';if(v)u.voice=v;u.rate=rate;u.onend=next;u.onerror=()=>{if(active&&token===thisToken)next()};speechSynthesis.speak(u)}next()}
+function speak(){
+  if(!('speechSynthesis' in window)){
+    $('status').textContent='This browser does not support spoken narration.';return;
+  }
+  if(active&&paused){
+    paused=false;
+    if(!window.OpheliaNarration?.resumeReading?.())speechSynthesis.resume();
+    $('play').textContent='Ⅱ Pause';return;
+  }
+  if(active){
+    paused=true;
+    if(!window.OpheliaNarration?.pauseReading?.())speechSynthesis.pause();
+    $('play').textContent='▶ Resume';return;
+  }
+  stop();active=true;const thisToken=token;
+  $('play').textContent='Ⅱ Pause';
+  $('status').textContent='Reading '+labels[selected]+' aloud…';
+  const voices=speechSynthesis.getVoices(),
+    v=voices.find(x=>x.voiceURI===$('voice').value),
+    rate=Number($('speed').value)||1;
+  // Match the library's natural punctuation and brief rhetorical breaths.
+  const chunks=window.OpheliaNarration?.speechChunks
+    ?window.OpheliaNarration.speechChunks(paragraphs.join(' '))
+    :paragraphs.flatMap(p=>(p.match(/.{1,220}(?:\s|$)/gu)||[p]).map(x=>x.trim()).filter(Boolean));
+  const finish=()=>{
+    if(token!==thisToken||!active)return;
+    active=false;$('play').textContent='▶ Read aloud';
+    $('status').textContent='Finished '+labels[selected];
+  };
+  if(!chunks.length){finish();return;}
+  if(window.OpheliaNarration?.speakWithPauses){
+    let completed=0;
+    const queue=chunks.map(t=>{
+      const u=new SpeechSynthesisUtterance(t);
+      u.lang=v?.lang||'en-US';if(v)u.voice=v;u.rate=rate;
+      u.onend=()=>{if(token!==thisToken||!active)return;
+        if(++completed===chunks.length)finish();
+      };
+      u.onerror=()=>{if(token!==thisToken)return;stop();
+        $('status').textContent='Narration stopped. Try another voice.';
+      };
+      return u;
+    });
+    window.OpheliaNarration.speakWithPauses(
+      speechSynthesis,queue,()=>token===thisToken&&active,()=>paused);
+  }else{
+    // Keep the original browser-only fallback if the shared script fails.
+    let i=0;function next(){
+      if(token!==thisToken||!active)return;
+      if(i>=chunks.length){finish();return;}
+      const u=new SpeechSynthesisUtterance(chunks[i++]);
+      u.lang=v?.lang||'en-US';if(v)u.voice=v;u.rate=rate;
+      u.onend=next;u.onerror=()=>{if(token===thisToken&&active)next();};
+      speechSynthesis.speak(u);
+    }next();
+  }
+}
 $('chapter').addEventListener('change',e=>showChapter(Number(e.target.value)));$('prev').onclick=()=>showChapter(Math.max(0,selected-1));$('next').onclick=()=>showChapter(Math.min(3,selected+1));$('play').onclick=speak;$('stop').onclick=()=>{stop();$('status').textContent='Narration stopped.'};window.addEventListener('pagehide',stop);showChapter(selected);
 </script></body></html>

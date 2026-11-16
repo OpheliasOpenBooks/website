@@ -11,6 +11,7 @@
 <div class="layout"><main class="reader"><div class="eyebrow" style="text-align:center">Ophelia’s Open Book · Read & Listen</div><h2 id="chapter-title">Opening pages</h2><div id="prose" class="prose"><p>Preparing the novel…</p></div><div class="nav"><button id="prev">← Previous</button><button id="next">Next chapter →</button></div></main>
 <aside class="controls"><div class="eyebrow">Your reading desk</div><label for="chapter">Select chapter</label><select id="chapter"></select><label for="voice">Narrator</label><select id="voice"><option value="">Your browser’s default voice</option></select><label for="speed">Reading speed</label><select id="speed"><option value="0.8">Relaxed</option><option value="0.9">Gentle</option><option value="1" selected>Normal</option><option value="1.1">Lively</option><option value="1.2">Brisk</option></select><div class="actions"><button id="play">▶ Read aloud</button><button class="secondary" id="stop">■ Stop</button></div><progress id="progress" max="20" value="0"></progress><p id="status" class="status" role="status">Opening the book…</p><p class="fine">Your chapter is remembered on this device. Read-aloud uses the voices installed in your browser and respects pauses between paragraphs.</p><hr style="border:0;border-top:1px solid var(--line);margin:20px 0"><p class="fine">Source: public-domain text of the 1926 novel, based on the Standard Ebooks transcription as shared by Public Domain Pulp. The decorative cover is an original period-inspired interpretation, not a facsimile of the first-edition dust jacket.</p><p class="fine"><a href="https://www.gutenberg.org/ebooks/67138" target="_blank" rel="noopener">View the original text at Project Gutenberg</a></p></aside></div></div>
 <footer><div class="wrap">Ophelia’s Open Book · Literature for everyone, always free to read. <a href="catalog.html">Return to the library</a></div></footer>
+<script src="public/js/ophelia-narration.js?v=1.4.14-pacing-number"></script>
 <script>
 'use strict';
 const $=id=>document.getElementById(id), total=20, key='ophelia-sun-also-rises-1926-v1';
@@ -18,7 +19,7 @@ let selected=0, utterances=[],active=false,paused=false, token=0;
 const numeral=['Opening pages','Chapter I','Chapter II','Chapter III','Chapter IV','Chapter V','Chapter VI','Chapter VII','Chapter VIII','Chapter IX','Chapter X','Chapter XI','Chapter XII','Chapter XIII','Chapter XIV','Chapter XV','Chapter XVI','Chapter XVII','Chapter XVIII','Chapter XIX'];
 for(let i=0;i<total;i++)$('chapter').add(new Option(numeral[i],String(i)));
 const saved=Number(localStorage.getItem(key));if(Number.isInteger(saved)&&saved>=0&&saved<total)selected=saved;
-function stop(){token++;active=false;paused=false;utterances=[];if('speechSynthesis'in window)window.speechSynthesis.cancel();$('play').textContent='▶ Read aloud'}
+function stop(){token++;active=false;paused=false;window.OpheliaNarration?.clearReading?.();utterances=[];if('speechSynthesis'in window)window.speechSynthesis.cancel();$('play').textContent='▶ Read aloud'}
 function updateVoices(){const el=$('voice'),current=el.value;el.replaceChildren(new Option('Your browser’s default voice',''));if(!('speechSynthesis'in window))return;const voices=speechSynthesis.getVoices();voices.forEach(v=>el.add(new Option(v.name+' · '+v.lang,v.voiceURI)));if(voices.some(v=>v.voiceURI===current))el.value=current;else {const preferred=voices.find(v=>/^en-GB/i.test(v.lang)&&/female|sonia|libby|hazel|serena/i.test(v.name))||voices.find(v=>/^en-GB/i.test(v.lang));if(preferred)el.value=preferred.voiceURI}}
 if('speechSynthesis'in window){updateVoices();speechSynthesis.addEventListener('voiceschanged',updateVoices)}
 let paragraphs=[];
@@ -27,10 +28,62 @@ async function showChapter(n){stop();selected=n;localStorage.setItem(key,String(
 try{const res=await fetch('public/books/the-sun-also-rises-'+String(n).padStart(2,'0')+'.txt');if(!res.ok)throw Error('Text file unavailable');const raw=await res.text();paragraphs=raw.split(/\n\s*\n/).map(clean).filter(Boolean).filter(p=>!/^###\s*[IVX]+$/.test(p)&&!/^##\s*Book\s+[IVX]+$/i.test(p));
 const box=document.createDocumentFragment();for(const p of paragraphs){const el=document.createElement('p');el.textContent=p;if(n===0)el.className='small';box.append(el)}$('prose').append(box);$('status').textContent=numeral[n]+' · '+paragraphs.length+' paragraphs';window.scrollTo({top:0,behavior:'instant'})}
 catch(e){$('status').textContent='Could not load this chapter. Please refresh.';$('prose').textContent='This chapter is temporarily unavailable.'}}
-function speak(){if(!('speechSynthesis'in window)){$('status').textContent='Your browser does not support spoken narration.';return}if(active&&paused){speechSynthesis.resume();paused=false;$('play').textContent='Ⅱ Pause';return}if(active){speechSynthesis.pause();paused=true;$('play').textContent='▶ Resume';return}
-stop();active=true;const myToken=token;$('play').textContent='Ⅱ Pause';$('status').textContent='Reading '+numeral[selected]+' aloud…';
-const voices=speechSynthesis.getVoices(),v=voices.find(x=>x.voiceURI===$('voice').value),rate=Number($('speed').value)||1;
-utterances=paragraphs.flatMap(p=>{const pieces=p.match(/.{1,240}(?:\s|$)/gu)||[p];return pieces.map(s=>s.trim()).filter(Boolean)});
-let i=0;function next(){if(token!==myToken||!active)return;if(i>=utterances.length){active=false;$('play').textContent='▶ Read aloud';$('status').textContent='Finished '+numeral[selected];return}const u=new SpeechSynthesisUtterance(utterances[i++]);u.lang=v?.lang||'en-GB';if(v)u.voice=v;u.rate=rate;u.onend=next;u.onerror=()=>{if(active&&token===myToken)next()};speechSynthesis.speak(u)}next()}
+function speak(){
+  if(!('speechSynthesis' in window)){
+    $('status').textContent='This browser does not support spoken narration.';return;
+  }
+  if(active&&paused){
+    paused=false;
+    if(!window.OpheliaNarration?.resumeReading?.())speechSynthesis.resume();
+    $('play').textContent='Ⅱ Pause';return;
+  }
+  if(active){
+    paused=true;
+    if(!window.OpheliaNarration?.pauseReading?.())speechSynthesis.pause();
+    $('play').textContent='▶ Resume';return;
+  }
+  stop();active=true;const thisToken=token;
+  $('play').textContent='Ⅱ Pause';
+  $('status').textContent='Reading '+numeral[selected]+' aloud…';
+  const voices=speechSynthesis.getVoices(),
+    v=voices.find(x=>x.voiceURI===$('voice').value),
+    rate=Number($('speed').value)||1;
+  // Match the library's natural punctuation and brief rhetorical breaths.
+  const chunks=window.OpheliaNarration?.speechChunks
+    ?window.OpheliaNarration.speechChunks(paragraphs.join(' '))
+    :paragraphs.flatMap(p=>(p.match(/.{1,220}(?:\s|$)/gu)||[p]).map(x=>x.trim()).filter(Boolean));
+  const finish=()=>{
+    if(token!==thisToken||!active)return;
+    active=false;$('play').textContent='▶ Read aloud';
+    $('status').textContent='Finished '+numeral[selected];
+  };
+  if(!chunks.length){finish();return;}
+  if(window.OpheliaNarration?.speakWithPauses){
+    let completed=0;
+    const queue=chunks.map(t=>{
+      const u=new SpeechSynthesisUtterance(t);
+      u.lang=v?.lang||'en-GB';if(v)u.voice=v;u.rate=rate;
+      u.onend=()=>{if(token!==thisToken||!active)return;
+        if(++completed===chunks.length)finish();
+      };
+      u.onerror=()=>{if(token!==thisToken)return;stop();
+        $('status').textContent='Narration stopped. Try another voice.';
+      };
+      return u;
+    });
+    window.OpheliaNarration.speakWithPauses(
+      speechSynthesis,queue,()=>token===thisToken&&active,()=>paused);
+  }else{
+    // Keep the original browser-only fallback if the shared script fails.
+    let i=0;function next(){
+      if(token!==thisToken||!active)return;
+      if(i>=chunks.length){finish();return;}
+      const u=new SpeechSynthesisUtterance(chunks[i++]);
+      u.lang=v?.lang||'en-GB';if(v)u.voice=v;u.rate=rate;
+      u.onend=next;u.onerror=()=>{if(token===thisToken&&active)next();};
+      speechSynthesis.speak(u);
+    }next();
+  }
+}
 $('chapter').addEventListener('change',e=>showChapter(Number(e.target.value)));$('prev').onclick=()=>showChapter(Math.max(0,selected-1));$('next').onclick=()=>showChapter(Math.min(total-1,selected+1));$('play').onclick=speak;$('stop').onclick=()=>{stop();$('status').textContent='Narration stopped.'};window.addEventListener('pagehide',stop);showChapter(selected);
 </script></body></html>
