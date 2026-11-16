@@ -98,6 +98,38 @@ function open(info={}) {
  dialog.querySelector('.ob-close').focus();
 }
 window.OpheliaShare={open};
+/* Quiet way back to the catalogue on every reader: no floating overlays. */
+function addLibraryNavigation(){
+ const heading=document.querySelector('.book-heading');
+ if(!heading||document.querySelector('.ob-library-navigation'))return;
+ const controls=document.querySelector('.reader-controls');
+ const css=document.createElement('style');
+ css.textContent=
+ '.ob-library-navigation{display:flex;justify-content:center;align-items:center}' +
+ '.ob-library-navigation-side{margin:0 0 13px;padding:0 0 13px;border-bottom:1px solid #e5e5d9}' +
+ '.ob-library-navigation-inline{display:none;margin:12px auto 0}' +
+ '.ob-library-navigation-inline-visible{margin:12px auto 0}' +
+ '.ob-library-link{display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:7px 13px;border:1px solid #cdbb9b;border-radius:24px;background:#fcf9f1;color:#365345;text-decoration:none;font:italic 13px/1.35 Georgia,\'Times New Roman\',serif;letter-spacing:.01em;transition:background-color .15s,border-color .15s}' +
+ '.ob-library-link:hover{background:#f0e7d6;border-color:#9d865d;color:#213d30}' +
+ '.ob-library-link:focus-visible{outline:3px solid #b7782d;outline-offset:3px}' +
+ '@media(max-width:780px){.ob-library-navigation-side{display:none}.ob-library-navigation-inline{display:flex}}' +
+ '@media(prefers-reduced-motion:reduce){.ob-library-link{transition:none}}';
+ document.head.appendChild(css);
+ function nav(placement){
+  const wrapper=document.createElement('nav');
+  wrapper.className='ob-library-navigation ob-library-navigation-'+placement;
+  wrapper.setAttribute('aria-label','Library navigation');
+  const link=document.createElement('a');
+  link.href='catalog.html';
+  link.className='ob-library-link';
+  link.textContent='← Back to Library';
+  link.setAttribute('aria-label','Back to the library catalog');
+  wrapper.appendChild(link);
+  return wrapper;
+ }
+ if(controls)controls.insertBefore(nav('side'),controls.firstChild);
+ heading.appendChild(nav(controls?'inline':'inline-visible'));
+}
 function addPageButton(){
  if(document.querySelector('[data-ophelia-share]'))return;
  const host=document.querySelector('.book-heading')||document.querySelector('.hero .actions')||document.querySelector('#catalog-share-target');
@@ -111,5 +143,6 @@ function addPageButton(){
  button.textContent='Share this '+(document.querySelector('.book-heading')?'book':'library');
  button.addEventListener('click',()=>open());holder.appendChild(button);host.appendChild(holder);
 }
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',addPageButton);else addPageButton();
+function initializePageButtons(){addPageButton();addLibraryNavigation();}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initializePageButtons);else initializePageButtons();
 })();
