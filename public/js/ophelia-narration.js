@@ -1,5 +1,5 @@
 /* Ophelia's Open Book — shared spoken-text preparation.
- * Version 1.4.15. Load before each reader's inline narration code.
+ * Version 1.4.16. Load before each reader's inline narration code.
  *
  * Normalize only the words sent to speech synthesis: the printed book,
  * headings, pagination, bookmarks and original manuscripts are unchanged.
@@ -100,8 +100,31 @@
     return text;
   }
 
-  function normalizeForSpeech(value){
+  // Remove editorial footnote cues from spoken text, not the source book.
+  // Keep bracketed dates (e.g. [1854]), chapter numbers, addresses and years.
+  function removeFootnoteMarkersForSpeech(value){
     let text=String(value==null?'':value);
+    text=text.replace(/\[\s*(?:(?:footnote|note|fn\.?)\s*(?:no\.?\s*)?)?#?\s*\d{1,3}\s*\]/gi,'');
+    text=text.replace(/\[(?:footnote|note)\s+\d{1,3}\s*:\s*([^\]\r\n]+)\]/gi,'$1');
+    // Literal superscript markup and numbered manuscript annotation cues.
+    text=text.replace(/<sup\b[^>]*>\s*\[?\s*\d{1,3}\s*\]?\s*<\/sup>/gi,'');
+    text=text.replace(/([\p{L}\p{N}.,;:!?'”’)\]])\s*\^\{?\d{1,3}\}?(?=\s|[.,;:!?'”’)\]]|$)/gu,'$1');
+    text=text.replace(/([\p{L}\p{N}.,;:!?'”’)\]])\{\d{1,3}\}(?=\s|[.,;:!?'”’)\]]|$)/gu,'$1');
+    text=text.replace(/⁽[⁰¹²³⁴⁵⁶⁷⁸⁹]+⁾/gu,'');
+    // Superscript footnote references after words or punctuation. Preserve
+    // conventional mathematical quantities such as m², cm³, x² and y³.
+    text=text.replace(/\b([A-Za-z]+)([⁰¹²³⁴⁵⁶⁷⁸⁹]+)(?=\s|[.,;:!?'”’)\]]|$)/gu,
+      (whole,word)=>/^(?:m|cm|mm|km|ft|in|yd|mi|x|y|z)$/i.test(word)?whole:word);
+    text=text.replace(/([.!?;:,)"'’”])([⁰¹²³⁴⁵⁶⁷⁸⁹]+)(?=\s|[.,;:!?'”’)\]]|$)/gu,'$1');
+    // Attached parenthetical footnote markers and inline trailing numbers.
+    // Avoid standalone Arabic numerals: they may be important to the author.
+    text=text.replace(/([A-Za-z]["'’”.,;:!?]?)[ \t]*\(\d{1,3}\)(?=\s|[.,;:!?'”’)\]]|$)/g,'$1');
+    text=text.replace(/([A-Za-z]["'’”]?[.!?;:,])(\d{1,3})(?=\s|$)/g,'$1');
+    return text.replace(/[ \t]{2,}/g,' ');
+  }
+
+  function normalizeForSpeech(value){
+    let text=removeFootnoteMarkersForSpeech(value);
     // Dracula XVI: "a keen \"S-s-s-s!\"" is ONE extended sibilant /s/,
     // not four separately pronounced letter names. Keep the printed
     // punctuation and spelling; insert a sound cue only into narration.
@@ -780,5 +803,5 @@
     else clearPausedHighlight();
   }
 
-  root.OpheliaNarration=Object.freeze({version:'1.4.15',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
+  root.OpheliaNarration=Object.freeze({version:'1.4.16',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
 })(window);
