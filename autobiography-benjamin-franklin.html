@@ -114,6 +114,18 @@ function stop(){window.OpheliaNarration?.clearReading?.();
 }
 function updatePlay(){$('play').textContent=speaking?(paused?'▶ Resume':'Ⅱ Pause'):'▶ Read aloud';}
 function getText(){return pages[state.page]?.paragraphs.join(' ')||'';}
+function chapterAnnouncementForSpeech(){
+ const page=pages[state.page];
+ if(!page||state.page>0&&pages[state.page-1].section===page.section)return '';
+ if(page.section===0)return "Editor's Introduction.";
+ if(page.section>=1&&page.section<=19){
+  const title=page.sectionName.replace(/^Chapter\s+[IVX]+\s*·\s*/i,'').replace(/[.!?]+$/,'');
+  // Use Arabic digits for clear spoken chapter numbers, rather than a Roman numeral such as "I".
+  return 'Chapter '+page.section+'. '+title+'.';
+ }
+ // Supplement titles are part of this historical edition too.
+ return page.sectionName.replace(/[.!?]+$/,'')+'.';
+}
 function pickVoice(){return voiceList.find(v=>v.voiceURI===state.voice)||voiceList.find(v=>/^en-GB/i.test(v.lang))||voiceList.find(v=>/^en/i.test(v.lang))||null;}
 // This function is copied from the original Alice reader to preserve its exact
 // sentence-boundary, abbreviation, punctuation, and Victorian-clause rules.
@@ -189,7 +201,10 @@ function startSpeech(startAt=speechResumeAt){
  stop();
  const synth=window.speechSynthesis;
  synth.resume();
- const chunks=speechChunks(getText()).slice(startAt);
+ // An opening section announcement is one utterance, followed by the original prose.
+ // Keeping it in the same queue preserves pause/resume, speech speed and auto-turn.
+ const introduction=chapterAnnouncementForSpeech();
+ const chunks=(introduction?[introduction,...speechChunks(getText())]:speechChunks(getText())).slice(startAt);
  speechResumeAt=0;speechCursor=startAt;pageSpeechDone=false;
  if(!chunks.length){note('There is no text to narrate on this page.');return;}
  speaking=true;paused=false;const token=speechToken;
