@@ -1,5 +1,5 @@
 /* Ophelia's Open Book — shared spoken-text preparation.
- * Version 1.4.14. Load before each reader's inline narration code.
+ * Version 1.4.15. Load before each reader's inline narration code.
  *
  * Normalize only the words sent to speech synthesis: the printed book,
  * headings, pagination, bookmarks and original manuscripts are unchanged.
@@ -540,9 +540,11 @@
   function markPausedWord(utterances,index,offset){
     clearPausedHighlight();
     if(typeof document==='undefined'||typeof document.createTreeWalker!=='function')return;
+    // The spoken section heading is not printed in the prose; never highlight it.
+    if(utterances[index]?.__opheliaChapterIntro)return;
     const spokenWords=[];let selected=0,seen=0;
     for(let i=0;i<utterances.length;i++){
-      const words=wordSpans(utterances[i].text.replace(/—\s*$/,''));
+      const words=utterances[i].__opheliaChapterIntro?[]:wordSpans(utterances[i].text.replace(/—\s*$/,''));
       if(i===index){
         const at=words.findIndex(w=>w.start<=offset&&w.end>offset);
         const next=words.findIndex(w=>w.start>=offset);
@@ -570,9 +572,54 @@
   }
   // Queue one sentence/phrase at a time; keep our own word-level cursor.
   // Browser-native pause/resume can restart unpredictably in some OS voices.
+  // Announce section headings without inserting them into the manuscript or
+  // the reader's paragraph pagination. All standard readers share this queue.
+  function openingSectionAnnouncement(utterances){
+    if(!utterances?.length||typeof pages==='undefined'||typeof state==='undefined'||
+       !Array.isArray(pages)||!Number.isInteger(state?.page))return '';
+    const page=pages[state.page];
+    if(!page||page.section===undefined)return '';
+    if(state.page>0&&pages[state.page-1]?.section===page.section)return '';
+    // Restarting in the middle of an utterance should resume the prose, not the heading.
+    if(typeof speechCursor!=='undefined'&&speechCursor>0)return '';
+    let name=String(page.sectionName||document.getElementById('chaptername')?.textContent||'').trim();
+    if(!name)return '';
+    if(/^explanatory$/i.test(name))name='Explanatory Note';
+    if(/^chapter\s+the\s+last$/i.test(name))
+      name='Chapter '+page.section+'. The Last';
+    if(/^laisse\s+(\d+)\s*·\s*[IVXLCDM]+$/i.test(name))
+      name=name.replace(/\s*·\s*[IVXLCDM]+$/i,'');
+    name=name.replace(/\b(Chapter|Book|Volume|Part|Act|Scene|Canto|Letter|Section)\s+([IVXLCDM]+)\b/gi,
+      (whole,label,numeral)=>{
+        const value=romanValue(numeral.toUpperCase());
+        return value===null?whole:label+' '+value;
+      });
+    name=name.replace(/\s*[·•]\s*/g,'. ').replace(/\s+[—–]\s+/g,'. ')
+      .replace(/&/g,'and').replace(/\s{2,}/g,' ').replace(/[.!?\s]+$/,'');
+    if(name===name.toUpperCase()&&/[A-Z]/.test(name))
+      name=name.toLowerCase().replace(/(^|[.!?]\s+)[a-z]/g,m=>m.toUpperCase());
+    const announcement=name+'.';
+    // Existing per-book chapter intros (e.g. Franklin and Huck) are authoritative.
+    if(String(utterances[0].text||'').trim().toLocaleLowerCase()===announcement.toLocaleLowerCase())
+      return '';
+    if(/(?:^|\/)(?:huckleberry-finn|autobiography-benjamin-franklin)\.html$/i.test(root.location?.pathname||''))
+      return '';
+    return announcement;
+  }
   function speakWithPauses(synth,utterances,isCurrent,isPaused){
     clearReading();
     if(!utterances||!utterances.length)return null;
+    const intro=openingSectionAnnouncement(utterances);
+    if(intro){
+      const first=utterances[0];
+      // A separate source keeps existing onend/page-turn counts unchanged.
+      utterances.unshift({
+        text:intro,voice:first.voice,lang:first.lang,rate:first.rate,
+        pitch:first.pitch,volume:first.volume,__opheliaChapterIntro:true,
+        // Clear the reader's startup timeout while the title is being spoken.
+        onstart:e=>first.onstart?.(e)
+      });
+    }
     let index=0,offset=0,paused=false,disposed=false,serial=0,timer=null;
     let current=null,lastBoundary=0;
     // Unlock Web Audio from the reader's Play gesture, but only on the
@@ -698,7 +745,7 @@
       const original=utterances[index];
       current=null;offset=0;index++;
       // A double dash is a short rhetorical beat, not a 430 ms silence.
-      const delay=pauseAfter(original.text);
+      const delay=original.__opheliaChapterIntro?245:pauseAfter(original.text);
       original.onend?.(e||{});
       if(disposed||!isCurrent())return;
       if(index<utterances.length){
@@ -722,5 +769,5 @@
     else clearPausedHighlight();
   }
 
-  root.OpheliaNarration=Object.freeze({version:'1.4.14',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
+  root.OpheliaNarration=Object.freeze({version:'1.4.15',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
 })(window);
