@@ -243,6 +243,17 @@ function addOriginalLanguageLinks(){
  if(currentPage==='grimms-fairy-tales.html'&&heading.querySelector('img'))heading.insertBefore(box,heading.querySelector('img'));else if(share)heading.insertBefore(box,share);else heading.appendChild(box);
 }
 
-function initializePageButtons(){addPageButton();addLibraryNavigation();addOriginalLanguageLinks();}
+function initializePageButtons(){
+  addPageButton();addLibraryNavigation();addOriginalLanguageLinks();
+  // Reuse the same reader-side completion detector and personal shelf
+  // throughout the library; no accounts or third-party storage required.
+  if(!window.OpheliaFinishedShelf&&!document.querySelector('script[data-ophelia-finished-shelf]')){
+    const script=document.createElement('script');
+    script.src='public/js/ophelia-finished-shelf.js?v=1.0.0';
+    script.defer=true;
+    script.dataset.opheliaFinishedShelf='true';
+    document.head.appendChild(script);
+  }
+}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initializePageButtons);else initializePageButtons();
 })();
