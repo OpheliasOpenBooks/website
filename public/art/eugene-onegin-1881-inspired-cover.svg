@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 900" role="img" aria-labelledby="title desc"><title id="title">Eugene Onegin — 1881-inspired binding</title><desc id="desc">An original illustrated green cloth Victorian bookbinding with gilt geometric ornament and engraved laurel motif, inspired by surviving 1881 Spalding editions.</desc>
+<defs><linearGradient id="cloth" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#244638"/><stop offset=".55" stop-color="#15362e"/><stop offset="1" stop-color="#092b25"/></linearGradient><pattern id="grain" width="18" height="18" patternUnits="userSpaceOnUse"><path d="M0 6L18 1M0 15l18-4" stroke="#568071" stroke-width=".45" opacity=".22"/></pattern></defs>
+<rect width="650" height="900" fill="url(#cloth)"/><rect width="650" height="900" fill="url(#grain)"/>
+<rect x="30" y="30" width="590" height="840" rx="8" fill="none" stroke="#cbb078" stroke-width="3"/>
+<rect x="44" y="44" width="562" height="812" rx="4" fill="none" stroke="#806b40" stroke-width="1.7"/>
+<path d="M92 168H558M92 728H558" stroke="#c9ac73" stroke-width="3"/>
+<g stroke="#bb9d61" stroke-width="3" fill="none"><path d="M108 96Q130 64 155 91Q179 64 202 93M448 93Q472 64 495 91Q520 63 542 96"/><path d="M109 800Q153 773 200 800M450 800Q494 772 541 800"/></g>
+<text x="325" y="136" font-family="Georgia,serif" font-size="25" letter-spacing="5" fill="#e7ce94" text-anchor="middle">ALEXANDER PUSHKIN</text>
+<text x="325" y="250" font-family="Georgia,serif" font-size="62" fill="#efd9aa" text-anchor="middle">EUGENE</text>
+<text x="325" y="325" font-family="Georgia,serif" font-size="67" fill="#efd9aa" text-anchor="middle">ONEGIN</text>
+<text x="325" y="380" font-family="Georgia,serif" font-style="italic" font-size="20" fill="#cfb788" text-anchor="middle">A Romance of Russian Life in Verse</text>
+<g stroke="#c8aa6b" fill="none" stroke-width="2.6" stroke-linecap="round"><path d="M325 680V439"/><path d="M325 481c-43-43-82-39-98-69M325 507c55-41 88-45 111-97M325 548c-62-37-102-31-123-71M325 576c59-36 100-37 126-80M325 622c-57-24-94-24-133-56M325 649c61-29 106-24 130-57"/>
+<path d="M233 426q-28-3-37-26q33 2 37 26zM424 425q11-25 38-30q-2 29-38 30zM255 503q-24-16-27-45q30 12 27 45zM402 503q20-14 29-48q-32 10-29 48zM260 565q-25-13-36-38q30 0 36 38zM398 573q22-15 32-42q-34 2-32 42zM277 625q-26-11-40-35q31 0 40 35zM379 631q31-10 42-36q-35 3-42 36z"/></g>
+<circle cx="325" cy="438" r="13" fill="#c7a76f" stroke="#efd7a3" stroke-width="2"/>
+<text x="325" y="777" font-family="Georgia,serif" font-size="22" fill="#dec48d" text-anchor="middle">Translated by HENRY SPALDING</text>
+<text x="325" y="822" font-family="Georgia,serif" font-size="19" letter-spacing="4" fill="#c9ad74" text-anchor="middle">LONDON · 1881</text>
+</svg>
