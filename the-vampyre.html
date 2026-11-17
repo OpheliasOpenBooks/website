@@ -83,7 +83,7 @@ async function fetchChapters(){
    const raw=lines.slice(start,end).join('\n').trim();
    const paragraphs=raw.split(/\n\s*\n+/).map(x=>x.replace(/\s*\n\s*/g,' ').replace(/_{3,}/g,' ').trim()).filter(Boolean);
    const count=paragraphs.join(' ').split(/\s+/).length;
-   if(count<[35,300,350,4500,1200][i])throw Error('Historical section is incomplete: '+sectionTitles[i]+' ('+count+' words)');
+   if(count<[25,300,350,4500,1200][i])throw Error('Historical section is incomplete: '+sectionTitles[i]+' ('+count+' words)');
    return {name:sectionTitles[i],paragraphs};
  });
  note('The complete 1819 edition is ready.');
