@@ -24,13 +24,7 @@ h1{font-size:clamp(39px,6vw,62px);font-weight:400;line-height:1.15;margin:12px 0
 .layout{display:grid;grid-template-columns:minmax(270px,390px) minmax(0,1fr);align-items:start;gap:26px;padding-bottom:65px}
 section.panel{background:#fffdf8;border:1px solid var(--line);padding:22px}
 .panel h2{font-size:24px;font-weight:400;margin:0 0 14px}
-.cover{min-height:510px;padding:28px 22px;background:#f5e8c9;border:3px double #5c4827;box-shadow:6px 8px 0 #e8e0d0;display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center;outline:1px solid #947b54;outline-offset:-13px;color:#362c1c}
-.cover .flourish{font-size:24px;color:#806342}
-.cover .imprint{font:18px/1.5 Georgia,serif;letter-spacing:3px;text-transform:uppercase;margin:0}
-.cover h3{font-size:clamp(31px,4vw,47px);font-weight:400;font-style:italic;margin:10px 0}
-.cover .sub{font-size:16px;font-style:italic}
-.cover .author{font-size:25px;font-style:italic}
-.cover .small{font:12px/1.65 Georgia,serif;letter-spacing:1px}
+.cover-art{margin:0 auto;max-width:390px}.cover-art img{display:block;width:100%;height:auto;border:1px solid #b59e77;background:#f5e8c9;box-shadow:6px 8px 0 #e8e0d0}.cover-art figcaption{margin-top:16px;font:12px/1.55 Arial,sans-serif;color:var(--muted);text-align:center}
 .player{margin-top:17px}
 .player audio{width:100%}
 .player small{display:block;color:var(--muted);font:12px/1.6 Arial,sans-serif;margin-top:9px}
@@ -48,16 +42,7 @@ section.panel{background:#fffdf8;border:1px solid var(--line);padding:22px}
 <p class="notice"><strong>Everything here is free.</strong> Listen, read, print, or download the complete two-page score—no purchase or account required. The music notation was independently typeset for the <a href="https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=5" target="_blank" rel="noopener noreferrer">Mutopia Project</a> and placed in the public domain. Ophelia’s decorative cover is a historically inspired presentation, not a claim of ownership of Bach’s music.</p>
 <div class="layout">
 <section class="panel"><h2>Ophelia’s Baroque cover</h2>
-<div class="cover" aria-label="Baroque-inspired Ophelia edition cover concept">
-<div class="flourish" aria-hidden="true">❧ ❦ ❧</div>
-<div class="imprint">Ophelia’s<br>Music Editions</div>
-<div class="flourish" aria-hidden="true">— ❦ —</div>
-<h3>Prelude No. 1<br>in C major</h3>
-<div class="sub">From The Well-Tempered Clavier, Book I</div>
-<div class="author">Johann Sebastian Bach</div>
-<div class="small">BWV 846 · BAROQUE COLLECTION · I<br>FREE MUSIC EDITION</div>
-<div class="flourish" aria-hidden="true">❦</div>
-</div>
+<figure class="cover-art"><img src="public/art/ophelia-bach-baroque-cover.svg" width="280" height="373" alt="Ophelia’s engraved Baroque-inspired cover for Bach’s Prelude No. 1 in C major, with trumpeting cherubs, ornate borders, laurel wreath and musical instruments."><figcaption>Original Ophelia artwork inspired by eighteenth-century music engraving; not an antique facsimile.</figcaption></figure>
 <div class="player"><div class="eyebrow">Listen to the composition</div><audio controls preload="none" aria-label="Bach Prelude in C major, Kimiko Ishizaka"><source src="https://upload.wikimedia.org/wikipedia/commons/b/b6/Kimiko_Ishizaka_-_Bach_-_Well-Tempered_Clavier%2C_Book_1_-_01_Prelude_No._1_in_C_major%2C_BWV_846.ogg" type="audio/ogg">Audio unavailable in this browser.</audio><small>Kimiko Ishizaka · CC0 recording · playback starts only when selected</small></div>
 </section>
 <section class="panel"><div class="free-note">FREE · COMPLETE SCORE</div><h2>Free sheet music · two pages</h2>
