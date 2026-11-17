@@ -25,6 +25,14 @@ function save(key,list){
  }catch{return false;}
 }
 const read=()=>items(READING),done=()=>items(FINISHED);
+let synchronizing=false;
+function reconcileStatuses(){
+ if(synchronizing)return;
+ const complete=new Set(done().map(x=>x.path));
+ const list=read(),active=list.filter(x=>!complete.has(x.path));
+ if(active.length!==list.length){synchronizing=true;save(READING,active);synchronizing=false;}
+}
+document.addEventListener('ophelia-shelf-changed',reconcileStatuses);
 function identify(){
  const h=document.querySelector('.book-heading h1,main.book h1,.reader .intro h1');
  if(!h||!allowed.test(current))return null;
@@ -53,9 +61,10 @@ function markReading(book){
  const p=book.path===current?pagePosition():{page:book.page||0,total:book.total||0};
  const next={...previous,...book,startedAt:previous?.startedAt||now,lastAt:now,
    page:p.page||previous?.page||0,total:p.total||previous?.total||0};
- if(!save(READING,[next,...list.filter(x=>x.path!==book.path)]))return false;
+ // Move a reread off the finished shelf before adding its new ribbon.
  const completed=done();
  if(completed.some(x=>x.path===book.path))save(FINISHED,completed.filter(x=>x.path!==book.path));
+ if(!save(READING,[next,...list.filter(x=>x.path!==book.path)]))return false;
  return true;
 }
 function markFinished(book){
@@ -190,6 +199,6 @@ function initReader(){
  update();
 }
 window.OpheliaReadingShelf=Object.freeze({reading:read,finished:done,markReading,markFinished});
-function boot(){initReader();initShelfPage()}
+function boot(){reconcileStatuses();initReader();initShelfPage()}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
 })();
