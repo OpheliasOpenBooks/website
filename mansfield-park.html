@@ -70,18 +70,18 @@ const chapterTitles=Array.from({length:48},(_,i)=>i<18?'Volume I · Chapter '+nu
 async function fetchChapters(){
  const response=await fetch('public/books/mansfield-park-1814.txt');
  if(!response.ok)throw Error('The complete novel text could not be loaded');
- let source=(await response.text()).replace(/\\r/g,'');
- source=source.replace(/[\\s\\S]*?\\*\\*\\* START OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[^\\n]*\\n/i,'');
- source=source.replace(/\\*\\*\\* END OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[\\s\\S]*/i,'');
- const heads=[...source.matchAll(/^CHAPTER\\s+([IVXLCDM]+)\\s*$/gm)];
+ let source=(await response.text()).replace(/\r/g,'');
+ source=source.replace(/[\s\S]*?\*\*\* START OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[^\n]*\n/i,'');
+ source=source.replace(/\*\*\* END OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[\s\S]*/i,'');
+ const heads=[...source.matchAll(/^CHAPTER\s+([IVXLCDM]+)\s*$/gm)];
  if(heads.length!==48)throw Error('Expected all 48 chapter headings; found '+heads.length);
  const sections=[];
  for(let i=0;i<heads.length;i++){
   const start=heads[i].index+heads[i][0].length;
   const end=i+1<heads.length?heads[i+1].index:source.length;
   const body=source.slice(start,end).trim();
-  const paragraphs=body.split(/\\n\\s*\\n+/).map(t=>t.replace(/\\s*\\n\\s*/g,' ').trim()).filter(Boolean);
-  const words=paragraphs.join(' ').split(/\\s+/).length;
+  const paragraphs=body.split(/\n\s*\n+/).map(t=>t.replace(/\s*\n\s*/g,' ').trim()).filter(Boolean);
+  const words=paragraphs.join(' ').split(/\s+/).length;
   if(words<300)throw Error('Chapter '+(i+1)+' is too short');
   sections.push({name:chapterTitles[i],paragraphs});
  }
