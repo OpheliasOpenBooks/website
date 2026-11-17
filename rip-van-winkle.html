@@ -272,7 +272,7 @@ window.addEventListener('pagehide',stop);if('speechSynthesis' in window){updateV
 applySettings();
 (async()=>{
  try{setupBook(await fetchChapters());}
- catch(e){$('loadbox').classList.remove('hidden');note('The complete novel could not load. Please refresh.');console.error(e);}
+ catch(e){$('loadbox').classList.remove('hidden');note('The story could not load: '+e.message+'. Please refresh.');console.error(e);}
 })();
 
 </script>
