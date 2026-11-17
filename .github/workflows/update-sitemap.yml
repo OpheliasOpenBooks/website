@@ -1,0 +1,38 @@
+name: Refresh search sitemap (free)
+on:
+  push:
+    branches: [main]
+    paths:
+      - '*.html'
+      - 'scripts/build_sitemap.py'
+      - '.github/workflows/update-sitemap.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: public-sitemap-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  sitemap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the published website
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Regenerate searchable list of public pages
+        run: python3 scripts/build_sitemap.py
+      - name: Publish sitemap only when the library changes
+        run: |
+          if git diff --quiet -- sitemap.xml; then
+            echo "Sitemap already current"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add sitemap.xml
+          git commit -m "Refresh public book sitemap"
+          # Book pages may be added while this job runs; preserve any newer work.
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
