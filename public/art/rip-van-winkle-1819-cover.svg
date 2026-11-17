@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" role="img" aria-labelledby="title desc">
+<title id="title">Rip Van Winkle — 1819 period-inspired title page</title>
+<desc id="desc">An antiquarian early nineteenth-century volume with marbled binding and an ivory title page, inspired by early Washington Irving editions. Original period-inspired design, not a facsimile.</desc>
+<defs><linearGradient id="cloth" x2="1" y2=".15"><stop stop-color="#30291f"/><stop offset=".4" stop-color="#444f43"/><stop offset="1" stop-color="#33291e"/></linearGradient><linearGradient id="leaf" x2=".2" y2="1"><stop stop-color="#f6ecd1"/><stop offset=".52" stop-color="#e9d8b1"/><stop offset="1" stop-color="#cfb88b"/></linearGradient><pattern id="grain" width="16" height="18" patternUnits="userSpaceOnUse"><path d="M2 0v18M8 2v18M13 0v16" stroke="#594733" stroke-width=".7" opacity=".09"/></pattern></defs>
+<rect width="600" height="900" fill="#221b18"/>
+<rect x="13" y="12" width="575" height="876" rx="4" fill="url(#cloth)" stroke="#ac8861" stroke-width="4"/>
+<rect x="18" y="16" width="570" height="868" fill="url(#grain)"/>
+<rect x="27" y="26" width="84" height="847" fill="#463224" stroke="#1d1614" stroke-width="3"/>
+<path d="M103 22v854" stroke="#a98555" stroke-width="3"/>
+<g fill="#b79a65" font-family="Georgia,serif" text-anchor="middle" transform="translate(71 450) rotate(-90)"><text letter-spacing="6" font-size="18">RIP VAN WINKLE · IRVING</text></g>
+<rect x="135" y="65" width="417" height="775" fill="#14110c" opacity=".33"/>
+<rect x="129" y="57" width="413" height="775" fill="url(#leaf)" stroke="#987c51" stroke-width="2"/>
+<rect x="144" y="72" width="382" height="745" stroke="#6a5943" stroke-width=".7" fill="none" opacity=".6"/>
+<g fill="#29231c" font-family="Georgia,serif" text-anchor="middle">
+<text x="335" y="224" font-size="26" letter-spacing="3">WASHINGTON IRVING’S</text>
+<text x="335" y="308" font-size="40" letter-spacing="1.2">RIP VAN WINKLE</text>
+<text x="335" y="373" font-size="26" font-style="italic">A Tale.</text>
+<path d="M250 421h170" stroke="#3e3226" stroke-width="1.4"/>
+<text x="335" y="473" font-size="21" letter-spacing=".4">BY</text>
+<text x="335" y="502" font-size="26" letter-spacing="1">WASHINGTON IRVING.</text>
+<path d="M269 557h132" stroke="#3e3226" stroke-width="1"/>
+<text x="335" y="624" font-size="22" letter-spacing="4">THE SKETCH BOOK</text>
+<text x="335" y="659" font-size="15">A COLLECTION OF</text>
+<text x="335" y="685" font-size="15">AMERICAN TALES AND SKETCHES.</text>
+<text x="335" y="710" font-size="14" letter-spacing=".4">BY GEOFFREY CRAYON, GENT.</text>
+<text x="335" y="773" font-size="29" letter-spacing="5">1819.</text>
+</g>
+<text x="339" y="859" font-size="13" text-anchor="middle" fill="#d8c29a" font-family="Georgia,serif" letter-spacing="2">OPHELIA’S OPEN BOOK · PERIOD-INSPIRED DESIGN</text>
+</svg>
