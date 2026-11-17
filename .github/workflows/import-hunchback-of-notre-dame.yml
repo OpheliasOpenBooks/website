@@ -1,0 +1,22 @@
+name: Import Hunchback of Notre-Dame original novel
+on:
+  push:
+    paths:
+      - '.github/workflows/import-hunchback-of-notre-dame.yml'
+      - 'scripts/import_hunchback_of_notre_dame.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Retrieve and validate complete public-domain Hapgood English novel
+        run: python3 scripts/import_hunchback_of_notre_dame.py
+      - name: Save text locally on website
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/books/hunchback-of-notre-dame-hapgood.txt
+          git diff --staged --quiet || (git commit -m "Import complete Hunchback of Notre-Dame Hapgood text" && git push)
