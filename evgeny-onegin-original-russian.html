@@ -1,8 +1,10 @@
 <!doctype html>
-<html lang="ru">
+<html lang="ru" translate="no" class="notranslate">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#23463a">
+<meta name="google" content="notranslate">
+<meta http-equiv="Content-Language" content="ru">
 <title>Евгений Онегин · Оригинальный текст · Ophelia’s Open Book</title>
 <meta name="description" content="Читайте роман А. С. Пушкина «Евгений Онегин» в оригинале: посвящение и восемь глав. Только чтение, без озвучивания.">
 <link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="public/art/ophelia-app-icon-192.png">
@@ -33,15 +35,15 @@ aside select{width:100%;padding:10px;background:var(--panel);color:var(--ink);bo
 @media(max-width:800px){main{display:flex;flex-direction:column}article,aside{width:100%}aside{position:static;order:-1}#reading{padding:22px}}
 </style>
 </head>
-<body>
+<body translate="no" class="notranslate">
 <nav><a href="catalog.html">← Библиотека / Library</a><strong>Ophelia’s Open Book</strong><a href="eugene-onegin.html">English translation · Listen</a></nav>
 <main>
-<article>
+<article lang="ru" translate="no" class="notranslate">
 <header><div class="kicker">ОРИГИНАЛ · РОМАН В СТИХАХ · 1833</div><h1>Евгений Онегин</h1><p class="byline">Александр Сергеевич Пушкин</p>
 <img class="cover" src="public/art/eugene-onegin-1881-inspired-cover.svg" alt="Декоративная обложка в стиле XIX века">
 <p class="note"><strong>Подлинный русский текст — только для чтения.</strong> Посвящение и все восемь глав романа доступны без автоматической озвучки. Английский перевод 1881 года Генри Сполдинга можно <a href="eugene-onegin.html">читать и слушать здесь</a>. Иллюстрация обложки создана специально для библиотеки.</p>
 </header>
-<div id="reading" aria-live="polite"><h2>Загрузка книги…</h2></div>
+<div id="reading" lang="ru" translate="no" class="notranslate" aria-live="polite"><h2>Загрузка книги…</h2></div>
 <footer class="reader-nav"><button type="button" id="prev" disabled>← Назад</button><span class="status" id="pages">Страница 1</span><button type="button" id="next" disabled>Вперёд →</button></footer>
 </article>
 <aside aria-label="Параметры чтения">
@@ -87,7 +89,7 @@ function render(scroll=true){
  const page=pages[state.page],part=sections[page.section];
  const box=$('reading');box.replaceChildren();
  const heading=document.createElement('h2');heading.textContent=part.name;box.append(heading);
- for(const paragraph of page.paragraphs){const p=document.createElement('p');p.textContent=paragraph;box.append(p)}
+ for(const paragraph of page.paragraphs){const p=document.createElement('p');p.lang='ru';p.className='notranslate';p.setAttribute('translate','no');p.textContent=paragraph;box.append(p)}
  $('section').value=String(page.section);
  $('pages').textContent='Страница '+(state.page+1)+' / '+pages.length;
  const percent=Math.round((state.page+1)/pages.length*100);
@@ -114,6 +116,9 @@ document.addEventListener('keydown',e=>{if(e.target.closest('button,select,input
   if(!r.ok)throw Error('Нет файла с русским текстом (HTTP '+r.status+').');
   const data=await r.json();
   if(data.language!=='ru'||data.sections?.length!==9||data.sections.filter(p=>/^Глава /.test(p.name)).length!==8)throw Error('В издании отсутствуют главы.');
+  // Reject a wrongly routed translation, even if its metadata claims Russian.
+  const proof=data.sections.slice(1,3).flatMap(part=>part.paragraphs).join(' ').slice(0,6000);
+  if((proof.match(/[\u0400-\u04FF]/g)||[]).length<1200 || !proof.includes('Мой дядя самых честных правил'))throw Error('Загружен не оригинальный русский текст.');
   sections=data.sections;
   if(sections.some(p=>!p.paragraphs?.length||typeof p.name!=='string'))throw Error('Не хватает стихотворного текста.');
   pages=paginate(sections);
