@@ -150,6 +150,7 @@ function addPageButton(){
  * Multi-volume sources list EVERY volume rather than silently truncating.
  */
 const originalLanguageSources={
+ 'bambi.html':{language:'German',original:'Bambi: Eine Lebensgeschichte aus dem Walde',links:[['Original German novel (Projekt Gutenberg)','https://projekt-gutenberg.org/authors/felix-salten/books/bambi/']]},
  // Every foreign-language edition uses this common top-of-page reader panel.
  'the-magic-mountain.html':{language:'German',original:'Der Zauberberg',links:[['Band I (Project Gutenberg)','https://www.gutenberg.org/ebooks/65661'],['Band II (Project Gutenberg)','https://www.gutenberg.org/ebooks/65662']]},
  'siddhartha.html':{language:'German',original:'Siddhartha: Eine indische Dichtung',links:[['German original (Project Gutenberg)','https://www.gutenberg.org/ebooks/2499']]},
@@ -239,7 +240,7 @@ function addOriginalLanguageLinks(){
  box.appendChild(quiet);
  // Keep the quiet edition link above the share button, underneath the title.
  const share=heading.querySelector('.ob-share-holder');
- if(share)heading.insertBefore(box,share);else heading.appendChild(box);
+ if(currentPage==='grimms-fairy-tales.html'&&heading.querySelector('img'))heading.insertBefore(box,heading.querySelector('img'));else if(share)heading.insertBefore(box,share);else heading.appendChild(box);
 }
 
 function initializePageButtons(){addPageButton();addLibraryNavigation();addOriginalLanguageLinks();}
