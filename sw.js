@@ -1,5 +1,5 @@
 /* Ophelia's Open Book app shell; full books remain online-only by design. */
-const CACHE_NAME = 'ophelia-open-book-shell-2026-11-v2';
+const CACHE_NAME = 'ophelia-open-book-shell-2026-11-v3';
 const SHELL = [
   './index.html',
   './catalog.html',
