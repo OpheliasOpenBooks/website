@@ -3,7 +3,7 @@
 import fs from 'node:fs';
 const read=p=>fs.readFileSync(p,'utf8');
 const catalog=read('catalog.html'),home=read('index.html');
-const hrefs=[...catalog.matchAll(/href:'([^']+\\.html)'/g)].map(m=>m[1]).concat([...home.matchAll(/href="([\\w-]+\\.html)"/g)].map(m=>m[1]));
+const hrefs=[...catalog.matchAll(/href:'([^']+\.html)'/g)].map(m=>m[1]).concat([...home.matchAll(/href="([\w-]+\.html)"/g)].map(m=>m[1]));
 const paths=[...new Set(hrefs)].filter(p=>!['index.html','catalog.html','reader.html','support.html'].includes(p));
 const series=new Set(['the-forsyte-saga.html','outline-of-history.html','leatherstocking-tales.html']);
 const readOnly=new Set(['king-james-bible-1611.html']);
