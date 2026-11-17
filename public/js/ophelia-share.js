@@ -100,6 +100,8 @@ function open(info={}) {
 window.OpheliaShare={open};
 /* Quiet way back to the catalogue on every reader: no floating overlays. */
 function addLibraryNavigation(){
+ // The bookshelf already has a simple top navigation; do not insert a second one.
+ if(location.pathname.endsWith('/my-bookshelf.html'))return;
  const heading=document.querySelector('.book-heading')||document.querySelector('main .intro')||document.querySelector('main > .intro')||document.querySelector('main .book .intro');
  if(!heading||document.querySelector('.ob-library-navigation'))return;
  const controls=document.querySelector('.reader-controls');
