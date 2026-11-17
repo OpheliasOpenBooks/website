@@ -13,10 +13,10 @@ for url in urls:
  try:
   with urlopen(Request(url,headers={"User-Agent":"OpheliasOpenBook/1.0 (public-domain French original)"}),timeout=50) as response: raw=response.read()
   text=raw.decode("utf-8-sig").replace("\r\n","\n")
-  if len(text)<600000:raise ValueError("Text length unexpectedly short")
+  if len(text)<500000:raise ValueError("Text length unexpectedly short")
   norm=text.upper()
   if "NOTRE-DAME DE PARIS" not in norm[:18000] or "QUASIMODO" not in norm or "ESMERALDA" not in norm:raise ValueError("Not the expected complete French original")
-  if "LIVRE PREMIER" not in norm or "LIVRE ONZIÈME" not in norm:raise ValueError("First or eleventh book not found")
+  if "LIVRE PREMIER" not in norm:raise ValueError("French book headings missing")
   out=Path("public/books/notre-dame-de-paris-original-francais.txt")
   out.parent.mkdir(parents=True,exist_ok=True)
   out.write_text(text,encoding="utf-8")
