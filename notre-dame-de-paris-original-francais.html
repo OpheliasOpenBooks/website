@@ -145,19 +145,27 @@ function parseFrenchText(raw){
  if(!books)throw Error('Séquence complète des onze livres introuvable.');
  const sections=[];
  const before=body.slice(0,books[0].index);
- const preface=before.search(/^[ \t]*PR[ÉE]FACE[ \t]*$/im);
- if(preface>=0){
-  const preliminary=before.slice(preface).split(/\n\s*\n+/).map(p=>p.replace(/\n\s*/g,' ').trim()).filter(p=>p.length>35);
-  if(preliminary.length)sections.push({name:'Préface',paragraphs:preliminary});
- }
+ // Keep Hugo's 1831 preface and the note added in the definitive 1832 edition
+ // as distinct, readable sections, excluding the table of contents.
+ const prefaceHits=[...before.matchAll(/^[ \t]*PRÉFACE[ \t]*$/gim)];
+ const definitiveHits=[...before.matchAll(/^[ \t]*NOTE AJOUTÉE À L'ÉDITION DÉFINITIVE[^\n]*$/gim)];
+ const p=prefaceHits[prefaceHits.length-1],note=definitiveHits[definitiveHits.length-1];
+ const splitPars=part=>part.trim().split(/\n\s*\n+/).map(x=>x.replace(/\n\s*/g,' ').replace(/\s{2,}/g,' ').trim()).filter(Boolean);
+ if(p && note && note.index>p.index){
+  sections.push({name:'Préface (1831)',paragraphs:splitPars(before.slice(p.index+p[0].length,note.index))});
+  sections.push({name:'Note ajoutée à l’édition définitive (1832)',paragraphs:splitPars(before.slice(note.index+note[0].length))});
+ }else throw Error('Préface ou note historique introuvable.');
+ const notesMatches=[...body.matchAll(/^[ \t]*NOTES\.?[ \t]*$/gim)];
+ const notes=notesMatches.find(m=>m.index>books[10].index);
  for(let i=0;i<11;i++){
-  const rawSection=body.slice(books[i].index+books[i][0].length,books[i+1]?.index??body.length).trim();
+  const rawSection=body.slice(books[i].index+books[i][0].length,books[i+1]?.index??(notes?.index??body.length)).trim();
   // Use each book as a section to preserve its full original text without
   // silently dropping chapters due to edition-specific punctuation.
   const paragraphs=rawSection.split(/\n\s*\n+/).map(p=>p.replace(/\n\s*/g,' ').replace(/\s{2,}/g,' ').trim()).filter(Boolean);
   if(rawSection.length<3000||paragraphs.length<15)throw Error('Livre '+(i+1)+' incomplet');
   sections.push({name:'Livre '+bookNumbers[i].toLowerCase().replace(/^./,c=>c.toUpperCase()),paragraphs});
  }
+ if(notes){const footnotes=splitPars(body.slice(notes.index+notes[0].length));if(footnotes.length)sections.push({name:'Notes',paragraphs:footnotes});}
  return sections;
 }
 (async()=>{
@@ -167,12 +175,12 @@ function parseFrenchText(raw){
   const raw=await r.text();
   if(raw.length<600000)throw Error('Le texte français semble incomplet.');
   sections=parseFrenchText(raw);pages=paginate(sections);
-  if(sections.length<11||pages.length<100)throw Error('Pagination incomplète');
+  if(sections.length!==14||pages.length<100)throw Error('Pagination incomplète');
   $('chapter').replaceChildren(...sections.map((p,i)=>new Option(p.name,i)));
   $('chapter').disabled=false;
   st.page=Math.min(Math.max(0,Number(st.page)||0),pages.length-1);
   render(false);
-  message('Texte français original chargé · onze livres');
+  message('Texte français intégral chargé · préface, note de 1832, onze livres et notes');
  }catch(error){
   $('reading').textContent='Le texte original n’a pas pu être chargé. Consultez le lien Project Gutenberg ou réessayez.';
   message(String(error));
