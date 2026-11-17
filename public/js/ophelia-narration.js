@@ -125,6 +125,13 @@
 
   function normalizeForSpeech(value){
     let text=removeFootnoteMarkersForSpeech(value);
+    // Sleepy Hollow: the reader pronounces "Ichabod" as requested ("Eakabod").
+    // This changes speech only; Irving's original spelling stays visible.
+    // Constrain the cue to this book so other titles are unaffected.
+    if(/(?:^|\/)the-legend-of-sleepy-hollow\.html$/i.test(root.location?.pathname||'')){
+      text=text.replace(/\bIchabod\b/gi,'Eakabod');
+    }
+
     // Across the library, the address "ma'am" is one syllable, rhyming
     // with "Pam" (/mæm/), not "may-am" or two separate syllables.
     // Only the speech copy changes; preserve straight/curly apostrophes
