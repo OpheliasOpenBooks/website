@@ -66,9 +66,9 @@ function readerControls(){
   holder.hidden=!(last&&next?.disabled===true);
   if(!holder.hidden)renderFinishedState();
  };
- const observed=[document.getElementById('page'),document.getElementById('next2')||document.getElementById('next')].filter(Boolean);
+ const observed=[document.getElementById('page'),document.getElementById('next2')||document.getElementById('next'),document.getElementById('pagecount'),document.getElementById('progresslabel')].filter(Boolean);
  const observer=new MutationObserver(update);
- observed.forEach(el=>observer.observe(el,{attributes:true,childList:true,subtree:false}));
+ observed.forEach(el=>observer.observe(el,{attributes:true,childList:true,characterData:true,subtree:true}));
  document.getElementById('page')?.addEventListener('change',update);
  document.getElementById('next')?.addEventListener('click',()=>requestAnimationFrame(update));
  document.getElementById('prev')?.addEventListener('click',()=>requestAnimationFrame(update));
