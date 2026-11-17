@@ -488,9 +488,9 @@
     if(!value)return 15;
     // Speech engines already include punctuation intonation and a natural
     // end-of-utterance breath. Avoid stacking a second long scripted pause.
-    const clean=value.replace(/[”’"' )\\]]+$/,'').trim();
-    const words=value.replace(/[.!?]+[”’"']?$/,'').trim().split(/\\s+/);
-    const heading=words.length>=2&&words.length<=13&&/^[A-Z][^.!?]*\\.$/.test(value)&&
+    const clean=value.replace(/[”’"' )\]]+$/,'').trim();
+    const words=value.replace(/[.!?]+[”’"']?$/,'').trim().split(/\s+/);
+    const heading=words.length>=2&&words.length<=13&&/^[A-Z][^.!?]*\.$/.test(value)&&
       words.filter(w=>/^[A-Z][a-z]+/.test(w)).length>=Math.max(2,words.length-3)&&
       !/[“”"?!]/.test(value);
     if(heading)return 170; // chapter and section headings still get a brief beat
