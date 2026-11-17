@@ -50,7 +50,7 @@ function readerControls(){
  if(!parent)return;
  const holder=document.createElement('div');
  holder.className='ob-finish-control';
- holder.innerHTML='<button type="button" class="ob-finish-button" aria-pressed="false">✓ Mark this book as finished</button><p class="ob-finish-note" aria-live="polite"></p><a class="ob-finish-link" href="catalog.html#finished-books">View my finished shelf</a>';
+ holder.innerHTML='<button type="button" class="ob-finish-button" aria-pressed="false">✓ Mark this book as finished</button><p class="ob-finish-note" aria-live="polite"></p><a class="ob-finish-link" href="my-bookshelf.html#finished-books">View my finished shelf</a>';
  parent.appendChild(holder);
  completionButton=holder.querySelector('button');completionNote=holder.querySelector('p');
  completionButton.onclick=()=>{
@@ -146,6 +146,6 @@ function style(){
  document.head.appendChild(node);
 }
 window.OpheliaFinishedShelf=Object.freeze({all:readShelf,mark:record});
-function boot(){style();shelfOnPage();readerControls();}
+function boot(){style();readerControls();}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
 })();
