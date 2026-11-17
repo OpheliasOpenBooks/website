@@ -850,5 +850,43 @@
     else clearPausedHighlight();
   }
 
+  // Shared reader preferences across the library, independent of each book's bookmark.
+  // Only bind controls actually present on a reading page. Never change the manuscript.
+  (function synchronizeReaderPreferences(){
+    const preferenceKey='ophelia-library-settings-v1';
+    const ids={speed:['speed','reader-speed'],size:['size','reader-size'],voice:['voice','reader-voice'],night:['dark','night'],auto:['autoturn','auto','auto-turn']};
+    const element=(key)=>ids[key].map(id=>document.getElementById(id)).find(Boolean);
+    const getStored=()=>{try{return JSON.parse(localStorage.getItem(preferenceKey)||'{}')||{};}catch{return {};}};
+    const commit=(key,value)=>{try{const state=getStored();state[key]=value;localStorage.setItem(preferenceKey,JSON.stringify(state));}catch{}};
+    const bind=()=>{
+      const settings=getStored();
+      for(const key of Object.keys(ids)){
+        const el=element(key);if(!el||el.dataset.opheliaLibraryBound)return;
+        el.dataset.opheliaLibraryBound='true';
+        // Restore shared choices only after a book has initialized its own reader.
+        if(Object.prototype.hasOwnProperty.call(settings,key)){
+          const value=settings[key];
+          if(key==='voice'){
+            const selectVoice=()=>{if([...el.options].some(o=>o.value===value)&&el.value!==value){el.value=value;el.dispatchEvent(new Event('change',{bubbles:true}));}};
+            selectVoice();
+            if(root.speechSynthesis)root.speechSynthesis.addEventListener('voiceschanged',selectVoice,{once:true});
+          }else if(key==='night'||key==='auto'){
+            if(el.checked!==Boolean(value)){el.checked=Boolean(value);el.dispatchEvent(new Event('change',{bubbles:true}));}
+          }else if(Number.isFinite(Number(value))){
+            const v=Math.max(Number(el.min)||0,Math.min(Number(el.max)||100,Number(value)));
+            if(Number(el.value)!==v){el.value=String(v);el.dispatchEvent(new Event('input',{bubbles:true}));}
+          }
+        }
+        const event=(key==='speed'||key==='size')?'input':'change';
+        el.addEventListener(event,()=>{
+          if(key==='night'||key==='auto')commit(key,el.checked);
+          else if(key==='speed'||key==='size')commit(key,Number(el.value));
+          else commit(key,el.value);
+        });
+      }
+    };
+    // DOMContentLoaded precedes async book-text loading, but follows inline control setup.
+    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bind,{once:true});else bind();
+  })();
   root.OpheliaNarration=Object.freeze({version:'1.4.23',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
 })(window);
