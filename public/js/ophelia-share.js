@@ -249,10 +249,18 @@ function initializePageButtons(){
   // throughout the library; no accounts or third-party storage required.
   if(!window.OpheliaFinishedShelf&&!document.querySelector('script[data-ophelia-finished-shelf]')){
     const script=document.createElement('script');
-    script.src='public/js/ophelia-finished-shelf.js?v=1.1.1-bottom';
+    script.src='public/js/ophelia-finished-shelf.js?v=2.0-separate-page';
     script.defer=true;
     script.dataset.opheliaFinishedShelf='true';
     document.head.appendChild(script);
+  }
+  // The separate page and reading ribbons use one device-local collection.
+  if(!window.OpheliaReadingShelf&&!document.querySelector('script[data-ophelia-reading-shelf]')){
+    const readerScript=document.createElement('script');
+    readerScript.src='public/js/ophelia-reading-shelf.js?v=1.0';
+    readerScript.defer=true;
+    readerScript.dataset.opheliaReadingShelf='true';
+    document.head.appendChild(readerScript);
   }
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initializePageButtons);else initializePageButtons();
