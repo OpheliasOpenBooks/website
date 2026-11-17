@@ -1,0 +1,27 @@
+name: Reader format audit
+on:
+  pull_request:
+    paths:
+      - '*.html'
+      - 'index.html'
+      - 'catalog.html'
+      - 'scripts/audit-reader-format.mjs'
+      - 'public/js/ophelia-share.js'
+  push:
+    branches: [main]
+    paths:
+      - '*.html'
+      - 'index.html'
+      - 'catalog.html'
+      - 'scripts/audit-reader-format.mjs'
+      - 'public/js/ophelia-share.js'
+jobs:
+  reader-format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check book readers against Les Misérables standard
+        run: node scripts/audit-reader-format.mjs
