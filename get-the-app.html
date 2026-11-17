@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Get the App · Ophelia’s Open Book</title>
+<meta name="description" content="Install Ophelia's Open Book as an app on Android, iPhone, iPad or desktop, while keeping the complete free classic library.">
+<meta name="theme-color" content="#23463a">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="public/art/ophelia-app-icon-192.png">
+<link rel="apple-touch-icon" href="public/art/ophelia-app-icon-192.png">
+<style>
+:root{--paper:#f8f5ed;--ink:#23463a;--muted:#56655b;--gold:#95723b}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 Georgia,serif}
+a{color:inherit;text-underline-offset:4px}header{border-bottom:1px solid #dcd6c7;padding:20px clamp(18px,5vw,60px);display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center}
+.brand{text-decoration:none;font-size:23px}nav{display:flex;gap:18px;font:14px Arial,sans-serif}
+main{max-width:900px;margin:auto;padding:52px 22px 80px}h1{font:normal clamp(36px,5vw,54px)/1.2 Georgia,serif;margin:12px 0}h2{font:normal 27px Georgia,serif;margin:0 0 14px}
+.eyebrow{font:700 12px Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
+.intro{display:flex;gap:28px;align-items:center;flex-wrap:wrap;margin-bottom:36px}.intro img{width:140px;height:140px;border-radius:25px;box-shadow:5px 7px 0 #e4e6d7}.intro div{flex:1;min-width:230px}
+.btn{background:var(--ink);border:1px solid var(--ink);color:#fffdf4;padding:12px 20px;border-radius:5px;font:16px Georgia,serif;cursor:pointer}.btn[hidden]{display:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:17px}
+section{background:#fffdf7;border:1px solid #ded7c8;border-radius:8px;padding:24px}
+section p{margin:9px 0}ol{margin:12px 0;padding-left:22px}li{padding:4px 0}
+.note{margin:28px 0;font:14px/1.65 Georgia,serif;color:var(--muted)}
+footer{margin-top:32px;border-top:1px solid #dcd6c7;padding-top:20px}
+</style></head><body>
+<header><a class="brand" href="index.html">❦ Ophelia’s Open Book</a><nav><a href="index.html">Home</a><a href="catalog.html">Library</a></nav></header>
+<main><div class="intro"><img src="public/art/ophelia-app-icon-192.png" alt="Antique-green and gold Ophelia’s Open Book app icon">
+<div><div class="eyebrow">Carry the Library With You</div><h1>Ophelia’s Open Book, now an app</h1>
+<p>Our illustrated classics, reading room, narration, and bookmarks—through a convenient icon on your home screen.</p>
+<button class="btn" type="button" data-install-app hidden>Install Ophelia’s App</button>
+<p id="install-message" data-install-message aria-live="polite">Follow the instructions for your device below.</p></div></div>
+<div class="grid">
+<section><h2>Android</h2><ol><li>Open this page in Chrome or Samsung Internet.</li><li>Use <strong>Install Ophelia’s App</strong> when the button appears, or open the browser menu.</li><li>Choose <strong>Install app</strong> or <strong>Add to Home screen</strong>.</li></ol></section>
+<section><h2>iPhone &amp; iPad</h2><ol><li>Open this page in Safari.</li><li>Tap the <strong>Share</strong> icon.</li><li>Select <strong>Add to Home Screen</strong>, then <strong>Add</strong>.</li></ol></section>
+<section><h2>Computer</h2><ol><li>Open the site in Chrome or Edge.</li><li>Choose <strong>Install</strong> from the address bar or browser menu, if offered.</li><li>Open the new Ophelia’s icon from your apps or desktop.</li></ol></section>
+</div>
+<p class="note">This is an installable web app, not yet a separate listing in the Apple App Store or Google Play. Most books and narration still require internet access. Bookmarks and reading position remain subject to the browser’s existing storage, so progress may not automatically transfer between browsers or devices.</p>
+<footer><a href="catalog.html">Explore the Library</a> · <a href="index.html">Return to Ophelia’s Open Book</a></footer></main>
+<script defer src="public/js/ophelia-app-install.js"></script></body></html>
