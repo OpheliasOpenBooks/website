@@ -100,7 +100,7 @@ function open(info={}) {
 window.OpheliaShare={open};
 /* Quiet way back to the catalogue on every reader: no floating overlays. */
 function addLibraryNavigation(){
- const heading=document.querySelector('.book-heading');
+ const heading=document.querySelector('.book-heading')||document.querySelector('main .intro')||document.querySelector('main > .intro')||document.querySelector('main .book .intro');
  if(!heading||document.querySelector('.ob-library-navigation'))return;
  const controls=document.querySelector('.reader-controls');
  const css=document.createElement('style');
@@ -150,6 +150,12 @@ function addPageButton(){
  * Multi-volume sources list EVERY volume rather than silently truncating.
  */
 const originalLanguageSources={
+ // Every foreign-language edition uses this common top-of-page reader panel.
+ 'the-magic-mountain.html':{language:'German',original:'Der Zauberberg',links:[['Band I (Project Gutenberg)','https://www.gutenberg.org/ebooks/65661'],['Band II (Project Gutenberg)','https://www.gutenberg.org/ebooks/65662']]},
+ 'siddhartha.html':{language:'German',original:'Siddhartha: Eine indische Dichtung',links:[['German original (Project Gutenberg)','https://www.gutenberg.org/ebooks/2499']]},
+ 'steppenwolf.html':{language:'German',original:'Der Steppenwolf',links:[['German original (Project Gutenberg)','https://www.gutenberg.org/ebooks/75802']]},
+ 'grimms-fairy-tales.html':{language:'German',original:'Kinder- und Hausmärchen',links:[['Original German collection (Wikisource)','https://de.wikisource.org/wiki/Kinder-_und_Hausm%C3%A4rchen']]},
+ 'more-grimm-fairy-tales.html':{language:'German',original:'Kinder- und Hausmärchen',links:[['Original German collection (Wikisource)','https://de.wikisource.org/wiki/Kinder-_und_Hausm%C3%A4rchen']]},
  'iliad.html':{language:'Ancient Greek',original:'Ἰλιάς',links:[['Greek original (Perseus)', 'https://atlas.perseus.tufts.edu/library/urn%3Acts%3AgreekLit%3Atlg0012.tlg001.perseus-grc2/']]},
  'oedipus-rex.html':{language:'Ancient Greek',original:'Οἰδίπους Τύραννος',links:[['Greek original (Perseus)', 'https://atlas.perseus.tufts.edu/library/urn%3Acts%3AgreekLit%3Atlg0011.tlg004.perseus-grc2/']]},
  'aeneid.html':{language:'Latin',original:'Aeneis',links:[['Latin original (Perseus)', 'https://atlas.perseus.tufts.edu/library/urn%3Acts%3AlatinLit%3Aphi0690.phi003.perseus-lat2/']]},
@@ -192,7 +198,7 @@ function addOriginalLanguageLinks(){
  const currentPage=window.location.pathname.split('/').pop().toLowerCase();
  const record=originalLanguageSources[currentPage];
  const heading=document.querySelector('.book-heading');
- if(!record||!heading||heading.querySelector('.ob-original-language'))return;
+ if(!record||!heading||document.querySelector('.ob-original-language'))return;
  const style=document.createElement('style');
  style.textContent=
  '.ob-original-language{max-width:790px;margin:17px auto 0;padding:11px 16px;text-align:center;border:1px solid #d9c9ad;background:#faf5e9;color:#53604c;border-radius:5px;font:14px/1.6 Georgia,serif}' +
