@@ -59,6 +59,10 @@ function speak(){
     if(token!==thisToken||!active)return;
     active=false;$('play').textContent='▶ Read aloud';
     $('status').textContent='Finished '+sections[selected].label;
+    if($('auto').checked&&selected+1<sections.length){
+      const nextChapter=selected+1;
+      showChapter(nextChapter).then(()=>{if(selected===nextChapter&&$('auto').checked&&$('prose').querySelector('p'))speak();});
+    }
   };
   if(!chunks.length){finish();return;}
   if(window.OpheliaNarration?.speakWithPauses){
