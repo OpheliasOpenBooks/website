@@ -10,3 +10,9 @@
 - The source has historical table-of-contents divisions and later notes included within the archived text. No rewriting or modernized adaptation is intended.
 - The reader retains the shared narration script `public/js/ophelia-narration.js`, bookmarks, read-aloud, saved place, page navigation, settings, and Share functionality.
 - Verification: text downloaded and saved by GitHub Actions; chapter distribution inspected against hosted source; live browser narration and deployment were not tested by this report.
+
+## Original French edition now integrated
+- Read-only original-language reader: `notre-dame-de-paris-original-francais.html`, linked directly from the English reader.
+- French text stored at `public/books/notre-dame-de-paris-original-francais.txt`, from Project Gutenberg #19657 / GITenberg `Notre-Dame-de-Paris_19657`, original 1831 novel, preface, 1832 note and full eleven books, followed by original notes.
+- The original-language reader uses local pagination, adjustable text size, bookmarks and night mode. There is deliberately no narration for French.
+- Verified the local French text's eleven substantive book divisions in sequence, 1831 preface, 1832 note, and endnotes; checked all eleven book bodies exceeded 3,000 characters.
