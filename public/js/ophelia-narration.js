@@ -485,21 +485,21 @@
 
   function pauseAfter(text){
     const value=String(text||'').trim();
-    if(!value)return 75;
-    const words=value.replace(/[.!?]+[”’"']?$/,'').trim().split(/\s+/);
-    const clean=value.replace(/[”’"' )\]]+$/,'').trim();
-    const heading=words.length>=2&&words.length<=13&&/^[A-Z][^.!?]*\.$/.test(value)&&
+    if(!value)return 15;
+    // Speech engines already include punctuation intonation and a natural
+    // end-of-utterance breath. Avoid stacking a second long scripted pause.
+    const clean=value.replace(/[”’"' )\\]]+$/,'').trim();
+    const words=value.replace(/[.!?]+[”’"']?$/,'').trim().split(/\\s+/);
+    const heading=words.length>=2&&words.length<=13&&/^[A-Z][^.!?]*\\.$/.test(value)&&
       words.filter(w=>/^[A-Z][a-z]+/.test(w)).length>=Math.max(2,words.length-3)&&
       !/[“”"?!]/.test(value);
-    if(heading)return 630;
-    // Briefer inter-utterance gaps: keep punctuation meaningful without
-    // breaking the narrative between short clauses or em dashes.
-    if(/[?!]$/.test(clean))return 310;
-    if(/[.!]$/.test(clean))return 230;
-    if(/[;:]$/.test(clean))return 155;
-    if(/[—–]$/.test(clean))return 140;
-    if(/,$/.test(clean))return 85;
-    return 75;
+    if(heading)return 170; // chapter and section headings still get a brief beat
+    if(/[?!]$/.test(clean))return 115;
+    if(/[.!]$/.test(clean))return 85;
+    if(/[;:]$/.test(clean))return 65;
+    if(/[—–]$/.test(clean))return 65;
+    if(/,$/.test(clean))return 35;
+    return 15;
   }
   // Resume marker: exact word when the browser emits word boundaries.
   // The marked-up text is not saved to the manuscript or reading progress.
@@ -826,7 +826,7 @@
       const original=utterances[index];
       current=null;offset=0;index++;
       // A double dash is a short rhetorical beat, not a 430 ms silence.
-      const delay=original.__opheliaChapterIntro?245:pauseAfter(original.text);
+      const delay=original.__opheliaChapterIntro?110:pauseAfter(original.text);
       original.onend?.(e||{});
       if(disposed||!isCurrent())return;
       if(index<utterances.length){
@@ -888,5 +888,5 @@
     // DOMContentLoaded precedes async book-text loading, but follows inline control setup.
     if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bind,{once:true});else bind();
   })();
-  root.OpheliaNarration=Object.freeze({version:'1.4.23',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
+  root.OpheliaNarration=Object.freeze({version:'1.4.24',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
 })(window);
