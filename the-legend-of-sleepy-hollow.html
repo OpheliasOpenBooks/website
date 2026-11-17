@@ -41,13 +41,13 @@
  <div id="reader-options" hidden>
   <label class="setting-label" for="page">Go to page</label><select id="page" aria-label="Choose reading page" disabled><option>—</option></select>
   <label class="setting-label" for="voice">Narrator (device voice)</label><select id="voice"><option value="">Automatic English voice</option></select>
-  <label class="setting-label" for="speed">Narration speed <output id="speedview">1×</output></label><input id="speed" type="range" min="0.5" max="2" value="1" step="0.05">
+  <label class="setting-label" for="speed">Narration speed <output id="speedview">1.2×</output></label><input id="speed" type="range" min="0.5" max="2" value="1.2" step="0.05">
   <label class="setting-label" for="size">Text size <output id="sizeview">20 px</output></label><input id="size" type="range" min="16" max="28" value="20" step="1">
   <label class="check"><input id="dark" type="checkbox"> Evening theme</label>
  </div>
  <div class="bookmarker"><button class="quiet" type="button" id="bookmark">♡ Bookmark page</button><p class="hint" id="bookmarkhint">Your place and bookmark are saved on this device.</p></div>
  <p class="status" id="message" role="status">Preparing the novel…</p>
- <div class="load hidden" id="loadbox"><strong>Unable to load the book</strong><p>Please refresh to retry or consult the public-domain source.</p><a href="https://standardebooks.org/ebooks/jane-austen/emma" target="_blank" rel="noopener">View the source edition</a></div>
+ <div class="load hidden" id="loadbox"><strong>Unable to load the book</strong><p>Please refresh to retry or consult the public-domain source.</p><a href="https://www.gutenberg.org/ebooks/41" target="_blank" rel="noopener">View the source edition</a></div>
  </aside>
 </div>
 <div class="source">First published in 1820 in Washington Irving’s The Sketch Book. Complete original tale, including its introductory framing and closing postscript. Source: <a href="https://www.gutenberg.org/ebooks/41" target="_blank" rel="noopener">Project Gutenberg eBook 41</a>, with the full public-domain text hosted locally. This work was originally written in English and does not require a foreign-language link.</div>
@@ -58,8 +58,24 @@
 /* All source is editable. Narration reuses Alice’s grammar-aware sentence segmentation and queued speech strategy. Browser/device voices provide the actual spoken sound. */
 const $=id=>document.getElementById(id);
 const STORAGE='ophelia-the-legend-of-sleepy-hollow-1820-v1';
-let state={page:0, voice:'', speed:1, size:20, night:false, autoTurn:true, bookmark:-1};
+let state={page:0, voice:'', speed:1.2, size:20, night:false, autoTurn:true, bookmark:-1};
 try{Object.assign(state,JSON.parse(localStorage.getItem(STORAGE)||'{}'));}catch{}
+// Once per browser, upgrade only the old 1.0× default. Preserve a listener's
+// deliberately chosen faster/slower rate and keep the new pace across books.
+try{
+ const marker='ophelia-sleepy-hollow-narration-pace-v2';
+ if(!localStorage.getItem(marker)){
+  const sharedKey='ophelia-library-settings-v1';
+  const shared=JSON.parse(localStorage.getItem(sharedKey)||'{}')||{};
+  const previous=Number(state.speed),global=Number(shared.speed);
+  if((previous===1||!Number.isFinite(previous))&&(!Number.isFinite(global)||global===1)){
+   state.speed=1.2;
+   shared.speed=1.2;
+   localStorage.setItem(sharedKey,JSON.stringify(shared));
+  }
+  localStorage.setItem(marker,'1');
+ }
+}catch{}
 const save=()=>{try{localStorage.setItem(STORAGE,JSON.stringify(state));}catch{}};
 let soundOn=true;
 let initialRender=true;
@@ -244,7 +260,7 @@ function setupBook(parsed){
  $('page').replaceChildren(...pages.map((_,i)=>new Option('Page '+(i+1),i)));
  $('section').disabled=$('page').disabled=$('play').disabled=false;
  state.page=Math.max(0,Math.min(state.page,pages.length-1));
- $('loadbox').classList.add('hidden');render();save();note('The complete The Legend of Sleepy Hollow is ready. Press Read aloud to begin.');
+ $('loadbox').classList.add('hidden');render();save();note('The complete Legend of Sleepy Hollow is ready. Press Read aloud to begin.');
 }
 function updateVoices(){if(!('speechSynthesis' in window))return;voiceList=speechSynthesis.getVoices();$('voice').replaceChildren(new Option('Automatic English voice',''),...voiceList.filter(v=>/^en/i.test(v.lang)).map(v=>new Option(v.name+' · '+v.lang,v.voiceURI)));$('voice').value=state.voice;}
 function applySettings(){$('speed').value=state.speed;$('speedview').value=state.speed+'×';$('size').value=state.size;$('sizeview').value=state.size+' px';$('dark').checked=state.night;$('autoturn').checked=state.autoTurn;document.body.classList.toggle('night',state.night);document.documentElement.style.setProperty('--text-size',state.size+'px');}
