@@ -65,7 +65,7 @@ function parseText(raw){
  const body=text.slice(start>=0?text.indexOf('\n',start)+1:0,stop>=0?stop:undefined);
  // Titles occur in the contents as well as at the head of chapters.
  // Require substantial prose between headings, and keep the full 75-chapter sequence.
- const heading=/^[ \t]*(?:BOOK[ \t]+(?:THE[ \t]+)?(?:FIRST|SECOND|ONE|TWO|I|II)[ \t]*\n)?[ \t]*CHAPTER[ \t]+([IVXLCDM]+|\d+)(?:[. :—-]+[^\n]*)?[ \t]*$/gim;
+ const heading=/^[ \t]*(?:BOOK[ \t]+(?:THE[ \t]+)?(?:FIRST|SECOND|ONE|TWO|I|II)[ \t]*\n)?[ \t]*CHAPTER[ \t]+([IVXLCDM]+|\d+)(?:\[\d+\])?(?:[. :—-]+[^\n]*)?[ \t]*$/gim;
  const candidates=[...body.matchAll(heading)].map(m=>({index:m.index,end:m.index+m[0].length,num:m[1]}));
  const sections=[];
  const romanToNumber=(value)=>{
@@ -75,6 +75,7 @@ function parseText(raw){
   return n;
  };
  // Skip table-of-contents entries; count only headings with real chapter text.
+ // Chapter LXXII has a historical bracketed footnote marker [1] after its numeral.
  const actual=candidates.filter((c,i)=>{
   const next=candidates[i+1];const passage=body.slice(c.end,next?next.index:body.length);
   return passage.trim().split(/\s+/).length>=90;
@@ -103,7 +104,7 @@ function parseText(raw){
   const next=selected[i+1];let passage=body.slice(c.end,next?next.index:body.length).trim();
   const paras=passage.split(/\n\s*\n+/).map(p=>p.replace(/\n\s*/g,' ').replace(/\s{2,}/g,' ').trim()).filter(Boolean);
   if(paras.join(' ').split(/\s+/).length<90)throw Error('Chapter '+(i+1)+' is incomplete');
-  sections.push({name:'Book '+(i<30?'One':'Two')+' · Chapter '+(i<30?i+1:i-29),paragraphs:paras});
+  sections.push({name:'Book '+(i<30?'One':'Two')+' · Chapter '+(i+1),paragraphs:paras});
  });
  return sections;
 }
