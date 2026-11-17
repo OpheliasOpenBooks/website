@@ -249,7 +249,7 @@ function initializePageButtons(){
   // throughout the library; no accounts or third-party storage required.
   if(!window.OpheliaFinishedShelf&&!document.querySelector('script[data-ophelia-finished-shelf]')){
     const script=document.createElement('script');
-    script.src='public/js/ophelia-finished-shelf.js?v=1.1.0-victorian';
+    script.src='public/js/ophelia-finished-shelf.js?v=1.1.1-bottom';
     script.defer=true;
     script.dataset.opheliaFinishedShelf='true';
     document.head.appendChild(script);
