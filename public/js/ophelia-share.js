@@ -245,6 +245,8 @@ function addOriginalLanguageLinks(){
 
 function initializePageButtons(){
   addPageButton();addLibraryNavigation();addOriginalLanguageLinks();
+  // Personal shelf controls belong to reader pages only; keep the main site light.
+  if(!document.getElementById('prose'))return;
   // Reuse the same reader-side completion detector and personal shelf
   // throughout the library; no accounts or third-party storage required.
   if(!window.OpheliaFinishedShelf&&!document.querySelector('script[data-ophelia-finished-shelf]')){
