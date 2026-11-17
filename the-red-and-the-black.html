@@ -39,7 +39,7 @@
  </div>
  <div class="bookmarker"><button class="quiet" type="button" id="bookmark">♡ Bookmark page</button><p class="hint" id="bookmarkhint">Your place and bookmark are saved on this device.</p></div>
  <p class="status" id="message" role="status">Preparing the story…</p>
- <div class="load hidden" id="loadbox"><strong>Load the complete Red Badge of Courage text</strong><p>If the public-domain archive is unavailable, import the original Project Gutenberg TXT file.</p><a href="https://www.gutenberg.org/cache/epub/44747/pg44747.txt">The Red and the Black text</a><label for="upload">Choose TXT file</label><input id="upload" type="file" accept=".txt,text/plain"></div>
+ <div class="load hidden" id="loadbox"><strong>Load the complete Red and the Black of Courage text</strong><p>If the public-domain archive is unavailable, import the original Project Gutenberg TXT file.</p><a href="https://www.gutenberg.org/cache/epub/44747/pg44747.txt">The Red and the Black text</a><label for="upload">Choose TXT file</label><input id="upload" type="file" accept=".txt,text/plain"></div>
  </aside>
 </div>
 <div class="source">Stendhal · 1830 · English translation by Horace B. Samuel (1916) · 75 chapters in two books · <a href="https://www.gutenberg.org/ebooks/44747">English edition source</a> · <a href="https://www.gutenberg.org/ebooks/798" target="_blank" rel="noopener">Original French text (read only)</a> · Original period-inspired cover artwork.</div>
@@ -244,7 +244,7 @@ $('upload').onchange=async()=>{const f=$('upload').files?.[0];if(!f)return;try{s
 window.addEventListener('pagehide',stop);if('speechSynthesis' in window){updateVoices();speechSynthesis.addEventListener('voiceschanged',updateVoices)}
 applySettings();
 (async()=>{
- // The complete Red Badge of Courage text is served from this website. Narration uses the local browser speech system; no audio file is loaded.
+ // The complete Red and the Black of Courage text is served from this website. Narration uses the local browser speech system; no audio file is loaded.
  try{const url='https://raw.githubusercontent.com/GITenberg/The-Red-and-the-BlackA-Chronicle-of-1830_44747/master/44747-0.txt';const r=await fetch(url,{mode:'cors'});if(!r.ok)throw Error('Original text unavailable');setupBook(await r.text());}
  catch{$('loadbox').classList.remove('hidden');note('The Red and the Black could not be loaded. Please try again or import the public-domain TXT file below.');}
 })();
