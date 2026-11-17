@@ -257,7 +257,7 @@ function initializePageButtons(){
   // The separate page and reading ribbons use one device-local collection.
   if(!window.OpheliaReadingShelf&&!document.querySelector('script[data-ophelia-reading-shelf]')){
     const readerScript=document.createElement('script');
-    readerScript.src='public/js/ophelia-reading-shelf.js?v=1.0';
+    readerScript.src='public/js/ophelia-reading-shelf.js?v=2.0-markers';
     readerScript.defer=true;
     readerScript.dataset.opheliaReadingShelf='true';
     document.head.appendChild(readerScript);
