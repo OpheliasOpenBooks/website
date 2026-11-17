@@ -1,0 +1,22 @@
+name: Import The Red and the Black public-domain text
+on:
+  push:
+    paths:
+      - '.github/workflows/import-red-and-black.yml'
+      - 'scripts/import_red_and_black.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Import the full 1916 Horace B. Samuel edition
+        run: python3 scripts/import_red_and_black.py
+      - name: Save verified text in website
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/books/the-red-and-the-black-1916.txt
+          git diff --staged --quiet || (git commit -m "Archive The Red and the Black complete English text" && git push)
