@@ -251,7 +251,7 @@ function render(){if(!pages.length)return;const page=pages[state.page];
  $('bookmark').textContent=state.bookmark===state.page?'♥ Bookmarked':'♡ Bookmark this page';$('bookmarkhint').textContent=state.bookmark>=0?'Saved bookmark: page '+(state.bookmark+1):'No bookmark set';
  if(!isFirstRender)document.querySelector('.book').scrollIntoView({behavior:'instant',block:'start'});
 }
-function setupBook(raw){let parsed=parseText(raw);let paged=paginate(parsed);if(parsed.length!==24||paged.length<80)throw Error('The Red and the Black appears incomplete. All 75 chapters are required.');segments=parsed;pages=paged;
+function setupBook(raw){let parsed=parseText(raw);let paged=paginate(parsed);if(parsed.filter(s=>/^Book (One|Two) · Chapter \d+$/.test(s.name)).length!==75||paged.length<80)throw Error('The Red and the Black appears incomplete. All 75 chapters are required.');segments=parsed;pages=paged;
  $('section').replaceChildren(...segments.map((s,i)=>new Option(s.name,i)));$('page').replaceChildren(...pages.map((_,i)=>new Option('Page '+(i+1),i)));
  $('section').disabled=$('page').disabled=$('play').disabled=false;state.page=Math.max(0,Math.min(state.page,pages.length-1));$('loadbox').classList.add('hidden');render();save();note('All 75 chapters are ready. Press Read aloud to begin.');
 }
