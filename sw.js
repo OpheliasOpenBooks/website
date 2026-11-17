@@ -1,0 +1,41 @@
+/* Ophelia's Open Book app shell; full books remain online-only by design. */
+const CACHE_NAME = 'ophelia-open-book-shell-2026-11-v1';
+const SHELL = [
+  './index.html',
+  './catalog.html',
+  './get-the-app.html',
+  './offline.html',
+  './manifest.webmanifest',
+  './public/js/ophelia-app-install.js',
+  './public/art/ophelia-app-icon-192.png',
+  './public/art/ophelia-app-icon-512.png'
+];
+self.addEventListener('install', event => {
+  event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(SHELL)).then(() => self.skipWaiting()));
+});
+self.addEventListener('activate', event => {
+  event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key.startsWith('ophelia-open-book-shell-') && key !== CACHE_NAME).map(key => caches.delete(key)))).then(() => self.clients.claim()));
+});
+self.addEventListener('fetch', event => {
+  const req = event.request;
+  if (req.method !== 'GET') return;
+  const url = new URL(req.url);
+  if (url.origin !== self.location.origin || !url.pathname.startsWith(new URL(self.registration.scope).pathname)) return;
+  // Never cache huge book texts, external artwork, submissions, account data or narration.
+  if (/\/public\/books\//.test(url.pathname)) return;
+  if (req.mode === 'navigate') {
+    event.respondWith(
+      fetch(req).then(response => {
+        if (response.ok && (url.pathname.endsWith('/index.html') || url.pathname.endsWith('/catalog.html') || url.pathname.endsWith('/get-the-app.html'))) {
+          const copy = response.clone();
+          event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.put(req,copy)));
+        }
+        return response;
+      }).catch(async () => (await caches.match(req,{ignoreSearch:true})) || (await caches.match('./offline.html')))
+    );
+    return;
+  }
+  if (SHELL.some(item => url.pathname.endsWith(item.replace(/^\.\//,'')))) {
+    event.respondWith(caches.match(req,{ignoreSearch:true}).then(hit => hit || fetch(req)));
+  }
+});
