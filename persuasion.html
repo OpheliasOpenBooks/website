@@ -72,7 +72,7 @@ async function fetchChapters(){
  let source=(await response.text()).replace(/\r/g,'');
  source=source.replace(/[\s\S]*?\*\*\* START OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[^\n]*\n/i,'');
  source=source.replace(/\*\*\* END OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[\s\S]*/i,'');
- source=source.replace(/\n\s*(?:THE END|End of the Project Gutenberg EBook)[\s\S]*$/i,'').trim();
+ source=source.replace(/(?:^|\n)[ \t]*(?:Finis|THE END)[ \t]*(?=\n|$)[\s\S]*$/im,'').trim();
  const heads=[...source.matchAll(/^CHAPTER\s+(\d+)\s*$/gmi)];
  if(heads.length!==24)throw Error('Expected 24 complete chapters; found '+heads.length);
  const sections=[];
