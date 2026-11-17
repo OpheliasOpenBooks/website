@@ -236,7 +236,7 @@ function render(){if(!pages.length)return;const page=pages[state.page];
  if(!isFirstRender)document.querySelector('.book').scrollIntoView({behavior:'instant',block:'start'});
 }
 function setupBook(parsed){
- if(parsed.length!==5)throw Error('The 1820 edition must include its five historical sections.');
+ if(parsed.length!==2)throw Error('Sleepy Hollow requires both the original tale and its postscript.');
  const paged=paginate(parsed);
  if(paged.length<2)throw Error('Unable to prepare the complete book.');
  segments=parsed;pages=paged;
@@ -266,7 +266,7 @@ window.addEventListener('pagehide',stop);if('speechSynthesis' in window){updateV
 applySettings();
 (async()=>{
  try{setupBook(await fetchChapters());}
- catch(e){$('loadbox').classList.remove('hidden');note('The complete novel could not load. Please refresh.');console.error(e);}
+ catch(e){$('loadbox').classList.remove('hidden');note('The story could not load: '+e.message+'. Please refresh.');console.error(e);}
 })();
 
 </script>
