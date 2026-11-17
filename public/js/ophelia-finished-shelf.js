@@ -133,8 +133,9 @@ function shelfOnPage(){
   </div>
   <div class="ob-case-base" aria-hidden="true"><i></i><i></i></div>
  </div>`;
- const hero=main.querySelector('.hero');
- if(hero)hero.insertAdjacentElement('afterend',root);else main.prepend(root);
+ // Keep the growing personal bookcase below the rest of the page content.
+ // It remains inside <main>, immediately before the footer.
+ main.appendChild(root);
  const refresh=()=>renderShelf(root);
  document.addEventListener('ophelia-shelf-changed',refresh);
  window.addEventListener('storage',event=>{if(event.key===KEY)refresh();});
