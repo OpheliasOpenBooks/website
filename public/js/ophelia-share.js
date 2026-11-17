@@ -143,6 +143,99 @@ function addPageButton(){
  button.textContent='Share this '+(document.querySelector('.book-heading')?'book':'library');
  button.addEventListener('click',()=>open());holder.appendChild(button);host.appendChild(holder);
 }
-function initializePageButtons(){addPageButton();addLibraryNavigation();}
+
+/* Source-language companions for public-domain translated works.
+ * The English reader and its voice remain unchanged. A linked original
+ * can be read here when available; otherwise it opens a verified archive.
+ * Multi-volume sources list EVERY volume rather than silently truncating.
+ */
+const originalLanguageSources={
+ 'iliad.html':{language:'Ancient Greek',original:'Ἰλιάς',links:[['Greek original (Perseus)', 'https://atlas.perseus.tufts.edu/library/urn%3Acts%3AgreekLit%3Atlg0012.tlg001.perseus-grc2/']]},
+ 'oedipus-rex.html':{language:'Ancient Greek',original:'Οἰδίπους Τύραννος',links:[['Greek original (Perseus)', 'https://atlas.perseus.tufts.edu/library/urn%3Acts%3AgreekLit%3Atlg0011.tlg004.perseus-grc2/']]},
+ 'aeneid.html':{language:'Latin',original:'Aeneis',links:[['Latin original (Perseus)', 'https://atlas.perseus.tufts.edu/library/urn%3Acts%3AlatinLit%3Aphi0690.phi003.perseus-lat2/']]},
+ 'cyrano-de-bergerac.html':{language:'French',original:'Cyrano de Bergerac',links:[['Complete French play (Project Gutenberg)', 'https://www.gutenberg.org/ebooks/1256']]},
+ 'don-quixote.html':{language:'Spanish',original:'Don Quijote de la Mancha',links:[['Complete Spanish novel (Project Gutenberg)', 'https://www.gutenberg.org/ebooks/2000']]},
+ 'les-miserables.html':{language:'French',original:'Les Misérables',links:[
+  ['Tome I — Fantine', 'https://www.gutenberg.org/ebooks/17489'],
+  ['Tome II — Cosette', 'https://www.gutenberg.org/ebooks/17493'],
+  ['Tome III — Marius', 'https://www.gutenberg.org/ebooks/17494'],
+  ['Tome IV — L’idylle rue Plumet', 'https://www.gutenberg.org/ebooks/17518'],
+  ['Tome V — Jean Valjean', 'https://www.gutenberg.org/ebooks/17519']
+ ]},
+ 'song-of-roland.html':{language:'Old French',original:'La Chanson de Roland',links:[['Old French manuscript text (Base de français médiéval)', 'https://txm-bfm.huma-num.fr/txm/catalog/roland']]},
+ 'giants-in-the-earth.html':{language:'Norwegian',original:'I de dage / Riket grundlægges',links:[
+  ['I de dage — original volume I (1924)', 'https://runeberg.org/idedage/'],
+  ['Riket grundlægges — original volume II (1925)', 'https://runeberg.org/rg1925/']
+ ],note:'The English novel combines these two original Norwegian books.'},
+ 'all-quiet-on-the-western-front.html':{language:'German',original:'Im Westen nichts Neues',links:[['German text — 1929 full-view edition (Google Books)', 'https://books.google.com/books?id=iMjPP47rmQgC&printsec=frontcover']]},
+ 'war-and-peace.html':{language:'Russian',original:'Война и мир',links:[['Complete Russian original (Wikisource)', 'https://ru.wikisource.org/wiki/Война_и_мир_(Толстой)']],note:'The Russian original also contains passages in French.'},
+ 'crime-and-punishment.html':{language:'Russian',original:'Преступление и наказание',links:[['Complete Russian original (Wikisource)', 'https://ru.wikisource.org/wiki/Преступление_и_наказание_(Достоевский)']]},
+ 'anna-karenina.html':{language:'Russian',original:'Анна Каренина',links:[['Complete Russian original (Wikisource)', 'https://ru.wikisource.org/wiki/Анна_Каренина_(Толстой)']]},
+ 'the-count-of-monte-cristo.html':{language:'French',original:'Le Comte de Monte-Cristo',links:[
+  ['Tome I', 'https://www.gutenberg.org/ebooks/17989'],
+  ['Tome II', 'https://www.gutenberg.org/ebooks/17990'],
+  ['Tome III', 'https://www.gutenberg.org/ebooks/17991'],
+  ['Tome IV', 'https://www.gutenberg.org/ebooks/17992']
+ ]},
+ 'swanns-way.html':{language:'French',original:'Du côté de chez Swann',links:[['Complete French original (Project Gutenberg)', 'https://www.gutenberg.org/ebooks/2650']]},
+ 'the-phantom-of-the-opera.html':{language:'French',original:'Le Fantôme de l’Opéra',links:[['Read the complete French original in Ophelia’s library', 'le-fantome-de-lopera-original-francais.html']]},
+ 'the-metamorphosis.html':{language:'German',original:'Die Verwandlung',links:[['Read the complete German original in Ophelia’s library', 'die-verwandlung.html']]},
+ 'civilization-and-its-discontents.html':{language:'German',original:'Das Unbehagen in der Kultur',links:[['Original 1930 German edition — complete scan (Internet Archive)', 'https://archive.org/details/DasUnbehagenInDerKultur/page/n6']]},
+ 'madame-bovary.html':{language:'French',original:'Madame Bovary',links:[['Complete French original (Project Gutenberg)', 'https://www.gutenberg.org/ebooks/14155']]},
+ 'the-three-sisters.html':{language:'Russian',original:'Три сестры',links:[['Original Russian play (Wikisource)', 'https://ru.wikisource.org/wiki/Три_сестры_(Чехов)']]},
+ 'fathers-and-sons.html':{language:'Russian',original:'Отцы и дети',links:[['Complete Russian original (Wikisource)', 'https://ru.wikisource.org/wiki/Отцы_и_дети_(Тургенев)']]},
+ 'capital-volume-1.html':{language:'German',original:'Das Kapital · Band I',links:[['German volume I — full text (historical archive)', 'https://web.archive.org/web/20160304205417/http://www.mlwerke.de/me/me23/me23_000.htm']]},
+ 'capital-volume-2.html':{language:'German',original:'Das Kapital · Band II',links:[['German volume II — full text (historical archive)', 'https://web.archive.org/web/20160304171446/http://mlwerke.de/me/me24/me24_000.htm']]},
+ 'capital-volume-3.html':{language:'German',original:'Das Kapital · Band III',links:[['German volume III — full text (historical archive)', 'https://web.archive.org/web/20160304204126/http://www.mlwerke.de/me/me25/me25_000.htm']]}
+};
+function addOriginalLanguageLinks(){
+ const currentPage=window.location.pathname.split('/').pop().toLowerCase();
+ const record=originalLanguageSources[currentPage];
+ const heading=document.querySelector('.book-heading');
+ if(!record||!heading||heading.querySelector('.ob-original-language'))return;
+ const style=document.createElement('style');
+ style.textContent=
+ '.ob-original-language{max-width:790px;margin:17px auto 0;padding:11px 16px;text-align:center;border:1px solid #d9c9ad;background:#faf5e9;color:#53604c;border-radius:5px;font:14px/1.6 Georgia,serif}' +
+ '.ob-original-language .ob-original-title{font-style:italic;color:#796447}' +
+ '.ob-original-language a{color:#3a5c49;text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}' +
+ '.ob-original-language a:focus-visible,.ob-original-language summary:focus-visible{outline:3px solid #b7782d;outline-offset:3px}' +
+ '.ob-original-language .ob-original-links{display:flex;flex-wrap:wrap;justify-content:center;gap:7px 17px;margin-top:5px}' +
+ '.ob-original-language .ob-original-links a{font-size:13px}' +
+ '.ob-original-language summary{cursor:pointer;list-style:revert;font-style:italic}' +
+ '.ob-original-language .ob-original-note{display:block;color:#746b5d;font:12px/1.6 Arial,sans-serif;margin-top:6px}' +
+ '.night .ob-original-language{background:#2d3b31;color:#f2e9d6;border-color:#80745d}' +
+ '.night .ob-original-language a,.night .ob-original-language .ob-original-title{color:#ead0a0}' +
+ '.night .ob-original-language .ob-original-note{color:#d1c2ac}';
+ document.head.appendChild(style);
+ const box=document.createElement('section');
+ box.className='ob-original-language';
+ box.setAttribute('aria-label','Original-language reading edition');
+ const headingText='❦ Read in the Original Language ('+record.language+')';
+ function addLinks(parent){
+  const links=document.createElement('div');links.className='ob-original-links';
+  for(const [label,href] of record.links){
+    const a=document.createElement('a');a.href=href;a.textContent=label;
+    if(/^https:\/\//.test(href)){a.target='_blank';a.rel='noopener noreferrer'}
+    links.appendChild(a);
+  }
+  parent.appendChild(links);
+ }
+ if(record.links.length>1){
+   const group=document.createElement('details');const summary=document.createElement('summary');
+   summary.textContent=headingText;group.appendChild(summary);addLinks(group);box.appendChild(group);
+ }else{
+   const name=document.createElement('div');name.textContent=headingText;box.appendChild(name);addLinks(box);
+ }
+ const original=document.createElement('div');original.className='ob-original-title';original.textContent=record.original;box.appendChild(original);
+ if(record.note){const n=document.createElement('span');n.className='ob-original-note';n.textContent=record.note;box.appendChild(n)}
+ const quiet=document.createElement('span');quiet.className='ob-original-note';
+ quiet.textContent='Original-language text is for reading; the English narration on this page remains unchanged.';
+ box.appendChild(quiet);
+ // Keep the quiet edition link above the share button, underneath the title.
+ const share=heading.querySelector('.ob-share-holder');
+ if(share)heading.insertBefore(box,share);else heading.appendChild(box);
+}
+
+function initializePageButtons(){addPageButton();addLibraryNavigation();addOriginalLanguageLinks();}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initializePageButtons);else initializePageButtons();
 })();
