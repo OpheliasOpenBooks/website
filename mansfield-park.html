@@ -73,6 +73,7 @@ async function fetchChapters(){
  let source=(await response.text()).replace(/\r/g,'');
  source=source.replace(/[\s\S]*?\*\*\* START OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[^\n]*\n/i,'');
  source=source.replace(/\*\*\* END OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[\s\S]*/i,'');
+ source=source.replace(/\n\s*THE END\s*\n[\s\S]*$/i,'').trim();
  const heads=[...source.matchAll(/^CHAPTER\s+([IVXLCDM]+)\s*$/gm)];
  if(heads.length!==48)throw Error('Expected all 48 chapter headings; found '+heads.length);
  const sections=[];
