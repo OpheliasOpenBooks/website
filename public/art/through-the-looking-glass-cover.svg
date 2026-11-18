@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 845" width="600" height="845" role="img" aria-labelledby="title desc">
+<title id="title">Through the Looking-Glass · Historic 1871–1872 red cloth cover reconstruction</title>
+<desc id="desc">An original historical-style recreation inspired by the first Macmillan binding: red cloth, three thin gold borders, and a Victorian gilt cameo of the Red Queen. Not a photograph or facsimile.</desc>
+<defs><linearGradient id="cloth" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9a4341"/><stop offset=".46" stop-color="#8b3038"/><stop offset="1" stop-color="#63252b"/></linearGradient><pattern id="linen" width="9" height="9" patternUnits="userSpaceOnUse"><path d="M0 0h9M0 4.5h9M0 0v9M4.5 0v9" stroke="#d6aaa0" stroke-width=".33" opacity=".23"/></pattern><linearGradient id="gild" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#dfc27f"/><stop offset=".52" stop-color="#9f7737"/><stop offset="1" stop-color="#f1d799"/></linearGradient></defs>
+<rect width="600" height="845" rx="7" fill="url(#cloth)"/><rect width="600" height="845" rx="7" fill="url(#linen)"/>
+<g fill="none" stroke="url(#gild)"><rect x="31" y="28" width="538" height="789" stroke-width="3"/><rect x="39" y="36" width="522" height="773" stroke-width="1.2"/><rect x="48" y="45" width="504" height="755" stroke-width="1.7"/><path d="M53 138h494M53 713h494" stroke-width="1" opacity=".65"/></g>
+<g text-anchor="middle" fill="#eed6a0"><text x="300" y="91" font-family="Georgia,serif" font-size="30" font-weight="normal" letter-spacing="1.5">THROUGH THE</text><text x="300" y="128" font-family="Georgia,serif" font-size="34" letter-spacing=".9">LOOKING-GLASS</text></g>
+<g stroke="url(#gild)" fill="none"><ellipse cx="300" cy="417" rx="146" ry="207" stroke-width="2.9"/><ellipse cx="300" cy="417" rx="137" ry="197" stroke-width="1.2"/><path d="M300 218v-24m-22 15h44M138 417h-25m349 0h25M300 619v28" stroke-width="2"/></g>
+<g fill="#e6c484" stroke="#e6c484" stroke-linejoin="round" stroke-linecap="round">
+<path d="M257 334l-18-58 38 24 24-56 22 56 37-26-16 62z" fill="none" stroke-width="6"/><path d="M258 336h85" stroke-width="5"/>
+<circle cx="300" cy="369" r="30" fill="#dfc17c"/><path d="M272 362q4 27 29 29q28-4 31-28" fill="none" stroke="#863337" stroke-width="4"/><path d="M275 356q28-10 50 2" stroke="#7a3136" stroke-width="5" fill="none"/>
+<path d="M267 393q-30 8-39 31q-3 13 13 30l-37 87q47 28 97 27q52 0 99-27l-37-87q15-19 12-33q-12-22-40-29l-33 24z"/>
+<path d="M290 413l11 35 11-35" fill="#8a3236" stroke-width="3"/>
+<path d="M252 452q44 26 96 0M230 486q69 34 142 0M215 527q82 38 170 0" stroke="#873238" fill="none" stroke-width="3"/>
+<circle cx="300" cy="476" r="5" fill="#82313a"/>
+</g>
+<g fill="#e9c985" text-anchor="middle"><text x="300" y="677" font-family="Georgia,serif" font-size="24" letter-spacing="3">LEWIS CARROLL</text><text x="300" y="756" font-family="Georgia,serif" font-size="15" letter-spacing="2.4">MACMILLAN · LONDON · 1872</text></g>
+</svg>
