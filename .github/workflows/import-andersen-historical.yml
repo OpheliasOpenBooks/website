@@ -24,6 +24,20 @@ jobs:
             -o public/art/hans-andersens-fairy-tales-1888-historical-cover.jpg
           test "$(head -c 3 public/art/hans-andersens-fairy-tales-1888-historical-cover.jpg | od -An -tx1 | tr -d ' \n')" = 'ffd8ff'
           test "$(stat -c%s public/art/hans-andersens-fairy-tales-1888-historical-cover.jpg)" -gt 50000
+      - name: Optimize faithful historical scan for web display
+        shell: bash
+        run: |
+          python -m pip install -q Pillow
+          python - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          path=Path('public/art/hans-andersens-fairy-tales-1888-historical-cover.jpg')
+          scan=Image.open(path).convert('RGB')
+          scan.thumbnail((750,1100),Image.Resampling.LANCZOS)
+          scan.save(path,format='JPEG',quality=83,optimize=True,progressive=True)
+          print('Historic cover kept intact; dimensions:',scan.size,'bytes:',path.stat().st_size)
+          assert path.stat().st_size < 900000
+          PY
       - name: Commit historically sourced cover
         shell: bash
         run: |
