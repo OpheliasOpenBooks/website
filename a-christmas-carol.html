@@ -71,6 +71,7 @@ function parseText(raw){
  const body=t.slice(start);
  const heads=[...body.matchAll(/^STAVE[ \t]+([IVX]+):[ \t]+([^\n]+)$/gm)];
  const titles=["MARLEY'S GHOST","THE FIRST OF THE THREE SPIRITS","THE SECOND OF THE THREE SPIRITS","THE LAST OF THE SPIRITS","THE END OF IT"];
+ const displayTitles=["Marley's Ghost","The First of the Three Spirits","The Second of the Three Spirits","The Last of the Spirits","The End of It"];
  if(heads.length!==5)throw Error('Expected all five staves; found '+heads.length);
  if(heads.some((h,i)=>romanToNumber(h[1])!==i+1||h[2].trim()!==titles[i]))throw Error('The five staves are missing or out of order.');
  const paragraphs=x=>x.trim().split(/\n\s*\n+/).map(block=>block.split('\n').map(line=>line.trim()).join(' ').replace(/ {2,}/g,' ').trim()).filter(Boolean);
@@ -79,7 +80,7 @@ function parseText(raw){
   const h=heads[i],end=heads[i+1]?.index??body.length;
   const text=body.slice(h.index+h[0].length,end);
   if(text.length<8000)throw Error('Stave '+(i+1)+' is incomplete.');
-  sections.push({name:'Stave '+(i+1)+' · '+titles[i].replace(/\b\w/g,x=>x.toUpperCase()).replace(/\bOf\b/g,'of').replace(/\bThe\b/g,'the'),paragraphs:paragraphs(text)});
+  sections.push({name:'Stave '+(i+1)+' · '+displayTitles[i],paragraphs:paragraphs(text)});
  }
  if(sections.length!==6||(t.match(/\S+/g)||[]).length<27000||!body.includes('God bless Us, Every One!'))throw Error('The complete 1843 story could not be validated.');
  return sections;
