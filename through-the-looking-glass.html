@@ -98,8 +98,8 @@ const CHAPTER_ART=[
  ['Lion and Unicorn.jpg','The Lion and the Unicorn'],
  ['White Knight.jpg','The White Knight'],
  ['Alice crown.jpg','Alice the Queen'],
- ['Alice uproar.jpg','The Queen’s banquet'],
- ['Alice White Kitten.jpg','The White Kitten'],
+ null, // The brief shaking chapter has no scene-matched Tenniel plate.
+ null, // The one-sentence waking chapter has no original plate.
  ['Black kitten.jpg','The Black Kitten']
 ];
 function chapterArt(){
@@ -107,14 +107,14 @@ function chapterArt(){
  const isBeginning=state.page===0||pages[state.page-1].section!==p.section;
  const isTitle=state.page===0,number=p.section-4;
  const figure=$('story-figure'),img=$('opening-art'),cap=$('art-caption');
- if(!isBeginning||(!isTitle&&(number<0||number>=CHAPTER_ART.length))){figure.hidden=true;return;}
+ if(!isBeginning||(!isTitle&&(number<0||number>=CHAPTER_ART.length||!CHAPTER_ART[number]))){figure.hidden=true;return;}
  if(isTitle){figure.hidden=false;img.src='public/art/through-the-looking-glass-cover.svg';img.alt='Original reconstruction of the first-edition red-cloth and gilt binding';cap.textContent='Historically inspired red cloth/gilt binding · first issued December 1871';return;}
  const [filename,description]=CHAPTER_ART[number];
  const url='https://commons.wikimedia.org/wiki/Special:FilePath/'+encodeURIComponent(filename)+'?width=760';
  img.src=url;img.alt='John Tenniel’s original illustration: '+description;
  cap.textContent='John Tenniel · '+description+' · ';
  const a=document.createElement('a');a.href='https://commons.wikimedia.org/wiki/File:'+filename.replace(/ /g,'_');a.target='_blank';a.rel='noopener';a.textContent='Wikimedia Commons';cap.append(a);
- img.onerror=()=>{if(img.src===url)figure.hidden=true;};
+ img.onerror=()=>{if(img.getAttribute('src')===url)figure.hidden=true;};
  figure.hidden=false;
 }
 function paginate(sections){
