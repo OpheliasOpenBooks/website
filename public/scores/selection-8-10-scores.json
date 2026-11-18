@@ -1,0 +1,34 @@
+{
+  "Grieg piano score": 4,
+  "Satie piano score": 2,
+  "Vivaldi score total pages": 50,
+  "Vivaldi source parts": [
+    {
+      "filename": "spring-cello-a4.pdf",
+      "pages": 3
+    },
+    {
+      "filename": "spring-score-a4.pdf",
+      "pages": 27
+    },
+    {
+      "filename": "spring-solo-a4.pdf",
+      "pages": 6
+    },
+    {
+      "filename": "spring-viola-a4.pdf",
+      "pages": 3
+    },
+    {
+      "filename": "spring-violin1-a4.pdf",
+      "pages": 6
+    },
+    {
+      "filename": "spring-violin2-a4.pdf",
+      "pages": 5
+    }
+  ],
+  "Vivaldi license": "CC BY-SA 3.0 (Mutopia, credited within original pages)",
+  "Grieg license": "Public domain (Mutopia)",
+  "Satie license": "Public domain (Mutopia)"
+}
