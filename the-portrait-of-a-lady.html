@@ -259,10 +259,38 @@ $('settings-toggle').onclick=()=>{const show=$('reader-options').hidden;$('reade
 $('sound').onclick=()=>{soundOn=!soundOn;if(!soundOn&&speaking){stop();} $('sound').textContent=soundOn?'Sound on':'Sound off';$('sound').setAttribute('aria-pressed',String(!soundOn));note(soundOn?'Sound is on.':'Sound is off.');};
 window.addEventListener('pagehide',stop);if('speechSynthesis' in window){updateVoices();speechSynthesis.addEventListener('voiceschanged',updateVoices)}
 applySettings();
+// Load the two original electronic volumes separately so large-file
+// transfer limits do not prevent the reader from opening on mobile browsers.
+// Recombine before chapter validation so the text and all 55 chapters stay
+// exactly as in the complete original upload.
+async function loadPortraitVolumes(){
+ const paths=[
+  'public/books/the-portrait-of-a-lady-james-revised-volume-1.txt',
+  'public/books/the-portrait-of-a-lady-james-revised-volume-2.txt'
+ ];
+ const volumes=await Promise.all(paths.map(async path=>{
+  const response=await fetch(path,{cache:'no-cache'});
+  if(!response.ok)throw Error('The library text is unavailable: '+path+' ('+response.status+')');
+  return response.text();
+ }));
+ return volumes[0].trimEnd()+'\n\n\n'+volumes[1].trimStart();
+}
 (async()=>{
- // The complete public-domain revised authorial text is locally hosted; narration uses device/browser voices.
- try{const r=await fetch('public/books/the-portrait-of-a-lady-james-revised.txt');if(!r.ok)throw Error('Local novel not found');setupBook(await r.text());}
- catch{$('loadbox').classList.remove('hidden');note('The Portrait of a Lady could not be loaded. Refresh or consult Project Gutenberg.');}
+ try{
+  setupBook(await loadPortraitVolumes());
+ }catch(primaryError){
+  // Preserve the complete single-file edition as a fallback when a
+  // browser or temporary deployment cache cannot retrieve either volume.
+  try{
+   const response=await fetch('public/books/the-portrait-of-a-lady-james-revised.txt',{cache:'no-cache'});
+   if(!response.ok)throw Error('Complete text unavailable (HTTP '+response.status+')');
+   setupBook(await response.text());
+  }catch(fallbackError){
+   console.warn('The Portrait of a Lady: both loading methods failed',primaryError,fallbackError);
+   $('loadbox').classList.remove('hidden');
+   note('The Portrait of a Lady could not be loaded. Refresh this page or consult Project Gutenberg.');
+  }
+ }
 })();
 
 </script>
