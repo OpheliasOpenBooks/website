@@ -1,0 +1,72 @@
+name: Import three free music scores
+on:
+  push:
+    paths:
+      - '.github/workflows/import-music-selections-8-10.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import-scores:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Download public-domain and CC licensed scores
+        run: |
+          set -euo pipefail
+          mkdir -p public/scores
+          curl -fL --retry 4 --retry-delay 2 --max-time 120 \
+            'https://www.mutopiaproject.org/ftp/GriegE/O46/Dans_l_antre_du_roi_de_la_montagne/Dans_l_antre_du_roi_de_la_montagne-a4.pdf' \
+            -o public/scores/grieg-mountain-king-piano.pdf
+          curl -fL --retry 4 --retry-delay 2 --max-time 120 \
+            'https://www.mutopiaproject.org/ftp/SatieE/gymnopedie_1/gymnopedie_1-a4.pdf' \
+            -o public/scores/satie-gymnopedie-1.pdf
+          curl -fL --retry 4 --retry-delay 2 --max-time 120 \
+            'https://www.mutopiaproject.org/ftp/VivaldiA/O8/spring/spring-a4-pdfs.zip' \
+            -o /tmp/vivaldi-spring.zip
+          unzip -t /tmp/vivaldi-spring.zip
+          mkdir -p /tmp/spring_parts
+          unzip -qq /tmp/vivaldi-spring.zip -d /tmp/spring_parts
+          python -m pip install -q pypdf
+          python - <<'PY'
+          from pypdf import PdfReader, PdfWriter
+          from pathlib import Path
+          import json
+          dest=Path('public/scores')
+          a=PdfReader(str(dest/'grieg-mountain-king-piano.pdf'))
+          b=PdfReader(str(dest/'satie-gymnopedie-1.pdf'))
+          assert len(a.pages)==4, ('Grieg unexpected pages', len(a.pages))
+          assert len(b.pages)==2, ('Satie unexpected pages', len(b.pages))
+          sources=sorted(Path('/tmp/spring_parts').rglob('*.pdf'))
+          assert sources, 'Vivaldi ZIP has no PDFs'
+          merged=PdfWriter()
+          names=[]
+          for p in sources:
+            reader=PdfReader(str(p))
+            assert len(reader.pages)>0
+            merged.append(reader)
+            names.append(dict(filename=p.name, pages=len(reader.pages)))
+          target=dest/'vivaldi-spring-complete-parts.pdf'
+          with open(target,'wb') as out: merged.write(out)
+          assert target.stat().st_size>50000
+          manifest={'Grieg piano score':len(a.pages),'Satie piano score':len(b.pages),'Vivaldi score total pages':len(merged.pages),'Vivaldi source parts':names,
+          'Vivaldi license':'CC BY-SA 3.0 (Mutopia, credited within original pages)',
+          'Grieg license':'Public domain (Mutopia)','Satie license':'Public domain (Mutopia)'}
+          (dest/'selection-8-10-scores.json').write_text(json.dumps(manifest,indent=2))
+          print(json.dumps(manifest,indent=2))
+          PY
+          test "$(head -c 4 public/scores/grieg-mountain-king-piano.pdf)" = '%PDF'
+          test "$(head -c 4 public/scores/satie-gymnopedie-1.pdf)" = '%PDF'
+          test "$(head -c 4 public/scores/vivaldi-spring-complete-parts.pdf)" = '%PDF'
+      - name: Commit verified PDFs
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/scores/grieg-mountain-king-piano.pdf public/scores/satie-gymnopedie-1.pdf public/scores/vivaldi-spring-complete-parts.pdf public/scores/selection-8-10-scores.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Host full scores for Ophelia music selections VIII–X"
+            git push
+          fi
