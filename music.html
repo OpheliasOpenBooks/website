@@ -37,6 +37,137 @@
 @media(max-width:670px){.listening-desk{padding:18px}.desk-select{flex:1 1 180px}.desk-player audio{flex:1 1 100%;width:100%;min-width:0}.desk-buttons{width:100%}.desk-buttons button{flex:1}}
 
 .principle{max-width:830px;margin:18px auto 0;padding:23px 28px;border-left:3px solid var(--gold);background:#f0eee4}.principle p{font-size:15px;color:var(--muted)}footer{border-top:1px solid var(--line);padding:28px 0;font:13px/1.7 Arial,sans-serif;color:var(--muted)}footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}@media(max-width:760px){.piece{grid-template-columns:1fr;gap:17px;padding:23px 22px}.player{max-width:380px}.more{grid-column:1}.piece-top{gap:15px}}@media(max-width:670px){.header{flex-direction:column;align-items:flex-start}.hero{padding-top:48px}.piece{padding:22px 18px}.numeral{width:48px;min-width:48px;height:48px;font-size:23px}.player{padding:13px}.player audio{height:42px}}
+
+/* Victorian Christmas Listening Desk palette — using the holiday card colors
+   (#762d3c cranberry, #23513e holly, #c8a565 gilt, #fffcf3 ivory).
+   Changes are cosmetic; existing accessible controls and playback JS are preserved. */
+.listening-desk{
+  --desk-cranberry:#762d3c;
+  --desk-cranberry-hover:#5c2030;
+  --desk-holly:#23513e;
+  --desk-holly-deep:#173e30;
+  --desk-gilt:#c8a565;
+  --desk-ivory:#fffcf3;
+  position:relative;
+  isolation:isolate;
+  padding:24px 28px 22px;
+  border:2px solid var(--desk-gilt);
+  border-radius:10px;
+  background:linear-gradient(135deg,var(--desk-ivory) 0%,#f6ecda 100%);
+  box-shadow:0 13px 28px rgba(48,42,28,.12),inset 0 0 0 4px #faf4e9,inset 0 0 0 5px #dfc698;
+  color:var(--desk-holly-deep);
+  overflow:hidden;
+}
+.listening-desk .desk-heading{
+  margin:-24px -28px 0;
+  padding:19px 27px 7px;
+  background:linear-gradient(110deg,var(--desk-holly-deep) 0%,var(--desk-holly) 73%,#315f48 100%);
+  color:var(--desk-ivory);
+  border-bottom:0;
+  align-items:center;
+}
+.listening-desk .desk-heading::after{
+  content:"❦";
+  display:block;
+  font:normal 32px Georgia,serif;
+  color:#e2c992;
+  opacity:.92;
+  line-height:1;
+  margin-left:auto;
+}
+.listening-desk .desk-heading .eyebrow{color:#f0d59e}
+.listening-desk .desk-heading h2{color:var(--desk-ivory);margin-bottom:6px}
+.listening-desk .desk-intro{
+  margin:0 -28px 12px;
+  padding:2px 28px 19px;
+  max-width:none;
+  background:var(--desk-holly);
+  color:#fff2d8;
+  border-bottom:3px double var(--desk-gilt);
+}
+.listening-desk .desk-controls{
+  margin:18px 0 18px;
+  padding:0 2px;
+}
+.listening-desk .desk-select{
+  color:var(--desk-holly-deep);
+  font-weight:600;
+}
+.listening-desk .desk-select select{
+  color:var(--desk-holly-deep);
+  background:#fffaf0;
+  border:1px solid #aa8b56;
+  border-radius:5px;
+  box-shadow:inset 0 1px 2px rgba(39,61,45,.07);
+}
+.listening-desk .desk-check{color:var(--desk-holly-deep);font-weight:600}
+.listening-desk .desk-check input{accent-color:var(--desk-cranberry)}
+.listening-desk .desk-player{
+  border:1px solid var(--desk-gilt);
+  border-radius:8px;
+  padding:16px 17px;
+  background:linear-gradient(125deg,var(--desk-cranberry-hover) 0%,var(--desk-cranberry) 85%);
+  color:var(--desk-ivory);
+  box-shadow:inset 0 0 0 3px #713244,inset 0 0 0 4px rgba(226,201,146,.65);
+}
+.listening-desk .desk-player audio{
+  background:#f4e6cb;
+  border:2px solid #ddbf83;
+  border-radius:28px;
+  box-shadow:0 2px 8px rgba(37,20,22,.15);
+  color-scheme:light;
+  accent-color:var(--desk-cranberry);
+}
+.listening-desk .desk-player audio::-webkit-media-controls-panel{
+  background-color:#f5e8d0;
+}
+.listening-desk .desk-player audio::-webkit-media-controls-play-button{
+  background-color:rgba(118,45,60,.13);
+  border-radius:50%;
+}
+.listening-desk .desk-player audio::-webkit-media-controls-current-time-display,
+.listening-desk .desk-player audio::-webkit-media-controls-time-remaining-display{
+  color:#392a27;
+}
+.listening-desk .desk-current{color:var(--desk-ivory)}
+.listening-desk .desk-current strong{color:#ffefd0;font-size:19px}
+.listening-desk .desk-current span{color:#efd9c5}
+.listening-desk .desk-current a{color:#ffe3a9;text-decoration:underline}
+.listening-desk .desk-current a:hover{color:#fff9ef}
+.listening-desk .desk-buttons button{
+  color:var(--desk-ivory);
+  background:var(--desk-holly);
+  border:1px solid var(--desk-gilt);
+  border-radius:5px;
+  box-shadow:inset 0 0 0 2px var(--desk-holly),inset 0 0 0 3px rgba(226,201,146,.5);
+  font-weight:700;
+}
+.listening-desk .desk-buttons button:hover{
+  background:var(--desk-holly-deep);
+  box-shadow:inset 0 0 0 2px var(--desk-holly-deep),inset 0 0 0 3px #e2c992;
+}
+.listening-desk .desk-buttons button:disabled{opacity:.55;cursor:not-allowed}
+.listening-desk .desk-status{
+  color:#345444;
+  margin:13px 3px 0;
+}
+.listening-desk select:focus-visible,
+.listening-desk button:focus-visible,
+.listening-desk input:focus-visible,
+.listening-desk audio:focus-visible,
+.listening-desk a:focus-visible{
+  outline:3px solid #e2c992;
+  outline-offset:3px;
+}
+@media(max-width:670px){
+  .listening-desk{padding:18px}
+  .listening-desk .desk-heading{margin:-18px -18px 0;padding:16px 18px 7px}
+  .listening-desk .desk-heading::after{font-size:23px}
+  .listening-desk .desk-intro{margin:0 -18px 11px;padding:2px 18px 16px}
+  .listening-desk .desk-player{padding:14px 12px}
+  .listening-desk .desk-player audio{min-width:0}
+}
+
 </style>
 </head>
 <body>
