@@ -32,7 +32,7 @@ section.panel{background:#fffdf8;border:1px solid var(--line);padding:22px}
 .score{background:white;border:1px solid var(--line);min-width:0}
 .score iframe{display:block;width:100%;height:770px;border:0;background:#fff}
 .source{font:13px/1.7 Arial,sans-serif;color:var(--muted);margin:15px 0 0}.free-note{display:inline-block;font:700 11px Arial,sans-serif;letter-spacing:1px;background:#e3ebdc;color:var(--ink);padding:7px 11px;border:1px solid #b8c8b0;margin:0 0 13px}.download{display:block;border:1px solid #a9bdac;background:#f0f5eb;text-align:center;padding:12px 16px;margin-top:15px;font:700 14px Arial,sans-serif;text-decoration:none}.download:hover{background:#e2ecdb}
-.viewers{display:flex;gap:9px;flex-wrap:wrap;margin:16px 0 10px}.viewers button{font:700 13px Arial,sans-serif;padding:10px 14px;background:#fffdf8;color:var(--ink);border:1px solid #a9bdac;cursor:pointer}.viewers button[aria-pressed="true"]{background:#e3ebdc;border-color:#718e76}.viewers button:focus-visible{outline:2px solid #956b32;outline-offset:2px}
+.score-links{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:8px 0 15px;font:13px/1.6 Arial,sans-serif;color:var(--muted)}.score-links a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
 .foot{border-top:1px solid var(--line);padding:25px 0;color:var(--muted);font:13px Arial,sans-serif}
 @media(max-width:850px){.layout{grid-template-columns:1fr}.cover{max-width:390px;margin:auto}.score iframe{height:680px}}
 </style>
@@ -50,27 +50,13 @@ section.panel{background:#fffdf8;border:1px solid var(--line);padding:22px}
 <small>1916 Joplin piano-roll performance, converted from MIDI and rendered into audio by Major Bloodnok · approximately 2 min 10 sec · U.S. public domain. This is a reconstruction of a mechanical piano roll, not a microphone recording. <a href="https://commons.wikimedia.org/wiki/File:Maple_leaf_rag_-_played_by_Scott_Joplin_1916_V2.ogg" target="_blank" rel="noopener noreferrer">Recording details ↗</a></small>
 </div></section>
 <section class="panel"><div class="free-note">FREE · COMPLETE SCORE</div><h2>Free sheet music · four pages</h2>
-<a class="download" href="https://www.mutopiaproject.org/ftp/JoplinS/maple/maple-a4.pdf" target="_blank" rel="noopener noreferrer">OPEN / DOWNLOAD COMPLETE FOUR-PAGE SCORE · FREE ↗</a>
-<div class="viewers" role="group" aria-label="Choose your free score viewer">
-  <button type="button" id="browser-viewer" aria-pressed="true" onclick="chooseScoreViewer('browser')">Browser PDF Viewer</button>
-  <button type="button" id="google-viewer" aria-pressed="false" onclick="chooseScoreViewer('google')">Google PDF Viewer</button>
+<div class="score-links" aria-label="Free sheet music options">
+  <a href="https://www.mutopiaproject.org/ftp/JoplinS/maple/maple-a4.pdf" target="_blank" rel="noopener noreferrer">Open / Download free score (PDF)</a>
+  <span aria-hidden="true">·</span>
+  <a href="https://docs.google.com/gview?url=https%3A%2F%2Fwww.mutopiaproject.org%2Fftp%2FJoplinS%2Fmaple%2Fmaple-a4.pdf" target="_blank" rel="noopener noreferrer">Google PDF viewer</a>
 </div>
-<p class="source" id="viewer-help" style="margin:4px 0 15px">Showing the score in your browser’s PDF viewer. You can switch to Google's free viewer, or use the download link above. <a href="https://docs.google.com/gview?url=https%3A%2F%2Fwww.mutopiaproject.org%2Fftp%2FJoplinS%2Fmaple%2Fmaple-a4.pdf" target="_blank" rel="noopener noreferrer">Open directly with Google ↗</a></p>
 <div class="score"><iframe id="sheet-music-frame" title="Complete four-page Maple Leaf Rag piano score by Scott Joplin" src="https://www.mutopiaproject.org/ftp/JoplinS/maple/maple-a4.pdf#view=FitH" loading="eager"></iframe></div>
-<script>
-const scorePdf = "https://www.mutopiaproject.org/ftp/JoplinS/maple/maple-a4.pdf#view=FitH";
-const scoreGoogle = "https://docs.google.com/gview?embedded=true&url=https%3A%2F%2Fwww.mutopiaproject.org%2Fftp%2FJoplinS%2Fmaple%2Fmaple-a4.pdf";
-function chooseScoreViewer(viewer) {
-  const isGoogle = viewer === 'google';
-  document.getElementById('sheet-music-frame').src = isGoogle ? scoreGoogle : scorePdf;
-  document.getElementById('browser-viewer').setAttribute('aria-pressed', String(!isGoogle));
-  document.getElementById('google-viewer').setAttribute('aria-pressed', String(isGoogle));
-  document.getElementById('viewer-help').firstChild.textContent = isGoogle
-    ? 'Showing Google’s free PDF viewer. If Google displays a blank page, select Browser PDF Viewer or use the free download link above. '
-    : 'Showing the score in your browser’s PDF viewer. You can switch to Google’s free viewer, or use the download link above. ';
-}
-</script>
-<p class="source"><strong>Score and credits:</strong> Original composition by Scott Joplin (1899), reproduced from a public-domain source and typeset for the <a href="https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=23" target="_blank" rel="noopener noreferrer">Mutopia Project</a> (maintainer: Chris Sawer). The complete notation is four pages and is not a simplified arrangement. If either viewer is blank, use the direct free PDF link above.</p>
+<p class="source"><strong>Score and credits:</strong> Original composition by Scott Joplin (1899), reproduced from a public-domain source and typeset for the <a href="https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=23" target="_blank" rel="noopener noreferrer">Mutopia Project</a> (maintainer: Chris Sawer). The complete notation is four pages and is not a simplified arrangement. If the preview is blank, use the direct free PDF link above.</p>
 </section></div>
 </main><footer class="foot"><div class="wrap">Ophelia’s Open Book · Free public-domain sheet music and listening · No subscription or purchases</div></footer>
 </body></html>
