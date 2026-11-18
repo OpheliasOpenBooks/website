@@ -19,6 +19,7 @@ section.panel{background:#fffdf8;border:1px solid var(--line);padding:22px;min-w
 .score{background:white;border:1px solid var(--line);min-width:0}.score iframe{display:block;width:100%;height:770px;border:0;background:#fff}
 .free-note{display:inline-block;font:700 11px Arial,sans-serif;letter-spacing:1px;background:#e3ebdc;padding:7px 11px;border:1px solid #b8c8b0;margin-bottom:13px}
 .download{display:block;border:1px solid #a9bdac;background:#f0f5eb;text-align:center;padding:12px 16px;margin-top:15px;font:700 14px Arial,sans-serif;text-decoration:none}.download:hover{background:#e2ecdb}.source{font:13px/1.7 Arial,sans-serif;color:var(--muted);margin:15px 0 0}
+.viewers{display:flex;gap:9px;flex-wrap:wrap;margin:16px 0 10px}.viewers button{font:700 13px Arial,sans-serif;padding:10px 14px;background:#fffdf8;color:var(--ink);border:1px solid #a9bdac;cursor:pointer}.viewers button[aria-pressed="true"]{background:#e3ebdc;border-color:#718e76}.viewers button:focus-visible{outline:2px solid #956b32;outline-offset:2px}
 .foot{border-top:1px solid var(--line);padding:25px 0;color:var(--muted);font:13px Arial,sans-serif}
 @media(max-width:850px){.layout{grid-template-columns:1fr}.cover-art{max-width:390px;margin:auto}.score iframe{height:680px}}
 </style></head>
@@ -27,12 +28,30 @@ section.panel{background:#fffdf8;border:1px solid var(--line);padding:22px;min-w
 <p class="notice"><strong>Everything here is free.</strong> Listen, read, print, and download the complete three-page piano score. Chopin’s composition is public domain; this particular modern typesetting is licensed CC BY-SA 3.0 by its contributor. Ophelia’s artwork is a new Romantic-era-inspired cover, not an antique facsimile.</p>
 <div class="layout">
 <section class="panel"><h2>Ophelia’s Romantic cover</h2><img class="cover-art" src="public/art/ophelia-chopin-nocturne-cover.svg" alt="Romantic-era-inspired Ophelia’s Music Editions cover for Chopin’s Nocturne No. 2, with pink roses, ornate lettering, a piano, and a moonlit window" width="1086" height="1448">
-<div class="player"><div class="eyebrow">Listen to the composition</div><audio controls preload="none" aria-label="Nocturne No. 2 in E-flat major performed by Membeth"><source src="https://upload.wikimedia.org/wikipedia/commons/c/ca/Chopin.Nocturne.Es-Dur.opus.9.2.ogg" type="audio/ogg">Your browser cannot play this audio. <a href="https://commons.wikimedia.org/wiki/File:Chopin.Nocturne.Es-Dur.opus.9.2.ogg">Listen at Wikimedia Commons.</a></audio><small>Piano performance by Membeth · approximately 4 minutes · CC0 dedication. <a href="https://commons.wikimedia.org/wiki/File:Chopin.Nocturne.Es-Dur.opus.9.2.ogg" target="_blank" rel="noopener noreferrer">Recording and rights details ↗</a></small></div>
+<div class="player"><div class="eyebrow">Listen to the composition</div><audio controls preload="metadata" aria-label="Nocturne No. 2 in E-flat major performed by Membeth"><source src="https://upload.wikimedia.org/wikipedia/commons/c/ca/Chopin.Nocturne.Es-Dur.opus.9.2.ogg" type="audio/ogg">Your browser cannot play this audio. <a href="https://commons.wikimedia.org/wiki/File:Chopin.Nocturne.Es-Dur.opus.9.2.ogg">Listen at Wikimedia Commons.</a></audio><small>Piano performance by Membeth · approximately 4 minutes · CC0 dedication. <a href="https://commons.wikimedia.org/wiki/File:Chopin.Nocturne.Es-Dur.opus.9.2.ogg" target="_blank" rel="noopener noreferrer">Recording and rights details ↗</a></small></div>
 </section>
 <section class="panel"><div class="free-note">FREE · COMPLETE SCORE</div><h2>Free sheet music · three pages</h2>
-<div class="score"><iframe title="Google document viewer for the complete three-page piano score of Chopin’s Nocturne Opus 9 Number 2" src="https://docs.google.com/gview?embedded=true&amp;url=https%3A%2F%2Fwww.mutopiaproject.org%2Fftp%2FChopinFF%2FO9%2Fchopin_nocturne_op9_n2%2Fchopin_nocturne_op9_n2-a4.pdf" loading="lazy"></iframe></div>
-<a class="download" href="https://www.mutopiaproject.org/ftp/ChopinFF/O9/chopin_nocturne_op9_n2/chopin_nocturne_op9_n2-a4.pdf" target="_blank" rel="noopener noreferrer">Open / Download Complete Score · FREE ↗</a>
-<p class="source"><strong>Score and licensing:</strong> Music by Frédéric Chopin (public domain). Score typeset by Renato Biolcati Rinaldi, <a href="https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1590" target="_blank" rel="noopener noreferrer">Mutopia Project, CC BY-SA 3.0</a>. The edition includes the original licensing notice; please retain it when sharing. This is a complete piano score, not a simplified arrangement. If Google’s preview is blank, use the PDF download link above.</p>
+<a class="download" href="https://www.mutopiaproject.org/ftp/ChopinFF/O9/chopin_nocturne_op9_n2/chopin_nocturne_op9_n2-a4.pdf" target="_blank" rel="noopener noreferrer">OPEN / DOWNLOAD COMPLETE THREE-PAGE SCORE · FREE ↗</a>
+<div class="viewers" role="group" aria-label="Choose your free score viewer">
+  <button type="button" id="browser-viewer" aria-pressed="true" onclick="chooseScoreViewer('browser')">Browser PDF Viewer</button>
+  <button type="button" id="google-viewer" aria-pressed="false" onclick="chooseScoreViewer('google')">Google PDF Viewer</button>
+</div>
+<p class="source" id="viewer-help" style="margin:4px 0 15px">Showing the score in your browser’s PDF viewer. You can switch to Google's free viewer, or use the download link above. <a href="https://docs.google.com/gview?url=https%3A%2F%2Fwww.mutopiaproject.org%2Fftp%2FChopinFF%2FO9%2Fchopin_nocturne_op9_n2%2Fchopin_nocturne_op9_n2-a4.pdf" target="_blank" rel="noopener noreferrer">Open directly with Google ↗</a></p>
+<div class="score"><iframe id="sheet-music-frame" title="Complete three-page Chopin Nocturne No. 2 sheet music" src="https://www.mutopiaproject.org/ftp/ChopinFF/O9/chopin_nocturne_op9_n2/chopin_nocturne_op9_n2-a4.pdf#view=FitH" loading="eager"></iframe></div>
+<script>
+const scorePdf = "https://www.mutopiaproject.org/ftp/ChopinFF/O9/chopin_nocturne_op9_n2/chopin_nocturne_op9_n2-a4.pdf#view=FitH";
+const scoreGoogle = "https://docs.google.com/gview?embedded=true&url=https%3A%2F%2Fwww.mutopiaproject.org%2Fftp%2FChopinFF%2FO9%2Fchopin_nocturne_op9_n2%2Fchopin_nocturne_op9_n2-a4.pdf";
+function chooseScoreViewer(viewer) {
+  const isGoogle = viewer === 'google';
+  document.getElementById('sheet-music-frame').src = isGoogle ? scoreGoogle : scorePdf;
+  document.getElementById('browser-viewer').setAttribute('aria-pressed', String(!isGoogle));
+  document.getElementById('google-viewer').setAttribute('aria-pressed', String(isGoogle));
+  document.getElementById('viewer-help').firstChild.textContent = isGoogle
+    ? 'Showing Google’s free PDF viewer. If Google displays a blank page, select Browser PDF Viewer or use the free download link above. '
+    : 'Showing the score in your browser’s PDF viewer. You can switch to Google’s free viewer, or use the download link above. ';
+}
+</script>
+<p class="source"><strong>Score and licensing:</strong> Music by Frédéric Chopin (public domain). Score typeset by Renato Biolcati Rinaldi, <a href="https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1590" target="_blank" rel="noopener noreferrer">Mutopia Project, CC BY-SA 3.0</a>. The edition includes the original licensing notice; please retain it when sharing. This is a complete piano score, not a simplified arrangement. If either viewer is blank, use the PDF download link above.</p>
 </section></div></main>
 <footer class="foot"><div class="wrap">Ophelia’s Open Book · Free sheet music and listening · No checkout or account required</div></footer>
 </body></html>
