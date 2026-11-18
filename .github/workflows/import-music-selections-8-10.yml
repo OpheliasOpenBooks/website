@@ -48,6 +48,11 @@ jobs:
             assert len(reader.pages)>0
             merged.append(reader)
             names.append(dict(filename=p.name, pages=len(reader.pages)))
+          fullscore=next((p for p in sources if p.name=='spring-score-a4.pdf'),None)
+          assert fullscore is not None, 'The complete conductor score was absent'
+          from shutil import copyfile
+          copyfile(fullscore,dest/'vivaldi-spring-conductor-score.pdf')
+          assert len(PdfReader(str(dest/'vivaldi-spring-conductor-score.pdf')).pages)==27
           target=dest/'vivaldi-spring-complete-parts.pdf'
           with open(target,'wb') as out: merged.write(out)
           assert target.stat().st_size>50000
@@ -57,6 +62,7 @@ jobs:
           (dest/'selection-8-10-scores.json').write_text(json.dumps(manifest,indent=2))
           print(json.dumps(manifest,indent=2))
           PY
+          test "$(head -c 4 public/scores/vivaldi-spring-conductor-score.pdf)" = '%PDF'
           test "$(head -c 4 public/scores/grieg-mountain-king-piano.pdf)" = '%PDF'
           test "$(head -c 4 public/scores/satie-gymnopedie-1.pdf)" = '%PDF'
           test "$(head -c 4 public/scores/vivaldi-spring-complete-parts.pdf)" = '%PDF'
@@ -65,7 +71,7 @@ jobs:
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add public/scores/grieg-mountain-king-piano.pdf public/scores/satie-gymnopedie-1.pdf public/scores/vivaldi-spring-complete-parts.pdf public/scores/selection-8-10-scores.json
+          git add public/scores/vivaldi-spring-conductor-score.pdf public/scores/grieg-mountain-king-piano.pdf public/scores/satie-gymnopedie-1.pdf public/scores/vivaldi-spring-complete-parts.pdf public/scores/selection-8-10-scores.json
           if ! git diff --cached --quiet; then
             git commit -m "Host full scores for Ophelia music selections VIII–X"
             git push
