@@ -1,0 +1,32 @@
+name: Import complete Andersen anthology and historical cover
+on:
+  push:
+    paths:
+      - '.github/workflows/import-andersen-historical.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import-andersen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install text and image processing libraries
+        run: python -m pip install -q beautifulsoup4 pillow
+      - name: Fetch, validate and divide complete public-domain anthology
+        run: python scripts/import_andersen_historical.py
+      - name: Commit authentic cover and complete source texts
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/books/andersen-tales-27200 public/books/andersen-fairy-tales-27200-index.json public/books/andersen-heading-audit.json public/art/hans-andersens-fairy-tales-1888-historical-cover.jpg
+          if ! git diff --cached --quiet; then
+            git commit -m "Archive full Andersen anthology and authentic 1888 cover"
+            git push
+          fi
