@@ -95,6 +95,7 @@ footer .wrap{display:flex;gap:18px;flex-wrap:wrap;justify-content:space-between}
 'use strict';
 const $=id=>document.getElementById(id);
 const genreByPage={
+ 'king-solomons-mines.html':'Victorian Adventure',
  'the-adventures-of-pinocchio.html':'Fairy Tales & Folklore',
  'the-portrait-of-a-lady.html':'Literary Fiction',
  'heidi.html':'Children’s Classics',
@@ -249,6 +250,7 @@ const genreByPage={
  'oedipus-rex.html':'Ancient Classics'
 };
 const progressByPage={
+ 'king-solomons-mines.html':'ophelia-king-solomons-mines-haggard-1907-v1',
  'the-adventures-of-pinocchio.html':'ophelia-the-adventures-of-pinocchio-collodi-della-chiesa-v1',
  'the-portrait-of-a-lady.html':'ophelia-the-portrait-of-a-lady-james-revised-v1',
  'heidi.html':'ophelia-heidi-spyri-edwardes-v1',
@@ -362,6 +364,7 @@ const progressByPage={
  'oedipus-rex.html':'ophelia-oedipus-rex-storr-1912-alice-voice-v1'
 };
 const catalogOnlyBooks=[
+ {title:'King Solomon’s Mines',author:'H. Rider Haggard · 1885',href:'king-solomons-mines.html',image:'public/art/king-solomons-mines-1885-cover.svg',alt:'Historically inspired 1885 red Victorian cloth cover',description:"When a missing man and an ancient map draw Allan Quatermain into the wild mountains of southern Africa, an extraordinary search begins. Beyond the horizon lie lost kingdoms and the promise of legendary treasure.",genre:'Victorian Adventure'},
  {title:'The Adventures of Pinocchio',author:'Carlo Collodi · 1883',href:'the-adventures-of-pinocchio.html',image:'https://commons.wikimedia.org/wiki/Special:FilePath/Pinocchio_by_Collodi%2C_first_edition_Paggi_1883.jpg',alt:'Original 1883 title page of Carlo Collodi’s Pinocchio',description:"A spirited wooden puppet tumbles through a world of talking creatures, enchantments, tricks and temptations as he tries to become a real boy.",genre:'Fairy Tales & Folklore'},
  {title:'The Portrait of a Lady',author:'Henry James · 1881',href:'the-portrait-of-a-lady.html',image:'https://commons.wikimedia.org/wiki/Special:FilePath/The_Portrait_of_a_lady_cover.jpg',alt:'Historical illustrated cover of Henry James’s The Portrait of a Lady',description:"Independent and imaginative, Isabel Archer enters Europe's glittering society determined to shape her own life, but discovers that love, money, and freedom are more complicated than they first appear.",genre:'Literary Fiction'},
  {title:'The Legend of Sleepy Hollow',author:'Washington Irving · 1820 · American Gothic',href:'the-legend-of-sleepy-hollow.html',image:'public/art/the-legend-of-sleepy-hollow-1820-cover.svg',alt:'Early nineteenth-century-inspired title-page cover of Washington Irving’s The Legend of Sleepy Hollow',description:"In a secluded Hudson Valley glen, dreamy schoolmaster Ichabod Crane courts the beautiful Katrina Van Tassel. Yet the whispers of a headless horseman may prove more haunting than any hopes of romance.",genre:'Gothic & Horror'},
