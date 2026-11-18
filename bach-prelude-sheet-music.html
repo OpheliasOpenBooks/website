@@ -31,6 +31,7 @@ section.panel{background:#fffdf8;border:1px solid var(--line);padding:22px}
 .score{background:white;border:1px solid var(--line);min-width:0}
 .score iframe{display:block;width:100%;height:770px;border:0;background:#fff}
 .source{font:13px/1.7 Arial,sans-serif;color:var(--muted);margin:15px 0 0}.free-note{display:inline-block;font:700 11px Arial,sans-serif;letter-spacing:1px;background:#e3ebdc;color:var(--ink);padding:7px 11px;border:1px solid #b8c8b0;margin:0 0 13px}.download{display:block;border:1px solid #a9bdac;background:#f0f5eb;text-align:center;padding:12px 16px;margin-top:15px;font:700 14px Arial,sans-serif;text-decoration:none}.download:hover{background:#e2ecdb}
+.viewers{display:flex;gap:9px;flex-wrap:wrap;margin:16px 0 10px}.viewers button{font:700 13px Arial,sans-serif;padding:10px 14px;background:#fffdf8;color:var(--ink);border:1px solid #a9bdac;cursor:pointer}.viewers button[aria-pressed="true"]{background:#e3ebdc;border-color:#718e76}.viewers button:focus-visible{outline:2px solid #956b32;outline-offset:2px}
 .foot{border-top:1px solid var(--line);padding:25px 0;color:var(--muted);font:13px Arial,sans-serif}
 @media(max-width:850px){.layout{grid-template-columns:1fr}.cover{max-width:390px;margin:auto}.score iframe{height:680px}}
 </style>
@@ -43,11 +44,30 @@ section.panel{background:#fffdf8;border:1px solid var(--line);padding:22px}
 <div class="layout">
 <section class="panel"><h2>Ophelia’s Baroque cover</h2>
 <figure class="cover-art"><img src="public/art/ophelia-bach-baroque-cover.svg" width="280" height="373" alt="Ophelia’s engraved Baroque-inspired cover for Bach’s Prelude No. 1 in C major, with trumpeting cherubs, ornate borders, laurel wreath and musical instruments."><figcaption>Original Ophelia artwork inspired by eighteenth-century music engraving; not an antique facsimile.</figcaption></figure>
-<div class="player"><div class="eyebrow">Listen to the composition</div><audio controls preload="none" aria-label="Bach Prelude in C major, Kimiko Ishizaka"><source src="https://upload.wikimedia.org/wikipedia/commons/b/b6/Kimiko_Ishizaka_-_Bach_-_Well-Tempered_Clavier%2C_Book_1_-_01_Prelude_No._1_in_C_major%2C_BWV_846.ogg" type="audio/ogg">Audio unavailable in this browser.</audio><small>Kimiko Ishizaka · CC0 recording · playback starts only when selected</small></div>
+<div class="player"><div class="eyebrow">Listen to the composition</div><audio controls preload="metadata" aria-label="Bach Prelude in C major, Kimiko Ishizaka"><source src="https://upload.wikimedia.org/wikipedia/commons/b/b6/Kimiko_Ishizaka_-_Bach_-_Well-Tempered_Clavier%2C_Book_1_-_01_Prelude_No._1_in_C_major%2C_BWV_846.ogg" type="audio/ogg">Audio unavailable in this browser.</audio><small>Kimiko Ishizaka · CC0 recording · playback starts only when selected</small></div>
 </section>
 <section class="panel"><div class="free-note">FREE · COMPLETE SCORE</div><h2>Free sheet music · two pages</h2>
-<div class="score"><iframe title="Google document viewer: complete two-page public-domain Bach prelude sheet music" src="https://docs.google.com/gview?embedded=true&amp;url=https%3A%2F%2Fwww.ibiblio.org%2Fmutopia%2Fftp%2FBachJS%2FBWV846%2Fwtk1-prelude1%2Fwtk1-prelude1-a4.pdf" loading="lazy" referrerpolicy="no-referrer"></iframe></div>
-<a class="download" href="https://www.ibiblio.org/mutopia/ftp/BachJS/BWV846/wtk1-prelude1/wtk1-prelude1-a4.pdf" target="_blank" rel="noopener noreferrer">↗ Open / Download Free PDF</a><p class="source"><a href="https://www.ibiblio.org/mutopia/ftp/BachJS/BWV846/wtk1-prelude1/wtk1-prelude1-a4.pdf" target="_blank" rel="noopener noreferrer"><strong>Open or download the complete score (free PDF)</strong></a> if Google’s document viewer is blank or difficult to use. You can print it directly from the PDF. Notation source: the Mutopia Project, typeset by Tobias Erbsland and dedicated to the public domain. Ophelia’s cover is a decorative presentation; the notation remains credited to its typesetter.</p>
+<a class="download" href="https://www.ibiblio.org/mutopia/ftp/BachJS/BWV846/wtk1-prelude1/wtk1-prelude1-a4.pdf" target="_blank" rel="noopener noreferrer">OPEN / DOWNLOAD COMPLETE TWO-PAGE SCORE · FREE ↗</a>
+<div class="viewers" role="group" aria-label="Choose your free score viewer">
+  <button type="button" id="browser-viewer" aria-pressed="true" onclick="chooseScoreViewer('browser')">Browser PDF Viewer</button>
+  <button type="button" id="google-viewer" aria-pressed="false" onclick="chooseScoreViewer('google')">Google PDF Viewer</button>
+</div>
+<p class="source" id="viewer-help" style="margin:4px 0 15px">Showing the score in your browser’s PDF viewer. You can switch to Google's free viewer, or use the download link above. <a href="https://docs.google.com/gview?url=https%3A%2F%2Fwww.ibiblio.org%2Fmutopia%2Fftp%2FBachJS%2FBWV846%2Fwtk1-prelude1%2Fwtk1-prelude1-a4.pdf" target="_blank" rel="noopener noreferrer">Open directly with Google ↗</a></p>
+<div class="score"><iframe id="sheet-music-frame" title="Complete two-page Bach Prelude No. 1 sheet music" src="https://www.ibiblio.org/mutopia/ftp/BachJS/BWV846/wtk1-prelude1/wtk1-prelude1-a4.pdf#view=FitH" loading="eager"></iframe></div>
+<script>
+const scorePdf = "https://www.ibiblio.org/mutopia/ftp/BachJS/BWV846/wtk1-prelude1/wtk1-prelude1-a4.pdf#view=FitH";
+const scoreGoogle = "https://docs.google.com/gview?embedded=true&url=https%3A%2F%2Fwww.ibiblio.org%2Fmutopia%2Fftp%2FBachJS%2FBWV846%2Fwtk1-prelude1%2Fwtk1-prelude1-a4.pdf";
+function chooseScoreViewer(viewer) {
+  const isGoogle = viewer === 'google';
+  document.getElementById('sheet-music-frame').src = isGoogle ? scoreGoogle : scorePdf;
+  document.getElementById('browser-viewer').setAttribute('aria-pressed', String(!isGoogle));
+  document.getElementById('google-viewer').setAttribute('aria-pressed', String(isGoogle));
+  document.getElementById('viewer-help').firstChild.textContent = isGoogle
+    ? 'Showing Google’s free PDF viewer. If Google displays a blank page, select Browser PDF Viewer or use the free download link above. '
+    : 'Showing the score in your browser’s PDF viewer. You can switch to Google’s free viewer, or use the download link above. ';
+}
+</script>
+<p class="source"><a href="https://www.ibiblio.org/mutopia/ftp/BachJS/BWV846/wtk1-prelude1/wtk1-prelude1-a4.pdf" target="_blank" rel="noopener noreferrer"><strong>Open or download the complete score (free PDF)</strong></a> if either viewer is blank or difficult to use. You can print it directly from the PDF. Notation source: the Mutopia Project, typeset by Tobias Erbsland and dedicated to the public domain. Ophelia’s cover is a decorative presentation; the notation remains credited to its typesetter.</p>
 </section>
 </div>
 </main><footer class="foot"><div class="wrap">Ophelia’s Open Book · Free public-domain sheet music · No checkout or purchases</div></footer>
