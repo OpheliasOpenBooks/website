@@ -56,7 +56,7 @@ body.night{--paper:#17251e;--ink:#e9e3d5;--panel:#28382f;--line:#56644e;--gold:#
 <header><div class="kicker">Édition originale française · 1869–1870</div><h1>Vingt mille lieues sous les mers</h1><div class="byline">Jules Verne · Deux parties, 47 chapitres</div></header>
 <img class="cover" src="https://upload.wikimedia.org/wikipedia/commons/1/10/Houghton_FC8_V5946_869ve_-_Verne%2C_frontispiece.jpg" alt="Frontispice d’une édition Hetzel de 1871, illustré par Édouard Riou">
 <p class="cover-caption">Frontispice historique · Édouard Riou, édition Hetzel 1871 · Houghton Library, Harvard University · <a href="https://commons.wikimedia.org/wiki/File:Houghton_FC8_V5946_869ve_-_Verne,_frontispiece.jpg" target="_blank" rel="noopener">domaine public</a></p>
-<div class="note"><strong>Texte intégral en français, en lecture seule.</strong> Voici le roman de Jules Verne paru entre 1869 et 1870, avec les deux parties et leurs 47 chapitres. La lecture vocale n’est pas disponible. L’édition anglaise n’est pas encore référencée dans le catalogue : les anciennes traductions omettent des passages et la traduction intégrale moderne ne répond pas à la règle du domaine public de cette bibliothèque.</div>
+<div class="note"><strong>Texte intégral en français, en lecture seule.</strong> Voici le roman de Jules Verne paru entre 1869 et 1870, avec les deux parties et leurs 47 chapitres. La lecture vocale n’est pas disponible. L’édition anglaise n’est pas encore référencée dans le catalogue : les anciennes traductions omettent des passages et la traduction intégrale moderne ne répond pas à la règle du domaine public de cette bibliothèque. Vous pouvez consulter <a href="https://commons.wikimedia.org/wiki/File:Twenty_Thousand_Verne_Frith_1876.pdf" target="_blank" rel="noopener">une édition anglaise historique de 1876, numérisée (fac-similé PDF)</a>.</div>
 <div id="reading"><h2>Chargement du texte…</h2></div>
 <footer class="reader-nav"><button id="back" disabled>← Page précédente</button><span id="position" class="status">Préparation…</span><button id="forward" disabled>Page suivante →</button></footer>
 </article>
@@ -142,7 +142,7 @@ function parseFrenchText(raw){
    const end=heads[i+1]?.index??contents;
    const part=text.slice(heads[i].index+heads[i][0].length,end).trim();
    const gap=part.search(/\n\s*\n/);
-   if(gap<0||part.slice(gap).trim().length<3500)throw Error('Chapitre '+(i+1)+' incomplet.');
+   if(gap<0||part.slice(gap).trim().length<2400)throw Error('Chapitre '+(i+1)+' incomplet.');
    const title=part.slice(0,gap).replace(/\s*\n\s*/g,' ').trim();
    const which=i<24?'Première partie':'Deuxième partie';
    sections.push({name:which+' · Chapitre '+(i<24?i+1:i-23)+' · '+title,paragraphs:splitPars(part.slice(gap))});
