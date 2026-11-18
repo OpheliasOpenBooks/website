@@ -438,6 +438,10 @@ const normalize=s=>(s||'').replace(/^(the|a|an)\s+/i,'').toLocaleLowerCase();
 // All other works retain the usual alphabetical sorting.
 const seriesSortTitle=b=>b.href==='david-balfour.html'?'kidnapped 2':b.href==='kidnapped.html'?'kidnapped 1':normalize(b.title);
 const initial=b=>(seriesSortTitle(b).charAt(0)||'#').toUpperCase();
+// Let the letter buttons also find titles by their written first letter:
+// "A Christmas Carol" is filed under C, but can also be found under A.
+const literalInitial=b=>(b.title||'').trim().charAt(0).toUpperCase();
+const matchesLetter=(b,choice)=>initial(b)===choice||literalInitial(b)===choice;
 function extract(doc){
  const cards=[...doc.querySelectorAll('#books > article.book')],seen=new Set(),items=[];
  for(const card of cards){
@@ -469,7 +473,7 @@ function renderAlphabet(){
  for(const choice of alphabet){
   const b=document.createElement('button');b.type='button';b.textContent=choice;
   b.setAttribute('aria-pressed',String(choice===letter||(choice==='All'&&!letter)));
-  b.disabled=choice!=='All'&&!books.some(book=>initial(book)===choice);
+  b.disabled=choice!=='All'&&!books.some(book=>matchesLetter(book,choice));
   b.addEventListener('click',()=>{letter=choice==='All'?'':choice;render();});
   $('alphabet').appendChild(b);
  }
@@ -544,7 +548,7 @@ function card(book){
 function render(){
  const term=$('book-search').value.trim().toLocaleLowerCase();
  const selected=$('genre').value,order=$('sort').value;
- let matches=books.filter(b=>(!term||(b.title+' '+b.author+' '+b.description+' '+b.genre).toLocaleLowerCase().includes(term))&&(!selected||b.genre===selected)&&(!letter||initial(b)===letter));
+ let matches=books.filter(b=>(!term||(b.title+' '+b.author+' '+b.description+' '+b.genre).toLocaleLowerCase().includes(term))&&(!selected||b.genre===selected)&&(!letter||matchesLetter(b,letter)));
  if(order==='title')matches.sort((a,b)=>seriesSortTitle(a).localeCompare(seriesSortTitle(b)));
  if(order==='author')matches.sort((a,b)=>a.author.localeCompare(b.author)||seriesSortTitle(a).localeCompare(seriesSortTitle(b)));
  if(order==='new')matches.sort((a,b)=>books.indexOf(b)-books.indexOf(a));
@@ -565,6 +569,10 @@ $('reset').addEventListener('click',()=>{$('book-search').value='';$('genre').va
   if(!books.length)throw Error('The bookshelf is empty');
   const genres=[...new Set(books.map(b=>b.genre))].sort((a,b)=>a.localeCompare(b));
   $('genre').replaceChildren(new Option('All genres',''),...genres.map(g=>new Option(g,g)));
+  // A catalog link can open directly to a particular book without
+  // changing the familiar A–Z order for ordinary visitors.
+  const requested=new URLSearchParams(location.search).get('q');
+  if(requested)$('book-search').value=requested.slice(0,120);
   render();
  }catch(err){
   $('result-count').textContent='Could not load the catalog';
