@@ -245,7 +245,7 @@ function setupBook(raw){
  $('page').replaceChildren(...pages.map((_,i)=>new Option('Page '+(i+1),i)));
  $('section').disabled=$('page').disabled=$('play').disabled=false;
  state.page=Math.max(0,Math.min(state.page,pages.length-1));
- $('loadbox').classList.add('hidden');render();save();note('All 57 chapters and 57 chapters are ready. Press Read aloud to begin.');
+ $('loadbox').classList.add('hidden');render();save();note('All 57 chapters are ready. Press Read aloud to begin.');
 }
 function updateVoices(){if(!('speechSynthesis' in window))return;voiceList=speechSynthesis.getVoices();$('voice').replaceChildren(new Option('Automatic English voice',''),...voiceList.filter(v=>/^en/i.test(v.lang)).map(v=>new Option(v.name+' · '+v.lang,v.voiceURI)));$('voice').value=state.voice;}
 function applySettings(){$('speed').value=state.speed;$('speedview').value=state.speed+'×';$('size').value=state.size;$('sizeview').value=state.size+' px';$('dark').checked=state.night;$('autoturn').checked=state.autoTurn;document.body.classList.toggle('night',state.night);document.documentElement.style.setProperty('--text-size',state.size+'px');}
