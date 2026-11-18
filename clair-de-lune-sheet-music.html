@@ -19,6 +19,7 @@ section.panel{background:#fffdf8;border:1px solid var(--line);padding:22px;min-w
 .score{background:white;border:1px solid var(--line);min-width:0}.score iframe{display:block;width:100%;height:770px;border:0;background:#fff}
 .free-note{display:inline-block;font:700 11px Arial,sans-serif;letter-spacing:1px;background:#e3ebdc;padding:7px 11px;border:1px solid #b8c8b0;margin-bottom:13px}
 .download{display:block;border:1px solid #a9bdac;background:#f0f5eb;text-align:center;padding:12px 16px;margin-top:15px;font:700 14px Arial,sans-serif;text-decoration:none}.download:hover{background:#e2ecdb}.source{font:13px/1.7 Arial,sans-serif;color:var(--muted);margin:15px 0 0}
+.viewers{display:flex;gap:9px;flex-wrap:wrap;margin:16px 0 10px}.viewers button{font:700 13px Arial,sans-serif;padding:10px 14px;background:#fffdf8;color:var(--ink);border:1px solid #a9bdac;cursor:pointer}.viewers button[aria-pressed="true"]{background:#e3ebdc;border-color:#718e76}.viewers button:focus-visible{outline:2px solid #956b32;outline-offset:2px}
 .foot{border-top:1px solid var(--line);padding:25px 0;color:var(--muted);font:13px Arial,sans-serif}
 @media(max-width:850px){.layout{grid-template-columns:1fr}.cover-art{max-width:390px;margin:auto}.score iframe{height:680px}}
 </style>
@@ -32,8 +33,25 @@ section.panel{background:#fffdf8;border:1px solid var(--line);padding:22px;min-w
 <small>Piano performance by Laurens Goedhart · 2011 · 5 min 4 sec · <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener noreferrer">CC BY 3.0</a>. No alterations to the recording. <a href="https://commons.wikimedia.org/wiki/File:Clair_de_lune_(Claude_Debussy)_Suite_bergamasque.ogg" target="_blank" rel="noopener noreferrer">Recording and license details ↗</a></small></div></section>
 <section class="panel"><div class="free-note">FREE · COMPLETE SCORE</div><h2>Free sheet music · four pages</h2>
 <a class="download" href="https://www.mutopiaproject.org/ftp/DebussyC/L75/debussy_Ste_Bergamesq_Clair/debussy_Ste_Bergamesq_Clair-a4.pdf" target="_blank" rel="noopener noreferrer">OPEN / DOWNLOAD COMPLETE FOUR-PAGE SCORE · FREE ↗</a>
-<p class="source" style="margin:8px 0 15px">The complete score opens directly as a printable PDF. The preview below now uses your browser’s PDF viewer rather than Google’s document viewer. If the viewer is blank, use the link above.</p>
-<div class="score"><iframe title="Complete four-page Debussy Clair de lune piano score, shown with your browser's built-in PDF viewer" src="https://www.mutopiaproject.org/ftp/DebussyC/L75/debussy_Ste_Bergamesq_Clair/debussy_Ste_Bergamesq_Clair-a4.pdf#view=FitH" loading="eager"></iframe></div>
+<div class="viewers" role="group" aria-label="Choose your free score viewer">
+  <button type="button" id="browser-viewer" aria-pressed="true" onclick="chooseScoreViewer('browser')">Browser PDF Viewer</button>
+  <button type="button" id="google-viewer" aria-pressed="false" onclick="chooseScoreViewer('google')">Google PDF Viewer</button>
+</div>
+<p class="source" id="viewer-help" style="margin:4px 0 15px">Showing the score in your browser’s PDF viewer. You can switch to Google's free viewer, or use the download link above. <a href="https://docs.google.com/gview?url=https%3A%2F%2Fwww.mutopiaproject.org%2Fftp%2FDebussyC%2FL75%2Fdebussy_Ste_Bergamesq_Clair%2Fdebussy_Ste_Bergamesq_Clair-a4.pdf" target="_blank" rel="noopener noreferrer">Open directly with Google ↗</a></p>
+<div class="score"><iframe id="sheet-music-frame" title="Complete four-page Debussy Clair de lune piano score" src="https://www.mutopiaproject.org/ftp/DebussyC/L75/debussy_Ste_Bergamesq_Clair/debussy_Ste_Bergamesq_Clair-a4.pdf#view=FitH" loading="eager"></iframe></div>
+<script>
+const scorePdf = "https://www.mutopiaproject.org/ftp/DebussyC/L75/debussy_Ste_Bergamesq_Clair/debussy_Ste_Bergamesq_Clair-a4.pdf#view=FitH";
+const scoreGoogle = "https://docs.google.com/gview?embedded=true&url=https%3A%2F%2Fwww.mutopiaproject.org%2Fftp%2FDebussyC%2FL75%2Fdebussy_Ste_Bergamesq_Clair%2Fdebussy_Ste_Bergamesq_Clair-a4.pdf";
+function chooseScoreViewer(viewer) {
+  const isGoogle = viewer === 'google';
+  document.getElementById('sheet-music-frame').src = isGoogle ? scoreGoogle : scorePdf;
+  document.getElementById('browser-viewer').setAttribute('aria-pressed', String(!isGoogle));
+  document.getElementById('google-viewer').setAttribute('aria-pressed', String(isGoogle));
+  document.getElementById('viewer-help').firstChild.textContent = isGoogle
+    ? 'Showing Google’s free PDF viewer. If Google displays a blank page, select Browser PDF Viewer or use the free download link above. '
+    : 'Showing the score in your browser’s PDF viewer. You can switch to Google’s free viewer, or use the download link above. ';
+}
+</script>
 <p class="source"><strong>Opening measures:</strong> <img src="https://www.mutopiaproject.org/ftp/DebussyC/L75/debussy_Ste_Bergamesq_Clair/debussy_Ste_Bergamesq_Clair-preview.png" alt="Opening measures from Debussy’s Clair de lune score" loading="lazy" style="display:block;max-width:100%;height:auto;margin:8px 0"></p>
 <p class="source"><strong>Score and rights:</strong> Claude Debussy’s music is in the public domain. Complete score typeset by Keith O’Hara, from the E. Fromont (1905) source, <a href="https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1778" target="_blank" rel="noopener noreferrer">Mutopia Project</a>. The typesetter released this engraving into the public domain. The direct PDF link above remains available for reading, printing, and downloading if the embedded viewer does not display.</p>
 </section></div></main><footer class="foot"><div class="wrap">Ophelia’s Open Book · Free music and sheet music · No subscription or checkout required</div></footer>
