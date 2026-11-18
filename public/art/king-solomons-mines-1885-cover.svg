@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="900" viewBox="0 0 640 900" role="img" aria-labelledby="t d">
+<title id="t">King Solomon's Mines — 1885-inspired red cloth binding</title>
+<desc id="d">An original historically inspired recreation of the first edition's red Victorian cloth cover, with dark-stamped lettering and a restrained shield and spear motif. Not a facsimile of the original binding.</desc>
+<defs><pattern id="cloth" width="9" height="9" patternUnits="userSpaceOnUse"><path d="M0 3h9M3 0v9" fill="none" stroke="#d07866" stroke-width=".45" opacity=".26"/></pattern><linearGradient id="red" x1="0" x2="1"><stop stop-color="#79261f"/><stop offset=".12" stop-color="#af4033"/><stop offset=".85" stop-color="#aa3d30"/><stop offset="1" stop-color="#7a281f"/></linearGradient></defs>
+<rect width="640" height="900" fill="#8b3025"/><rect x="16" y="15" width="608" height="868" rx="10" fill="url(#red)"/><rect x="16" y="15" width="608" height="868" fill="url(#cloth)"/>
+<path d="M72 68h495v760H72z" fill="none" stroke="#3b1815" stroke-width="2" opacity=".42"/>
+<path d="M89 91h460M89 803h460" stroke="#451e17" stroke-width="2" opacity=".65"/>
+<g fill="#261a17" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif">
+<text x="320" y="215" font-size="47" letter-spacing="4">KING SOLOMON'S</text>
+<text x="320" y="282" font-size="61" letter-spacing="8">MINES</text>
+<text x="320" y="368" font-size="28" font-style="italic">by H. Rider Haggard</text>
+</g>
+<g stroke="#2f211b" fill="none" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(320 576)">
+<path d="M-122 -146L-22 145M112 -153L20 145" stroke-width="6"/><path d="M-122 -146l-7 35 20-6zM112 -153l-18 29 21-4z" fill="#2f211b"/><path d="M0 -130C86 -98 106 -18 74 72C50 126 0 151 0 151S-50 126-74 72C-106-18-86-98 0-130z" fill="#6e2a23" stroke-width="5"/><path d="M0 -112C63 -82 79-15 58 62C40 107 0 127 0 127S-40 107-58 62C-79-15-63-82 0-112z" stroke-width="3"/><path d="M0 -100v216M-50 -40h100M-53 38h106M-28 -73l56 174M28 -73L-28 101" stroke-width="3"/>
+</g>
+<g fill="#34201b" text-anchor="middle" font-family="Georgia, serif"><text x="320" y="760" font-size="21" letter-spacing="5">CASSELL &amp; COMPANY</text><text x="320" y="794" font-size="20" letter-spacing="6">1885</text></g></svg>
