@@ -1,4 +1,4 @@
-name: Import complete Andersen anthology and historical cover
+name: Archive the authentic 1888 Andersen book cover
 on:
   push:
     paths:
@@ -7,26 +7,30 @@ on:
 permissions:
   contents: write
 jobs:
-  import-andersen:
+  archive-cover:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           persist-credentials: true
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - name: Install text and image processing libraries
-        run: python -m pip install -q beautifulsoup4 pillow
-      - name: Fetch, validate and divide complete public-domain anthology
-        run: python scripts/import_andersen_historical.py
-      - name: Commit authentic cover and complete source texts
+      - name: Fetch original public-domain 1888 book-cover scan
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p public/art
+          curl --fail --location --retry 4 --retry-delay 2 --max-time 110 \
+            --user-agent 'OpheliasOpenBook/1.0 (public-domain literary archive; GitHub Pages)' \
+            'https://upload.wikimedia.org/wikipedia/commons/a/a3/Hans_Andersen%27s_Fairy_Tales_%281888%29_-_cover.jpg' \
+            -o public/art/hans-andersens-fairy-tales-1888-historical-cover.jpg
+          test "$(head -c 3 public/art/hans-andersens-fairy-tales-1888-historical-cover.jpg | od -An -tx1 | tr -d ' \n')" = 'ffd8ff'
+          test "$(stat -c%s public/art/hans-andersens-fairy-tales-1888-historical-cover.jpg)" -gt 50000
+      - name: Commit historically sourced cover
+        shell: bash
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add public/books/andersen-tales-27200 public/books/andersen-fairy-tales-27200-index.json public/books/andersen-heading-audit.json public/art/hans-andersens-fairy-tales-1888-historical-cover.jpg
+          git add public/art/hans-andersens-fairy-tales-1888-historical-cover.jpg
           if ! git diff --cached --quiet; then
-            git commit -m "Archive full Andersen anthology and authentic 1888 cover"
+            git commit -m "Host authentic 1888 Andersen fairy-tales cover"
             git push
           fi
