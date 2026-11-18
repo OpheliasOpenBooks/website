@@ -1,0 +1,42 @@
+name: Import public-domain Blue Danube score
+on:
+  push:
+    paths:
+      - '.github/workflows/import-blue-danube-score.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import-score:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Download and validate CC0 piano score
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p public/scores
+          curl --fail --location --retry 3 --retry-delay 2 --max-time 90 \
+            --user-agent "Mozilla/5.0" \
+            "https://noctavepiano.com/partitions/strauss-beau-danube-bleu/strauss-beau-danube-bleu.pdf" \
+            --output public/scores/blue-danube-complete.pdf
+          file public/scores/blue-danube-complete.pdf
+          test "$(head -c 4 public/scores/blue-danube-complete.pdf)" = '%PDF'
+          test "$(stat -c%s public/scores/blue-danube-complete.pdf)" -gt 50000
+          if command -v pdfinfo >/dev/null; then
+            pages="$(pdfinfo public/scores/blue-danube-complete.pdf | awk '/^Pages:/ {print $2}')"
+            test "$pages" -eq 10
+          fi
+      - name: Commit score to website repository
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/scores/blue-danube-complete.pdf
+          if ! git diff --cached --quiet; then
+            git commit -m "Host complete CC0 Blue Danube sheet music locally"
+            git push
+          fi
