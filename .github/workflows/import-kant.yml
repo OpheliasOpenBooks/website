@@ -1,0 +1,25 @@
+name: Host Kant in English and German
+on:
+  push:
+    paths:
+      - '.github/workflows/import-kant.yml'
+      - 'scripts/import_kant.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Import and verify both complete 1781 and Meiklejohn editions
+        run: python3 scripts/import_kant.py
+      - name: Commit the hosted Kant reading segments
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/books/kant-en-*.json public/books/kant-de-*.json
+          git diff --staged --quiet || (git commit -m "Host Kant's full English and original German texts" && git push)
