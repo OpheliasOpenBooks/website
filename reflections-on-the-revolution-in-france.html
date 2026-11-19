@@ -58,7 +58,6 @@ const STORAGE='ophelia-burke-reflections-1790-v1';
 const BOOK_SECTIONS=[0,2,1,1,1,1,1,1,2],BOOK_MIN_WORDS=[0,8500,8500,8500,8500,8500,8500,8500,8500];
 const bookCache={};let loadingBook=false;
 const BOOK_PATH=n=>'public/books/reflections-on-the-revolution-in-france-part-'+n+'.json';
-const BOOK_PATH=n=>'public/books/reflections-on-the-revolution-in-france-en-part-'+n+'.json';
 let state={page:0,book:1,voice:'',speed:1,size:20,night:false,autoTurn:true,bookmark:-1,bookPages:{},bookBookmarks:{}};
 try{Object.assign(state,JSON.parse(localStorage.getItem(STORAGE)||'{}'));}catch{}
 const save=()=>{try{localStorage.setItem(STORAGE,JSON.stringify(state));}catch{}};
