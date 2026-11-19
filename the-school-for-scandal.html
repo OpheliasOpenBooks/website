@@ -77,22 +77,47 @@ function parseText(raw){
  return sections;
 }
 function paginate(sections){
- const out=[];
- sections.forEach((part,section)=>{
-  let current=[],words=0;
-  const flush=()=>{if(current.length){out.push({section,sectionName:part.name,paragraphs:current});current=[];words=0;}};
-  const add=par=>{const n=(par.match(/\S+/g)||[]).length;if(words+n>330&&current.length)flush();current.push(par);words+=n;};
-  for(const par of part.paragraphs){
-   if((par.match(/\S+/g)||[]).length<360){add(par);continue;}
-   const lines=par.split('\n');let piece=[],count=0;
-   for(const line of lines){
-    const n=(line.match(/\S+/g)||[]).length;
-    if(count+n>280&&piece.length){add(piece.join('\n'));flush();piece=[];count=0;}
-    piece.push(line);count+=n;
+ const out=[],count=s=>(s.match(/\S+/g)||[]).length;
+ function splitLongParagraph(p){
+   if(count(p)<=280)return [p];
+   // Preserve verse and stage-direction line breaks wherever possible.
+   if(p.includes('\n')){
+     const out=[],lines=p.split('\n');let piece=[],words=0;
+     for(const line of lines){
+       const n=count(line);
+       if(n>280){
+         if(piece.length){out.push(piece.join('\n'));piece=[];words=0;}
+         out.push(...splitLongParagraph(line));continue;
+       }
+       if(words+n>270&&piece.length){out.push(piece.join('\n'));piece=[];words=0;}
+       piece.push(line);words+=n;
+     }
+     if(piece.length)out.push(piece.join('\n'));
+     return out;
    }
-   if(piece.length)add(piece.join('\n'));
-  }
-  flush();
+   const sentences=p.match(/[^.!?]+[.!?]+[”’"']?|[^.!?]+$/g)||[p];
+   const chunks=[];let piece='',words=0;
+   function flush(){if(piece.trim()){chunks.push(piece.trim());piece='';words=0;}}
+   for(const sentence of sentences){
+     const k=count(sentence);
+     if(k>275){
+       flush();
+       const tokens=sentence.match(/\S+\s*/g)||[];
+       for(let pos=0;pos<tokens.length;pos+=270)chunks.push(tokens.slice(pos,pos+270).join('').trim());
+       continue;
+     }
+     if(piece&&words+k>275)flush();
+     piece+=sentence;words+=k;
+   }
+   flush();
+   return chunks.filter(Boolean);
+ }
+ sections.forEach((part,section)=>{
+   let current=[],words=0;
+   const flush=()=>{if(current.length){out.push({section,sectionName:part.name,paragraphs:current});current=[];words=0;}};
+   const add=par=>{const n=count(par);if(current.length&&words+n>310)flush();current.push(par);words+=n;};
+   for(const p of part.paragraphs){for(const fragment of splitLongParagraph(p))add(fragment);}
+   flush();
  });
  return out;
 }
