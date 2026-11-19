@@ -188,6 +188,16 @@
 }
 .listening-desk .desk-season-note[hidden]{display:none}
 
+
+/* Gentle volume balancing: quiet, legible presentation in the Victorian Listening Desk. */
+.listening-desk .desk-leveling-check{color:#762d3c}
+.listening-desk .desk-leveling-check input{accent-color:#762d3c}
+.listening-desk .desk-level-note{
+  color:#47614c;
+  font:12px/1.65 Arial,sans-serif;
+  margin:3px 3px 0;
+}
+
 </style>
 </head>
 <body>
@@ -217,14 +227,16 @@
     </label>
     <label class="desk-check" for="desk-shuffle"><input id="desk-shuffle" type="checkbox"> Shuffle</label>
     <label class="desk-check" for="desk-continuous"><input id="desk-continuous" type="checkbox" checked> Continuous play</label>
+    <label class="desk-check desk-leveling-check" for="desk-leveling"><input id="desk-leveling" type="checkbox" checked> Even volume</label>
   </div>
   <p class="desk-season-note" id="desk-season-note" role="status" aria-live="polite" hidden></p>
   <div class="desk-player">
-    <audio id="desk-audio" controls preload="none" aria-label="Ophelia's continuous music player">Your browser does not support audio playback.</audio>
+    <audio id="desk-audio" controls preload="none" crossorigin="anonymous" aria-label="Ophelia's continuous music player">Your browser does not support audio playback.</audio>
     <div class="desk-current"><strong id="desk-now">Prelude No. 1 in C major</strong><span id="desk-by">Johann Sebastian Bach</span><a id="desk-score" href="bach-prelude-sheet-music.html">View this composition’s free score ↗</a></div>
     <div class="desk-buttons"><button type="button" id="desk-previous" aria-label="Previous composition">← Previous</button><button type="button" id="desk-next" aria-label="Next composition">Next →</button></div>
   </div>
   <p class="desk-status" id="desk-status" role="status" aria-live="polite">Twenty compositions to enjoy. Continuous play repeats your selected collection; the browser may require Play again if it interrupts audio.</p>
+  <p class="desk-level-note" id="desk-level-note">Even volume gently balances recordings and reduces sudden peaks. Leave it on for continuous listening.</p>
 </section>
 <article class="piece" data-music-style="Baroque">
   <div class="piece-main">
@@ -438,12 +450,172 @@
   const seasonNote = document.getElementById('desk-season-note');
   const shuffleToggle = document.getElementById('desk-shuffle');
   const continuousToggle = document.getElementById('desk-continuous');
+  const levelingToggle = document.getElementById('desk-leveling');
+  const levelNote = document.getElementById('desk-level-note');
   const title = document.getElementById('desk-now');
   const byline = document.getElementById('desk-by');
   const scoreLink = document.getElementById('desk-score');
   const status = document.getElementById('desk-status');
   const back = document.getElementById('desk-previous');
   const next = document.getElementById('desk-next');
+
+
+  /* Listening Desk only: gentle real-time gain leveling and a soft peak limiter.
+     Use one MediaElementAudioSource for the lifetime of the player; it works as
+     audio.src changes across compositions and across multitrack movements.
+     The Commons files are requested in anonymous CORS mode before playback,
+     which is required for Web Audio processing on another domain.
+     This is adaptive leveling, not offline LUFS mastering; it protects the
+     character of the music and cannot make every recording identical. */
+  let soundEngine = null;
+  let levelFrame = 0;
+  let lastLevelCheck = 0;
+  const savedTrackGain = new Map();
+
+  function prepareTrackLevel(sourceUrl) {
+    if (!soundEngine) return;
+    const engine = soundEngine;
+    if (engine.url && engine.url !== sourceUrl && levelingToggle.checked) {
+      savedTrackGain.set(engine.url, engine.gain.gain.value);
+    }
+    engine.url = sourceUrl;
+    engine.envelope = 0.045;
+    lastLevelCheck = 0;
+    const at = engine.context.currentTime;
+    const destination = levelingToggle.checked
+      ? (savedTrackGain.get(sourceUrl) || 0.65) : 0.72;
+    engine.gain.gain.cancelScheduledValues(at);
+    engine.gain.gain.setValueAtTime(0.35, at);
+    engine.gain.gain.setTargetAtTime(destination, at, 0.35);
+  }
+
+  function initializeSoundEngine() {
+    if (soundEngine) {
+      if (soundEngine.context.state === 'suspended') {
+        soundEngine.context.resume().catch(function(){});
+      }
+      return;
+    }
+    const Context = window.AudioContext || window.webkitAudioContext;
+    if (!Context) {
+      audio.volume = Math.min(audio.volume, 0.72);
+      levelNote.textContent='Your browser does not support automatic volume leveling. Playback starts at a reduced volume; your regular volume controls still work.';
+      return;
+    }
+    try {
+      const context = new Context();
+      const analyser = context.createAnalyser();
+      analyser.fftSize = 2048;
+      const gain = context.createGain();
+      gain.gain.value = 0.65;
+      const compressor = context.createDynamicsCompressor();
+      compressor.threshold.value = -26;
+      compressor.knee.value = 12;
+      compressor.ratio.value = 2.6;
+      compressor.attack.value = 0.012;
+      compressor.release.value = 0.36;
+      const limiter = context.createDynamicsCompressor();
+      limiter.threshold.value = -6;
+      limiter.knee.value = 0;
+      limiter.ratio.value = 16;
+      limiter.attack.value = 0.003;
+      limiter.release.value = 0.22;
+      const master = context.createGain();
+      master.gain.value = 0.86;
+      // Create the source last; failure before this point leaves native audio intact.
+      const source = context.createMediaElementSource(audio);
+      source.connect(analyser);
+      analyser.connect(gain);
+      gain.connect(compressor);
+      compressor.connect(limiter);
+      limiter.connect(master);
+      master.connect(context.destination);
+      soundEngine = {
+        context:context, analyser:analyser, gain:gain,
+        samples:new Float32Array(analyser.fftSize),
+        envelope:0.045, url:''
+      };
+      prepareTrackLevel(audio.currentSrc || audio.src);
+      if (context.state === 'suspended')context.resume().catch(function(){});
+    } catch (error) {
+      // Leave native controls and reduced basic volume as the safe fallback.
+      audio.volume = Math.min(audio.volume, 0.72);
+      levelNote.textContent='Automatic volume leveling is unavailable in this browser; audio still plays through the standard controls at a reduced level.';
+      if (window.console && console.warn) console.warn('Ophelia audio leveling unavailable:', error);
+    }
+  }
+
+  function stopLevelMonitor() {
+    if (levelFrame)window.cancelAnimationFrame(levelFrame);
+    levelFrame = 0;
+  }
+
+  function monitorLevel(timestamp) {
+    levelFrame = 0;
+    const engine=soundEngine;
+    if (!engine || audio.paused || !levelingToggle.checked)return;
+    if (timestamp-lastLevelCheck >= 130) {
+      lastLevelCheck=timestamp;
+      engine.analyser.getFloatTimeDomainData(engine.samples);
+      let sum=0;
+      let peak=0;
+      for (let i=0;i<engine.samples.length;i++) {
+        const amplitude=Math.abs(engine.samples[i]);
+        sum+=amplitude*amplitude;
+        if (amplitude>peak)peak=amplitude;
+      }
+      const rms=Math.sqrt(sum/engine.samples.length);
+      // Ignore silence: don't inflate a quiet intro or gaps between notes.
+      if (rms>0.008) {
+        // Respond fairly quickly to loud recordings, slowly to softer passages.
+        const weight=rms>engine.envelope ? 0.20 : 0.012;
+        engine.envelope += (rms-engine.envelope)*weight;
+        let desired=Math.min(2.0,Math.max(0.34,0.11/Math.max(0.028,engine.envelope)));
+        // Keep very sharp attacks from causing an abrupt increase in gain.
+        if (peak>0.40)desired=Math.min(desired,0.76/peak);
+        const now=engine.context.currentTime;
+        const current=engine.gain.gain.value;
+        engine.gain.gain.setTargetAtTime(desired,now,desired<current ? 0.17 : 1.6);
+      }
+    }
+    levelFrame=window.requestAnimationFrame(monitorLevel);
+  }
+
+  function startLevelMonitor() {
+    stopLevelMonitor();
+    if (soundEngine && !audio.paused && levelingToggle.checked)
+      levelFrame=window.requestAnimationFrame(monitorLevel);
+  }
+
+  function setLevelingPreference() {
+    if (!levelingToggle.checked) {
+      stopLevelMonitor();
+      if (soundEngine) {
+        const at=soundEngine.context.currentTime;
+        soundEngine.gain.gain.cancelScheduledValues(at);
+        soundEngine.gain.gain.setTargetAtTime(0.72,at,0.28);
+      }
+      levelNote.textContent='Even volume is off. The normal audio volume control remains available.';
+    } else {
+      levelNote.textContent='Even volume gently balances recordings and reduces sudden peaks. Leave it on for continuous listening.';
+      if (!audio.paused) {
+        initializeSoundEngine();
+        startLevelMonitor();
+      }
+    }
+    updateText('Volume preference updated');
+  }
+
+  // Make an AudioContext during direct interaction whenever possible;
+  // this avoids autoplay restrictions when the native audio button is used.
+  audio.addEventListener('pointerdown',function(){
+    if (levelingToggle.checked)initializeSoundEngine();
+  });
+  audio.addEventListener('keydown',function(){
+    if (levelingToggle.checked)initializeSoundEngine();
+  });
+  levelingToggle.addEventListener('change',setLevelingPreference);
+  audio.addEventListener('pause',stopLevelMonitor);
 
   function supportedSource(card) {
     const choices = Array.from(card.querySelectorAll('.player audio source'));
@@ -548,6 +720,7 @@
     audio.pause();
     if (!piece){audio.removeAttribute('src');audio.load();updateText();return;}
     const src=piece.tracks[movement].src;
+    prepareTrackLevel(src);
     audio.src=src;
     audio.load();
     updateText(message);
@@ -643,6 +816,8 @@
   audio.addEventListener('ended',playFollowing);
   audio.addEventListener('play',function(){
     started=true;
+    if (levelingToggle.checked)initializeSoundEngine();
+    startLevelMonitor();
     cards.forEach(function(card){
       const player=card.querySelector('.player audio');
       if(player && !player.paused)player.pause();
