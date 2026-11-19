@@ -1,0 +1,38 @@
+{
+  "title": "Les Confessions",
+  "author": "Jean-Jacques Rousseau",
+  "language": "fr",
+  "readOnly": true,
+  "partCount": 4,
+  "wordCount": 254264,
+  "parts": [
+    {
+      "number": 1,
+      "file": "rousseau-confessions-fr-part-1.json",
+      "label": "Tome I · Livres I–III",
+      "words": 48327,
+      "sectionCount": 3
+    },
+    {
+      "number": 2,
+      "file": "rousseau-confessions-fr-part-2.json",
+      "label": "Tome II · Livres IV–VI",
+      "words": 55497,
+      "sectionCount": 3
+    },
+    {
+      "number": 3,
+      "file": "rousseau-confessions-fr-part-3.json",
+      "label": "Tome III · Livres VII–IX",
+      "words": 84335,
+      "sectionCount": 3
+    },
+    {
+      "number": 4,
+      "file": "rousseau-confessions-fr-part-4.json",
+      "label": "Tome IV · Livres X–XII",
+      "words": 66105,
+      "sectionCount": 3
+    }
+  ]
+}
