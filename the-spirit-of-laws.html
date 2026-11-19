@@ -234,7 +234,7 @@ function togglePlay(){
 function go(p){
  if(!pages.length)return;
  if(p<0&&state.volume>1){loadVolume(state.volume-1,-1);return;}
- if(p>=pages.length&&state.volume<9){loadVolume(state.volume+1,0);return;}
+ if(p>=pages.length&&state.volume<31){loadVolume(state.volume+1,0);return;}
  stop();speechResumeAt=0;state.page=Math.max(0,Math.min(p,pages.length-1));save();render();
 }
 function render(){
