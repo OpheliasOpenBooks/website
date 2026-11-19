@@ -105,7 +105,7 @@ function updatePlay(){$('play').textContent=speaking?(paused?'▶ Resume':'Ⅱ P
 function getText(){
  const pg=pages[state.page];if(!pg)return '';
  const firstInPoem=state.page===0||pages[state.page-1].section!==pg.section;
- return (firstInPoem?pg.sectionName+'. ':'')+pg.paragraphs.join('. ');
+ return (firstInPoem?pg.sectionName+'. ':'')+pg.paragraphs.join(' ');
 }
 function pickVoice(){return voiceList.find(v=>v.voiceURI===state.voice)||voiceList.find(v=>/^en-GB/i.test(v.lang))||voiceList.find(v=>/^en/i.test(v.lang))||null;}
 // This function is copied from the original Alice reader to preserve its exact
