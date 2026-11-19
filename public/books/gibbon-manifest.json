@@ -1,0 +1,542 @@
+{
+  "title": "The History of the Decline and Fall of the Roman Empire",
+  "author": "Edward Gibbon",
+  "source": "Project Gutenberg ebooks 731–736; 1845 H. H. Milman annotated edition",
+  "volumes": [
+    {
+      "number": 1,
+      "chapters": [
+        {
+          "number": 0,
+          "label": "Introduction & Prefaces",
+          "file": "gibbon-v1-ch00.json",
+          "parts": 1
+        },
+        {
+          "number": 1,
+          "label": "Chapter 1 · The Extent Of The Empire In The Age Of The Antonines",
+          "file": "gibbon-v1-ch01.json",
+          "parts": 3,
+          "words": 14312
+        },
+        {
+          "number": 2,
+          "label": "Chapter 2 · The Internal Prosperity In The Age Of The Antonines",
+          "file": "gibbon-v1-ch02.json",
+          "parts": 4,
+          "words": 18585
+        },
+        {
+          "number": 3,
+          "label": "Chapter 3 · The Constitution In The Age Of The Antonines",
+          "file": "gibbon-v1-ch03.json",
+          "parts": 2,
+          "words": 12040
+        },
+        {
+          "number": 4,
+          "label": "Chapter 4 · The Cruelty, Follies And Murder Of Commodus",
+          "file": "gibbon-v1-ch04.json",
+          "parts": 2,
+          "words": 9503
+        },
+        {
+          "number": 5,
+          "label": "Chapter 5 · Sale Of The Empire To Didius Julianus",
+          "file": "gibbon-v1-ch05.json",
+          "parts": 2,
+          "words": 11301
+        },
+        {
+          "number": 6,
+          "label": "Chapter 6 · Death Of Severus, Tyranny Of Caracalla, Usurpation Of Marcinus",
+          "file": "gibbon-v1-ch06.json",
+          "parts": 4,
+          "words": 20379
+        },
+        {
+          "number": 7,
+          "label": "Chapter 7 · Tyranny Of Maximin, Rebellion, Civil Wars, Death Of Maximin",
+          "file": "gibbon-v1-ch07.json",
+          "parts": 3,
+          "words": 12893
+        },
+        {
+          "number": 8,
+          "label": "Chapter 8 · State Of Persia And Restoration Of The Monarchy",
+          "file": "gibbon-v1-ch08.json",
+          "parts": 2,
+          "words": 10228
+        },
+        {
+          "number": 9,
+          "label": "Chapter 9 · State Of Germany Until The Barbarians",
+          "file": "gibbon-v1-ch09.json",
+          "parts": 3,
+          "words": 13165
+        },
+        {
+          "number": 10,
+          "label": "Chapter 10 · Emperors Decius, Gallus, Aemilianus, Valerian And Gallienus",
+          "file": "gibbon-v1-ch10.json",
+          "parts": 4,
+          "words": 21846
+        },
+        {
+          "number": 11,
+          "label": "Chapter 11 · Reign Of Claudius, Defeat Of The Goths",
+          "file": "gibbon-v1-ch11.json",
+          "parts": 3,
+          "words": 14905
+        },
+        {
+          "number": 12,
+          "label": "Chapter 12 · Reigns Of Tacitus, Probus, Carus And His Sons",
+          "file": "gibbon-v1-ch12.json",
+          "parts": 3,
+          "words": 15352
+        },
+        {
+          "number": 13,
+          "label": "Chapter 13 · Reign Of Diocletian And His Three Associates",
+          "file": "gibbon-v1-ch13.json",
+          "parts": 4,
+          "words": 20820
+        },
+        {
+          "number": 14,
+          "label": "Chapter 14 · Six Emperors At The Same Time, Reunion Of The Empire",
+          "file": "gibbon-v1-ch14.json",
+          "parts": 4,
+          "words": 22918
+        },
+        {
+          "number": 15,
+          "label": "Chapter 15 · Progress Of The Christian Religion",
+          "file": "gibbon-v1-ch15.json",
+          "parts": 9,
+          "words": 39296
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "chapters": [
+        {
+          "number": 16,
+          "label": "Chapter 16 · Conduct Towards The Christians, From Nero To",
+          "file": "gibbon-v2-ch16.json",
+          "parts": 8,
+          "words": 37904
+        },
+        {
+          "number": 17,
+          "label": "Chapter 17 · Foundation Of Constantinople",
+          "file": "gibbon-v2-ch17.json",
+          "parts": 6,
+          "words": 30102
+        },
+        {
+          "number": 18,
+          "label": "Chapter 18 · Character Of Constantine And His Sons",
+          "file": "gibbon-v2-ch18.json",
+          "parts": 4,
+          "words": 21183
+        },
+        {
+          "number": 19,
+          "label": "Chapter 19 · Constantius Sole Emperor",
+          "file": "gibbon-v2-ch19.json",
+          "parts": 4,
+          "words": 20443
+        },
+        {
+          "number": 20,
+          "label": "Chapter 20 · Conversion Of Constantine",
+          "file": "gibbon-v2-ch20.json",
+          "parts": 4,
+          "words": 20998
+        },
+        {
+          "number": 21,
+          "label": "Chapter 21 · Persecution Of Heresy, State Of The Church",
+          "file": "gibbon-v2-ch21.json",
+          "parts": 7,
+          "words": 33435
+        },
+        {
+          "number": 22,
+          "label": "Chapter 22 · Julian Declared Emperor",
+          "file": "gibbon-v2-ch22.json",
+          "parts": 4,
+          "words": 16601
+        },
+        {
+          "number": 23,
+          "label": "Chapter 23 · Reign Of Julian",
+          "file": "gibbon-v2-ch23.json",
+          "parts": 5,
+          "words": 22712
+        },
+        {
+          "number": 24,
+          "label": "Chapter 24 · The Retreat And Death Of Julian",
+          "file": "gibbon-v2-ch24.json",
+          "parts": 5,
+          "words": 25471
+        },
+        {
+          "number": 25,
+          "label": "Chapter 25 · Reigns Of Jovian And Valentinian, Division Of The",
+          "file": "gibbon-v2-ch25.json",
+          "parts": 7,
+          "words": 32410
+        },
+        {
+          "number": 26,
+          "label": "Chapter 26 · Progress of The Huns",
+          "file": "gibbon-v2-ch26.json",
+          "parts": 5,
+          "words": 30776
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "chapters": [
+        {
+          "number": 27,
+          "label": "Chapter 27 · Civil Wars, Reign Of Theodosius",
+          "file": "gibbon-v3-ch27.json",
+          "parts": 5,
+          "words": 24814
+        },
+        {
+          "number": 28,
+          "label": "Chapter 28 · Destruction Of Paganism",
+          "file": "gibbon-v3-ch28.json",
+          "parts": 3,
+          "words": 14178
+        },
+        {
+          "number": 29,
+          "label": "Chapter 29 · Division Of Roman Empire Between Sons Of Theodosius.--Part",
+          "file": "gibbon-v3-ch29.json",
+          "parts": 2,
+          "words": 10601
+        },
+        {
+          "number": 30,
+          "label": "Chapter 30 · Revolt Of The Goths",
+          "file": "gibbon-v3-ch30.json",
+          "parts": 5,
+          "words": 21683
+        },
+        {
+          "number": 31,
+          "label": "Chapter 31 · Invasion Of Italy, Occupation Of Territories By",
+          "file": "gibbon-v3-ch31.json",
+          "parts": 7,
+          "words": 35547
+        },
+        {
+          "number": 32,
+          "label": "Chapter 32 · Emperors Arcadius, Eutropius, Theodosius II",
+          "file": "gibbon-v3-ch32.json",
+          "parts": 3,
+          "words": 17406
+        },
+        {
+          "number": 33,
+          "label": "Chapter 33 · Conquest Of Africa By The Vandals",
+          "file": "gibbon-v3-ch33.json",
+          "parts": 2,
+          "words": 9998
+        },
+        {
+          "number": 34,
+          "label": "Chapter 34 · Attila",
+          "file": "gibbon-v3-ch34.json",
+          "parts": 3,
+          "words": 14790
+        },
+        {
+          "number": 35,
+          "label": "Chapter 35 · Invasion By Attila",
+          "file": "gibbon-v3-ch35.json",
+          "parts": 3,
+          "words": 16932
+        },
+        {
+          "number": 36,
+          "label": "Chapter 36 · Total Extinction Of The Western Empire",
+          "file": "gibbon-v3-ch36.json",
+          "parts": 5,
+          "words": 25880
+        },
+        {
+          "number": 37,
+          "label": "Chapter 37 · Conversion Of The Barbarians To Christianity",
+          "file": "gibbon-v3-ch37.json",
+          "parts": 4,
+          "words": 19714
+        },
+        {
+          "number": 38,
+          "label": "Chapter 38 · Reign Of Clovis",
+          "file": "gibbon-v3-ch38.json",
+          "parts": 6,
+          "words": 33709
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "chapters": [
+        {
+          "number": 39,
+          "label": "Chapter 39 · Gothic Kingdom Of Italy",
+          "file": "gibbon-v4-ch39.json",
+          "parts": 3,
+          "words": 17443
+        },
+        {
+          "number": 40,
+          "label": "Chapter 40 · Reign Of Justinian",
+          "file": "gibbon-v4-ch40.json",
+          "parts": 5,
+          "words": 31593
+        },
+        {
+          "number": 41,
+          "label": "Chapter 41 · Conquests Of Justinian, Charact Of Balisarius",
+          "file": "gibbon-v4-ch41.json",
+          "parts": 5,
+          "words": 27437
+        },
+        {
+          "number": 42,
+          "label": "Chapter 42 · State Of The Barbaric World",
+          "file": "gibbon-v4-ch42.json",
+          "parts": 4,
+          "words": 23664
+        },
+        {
+          "number": 43,
+          "label": "Chapter 43 · Last Victory And Death Of Belisarius, Death Of Justinian",
+          "file": "gibbon-v4-ch43.json",
+          "parts": 4,
+          "words": 23489
+        },
+        {
+          "number": 44,
+          "label": "Chapter 44 · Idea Of The Roman Jurisprudence",
+          "file": "gibbon-v4-ch44.json",
+          "parts": 8,
+          "words": 40683
+        },
+        {
+          "number": 45,
+          "label": "Chapter 45 · State Of Italy Under The Lombards",
+          "file": "gibbon-v4-ch45.json",
+          "parts": 3,
+          "words": 17188
+        },
+        {
+          "number": 46,
+          "label": "Chapter 46 · Troubles In Persia",
+          "file": "gibbon-v4-ch46.json",
+          "parts": 4,
+          "words": 26650
+        },
+        {
+          "number": 47,
+          "label": "Chapter 47 · Ecclesiastical Discord",
+          "file": "gibbon-v4-ch47.json",
+          "parts": 6,
+          "words": 35085
+        },
+        {
+          "number": 48,
+          "label": "Chapter 48 · Succession And Characters Of The Greek Emperors",
+          "file": "gibbon-v4-ch48.json",
+          "parts": 5,
+          "words": 30222
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "chapters": [
+        {
+          "number": 49,
+          "label": "Chapter 49 · Conquest Of Italy By The Franks",
+          "file": "gibbon-v5-ch49.json",
+          "parts": 6,
+          "words": 31908
+        },
+        {
+          "number": 50,
+          "label": "Chapter 50 · Description Of Arabia And Its Inhabitants",
+          "file": "gibbon-v5-ch50.json",
+          "parts": 8,
+          "words": 43678
+        },
+        {
+          "number": 51,
+          "label": "Chapter 51 · Conquests By The Arabs",
+          "file": "gibbon-v5-ch51.json",
+          "parts": 7,
+          "words": 44803
+        },
+        {
+          "number": 52,
+          "label": "Chapter 52 · More Conquests By The Arabs",
+          "file": "gibbon-v5-ch52.json",
+          "parts": 5,
+          "words": 27500
+        },
+        {
+          "number": 53,
+          "label": "Chapter 53 · Fate Of The Eastern Empire",
+          "file": "gibbon-v5-ch53.json",
+          "parts": 4,
+          "words": 20556
+        },
+        {
+          "number": 54,
+          "label": "Chapter 54 · Origin And Doctrine Of The Paulicians",
+          "file": "gibbon-v5-ch54.json",
+          "parts": 2,
+          "words": 8095
+        },
+        {
+          "number": 55,
+          "label": "Chapter 55 · The Bulgarians, The Hungarians And The Russians",
+          "file": "gibbon-v5-ch55.json",
+          "parts": 3,
+          "words": 15462
+        },
+        {
+          "number": 56,
+          "label": "Chapter 56 · The Saracens, The Franks And The Normans",
+          "file": "gibbon-v5-ch56.json",
+          "parts": 5,
+          "words": 25743
+        },
+        {
+          "number": 57,
+          "label": "Chapter 57 · The Turks",
+          "file": "gibbon-v5-ch57.json",
+          "parts": 3,
+          "words": 16415
+        },
+        {
+          "number": 58,
+          "label": "Chapter 58 · The First Crusade",
+          "file": "gibbon-v5-ch58.json",
+          "parts": 5,
+          "words": 29380
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "chapters": [
+        {
+          "number": 59,
+          "label": "Chapter 59 · The Crusades",
+          "file": "gibbon-v6-ch59.json",
+          "parts": 3,
+          "words": 20514
+        },
+        {
+          "number": 60,
+          "label": "Chapter 60 · The Fourth Crusade",
+          "file": "gibbon-v6-ch60.json",
+          "parts": 3,
+          "words": 21196
+        },
+        {
+          "number": 61,
+          "label": "Chapter 61 · Partition Of The Empire By The French And Venetians",
+          "file": "gibbon-v6-ch61.json",
+          "parts": 4,
+          "words": 19007
+        },
+        {
+          "number": 62,
+          "label": "Chapter 62 · Greek Emperors Of Nice And Constantinople",
+          "file": "gibbon-v6-ch62.json",
+          "parts": 3,
+          "words": 14468
+        },
+        {
+          "number": 63,
+          "label": "Chapter 63 · Civil Wars And The Ruin Of The Greek Empire",
+          "file": "gibbon-v6-ch63.json",
+          "parts": 2,
+          "words": 12486
+        },
+        {
+          "number": 64,
+          "label": "Chapter 64 · Moguls, Ottoman Turks",
+          "file": "gibbon-v6-ch64.json",
+          "parts": 4,
+          "words": 18776
+        },
+        {
+          "number": 65,
+          "label": "Chapter 65 · Elevation Of Timour Or Tamerlane, And His Death",
+          "file": "gibbon-v6-ch65.json",
+          "parts": 3,
+          "words": 19861
+        },
+        {
+          "number": 66,
+          "label": "Chapter 66 · Union Of The Greek And Latin Churches",
+          "file": "gibbon-v6-ch66.json",
+          "parts": 4,
+          "words": 22418
+        },
+        {
+          "number": 67,
+          "label": "Chapter 67 · Schism Of The Greeks And Latins",
+          "file": "gibbon-v6-ch67.json",
+          "parts": 2,
+          "words": 11784
+        },
+        {
+          "number": 68,
+          "label": "Chapter 68 · Reign Of Mahomet The Second, Extinction Of Eastern",
+          "file": "gibbon-v6-ch68.json",
+          "parts": 4,
+          "words": 22186
+        },
+        {
+          "number": 69,
+          "label": "Chapter 69 · State Of Rome From The Twelfth Century",
+          "file": "gibbon-v6-ch69.json",
+          "parts": 4,
+          "words": 20012
+        },
+        {
+          "number": 70,
+          "label": "Chapter 70 · Final Settlement Of The Ecclesiastical State",
+          "file": "gibbon-v6-ch70.json",
+          "parts": 4,
+          "words": 22516
+        },
+        {
+          "number": 71,
+          "label": "Chapter 71 · Prospect Of The Ruins Of Rome In The Fifteenth",
+          "file": "gibbon-v6-ch71.json",
+          "parts": 2,
+          "words": 11539
+        }
+      ]
+    }
+  ],
+  "chapterCount": 71,
+  "wordCount": 1568587
+}
