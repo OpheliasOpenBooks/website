@@ -73,15 +73,22 @@ function paginate(parts){
  for(let section=0;section<parts.length;section++){
   let group=[],words=0;
   const flush=()=>{if(group.length){result.push({section,paragraphs:group});group=[];words=0}};
-  for(const par of parts[section].paragraphs){
-   const size=countWords(par);
-   if(words+size>300&&group.length)flush();
-   if(size>350){
-    // Preserve every verse line, even if a rare paragraph must cross a page.
-    const lines=par.split('\n');let chunk='',n=0;
-    for(const line of lines){const w=countWords(line);if(n+w>290&&chunk){group.push(chunk);flush();chunk='';n=0}chunk+=(chunk?'\n':'')+line;n+=w}
-    if(chunk){group.push(chunk);words+=n}
-   }else{group.push(par);words+=size}
+  const put=(par)=>{
+    const n=countWords(par);
+    if(words+n>300&&group.length)flush();
+    group.push(par);words+=n;
+  };
+  for(const paragraph of parts[section].paragraphs){
+   // Preserve original wording; only divide exceptionally long paragraphs
+   // at whitespace boundaries to keep the reader responsive on phones.
+   const tokens=paragraph.split(/\s+/).filter(Boolean);
+   if(tokens.length<=300){put(paragraph);continue;}
+   let buffer=[];
+   for(const word of tokens){
+    if(buffer.length===285){put(buffer.join(' '));flush();buffer=[];}
+    buffer.push(word);
+   }
+   if(buffer.length)put(buffer.join(' '));
   }
   flush();
  }
