@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Read all 1,647 historic editorial endnotes from Edwin Cannan's 1904 edition of Adam Smith's The Wealth of Nations, locally hosted in Ophelia's library.">
+<title>The Wealth of Nations · Historical Endnotes · Ophelia’s Open Book</title>
+<link rel="canonical" href="https://opheliasopenbooks.github.io/website/the-wealth-of-nations-endnotes.html">
+<style>
+:root{--paper:#f8f5ed;--panel:#fffdf7;--ink:#263e35;--muted:#657169;--accent:#294b3e;--gold:#a27b42;--line:#dcded3;--reading:20px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.7 Georgia,serif}a{color:var(--accent)}button,input{font:inherit}button{cursor:pointer}button:disabled{opacity:.5;cursor:default}
+button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #b7782d;outline-offset:3px}
+nav{background:#294b3e;color:#fff9eb;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:14px max(20px,calc((100vw - 1060px)/2));font:14px Arial,sans-serif}nav strong{font:20px Georgia,serif}nav a{color:#fff9eb;text-decoration:none}
+.shell{max-width:1100px;margin:30px auto;padding:0 18px 70px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:22px;align-items:start}
+main{background:var(--panel);border:1px solid var(--line);border-radius:8px;box-shadow:0 12px 32px #364a3712;min-height:530px}
+header{text-align:center;padding:32px 20px 18px;border-bottom:1px solid var(--line)}
+.eyebrow{font:700 10px Arial,sans-serif;letter-spacing:2px;color:var(--gold)}
+h1{font:normal clamp(27px,4vw,42px)/1.2 Georgia,serif;margin:10px 0}
+.sub{font:italic 14px/1.5 Georgia,serif;color:var(--muted);margin:0 auto;max-width:700px}
+#note-content{padding:30px clamp(18px,5vw,60px);font-size:var(--reading);line-height:1.8;overflow-wrap:anywhere;min-height:230px}
+#note-content h2{font:normal 26px Georgia,serif;color:var(--gold);margin:0 0 26px}
+#note-content p{white-space:pre-wrap;margin:0 0 22px}
+footer{border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 25px}
+button{border:1px solid #b8c3b3;background:#eef2ec;color:var(--accent);padding:9px 12px;border-radius:6px}
+aside{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px;position:sticky;top:20px}
+aside h2{font:23px Georgia,serif;margin:0 0 14px}aside label{display:block;font:700 12px/1.4 Arial,sans-serif;margin:18px 0 6px}
+aside input{width:100%;padding:10px;border:1px solid var(--line);border-radius:5px;background:var(--panel);color:var(--ink)}
+aside input[type="range"]{padding:0;accent-color:var(--accent)}
+.actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}.status{font:12px/1.5 Arial,sans-serif;color:var(--muted)}
+.source{font:12px/1.7 Arial,sans-serif;color:var(--muted);border-top:1px solid var(--line);padding:17px 25px}
+.night{--paper:#15201d;--panel:#27352e;--ink:#eeeade;--muted:#bdc5b9;--accent:#bdd2c0;--gold:#e1ba76;--line:#546457}
+.night button{background:#364c3b;color:#f8f0de}.night aside input{background:#36463b;color:#f8f0de}
+@media(max-width:800px){.shell{display:flex;flex-direction:column}aside,main{width:100%}aside{position:static;order:-1}nav{padding:14px 20px}}
+</style>
+</head>
+<body>
+<nav><a href="the-wealth-of-nations.html">← Return to the complete work</a><strong>Ophelia’s Open Book</strong><a href="catalog.html">Catalog</a></nav>
+<div class="shell">
+<main><header><div class="eyebrow">A HISTORICAL READING COMPANION</div><h1>The Wealth of Nations</h1><p class="sub">1,647 scholarly endnotes · Edwin Cannan’s 1904 edition · Fully hosted and read-only</p></header>
+<article id="note-content" aria-live="polite"><h2>Historical Endnotes</h2><p>Preparing the complete notes…</p></article>
+<footer><button id="previous" disabled>← Previous note</button><span id="count" class="status">Loading…</span><button id="next" disabled>Next note →</button></footer>
+<p class="source">Editorial notes from the <a href="https://standardebooks.org/ebooks/adam-smith/the-wealth-of-nations">Standard Ebooks public-domain edition</a>, based on Edwin Cannan (1904). The editor’s annotations are distinct from Adam Smith’s 1776 prose. No narration is offered in this companion page.</p>
+</main>
+<aside aria-label="Endnote navigation"><h2>Annotations</h2><label for="number">Go to note (1–1647)</label><input id="number" type="number" min="1" max="1647" value="1" step="1"><button id="jump" style="width:100%;margin-top:8px">Read note</button>
+<label for="search">Find a word or phrase</label><input id="search" type="search" placeholder="Search all historical notes"><button id="find" style="width:100%;margin-top:8px">Find next match</button>
+<label for="font">Text size</label><input id="font" type="range" min="16" max="28" value="20" step="1">
+<div class="actions"><button id="bookmark">♡ Bookmark</button><button id="return">Return</button><button id="night">Evening theme</button></div>
+<p id="status" class="status" role="status">Preparing local notes…</p>
+</aside></div>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);
+const KEY='ophelia-wealth-of-nations-cannan-endnotes-v1';
+const state={position:1,bookmark:0,size:20,night:false};
+try{Object.assign(state,JSON.parse(localStorage.getItem(KEY)||'{}'))}catch{}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(state))}catch{}};
+let notes=[];
+function show(){
+ if(!notes.length)return;
+ state.position=Math.max(1,Math.min(1647,Number(state.position)||1));
+ const n=notes[state.position-1];
+ const box=$('note-content');box.replaceChildren();
+ const heading=document.createElement('h2');heading.textContent='Note '+n.number;box.append(heading);
+ for(const text of n.text.split(/\n+/).filter(Boolean)){const p=document.createElement('p');p.textContent=text;box.append(p)}
+ $('number').value=state.position;$('count').textContent='Note '+state.position+' of '+notes.length;
+ $('previous').disabled=state.position<=1;$('next').disabled=state.position>=notes.length;
+ $('bookmark').textContent=state.bookmark===state.position?'♥ Bookmarked':'♡ Bookmark';
+ $('font').value=state.size;document.documentElement.style.setProperty('--reading',state.size+'px');
+ document.body.classList.toggle('night',state.night);save();
+}
+function go(n){if(!notes.length)return;state.position=Math.max(1,Math.min(n,notes.length));show();document.querySelector('main').scrollIntoView({behavior:'instant',block:'start'});}
+$('previous').onclick=()=>go(state.position-1);
+$('next').onclick=()=>go(state.position+1);
+$('jump').onclick=()=>go(Number($('number').value));
+$('number').addEventListener('keydown',e=>{if(e.key==='Enter')go(Number($('number').value))});
+$('find').onclick=()=>{if(!notes.length)return;let query=$('search').value.trim().toLowerCase();if(!query){$('status').textContent='Type a word or phrase to search.';return;}for(let i=0;i<notes.length;i++){const index=(state.position+i)%notes.length;if(notes[index].text.toLowerCase().includes(query)){go(index+1);$('status').textContent='Found a matching note.';return;}}$('status').textContent='No note contains that phrase.'};
+$('search').addEventListener('keydown',e=>{if(e.key==='Enter')$('find').click()});
+$('bookmark').onclick=()=>{state.bookmark=state.position;show();$('status').textContent='Saved note '+state.bookmark+'.'};
+$('return').onclick=()=>{if(state.bookmark)go(state.bookmark);else $('status').textContent='No bookmark saved yet.'};
+$('font').oninput=()=>{state.size=Number($('font').value);show()};
+$('night').onclick=()=>{state.night=!state.night;show()};
+(async()=>{try{const r=await fetch('public/books/wealth-of-nations-cannan-endnotes.json');if(!r.ok)throw Error('HTTP '+r.status);const data=await r.json();if(!Array.isArray(data.notes)||data.notes.length!==1647||data.notes.some((n,i)=>n.number!==i+1||!n.text))throw Error('The historical notes are incomplete.');notes=data.notes;show();$('status').textContent='All 1,647 historical notes are hosted and ready.';}catch(e){$('status').textContent='Could not load the notes; please refresh this page.';const p=document.createElement('p');p.textContent=String(e);$('note-content').append(p);console.error(e)}})();
+</script><script defer src="public/js/ophelia-share.js"></script></body>
+</html>
