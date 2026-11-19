@@ -1,0 +1,9 @@
+# Reflections on the Revolution in France — Edmund Burke
+
+Original English public-domain work, first published in London in 1790 by J. Dodsley. The complete letter, author’s preface, and 61 endnotes are from [Standard Ebooks’ 2026 transcription](https://standardebooks.org/ebooks/edmund-burke/reflections-on-the-revolution-in-france), with source links to [Project Gutenberg #15679](https://www.gutenberg.org/ebooks/15679) and a [historic printed edition](https://archive.org/details/worksofedmundbur03burk). Standard Ebooks editorial contributions are released under CC0. This is a modern transcription, **not** a facsimile of the 1790 printing.
+
+The author’s two-paragraph preface, 417 paragraphs and 93913 text words of the original single long letter, and all 61 Standard Ebooks endnotes are retained. The eight parts are editorial reading divisions at paragraph boundaries. Numbered three-item list is preserved, and the original order and prose are retained. HTML emphasis and decorative markup are flattened to text, with poetic line breaks preserved. [Note N] references appear visually, not in narration; the endnotes are included in final part.
+
+Cover image: authentic 1790 first-edition title page, [Wikimedia Commons: BurkeReflections.jpg](https://commons.wikimedia.org/wiki/File:BurkeReflections.jpg), scan credited to University Library Dortmund; public-domain historical artwork. Remote image fallback is provided.
+
+`reflections-on-the-revolution-in-france.html` and `public/books/reflections-on-the-revolution-in-france-part-N.json` use the standard shared narration, saved place/bookmark, auto-turn, speech settings, and share. Included in `index.html`, dynamically searched `catalog.html`, and `sitemap.xml`. Source-level verification completed. Live audio/browser verification pending.
