@@ -259,8 +259,8 @@ async function openBook(number,place='saved',autoplay=false){
  if(pages.length){state.bookPages[old]=oldPage;state.bookBookmarks[old]=oldMark;}
  loadingBook=true;stop();speechResumeAt=0;$('volume').disabled=true;
  ['prev','prev2','next','next2'].forEach(id=>$(id).disabled=true);$('play').disabled=true;
- state.book=n;state.bookmark=Number(state.bookBookmarks[n]??-1);
- state.page=place==='start'||place==='end'?0:Number(state.bookPages[n]??(n===old?oldPage:0));
+ state.book=n;state.bookmark=Number((!pages.length&&n===old)?oldMark:(state.bookBookmarks[n]??-1));
+ state.page=place==='start'||place==='end'?0:Number((!pages.length&&n===old)?oldPage:(state.bookPages[n]??(n===old?oldPage:0)));
  note('Loading '+flat[n-1].label+' from Ophelia’s library…');
  try{
   if(!bookCache[n]){const response=await fetch(BOOK_PATH(n));if(!response.ok)throw Error('Book '+n+' is missing (HTTP '+response.status+').');bookCache[n]=await response.text();const keys=Object.keys(bookCache);if(keys.length>4)delete bookCache[keys[0]];}
