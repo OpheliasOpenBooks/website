@@ -1,23 +1,94 @@
 <!doctype html>
-<html lang="de" translate="no">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Heidi · Original-language reading sources · Ophelia’s Open Book</title>
-<meta name="description" content="Access the public-domain original language editions of Heidi in publication order.">
+<html lang="de" translate="no" class="notranslate">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="google" content="notranslate"><meta http-equiv="Content-Language" content="de">
+<title>Heidi · Deutscher Originaltext · Ophelia’s Open Book</title>
+<meta name="description" content="Johanna Spyris vollständiger deutscher Heidi-Originaltext von 1880 und 1881. 23 Kapitel in zwei Bänden, ohne Vorlesefunktion.">
 <link rel="canonical" href="https://opheliasopenbooks.github.io/website/heidi-original-deutsch.html">
 <link rel="alternate" hreflang="en" href="heidi.html">
 <style>
-:root{--paper:#f8f5ed;--ink:#23463a;--line:#dfd7c6;--gold:#a7844a}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:18px/1.7 Georgia,serif}
-nav{background:#28493c;color:#f8f2e4;padding:18px max(20px,calc((100vw - 1080px)/2));display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-nav a{color:inherit;text-decoration:none;font:14px Arial,sans-serif}nav strong{font:24px Georgia,serif}
-main{max-width:890px;margin:45px auto;padding:0 24px 55px}h1{font:normal clamp(35px,5vw,55px)/1.2 Georgia,serif;margin:14px 0 5px}.byline{font-style:italic;color:#647568;margin:0 0 26px}
-.intro{max-width:730px}.kicker{font:700 11px Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
-.notice{border-left:3px solid var(--gold);padding:14px 20px;margin:28px 0;color:#526459;background:#f3eedf;font-size:15px}
-ul{list-style:none;padding:0;margin:25px 0;border:1px solid var(--line);border-radius:7px;overflow:hidden}
-li+li{border-top:1px solid var(--line)}li a{padding:18px 20px;display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;color:var(--ink);text-decoration:none;background:#fffdf7}li a:hover{background:#e9eddf}.out{font:13px Arial,sans-serif;color:#7c653e}
-footer{font:13px Arial,sans-serif;color:#626f62;padding:25px 0}footer a{color:inherit}
+:root{--paper:#f8f5ed;--ink:#23463a;--panel:#fffdf7;--line:#dfd7c6;--gold:#a7844a;--muted:#667168;--fontsize:20px}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.7 Georgia,serif}a{color:inherit}button,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.4;cursor:default}button:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid #b07d36;outline-offset:3px}
+nav{background:#28493c;color:#f8f2e4;padding:15px clamp(16px,5vw,58px);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}nav a{font:14px Arial,sans-serif;text-decoration:none}nav strong{font:23px Georgia,serif}
+main{max-width:1210px;margin:28px auto;padding:0 22px;display:grid;grid-template-columns:minmax(0,1fr) 258px;align-items:start;gap:22px}
+article{background:var(--panel);border:1px solid var(--line);border-radius:8px;box-shadow:0 12px 30px #263e3012;overflow:hidden}
+header{text-align:center;padding:34px 35px 20px}.kicker{font:700 11px Arial,sans-serif;letter-spacing:2.5px;color:var(--gold)}h1{font:normal clamp(35px,4vw,53px) Georgia,serif;margin:15px 0 5px}.byline{font:italic 15px Georgia,serif;margin:0 0 22px}.cover{display:block;max-width:min(190px,65%);max-height:280px;margin:18px auto;box-shadow:5px 7px 15px #292d2733;object-fit:contain}.note{max-width:700px;margin:16px auto 0;padding:13px 17px;background:#f3ebd9;border:1px solid #e2d6bb;border-radius:5px;text-align:left;font:15px/1.6 Georgia,serif}
+#reading{padding:26px clamp(22px,6vw,76px) 34px;min-height:220px}#reading h2{font:normal 28px Georgia,serif;margin:0 0 26px;border-bottom:1px solid var(--line);padding-bottom:15px}#reading p{font:var(--fontsize)/1.77 Georgia,"Times New Roman",serif;overflow-wrap:break-word;margin:0 0 22px}
+.reader-nav{padding:17px 20px;border-top:1px solid var(--line);background:#f9f6ee;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.reader-nav button,.actions button{padding:8px 12px;border:1px solid #c6b99c;border-radius:5px;background:var(--panel);color:var(--ink)}
+.status{font:13px/1.4 Arial,sans-serif;color:var(--muted);text-align:center}aside{position:sticky;top:18px;padding:21px;background:var(--panel);border:1px solid var(--line);border-radius:8px}aside h2{font:normal 23px Georgia,serif;margin:0 0 17px}aside label{display:block;font:13px Arial,sans-serif;margin:15px 0 5px}aside select{width:100%;padding:10px;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:5px}
+.progress{height:6px;border-radius:8px;background:#e2e4d8;overflow:hidden;margin:19px 0 8px}.progress span{display:block;background:var(--gold);width:0;height:100%}.actions{display:flex;flex-wrap:wrap;gap:7px;margin:18px 0}.actions button{font-size:14px}.hint{font:13px/1.7 Georgia,serif;color:var(--muted)}
+.night{--paper:#1b2a23;--ink:#ede4cf;--muted:#d6cdb6;--line:#62705e;--panel:#283a30;--gold:#d5b985}.night .note,.night .reader-nav{background:#35473b}.night .actions button,.night select,.night .reader-nav button{background:#324a3d;color:#f5ebd9}
+@media(max-width:800px){main{display:flex;flex-direction:column}article,aside{width:100%}aside{position:static;order:-1}#reading{padding:22px}}
 </style></head>
-<body><nav><a href="catalog.html">← Library catalog</a><strong>Ophelia’s Open Book</strong><a href="heidi.html" lang="en" hreflang="en">English · Read &amp; Listen</a></nav>
-<main><p class="kicker">Original language · Text only</p><h1>Heidi</h1><p class="byline">Johanna Spyri</p><p class="intro">Der deutsche Originaltext besteht aus zwei zusammengehörigen Büchern von 1880 und 1881.</p>
-<p class="notice">These original texts are available through the linked public archives. They are <strong>read-only external editions</strong> and have not yet been imported into Ophelia’s own paginated reader. No narration is added.</p>
-<ul><li><a href="https://www.gutenberg.org/ebooks/7511" rel="noopener noreferrer" target="_blank"><span>Teil I · Heidis Lehr- und Wanderjahre</span><span class="out">Open external original ↗</span></a></li>
-<li><a href="https://www.gutenberg.org/ebooks/7512" rel="noopener noreferrer" target="_blank"><span>Teil II · Heidi kann brauchen, was es gelernt hat</span><span class="out">Open external original ↗</span></a></li></ul><footer><a href="heidi.html">← Return to the English read-and-listen edition</a></footer></main></body></html>
+<body translate="no" class="notranslate">
+<nav><a href="catalog.html">← Bibliothek / Catalog</a><strong>Ophelia’s Open Book</strong><a href="heidi.html" lang="en" hreflang="en">English · Read &amp; Listen</a></nav>
+<main><article lang="de" translate="no" class="notranslate">
+<header><div class="kicker">DEUTSCHER ORIGINALTEXT · 1880–1881</div><h1>Heidi</h1><p class="byline">Johanna Spyri</p>
+<img class="cover" src="https://commons.wikimedia.org/wiki/Special:FilePath/Spyri_Heidi_Cover_1887.jpg" alt="Historischer Bucheinband der achten Ausgabe von Heidis Lehr- und Wanderjahre, 1887" onerror="this.onerror=null;this.src='public/art/historical-cover-fallback.svg'">
+<p class="note"><strong>Vollständiger deutscher Originaltext · nur zum Lesen.</strong> Band I: <em>Heidis Lehr- und Wanderjahre</em> (1880), 14 Kapitel. Band II: <em>Heidi kann brauchen, was es gelernt hat</em> (1881), 9 Kapitel. Die Texte werden auf dieser Website bereitgestellt; keine Vorlesefunktion. <a href="heidi.html">Englische Übersetzung mit Vorlesefunktion</a>.</p>
+<p class="hint">Historischer Einband von 1887, nicht die Erstausgabe · <a href="https://commons.wikimedia.org/wiki/File:Spyri_Heidi_Cover_1887.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></p></header>
+<div id="reading" aria-live="polite"><h2>Der Text wird geladen …</h2></div>
+<div class="reader-nav"><button id="prev" disabled>← Zurück</button><span id="status" class="status">Lädt …</span><button id="next" disabled>Weiter →</button></div></article>
+<aside><h2>Lesen</h2><label for="chapter">Band und Kapitel</label><select id="chapter" disabled><option>Lädt …</option></select>
+<div class="progress"><span id="bar"></span></div><p id="progress" class="status">0 %</p>
+<div class="actions"><button id="smaller">A−</button><button id="larger">A+</button><button id="night">Nachtmodus</button></div>
+<div class="actions"><button id="bookmark">Lesezeichen setzen</button><button id="resume">Zum Lesezeichen</button></div>
+<p class="hint" id="message">Lesefortschritt und Lesezeichen werden nur auf diesem Gerät gespeichert.</p>
+<p class="hint">Quellen: <a href="https://www.gutenberg.org/ebooks/7500" target="_blank" rel="noopener noreferrer">Project Gutenberg #7500</a> und <a href="https://www.gutenberg.org/ebooks/7512" target="_blank" rel="noopener noreferrer">#7512</a>. Deutsche Originaltexte im US-amerikanischen Gemeingut. Keine Audiofunktion.</p></aside></main>
+<script>
+'use strict';
+const $=id=>document.getElementById(id),KEY='ophelia-heidi-original-deutsch-v2';
+let state={page:0,size:20,night:false,bookmark:0};try{Object.assign(state,JSON.parse(localStorage.getItem(KEY)||'{}'))}catch{}
+let sections=[],pages=[];const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(state))}catch{}};
+function paginate(chapters){
+ const out=[];
+ chapters.forEach((ch,index)=>{
+  let page=[],count=0;
+  const flush=()=>{if(page.length){out.push({section:index,paragraphs:page});page=[];count=0}};
+  const add=t=>{let n=t.trim().split(/\s+/).length;if(count+n>350&&page.length)flush();page.push(t);count+=n};
+  for(const p of ch.paragraphs){
+   if(p.split(/\s+/).length<=350){add(p);continue}
+   let block='',n=0;
+   for(const word of p.split(/\s+/)){if(n>=300){add(block.trim());block='';n=0}block+=word+' ';n++}
+   if(block.trim())add(block.trim());
+  }
+  flush();
+ });return out;
+}
+function render(scroll=true){
+ if(!pages.length)return;
+ state.page=Math.max(0,Math.min(pages.length-1,Number(state.page)||0));
+ const page=pages[state.page],ch=sections[page.section];
+ const area=$('reading');area.replaceChildren();const h=document.createElement('h2');h.textContent=ch.name;area.append(h);
+ for(const content of page.paragraphs){const p=document.createElement('p');p.textContent=content;area.append(p)}
+ $('chapter').value=String(page.section);$('prev').disabled=state.page===0;$('next').disabled=state.page===pages.length-1;
+ $('status').textContent='Seite '+(state.page+1)+' / '+pages.length;
+ const pc=Math.round((state.page+1)/pages.length*100);$('bar').style.width=pc+'%';$('progress').textContent=pc+' % gelesen';
+ document.documentElement.style.setProperty('--fontsize',state.size+'px');document.body.classList.toggle('night',state.night);
+ save();if(scroll)document.querySelector('article').scrollIntoView({behavior:'instant',block:'start'});
+}
+$('prev').onclick=()=>{state.page--;render()};$('next').onclick=()=>{state.page++;render()};
+$('chapter').onchange=e=>{let i=pages.findIndex(p=>p.section===Number(e.target.value));if(i>=0){state.page=i;render()}};
+$('smaller').onclick=()=>{state.size=Math.max(15,state.size-1);render(false)};
+$('larger').onclick=()=>{state.size=Math.min(32,state.size+1);render(false)};
+$('night').onclick=()=>{state.night=!state.night;render(false)};
+$('bookmark').onclick=()=>{state.bookmark=state.page;save();$('message').textContent='Lesezeichen gespeichert: Seite '+(state.page+1)};
+$('resume').onclick=()=>{state.page=Number(state.bookmark)||0;render()};
+document.addEventListener('keydown',e=>{if(e.target.closest('select,button,input,textarea'))return;if(e.key==='ArrowRight'&&!$('next').disabled){state.page++;render()}if(e.key==='ArrowLeft'&&!$('prev').disabled){state.page--;render()}});
+(async()=>{
+ try{
+  const paths=['public/books/heidi-original-deutsch-band-1.json','public/books/heidi-original-deutsch-band-2.json'];
+  const responses=await Promise.all(paths.map(p=>fetch(p)));if(responses.some(r=>!r.ok))throw Error('Ein Band ist nicht verfügbar');
+  const books=await Promise.all(responses.map(r=>r.json()));
+  if(books.length!==2||books[0].chapters.length!==14||books[1].chapters.length!==9||books.some(b=>b.author!=='Johanna Spyri'))throw Error('Unvollständige Bände');
+  sections=books.flatMap((b,bi)=>b.chapters.map((ch,i)=>({name:'Band '+(bi+1)+' · Kapitel '+(i+1)+' · '+ch.name,paragraphs:ch.paragraphs})));
+  if(sections.length!==23||sections.some(c=>!c.paragraphs.length)||!sections[0].paragraphs[0].startsWith('Vom freundlichen Dorfe Maienfeld')||!sections.at(-1).paragraphs.at(-1).includes('Dank sagen für alles'))throw Error('Originaltext nicht vollständig');
+  const words=sections.flatMap(c=>c.paragraphs).join(' ').split(/\s+/).length;if(words<85000||words>95000)throw Error('Umfang unvollständig');
+  pages=paginate(sections);if(pages.length<200||new Set(pages.map(p=>p.section)).size!==23)throw Error('Seiten unvollständig');
+  $('chapter').replaceChildren(...sections.map((c,i)=>new Option(c.name,String(i))));$('chapter').disabled=false;render(false);
+  $('message').textContent='Beide Originalbände geladen · 23 Kapitel · '+pages.length+' Seiten';
+ }catch(e){$('reading').replaceChildren();let p=document.createElement('p');p.textContent='Der vollständige deutsche Text konnte nicht geladen werden. Bitte versuchen Sie es erneut.';$('reading').append(p);$('message').textContent=String(e)}
+})();
+</script></body></html>
