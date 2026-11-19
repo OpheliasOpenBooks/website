@@ -1,0 +1,24 @@
+{
+  "title": "Les Liaisons dangereuses",
+  "author": "Pierre Choderlos de Laclos",
+  "language": "fr",
+  "readOnly": true,
+  "partCount": 2,
+  "wordCount": 138581,
+  "parts": [
+    {
+      "number": 1,
+      "file": "dangerous-liaisons-fr-volume-1.json",
+      "label": "Tome I · Lettres 1–90",
+      "words": 71501,
+      "sectionCount": 91
+    },
+    {
+      "number": 2,
+      "file": "dangerous-liaisons-fr-volume-2.json",
+      "label": "Tome II · Lettres 91–175",
+      "words": 67080,
+      "sectionCount": 85
+    }
+  ]
+}
