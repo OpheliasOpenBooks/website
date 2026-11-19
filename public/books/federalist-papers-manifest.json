@@ -1,0 +1,568 @@
+{
+  "title": "The Federalist Papers",
+  "author": "Alexander Hamilton, James Madison, and John Jay",
+  "language": "en",
+  "readOnly": false,
+  "essayCount": 85,
+  "partCount": 5,
+  "wordCount": 196606,
+  "parts": [
+    {
+      "number": 1,
+      "file": "federalist-papers-part-1.json",
+      "label": "Part I · Essays 1–17",
+      "words": 38963,
+      "sectionCount": 19,
+      "firstEssay": 1,
+      "lastEssay": 17
+    },
+    {
+      "number": 2,
+      "file": "federalist-papers-part-2.json",
+      "label": "Part II · Essays 18–34",
+      "words": 33680,
+      "sectionCount": 17,
+      "firstEssay": 18,
+      "lastEssay": 34
+    },
+    {
+      "number": 3,
+      "file": "federalist-papers-part-3.json",
+      "label": "Part III · Essays 35–51",
+      "words": 43561,
+      "sectionCount": 17,
+      "firstEssay": 35,
+      "lastEssay": 51
+    },
+    {
+      "number": 4,
+      "file": "federalist-papers-part-4.json",
+      "label": "Part IV · Essays 52–68",
+      "words": 34931,
+      "sectionCount": 17,
+      "firstEssay": 52,
+      "lastEssay": 68
+    },
+    {
+      "number": 5,
+      "file": "federalist-papers-part-5.json",
+      "label": "Part V · Essays 69–85",
+      "words": 45471,
+      "sectionCount": 18,
+      "firstEssay": 69,
+      "lastEssay": 85
+    }
+  ],
+  "essays": [
+    {
+      "number": 1,
+      "title": "General Introduction",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: For The Independent Journal, Saturday, October 27, 1787."
+    },
+    {
+      "number": 2,
+      "title": "Concerning Dangers from Foreign Force and Influence",
+      "attribution": "Jay",
+      "publication": "Jay: For The Independent Journal, Wednesday, October 31, 1787."
+    },
+    {
+      "number": 3,
+      "title": "The Same Subject Continued (Concerning Dangers from Foreign Force and Influence)",
+      "attribution": "Jay",
+      "publication": "Jay: For The Independent Journal, Saturday, November 3, 1787."
+    },
+    {
+      "number": 4,
+      "title": "The Same Subject Continued (Concerning Dangers from Foreign Force and Influence)",
+      "attribution": "Jay",
+      "publication": "Jay: For The Independent Journal, Wednesday, November 7, 1787."
+    },
+    {
+      "number": 5,
+      "title": "The Same Subject Continued (Concerning Dangers from Foreign Force and Influence)",
+      "attribution": "Jay",
+      "publication": "Jay: For The Independent Journal, Saturday, November 10, 1787."
+    },
+    {
+      "number": 6,
+      "title": "Concerning Dangers from Dissensions Between the States",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: For The Independent Journal, Wednesday, November 14, 1787."
+    },
+    {
+      "number": 7,
+      "title": "The Same Subject Continued (Concerning Dangers from Dissensions Between the States)",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: For The Independent Journal, Thursday, November 15, 1787."
+    },
+    {
+      "number": 8,
+      "title": "The Consequences of Hostilities Between the States",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: From the New York Packet, Tuesday, November 20, 1787."
+    },
+    {
+      "number": 9,
+      "title": "The Union as a Safeguard Against Domestic Faction and Insurrection",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: For The Independent Journal, Wednesday, November 21, 1787."
+    },
+    {
+      "number": 10,
+      "title": "The Same Subject Continued (The Union as a Safeguard Against Domestic Faction and Insurrection)",
+      "attribution": "Madison",
+      "publication": "Madison: From The Daily Advertiser, Thursday, November 22, 1787."
+    },
+    {
+      "number": 11,
+      "title": "The Utility of the Union in Respect to Commercial Relations and a Navy",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: For The Independent Journal, Saturday, November 24, 1787."
+    },
+    {
+      "number": 12,
+      "title": "The Utility of the Union in Respect to Revenue",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: From the New York Packet, Tuesday, November 27, 1787."
+    },
+    {
+      "number": 13,
+      "title": "Advantage of the Union in Respect to Economy in Government",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: For The Independent Journal, Wednesday, November 28, 1787."
+    },
+    {
+      "number": 14,
+      "title": "Objections to the Proposed Constitution from Extent of Territory Answered",
+      "attribution": "Madison",
+      "publication": "Madison: From the New York Packet, Friday, November 30, 1787."
+    },
+    {
+      "number": 15,
+      "title": "The Insufficiency of the Present Confederation to Preserve the Union",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: For The Independent Journal, Saturday, December 1, 1787."
+    },
+    {
+      "number": 16,
+      "title": "The Same Subject Continued (The Insufficiency of the Present Confederation to Preserve the Union)",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: From the New York Packet, Tuesday, December 4, 1787."
+    },
+    {
+      "number": 17,
+      "title": "The Same Subject Continued (The Insufficiency of the Present Confederation to Preserve the Union)",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: For The Independent Journal, Wednesday, December 5, 1787."
+    },
+    {
+      "number": 18,
+      "title": "The Same Subject Continued (The Insufficiency of the Present Confederation to Preserve the Union)",
+      "attribution": "Madison",
+      "publication": "Madison, with Hamilton: For the New York Packet, Friday, December 7, 1787."
+    },
+    {
+      "number": 19,
+      "title": "The Same Subject Continued (The Insufficiency of the Present Confederation to Preserve the Union)",
+      "attribution": "Madison",
+      "publication": "Madison, with Hamilton: For The Independent Journal, Saturday, December 8, 1787."
+    },
+    {
+      "number": 20,
+      "title": "The Same Subject Continued (The Insufficiency of the Present Confederation to Preserve the Union)",
+      "attribution": "Madison",
+      "publication": "Madison, with Hamilton: From the New York Packet, Tuesday, December 11, 1787."
+    },
+    {
+      "number": 21,
+      "title": "Other Defects of the Present Confederation",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: For The Independent Journal, Wednesday, December 12, 1787."
+    },
+    {
+      "number": 22,
+      "title": "The Same Subject Continued (Other Defects of the Present Confederation)",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: From the New York Packet, Friday, December 14, 1787."
+    },
+    {
+      "number": 23,
+      "title": "The Necessity of a Government as Energetic as the One Proposed to the Preservation of the Union",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: From the New York Packet, Tuesday, December 18, 1787."
+    },
+    {
+      "number": 24,
+      "title": "The Powers Necessary to the Common Defense Further Considered",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: For The Independent Journal, Wednesday, December 19, 1787."
+    },
+    {
+      "number": 25,
+      "title": "The Same Subject Continued (The Powers Necessary to the Common Defense Further Considered)",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: From the New York Packet, Friday, December 21, 1787."
+    },
+    {
+      "number": 26,
+      "title": "The Idea of Restraining the Legislative Authority in Regard to the Common Defense Considered",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: For The Independent Journal, Saturday, December 22, 1788."
+    },
+    {
+      "number": 27,
+      "title": "The Same Subject Continued (The Idea of Restraining the Legislative Authority in Regard to the Common Defense Considered)",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: From the New York Packet, Tuesday, December 25, 1787."
+    },
+    {
+      "number": 28,
+      "title": "The Same Subject Continued (The Idea of Restraining the Legislative Authority in Regard to the Common Defense Considered)",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: For The Independent Journal, Wednesday, December 26, 1787."
+    },
+    {
+      "number": 29,
+      "title": "Concerning the Militia",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: From the New York Packet, Wednesday, January 9, 1788."
+    },
+    {
+      "number": 30,
+      "title": "Concerning the General Power of Taxation",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: From the New York Packet, Friday, December 28, 1787."
+    },
+    {
+      "number": 31,
+      "title": "The Same Subject Continued (Concerning the General Power of Taxation)",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: From the New York Packet, Tuesday, January 1, 1788."
+    },
+    {
+      "number": 32,
+      "title": "The Same Subject Continued (Concerning the General Power of Taxation)",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: From The Independent Journal, Wednesday, January 2, 1788."
+    },
+    {
+      "number": 33,
+      "title": "The Same Subject Continued (Concerning the General Power of Taxation)",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: From The Independent Journal, Wednesday, January 2, 1788."
+    },
+    {
+      "number": 34,
+      "title": "The Same Subject Continued (Concerning the General Power of Taxation)",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: From The Independent Journal, Saturday, January 5, 1788."
+    },
+    {
+      "number": 35,
+      "title": "The Same Subject Continued (Concerning the General Power of Taxation)",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: For The Independent Journal, Saturday, January 5, 1788."
+    },
+    {
+      "number": 36,
+      "title": "The Same Subject Continued (Concerning the General Power of Taxation)",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: From the New York Packet, Tuesday, January 8, 1788."
+    },
+    {
+      "number": 37,
+      "title": "Concerning the Difficulties of the Convention in Devising a Proper Form of Government",
+      "attribution": "Madison",
+      "publication": "Madison: From The Daily Advertiser, Friday, January 11, 1788."
+    },
+    {
+      "number": 38,
+      "title": "The Same Subject Continued, and the Incoherence of the Objections to the New Plan Exposed",
+      "attribution": "Madison",
+      "publication": "Madison: From The Independent Journal, Saturday, January 12, 1788."
+    },
+    {
+      "number": 39,
+      "title": "The Conformity of the Plan to Republican Principles",
+      "attribution": "Madison",
+      "publication": "Madison: For The Independent Journal, Wednesday, January 16, 1788."
+    },
+    {
+      "number": 40,
+      "title": "On the Powers of the Convention to Form a Mixed Government Examined and Sustained",
+      "attribution": "Madison",
+      "publication": "Madison: For the New York Packet, Friday, January 18, 1788."
+    },
+    {
+      "number": 41,
+      "title": "General View of the Powers Conferred by the Constitution",
+      "attribution": "Madison",
+      "publication": "Madison: For The Independent Journal, Saturday, January 19, 1788."
+    },
+    {
+      "number": 42,
+      "title": "The Powers Conferred by the Constitution Further Considered",
+      "attribution": "Madison",
+      "publication": "Madison: From the New York Packet, Tuesday, January 22, 1788."
+    },
+    {
+      "number": 43,
+      "title": "The Same Subject Continued (The Powers Conferred by the Constitution Further Considered)",
+      "attribution": "Madison",
+      "publication": "Madison: For The Independent Journal, Wednesday, January 23, 1788."
+    },
+    {
+      "number": 44,
+      "title": "Restrictions on the Authority of the Several States",
+      "attribution": "Madison",
+      "publication": "Madison: From the New York Packet, Friday, January 25, 1788."
+    },
+    {
+      "number": 45,
+      "title": "The Alleged Danger from the Powers of the Union to the State Governments",
+      "attribution": "Madison",
+      "publication": "Madison: Considered For The Independent Journal, Saturday, January 26, 1788."
+    },
+    {
+      "number": 46,
+      "title": "The Influence of the State and Federal Governments Compared",
+      "attribution": "Madison",
+      "publication": "Madison: From the New York Packet, Tuesday, January 29, 1788."
+    },
+    {
+      "number": 47,
+      "title": "The Particular Structure of the New Government and the Distribution of Power Among Its Different Parts",
+      "attribution": "Madison",
+      "publication": "Madison: For The Independent Journal, Wednesday, January 30, 1788."
+    },
+    {
+      "number": 48,
+      "title": "These Departments Should Not Be So Far Separated as to Have No Constitutional Control Over Each Other",
+      "attribution": "Madison",
+      "publication": "Madison: From the New York Packet, Friday, February 1, 1788."
+    },
+    {
+      "number": 49,
+      "title": "Method of Guarding Against the Encroachments of Any One Department of Government by Appealing to the People Through a Convention",
+      "attribution": "Madison",
+      "publication": "Madison: For The Independent Journal, Saturday, February 2, 1788."
+    },
+    {
+      "number": 50,
+      "title": "Periodical Appeals to the People Considered",
+      "attribution": "Madison",
+      "publication": "Madison: From the New York Packet, Tuesday, February 5, 1788."
+    },
+    {
+      "number": 51,
+      "title": "The Structure of the Government Must Furnish the Proper Checks and Balances Between the Different Departments",
+      "attribution": "Madison",
+      "publication": "Madison: For The Independent Journal, Wednesday, February 6, 1788."
+    },
+    {
+      "number": 52,
+      "title": "The House of Representatives",
+      "attribution": "Madison",
+      "publication": "Madison: From the New York Packet, Friday, February 8, 1788."
+    },
+    {
+      "number": 53,
+      "title": "The Same Subject Continued (The House of Representatives)",
+      "attribution": "Madison",
+      "publication": "Madison: For The Independent Journal, Saturday, February 9, 1788."
+    },
+    {
+      "number": 54,
+      "title": "The Apportionment of Members Among the States",
+      "attribution": "Madison",
+      "publication": "Madison: From the New York Packet, Tuesday, February 12, 1788."
+    },
+    {
+      "number": 55,
+      "title": "The Total Number of the House of Representatives",
+      "attribution": "Madison",
+      "publication": "Madison: For The Independent Journal, Wednesday, February 13, 1788."
+    },
+    {
+      "number": 56,
+      "title": "The Same Subject Continued (The Total Number of the House of Representatives)",
+      "attribution": "Madison",
+      "publication": "Madison: For The Independent Journal, Saturday, February 16, 1788."
+    },
+    {
+      "number": 57,
+      "title": "The Alleged Tendency of the New Plan to Elevate the Few at the Expense of the Many Considered in Connection with Representation",
+      "attribution": "Madison",
+      "publication": "Madison: From the New York Packet, Tuesday, February 19, 1788."
+    },
+    {
+      "number": 58,
+      "title": "Objection That the Number of Members Will Not Be Augmented as the Progress of Population Demands",
+      "attribution": "Madison",
+      "publication": "Madison: Considered For The Independent Journal, Wednesday, February 20, 1788."
+    },
+    {
+      "number": 59,
+      "title": "Concerning the Power of Congress to Regulate the Election of Members",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: From the New York Packet, Friday, February 22, 1788."
+    },
+    {
+      "number": 60,
+      "title": "The Same Subject Continued (Concerning the Power of Congress to Regulate the Election of Members)",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: From The Independent Journal, Saturday, February 23, 1788."
+    },
+    {
+      "number": 61,
+      "title": "The Same Subject Continued (Concerning the Power of Congress to Regulate the Election of Members)",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: From the New York Packet, Tuesday, February 26, 1788."
+    },
+    {
+      "number": 62,
+      "title": "The Senate",
+      "attribution": "Madison",
+      "publication": "Madison: For The Independent Journal, Wednesday, February 27, 1788."
+    },
+    {
+      "number": 63,
+      "title": "The Senate Continued",
+      "attribution": "Madison",
+      "publication": "Madison: For The Independent Journal, Saturday, March 1, 1788."
+    },
+    {
+      "number": 64,
+      "title": "The Powers of the Senate",
+      "attribution": "Jay",
+      "publication": "Jay: From The Independent Journal, Wednesday, March 5, 1788."
+    },
+    {
+      "number": 65,
+      "title": "The Powers of the Senate Continued",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: From the New York Packet, Friday, March 7, 1788."
+    },
+    {
+      "number": 66,
+      "title": "Objections to the Power of the Senate to Set as a Court for Impeachments Further Considered",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: From The Independent Journal, Saturday, March 8, 1788."
+    },
+    {
+      "number": 67,
+      "title": "The Executive Department",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: From the New York Packet, Tuesday, March 11, 1788."
+    },
+    {
+      "number": 68,
+      "title": "The Mode of Electing the President",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: From The Independent Journal, Wednesday, March 12, 1788."
+    },
+    {
+      "number": 69,
+      "title": "The Real Character of the Executive",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: From the New York Packet, Friday, March 14, 1788."
+    },
+    {
+      "number": 70,
+      "title": "The Executive Department Further Considered",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: From The Independent Journal, Saturday, March 15, 1788."
+    },
+    {
+      "number": 71,
+      "title": "The Duration in Office of the Executive",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: From the New York Packet, Tuesday, March 18, 1788."
+    },
+    {
+      "number": 72,
+      "title": "The Same Subject Continued, and Re-Eligibility of the Executive Considered",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: From The Independent Journal, Wednesday, March 19, 1788."
+    },
+    {
+      "number": 73,
+      "title": "The Provision for the Support of the Executive, and the Veto Power",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: From the New York Packet, Friday, March 21, 1788."
+    },
+    {
+      "number": 74,
+      "title": "The Command of the Military and Naval Forces, and the Pardoning Power of the Executive",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: From the New York Packet, Tuesday, March 25, 1788."
+    },
+    {
+      "number": 75,
+      "title": "The Treaty-Making Power of the Executive",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: For The Independent Journal, Wednesday, March 26, 1788."
+    },
+    {
+      "number": 76,
+      "title": "The Appointing Power of the Executive",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: From the New York Packet, Tuesday, April 1, 1788."
+    },
+    {
+      "number": 77,
+      "title": "The Appointing Power Continued and Other Powers of the Executive Considered",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: From The Independent Journal, Wednesday, April 2, 1788."
+    },
+    {
+      "number": 78,
+      "title": "The Judiciary Department",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: From McClean’s Edition, New York, Wednesday, May 28, 1788."
+    },
+    {
+      "number": 79,
+      "title": "The Judiciary Continued",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: From McClean’s Edition, New York, Wednesday, May 28, 1788."
+    },
+    {
+      "number": 80,
+      "title": "The Powers of the Judiciary",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: From McClean’s Edition, New York, Wednesday, May 28, 1788."
+    },
+    {
+      "number": 81,
+      "title": "The Judiciary Continued, and the Distribution of the Judicial Authority",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: From McClean’s Edition, New York, Wednesday, May 28, 1788."
+    },
+    {
+      "number": 82,
+      "title": "The Judiciary Continued",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: From McClean’s Edition, New York, Wednesday, May 28, 1788."
+    },
+    {
+      "number": 83,
+      "title": "The Judiciary Continued in Relation to Trial by Jury",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: From McClean’s Edition, New York, Wednesday, May 28, 1788."
+    },
+    {
+      "number": 84,
+      "title": "Certain General and Miscellaneous Objections to the Constitution Considered and Answered",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: From McClean’s Edition, New York, Wednesday, May 28, 1788."
+    },
+    {
+      "number": 85,
+      "title": "Concluding Remarks",
+      "attribution": "Hamilton",
+      "publication": "Hamilton: From McClean’s Edition, New York, Wednesday, May 28, 1788."
+    }
+  ]
+}
