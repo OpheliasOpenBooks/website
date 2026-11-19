@@ -168,6 +168,26 @@
   .listening-desk .desk-player audio{min-width:0}
 }
 
+
+/* Seasonal listening menu — styled to match Ophelia's Victorian Christmas card palette. */
+.listening-desk .desk-season-select{color:#762d3c;font-weight:700}
+.listening-desk .desk-season-select select{
+  background:#fff9e9;
+  color:#562b32;
+  border:1px solid #ae8a4a;
+  box-shadow:inset 0 0 0 1px rgba(200,165,101,.38);
+}
+.listening-desk .desk-season-note{
+  margin:0 2px 15px;
+  padding:10px 13px;
+  border:1px solid #d4b77c;
+  border-left:3px solid #762d3c;
+  background:#fff8e8;
+  color:#4b4935;
+  font:13px/1.65 Arial,sans-serif;
+}
+.listening-desk .desk-season-note[hidden]{display:none}
+
 </style>
 </head>
 <body>
@@ -178,7 +198,7 @@
 <section class="wrap collection" aria-label="Public-domain music collection">
 <section class="listening-desk" id="listening-desk" aria-labelledby="desk-title">
   <div class="desk-heading"><div><div class="eyebrow">Your personal concert</div><h2 id="desk-title">The Listening Desk</h2></div></div>
-  <p class="desk-intro">Choose a composer or musical style, or listen to the whole collection. Press Play, shuffle the order if you wish, and let the music continue.</p>
+  <p class="desk-intro">Choose a composer, musical style, or seasonal listening collection. Press Play, shuffle if you wish, and let the music continue.</p>
   <div class="desk-controls">
     <label class="desk-select" for="desk-composer">Composer
       <select id="desk-composer"><option value="">All composers</option></select>
@@ -186,9 +206,19 @@
     <label class="desk-select" for="desk-style">Musical style
       <select id="desk-style"><option value="">All styles</option></select>
     </label>
+    <label class="desk-select desk-season-select" for="desk-season">Seasonal music
+      <select id="desk-season">
+        <option value="">All music</option>
+        <option value="winter">Christmas &amp; Winter</option>
+        <option value="spring">Spring</option>
+        <option value="summer">Summer</option>
+        <option value="autumn">Autumn</option>
+      </select>
+    </label>
     <label class="desk-check" for="desk-shuffle"><input id="desk-shuffle" type="checkbox"> Shuffle</label>
     <label class="desk-check" for="desk-continuous"><input id="desk-continuous" type="checkbox" checked> Continuous play</label>
   </div>
+  <p class="desk-season-note" id="desk-season-note" role="status" aria-live="polite" hidden></p>
   <div class="desk-player">
     <audio id="desk-audio" controls preload="none" aria-label="Ophelia's continuous music player">Your browser does not support audio playback.</audio>
     <div class="desk-current"><strong id="desk-now">Prelude No. 1 in C major</strong><span id="desk-by">Johann Sebastian Bach</span><a id="desk-score" href="bach-prelude-sheet-music.html">View this composition’s free score ↗</a></div>
@@ -404,6 +434,8 @@
   const audio = document.getElementById('desk-audio');
   const composerFilter = document.getElementById('desk-composer');
   const styleFilter = document.getElementById('desk-style');
+  const seasonFilter = document.getElementById('desk-season');
+  const seasonNote = document.getElementById('desk-season-note');
   const shuffleToggle = document.getElementById('desk-shuffle');
   const continuousToggle = document.getElementById('desk-continuous');
   const title = document.getElementById('desk-now');
@@ -432,6 +464,39 @@
     };
     return piece;
   }).filter(function(piece) {return piece.tracks.every(function(track) {return !!track.src;});});
+
+  /* Each playlist uses pieces already in the Music Room. These are editorial moods,
+     not claims that every work was written specifically for that season or holiday.
+     URLs are the same ones used by individual music cards, so rights and scores remain there. */
+  const seasonalPlaylists = {
+    winter: [
+      'tchaikovsky-sugar-plum-fairy-sheet-music.html',
+      'tchaikovsky-waltz-flowers-sheet-music.html'
+    ],
+    spring: [
+      'vivaldi-spring-sheet-music.html',
+      'saint-saens-the-swan-sheet-music.html',
+      'pachelbel-canon-in-d-sheet-music.html'
+    ],
+    summer: [
+      'handel-water-music-sheet-music.html',
+      'mozart-eine-kleine-nachtmusik-sheet-music.html',
+      'schubert-serenade-sheet-music.html',
+      'blue-danube-sheet-music.html'
+    ],
+    autumn: [
+      'schumann-traeumerei-sheet-music.html',
+      'chopin-nocturne-op9-no2-sheet-music.html',
+      'beethoven-moonlight-sonata-sheet-music.html',
+      'satie-gymnopedie-no-1-sheet-music.html'
+    ]
+  };
+  const seasonalDescriptions = {
+    winter: 'Christmas & Winter · Two Nutcracker favorites to enjoy by the fireside. More holiday music can join the collection as new editions are approved.',
+    spring: 'Spring · Bright beginnings, garden music and graceful melodies.',
+    summer: 'Summer · Music for river outings, evening serenades and dances.',
+    autumn: 'Autumn · Reflective piano music for quiet evenings.'
+  };
 
   function populateMenu(select, names) {
     Array.from(new Set(names)).sort(function(a,b){return a.localeCompare(b);}).forEach(function(name) {
@@ -463,9 +528,9 @@
     const piece=currentPiece();
     if (!piece) {
       title.textContent='No compositions in this selection';
-      byline.textContent='Choose a different composer or style';
+      byline.textContent='Choose a different composer, style or season';
       scoreLink.hidden=true;
-      status.textContent='No matching music found. Select All composers or All styles.';
+      status.textContent='No matching music found. Choose All music or a different filter.';
       back.disabled=true; next.disabled=true;
       return;
     }
@@ -495,10 +560,22 @@
   }
   function buildQueue() {
     audio.pause();
-    sequence=pieces.map(function(p,i){return i;}).filter(function(i){
-      return (!composerFilter.value||pieces[i].composer===composerFilter.value) &&
-             (!styleFilter.value||pieces[i].style===styleFilter.value);
-    });
+    const season = seasonFilter.value;
+    if (season && seasonalPlaylists[season]) {
+      /* Keep the playlist's deliberate order; shuffle remains optional. */
+      sequence = seasonalPlaylists[season].map(function(href) {
+        return pieces.findIndex(function(p) {return p.href===href;});
+      }).filter(function(index) {return index>=0;});
+      seasonNote.hidden=false;
+      seasonNote.textContent=seasonalDescriptions[season]+' '+sequence.length+' selections from the current Music Room. Press Play to begin.';
+    } else {
+      sequence=pieces.map(function(p,i){return i;}).filter(function(i){
+        return (!composerFilter.value||pieces[i].composer===composerFilter.value) &&
+               (!styleFilter.value||pieces[i].style===styleFilter.value);
+      });
+      seasonNote.hidden=true;
+      seasonNote.textContent='';
+    }
     if(shuffleToggle.checked) shuffleArray(sequence);
     position=0; movement=0; started=false;
     loadCurrent(false,'Ready to listen');
@@ -554,8 +631,11 @@
     movement=0;
     loadCurrent(true,'Next composition');
   }
-  composerFilter.addEventListener('change',function(){styleFilter.value='';buildQueue();});
-  styleFilter.addEventListener('change',function(){composerFilter.value='';buildQueue();});
+  /* One browsing mode at a time keeps seasonal playlists intuitive and prevents
+     selecting a composer outside a season from silently producing an empty player. */
+  composerFilter.addEventListener('change',function(){styleFilter.value='';seasonFilter.value='';buildQueue();});
+  styleFilter.addEventListener('change',function(){composerFilter.value='';seasonFilter.value='';buildQueue();});
+  seasonFilter.addEventListener('change',function(){composerFilter.value='';styleFilter.value='';buildQueue();});
   shuffleToggle.addEventListener('change',shuffleUpdated);
   continuousToggle.addEventListener('change',function(){updateText('Playback setting updated');});
   back.addEventListener('click',function(){switchPiece(-1);});
