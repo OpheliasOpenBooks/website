@@ -1,5 +1,5 @@
 /* Ophelia's Open Book app shell; full books remain online-only by design. */
-const CACHE_NAME = 'ophelia-open-book-shell-2026-11-v3';
+const CACHE_NAME = 'ophelia-open-book-shell-2026-11-v4';
 const SHELL = [
   './index.html',
   './catalog.html',
@@ -34,6 +34,21 @@ self.addEventListener('fetch', event => {
         }
         return response;
       }).catch(async () => (await caches.match(req,{ignoreSearch:true})) || (await caches.match('./offline.html')))
+    );
+    return;
+  }
+  // The catalog extracts its cards from index.html. Always get a fresh index
+  // when online, even for an ordinary script fetch (not a navigation). Otherwise
+  // the older service worker's cached index hides newly published books forever.
+  if (url.pathname.endsWith('/index.html') || url.pathname.endsWith('/catalog.html')) {
+    event.respondWith(
+      fetch(req).then(response => {
+        if (response.ok) {
+          const copy = response.clone();
+          event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.put(req, copy)));
+        }
+        return response;
+      }).catch(async () => (await caches.match(req, {ignoreSearch:true})) || Response.error())
     );
     return;
   }
