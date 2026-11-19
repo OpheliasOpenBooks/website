@@ -27,7 +27,7 @@
  <div class="book-heading"><div class="eyebrow">OPHELIA’S OPEN BOOK</div><h1>The Beggar's Opera</h1><p class="byline">John Gay · First published 1728</p><p class="edition-note">Complete three-act ballad opera (1728) · Dramatis personae, introduction, all scenes, and 68 numbered airs · Text follows the 1765 edition through the 1921 transcription · Authentic 1728 stage engraving.</p></div>
  <figure id="story-figure" hidden><img id="opening-art" src="https://commons.wikimedia.org/wiki/Special:FilePath/The_Beggar's_Opera_MET_DP825185.jpg" alt="1728 etching of a stage performance of The Beggar’s Opera, after William Hogarth, in the Metropolitan Museum of Art collection" loading="lazy" style="max-height:350px;width:auto;max-width:100%;margin:0 auto" onerror="this.onerror=null;this.src='public/art/historical-cover-fallback.svg'"><figcaption>1728 stage engraving after William Hogarth · <a href="https://commons.wikimedia.org/wiki/File:The_Beggar%27s_Opera_MET_DP825185.jpg" target="_blank" rel="noopener noreferrer">The Metropolitan Museum of Art, public domain</a></figcaption></figure>
  <article class="content" id="content"><div class="chapter-row"><span id="chaptername" class="chapter"></span></div><div id="prose"><p>Preparing the complete opera…</p></div><div class="endmark" aria-hidden="true">— ❧ —</div></article>
- <div class="footer-nav"><button type="button" id="prev2" disabled>← Previous page</button><span id="footcount">The Beggar's Opera · Original 1728 novel</span><button type="button" id="next2" disabled>Next page →</button></div>
+ <div class="footer-nav"><button type="button" id="prev2" disabled>← Previous page</button><span id="footcount">The Beggar’s Opera · Complete three-act ballad opera</span><button type="button" id="next2" disabled>Next page →</button></div>
 </main>
 <aside class="reader-controls" aria-label="Reading and listening controls">
  <label for="section">Choose a reading section</label><select id="section" aria-label="Select reader navigation section" disabled><option>Preparing the complete work…</option></select>
@@ -181,7 +181,7 @@ function finishPage(token){
  speaking=false;paused=false;pageSpeechDone=false;speechQueue=[];updatePlay();
  note('Finished page '+(state.page+1)+'.');
  if(state.autoTurn&&state.page<pages.length-1){state.page++;save();render();startSpeech(0);}
- else if(state.page===pages.length-1)note('You have finished The Beggar's Opera.');
+ else if(state.page===pages.length-1)note("You have finished The Beggar’s Opera.");
 }
 function startSpeech(startAt=speechResumeAt){
  if(!soundOn){note('Sound is off. Select Sound on before starting narration.');return;}
