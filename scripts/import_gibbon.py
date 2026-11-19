@@ -102,6 +102,13 @@ for volume, ebook in enumerate(range(731, 737), start=1):
         begin = match.end()
         finish = matches[idx + 1].start() if idx + 1 < len(matches) else len(raw)
         content = raw[begin:finish].strip()
+        # In this transcription a long chapter heading sometimes wraps onto
+        # the next line; keep its final words and Part number with the heading.
+        if not re.search(r"Part[ 	]+[IVXLCDM]+\.\s*$", heading, flags=re.I):
+            first_line, separator, remainder = content.partition("\n")
+            if separator and re.search(r"Part[ 	]+[IVXLCDM]+\.\s*$", first_line, flags=re.I):
+                heading += " " + first_line.strip()
+                content = remainder.strip()
         if len(content) < 300:
             raise ValueError("Suspiciously short chapter part %s in volume %d" % (roman, volume))
         clean_heading = re.sub(r"\.?\s*-*\s*Part[ \t]+[IVXLCDM]+\.?\s*$", "", heading, flags=re.I).strip(". -")
