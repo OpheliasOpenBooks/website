@@ -99,6 +99,7 @@ const $=id=>document.getElementById(id);
 // Public-domain original-language editions. Hosted local readers are text-only;
 // outside URLs are labelled external sources and are never represented as hosted copies.
 const originalByPage={
+ "critique-of-pure-reason.html": {"href":"kritik-der-reinen-vernunft-original-deutsch.html","label":"Deutsch · Read only","lang":"de","type":"local"},
  "the-sorrows-of-young-werther.html": {"href":"die-leiden-des-jungen-werther-original-deutsch.html","label":"Deutsch · Read only","lang":"de","type":"local"},
  "aeneid.html": {
   "href": "https://la.wikisource.org/wiki/Aeneis",
@@ -766,7 +767,10 @@ const matchesLetter=(b,choice)=>initial(b)===choice||literalInitial(b)===choice;
 function extract(doc){
  const cards=[...doc.querySelectorAll('#books > article.book')],seen=new Set(),items=[];
  for(const card of cards){
-  const link=card.querySelector('a[href$=".html"]');
+  // A book may mention its original-language edition inside its synopsis.
+  // The primary reader link must come from the actual Read & Listen CTA,
+  // not the first incidental link in the text.
+  const link=card.querySelector('a.button[href$=".html"]')||card.querySelector('a[href$=".html"]');
   if(!link)continue;
   const href=link.getAttribute('href').split('?')[0];
   if(seen.has(href)||!/^[-\w]+\.html$/.test(href))continue;
