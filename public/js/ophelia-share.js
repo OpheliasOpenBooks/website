@@ -152,6 +152,7 @@ function addPageButton(){
  * Multi-volume sources list EVERY volume rather than silently truncating.
  */
 const originalLanguageSources={
+ 'the-sorrows-of-young-werther.html':{language:'German',original:'Die Leiden des jungen Werther',links:[['Deutsch · Vollständiger Originaltext (nur lesen)','die-leiden-des-jungen-werther-original-deutsch.html']],note:'Two complete original-language books, hosted in Ophelia’s library. German text is read-only; audio is available in the English translation.'},
  'bambi.html':{language:'German',original:'Bambi: Eine Lebensgeschichte aus dem Walde',links:[['Original German novel (Projekt Gutenberg)','https://projekt-gutenberg.org/authors/felix-salten/books/bambi/']]},
  // Every foreign-language edition uses this common top-of-page reader panel.
  'the-magic-mountain.html':{language:'German',original:'Der Zauberberg',links:[['Band I (Project Gutenberg)','https://www.gutenberg.org/ebooks/65661'],['Band II (Project Gutenberg)','https://www.gutenberg.org/ebooks/65662']]},
