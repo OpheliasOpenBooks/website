@@ -95,6 +95,7 @@ footer .wrap{display:flex;gap:18px;flex-wrap:wrap;justify-content:space-between}
 'use strict';
 const $=id=>document.getElementById(id);
 const genreByPage={
+ 'the-turn-of-the-screw.html':'Gothic & Horror',
  'the-invisible-man.html':'Science Fiction & Fantasy',
  'the-island-of-doctor-moreau.html':'Science Fiction & Fantasy',
  'the-yellow-wallpaper.html':'Gothic & Horror',
@@ -253,6 +254,7 @@ const genreByPage={
  'oedipus-rex.html':'Ancient Classics'
 };
 const progressByPage={
+ 'the-turn-of-the-screw.html':'ophelia-the-turn-of-the-screw-james-1898-v1',
  'the-invisible-man.html':'ophelia-invisible-man-wells-1897-v1',
  'the-island-of-doctor-moreau.html':'ophelia-island-of-doctor-moreau-wells-1896-v1',
  'the-yellow-wallpaper.html':'ophelia-the-yellow-wallpaper-gilman-1892-v1',
@@ -370,6 +372,7 @@ const progressByPage={
  'oedipus-rex.html':'ophelia-oedipus-rex-storr-1912-alice-voice-v1'
 };
 const catalogOnlyBooks=[
+ {title:'The Turn of the Screw',author:'Henry James · 1898',href:'the-turn-of-the-screw.html',image:'https://commons.wikimedia.org/wiki/Special:FilePath/The-Two-Magics-1898-Macmillan.jpg',alt:'Genuine 1898 Macmillan dust jacket for the first book containing the novella',description:"At a remote English estate, a governess fears that the children in her care are haunted by unseen visitors.",genre:'Gothic & Horror'},
  {title:'The Invisible Man',author:'H. G. Wells · 1897',href:'the-invisible-man.html',image:'https://commons.wikimedia.org/wiki/Special:FilePath/Wells_-_The_Invisible_Man_-_Pearson_cover_1897.jpg',alt:'Original 1897 red Victorian cloth book cover',description:"A heavily bandaged stranger enters a snowy village, with a scientific secret that leads to terror and tragedy.",genre:'Science Fiction & Fantasy'},
  {title:'The Island of Doctor Moreau',author:'H. G. Wells · 1896',href:'the-island-of-doctor-moreau.html',image:'https://commons.wikimedia.org/wiki/Special:FilePath/IslandOfDrMoreau.JPG',alt:'Authentic first-edition 1896 Heinemann pictorial cover',description:"Stranded on a remote island, Edward Prendick uncovers Doctor Moreau’s uncanny scientific experiments and meets the Beast Folk.",genre:'Science Fiction & Fantasy'},
  {title:'The Yellow Wallpaper',author:'Charlotte Perkins Gilman · 1892',href:'the-yellow-wallpaper.html',image:'https://commons.wikimedia.org/wiki/Special:FilePath/The_Yellow_Wallpaper_(1899_edition_-_cover).jpg',alt:'Authentic 1899 first-edition cover',description:"A haunting Gothic tale of a woman confined to a room whose wallpaper increasingly possesses her imagination.",genre:'Gothic & Horror'},
