@@ -31,7 +31,7 @@ def fetch(url, minimum):
 
 def strip_gutenberg(data, language):
     if language == "en":
-        text = data.decode("utf-8-sig")
+        text = data.decode("utf-8-sig").replace("\r\n", "\n").replace("\r", "\n")
         begin = re.search(r"(?mi)^THE CRITIQUE OF PURE REASON\s*$", text)
         if not begin:
             raise ValueError("English title text missing")
@@ -45,14 +45,13 @@ def strip_gutenberg(data, language):
             begin_at = begin.start()
     else:
         # Project Gutenberg's 6342-8.txt uses ISO-8859-1, not UTF-8.
-        text = data.decode("latin-1")
+        text = data.decode("latin-1").replace("\r\n", "\n").replace("\r", "\n")
         begin = re.search(r"(?mi)^\*{3}\s*START OF (?:THIS|THE) PROJECT GUTENBERG EBOOK[^\n]*$", text)
         if not begin:
             begin = re.search(r"(?mi)^\*{3}\s*START OF THE PROJECT GUTENBERG[^\n]*$", text)
         if not begin:
             raise ValueError("German Project Gutenberg start marker missing")
         begin_at = begin.end()
-    text = text.replace("\r\n", "\n").replace("\r", "\n")
     end = re.search(r"(?mi)^\*{3}\s*END OF (?:THIS |THE )?PROJECT GUTENBERG[^\n]*$", text[begin_at:])
     if not end:
         end = re.search(r"(?mi)^End of (?:the )?Project Gutenberg EBook", text[begin_at:])
