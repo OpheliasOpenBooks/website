@@ -110,7 +110,7 @@ async function openPart(n,place='saved'){
  n=Math.max(1,Math.min(manifest.partCount,Number(n)||1));
  const oldPart=state.part,oldPage=state.page;
  state.partPages??={};if(pages.length)state.partPages[oldPart]=oldPage;
- state.part=n;state.page=place==='start'||place==='end'?0:Number(state.partPages[n]??0);
+ state.part=n;state.page=place==='start'||place==='end'?0:Number((!pages.length&&n===oldPart)?oldPage:(state.partPages[n]??0));
  $('section').disabled=true;loading=true;const requestId=++nonce;
  $('message').textContent='Textabschnitt '+n+' wird geladen…';
  try{
