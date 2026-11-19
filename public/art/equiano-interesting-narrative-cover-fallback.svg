@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="460" height="690" viewBox="0 0 460 690" role="img" aria-labelledby="ttl desc">
+<title id="ttl">The Interesting Narrative of the Life of Olaudah Equiano</title>
+<desc id="desc">Original historically inspired late eighteenth-century typography, printed with dark ink on parchment, presented as a fallback when the original historical frontispiece is unavailable.</desc>
+<defs><linearGradient id="parchment" x1="0" x2=".9" y1="0" y2="1"><stop stop-color="#f4e7cb"/><stop offset=".6" stop-color="#e6d4b2"/><stop offset="1" stop-color="#c6ac7f"/></linearGradient><pattern id="grain" width="21" height="29" patternUnits="userSpaceOnUse"><path d="M1 8l2 1m15 17l1-2m-11 0h2" stroke="#634831" stroke-width=".7" opacity=".16"/></pattern></defs>
+<rect width="460" height="690" rx="4" fill="#3a291d"/><rect x="15" y="16" width="430" height="658" fill="url(#parchment)" stroke="#5c4633" stroke-width="2"/><rect x="15" y="16" width="430" height="658" fill="url(#grain)"/>
+<g font-family="Georgia, 'Times New Roman',serif" text-anchor="middle" fill="#312b22">
+<text x="230" y="100" font-size="25" letter-spacing="8">THE</text>
+<text x="230" y="164" font-size="31" letter-spacing="3">INTERESTING NARRATIVE</text>
+<text x="230" y="214" font-size="20" letter-spacing="7">OF THE LIFE</text>
+<text x="230" y="253" font-size="16" letter-spacing="6">OF</text>
+<text x="230" y="317" font-size="34" letter-spacing="4">OLAUDAH EQUIANO,</text>
+<text x="230" y="354" font-size="17" letter-spacing="6">OR</text>
+<text x="230" y="405" font-size="28" letter-spacing="4">GUSTAVUS VASSA,</text>
+<text x="230" y="458" font-size="19" letter-spacing="6">THE AFRICAN.</text>
+<text x="230" y="505" font-size="15" letter-spacing="4" font-style="italic">WRITTEN BY HIMSELF.</text>
+<text x="230" y="612" font-size="18" letter-spacing="5">LONDON · 1789</text>
+</g><g stroke="#65523b" fill="none"><path d="M74 536h312M104 548h252M156 573h148" stroke-width="1.2"/></g></svg>
