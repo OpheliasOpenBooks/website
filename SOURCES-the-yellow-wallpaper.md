@@ -1,0 +1,9 @@
+# The Yellow Wallpaper — Gilman, 1892
+
+- **Literary work:** *The Yellow Wallpaper* (originally *The Yellow Wall-Paper*), Charlotte Perkins Gilman (published under Charlotte Perkins Stetson), first appeared in *The New England Magazine*, January 1892. Public domain in the United States.
+- **Complete English story:** [Project Gutenberg ebook #1952](https://www.gutenberg.org/ebooks/1952), checked and hosted from [GITenberg/The-Yellow-Wallpaper_1952/1952-0.txt](https://github.com/GITenberg/The-Yellow-Wallpaper_1952/blob/master/1952-0.txt) as `public/books/the-yellow-wallpaper-gilman-1892.json`. Gutenberg boilerplate was omitted; story paragraphs retained with soft line wraps converted to spaces.
+- **Completeness:** 6078 words, 267 source paragraphs. Begins “It is very seldom that mere ordinary people like John and myself secure ancestral halls for the summer.” and ends “every time!” No invented chapter divisions and no missing narrative.
+- **Authentic historical cover:** [Wikimedia Commons, 1899 first standalone book-edition cover](https://commons.wikimedia.org/wiki/File:The_Yellow_Wallpaper_(1899_edition_-_cover).jpg), unknown artist, U.S. public domain. This is NOT presented as the original 1892 magazine cover. Image 285×423 px is linked directly; a neutral local fallback appears if the Commons URL fails.
+- **Reader:** `the-yellow-wallpaper.html`, one continuous story paginated in the existing browser-based speech reader, with auto-turn, progress, bookmark, voice selection, evening mode and sharing.
+- **Website:** `index.html`, `catalog.html`, `sitemap.xml`; catalog genre Gothic & Horror. Progress key `ophelia-the-yellow-wallpaper-gilman-1892-v1`.
+- Static checks of completeness and JavaScript syntax are not substitutes for live narration, image or GitHub Pages deployment tests.
