@@ -124,10 +124,10 @@
       "chapters": [
         {
           "number": 16,
-          "label": "Chapter 16 · Conduct Towards The Christians, From Nero To",
+          "label": "Chapter 16 · Conduct Towards The Christians, From Nero To Constantine",
           "file": "gibbon-v2-ch16.json",
           "parts": 8,
-          "words": 37904
+          "words": 37888
         },
         {
           "number": 17,
@@ -187,10 +187,10 @@
         },
         {
           "number": 25,
-          "label": "Chapter 25 · Reigns Of Jovian And Valentinian, Division Of The",
+          "label": "Chapter 25 · Reigns Of Jovian And Valentinian, Division Of The Empire",
           "file": "gibbon-v2-ch25.json",
           "parts": 7,
-          "words": 32410
+          "words": 32396
         },
         {
           "number": 26,
@@ -234,10 +234,10 @@
         },
         {
           "number": 31,
-          "label": "Chapter 31 · Invasion Of Italy, Occupation Of Territories By",
+          "label": "Chapter 31 · Invasion Of Italy, Occupation Of Territories By Barbarians",
           "file": "gibbon-v3-ch31.json",
           "parts": 7,
-          "words": 35547
+          "words": 35533
         },
         {
           "number": 32,
@@ -508,10 +508,10 @@
         },
         {
           "number": 68,
-          "label": "Chapter 68 · Reign Of Mahomet The Second, Extinction Of Eastern",
+          "label": "Chapter 68 · Reign Of Mahomet The Second, Extinction Of Eastern Empire",
           "file": "gibbon-v6-ch68.json",
           "parts": 4,
-          "words": 22186
+          "words": 22184
         },
         {
           "number": 69,
@@ -529,14 +529,14 @@
         },
         {
           "number": 71,
-          "label": "Chapter 71 · Prospect Of The Ruins Of Rome In The Fifteenth",
+          "label": "Chapter 71 · Prospect Of The Ruins Of Rome In The Fifteenth Century",
           "file": "gibbon-v6-ch71.json",
           "parts": 2,
-          "words": 11539
+          "words": 11537
         }
       ]
     }
   ],
   "chapterCount": 71,
-  "wordCount": 1568587
+  "wordCount": 1568539
 }
