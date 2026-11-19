@@ -881,6 +881,16 @@ function render(){
 }
 $('book-search').addEventListener('input',render);$('genre').addEventListener('change',render);$('sort').addEventListener('change',render);
 $('reset').addEventListener('click',()=>{$('book-search').value='';$('genre').value='';$('sort').value='title';letter='';render();$('book-search').focus();});
+// When the updated app service worker takes control, refresh the catalog
+// once so readers immediately see newly published cards instead of a stale shell.
+if('serviceWorker' in navigator){
+ navigator.serviceWorker.addEventListener('controllerchange',()=>{
+  if(!sessionStorage.getItem('ophelia-catalog-sw-v4-refreshed')){
+   try{sessionStorage.setItem('ophelia-catalog-sw-v4-refreshed','1');}catch{}
+   location.reload();
+  }
+ });
+}
 (async()=>{
  try{
   const response=await fetch('index.html',{cache:'no-store'});
