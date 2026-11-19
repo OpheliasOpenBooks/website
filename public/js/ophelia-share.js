@@ -152,6 +152,7 @@ function addPageButton(){
  * Multi-volume sources list EVERY volume rather than silently truncating.
  */
 const originalLanguageSources={
+ 'vathek.html':{language:'French',original:'Vathek',links:[['Français · Texte original intégral (lecture seulement)','vathek-original-francais.html']],note:'Vathek was written in French. The complete 1834 French edition, with historical notes, is hosted here in a read-only reader; English narration is available in Samuel Henley’s translation.'},
   'rousseau-confessions.html':{language:'French',original:'Les Confessions',links:[['Français · Les Confessions (texte intégral · lecture seulement)','les-confessions-rousseau-original-francais.html']],note:'All twelve French books are hosted here in a separate read-only reader. Audio narration remains available only for the historical 1903 English edition.'},
 'dangerous-liaisons.html':{language:'French',original:'Les Liaisons dangereuses',links:[['Français · Texte original intégral (lecture seulement)','les-liaisons-dangereuses-original-francais.html']],note:'The 175 French letters are hosted here in a separate read-only reader; narration remains available only for Ernest Dowson’s English translation.'},
  'the-sorrows-of-young-werther.html':{language:'German',original:'Die Leiden des jungen Werther',links:[['Deutsch · Vollständiger Originaltext (nur lesen)','die-leiden-des-jungen-werther-original-deutsch.html']],note:'Two complete original-language books, hosted in Ophelia’s library. German text is read-only; audio is available in the English translation.'},
