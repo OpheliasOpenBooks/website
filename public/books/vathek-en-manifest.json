@@ -1,0 +1,31 @@
+{
+  "title": "Vathek",
+  "author": "William Beckford",
+  "language": "en",
+  "readOnly": false,
+  "partCount": 3,
+  "wordCount": 39646,
+  "parts": [
+    {
+      "number": 1,
+      "file": "vathek-en-part-1.json",
+      "label": "Part I",
+      "words": 13076,
+      "sectionCount": 3
+    },
+    {
+      "number": 2,
+      "file": "vathek-en-part-2.json",
+      "label": "Part II",
+      "words": 13134,
+      "sectionCount": 1
+    },
+    {
+      "number": 3,
+      "file": "vathek-en-part-3.json",
+      "label": "Part III",
+      "words": 13436,
+      "sectionCount": 2
+    }
+  ]
+}
