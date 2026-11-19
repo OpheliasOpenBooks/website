@@ -70,7 +70,9 @@ function parseText(raw,v){
  const d=JSON.parse(raw);
  if(!d||d.title!=='Clarissa; or, The History of a Young Lady'||d.author!=='Samuel Richardson'||d.volume!==v||!Array.isArray(d.sections))throw Error('Incorrect Clarissa volume.');
  const sections=d.sections,letters=sections.filter(s=>s.kind==='letter'),expected=LETTER_COUNTS[v-1];
- if(letters.length!==expected||letters.some((s,i)=>s.number!==(v===9&&i===62?64:i+1)||!s.paragraphs[0].startsWith('LETTER ')))throw Error('Missing letter in Volume '+v+'.');
+ if(letters.length!==expected||letters.some((s,i)=>s.number!==(v===2&&i===17?17:v===9&&i===62?64:i+1)||!s.paragraphs[0].startsWith('LETTER ')))throw Error('Unexpected letter ordering in Volume '+v+'.');
+ // The Gutenberg source labels two consecutive Volume II letters XVII; it has no XVIII. Volume IX skips label LXIII.
+ // Preserve those printed labels instead of silently replacing historical source text.
  if(v===1&&(!sections[0].paragraphs[0].startsWith('PREFACE')||sections[0].kind!=='front'))throw Error('Preface missing.');
  if(v===9&&(!sections.at(-1).name.startsWith('POSTSCRIPT')||sections.at(-1).paragraphs.at(-1)!=='FINIS'||!sections.some(s=>s.name.startsWith('CONCLUSION'))))throw Error('Conclusion or postscript missing.');
  const all=sections.flatMap(s=>s.paragraphs).join(' ');
