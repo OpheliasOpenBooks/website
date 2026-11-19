@@ -115,7 +115,7 @@ function paginate(sections){
  sections.forEach((part,section)=>{
    let current=[],words=0;
    const flush=()=>{if(current.length){out.push({section,sectionName:part.name,paragraphs:current});current=[];words=0;}};
-   const add=par=>{const n=count(par);if(current.length&&words+n>310)flush();current.push(par);words+=n;};
+   const add=par=>{const n=count(par);if(current.length&&words+n>330)flush();current.push(par);words+=n;};
    for(const p of part.paragraphs){for(const fragment of splitLongParagraph(p))add(fragment);}
    flush();
  });
