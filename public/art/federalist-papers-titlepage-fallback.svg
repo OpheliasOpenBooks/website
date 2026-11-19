@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="760" viewBox="0 0 480 760" role="img" aria-labelledby="t d">
+<title id="t">The Federalist: A Collection of Essays — New York, 1788</title>
+<desc id="d">A historically inspired typographic title page, recalling the first 1788 collection of the Federalist essays.</desc>
+<defs><linearGradient id="paper" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#e9ddc3"/><stop offset=".6" stop-color="#f5e6c7"/><stop offset="1" stop-color="#bba47f"/></linearGradient><pattern id="grain" width="25" height="36" patternUnits="userSpaceOnUse"><path d="M0 10l2 1m16 9l1-1M6 35l2 1" stroke="#8b7158" opacity=".16"/></pattern></defs>
+<rect width="480" height="760" fill="#302a24"/><rect x="13" y="14" width="454" height="732" fill="url(#paper)" stroke="#6b4b30" stroke-width="2"/><rect x="13" y="14" width="454" height="732" fill="url(#grain)"/>
+<g font-family="Georgia, 'Times New Roman', serif" fill="#3d3024" text-anchor="middle">
+<text x="240" y="114" font-size="23" letter-spacing="12">THE</text>
+<text x="240" y="194" font-size="46" letter-spacing="9">FEDERALIST:</text>
+<text x="240" y="252" font-size="21" letter-spacing="8">A COLLECTION</text>
+<text x="240" y="306" font-size="22" letter-spacing="14">OF</text>
+<text x="240" y="369" font-size="39" letter-spacing="16">ESSAYS,</text>
+<text x="240" y="414" font-size="17" letter-spacing="4">WRITTEN IN FAVOUR OF THE</text>
+<text x="240" y="471" font-size="28" letter-spacing="6">NEW CONSTITUTION,</text>
+<text x="240" y="515" font-size="15" letter-spacing="3">AS AGREED UPON BY THE</text>
+<text x="240" y="550" font-size="15" letter-spacing="3">FEDERAL CONVENTION</text>
+<text x="240" y="584" font-size="14">SEPTEMBER 17, 1787</text>
+<text x="240" y="647" font-size="18" letter-spacing="6">NEW-YORK</text>
+<text x="240" y="692" font-size="19" letter-spacing="6">MDCCLXXXVIII</text>
+</g></svg>
