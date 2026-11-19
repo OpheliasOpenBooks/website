@@ -1,0 +1,299 @@
+{
+  "title": "The Critique of Pure Reason",
+  "author": "Immanuel Kant",
+  "language": "en",
+  "sourceEbook": 4280,
+  "edition": "Meiklejohn's 1855 English translation, including the two editions' prefaces",
+  "readOnly": false,
+  "partCount": 41,
+  "wordCount": 208049,
+  "parts": [
+    {
+      "number": 1,
+      "file": "kant-en-part-01.json",
+      "label": "Part 1 · The Critique Of Pure Reason",
+      "words": 5880,
+      "sectionCount": 1
+    },
+    {
+      "number": 2,
+      "file": "kant-en-part-02.json",
+      "label": "Part 2 · Preface To The Second Edition, 1787",
+      "words": 5139,
+      "sectionCount": 1
+    },
+    {
+      "number": 3,
+      "file": "kant-en-part-03.json",
+      "label": "Part 3 · Introduction",
+      "words": 5550,
+      "sectionCount": 1
+    },
+    {
+      "number": 4,
+      "file": "kant-en-part-04.json",
+      "label": "Part 4 · Introduction",
+      "words": 5669,
+      "sectionCount": 1
+    },
+    {
+      "number": 5,
+      "file": "kant-en-part-05.json",
+      "label": "Part 5 · SECTION II. Of Time.",
+      "words": 4831,
+      "sectionCount": 1
+    },
+    {
+      "number": 6,
+      "file": "kant-en-part-06.json",
+      "label": "Part 6 · Second Part. Transcendental Logic",
+      "words": 5836,
+      "sectionCount": 1
+    },
+    {
+      "number": 7,
+      "file": "kant-en-part-07.json",
+      "label": "Part 7 · Book I",
+      "words": 5777,
+      "sectionCount": 1
+    },
+    {
+      "number": 8,
+      "file": "kant-en-part-08.json",
+      "label": "Part 8 · CHAPTER II Of the Deduction of the Pure Conceptions of the Understanding.",
+      "words": 4290,
+      "sectionCount": 1
+    },
+    {
+      "number": 9,
+      "file": "kant-en-part-09.json",
+      "label": "Part 9 · Ss 19",
+      "words": 4952,
+      "sectionCount": 1
+    },
+    {
+      "number": 10,
+      "file": "kant-en-part-10.json",
+      "label": "Part 10 · Book Ii",
+      "words": 4298,
+      "sectionCount": 1
+    },
+    {
+      "number": 11,
+      "file": "kant-en-part-11.json",
+      "label": "Part 11 · System Of The Principles Of The Pure Understanding",
+      "words": 5732,
+      "sectionCount": 1
+    },
+    {
+      "number": 12,
+      "file": "kant-en-part-12.json",
+      "label": "Part 12 · Proof",
+      "words": 5738,
+      "sectionCount": 1
+    },
+    {
+      "number": 13,
+      "file": "kant-en-part-13.json",
+      "label": "Part 13 · Proof",
+      "words": 4222,
+      "sectionCount": 1
+    },
+    {
+      "number": 14,
+      "file": "kant-en-part-14.json",
+      "label": "Part 14 · Proof",
+      "words": 4251,
+      "sectionCount": 1
+    },
+    {
+      "number": 15,
+      "file": "kant-en-part-15.json",
+      "label": "Part 15 · Theorem",
+      "words": 5660,
+      "sectionCount": 1
+    },
+    {
+      "number": 16,
+      "file": "kant-en-part-16.json",
+      "label": "Part 16 · General Remark On The System Of Principles",
+      "words": 5253,
+      "sectionCount": 1
+    },
+    {
+      "number": 17,
+      "file": "kant-en-part-17.json",
+      "label": "Part 17 · Remark On The Amphiboly Of The Conceptions Of Reflection",
+      "words": 5416,
+      "sectionCount": 1
+    },
+    {
+      "number": 18,
+      "file": "kant-en-part-18.json",
+      "label": "Part 18 · Nothing As",
+      "words": 4346,
+      "sectionCount": 1
+    },
+    {
+      "number": 19,
+      "file": "kant-en-part-19.json",
+      "label": "Part 19 · SECTION I--Of Ideas in General.",
+      "words": 4828,
+      "sectionCount": 1
+    },
+    {
+      "number": 20,
+      "file": "kant-en-part-20.json",
+      "label": "Part 20 · SECTION III. System of Transcendental Ideas.",
+      "words": 5429,
+      "sectionCount": 1
+    },
+    {
+      "number": 21,
+      "file": "kant-en-part-21.json",
+      "label": "Part 21 · CHAPTER I. Of the Paralogisms of Pure Reason.",
+      "words": 4306,
+      "sectionCount": 1
+    },
+    {
+      "number": 22,
+      "file": "kant-en-part-22.json",
+      "label": "Part 22 · SECTION I. System of Cosmological Ideas.",
+      "words": 4542,
+      "sectionCount": 1
+    },
+    {
+      "number": 23,
+      "file": "kant-en-part-23.json",
+      "label": "Part 23 · Observations On The First Antinomy",
+      "words": 4380,
+      "sectionCount": 1
+    },
+    {
+      "number": 24,
+      "file": "kant-en-part-24.json",
+      "label": "Part 24 · On The Antithesis",
+      "words": 5870,
+      "sectionCount": 1
+    },
+    {
+      "number": 25,
+      "file": "kant-en-part-25.json",
+      "label": "Part 25 · SECTION III. Of the Interest of Reason in these Self-contradictions.",
+      "words": 4387,
+      "sectionCount": 1
+    },
+    {
+      "number": 26,
+      "file": "kant-en-part-26.json",
+      "label": "Part 26 · SECTION VII. Critical Solution of the Cosmological Problem.",
+      "words": 5829,
+      "sectionCount": 1
+    },
+    {
+      "number": 27,
+      "file": "kant-en-part-27.json",
+      "label": "Part 27 · SECTION VIII. Regulative Principle of Pure Reason in relation to the Cosmolo",
+      "words": 5835,
+      "sectionCount": 1
+    },
+    {
+      "number": 28,
+      "file": "kant-en-part-28.json",
+      "label": "Part 28 · SECTION VIII. Regulative Principle of Pure Reason in relation to the Cosmolo",
+      "words": 4605,
+      "sectionCount": 1
+    },
+    {
+      "number": 29,
+      "file": "kant-en-part-29.json",
+      "label": "Part 29 · SECTION II. Of the Transcendental Ideal (Prototypon Trancendentale).",
+      "words": 5685,
+      "sectionCount": 1
+    },
+    {
+      "number": 30,
+      "file": "kant-en-part-30.json",
+      "label": "Part 30 · SECTION II. Of the Transcendental Ideal (Prototypon Trancendentale).",
+      "words": 5359,
+      "sectionCount": 1
+    },
+    {
+      "number": 31,
+      "file": "kant-en-part-31.json",
+      "label": "Part 31 · SECTION VI. Of the Impossibility of a Physico-Theological Proof.",
+      "words": 4930,
+      "sectionCount": 1
+    },
+    {
+      "number": 32,
+      "file": "kant-en-part-32.json",
+      "label": "Part 32 · Appendix",
+      "words": 5778,
+      "sectionCount": 1
+    },
+    {
+      "number": 33,
+      "file": "kant-en-part-33.json",
+      "label": "Part 33 · Appendix",
+      "words": 5415,
+      "sectionCount": 1
+    },
+    {
+      "number": 34,
+      "file": "kant-en-part-34.json",
+      "label": "Part 34 · Appendix",
+      "words": 4693,
+      "sectionCount": 1
+    },
+    {
+      "number": 35,
+      "file": "kant-en-part-35.json",
+      "label": "Part 35 · SECTION I. The Discipline of Pure Reason in the Sphere of Dogmatism.",
+      "words": 5727,
+      "sectionCount": 1
+    },
+    {
+      "number": 36,
+      "file": "kant-en-part-36.json",
+      "label": "Part 36 · SECTION I. The Discipline of Pure Reason in the Sphere of Dogmatism.",
+      "words": 5824,
+      "sectionCount": 1
+    },
+    {
+      "number": 37,
+      "file": "kant-en-part-37.json",
+      "label": "Part 37 · SECTION II. The Discipline of Pure Reason in Polemics.",
+      "words": 4687,
+      "sectionCount": 1
+    },
+    {
+      "number": 38,
+      "file": "kant-en-part-38.json",
+      "label": "Part 38 · SECTION IV. The Discipline of Pure Reason in Relation to Proofs.",
+      "words": 5844,
+      "sectionCount": 1
+    },
+    {
+      "number": 39,
+      "file": "kant-en-part-39.json",
+      "label": "Part 39 · SECTION I. Of the Ultimate End of the Pure Use of Reason.",
+      "words": 5572,
+      "sectionCount": 1
+    },
+    {
+      "number": 40,
+      "file": "kant-en-part-40.json",
+      "label": "Part 40 · CHAPTER III. The Architectonic of Pure Reason.",
+      "words": 4616,
+      "sectionCount": 1
+    },
+    {
+      "number": 41,
+      "file": "kant-en-part-41.json",
+      "label": "Part 41 · CHAPTER IV. The History of Pure Reason.",
+      "words": 1068,
+      "sectionCount": 1
+    }
+  ]
+}

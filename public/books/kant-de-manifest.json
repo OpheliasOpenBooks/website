@@ -1,0 +1,229 @@
+{
+  "title": "Kritik der reinen Vernunft",
+  "author": "Immanuel Kant",
+  "language": "de",
+  "sourceEbook": 6342,
+  "edition": "Kant's 1781 first German edition",
+  "readOnly": true,
+  "partCount": 31,
+  "wordCount": 175590,
+  "parts": [
+    {
+      "number": 1,
+      "file": "kant-de-part-01.json",
+      "label": "Teil 1 · Original German text · 1781",
+      "words": 5899,
+      "sectionCount": 1
+    },
+    {
+      "number": 2,
+      "file": "kant-de-part-02.json",
+      "label": "Teil 2 · Original German text · 1781",
+      "words": 5733,
+      "sectionCount": 1
+    },
+    {
+      "number": 3,
+      "file": "kant-de-part-03.json",
+      "label": "Teil 3 · Original German text · 1781",
+      "words": 5769,
+      "sectionCount": 1
+    },
+    {
+      "number": 4,
+      "file": "kant-de-part-04.json",
+      "label": "Teil 4 · Original German text · 1781",
+      "words": 5832,
+      "sectionCount": 1
+    },
+    {
+      "number": 5,
+      "file": "kant-de-part-05.json",
+      "label": "Teil 5 · Original German text · 1781",
+      "words": 5872,
+      "sectionCount": 1
+    },
+    {
+      "number": 6,
+      "file": "kant-de-part-06.json",
+      "label": "Teil 6 · Original German text · 1781",
+      "words": 5757,
+      "sectionCount": 1
+    },
+    {
+      "number": 7,
+      "file": "kant-de-part-07.json",
+      "label": "Teil 7 · Original German text · 1781",
+      "words": 5612,
+      "sectionCount": 1
+    },
+    {
+      "number": 8,
+      "file": "kant-de-part-08.json",
+      "label": "Teil 8 · Original German text · 1781",
+      "words": 5692,
+      "sectionCount": 1
+    },
+    {
+      "number": 9,
+      "file": "kant-de-part-09.json",
+      "label": "Teil 9 · Original German text · 1781",
+      "words": 5870,
+      "sectionCount": 1
+    },
+    {
+      "number": 10,
+      "file": "kant-de-part-10.json",
+      "label": "Teil 10 · Original German text · 1781",
+      "words": 5772,
+      "sectionCount": 1
+    },
+    {
+      "number": 11,
+      "file": "kant-de-part-11.json",
+      "label": "Teil 11 · Original German text · 1781",
+      "words": 5761,
+      "sectionCount": 1
+    },
+    {
+      "number": 12,
+      "file": "kant-de-part-12.json",
+      "label": "Teil 12 · Original German text · 1781",
+      "words": 5892,
+      "sectionCount": 1
+    },
+    {
+      "number": 13,
+      "file": "kant-de-part-13.json",
+      "label": "Teil 13 · Original German text · 1781",
+      "words": 5860,
+      "sectionCount": 1
+    },
+    {
+      "number": 14,
+      "file": "kant-de-part-14.json",
+      "label": "Teil 14 · Original German text · 1781",
+      "words": 5859,
+      "sectionCount": 1
+    },
+    {
+      "number": 15,
+      "file": "kant-de-part-15.json",
+      "label": "Teil 15 · Original German text · 1781",
+      "words": 5798,
+      "sectionCount": 1
+    },
+    {
+      "number": 16,
+      "file": "kant-de-part-16.json",
+      "label": "Teil 16 · Original German text · 1781",
+      "words": 5627,
+      "sectionCount": 1
+    },
+    {
+      "number": 17,
+      "file": "kant-de-part-17.json",
+      "label": "Teil 17 · Original German text · 1781",
+      "words": 5842,
+      "sectionCount": 1
+    },
+    {
+      "number": 18,
+      "file": "kant-de-part-18.json",
+      "label": "Teil 18 · Original German text · 1781",
+      "words": 5848,
+      "sectionCount": 1
+    },
+    {
+      "number": 19,
+      "file": "kant-de-part-19.json",
+      "label": "Teil 19 · Original German text · 1781",
+      "words": 5787,
+      "sectionCount": 1
+    },
+    {
+      "number": 20,
+      "file": "kant-de-part-20.json",
+      "label": "Teil 20 · Original German text · 1781",
+      "words": 5850,
+      "sectionCount": 1
+    },
+    {
+      "number": 21,
+      "file": "kant-de-part-21.json",
+      "label": "Teil 21 · Original German text · 1781",
+      "words": 5899,
+      "sectionCount": 1
+    },
+    {
+      "number": 22,
+      "file": "kant-de-part-22.json",
+      "label": "Teil 22 · Original German text · 1781",
+      "words": 5852,
+      "sectionCount": 1
+    },
+    {
+      "number": 23,
+      "file": "kant-de-part-23.json",
+      "label": "Teil 23 · Original German text · 1781",
+      "words": 5839,
+      "sectionCount": 1
+    },
+    {
+      "number": 24,
+      "file": "kant-de-part-24.json",
+      "label": "Teil 24 · Original German text · 1781",
+      "words": 5377,
+      "sectionCount": 1
+    },
+    {
+      "number": 25,
+      "file": "kant-de-part-25.json",
+      "label": "Teil 25 · Original German text · 1781",
+      "words": 5720,
+      "sectionCount": 1
+    },
+    {
+      "number": 26,
+      "file": "kant-de-part-26.json",
+      "label": "Teil 26 · Original German text · 1781",
+      "words": 5721,
+      "sectionCount": 1
+    },
+    {
+      "number": 27,
+      "file": "kant-de-part-27.json",
+      "label": "Teil 27 · Original German text · 1781",
+      "words": 5893,
+      "sectionCount": 1
+    },
+    {
+      "number": 28,
+      "file": "kant-de-part-28.json",
+      "label": "Teil 28 · Original German text · 1781",
+      "words": 5882,
+      "sectionCount": 1
+    },
+    {
+      "number": 29,
+      "file": "kant-de-part-29.json",
+      "label": "Teil 29 · Original German text · 1781",
+      "words": 5792,
+      "sectionCount": 1
+    },
+    {
+      "number": 30,
+      "file": "kant-de-part-30.json",
+      "label": "Teil 30 · Original German text · 1781",
+      "words": 5851,
+      "sectionCount": 1
+    },
+    {
+      "number": 31,
+      "file": "kant-de-part-31.json",
+      "label": "Teil 31 · Original German text · 1781",
+      "words": 1832,
+      "sectionCount": 1
+    }
+  ]
+}
