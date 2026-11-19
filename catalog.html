@@ -95,6 +95,7 @@ footer .wrap{display:flex;gap:18px;flex-wrap:wrap;justify-content:space-between}
 'use strict';
 const $=id=>document.getElementById(id);
 const genreByPage={
+ 'the-island-of-doctor-moreau.html':'Science Fiction & Fantasy',
  'the-yellow-wallpaper.html':'Gothic & Horror',
  'king-solomons-mines.html':'Victorian Adventure',
  'the-adventures-of-pinocchio.html':'Fairy Tales & Folklore',
@@ -251,6 +252,7 @@ const genreByPage={
  'oedipus-rex.html':'Ancient Classics'
 };
 const progressByPage={
+ 'the-island-of-doctor-moreau.html':'ophelia-island-of-doctor-moreau-wells-1896-v1',
  'the-yellow-wallpaper.html':'ophelia-the-yellow-wallpaper-gilman-1892-v1',
  'king-solomons-mines.html':'ophelia-king-solomons-mines-haggard-1907-v1',
  'the-adventures-of-pinocchio.html':'ophelia-the-adventures-of-pinocchio-collodi-della-chiesa-v1',
@@ -366,6 +368,7 @@ const progressByPage={
  'oedipus-rex.html':'ophelia-oedipus-rex-storr-1912-alice-voice-v1'
 };
 const catalogOnlyBooks=[
+ {title:'The Island of Doctor Moreau',author:'H. G. Wells · 1896',href:'the-island-of-doctor-moreau.html',image:'https://commons.wikimedia.org/wiki/Special:FilePath/IslandOfDrMoreau.JPG',alt:'Authentic first-edition 1896 Heinemann pictorial cover',description:"Stranded on a remote island, Edward Prendick uncovers Doctor Moreau’s uncanny scientific experiments and meets the Beast Folk.",genre:'Science Fiction & Fantasy'},
  {title:'The Yellow Wallpaper',author:'Charlotte Perkins Gilman · 1892',href:'the-yellow-wallpaper.html',image:'https://commons.wikimedia.org/wiki/Special:FilePath/The_Yellow_Wallpaper_(1899_edition_-_cover).jpg',alt:'Authentic 1899 first-edition cover',description:"A haunting Gothic tale of a woman confined to a room whose wallpaper increasingly possesses her imagination.",genre:'Gothic & Horror'},
  {title:'King Solomon’s Mines',author:'H. Rider Haggard · 1885',href:'king-solomons-mines.html',image:'public/art/king-solomons-mines-1885-cover.svg',alt:'Historically inspired 1885 red Victorian cloth cover',description:"When a missing man and an ancient map draw Allan Quatermain into the wild mountains of southern Africa, an extraordinary search begins. Beyond the horizon lie lost kingdoms and the promise of legendary treasure.",genre:'Victorian Adventure'},
  {title:'The Adventures of Pinocchio',author:'Carlo Collodi · 1883',href:'the-adventures-of-pinocchio.html',image:'https://commons.wikimedia.org/wiki/Special:FilePath/Pinocchio_by_Collodi%2C_first_edition_Paggi_1883.jpg',alt:'Original 1883 title page of Carlo Collodi’s Pinocchio',description:"A spirited wooden puppet tumbles through a world of talking creatures, enchantments, tricks and temptations as he tries to become a real boy.",genre:'Fairy Tales & Folklore'},
