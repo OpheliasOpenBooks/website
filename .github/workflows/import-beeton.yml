@@ -1,0 +1,33 @@
+name: Import full public-domain Mrs Beeton book
+on:
+  push:
+    paths:
+      - 'scripts/import-beeton.mjs'
+      - '.github/workflows/import-beeton.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import:
+    if: github.repository == 'OpheliasOpenBooks/website'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Import, reconstruct, and validate the complete public-domain work
+        run: node scripts/import-beeton.mjs
+      - name: Publish full hosted book and historical cover
+        run: |
+          git config user.name "Ophelia Library Import"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html public/books/mrs-beeton-household-management/
+          if [ -f public/art/mrs-beeton-1861-title-page.jpg ]; then git add public/art/mrs-beeton-1861-title-page.jpg; fi
+          git diff --cached --stat
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish verified complete Mrs Beeton household manual"
+            git push origin HEAD:main
+          fi
