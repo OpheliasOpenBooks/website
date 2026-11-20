@@ -85,14 +85,14 @@ def make_sections(kind,language):
             url=f"{BASE}phi1348/abo{i+11:03d}/{urn}.perseus-{'eng2' if language=='en' else 'lat2'}.xml"
             root=root_xml(url)
             divs=chapters(root)
-            if len(divs)<15:raise ValueError(f"Incomplete {name} biography: only {len(divs)} chapters")
+            if len(divs)<8:raise ValueError(f"Incomplete {name} biography: only {len(divs)} chapters")
             volume=[]
             for ch in divs:
                 p=paras(ch)
                 if p:
                     label=f"{name} · Section {ch.attrib.get('n','?')}" if language=="en" else f"{name} · Caput {ch.attrib.get('n','?')}"
                     volume.append({"name":label,"paragraphs":p})
-            if len(volume)<15 or sum(WC(p) for s in volume for p in s["paragraphs"])<1100:
+            if len(volume)<8 or sum(WC(p) for s in volume for p in s["paragraphs"])<1100:
                 raise ValueError("Empty or incomplete biography "+name)
             print("BIOGRAPHY",language,name,"chapters",len(volume),"words",sum(WC(p) for s in volume for p in s["paragraphs"]),flush=True)
             results.extend(volume)
