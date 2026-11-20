@@ -61,7 +61,15 @@ function normalize(text,lang){
   .replace(/_([^_\n]{1,180})_/g,'$1')
   .replace(/\n{3,}/g,'\n\n').trim();
  // Do not silently delete notes, poems, stanzas, or original lyric lines.
- if(lang==='en')out=out.replace(/\[Illustration(?::[^\]]*)?\]/g,'');
+ if(lang==='en'){
+  out=out.replace(/\\[Illustration(?::[^\\]]*)?\\]/g,'');
+  // Retain the complete poems and Campbell biography, but keep the
+  // nineteenth-century index of page numbers and printer's colophon out
+  // of the listening text; they are reference apparatus, not Petrarch.
+  const index=out.lastIndexOf('\\nINDEX.');
+  if(index>out.length*0.7&&/SONNET FOUND IN LAURA'S TOMB/i.test(out.slice(index-18000,index)))
+    out=out.slice(0,index).trim();
+ }
  return out;
 }
 function heading(p,lang){
