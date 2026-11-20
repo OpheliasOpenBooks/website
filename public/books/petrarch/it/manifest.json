@@ -1,0 +1,96 @@
+{
+  "title": "Il Canzoniere",
+  "author": "Francesco Petrarca",
+  "language": "it",
+  "readOnly": true,
+  "publication": "Original Italian poetry, fourteenth century",
+  "source": "https://files.libridominiopubblico.it/livros/it/francesco-petrarca/canzoniere.txt",
+  "wordCount": 56454,
+  "sha256": "c7e7e2a9371717a503ef0c655fdec263d5ea19acd88df242aa0d72640efe453a",
+  "parts": [
+    {
+      "part": 1,
+      "file": "part-001.json",
+      "name": "Front matter",
+      "sections": 1,
+      "words": 4861
+    },
+    {
+      "part": 2,
+      "file": "part-002.json",
+      "name": "Front matter",
+      "sections": 1,
+      "words": 4870
+    },
+    {
+      "part": 3,
+      "file": "part-003.json",
+      "name": "Front matter",
+      "sections": 1,
+      "words": 4894
+    },
+    {
+      "part": 4,
+      "file": "part-004.json",
+      "name": "Front matter",
+      "sections": 1,
+      "words": 4873
+    },
+    {
+      "part": 5,
+      "file": "part-005.json",
+      "name": "Front matter",
+      "sections": 1,
+      "words": 4889
+    },
+    {
+      "part": 6,
+      "file": "part-006.json",
+      "name": "Front matter",
+      "sections": 1,
+      "words": 4885
+    },
+    {
+      "part": 7,
+      "file": "part-007.json",
+      "name": "Front matter",
+      "sections": 1,
+      "words": 4899
+    },
+    {
+      "part": 8,
+      "file": "part-008.json",
+      "name": "Front matter",
+      "sections": 1,
+      "words": 4898
+    },
+    {
+      "part": 9,
+      "file": "part-009.json",
+      "name": "Front matter",
+      "sections": 1,
+      "words": 4883
+    },
+    {
+      "part": 10,
+      "file": "part-010.json",
+      "name": "Front matter",
+      "sections": 1,
+      "words": 4892
+    },
+    {
+      "part": 11,
+      "file": "part-011.json",
+      "name": "Front matter",
+      "sections": 1,
+      "words": 4873
+    },
+    {
+      "part": 12,
+      "file": "part-012.json",
+      "name": "Front matter",
+      "sections": 1,
+      "words": 2737
+    }
+  ]
+}

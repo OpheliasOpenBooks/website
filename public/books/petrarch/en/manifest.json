@@ -1,0 +1,299 @@
+{
+  "title": "The Sonnets, Triumphs, and Other Poems of Petrarch",
+  "author": "Francesco Petrarca",
+  "language": "en",
+  "readOnly": false,
+  "publication": "Bohn, 1859; Bell & Sons reprint, 1879",
+  "source": "https://gutenberg.pglaf.org/cache/epub/17650/pg17650.txt",
+  "wordCount": 191844,
+  "sha256": "089725dbb73d2d16c3f06e46623f2e5c14306c8a6272d6834042bc731abea9e2",
+  "parts": [
+    {
+      "part": 1,
+      "file": "part-001.json",
+      "name": "SONNET · S, TRIUMPHS, AND OTHER POEMS",
+      "sections": 5,
+      "words": 4800
+    },
+    {
+      "part": 2,
+      "file": "part-002.json",
+      "name": "Life of Petrarch · Thomas Campbell",
+      "sections": 1,
+      "words": 4878
+    },
+    {
+      "part": 3,
+      "file": "part-003.json",
+      "name": "Life of Petrarch · Thomas Campbell",
+      "sections": 1,
+      "words": 4857
+    },
+    {
+      "part": 4,
+      "file": "part-004.json",
+      "name": "Life of Petrarch · Thomas Campbell",
+      "sections": 1,
+      "words": 4877
+    },
+    {
+      "part": 5,
+      "file": "part-005.json",
+      "name": "Life of Petrarch · Thomas Campbell",
+      "sections": 1,
+      "words": 4893
+    },
+    {
+      "part": 6,
+      "file": "part-006.json",
+      "name": "Life of Petrarch · Thomas Campbell",
+      "sections": 1,
+      "words": 4711
+    },
+    {
+      "part": 7,
+      "file": "part-007.json",
+      "name": "Life of Petrarch · Thomas Campbell",
+      "sections": 1,
+      "words": 4727
+    },
+    {
+      "part": 8,
+      "file": "part-008.json",
+      "name": "Life of Petrarch · Thomas Campbell",
+      "sections": 1,
+      "words": 4751
+    },
+    {
+      "part": 9,
+      "file": "part-009.json",
+      "name": "Life of Petrarch · Thomas Campbell",
+      "sections": 1,
+      "words": 4767
+    },
+    {
+      "part": 10,
+      "file": "part-010.json",
+      "name": "Life of Petrarch · Thomas Campbell",
+      "sections": 1,
+      "words": 4855
+    },
+    {
+      "part": 11,
+      "file": "part-011.json",
+      "name": "Life of Petrarch · Thomas Campbell",
+      "sections": 1,
+      "words": 4877
+    },
+    {
+      "part": 12,
+      "file": "part-012.json",
+      "name": "Life of Petrarch · Thomas Campbell",
+      "sections": 1,
+      "words": 4795
+    },
+    {
+      "part": 13,
+      "file": "part-013.json",
+      "name": "Life of Petrarch · Thomas Campbell",
+      "sections": 1,
+      "words": 4870
+    },
+    {
+      "part": 14,
+      "file": "part-014.json",
+      "name": "SONNET lxix · is remarkable for the fineness of its closing thought.",
+      "sections": 2,
+      "words": 4787
+    },
+    {
+      "part": 15,
+      "file": "part-015.json",
+      "name": "SONNET lxix · is remarkable for the fineness of its closing thought.",
+      "sections": 19,
+      "words": 4787
+    },
+    {
+      "part": 16,
+      "file": "part-016.json",
+      "name": "SONNET XVI",
+      "sections": 11,
+      "words": 4803
+    },
+    {
+      "part": 17,
+      "file": "part-017.json",
+      "name": "CANZONE II",
+      "sections": 19,
+      "words": 4827
+    },
+    {
+      "part": 18,
+      "file": "part-018.json",
+      "name": "SONNET XXXVIII",
+      "sections": 20,
+      "words": 4799
+    },
+    {
+      "part": 19,
+      "file": "part-019.json",
+      "name": "SONNET L",
+      "sections": 13,
+      "words": 4799
+    },
+    {
+      "part": 20,
+      "file": "part-020.json",
+      "name": "SONNET LVII",
+      "sections": 25,
+      "words": 4889
+    },
+    {
+      "part": 21,
+      "file": "part-021.json",
+      "name": "SONNET LXXX",
+      "sections": 22,
+      "words": 4790
+    },
+    {
+      "part": 22,
+      "file": "part-022.json",
+      "name": "SONNET XCVII",
+      "sections": 11,
+      "words": 4881
+    },
+    {
+      "part": 23,
+      "file": "part-023.json",
+      "name": "SONNET CII",
+      "sections": 20,
+      "words": 4884
+    },
+    {
+      "part": 24,
+      "file": "part-024.json",
+      "name": "SONNET CXVIII",
+      "sections": 26,
+      "words": 4834
+    },
+    {
+      "part": 25,
+      "file": "part-025.json",
+      "name": "SONNET CXLIII",
+      "sections": 26,
+      "words": 4842
+    },
+    {
+      "part": 26,
+      "file": "part-026.json",
+      "name": "SONNET CLXVIII",
+      "sections": 19,
+      "words": 4900
+    },
+    {
+      "part": 27,
+      "file": "part-027.json",
+      "name": "SONNET CLXXXIII",
+      "sections": 26,
+      "words": 4878
+    },
+    {
+      "part": 28,
+      "file": "part-028.json",
+      "name": "SONNET CCVI",
+      "sections": 24,
+      "words": 4814
+    },
+    {
+      "part": 29,
+      "file": "part-029.json",
+      "name": "SONNET I",
+      "sections": 20,
+      "words": 4893
+    },
+    {
+      "part": 30,
+      "file": "part-030.json",
+      "name": "SONNET XVIII",
+      "sections": 22,
+      "words": 4827
+    },
+    {
+      "part": 31,
+      "file": "part-031.json",
+      "name": "SONNET XXXIX",
+      "sections": 20,
+      "words": 4805
+    },
+    {
+      "part": 32,
+      "file": "part-032.json",
+      "name": "CANZONE IV",
+      "sections": 19,
+      "words": 4805
+    },
+    {
+      "part": 33,
+      "file": "part-033.json",
+      "name": "SONNET LXX",
+      "sections": 16,
+      "words": 4900
+    },
+    {
+      "part": 34,
+      "file": "part-034.json",
+      "name": "SONNET LXXXIV",
+      "sections": 9,
+      "words": 5032
+    },
+    {
+      "part": 35,
+      "file": "part-035.json",
+      "name": "TRIUMPH · OF LOVE.",
+      "sections": 1,
+      "words": 4337
+    },
+    {
+      "part": 36,
+      "file": "part-036.json",
+      "name": "TRIUMPH · OF LOVE.",
+      "sections": 1,
+      "words": 3745
+    },
+    {
+      "part": 37,
+      "file": "part-037.json",
+      "name": "TRIUMPH · OF LOVE.",
+      "sections": 2,
+      "words": 4990
+    },
+    {
+      "part": 38,
+      "file": "part-038.json",
+      "name": "TRIUMPH · OF CHASTITY.",
+      "sections": 3,
+      "words": 4824
+    },
+    {
+      "part": 39,
+      "file": "part-039.json",
+      "name": "TRIUMPH · OF FAME.",
+      "sections": 3,
+      "words": 4300
+    },
+    {
+      "part": 40,
+      "file": "part-040.json",
+      "name": "TRIUMPH · OF ETERNITY.",
+      "sections": 4,
+      "words": 4899
+    },
+    {
+      "part": 41,
+      "file": "part-041.json",
+      "name": "SONNET · S, CANZONI, &c.",
+      "sections": 4,
+      "words": 315
+    }
+  ]
+}
