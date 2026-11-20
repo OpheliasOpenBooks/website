@@ -1,0 +1,351 @@
+{
+  "title": "The Annals",
+  "author": "Tacitus",
+  "language": "en",
+  "readOnly": false,
+  "source": "Perseus Digital Library historical TEI transcription, via https://github.com/PerseusDL/canonical-latinLit",
+  "transcriptionLicense": "CC BY-SA 4.0",
+  "attribution": "Perseus Digital Library, Trustees of Tufts University; 1883 Thomson English translation of Suetonius or nineteenth-century Church/Brodribb English translation of Tacitus; 1906 Latin editions; editorial annotations excluded",
+  "original": "Annales",
+  "survivingBooks": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16
+  ],
+  "englishTranslation": "Alfred John Church and William Jackson Brodribb (1876)",
+  "wordCount": 157810,
+  "sections": 721,
+  "parts": [
+    {
+      "part": 1,
+      "file": "part-001.json",
+      "name": "Book I · Section 1",
+      "sections": 13,
+      "words": 4037
+    },
+    {
+      "part": 2,
+      "file": "part-002.json",
+      "name": "Book I · Section 14",
+      "sections": 16,
+      "words": 3316
+    },
+    {
+      "part": 3,
+      "file": "part-003.json",
+      "name": "Book I · Section 30",
+      "sections": 16,
+      "words": 3743
+    },
+    {
+      "part": 4,
+      "file": "part-004.json",
+      "name": "Book I · Section 46",
+      "sections": 16,
+      "words": 3816
+    },
+    {
+      "part": 5,
+      "file": "part-005.json",
+      "name": "Book I · Section 62",
+      "sections": 16,
+      "words": 3865
+    },
+    {
+      "part": 6,
+      "file": "part-006.json",
+      "name": "Book I · Section 78",
+      "sections": 16,
+      "words": 2979
+    },
+    {
+      "part": 7,
+      "file": "part-007.json",
+      "name": "Book II · Section 13",
+      "sections": 16,
+      "words": 3320
+    },
+    {
+      "part": 8,
+      "file": "part-008.json",
+      "name": "Book II · Section 29",
+      "sections": 16,
+      "words": 3950
+    },
+    {
+      "part": 9,
+      "file": "part-009.json",
+      "name": "Book II · Section 45",
+      "sections": 16,
+      "words": 3650
+    },
+    {
+      "part": 10,
+      "file": "part-010.json",
+      "name": "Book II · Section 61",
+      "sections": 16,
+      "words": 2860
+    },
+    {
+      "part": 11,
+      "file": "part-011.json",
+      "name": "Book II · Section 77",
+      "sections": 16,
+      "words": 2970
+    },
+    {
+      "part": 12,
+      "file": "part-012.json",
+      "name": "Book III · Section 5",
+      "sections": 16,
+      "words": 3550
+    },
+    {
+      "part": 13,
+      "file": "part-013.json",
+      "name": "Book III · Section 21",
+      "sections": 16,
+      "words": 3610
+    },
+    {
+      "part": 14,
+      "file": "part-014.json",
+      "name": "Book III · Section 37",
+      "sections": 16,
+      "words": 2858
+    },
+    {
+      "part": 15,
+      "file": "part-015.json",
+      "name": "Book III · Section 53",
+      "sections": 16,
+      "words": 3491
+    },
+    {
+      "part": 16,
+      "file": "part-016.json",
+      "name": "Book III · Section 69",
+      "sections": 16,
+      "words": 3835
+    },
+    {
+      "part": 17,
+      "file": "part-017.json",
+      "name": "Book IV · Section 9",
+      "sections": 16,
+      "words": 3433
+    },
+    {
+      "part": 18,
+      "file": "part-018.json",
+      "name": "Book IV · Section 25",
+      "sections": 16,
+      "words": 3906
+    },
+    {
+      "part": 19,
+      "file": "part-019.json",
+      "name": "Book IV · Section 41",
+      "sections": 16,
+      "words": 3766
+    },
+    {
+      "part": 20,
+      "file": "part-020.json",
+      "name": "Book IV · Section 57",
+      "sections": 16,
+      "words": 3507
+    },
+    {
+      "part": 21,
+      "file": "part-021.json",
+      "name": "Book IV · Section 73",
+      "sections": 16,
+      "words": 2960
+    },
+    {
+      "part": 22,
+      "file": "part-022.json",
+      "name": "Book VI · Section 3",
+      "sections": 16,
+      "words": 3656
+    },
+    {
+      "part": 23,
+      "file": "part-023.json",
+      "name": "Book VI · Section 19",
+      "sections": 16,
+      "words": 3980
+    },
+    {
+      "part": 24,
+      "file": "part-024.json",
+      "name": "Book VI · Section 35",
+      "sections": 16,
+      "words": 4032
+    },
+    {
+      "part": 25,
+      "file": "part-025.json",
+      "name": "Book VI · Section 51",
+      "sections": 16,
+      "words": 3253
+    },
+    {
+      "part": 26,
+      "file": "part-026.json",
+      "name": "Book XI · Section 16",
+      "sections": 16,
+      "words": 3878
+    },
+    {
+      "part": 27,
+      "file": "part-027.json",
+      "name": "Book XI · Section 32",
+      "sections": 16,
+      "words": 3000
+    },
+    {
+      "part": 28,
+      "file": "part-028.json",
+      "name": "Book XII · Section 10",
+      "sections": 16,
+      "words": 2859
+    },
+    {
+      "part": 29,
+      "file": "part-029.json",
+      "name": "Book XII · Section 26",
+      "sections": 16,
+      "words": 3232
+    },
+    {
+      "part": 30,
+      "file": "part-030.json",
+      "name": "Book XII · Section 42",
+      "sections": 16,
+      "words": 3450
+    },
+    {
+      "part": 31,
+      "file": "part-031.json",
+      "name": "Book XII · Section 58",
+      "sections": 16,
+      "words": 3013
+    },
+    {
+      "part": 32,
+      "file": "part-032.json",
+      "name": "Book XIII · Section 5",
+      "sections": 16,
+      "words": 3650
+    },
+    {
+      "part": 33,
+      "file": "part-033.json",
+      "name": "Book XIII · Section 21",
+      "sections": 16,
+      "words": 3304
+    },
+    {
+      "part": 34,
+      "file": "part-034.json",
+      "name": "Book XIII · Section 37",
+      "sections": 15,
+      "words": 4109
+    },
+    {
+      "part": 35,
+      "file": "part-035.json",
+      "name": "Book XIII · Section 52",
+      "sections": 16,
+      "words": 3868
+    },
+    {
+      "part": 36,
+      "file": "part-036.json",
+      "name": "Book XIV · Section 10",
+      "sections": 16,
+      "words": 3558
+    },
+    {
+      "part": 37,
+      "file": "part-037.json",
+      "name": "Book XIV · Section 26",
+      "sections": 16,
+      "words": 3102
+    },
+    {
+      "part": 38,
+      "file": "part-038.json",
+      "name": "Book XIV · Section 42",
+      "sections": 16,
+      "words": 3372
+    },
+    {
+      "part": 39,
+      "file": "part-039.json",
+      "name": "Book XIV · Section 58",
+      "sections": 16,
+      "words": 3672
+    },
+    {
+      "part": 40,
+      "file": "part-040.json",
+      "name": "Book XV · Section 9",
+      "sections": 16,
+      "words": 3487
+    },
+    {
+      "part": 41,
+      "file": "part-041.json",
+      "name": "Book XV · Section 25",
+      "sections": 16,
+      "words": 3158
+    },
+    {
+      "part": 42,
+      "file": "part-042.json",
+      "name": "Book XV · Section 41",
+      "sections": 16,
+      "words": 3867
+    },
+    {
+      "part": 43,
+      "file": "part-043.json",
+      "name": "Book XV · Section 57",
+      "sections": 16,
+      "words": 3564
+    },
+    {
+      "part": 44,
+      "file": "part-044.json",
+      "name": "Book XV · Section 73",
+      "sections": 16,
+      "words": 3185
+    },
+    {
+      "part": 45,
+      "file": "part-045.json",
+      "name": "Book XVI · Section 15",
+      "sections": 16,
+      "words": 3340
+    },
+    {
+      "part": 46,
+      "file": "part-046.json",
+      "name": "Book XVI · Section 31",
+      "sections": 5,
+      "words": 799
+    }
+  ]
+}

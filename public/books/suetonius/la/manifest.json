@@ -1,0 +1,267 @@
+{
+  "title": "The Twelve Caesars",
+  "author": "Suetonius",
+  "language": "la",
+  "readOnly": true,
+  "source": "Perseus Digital Library historical TEI transcription, via https://github.com/PerseusDL/canonical-latinLit",
+  "transcriptionLicense": "CC BY-SA 4.0",
+  "attribution": "Perseus Digital Library, Trustees of Tufts University; 1883 Thomson English translation of Suetonius or nineteenth-century Church/Brodribb English translation of Tacitus; 1906 Latin editions; editorial annotations excluded",
+  "original": "De vita Caesarum",
+  "survivingBooks": [
+    "Julius Caesar",
+    "Augustus",
+    "Tiberius",
+    "Caligula",
+    "Claudius",
+    "Nero",
+    "Galba",
+    "Otho",
+    "Vitellius",
+    "Vespasian",
+    "Titus",
+    "Domitian"
+  ],
+  "englishTranslation": "Alexander Thomson (1796; 1883 Gebbie edition)",
+  "wordCount": 69516,
+  "sections": 541,
+  "parts": [
+    {
+      "part": 1,
+      "file": "part-001.json",
+      "name": "Julius Caesar · Caput 1",
+      "sections": 16,
+      "words": 1411
+    },
+    {
+      "part": 2,
+      "file": "part-002.json",
+      "name": "Julius Caesar · Caput 17",
+      "sections": 16,
+      "words": 2072
+    },
+    {
+      "part": 3,
+      "file": "part-003.json",
+      "name": "Julius Caesar · Caput 33",
+      "sections": 16,
+      "words": 1666
+    },
+    {
+      "part": 4,
+      "file": "part-004.json",
+      "name": "Julius Caesar · Caput 49",
+      "sections": 16,
+      "words": 1685
+    },
+    {
+      "part": 5,
+      "file": "part-005.json",
+      "name": "Julius Caesar · Caput 65",
+      "sections": 16,
+      "words": 1837
+    },
+    {
+      "part": 6,
+      "file": "part-006.json",
+      "name": "Julius Caesar · Caput 81",
+      "sections": 16,
+      "words": 1851
+    },
+    {
+      "part": 7,
+      "file": "part-007.json",
+      "name": "Augustus · Caput 8",
+      "sections": 16,
+      "words": 2017
+    },
+    {
+      "part": 8,
+      "file": "part-008.json",
+      "name": "Augustus · Caput 24",
+      "sections": 16,
+      "words": 2332
+    },
+    {
+      "part": 9,
+      "file": "part-009.json",
+      "name": "Augustus · Caput 40",
+      "sections": 16,
+      "words": 1971
+    },
+    {
+      "part": 10,
+      "file": "part-010.json",
+      "name": "Augustus · Caput 56",
+      "sections": 16,
+      "words": 1990
+    },
+    {
+      "part": 11,
+      "file": "part-011.json",
+      "name": "Augustus · Caput 72",
+      "sections": 16,
+      "words": 1794
+    },
+    {
+      "part": 12,
+      "file": "part-012.json",
+      "name": "Augustus · Caput 88",
+      "sections": 16,
+      "words": 2804
+    },
+    {
+      "part": 13,
+      "file": "part-013.json",
+      "name": "Tiberius · Caput 3",
+      "sections": 16,
+      "words": 2216
+    },
+    {
+      "part": 14,
+      "file": "part-014.json",
+      "name": "Tiberius · Caput 19",
+      "sections": 16,
+      "words": 1853
+    },
+    {
+      "part": 15,
+      "file": "part-015.json",
+      "name": "Tiberius · Caput 35",
+      "sections": 16,
+      "words": 1630
+    },
+    {
+      "part": 16,
+      "file": "part-016.json",
+      "name": "Tiberius · Caput 51",
+      "sections": 16,
+      "words": 1920
+    },
+    {
+      "part": 17,
+      "file": "part-017.json",
+      "name": "Tiberius · Caput 67",
+      "sections": 16,
+      "words": 1774
+    },
+    {
+      "part": 18,
+      "file": "part-018.json",
+      "name": "Caligula · Caput 7",
+      "sections": 16,
+      "words": 2208
+    },
+    {
+      "part": 19,
+      "file": "part-019.json",
+      "name": "Caligula · Caput 23",
+      "sections": 16,
+      "words": 2341
+    },
+    {
+      "part": 20,
+      "file": "part-020.json",
+      "name": "Caligula · Caput 39",
+      "sections": 16,
+      "words": 1784
+    },
+    {
+      "part": 21,
+      "file": "part-021.json",
+      "name": "Caligula · Caput 55",
+      "sections": 16,
+      "words": 2341
+    },
+    {
+      "part": 22,
+      "file": "part-022.json",
+      "name": "Claudius · Caput 11",
+      "sections": 16,
+      "words": 2804
+    },
+    {
+      "part": 23,
+      "file": "part-023.json",
+      "name": "Claudius · Caput 27",
+      "sections": 16,
+      "words": 1860
+    },
+    {
+      "part": 24,
+      "file": "part-024.json",
+      "name": "Claudius · Caput 43",
+      "sections": 16,
+      "words": 1943
+    },
+    {
+      "part": 25,
+      "file": "part-025.json",
+      "name": "Nero · Caput 13",
+      "sections": 16,
+      "words": 2060
+    },
+    {
+      "part": 26,
+      "file": "part-026.json",
+      "name": "Nero · Caput 29",
+      "sections": 16,
+      "words": 2839
+    },
+    {
+      "part": 27,
+      "file": "part-027.json",
+      "name": "Nero · Caput 45",
+      "sections": 16,
+      "words": 1834
+    },
+    {
+      "part": 28,
+      "file": "part-028.json",
+      "name": "Galba · Caput 4",
+      "sections": 16,
+      "words": 2117
+    },
+    {
+      "part": 29,
+      "file": "part-029.json",
+      "name": "Galba · Caput 20",
+      "sections": 16,
+      "words": 1955
+    },
+    {
+      "part": 30,
+      "file": "part-030.json",
+      "name": "Vitellius · Caput 1",
+      "sections": 16,
+      "words": 2207
+    },
+    {
+      "part": 31,
+      "file": "part-031.json",
+      "name": "Vitellius · Caput 17",
+      "sections": 16,
+      "words": 2396
+    },
+    {
+      "part": 32,
+      "file": "part-032.json",
+      "name": "Vespasian · Caput 15",
+      "sections": 16,
+      "words": 1510
+    },
+    {
+      "part": 33,
+      "file": "part-033.json",
+      "name": "Titus · Caput 6",
+      "sections": 16,
+      "words": 2801
+    },
+    {
+      "part": 34,
+      "file": "part-034.json",
+      "name": "Domitian · Caput 11",
+      "sections": 13,
+      "words": 1693
+    }
+  ]
+}

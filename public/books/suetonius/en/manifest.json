@@ -1,0 +1,302 @@
+{
+  "title": "The Twelve Caesars",
+  "author": "Suetonius",
+  "language": "en",
+  "readOnly": false,
+  "source": "Perseus Digital Library historical TEI transcription, via https://github.com/PerseusDL/canonical-latinLit",
+  "transcriptionLicense": "CC BY-SA 4.0",
+  "attribution": "Perseus Digital Library, Trustees of Tufts University; 1883 Thomson English translation of Suetonius or nineteenth-century Church/Brodribb English translation of Tacitus; 1906 Latin editions; editorial annotations excluded",
+  "original": "De vita Caesarum",
+  "survivingBooks": [
+    "Julius Caesar",
+    "Augustus",
+    "Tiberius",
+    "Caligula",
+    "Claudius",
+    "Nero",
+    "Galba",
+    "Otho",
+    "Vitellius",
+    "Vespasian",
+    "Titus",
+    "Domitian"
+  ],
+  "englishTranslation": "Alexander Thomson (1796; 1883 Gebbie edition)",
+  "wordCount": 143637,
+  "sections": 549,
+  "parts": [
+    {
+      "part": 1,
+      "file": "part-001.json",
+      "name": "Julius Caesar · Section 1",
+      "sections": 16,
+      "words": 2668
+    },
+    {
+      "part": 2,
+      "file": "part-002.json",
+      "name": "Julius Caesar · Section 17",
+      "sections": 16,
+      "words": 3817
+    },
+    {
+      "part": 3,
+      "file": "part-003.json",
+      "name": "Julius Caesar · Section 33",
+      "sections": 16,
+      "words": 3194
+    },
+    {
+      "part": 4,
+      "file": "part-004.json",
+      "name": "Julius Caesar · Section 50",
+      "sections": 16,
+      "words": 2805
+    },
+    {
+      "part": 5,
+      "file": "part-005.json",
+      "name": "Julius Caesar · Section 66",
+      "sections": 16,
+      "words": 3835
+    },
+    {
+      "part": 6,
+      "file": "part-006.json",
+      "name": "Julius Caesar · Section 82",
+      "sections": 14,
+      "words": 4167
+    },
+    {
+      "part": 7,
+      "file": "part-007.json",
+      "name": "Augustus · Section 6",
+      "sections": 16,
+      "words": 3926
+    },
+    {
+      "part": 8,
+      "file": "part-008.json",
+      "name": "Augustus · Section 22",
+      "sections": 13,
+      "words": 3899
+    },
+    {
+      "part": 9,
+      "file": "part-009.json",
+      "name": "Augustus · Section 35",
+      "sections": 16,
+      "words": 4153
+    },
+    {
+      "part": 10,
+      "file": "part-010.json",
+      "name": "Augustus · Section 51",
+      "sections": 16,
+      "words": 3729
+    },
+    {
+      "part": 11,
+      "file": "part-011.json",
+      "name": "Augustus · Section 67",
+      "sections": 16,
+      "words": 3352
+    },
+    {
+      "part": 12,
+      "file": "part-012.json",
+      "name": "Augustus · Section 83",
+      "sections": 14,
+      "words": 4194
+    },
+    {
+      "part": 13,
+      "file": "part-013.json",
+      "name": "Augustus · Section 97",
+      "sections": 6,
+      "words": 4193
+    },
+    {
+      "part": 14,
+      "file": "part-014.json",
+      "name": "Tiberius · Section 3",
+      "sections": 16,
+      "words": 3959
+    },
+    {
+      "part": 15,
+      "file": "part-015.json",
+      "name": "Tiberius · Section 19",
+      "sections": 16,
+      "words": 3356
+    },
+    {
+      "part": 16,
+      "file": "part-016.json",
+      "name": "Tiberius · Section 35",
+      "sections": 16,
+      "words": 2739
+    },
+    {
+      "part": 17,
+      "file": "part-017.json",
+      "name": "Tiberius · Section 51",
+      "sections": 16,
+      "words": 3654
+    },
+    {
+      "part": 18,
+      "file": "part-018.json",
+      "name": "Tiberius · Section 67",
+      "sections": 10,
+      "words": 2116
+    },
+    {
+      "part": 19,
+      "file": "part-019.json",
+      "name": "Tiberius · Section note",
+      "sections": 3,
+      "words": 4155
+    },
+    {
+      "part": 20,
+      "file": "part-020.json",
+      "name": "Caligula · Section 3",
+      "sections": 16,
+      "words": 3881
+    },
+    {
+      "part": 21,
+      "file": "part-021.json",
+      "name": "Caligula · Section 19",
+      "sections": 16,
+      "words": 4123
+    },
+    {
+      "part": 22,
+      "file": "part-022.json",
+      "name": "Caligula · Section 35",
+      "sections": 16,
+      "words": 3647
+    },
+    {
+      "part": 23,
+      "file": "part-023.json",
+      "name": "Caligula · Section 51",
+      "sections": 13,
+      "words": 4102
+    },
+    {
+      "part": 24,
+      "file": "part-024.json",
+      "name": "Claudius · Section 3",
+      "sections": 14,
+      "words": 3930
+    },
+    {
+      "part": 25,
+      "file": "part-025.json",
+      "name": "Claudius · Section 17",
+      "sections": 12,
+      "words": 3878
+    },
+    {
+      "part": 26,
+      "file": "part-026.json",
+      "name": "Claudius · Section 29",
+      "sections": 16,
+      "words": 3420
+    },
+    {
+      "part": 27,
+      "file": "part-027.json",
+      "name": "Claudius · Section 45",
+      "sections": 16,
+      "words": 3809
+    },
+    {
+      "part": 28,
+      "file": "part-028.json",
+      "name": "Nero · Section 14",
+      "sections": 16,
+      "words": 4018
+    },
+    {
+      "part": 29,
+      "file": "part-029.json",
+      "name": "Nero · Section 31",
+      "sections": 9,
+      "words": 3860
+    },
+    {
+      "part": 30,
+      "file": "part-030.json",
+      "name": "Nero · Section 40",
+      "sections": 16,
+      "words": 3774
+    },
+    {
+      "part": 31,
+      "file": "part-031.json",
+      "name": "Nero · Section 56",
+      "sections": 11,
+      "words": 4098
+    },
+    {
+      "part": 32,
+      "file": "part-032.json",
+      "name": "Galba · Section 9",
+      "sections": 16,
+      "words": 3569
+    },
+    {
+      "part": 33,
+      "file": "part-033.json",
+      "name": "Otho · Section 1",
+      "sections": 15,
+      "words": 4193
+    },
+    {
+      "part": 34,
+      "file": "part-034.json",
+      "name": "Vitellius · Section 3",
+      "sections": 16,
+      "words": 3813
+    },
+    {
+      "part": 35,
+      "file": "part-035.json",
+      "name": "Vitellius · Section note",
+      "sections": 13,
+      "words": 4133
+    },
+    {
+      "part": 36,
+      "file": "part-036.json",
+      "name": "Vespasian · Section 13",
+      "sections": 16,
+      "words": 3204
+    },
+    {
+      "part": 37,
+      "file": "part-037.json",
+      "name": "Titus · Section 3",
+      "sections": 13,
+      "words": 3712
+    },
+    {
+      "part": 38,
+      "file": "part-038.json",
+      "name": "Domitian · Section 4",
+      "sections": 11,
+      "words": 3862
+    },
+    {
+      "part": 39,
+      "file": "part-039.json",
+      "name": "Domitian · Section 15",
+      "sections": 10,
+      "words": 2700
+    }
+  ]
+}

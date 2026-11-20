@@ -1,0 +1,351 @@
+{
+  "title": "The Annals",
+  "author": "Tacitus",
+  "language": "la",
+  "readOnly": true,
+  "source": "Perseus Digital Library historical TEI transcription, via https://github.com/PerseusDL/canonical-latinLit",
+  "transcriptionLicense": "CC BY-SA 4.0",
+  "attribution": "Perseus Digital Library, Trustees of Tufts University; 1883 Thomson English translation of Suetonius or nineteenth-century Church/Brodribb English translation of Tacitus; 1906 Latin editions; editorial annotations excluded",
+  "original": "Annales",
+  "survivingBooks": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16
+  ],
+  "englishTranslation": "Alfred John Church and William Jackson Brodribb (1876)",
+  "wordCount": 88836,
+  "sections": 721,
+  "parts": [
+    {
+      "part": 1,
+      "file": "part-001.json",
+      "name": "Liber I · Caput 1",
+      "sections": 16,
+      "words": 2577
+    },
+    {
+      "part": 2,
+      "file": "part-002.json",
+      "name": "Liber I · Caput 17",
+      "sections": 16,
+      "words": 1942
+    },
+    {
+      "part": 3,
+      "file": "part-003.json",
+      "name": "Liber I · Caput 33",
+      "sections": 16,
+      "words": 1941
+    },
+    {
+      "part": 4,
+      "file": "part-004.json",
+      "name": "Liber I · Caput 49",
+      "sections": 16,
+      "words": 2197
+    },
+    {
+      "part": 5,
+      "file": "part-005.json",
+      "name": "Liber I · Caput 65",
+      "sections": 16,
+      "words": 1989
+    },
+    {
+      "part": 6,
+      "file": "part-006.json",
+      "name": "Liber I · Caput 81",
+      "sections": 16,
+      "words": 1725
+    },
+    {
+      "part": 7,
+      "file": "part-007.json",
+      "name": "Liber II · Caput 16",
+      "sections": 16,
+      "words": 1753
+    },
+    {
+      "part": 8,
+      "file": "part-008.json",
+      "name": "Liber II · Caput 32",
+      "sections": 16,
+      "words": 2388
+    },
+    {
+      "part": 9,
+      "file": "part-009.json",
+      "name": "Liber II · Caput 48",
+      "sections": 16,
+      "words": 1941
+    },
+    {
+      "part": 10,
+      "file": "part-010.json",
+      "name": "Liber II · Caput 64",
+      "sections": 16,
+      "words": 1602
+    },
+    {
+      "part": 11,
+      "file": "part-011.json",
+      "name": "Liber II · Caput 80",
+      "sections": 16,
+      "words": 1684
+    },
+    {
+      "part": 12,
+      "file": "part-012.json",
+      "name": "Liber III · Caput 8",
+      "sections": 16,
+      "words": 2105
+    },
+    {
+      "part": 13,
+      "file": "part-013.json",
+      "name": "Liber III · Caput 24",
+      "sections": 16,
+      "words": 2024
+    },
+    {
+      "part": 14,
+      "file": "part-014.json",
+      "name": "Liber III · Caput 40",
+      "sections": 16,
+      "words": 2004
+    },
+    {
+      "part": 15,
+      "file": "part-015.json",
+      "name": "Liber III · Caput 56",
+      "sections": 16,
+      "words": 1821
+    },
+    {
+      "part": 16,
+      "file": "part-016.json",
+      "name": "Liber III · Caput 72",
+      "sections": 16,
+      "words": 2138
+    },
+    {
+      "part": 17,
+      "file": "part-017.json",
+      "name": "Liber IV · Caput 12",
+      "sections": 16,
+      "words": 1966
+    },
+    {
+      "part": 18,
+      "file": "part-018.json",
+      "name": "Liber IV · Caput 28",
+      "sections": 16,
+      "words": 2379
+    },
+    {
+      "part": 19,
+      "file": "part-019.json",
+      "name": "Liber IV · Caput 44",
+      "sections": 16,
+      "words": 2109
+    },
+    {
+      "part": 20,
+      "file": "part-020.json",
+      "name": "Liber IV · Caput 60",
+      "sections": 16,
+      "words": 2005
+    },
+    {
+      "part": 21,
+      "file": "part-021.json",
+      "name": "Liber V · Caput 1",
+      "sections": 16,
+      "words": 1668
+    },
+    {
+      "part": 22,
+      "file": "part-022.json",
+      "name": "Liber VI · Caput 6",
+      "sections": 16,
+      "words": 2043
+    },
+    {
+      "part": 23,
+      "file": "part-023.json",
+      "name": "Liber VI · Caput 22",
+      "sections": 16,
+      "words": 2298
+    },
+    {
+      "part": 24,
+      "file": "part-024.json",
+      "name": "Liber VI · Caput 38",
+      "sections": 16,
+      "words": 2125
+    },
+    {
+      "part": 25,
+      "file": "part-025.json",
+      "name": "Liber XI · Caput 3",
+      "sections": 16,
+      "words": 1924
+    },
+    {
+      "part": 26,
+      "file": "part-026.json",
+      "name": "Liber XI · Caput 19",
+      "sections": 16,
+      "words": 2039
+    },
+    {
+      "part": 27,
+      "file": "part-027.json",
+      "name": "Liber XI · Caput 35",
+      "sections": 16,
+      "words": 1703
+    },
+    {
+      "part": 28,
+      "file": "part-028.json",
+      "name": "Liber XII · Caput 13",
+      "sections": 16,
+      "words": 1526
+    },
+    {
+      "part": 29,
+      "file": "part-029.json",
+      "name": "Liber XII · Caput 29",
+      "sections": 16,
+      "words": 1976
+    },
+    {
+      "part": 30,
+      "file": "part-030.json",
+      "name": "Liber XII · Caput 45",
+      "sections": 16,
+      "words": 1808
+    },
+    {
+      "part": 31,
+      "file": "part-031.json",
+      "name": "Liber XII · Caput 61",
+      "sections": 16,
+      "words": 1702
+    },
+    {
+      "part": 32,
+      "file": "part-032.json",
+      "name": "Liber XIII · Caput 8",
+      "sections": 16,
+      "words": 2146
+    },
+    {
+      "part": 33,
+      "file": "part-033.json",
+      "name": "Liber XIII · Caput 24",
+      "sections": 16,
+      "words": 2075
+    },
+    {
+      "part": 34,
+      "file": "part-034.json",
+      "name": "Liber XIII · Caput 40",
+      "sections": 16,
+      "words": 2186
+    },
+    {
+      "part": 35,
+      "file": "part-035.json",
+      "name": "Liber XIII · Caput 56",
+      "sections": 16,
+      "words": 2133
+    },
+    {
+      "part": 36,
+      "file": "part-036.json",
+      "name": "Liber XIV · Caput 14",
+      "sections": 16,
+      "words": 1896
+    },
+    {
+      "part": 37,
+      "file": "part-037.json",
+      "name": "Liber XIV · Caput 30",
+      "sections": 16,
+      "words": 1832
+    },
+    {
+      "part": 38,
+      "file": "part-038.json",
+      "name": "Liber XIV · Caput 46",
+      "sections": 16,
+      "words": 2085
+    },
+    {
+      "part": 39,
+      "file": "part-039.json",
+      "name": "Liber XIV · Caput 62",
+      "sections": 16,
+      "words": 1896
+    },
+    {
+      "part": 40,
+      "file": "part-040.json",
+      "name": "Liber XV · Caput 13",
+      "sections": 16,
+      "words": 1860
+    },
+    {
+      "part": 41,
+      "file": "part-041.json",
+      "name": "Liber XV · Caput 29",
+      "sections": 16,
+      "words": 1865
+    },
+    {
+      "part": 42,
+      "file": "part-042.json",
+      "name": "Liber XV · Caput 45",
+      "sections": 16,
+      "words": 2212
+    },
+    {
+      "part": 43,
+      "file": "part-043.json",
+      "name": "Liber XV · Caput 61",
+      "sections": 16,
+      "words": 1904
+    },
+    {
+      "part": 44,
+      "file": "part-044.json",
+      "name": "Liber XVI · Caput 3",
+      "sections": 16,
+      "words": 1870
+    },
+    {
+      "part": 45,
+      "file": "part-045.json",
+      "name": "Liber XVI · Caput 19",
+      "sections": 16,
+      "words": 1701
+    },
+    {
+      "part": 46,
+      "file": "part-046.json",
+      "name": "Liber XVI · Caput 35",
+      "sections": 1,
+      "words": 73
+    }
+  ]
+}
