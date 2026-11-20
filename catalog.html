@@ -1013,8 +1013,8 @@ $('reset').addEventListener('click',()=>{$('book-search').value='';$('genre').va
 // once so readers immediately see newly published cards instead of a stale shell.
 if('serviceWorker' in navigator){
  navigator.serviceWorker.addEventListener('controllerchange',()=>{
-  if(!sessionStorage.getItem('ophelia-catalog-sw-v5-refreshed')){
-   try{sessionStorage.setItem('ophelia-catalog-sw-v5-refreshed','1');}catch{}
+  if(!sessionStorage.getItem('ophelia-catalog-sw-v6-refreshed')){
+   try{sessionStorage.setItem('ophelia-catalog-sw-v6-refreshed','1');}catch{}
    location.reload();
   }
  });
