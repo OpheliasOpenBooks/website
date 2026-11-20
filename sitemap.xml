@@ -2,6 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://opheliasopenbooks.github.io/website/</loc></url>
   <url><loc>https://opheliasopenbooks.github.io/website/a-christmas-carol.html</loc></url>
+  <url><loc>https://opheliasopenbooks.github.io/website/a-confession-tolstoy-original-russian.html</loc></url>
   <url><loc>https://opheliasopenbooks.github.io/website/a-confession-tolstoy.html</loc></url>
   <url><loc>https://opheliasopenbooks.github.io/website/a-farewell-to-arms.html</loc></url>
   <url><loc>https://opheliasopenbooks.github.io/website/a-journal-of-the-plague-year.html</loc></url>
@@ -232,6 +233,7 @@
   <url><loc>https://opheliasopenbooks.github.io/website/the-case-book-of-sherlock-holmes.html</loc></url>
   <url><loc>https://opheliasopenbooks.github.io/website/the-castle-of-otranto.html</loc></url>
   <url><loc>https://opheliasopenbooks.github.io/website/the-count-of-monte-cristo.html</loc></url>
+  <url><loc>https://opheliasopenbooks.github.io/website/the-death-of-ivan-ilyich-original-russian.html</loc></url>
   <url><loc>https://opheliasopenbooks.github.io/website/the-death-of-ivan-ilyich.html</loc></url>
   <url><loc>https://opheliasopenbooks.github.io/website/the-deerslayer.html</loc></url>
   <url><loc>https://opheliasopenbooks.github.io/website/the-duchess-of-malfi.html</loc></url>
@@ -334,5 +336,4 @@
   <url><loc>https://opheliasopenbooks.github.io/website/white-fang.html</loc></url>
   <url><loc>https://opheliasopenbooks.github.io/website/winnie-the-pooh.html</loc></url>
   <url><loc>https://opheliasopenbooks.github.io/website/wuthering-heights.html</loc></url>
-  <url><loc>https://opheliasopenbooks.github.io/website/a-confession-tolstoy.html</loc></url>
 </urlset>
