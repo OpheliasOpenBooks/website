@@ -38,3 +38,17 @@ for(const id of ['livesofqueensofe01stri','livesofqueensofe02stri','livesofqueen
   console.log('TARGET',id,JSON.stringify({title:d.metadata?.title,year:d.metadata?.year,date:d.metadata?.date,files:d.files?.filter(f=>/djvu.txt$/.test(f.name)).map(f=>({name:f.name,size:f.size})),source:d.metadata?.source}));
  }catch(e){console.log('TARGET error',id,e.message)}
 }
+
+
+console.log('FIND EARLY FULL 12-VOLUME SERIES');
+try {
+ const q='title:("Lives of the Queens of England") AND year:[1839 TO 1850]';
+ const u=new URL('https://archive.org/advancedsearch.php');
+ u.searchParams.set('q',q);u.searchParams.append('fl[]','identifier');u.searchParams.append('fl[]','title');u.searchParams.append('fl[]','year');u.searchParams.set('rows','400');u.searchParams.set('output','json');
+ const r=await fetch(u,{signal:AbortSignal.timeout(25000)});
+ const d=await r.json();
+ console.log('ALL YEARS 1840-50',d.response?.numFound);
+ for(const x of d.response?.docs||[]){
+  if(/strickland|lives.*queen/i.test(x.title)&&(/Vol\.\s*[IVX]/i.test(x.title)||/102819/i.test(x.identifier)))console.log('EARLY',JSON.stringify(x));
+ }
+}catch(e){console.log('EARLY ERROR',e.message)}
