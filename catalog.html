@@ -99,262 +99,312 @@ const $=id=>document.getElementById(id);
 // Public-domain original-language editions. Hosted local readers are text-only;
 // outside URLs are labelled external sources and are never represented as hosted copies.
 const originalByPage={
- "a-confession-tolstoy.html":{"href":"a-confession-tolstoy-original-russian.html","label":"Русский · Read only","lang":"ru","type":"local"},
- "the-death-of-ivan-ilyich.html":{"href":"the-death-of-ivan-ilyich-original-russian.html","label":"Русский · Read only","lang":"ru","type":"local"},
- "novum-organum.html":{"href":"novum-organum-original-latin.html","label":"Latinum · Read only","lang":"la","type":"local"},
- "nathan-the-wise.html":{"href":"nathan-der-weise-original-deutsch.html","label":"Deutsch · Read only","lang":"de","type":"local"},
- "wallenstein.html": {"href":"wallenstein-original-deutsch.html","label":"Deutsch · Read only","lang":"de","type":"local"},
- "the-robbers.html": {"href":"die-raeuber-original-deutsch.html","label":"Deutsch · Read only","lang":"de","type":"local"},
- "jacques-the-fatalist.html": {"href":"jacques-le-fataliste-original-francais.html","label":"Français · Read only","lang":"fr","type":"local"},
- "manon-lescaut.html": {"href":"manon-lescaut-original-francais.html","label":"Français · Read only","lang":"fr","type":"local"},
- "critique-of-pure-reason.html": {"href":"kritik-der-reinen-vernunft-original-deutsch.html","label":"Deutsch · Read only","lang":"de","type":"local"},
- "the-sorrows-of-young-werther.html": {"href":"die-leiden-des-jungen-werther-original-deutsch.html","label":"Deutsch · Read only","lang":"de","type":"local"},
- "aeneid.html": {
-  "href": "https://la.wikisource.org/wiki/Aeneis",
-  "label": "Latin · Original source",
-  "lang": "la",
-  "type": "external"
- },
- "andersen-fairy-tales.html": {
-  "href": "https://www.hcandersen-homepage.dk/?page_id=1162",
-  "label": "Dansk · Original archive",
-  "lang": "da",
-  "type": "external"
- },
- "anna-karenina.html": {
-  "href": "https://ru.wikisource.org/wiki/Анна_Каренина_(Толстой)",
-  "label": "Русский · Original source",
-  "lang": "ru",
-  "type": "external"
- },
- "around-the-world-in-eighty-days.html": {
-  "href": "le-tour-du-monde-en-quatre-vingts-jours-original-francais.html",
-  "label": "Français · Read only",
-  "lang": "fr",
-  "type": "local"
- },
- "bambi.html": {
-  "href": "https://projekt-gutenberg.org/authors/felix-salten/books/bambi/",
-  "label": "Deutsch · Original source",
-  "lang": "de",
-  "type": "external"
- },
- "capital-volume-1.html": {
-  "href": "https://wertform.github.io/mlwerke.de/me/me23/index.htm",
-  "label": "Deutsch · Original source",
-  "lang": "de",
-  "type": "external"
- },
- "capital-volume-2.html": {
-  "href": "https://mlwerke.redflag.ps/me/me24/index.htm",
-  "label": "Deutsch · Original source",
-  "lang": "de",
-  "type": "external"
- },
- "capital-volume-3.html": {
-  "href": "https://marx.works/me25/index.htm",
-  "label": "Deutsch · Original source",
-  "lang": "de",
-  "type": "external"
- },
- "candide.html": {
- "href": "candide-original-francais.html",
- "label": "Français · Read only",
- "lang": "fr",
- "type": "local"
-},
-"civilization-and-its-discontents.html": {
-  "href": "https://www.freudedition.net/werke/das-unbehagen-der-kultur/druckschrift",
-  "label": "Deutsch · Source edition",
-  "lang": "de",
-  "type": "external"
- },
- "crime-and-punishment.html": {
-  "href": "https://ru.wikisource.org/wiki/Преступление_и_наказание_(Достоевский)",
-  "label": "Русский · Original source",
-  "lang": "ru",
-  "type": "external"
- },
- "cyrano-de-bergerac.html": {
-  "href": "cyrano-original-francais.html",
-  "label": "Français · Read only",
-  "lang": "fr",
-  "type": "local"
- },
- "don-quixote.html": {
-  "href": "https://www.gutenberg.org/ebooks/2000",
-  "label": "Español · Original source",
-  "lang": "es",
-  "type": "external"
- },
- "emile.html": {
-  "href": "emile-francais.html",
-  "label": "Français · Read only",
-  "lang": "fr",
-  "type": "local"
- },
- "eugene-onegin.html": {
-  "href": "evgeny-onegin-original-russian.html",
-  "label": "Русский · Read only",
-  "lang": "ru",
-  "type": "local"
- },
- "fathers-and-sons.html": {
-  "href": "https://ru.wikisource.org/wiki/Отцы_и_дети_(Тургенев)",
-  "label": "Русский · Original source",
-  "lang": "ru",
-  "type": "external"
- },
- "giants-in-the-earth.html": {
-  "href": "giants-in-the-earth-original-norsk.html",
-  "label": "Norsk · Both source volumes",
-  "lang": "no",
-  "type": "index"
- },
- "grimms-fairy-tales.html": {
-  "href": "https://de.wikisource.org/wiki/Kinder-_und_Hausm%C3%A4rchen",
-  "label": "Deutsch · Story archive",
-  "lang": "de",
-  "type": "external"
- },
- "heidi.html": {
-  "href": "heidi-original-deutsch.html",
-  "label": "Deutsch · Both source volumes",
-  "lang": "de",
-  "type": "index"
- },
- "iliad.html": {
-  "href": "https://el.wikisource.org/wiki/Ιλιάς",
-  "label": "Ελληνικά · Original source",
-  "lang": "el",
-  "type": "external"
- },
- "journey-to-the-center-of-the-earth.html": {
-  "href": "voyage-au-centre-de-la-terre-original-francais.html",
-  "label": "Français · Read only",
-  "lang": "fr",
-  "type": "local"
- },
- "les-miserables.html": {
-  "href": "les-miserables-original-francais.html",
-  "label": "Français · Five source volumes",
-  "lang": "fr",
-  "type": "index"
- },
- "madame-bovary.html": {
-  "href": "madame-bovary-original-francais.html",
-  "label": "Français · Read only",
-  "lang": "fr",
-  "type": "local"
- },
- "more-grimm-fairy-tales.html": {
-  "href": "https://de.wikisource.org/wiki/Kinder-_und_Hausm%C3%A4rchen",
-  "label": "Deutsch · Story archive",
-  "lang": "de",
-  "type": "external"
- },
- "oedipus-rex.html": {
-  "href": "https://el.wikisource.org/wiki/Οιδίπους_Τύραννος",
-  "label": "Ελληνικά · Original source",
-  "lang": "el",
-  "type": "external"
- },
- "siddhartha.html": {
-  "href": "https://www.gutenberg.org/ebooks/2499",
-  "label": "Deutsch · Original source",
-  "lang": "de",
-  "type": "external"
- },
- "song-of-roland.html": {
-  "href": "https://fr.wikisource.org/wiki/La_Chanson_de_Roland",
-  "label": "Ancien français · Editions",
-  "lang": "fro",
-  "type": "external"
- },
- "steppenwolf.html": {
-  "href": "der-steppenwolf-original-deutsch.html",
-  "label": "Deutsch · Read only",
-  "lang": "de",
-  "type": "local"
- },
- "swanns-way.html": {
-  "href": "du-cote-de-chez-swann-original-francais.html",
-  "label": "Français · Read only",
-  "lang": "fr",
-  "type": "local"
- },
- "the-adventures-of-pinocchio.html": {
-  "href": "pinocchio-original-italiano.html",
-  "label": "Italiano · Read only",
-  "lang": "it",
-  "type": "local"
- },
- "the-brothers-karamazov.html": {
-  "href": "https://ru.wikisource.org/wiki/Братья_Карамазовы_(Достоевский)",
-  "label": "Русский · Original source",
-  "lang": "ru",
-  "type": "external"
- },
- "the-count-of-monte-cristo.html": {
-  "href": "le-comte-de-monte-cristo-original-francais.html",
-  "label": "Français · Four source volumes",
-  "lang": "fr",
-  "type": "index"
- },
- "the-hunchback-of-notre-dame.html": {
-  "href": "notre-dame-de-paris-original-francais.html",
-  "label": "Français · Read only",
-  "lang": "fr",
-  "type": "local"
- },
- "the-magic-mountain.html": {
-  "href": "der-zauberberg-original-deutsch.html",
-  "label": "Deutsch · Read only",
-  "lang": "de",
-  "type": "local"
- },
- "the-metamorphosis.html": {
-  "href": "die-verwandlung.html",
-  "label": "Deutsch · Read only",
-  "lang": "de",
-  "type": "local"
- },
- "the-phantom-of-the-opera.html": {
-  "href": "le-fantome-de-lopera-original-francais.html",
-  "label": "Français · Read only",
-  "lang": "fr",
-  "type": "local"
- },
- "the-social-contract.html": {
-  "href": "du-contrat-social.html",
-  "label": "Français · Read only",
-  "lang": "fr",
-  "type": "local"
- },
- "the-spirit-of-laws.html": {
-  "href": "https://fr.wikisource.org/wiki/De_l%E2%80%99esprit_des_lois,_Garnier,_1777",
-  "label": "Français · Original source",
-  "lang": "fr",
-  "type": "external"
- },
- "the-three-musketeers.html": {
-  "href": "les-trois-mousquetaires-original-francais.html",
-  "label": "Français · Read only",
-  "lang": "fr",
-  "type": "local"
- },
- "the-three-sisters.html": {
-  "href": "https://ru.wikisource.org/wiki/Три_сестры_(Чехов)",
-  "label": "Русский · Original source",
-  "lang": "ru",
-  "type": "external"
- },
- "war-and-peace.html": {
-  "href": "https://ru.wikisource.org/wiki/Война_и_мир_(Толстой)",
-  "label": "Русский · Original source",
-  "lang": "ru",
-  "type": "external"
- }
+  "a-confession-tolstoy.html": {
+    "href": "a-confession-tolstoy-original-russian.html",
+    "label": "Русский · Read only",
+    "lang": "ru",
+    "type": "local"
+  },
+  "the-death-of-ivan-ilyich.html": {
+    "href": "the-death-of-ivan-ilyich-original-russian.html",
+    "label": "Русский · Read only",
+    "lang": "ru",
+    "type": "local"
+  },
+  "novum-organum.html": {
+    "href": "novum-organum-original-latin.html",
+    "label": "Latinum · Read only",
+    "lang": "la",
+    "type": "local"
+  },
+  "nathan-the-wise.html": {
+    "href": "nathan-der-weise-original-deutsch.html",
+    "label": "Deutsch · Read only",
+    "lang": "de",
+    "type": "local"
+  },
+  "wallenstein.html": {
+    "href": "wallenstein-original-deutsch.html",
+    "label": "Deutsch · Read only",
+    "lang": "de",
+    "type": "local"
+  },
+  "the-robbers.html": {
+    "href": "die-raeuber-original-deutsch.html",
+    "label": "Deutsch · Read only",
+    "lang": "de",
+    "type": "local"
+  },
+  "jacques-the-fatalist.html": {
+    "href": "jacques-le-fataliste-original-francais.html",
+    "label": "Français · Read only",
+    "lang": "fr",
+    "type": "local"
+  },
+  "manon-lescaut.html": {
+    "href": "manon-lescaut-original-francais.html",
+    "label": "Français · Read only",
+    "lang": "fr",
+    "type": "local"
+  },
+  "critique-of-pure-reason.html": {
+    "href": "kritik-der-reinen-vernunft-original-deutsch.html",
+    "label": "Deutsch · Read only",
+    "lang": "de",
+    "type": "local"
+  },
+  "the-sorrows-of-young-werther.html": {
+    "href": "die-leiden-des-jungen-werther-original-deutsch.html",
+    "label": "Deutsch · Read only",
+    "lang": "de",
+    "type": "local"
+  },
+  "aeneid.html": {
+    "href": "https://la.wikisource.org/wiki/Aeneis",
+    "label": "Latin · Original source",
+    "lang": "la",
+    "type": "external"
+  },
+  "andersen-fairy-tales.html": {
+    "href": "https://www.hcandersen-homepage.dk/?page_id=1162",
+    "label": "Dansk · Original archive",
+    "lang": "da",
+    "type": "external"
+  },
+  "anna-karenina.html": {
+    "href": "anna-karenina-original-russian.html",
+    "label": "Русский · Read only",
+    "lang": "ru",
+    "type": "local"
+  },
+  "around-the-world-in-eighty-days.html": {
+    "href": "le-tour-du-monde-en-quatre-vingts-jours-original-francais.html",
+    "label": "Français · Read only",
+    "lang": "fr",
+    "type": "local"
+  },
+  "bambi.html": {
+    "href": "https://projekt-gutenberg.org/authors/felix-salten/books/bambi/",
+    "label": "Deutsch · Original source",
+    "lang": "de",
+    "type": "external"
+  },
+  "capital-volume-1.html": {
+    "href": "https://wertform.github.io/mlwerke.de/me/me23/index.htm",
+    "label": "Deutsch · Original source",
+    "lang": "de",
+    "type": "external"
+  },
+  "capital-volume-2.html": {
+    "href": "https://mlwerke.redflag.ps/me/me24/index.htm",
+    "label": "Deutsch · Original source",
+    "lang": "de",
+    "type": "external"
+  },
+  "capital-volume-3.html": {
+    "href": "https://marx.works/me25/index.htm",
+    "label": "Deutsch · Original source",
+    "lang": "de",
+    "type": "external"
+  },
+  "candide.html": {
+    "href": "candide-original-francais.html",
+    "label": "Français · Read only",
+    "lang": "fr",
+    "type": "local"
+  },
+  "civilization-and-its-discontents.html": {
+    "href": "https://www.freudedition.net/werke/das-unbehagen-der-kultur/druckschrift",
+    "label": "Deutsch · Source edition",
+    "lang": "de",
+    "type": "external"
+  },
+  "crime-and-punishment.html": {
+    "href": "https://ru.wikisource.org/wiki/Преступление_и_наказание_(Достоевский)",
+    "label": "Русский · Original source",
+    "lang": "ru",
+    "type": "external"
+  },
+  "cyrano-de-bergerac.html": {
+    "href": "cyrano-original-francais.html",
+    "label": "Français · Read only",
+    "lang": "fr",
+    "type": "local"
+  },
+  "don-quixote.html": {
+    "href": "https://www.gutenberg.org/ebooks/2000",
+    "label": "Español · Original source",
+    "lang": "es",
+    "type": "external"
+  },
+  "emile.html": {
+    "href": "emile-francais.html",
+    "label": "Français · Read only",
+    "lang": "fr",
+    "type": "local"
+  },
+  "eugene-onegin.html": {
+    "href": "evgeny-onegin-original-russian.html",
+    "label": "Русский · Read only",
+    "lang": "ru",
+    "type": "local"
+  },
+  "fathers-and-sons.html": {
+    "href": "fathers-and-sons-original-russian.html",
+    "label": "Русский · Read only",
+    "lang": "ru",
+    "type": "local"
+  },
+  "giants-in-the-earth.html": {
+    "href": "giants-in-the-earth-original-norsk.html",
+    "label": "Norsk · Both source volumes",
+    "lang": "no",
+    "type": "index"
+  },
+  "grimms-fairy-tales.html": {
+    "href": "https://de.wikisource.org/wiki/Kinder-_und_Hausm%C3%A4rchen",
+    "label": "Deutsch · Story archive",
+    "lang": "de",
+    "type": "external"
+  },
+  "heidi.html": {
+    "href": "heidi-original-deutsch.html",
+    "label": "Deutsch · Both source volumes",
+    "lang": "de",
+    "type": "index"
+  },
+  "iliad.html": {
+    "href": "https://el.wikisource.org/wiki/Ιλιάς",
+    "label": "Ελληνικά · Original source",
+    "lang": "el",
+    "type": "external"
+  },
+  "journey-to-the-center-of-the-earth.html": {
+    "href": "voyage-au-centre-de-la-terre-original-francais.html",
+    "label": "Français · Read only",
+    "lang": "fr",
+    "type": "local"
+  },
+  "les-miserables.html": {
+    "href": "les-miserables-original-francais.html",
+    "label": "Français · Five source volumes",
+    "lang": "fr",
+    "type": "index"
+  },
+  "madame-bovary.html": {
+    "href": "madame-bovary-original-francais.html",
+    "label": "Français · Read only",
+    "lang": "fr",
+    "type": "local"
+  },
+  "more-grimm-fairy-tales.html": {
+    "href": "https://de.wikisource.org/wiki/Kinder-_und_Hausm%C3%A4rchen",
+    "label": "Deutsch · Story archive",
+    "lang": "de",
+    "type": "external"
+  },
+  "oedipus-rex.html": {
+    "href": "https://el.wikisource.org/wiki/Οιδίπους_Τύραννος",
+    "label": "Ελληνικά · Original source",
+    "lang": "el",
+    "type": "external"
+  },
+  "siddhartha.html": {
+    "href": "https://www.gutenberg.org/ebooks/2499",
+    "label": "Deutsch · Original source",
+    "lang": "de",
+    "type": "external"
+  },
+  "song-of-roland.html": {
+    "href": "https://fr.wikisource.org/wiki/La_Chanson_de_Roland",
+    "label": "Ancien français · Editions",
+    "lang": "fro",
+    "type": "external"
+  },
+  "steppenwolf.html": {
+    "href": "der-steppenwolf-original-deutsch.html",
+    "label": "Deutsch · Read only",
+    "lang": "de",
+    "type": "local"
+  },
+  "swanns-way.html": {
+    "href": "du-cote-de-chez-swann-original-francais.html",
+    "label": "Français · Read only",
+    "lang": "fr",
+    "type": "local"
+  },
+  "the-adventures-of-pinocchio.html": {
+    "href": "pinocchio-original-italiano.html",
+    "label": "Italiano · Read only",
+    "lang": "it",
+    "type": "local"
+  },
+  "the-brothers-karamazov.html": {
+    "href": "brothers-karamazov-original-russian.html",
+    "label": "Русский · Read only",
+    "lang": "ru",
+    "type": "local"
+  },
+  "the-count-of-monte-cristo.html": {
+    "href": "le-comte-de-monte-cristo-original-francais.html",
+    "label": "Français · Four source volumes",
+    "lang": "fr",
+    "type": "index"
+  },
+  "the-hunchback-of-notre-dame.html": {
+    "href": "notre-dame-de-paris-original-francais.html",
+    "label": "Français · Read only",
+    "lang": "fr",
+    "type": "local"
+  },
+  "the-magic-mountain.html": {
+    "href": "der-zauberberg-original-deutsch.html",
+    "label": "Deutsch · Read only",
+    "lang": "de",
+    "type": "local"
+  },
+  "the-metamorphosis.html": {
+    "href": "die-verwandlung.html",
+    "label": "Deutsch · Read only",
+    "lang": "de",
+    "type": "local"
+  },
+  "the-phantom-of-the-opera.html": {
+    "href": "le-fantome-de-lopera-original-francais.html",
+    "label": "Français · Read only",
+    "lang": "fr",
+    "type": "local"
+  },
+  "the-social-contract.html": {
+    "href": "du-contrat-social.html",
+    "label": "Français · Read only",
+    "lang": "fr",
+    "type": "local"
+  },
+  "the-spirit-of-laws.html": {
+    "href": "https://fr.wikisource.org/wiki/De_l%E2%80%99esprit_des_lois,_Garnier,_1777",
+    "label": "Français · Original source",
+    "lang": "fr",
+    "type": "external"
+  },
+  "the-three-musketeers.html": {
+    "href": "les-trois-mousquetaires-original-francais.html",
+    "label": "Français · Read only",
+    "lang": "fr",
+    "type": "local"
+  },
+  "the-three-sisters.html": {
+    "href": "three-sisters-original-russian.html",
+    "label": "Русский · Read only",
+    "lang": "ru",
+    "type": "local"
+  },
+  "war-and-peace.html": {
+    "href": "https://ru.wikisource.org/wiki/Война_и_мир_(Толстой)",
+    "label": "Русский · Original source",
+    "lang": "ru",
+    "type": "external"
+  }
 };
 const genreByPage={
  'the-death-of-ivan-ilyich.html':'Russian Literature & Psychological Fiction',
