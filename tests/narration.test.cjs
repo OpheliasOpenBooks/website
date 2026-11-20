@@ -33,7 +33,7 @@ assert.equal(n.normalizeForSpeech('Footnotes [Note 156] and [Footnote #122] appe
 assert.equal(n.normalizeForSpeech('The poet used 2 * 3 as an example.'),
   'The poet used 2 * 3 as an example.');
 assert.equal(n.normalizeForSpeech('Area is m². [Act II, Scene I]'),
-  'Area is m². [Act II, Scene I]');
+  'Area is m². [Act two, Scene one]');
 assert.equal(n.speechChunks('For thee [25] I sing, a song.').join(' ').includes('[25]'),false);
 
 // Change spoken text, NEVER the visible historical manuscript.
