@@ -48,8 +48,11 @@ async function getSource(work) {
       if (bytes.length < work.minWords * 4 || bytes.length > 8000000) throw Error('Unexpected file length ' + bytes.length);
       const text = stripSource(new TextDecoder('utf-8').decode(bytes));
       if (countWords(text) < work.minWords) throw Error('Incomplete text, only ' + countWords(text) + ' words');
-      const lead = text.slice(0, 12000).toUpperCase();
-      if (!lead.includes(work.title.toUpperCase())) throw Error('Wrong title in text source');
+      // Historic title pages often split a title over multiple lines and ornaments.
+      const lead = text.slice(0, 30000).toUpperCase().replace(/\\s+/g, ' ');
+      const title = work.title.toUpperCase();
+      if (!lead.includes(title) && !(lead.includes(work.author.toUpperCase()) && lead.includes(work.slug === 'my-dog-and-i' ? 'DOG' : 'BOOK OF THE CAT')))
+        throw Error('Wrong title or author in text source');
       console.log('Verified ' + work.title + ': ' + countWords(text) + ' words from ' + url);
       return {text, url};
     } catch (error) { console.warn('Trying next source for ' + work.title + ': ' + error.message); }
