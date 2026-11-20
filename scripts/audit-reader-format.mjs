@@ -10,7 +10,7 @@ const paths=[...new Set(hrefs)].filter(p=>!nonReaders.has(p));
 const series=new Set(['the-forsyte-saga.html','outline-of-history.html','leatherstocking-tales.html']);
 // Original-language companion editions intentionally have no audio or narrator controls.
 const readOnly=new Set(['king-james-bible-1611.html','du-contrat-social.html','emile-francais.html','kritik-der-reinen-vernunft-original-deutsch.html','les-liaisons-dangereuses-original-francais.html',
-  'les-confessions-rousseau-original-francais.html','vathek-original-francais.html','jacques-le-fataliste-original-francais.html']);
+  'les-confessions-rousseau-original-francais.html','vathek-original-francais.html','jacques-le-fataliste-original-francais.html','die-raeuber-original-deutsch.html']);
 const studio=new Set(['pride-and-prejudice.html']);
 const special=new Set(['grimms-fairy-tales.html','more-grimm-fairy-tales.html','andersen-fairy-tales.html']);
 const legacy=['the-sun-also-rises.html','to-the-lighthouse.html','the-sound-and-the-fury.html'];
