@@ -1,0 +1,789 @@
+{
+  "title": "The Book of Household Management",
+  "author": "Isabella Beeton",
+  "firstPublished": 1861,
+  "projectGutenberg": "https://www.gutenberg.org/ebooks/10136",
+  "source": "https://raw.githubusercontent.com/GITenberg/The-Book-of-Household-Management_10136/master/10136-8.txt",
+  "wordCount": 514772,
+  "chapterCount": 44,
+  "sha256": "e64beaa8298dbfcbb527bc1e945060b5b3650a601fe69e00e4202472cc7c471b",
+  "parts": [
+    {
+      "part": 1,
+      "name": "Front Matter",
+      "words": 4812,
+      "sections": 3,
+      "file": "part-001.json"
+    },
+    {
+      "part": 2,
+      "name": "Contents",
+      "words": 5352,
+      "sections": 1,
+      "file": "part-002.json"
+    },
+    {
+      "part": 3,
+      "name": "Contents",
+      "words": 4226,
+      "sections": 1,
+      "file": "part-003.json"
+    },
+    {
+      "part": 4,
+      "name": "Chapter I",
+      "words": 5394,
+      "sections": 1,
+      "file": "part-004.json"
+    },
+    {
+      "part": 5,
+      "name": "Chapter I",
+      "words": 5229,
+      "sections": 1,
+      "file": "part-005.json"
+    },
+    {
+      "part": 6,
+      "name": "Chapter II",
+      "words": 2245,
+      "sections": 1,
+      "file": "part-006.json"
+    },
+    {
+      "part": 7,
+      "name": "Chapter III",
+      "words": 5198,
+      "sections": 1,
+      "file": "part-007.json"
+    },
+    {
+      "part": 8,
+      "name": "Chapter III",
+      "words": 4512,
+      "sections": 2,
+      "file": "part-008.json"
+    },
+    {
+      "part": 9,
+      "name": "Chapter V",
+      "words": 3628,
+      "sections": 1,
+      "file": "part-009.json"
+    },
+    {
+      "part": 10,
+      "name": "Chapter VI",
+      "words": 5331,
+      "sections": 1,
+      "file": "part-010.json"
+    },
+    {
+      "part": 11,
+      "name": "Chapter VI",
+      "words": 5302,
+      "sections": 1,
+      "file": "part-011.json"
+    },
+    {
+      "part": 12,
+      "name": "Chapter VI",
+      "words": 5364,
+      "sections": 1,
+      "file": "part-012.json"
+    },
+    {
+      "part": 13,
+      "name": "Chapter VI",
+      "words": 5388,
+      "sections": 1,
+      "file": "part-013.json"
+    },
+    {
+      "part": 14,
+      "name": "Chapter VI",
+      "words": 5331,
+      "sections": 2,
+      "file": "part-014.json"
+    },
+    {
+      "part": 15,
+      "name": "Chapter VII",
+      "words": 5380,
+      "sections": 2,
+      "file": "part-015.json"
+    },
+    {
+      "part": 16,
+      "name": "Chapter VIII",
+      "words": 5380,
+      "sections": 1,
+      "file": "part-016.json"
+    },
+    {
+      "part": 17,
+      "name": "Chapter VIII",
+      "words": 5314,
+      "sections": 1,
+      "file": "part-017.json"
+    },
+    {
+      "part": 18,
+      "name": "Chapter VIII",
+      "words": 5360,
+      "sections": 1,
+      "file": "part-018.json"
+    },
+    {
+      "part": 19,
+      "name": "Chapter VIII",
+      "words": 5375,
+      "sections": 1,
+      "file": "part-019.json"
+    },
+    {
+      "part": 20,
+      "name": "Chapter VIII",
+      "words": 2183,
+      "sections": 2,
+      "file": "part-020.json"
+    },
+    {
+      "part": 21,
+      "name": "Chapter X",
+      "words": 5381,
+      "sections": 1,
+      "file": "part-021.json"
+    },
+    {
+      "part": 22,
+      "name": "Chapter X",
+      "words": 5400,
+      "sections": 1,
+      "file": "part-022.json"
+    },
+    {
+      "part": 23,
+      "name": "Chapter X",
+      "words": 5396,
+      "sections": 1,
+      "file": "part-023.json"
+    },
+    {
+      "part": 24,
+      "name": "Chapter X",
+      "words": 5316,
+      "sections": 1,
+      "file": "part-024.json"
+    },
+    {
+      "part": 25,
+      "name": "Chapter X",
+      "words": 5380,
+      "sections": 1,
+      "file": "part-025.json"
+    },
+    {
+      "part": 26,
+      "name": "Chapter X",
+      "words": 5313,
+      "sections": 1,
+      "file": "part-026.json"
+    },
+    {
+      "part": 27,
+      "name": "Chapter X",
+      "words": 1912,
+      "sections": 1,
+      "file": "part-027.json"
+    },
+    {
+      "part": 28,
+      "name": "Chapter XI",
+      "words": 5095,
+      "sections": 1,
+      "file": "part-028.json"
+    },
+    {
+      "part": 29,
+      "name": "Chapter XII",
+      "words": 3133,
+      "sections": 1,
+      "file": "part-029.json"
+    },
+    {
+      "part": 30,
+      "name": "Chapter XIII",
+      "words": 5396,
+      "sections": 1,
+      "file": "part-030.json"
+    },
+    {
+      "part": 31,
+      "name": "Chapter XIII",
+      "words": 5394,
+      "sections": 1,
+      "file": "part-031.json"
+    },
+    {
+      "part": 32,
+      "name": "Chapter XIII",
+      "words": 5367,
+      "sections": 1,
+      "file": "part-032.json"
+    },
+    {
+      "part": 33,
+      "name": "Chapter XIII",
+      "words": 2147,
+      "sections": 1,
+      "file": "part-033.json"
+    },
+    {
+      "part": 34,
+      "name": "Chapter XIV",
+      "words": 4550,
+      "sections": 1,
+      "file": "part-034.json"
+    },
+    {
+      "part": 35,
+      "name": "Chapter XV",
+      "words": 5333,
+      "sections": 1,
+      "file": "part-035.json"
+    },
+    {
+      "part": 36,
+      "name": "Chapter XV",
+      "words": 5287,
+      "sections": 1,
+      "file": "part-036.json"
+    },
+    {
+      "part": 37,
+      "name": "Chapter XV",
+      "words": 2400,
+      "sections": 1,
+      "file": "part-037.json"
+    },
+    {
+      "part": 38,
+      "name": "Chapter XVI",
+      "words": 4901,
+      "sections": 1,
+      "file": "part-038.json"
+    },
+    {
+      "part": 39,
+      "name": "Chapter XVII",
+      "words": 5378,
+      "sections": 1,
+      "file": "part-039.json"
+    },
+    {
+      "part": 40,
+      "name": "Chapter XVII",
+      "words": 5304,
+      "sections": 1,
+      "file": "part-040.json"
+    },
+    {
+      "part": 41,
+      "name": "Chapter XVII",
+      "words": 3887,
+      "sections": 1,
+      "file": "part-041.json"
+    },
+    {
+      "part": 42,
+      "name": "Chapter XVIII",
+      "words": 5363,
+      "sections": 2,
+      "file": "part-042.json"
+    },
+    {
+      "part": 43,
+      "name": "Chapter XIX",
+      "words": 5360,
+      "sections": 1,
+      "file": "part-043.json"
+    },
+    {
+      "part": 44,
+      "name": "Chapter XIX",
+      "words": 4864,
+      "sections": 1,
+      "file": "part-044.json"
+    },
+    {
+      "part": 45,
+      "name": "Chapter XX",
+      "words": 2725,
+      "sections": 1,
+      "file": "part-045.json"
+    },
+    {
+      "part": 46,
+      "name": "Chapter XXI",
+      "words": 5244,
+      "sections": 1,
+      "file": "part-046.json"
+    },
+    {
+      "part": 47,
+      "name": "Chapter XXI",
+      "words": 5291,
+      "sections": 1,
+      "file": "part-047.json"
+    },
+    {
+      "part": 48,
+      "name": "Chapter XXI",
+      "words": 5382,
+      "sections": 1,
+      "file": "part-048.json"
+    },
+    {
+      "part": 49,
+      "name": "Chapter XXI",
+      "words": 5330,
+      "sections": 1,
+      "file": "part-049.json"
+    },
+    {
+      "part": 50,
+      "name": "Chapter XXI",
+      "words": 5308,
+      "sections": 1,
+      "file": "part-050.json"
+    },
+    {
+      "part": 51,
+      "name": "Chapter XXI",
+      "words": 5395,
+      "sections": 1,
+      "file": "part-051.json"
+    },
+    {
+      "part": 52,
+      "name": "Chapter XXI",
+      "words": 2996,
+      "sections": 1,
+      "file": "part-052.json"
+    },
+    {
+      "part": 53,
+      "name": "Chapter XXII",
+      "words": 2980,
+      "sections": 1,
+      "file": "part-053.json"
+    },
+    {
+      "part": 54,
+      "name": "Chapter XXIII",
+      "words": 5236,
+      "sections": 1,
+      "file": "part-054.json"
+    },
+    {
+      "part": 55,
+      "name": "Chapter XXIII",
+      "words": 4920,
+      "sections": 1,
+      "file": "part-055.json"
+    },
+    {
+      "part": 56,
+      "name": "Chapter XXIII",
+      "words": 3102,
+      "sections": 1,
+      "file": "part-056.json"
+    },
+    {
+      "part": 57,
+      "name": "Chapter XXIV",
+      "words": 3667,
+      "sections": 1,
+      "file": "part-057.json"
+    },
+    {
+      "part": 58,
+      "name": "Chapter XXV",
+      "words": 5347,
+      "sections": 1,
+      "file": "part-058.json"
+    },
+    {
+      "part": 59,
+      "name": "Chapter XXV",
+      "words": 5311,
+      "sections": 1,
+      "file": "part-059.json"
+    },
+    {
+      "part": 60,
+      "name": "Chapter XXV",
+      "words": 5388,
+      "sections": 1,
+      "file": "part-060.json"
+    },
+    {
+      "part": 61,
+      "name": "Chapter XXV",
+      "words": 5397,
+      "sections": 1,
+      "file": "part-061.json"
+    },
+    {
+      "part": 62,
+      "name": "Chapter XXV",
+      "words": 2548,
+      "sections": 1,
+      "file": "part-062.json"
+    },
+    {
+      "part": 63,
+      "name": "Chapter XXVI",
+      "words": 2346,
+      "sections": 1,
+      "file": "part-063.json"
+    },
+    {
+      "part": 64,
+      "name": "Chapter XXVII",
+      "words": 5288,
+      "sections": 1,
+      "file": "part-064.json"
+    },
+    {
+      "part": 65,
+      "name": "Chapter XXVII",
+      "words": 5381,
+      "sections": 1,
+      "file": "part-065.json"
+    },
+    {
+      "part": 66,
+      "name": "Chapter XXVII",
+      "words": 5383,
+      "sections": 1,
+      "file": "part-066.json"
+    },
+    {
+      "part": 67,
+      "name": "Chapter XXVII",
+      "words": 5243,
+      "sections": 1,
+      "file": "part-067.json"
+    },
+    {
+      "part": 68,
+      "name": "Chapter XXVII",
+      "words": 5379,
+      "sections": 1,
+      "file": "part-068.json"
+    },
+    {
+      "part": 69,
+      "name": "Chapter XXVII",
+      "words": 5307,
+      "sections": 1,
+      "file": "part-069.json"
+    },
+    {
+      "part": 70,
+      "name": "Chapter XXVII",
+      "words": 4289,
+      "sections": 1,
+      "file": "part-070.json"
+    },
+    {
+      "part": 71,
+      "name": "Chapter XXVIII",
+      "words": 5399,
+      "sections": 2,
+      "file": "part-071.json"
+    },
+    {
+      "part": 72,
+      "name": "Chapter XXIX",
+      "words": 5333,
+      "sections": 1,
+      "file": "part-072.json"
+    },
+    {
+      "part": 73,
+      "name": "Chapter XXIX",
+      "words": 5342,
+      "sections": 1,
+      "file": "part-073.json"
+    },
+    {
+      "part": 74,
+      "name": "Chapter XXIX",
+      "words": 5162,
+      "sections": 1,
+      "file": "part-074.json"
+    },
+    {
+      "part": 75,
+      "name": "Chapter XXIX",
+      "words": 3740,
+      "sections": 1,
+      "file": "part-075.json"
+    },
+    {
+      "part": 76,
+      "name": "Chapter XXX",
+      "words": 3389,
+      "sections": 1,
+      "file": "part-076.json"
+    },
+    {
+      "part": 77,
+      "name": "Chapter XXXI",
+      "words": 5397,
+      "sections": 1,
+      "file": "part-077.json"
+    },
+    {
+      "part": 78,
+      "name": "Chapter XXXI",
+      "words": 5397,
+      "sections": 1,
+      "file": "part-078.json"
+    },
+    {
+      "part": 79,
+      "name": "Chapter XXXI",
+      "words": 5262,
+      "sections": 1,
+      "file": "part-079.json"
+    },
+    {
+      "part": 80,
+      "name": "Chapter XXXI",
+      "words": 2291,
+      "sections": 1,
+      "file": "part-080.json"
+    },
+    {
+      "part": 81,
+      "name": "Chapter XXXII",
+      "words": 2221,
+      "sections": 1,
+      "file": "part-081.json"
+    },
+    {
+      "part": 82,
+      "name": "Chapter XXXIII",
+      "words": 5393,
+      "sections": 1,
+      "file": "part-082.json"
+    },
+    {
+      "part": 83,
+      "name": "Chapter XXXIII",
+      "words": 2489,
+      "sections": 1,
+      "file": "part-083.json"
+    },
+    {
+      "part": 84,
+      "name": "Chapter XXXIV",
+      "words": 3526,
+      "sections": 1,
+      "file": "part-084.json"
+    },
+    {
+      "part": 85,
+      "name": "Chapter XXXV",
+      "words": 5266,
+      "sections": 1,
+      "file": "part-085.json"
+    },
+    {
+      "part": 86,
+      "name": "Chapter XXXV",
+      "words": 5359,
+      "sections": 1,
+      "file": "part-086.json"
+    },
+    {
+      "part": 87,
+      "name": "Chapter XXXV",
+      "words": 3462,
+      "sections": 1,
+      "file": "part-087.json"
+    },
+    {
+      "part": 88,
+      "name": "Chapter XXXVI",
+      "words": 1846,
+      "sections": 1,
+      "file": "part-088.json"
+    },
+    {
+      "part": 89,
+      "name": "Chapter XXXVII",
+      "words": 5117,
+      "sections": 1,
+      "file": "part-089.json"
+    },
+    {
+      "part": 90,
+      "name": "Chapter XXXVII",
+      "words": 3060,
+      "sections": 1,
+      "file": "part-090.json"
+    },
+    {
+      "part": 91,
+      "name": "Chapter XXXVIII",
+      "words": 5193,
+      "sections": 2,
+      "file": "part-091.json"
+    },
+    {
+      "part": 92,
+      "name": "Chapter XL",
+      "words": 5397,
+      "sections": 1,
+      "file": "part-092.json"
+    },
+    {
+      "part": 93,
+      "name": "Chapter XL",
+      "words": 5398,
+      "sections": 1,
+      "file": "part-093.json"
+    },
+    {
+      "part": 94,
+      "name": "Chapter XL",
+      "words": 2567,
+      "sections": 1,
+      "file": "part-094.json"
+    },
+    {
+      "part": 95,
+      "name": "Chapter XLI",
+      "words": 5380,
+      "sections": 1,
+      "file": "part-095.json"
+    },
+    {
+      "part": 96,
+      "name": "Chapter XLI",
+      "words": 5259,
+      "sections": 1,
+      "file": "part-096.json"
+    },
+    {
+      "part": 97,
+      "name": "Chapter XLI",
+      "words": 5244,
+      "sections": 1,
+      "file": "part-097.json"
+    },
+    {
+      "part": 98,
+      "name": "Chapter XLI",
+      "words": 5337,
+      "sections": 1,
+      "file": "part-098.json"
+    },
+    {
+      "part": 99,
+      "name": "Chapter XLI",
+      "words": 5268,
+      "sections": 1,
+      "file": "part-099.json"
+    },
+    {
+      "part": 100,
+      "name": "Chapter XLI",
+      "words": 5298,
+      "sections": 1,
+      "file": "part-100.json"
+    },
+    {
+      "part": 101,
+      "name": "Chapter XLI",
+      "words": 4545,
+      "sections": 1,
+      "file": "part-101.json"
+    },
+    {
+      "part": 102,
+      "name": "Chapter XLII",
+      "words": 5387,
+      "sections": 1,
+      "file": "part-102.json"
+    },
+    {
+      "part": 103,
+      "name": "Chapter XLII",
+      "words": 5389,
+      "sections": 1,
+      "file": "part-103.json"
+    },
+    {
+      "part": 104,
+      "name": "Chapter XLII",
+      "words": 5397,
+      "sections": 1,
+      "file": "part-104.json"
+    },
+    {
+      "part": 105,
+      "name": "Chapter XLII",
+      "words": 2127,
+      "sections": 1,
+      "file": "part-105.json"
+    },
+    {
+      "part": 106,
+      "name": "Chapter XLIII",
+      "words": 5315,
+      "sections": 1,
+      "file": "part-106.json"
+    },
+    {
+      "part": 107,
+      "name": "Chapter XLIII",
+      "words": 5303,
+      "sections": 1,
+      "file": "part-107.json"
+    },
+    {
+      "part": 108,
+      "name": "Chapter XLIII",
+      "words": 5323,
+      "sections": 1,
+      "file": "part-108.json"
+    },
+    {
+      "part": 109,
+      "name": "Chapter XLIII",
+      "words": 3232,
+      "sections": 1,
+      "file": "part-109.json"
+    },
+    {
+      "part": 110,
+      "name": "Chapter XLIV",
+      "words": 5330,
+      "sections": 1,
+      "file": "part-110.json"
+    },
+    {
+      "part": 111,
+      "name": "Chapter XLIV",
+      "words": 2888,
+      "sections": 1,
+      "file": "part-111.json"
+    }
+  ]
+}
