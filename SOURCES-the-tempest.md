@@ -1,0 +1,11 @@
+# The Tempest — Shakespeare: complete original English play
+
+**Author and publication.** William Shakespeare (1564–1616), generally dated c. 1610–1611. The play first appeared in print in the 1623 First Folio; it was not initially issued as a separate quarto. The original Shakespeare play is public domain in the United States. The First Folio opens with this play.
+
+**Hosted text.** [Project Gutenberg eBook #1540](https://www.gutenberg.org/ebooks/1540), `The Tempest`, Craig / Oxford edition, transcribed by the PG Shakespeare Team, eBook published November 1998. The text is a public-domain, complete, modernized English edition rather than an exact typographic reproduction of the 1623 Folio. The locally hosted source `public/books/the-tempest-shakespeare-1540.txt` reproduces every part of the literary text between `THE TEMPEST\n\nby William Shakespeare` and the Gutenberg file-end boilerplate, normalizing only line endings; no passages are removed.
+
+**Completeness.** 17378 whitespace-delimited tokens, all **five acts** and **nine scenes**, in the expected sequence: Act I (2), Act II (2), Act III (3), Act IV (1), Act V (1), and the complete **Epilogue spoken by Prospero**, ending `Let your indulgence set me free.`. The cast list and stage directions are included. The reader has 11 indexed sections (title + nine scenes + epilogue), each scene paginated for readable length.
+
+**Historic title-page artwork.** [Wikimedia Commons: FF The Tempest title.jpg](https://commons.wikimedia.org/wiki/File:FF_The_Tempest_title.jpg), authentic *opening page of The Tempest* as it appears in the 1623 First Folio, marked public domain. This is a historical first-page illustration, not a separate 1623 cover for the play.
+
+**Audio, navigation and persistence.** `the-tempest.html` uses the same Ophelia browser/device voice reader and locally hosted text as other Shakespeare titles. It includes speed, voice, text sizing, evening mode, scene menu, bookmarks and progress, continuous autoplay, and the share script. No LibriVox or pre-recorded recording. Since the original is English, a separate original-language companion is not required. Actual spoken playback, image loading and public GitHub Pages delivery require browser or deployment checks.
