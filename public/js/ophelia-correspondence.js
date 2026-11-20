@@ -9,7 +9,7 @@
  const key=cfg.turnstileSiteKey||'';
  const ready=base.startsWith('https://')&&key.length>=6;
  const mode=document.body.dataset.correspondence;
- let widget=null,replyTo=null,adminKey='';
+ let widget=null,replyTo=null,adminKey='',letterFilter='all';
  function status(message,error=false,target='form-status'){
   const el=$(target);if(!el)return;el.textContent=message;el.classList.toggle('error',error);
  }
@@ -52,14 +52,27 @@
   const article=el('article','entry');
   const header=el('header');header.append(el('strong','',letter.name||'A Reader'));
   const t=el('time','',issueTime(letter.created_at));header.append(t);article.append(header);
+  if(letter.letter_type==='quotation'&&letter.quote_text){
+   article.classList.add('quotation');
+   article.append(el('div','quote-heading','From the commonplace book'));
+   article.append(el('blockquote','quote-card',letter.quote_text));
+   article.append(el('div','quote-citation','— '+(letter.quote_book||'Unknown book')+(letter.quote_author?' · '+letter.quote_author:'')));
+   if(letter.source){
+    try{const link=new URL(letter.source);
+     if(link.origin===window.location.origin&&link.pathname.startsWith('/website/')){
+      const a=el('a','from-book','Open this book in the library');a.href=link.href;article.append(a);
+     }
+    }catch{}
+   }
+  }
   if(letter.topic)article.append(el('div','topic',letter.topic));
-  article.append(el('p','',letter.body||''));
+  if(letter.body)article.append(el('p','',letter.body));
   return article;
  }
  function renderPublic(letters){
   const target=$('letters');if(!target)return;target.replaceChildren();
-  const top=letters.filter(x=>!x.parent_id);
-  if(!top.length){target.append(el('p','empty','No letters are on the board yet. The first correspondence will appear here after publication.'));return}
+  const top=letters.filter(x=>!x.parent_id&&(letterFilter==='all'||(x.letter_type||'discussion')===letterFilter));
+  if(!top.length){target.append(el('p','empty',letterFilter==='all'?'No letters are on the board yet. The first correspondence will appear here after publication.':'No letters of this kind have been published yet.'));return}
   for(const item of top){
    const article=renderReply(item),actions=el('div');
    const reply=el('button','','Reply to this letter');reply.type='button';
@@ -93,6 +106,42 @@
   try{await req('/api/flag',{method:'POST',body:JSON.stringify({id,token:proof})});status('Your concern has been sent for review. Thank you.');resetChallenge();}
   catch(e){status(e.message,true);resetChallenge()}
  }
+ function quoteMode(kind){
+  const quote=kind==='quotation',region=$('quotation-fields'),body=$('letter-message');
+  if(!region||!body)return;
+  region.hidden=!quote;$('quote-book').required=quote;$('quote-text').required=quote;
+  body.required=!quote;
+  $('letter-message-label').textContent=quote?'Your reflection on the passage (optional)':'Your letter';
+  body.placeholder=quote?'What makes this passage memorable to you?':'Dear fellow readers, ...';
+ }
+ function prefillQuote(){
+  if(mode!=='public')return;
+  const query=new URLSearchParams(window.location.search);
+  const passage=query.get('quote')||'',book=query.get('book')||'',author=query.get('author')||'';
+  if(passage||query.get('kind')==='quotation'){
+   $('letter-type').value='quotation';quoteMode('quotation');
+   $('quote-text').value=passage.slice(0,480);
+   $('quote-book').value=book.slice(0,120);$('quote-author').value=author.slice(0,90);
+   try{const link=new URL(query.get('source')||'');
+    if(link.origin===window.location.origin&&link.pathname.startsWith('/website/'))$('quote-source').value=link.href.slice(0,350);
+   }catch{}
+  }
+ }
+ function setupQuotationControls(){
+  if(mode!=='public')return;
+  quoteMode($('letter-type').value);prefillQuote();
+  $('letter-type').addEventListener('change',()=>quoteMode($('letter-type').value));
+  document.querySelectorAll('[data-share-quote]').forEach(a=>a.addEventListener('click',()=>{
+   $('letter-type').value='quotation';quoteMode('quotation');$('quote-book').focus();
+  }));
+  document.querySelectorAll('[data-letter-filter]').forEach(button=>button.addEventListener('click',()=>{
+   letterFilter=button.dataset.letterFilter;
+   document.querySelectorAll('[data-letter-filter]').forEach(b=>{
+    const active=b===button;b.setAttribute('aria-pressed',String(active));b.classList.toggle('active',active);
+   });
+   loadLetters();
+  }));
+ }
  function collect(){
   const form=$('letter-form');
   const body=Object.fromEntries(new FormData(form).entries());
@@ -109,11 +158,12 @@
  }
  async function setupForm(){
   const form=$('letter-form');if(!form)return;
-  configureNotice();setBookContext();
+  configureNotice();setBookContext();setupQuotationControls();
   if(mode==='public')await loadLetters();
   if(!ready)return;
   try{await req('/api/health')}catch(e){status('The correspondence service is not ready: '+e.message,true);document.querySelectorAll('[data-send]').forEach(b=>b.disabled=true);return}
   await addChallenge();
+  if(widget!==null)form.querySelector('[data-send]').disabled=false;
   form.addEventListener('submit',async event=>{
    event.preventDefault();const send=form.querySelector('[data-send]');if(!send||send.disabled)return;
    const details=collect();if(!details.token){status('Please complete the spam check to send your letter.',true);return}
@@ -123,6 +173,7 @@
     status(mode==='editor'?'Your private letter has reached the editor’s inbox. Thank you.':
       result.status==='approved'?'Your letter has been added to the correspondence board.':'Your letter is awaiting the editor’s approval. Thank you.');
     form.reset();replyTo=null;if($('reply-indicator'))$('reply-indicator').hidden=true;setBookContext();
+    if(mode==='public'){quoteMode('discussion');if($('quote-source'))$('quote-source').value='';}
     if(mode==='public')await loadLetters();
    }catch(e){status(e.message,true)}
    finally{resetChallenge();send.disabled=false}
@@ -144,7 +195,7 @@
     const b=el('button','button secondary',action[0].toUpperCase()+action.slice(1));b.type='button';
     b.addEventListener('click',async()=>{
      if(action==='delete'&&!confirm('Permanently delete this letter?'))return;
-     try{await req('/api/admin/letters/'+encodeURIComponent(letter.id),{method:'POST',headers:authHeaders(),body:JSON.stringify({action})});status('Letter '+action+'d.');await loadInbox();}
+     try{await req('/api/admin/letters/'+encodeURIComponent(letter.id),{method:'POST',headers:authHeaders(),body:JSON.stringify({action})});status(action==='approve'?'Letter approved.':action==='delete'?'Letter deleted.':action==='close'?'Report closed.':'Letter rejected.');await loadInbox();}
      catch(e){status(e.message,true,'admin-status')}
     });bar.append(b);
    }
