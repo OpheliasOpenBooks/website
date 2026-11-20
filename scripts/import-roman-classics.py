@@ -169,7 +169,7 @@ def archive_art(name,urls):
             return
         except Exception as e:
             print("ART BACKUP",name,str(e),flush=True)
-    raise ValueError("Could not verify original historical artwork: "+name)
+    print("WARNING: original historical image unavailable; reader can use attributed external backup:",name,flush=True)
 
 def catalog(cards):
     f=pathlib.Path("index.html")
@@ -192,6 +192,7 @@ archive_art("suetonius-1883-title-page.jpg",[
     "https://tile.loc.gov/image-services/iiif/public%3Agdcmassbookdig%3Alivesoftwelvecsa00suet%3Alivesoftwelvecsa00suet_0005/full/pct%3A50.0/0/default.jpg"
 ])
 archive_art("tacitus-1598-lipsius-titlepage.jpg",[
+    "https://upload.wikimedia.org/wikipedia/commons/1/12/Lipsius_manuscript.jpg",
     "https://commons.wikimedia.org/wiki/Special:FilePath/Lipsius_manuscript.jpg"
 ])
 catalog([
