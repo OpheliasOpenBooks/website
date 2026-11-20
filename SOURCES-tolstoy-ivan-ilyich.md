@@ -7,6 +7,8 @@ The complete 12-chapter English novella is hosted as a separate work from the St
 - English translation and text: https://github.com/standardebooks/leo-tolstoy_short-fiction_various-translators/blob/master/src/epub/text/the-death-of-ivan-ilyitch.xhtml
 - Original 1915 translation: https://www.gutenberg.org/ebooks/79990
 - First-publication Russian historical image (1886): https://commons.wikimedia.org/wiki/File:The_Death_of_Ivan_Ilyich.jpg
-- Original Russian read-only text: https://ru.wikisource.org/wiki/Смерть_Ивана_Ильича_(Толстой)
+- **Hosted Russian original, read-only:** [Смерть Ивана Ильича](the-death-of-ivan-ilyich-original-russian.html) — the complete 12-chapter text, stored in `public/books/tolstoy-death-ivan-ilyich-original-russian.txt`.
+- Source transcription for hosted Russian text: https://github.com/d0rj/RusLit/blob/master/prose/Tolstoy/Смерть%20Ивана%20Ильича.txt
+- Additional Russian reference: https://ru.wikisource.org/wiki/Смерть_Ивана_Ильича_(Толстой)
 
 The reader uses browser-based narration only for the English edition.
