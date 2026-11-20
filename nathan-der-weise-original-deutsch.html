@@ -45,18 +45,18 @@ aside select{width:100%;padding:10px;background:var(--panel);color:var(--ink);bo
 <footer class="reader-nav"><button type="button" id="prev" disabled>← Zurück</button><span class="status" id="pages">Seite 1</span><button type="button" id="next" disabled>Weiter →</button></footer>
 </article>
 <aside aria-label="Leseeinstellungen">
-<h2>Lesen</h2><label for="part">Leseteil wählen</label><select id="part"><option value="1">Leseteil 1 von 12 · Titel, Personen und Schauplatz</option><option value="2">Leseteil 2 von 12 · Erster Aufzug · Teil 1 of 2</option><option value="3">Leseteil 3 von 12 · Erster Aufzug · Teil 2 of 2</option><option value="4">Leseteil 4 von 12 · Zweiter Aufzug · Teil 1 of 2</option><option value="5">Leseteil 5 von 12 · Zweiter Aufzug · Teil 2 of 2</option><option value="6">Leseteil 6 von 12 · Dritter Aufzug · Teil 1 of 3</option><option value="7">Leseteil 7 von 12 · Dritter Aufzug · Teil 2 of 3</option><option value="8">Leseteil 8 von 12 · Dritter Aufzug · Teil 3 of 3</option><option value="9">Leseteil 9 von 12 · Vierter Aufzug · Teil 1 of 2</option><option value="10">Leseteil 10 von 12 · Vierter Aufzug · Teil 2 of 2</option><option value="11">Leseteil 11 von 12 · Fünfter Aufzug · Teil 1 of 2</option><option value="12">Leseteil 12 von 12 · Fünfter Aufzug · Teil 2 of 2</option></select>
+<h2>Lesen</h2><label for="part">Leseteil wählen</label><select id="part"><option value="1">Leseteil 1 von 12 · Titel, Personen und Schauplatz</option><option value="2">Leseteil 2 von 12 · Erster Aufzug · Teil 1 von 2</option><option value="3">Leseteil 3 von 12 · Erster Aufzug · Teil 2 von 2</option><option value="4">Leseteil 4 von 12 · Zweiter Aufzug · Teil 1 von 2</option><option value="5">Leseteil 5 von 12 · Zweiter Aufzug · Teil 2 von 2</option><option value="6">Leseteil 6 von 12 · Dritter Aufzug · Teil 1 von 3</option><option value="7">Leseteil 7 von 12 · Dritter Aufzug · Teil 2 von 3</option><option value="8">Leseteil 8 von 12 · Dritter Aufzug · Teil 3 von 3</option><option value="9">Leseteil 9 von 12 · Vierter Aufzug · Teil 1 von 2</option><option value="10">Leseteil 10 von 12 · Vierter Aufzug · Teil 2 von 2</option><option value="11">Leseteil 11 von 12 · Fünfter Aufzug · Teil 1 von 2</option><option value="12">Leseteil 12 von 12 · Fünfter Aufzug · Teil 2 von 2</option></select>
 <label for="section">Abschnitt</label><select id="section" disabled><option>Laden…</option></select>
 <div class="progress"><span id="bar"></span></div><p class="status" id="progress">0 % gelesen</p>
-<div class="actions"><button type="button" id="smaller" aria-label="Diminuer la taille du texte">A−</button><button type="button" id="larger" aria-label="Augmenter la taille du texte">A+</button><button type="button" id="dark">Nachtmodus</button></div>
+<div class="actions"><button type="button" id="smaller" aria-label="Text verkleinern">A−</button><button type="button" id="larger" aria-label="Text vergrößern">A+</button><button type="button" id="dark">Nachtmodus</button></div>
 <div class="actions"><button type="button" id="bookmark">♡ Lesezeichen</button><button type="button" id="return">Zum Lesezeichen</button></div>
 <p class="hint" id="message">Fortschritt und Lesezeichen werden auf diesem Gerät gespeichert. Diese Originalausgabe hat keine Sprachausgabe.</p>
-<p class="hint">Vollständiger Originaltext aus der verbesserten Ausgabe von 1779: <a href="https://www.gutenberg.org/ebooks/9186" target="_blank" rel="noopener noreferrer">Project Gutenberg Nr. 47804</a>. Titelbild aus der Ausgabe von 1779: <a href="https://commons.wikimedia.org/wiki/File:Lessing_Die_R%C3%A4uber_1779.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>.</p>
+<p class="hint">Vollständiger historischer Originaltext aus einer späteren digitalen Transkription: <a href="https://www.gutenberg.org/ebooks/9186" target="_blank" rel="noopener noreferrer">Project Gutenberg Nr. 9186</a>. Historisches Exemplar der Erstausgabe von 1779: <a href="https://commons.wikimedia.org/wiki/File:Lessing_Nathan_der_Weise_1779.jpg" target="_blank" rel="noopener noreferrer">Wikimedia: Foto H.-P. Haack</a>.</p>
 </aside></main>
 <script>
 'use strict';
 const $=id=>document.getElementById(id);
-const KEY='ophelia-schiller-nathan-der-weise-original-deutsch-v1';
+const KEY='ophelia-lessing-nathan-der-weise-original-deutsch-v1';
 const COUNTS=[0,1,1,1,1,1,1,1,1,1,1,1,1],MINS=[0,66,2882,2882,2831,2820,2175,2180,2168,2885,2872,2742,2715],COUNT=12;
 const state={page:0,part:1,size:20,night:false,bookmarkPart:0,bookmarkPage:-1,partPages:{}};
 try{Object.assign(state,JSON.parse(localStorage.getItem(KEY)||'{}'))}catch{}
@@ -80,7 +80,7 @@ function render(scroll=true){
  if(!pages.length)return;
  state.page=Math.min(Math.max(0,Number(state.page)||0),pages.length-1);
  const page=pages[state.page],part=sections[page.section],box=$('reading');box.replaceChildren();
- const heading=document.createElement('h2');heading.textContent=part.name;box.append(heading);
+ const heading=document.createElement('h2');heading.textContent=part.name.replace(/ of /g,' von ');box.append(heading);
  for(const paragraph of page.paragraphs){const p=document.createElement('p');p.lang='de';p.className='notranslate';p.setAttribute('translate','no');p.textContent=paragraph.replace(/[_~=]/g,'');box.append(p)}
  $('section').value=String(page.section);$('part').value=String(state.part);
  $('pages').textContent='Seite '+(state.page+1)+' / '+pages.length+' · Teil '+state.part+' / '+COUNT;
