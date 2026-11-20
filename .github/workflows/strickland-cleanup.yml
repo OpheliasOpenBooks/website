@@ -1,0 +1,18 @@
+name: Strickland scanned-text cleanup regression
+on:
+  push:
+    paths:
+      - 'public/js/strickland-text-cleanup.js'
+      - 'lives-of-the-queens-of-england.html'
+      - 'tests/strickland-cleanup.test.cjs'
+      - '.github/workflows/strickland-cleanup.yml'
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tests/strickland-cleanup.test.cjs
