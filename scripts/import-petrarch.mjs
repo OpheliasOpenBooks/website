@@ -14,8 +14,11 @@ const englishSources=[
  'https://raw.githubusercontent.com/GITenberg/The-Sonnets-Triumphs-and-Other-Poems-of-Petrarch_17650/master/17650.txt',
  'https://raw.githubusercontent.com/GITenberg/The-Sonnets-Triumphs-and-Other-Poems-of-Petrarch_17650/master/17650-8.txt'
 ];
+// Use editions published in the nineteenth or early twentieth century,
+// rather than a modern critical edition of the Italian text.
 const italianSources=[
- 'https://files.libridominiopubblico.it/livros/it/francesco-petrarca/canzoniere.txt'
+ 'https://archive.org/download/ilcanzonieredi00petruoft/ilcanzonieredi00petruoft_djvu.txt',
+ 'https://archive.org/download/ilcanzoniere00petruoft/ilcanzoniere00petruoft_djvu.txt'
 ];
 const count=s=>(s.match(/\S+/g)||[]).length;
 async function fetchText(urls, verify) {
@@ -30,7 +33,7 @@ async function fetchText(urls, verify) {
    let text=new TextDecoder('utf-8').decode(bytes);
    if(text.includes('\uFFFD'))text=new TextDecoder('windows-1252').decode(bytes);
    text=text.replace(/^\uFEFF/,'').replace(/\r\n?/g,'\n');
-   if(/gutenberg/i.test(url)){
+   if(/gutenberg/i.test(url)||/raw.githubusercontent.com\/GITenberg/i.test(url)){
     const start=/\*{3}\s*START OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[^\n]*\*{3}/i.exec(text);
     const end=/\*{3}\s*END OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[^\n]*\*{3}/i.exec(text);
     if(start&&end&&end.index>start.index+120000)text=text.slice(start.index+start[0].length,end.index).trim();
@@ -53,6 +56,7 @@ function verifyItalian(text){
  !/Voi ch[’']?ascoltate/i.test(text)||!/Vergine bella/i.test(text))throw Error('Unabridged Italian Canzoniere identity/length not verified');
 }
 function normalize(text,lang){
+ if(lang==='en')text=text.replace(/^Produced by[^\n]*(?:\n(?!\n)[^\n]*){0,4}\n\s*\n/im,'');
  let out=text.replace(/\[(?:Pg\.?\s*)?[ivxlcdm\d]+[a-z]?\]/gi,'')
   .replace(/_([^_\n]{1,180})_/g,'$1')
   .replace(/\n{3,}/g,'\n\n').trim();
@@ -66,7 +70,7 @@ function heading(p,lang){
  if(lang==='en'){
   if(/^(?:THE )?LIFE OF PETRARCH\.?$/i.test(flat))return 'Life of Petrarch · Thomas Campbell';
   if(/^(PREFACE|INTRODUCTION|ADVERTISEMENT|CONTENTS|INDEX|NOTES|LIST OF PLATES)\.?$/i.test(flat))return flat;
-  const m=/^(?:(THE )?(TRIUMPH|SONNET|CANZONE|SESTINA|BALLATA|MADRIGAL|ODE|SONG|CAPITOLO)\s*(?:NO\.\s*)?([IVXLCDM\d]+)?[.:—\s-]*(.*))$/i.exec(flat);
+  const m=/^(?:(THE )?(TRIUMPH|SONNET|CANZONE|SESTINA|BALLATA|MADRIGAL|ODE|SONG|CAPITOLO)\b\s*(?:NO\.\s*)?([IVXLCDM\d]+)?[.:—\s-]*(.*))$/i.exec(flat);
   if(m && flat.length<90)return (m[2].toUpperCase()+ (m[3]?' '+m[3]:'')+ (m[4]?' · '+m[4]:'')).trim();
  }else{
   if(/^(?:IN VITA|IN MORTE|PARTE\s+(?:PRIMA|SECONDA)|Canzoniere|Rerum vulgarium fragmenta)$/i.test(flat))return flat;
@@ -142,6 +146,7 @@ function catalog(){
 }
 const en=await fetchText(englishSources,verifyEnglish);
 const it=await fetchText(italianSources,verifyItalian);
+console.log('ITALIAN FIRST PARAGRAPHS',JSON.stringify(it.text.split(/\n\s*\n+/).slice(0,16).map(x=>x.slice(0,170))));
 saveEdition(en,'en');saveEdition(it,'it');
 await cover();
 catalog();
