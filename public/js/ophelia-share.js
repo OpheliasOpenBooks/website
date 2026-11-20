@@ -251,8 +251,32 @@ function addOriginalLanguageLinks(){
  if((currentPage==='grimms-fairy-tales.html'||currentPage==='tales-of-mother-goose.html')&&heading.querySelector('img'))heading.insertBefore(box,heading.querySelector('img'));else if(share)heading.insertBefore(box,share);else heading.appendChild(box);
 }
 
+
+// A discreet letter link on readers, never a floating control over the prose.
+// The click-time lookup captures the actual displayed reading page.
+function addEditorDeskLink(){
+ if(document.querySelector('[data-ophelia-editor-link]'))return;
+ const host=document.querySelector('.book-heading');
+ if(!host)return;
+ const link=document.createElement('a');link.href='editor-desk.html';
+ link.dataset.opheliaEditorLink='';link.textContent='✉ Write to the Editor · report a book error';
+ link.style.cssText='display:inline-block;margin:15px auto 5px;padding:5px 12px;color:#63543a;font:italic 13px/1.5 Georgia,serif;text-decoration:underline;text-underline-offset:4px';
+ link.addEventListener('click',()=>{
+  const href=window.location.href.split('#')[0].split('?')[0];
+  const book=document.querySelector('.book-heading h1, main h1')?.textContent?.trim()||document.title.split('·')[0].trim();
+  const displayed=document.querySelector('#pagecount,#footcount,#progresslabel,[aria-label="Page number"]')?.textContent||'';
+  const m=displayed.match(/(?:page\s*)(\d+)/i);
+  const url=new URL('editor-desk.html',window.location.href);
+  if(book)url.searchParams.set('book',book.slice(0,120));
+  if(m)url.searchParams.set('page','Page '+m[1]);
+  url.searchParams.set('source',href);
+  link.href=url.toString();
+ });
+ const share=host.querySelector('[data-ophelia-share]');
+ if(share)share.insertAdjacentElement('afterend',link);else host.append(link);
+}
 function initializePageButtons(){
-  addPageButton();addLibraryNavigation();addOriginalLanguageLinks();
+  addPageButton();addLibraryNavigation();addOriginalLanguageLinks();addEditorDeskLink();
   // Personal shelf controls belong to reader pages only; keep the main site light.
   if(!document.getElementById('prose'))return;
   // Reuse the same reader-side completion detector and personal shelf
