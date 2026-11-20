@@ -1,8 +1,9 @@
-/* Set both values after the free Cloudflare Worker and Turnstile setup.
- * Do not place any Turnstile SECRET, ADMIN_KEY, API key, or password here.
- * The frontend refuses submissions while unconfigured.
+/* Public Cloudflare connection, linked to the owner's Workers.dev deployment.
+ * This file contains ONLY the non-secret Worker URL and public Turnstile sitekey.
+ * Secret credentials live exclusively in Cloudflare's encrypted Worker variables.
+ * The frontend checks /api/health and blocks submissions until backend is ready.
  */
 window.OpheliaCorrespondenceConfig=Object.freeze({
-  apiBase:"",
-  turnstileSiteKey:""
+  apiBase:"https://ophelia-correspondence.dmendoza2030.workers.dev",
+  turnstileSiteKey:"0x4AAAAAAGKBztkiP8Hiq4SQ"
 });

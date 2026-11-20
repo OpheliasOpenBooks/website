@@ -79,7 +79,7 @@ A quiet **Share a favorite passage** link now appears below the book heading on 
 
 ### Owner action still required
 
-At present, no Cloudflare account has been authorized for this project, so there is **no deployed Worker URL, no database ID, and no Turnstile sitekey**. Consequently `public/correspondence-config.js` is intentionally blank and the public/editor forms cannot deliver messages. The code alone is not a live message-storage connection. The owner must finish the Cloudflare setup instructions above, then supply the non-secret Worker URL and public sitekey to configure the static site. Do not share secret keys or passwords with anyone.
+The owner has now created the D1 database `ophelia-correspondence`, deployed `https://ophelia-correspondence.dmendoza2030.workers.dev`, and created a Managed Turnstile widget. The public Worker URL and Turnstile **sitekey** are configured in `public/correspondence-config.js` (November 2026). The backend's `/api/health` currently reports that **secret configuration is incomplete**, so the frontend intentionally disables submissions until the owner privately sets `TURNSTILE_SECRET`, `ADMIN_KEY`, and `RATE_SALT` in the Worker settings. Do not share these secrets or put them in a repository or screenshots. After all three are saved, re-check `/api/health` and test both public and editor submissions.
 
 ## Public posting policy revised at the editor's request
 
