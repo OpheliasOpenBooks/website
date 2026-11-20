@@ -764,6 +764,7 @@ const progressByPage={
  'oedipus-rex.html':'ophelia-oedipus-rex-storr-1912-alice-voice-v1'
 };
 const catalogOnlyBooks=[
+ {title:'Il Canzoniere (Original Italian)',author:'Francesco Petrarca · 14th century',href:'petrarch-canzoniere-original-italiano.html',image:'public/art/petrarch-1879-engraving.jpg',alt:'Historic engraved portrait of Francesco Petrarca from the 1879 English edition',description:'Read all 366 poems of Petrarch’s original Italian Canzoniere, entirely within Ophelia’s Open Book. Original-language edition, read-only, with saved reading place and poem selection.',genre:'Italian Renaissance Poetry & Sonnets'},
  {title:'The Turn of the Screw',author:'Henry James · 1898',href:'the-turn-of-the-screw.html',image:'https://commons.wikimedia.org/wiki/Special:FilePath/The-Two-Magics-1898-Macmillan.jpg',alt:'Genuine 1898 Macmillan dust jacket for the first book containing the novella',description:"At a remote English estate, a governess fears that the children in her care are haunted by unseen visitors.",genre:'Gothic & Horror'},
  {title:'The Invisible Man',author:'H. G. Wells · 1897',href:'the-invisible-man.html',image:'https://commons.wikimedia.org/wiki/Special:FilePath/Wells_-_The_Invisible_Man_-_Pearson_cover_1897.jpg',alt:'Original 1897 red Victorian cloth book cover',description:"A heavily bandaged stranger enters a snowy village, with a scientific secret that leads to terror and tragedy.",genre:'Science Fiction & Fantasy'},
  {title:'The Island of Doctor Moreau',author:'H. G. Wells · 1896',href:'the-island-of-doctor-moreau.html',image:'https://commons.wikimedia.org/wiki/Special:FilePath/IslandOfDrMoreau.JPG',alt:'Authentic first-edition 1896 Heinemann pictorial cover',description:"Stranded on a remote island, Edward Prendick uncovers Doctor Moreau’s uncanny scientific experiments and meets the Beast Folk.",genre:'Science Fiction & Fantasy'},
@@ -967,7 +968,7 @@ function card(book){
  const by=document.createElement('p');by.className='author';by.textContent=book.author;
  const desc=document.createElement('p');desc.className='blurb';desc.textContent=book.description;
  const actions=document.createElement('div');actions.className='book-actions';
- const read=document.createElement('a');read.className='read-button';read.href=book.href;read.textContent=book.href==='king-james-bible-1611.html'?'Read Only →':'Read & Listen →';
+ const read=document.createElement('a');read.className='read-button';read.href=book.href;read.textContent=(book.href==='king-james-bible-1611.html'||book.href==='petrarch-canzoniere-original-italiano.html')?'Read Only →':'Read & Listen →';
  const share=document.createElement('button');share.type='button';share.className='card-share';share.textContent='Share';
  share.setAttribute('aria-label','Share '+book.title);
  share.addEventListener('click',()=>window.OpheliaShare?.open({title:book.title,url:new URL(book.href,location.href).href}));
