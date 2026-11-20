@@ -5,15 +5,15 @@
   "readOnly": false,
   "publication": "Bohn, 1859; Bell & Sons reprint, 1879",
   "source": "https://gutenberg.pglaf.org/cache/epub/17650/pg17650.txt",
-  "wordCount": 191844,
-  "sha256": "089725dbb73d2d16c3f06e46623f2e5c14306c8a6272d6834042bc731abea9e2",
+  "wordCount": 191830,
+  "sha256": "e0a7db500e70bfe2194c708d5bc975e452fdaf62a9a34c07cdfcb6a979070bd0",
   "parts": [
     {
       "part": 1,
       "file": "part-001.json",
-      "name": "SONNET · S, TRIUMPHS, AND OTHER POEMS",
-      "sections": 5,
-      "words": 4800
+      "name": "Front matter",
+      "sections": 4,
+      "words": 4786
     },
     {
       "part": 2,
@@ -131,7 +131,7 @@
       "part": 18,
       "file": "part-018.json",
       "name": "SONNET XXXVIII",
-      "sections": 20,
+      "sections": 18,
       "words": 4799
     },
     {
@@ -152,7 +152,7 @@
       "part": 21,
       "file": "part-021.json",
       "name": "SONNET LXXX",
-      "sections": 22,
+      "sections": 20,
       "words": 4790
     },
     {
@@ -285,14 +285,14 @@
       "part": 40,
       "file": "part-040.json",
       "name": "TRIUMPH · OF ETERNITY.",
-      "sections": 4,
+      "sections": 3,
       "words": 4899
     },
     {
       "part": 41,
       "file": "part-041.json",
-      "name": "SONNET · S, CANZONI, &c.",
-      "sections": 4,
+      "name": "TRIUMPH · of Chastity 361",
+      "sections": 3,
       "words": 315
     }
   ]

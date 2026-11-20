@@ -3,94 +3,118 @@
   "author": "Francesco Petrarca",
   "language": "it",
   "readOnly": true,
-  "publication": "Original Italian poetry, fourteenth century",
+  "poemCount": 366,
+  "transcriptionLicense": "CC BY-SA 4.0",
+  "attribution": "Wikisource contributors via Libri di Dominio Pubblico; ancient Petrarch verses only; modern editorial frontmatter excluded",
+  "publication": "Original Petrarch verses (fourteenth century), Wikisource digital transcription",
   "source": "https://files.libridominiopubblico.it/livros/it/francesco-petrarca/canzoniere.txt",
-  "wordCount": 56454,
-  "sha256": "c7e7e2a9371717a503ef0c655fdec263d5ea19acd88df242aa0d72640efe453a",
+  "wordCount": 53859,
+  "sha256": "0f4b2c8efa8125c89a337a7ce9c1916094cf92b8ce1e9f3451a14b4a8c0430db",
   "parts": [
     {
       "part": 1,
       "file": "part-001.json",
-      "name": "Front matter",
-      "sections": 1,
-      "words": 4861
+      "name": "Poesie 1–25",
+      "sections": 25,
+      "words": 3639
     },
     {
       "part": 2,
       "file": "part-002.json",
-      "name": "Front matter",
-      "sections": 1,
-      "words": 4870
+      "name": "Poesie 26–50",
+      "sections": 25,
+      "words": 4494
     },
     {
       "part": 3,
       "file": "part-003.json",
-      "name": "Front matter",
-      "sections": 1,
-      "words": 4894
+      "name": "Poesie 51–75",
+      "sections": 25,
+      "words": 4962
     },
     {
       "part": 4,
       "file": "part-004.json",
-      "name": "Front matter",
-      "sections": 1,
-      "words": 4873
+      "name": "Poesie 76–100",
+      "sections": 25,
+      "words": 2667
     },
     {
       "part": 5,
       "file": "part-005.json",
-      "name": "Front matter",
-      "sections": 1,
-      "words": 4889
+      "name": "Poesie 101–125",
+      "sections": 25,
+      "words": 3890
     },
     {
       "part": 6,
       "file": "part-006.json",
-      "name": "Front matter",
-      "sections": 1,
-      "words": 4885
+      "name": "Poesie 126–150",
+      "sections": 25,
+      "words": 5067
     },
     {
       "part": 7,
       "file": "part-007.json",
-      "name": "Front matter",
-      "sections": 1,
-      "words": 4899
+      "name": "Poesie 151–175",
+      "sections": 25,
+      "words": 2578
     },
     {
       "part": 8,
       "file": "part-008.json",
-      "name": "Front matter",
-      "sections": 1,
-      "words": 4898
+      "name": "Poesie 176–200",
+      "sections": 25,
+      "words": 2524
     },
     {
       "part": 9,
       "file": "part-009.json",
-      "name": "Front matter",
-      "sections": 1,
-      "words": 4883
+      "name": "Poesie 201–225",
+      "sections": 25,
+      "words": 3601
     },
     {
       "part": 10,
       "file": "part-010.json",
-      "name": "Front matter",
-      "sections": 1,
-      "words": 4892
+      "name": "Poesie 226–250",
+      "sections": 25,
+      "words": 2938
     },
     {
       "part": 11,
       "file": "part-011.json",
-      "name": "Front matter",
-      "sections": 1,
-      "words": 4873
+      "name": "Poesie 251–275",
+      "sections": 25,
+      "words": 4342
     },
     {
       "part": 12,
       "file": "part-012.json",
-      "name": "Front matter",
-      "sections": 1,
-      "words": 2737
+      "name": "Poesie 276–300",
+      "sections": 25,
+      "words": 2531
+    },
+    {
+      "part": 13,
+      "file": "part-013.json",
+      "name": "Poesie 301–325",
+      "sections": 25,
+      "words": 3541
+    },
+    {
+      "part": 14,
+      "file": "part-014.json",
+      "name": "Poesie 326–350",
+      "sections": 25,
+      "words": 3366
+    },
+    {
+      "part": 15,
+      "file": "part-015.json",
+      "name": "Poesie 351–366",
+      "sections": 16,
+      "words": 3719
     }
   ]
 }
