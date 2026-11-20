@@ -6,7 +6,10 @@ The full 16-chapter English work, including Tolstoy's 1882 afterword, was transc
 
 - Original public-domain English work: https://standardebooks.org/ebooks/leo-tolstoy/a-confession/aylmer-maude
 - Source chapters 1–16 and afterword: https://github.com/standardebooks/leo-tolstoy_a-confession_aylmer-maude/tree/master/src/epub/text
-- Original Russian text, read-only: https://ru.wikisource.org/wiki/Исповедь_(Толстой)
+- **Hosted Russian original, read-only:** [Исповедь](a-confession-tolstoy-original-russian.html) — the full original 16 chapters and concluding 1882 reflection, stored in `public/books/tolstoy-confession-original-russian.txt`.
+- Source transcription for hosted Russian text: https://github.com/d0rj/RusLit/blob/master/publicism/Tolstoy/Исповедь.txt
+- Additional Russian reference: https://ru.wikisource.org/wiki/Исповедь_(Толстой)
+- Chapter X is printed with a Cyrillic `Х` in the transcription; our reader recognizes it as Chapter Ten. The concluding reflection is labeled **Послесловие** for ease of navigation without altering the source wording.
 - Historical 1906 first edition in Russia cover, from Ural Federal University: https://lib.usu.ru/rus/our_resources/exhibitions/newexhibitiob/tolstoy/religion/01/
 
 Narration is provided only for the English translation, using the reader's browser.
