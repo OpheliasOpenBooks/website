@@ -22,6 +22,8 @@ jobs:
         run: node tests/narration.test.cjs
       - name: Check all speaking reader pages for shared implementation
         run: node tests/library-reader-audit.cjs
+      - name: Check Jane Eyre's French conversations and voice routing
+        run: node tests/jane-eyre-french.test.cjs
       - name: Check Perrault, Andersen and Grimm against Jane Eyre narration standard
         run: node tests/fairy-tale-narration.test.cjs
       - name: Verify Emerson volumes, essays and reading pagination

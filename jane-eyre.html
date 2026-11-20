@@ -39,6 +39,7 @@
  <div id="reader-options" hidden>
   <label class="setting-label" for="page">Go to page</label><select id="page" aria-label="Choose reading page" disabled><option>—</option></select>
   <label class="setting-label" for="voice">Narrator (device voice)</label><select id="voice"><option value="">Automatic English voice</option></select>
+  <p id="french-voice-note" class="hint" style="margin:8px 0;font:12px/1.6 Arial,sans-serif">French dialogue uses a French device voice, when available. Your English narrator stays selected.</p>
   <label class="setting-label" for="speed">Narration speed <output id="speedview">1×</output></label><input id="speed" type="range" min="0.5" max="2" value="1" step="0.05">
   <label class="setting-label" for="size">Text size <output id="sizeview">20 px</output></label><input id="size" type="range" min="16" max="28" value="20" step="1">
   <label class="check"><input id="dark" type="checkbox"> Evening theme</label>
@@ -51,6 +52,7 @@
 <div class="source">The complete 1847 novel by Charlotte Brontë, including her preface and all 38 chapters. The locally hosted text is based on <a href="https://standardebooks.org/ebooks/charlotte-bronte/jane-eyre" target="_blank" rel="noopener">Standard Ebooks’ public-domain edition</a>. Historical pen-and-ink illustration by F. H. Townsend (1897), from <a href="https://www.gutenberg.org/ebooks/1260" target="_blank" rel="noopener">Project Gutenberg’s illustrated edition</a>. Narration uses the reader’s browser voices.</div>
 </div>
 <script src="public/js/ophelia-narration.js?v=1.4.23-maam"></script>
+<script src="public/js/ophelia-jane-french.js?v=1.0"></script>
 <script>
 'use strict';
 /* All source is editable. Narration reuses Alice’s grammar-aware sentence segmentation and queued speech strategy. Browser/device voices provide the actual spoken sound. */
@@ -178,16 +180,25 @@ function startSpeech(startAt=speechResumeAt){
  stop();
  const synth=window.speechSynthesis;
  synth.resume();
- const chunks=speechChunks(getText()).slice(startAt);
+ const chunks=(window.OpheliaJaneFrench
+  ?window.OpheliaJaneFrench.spokenChunks(getText(),speechChunks)
+  :speechChunks(getText()).map(text=>({text,lang:'en'}))).slice(startAt);
  speechResumeAt=0;speechCursor=startAt;pageSpeechDone=false;
  if(!chunks.length){note('There is no text to narrate on this page.');return;}
  speaking=true;paused=false;const token=speechToken;
  let started=false,completed=0;
  const voice=pickVoice();
- // Queue all grammatical sentences for this page, as Alice does.
- speechQueue=chunks.map((t,i)=>{
-   const u=new SpeechSynthesisUtterance(t);let ended=false;
-   u.lang=voice?.lang||'en-GB';if(voice)u.voice=voice;
+ // Only a French passage changes language. English resumes automatically.
+ const frenchVoice=voiceList.find(v=>/^fr-FR$/i.test(v.lang))||
+   voiceList.find(v=>/^fr(?:-|$)/i.test(v.lang))||null;
+ speechQueue=chunks.map((part,i)=>{
+   const u=new SpeechSynthesisUtterance(part.text);let ended=false;
+   if(part.lang==='fr-FR'){
+     u.lang=frenchVoice?.lang||'fr-FR';
+     if(frenchVoice)u.voice=frenchVoice;
+   }else{
+     u.lang=voice?.lang||'en-GB';if(voice)u.voice=voice;
+   }
    u.rate=state.speed;u.volume=1;
    u.onstart=()=>{if(token!==speechToken||!speaking)return;
      started=true;utterance=u;speechCursor=startAt+i;clearTimeout(startTimer);
@@ -235,7 +246,17 @@ function setupBook(raw){
  state.page=Math.max(0,Math.min(state.page,pages.length-1));
  $('loadbox').classList.add('hidden');render();save();note('The complete novel is ready. Press Read aloud to begin.');
 }
-function updateVoices(){if(!('speechSynthesis' in window))return;voiceList=speechSynthesis.getVoices();$('voice').replaceChildren(new Option('Automatic English voice',''),...voiceList.filter(v=>/^en/i.test(v.lang)).map(v=>new Option(v.name+' · '+v.lang,v.voiceURI)));$('voice').value=state.voice;}
+function updateVoices(){
+ if(!('speechSynthesis' in window))return;
+ voiceList=speechSynthesis.getVoices();
+ $('voice').replaceChildren(new Option('Automatic English voice',''),
+  ...voiceList.filter(v=>/^en/i.test(v.lang)).map(v=>new Option(v.name+' · '+v.lang,v.voiceURI)));
+ $('voice').value=state.voice;
+ const hasFrench=voiceList.some(v=>/^fr(?:-|$)/i.test(v.lang));
+ $('french-voice-note').textContent=hasFrench
+  ?'French dialogue automatically uses an installed French narrator, then returns to your English voice.'
+  :'For reliable French pronunciation, install a French speech voice on this device. Your English narrator remains unchanged.';
+}
 function applySettings(){$('speed').value=state.speed;$('speedview').value=state.speed+'×';$('size').value=state.size;$('sizeview').value=state.size+' px';$('dark').checked=state.night;$('autoturn').checked=state.autoTurn;document.body.classList.toggle('night',state.night);document.documentElement.style.setProperty('--text-size',state.size+'px');}
 ['prev','prev2'].forEach(id=>$(id).addEventListener('click',()=>go(state.page-1)));
 ['next','next2'].forEach(id=>$(id).addEventListener('click',()=>go(state.page+1)));
