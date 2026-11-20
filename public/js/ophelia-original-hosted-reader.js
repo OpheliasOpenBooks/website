@@ -1,8 +1,8 @@
 (()=>{'use strict';
 const cfg=window.OPHELIA_ORIGINAL;
-if(!cfg||!cfg.file||!cfg.title||!cfg.english)return;
+if(!cfg||(!cfg.file&&!Array.isArray(cfg.files))||!cfg.title||!cfg.english)return;
 const $=id=>document.getElementById(id);
-const key='ophelia-original-reader-v2:'+cfg.file;
+const key='ophelia-original-reader-v2:'+(cfg.file||cfg.files.join(','));
 let state={page:0,bookmark:-1,font:20,dark:false},pages=[],sections=[];
 try{const value=JSON.parse(localStorage.getItem(key)||'null');if(value&&typeof value==='object')Object.assign(state,value)}catch{}
 if(!Number.isInteger(state.page)||state.page<0)state.page=0;
@@ -104,9 +104,10 @@ $('dark').onchange=()=>{state.dark=$('dark').checked;setAppearance();save()};
 setAppearance();
 (async()=>{
  try{
-  const r=await fetch(cfg.file,{cache:'no-store'});
-  if(!r.ok)throw Error('Local text file missing: '+r.status);
-  const raw=await r.text();
+  const files=Array.isArray(cfg.files)?cfg.files:[cfg.file];
+  if(!files.length||files.some(f=>typeof f!=='string'||!/^public\/books\/[a-z0-9-]+\.txt$/.test(f)))throw Error('Invalid local book files.');
+  const segments=await Promise.all(files.map(async file=>{const r=await fetch(file,{cache:'no-store'});if(!r.ok)throw Error('Local text file missing: '+file+' (HTTP '+r.status+')');return r.text()}));
+  const raw=segments.join('\n\n');
   sections=decodeSections(raw);
   pages=paginate(sections);
   if(pages.length<(cfg.minPages||8))throw Error('This hosted edition is not complete.');
