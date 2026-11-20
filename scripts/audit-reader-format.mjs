@@ -5,7 +5,7 @@ const read=p=>fs.readFileSync(p,'utf8');
 const catalog=read('catalog.html'),home=read('index.html');
 const hrefs=[...catalog.matchAll(/href:'([^']+\.html)'/g)].map(m=>m[1]).concat([...home.matchAll(/href="([\w-]+\.html)"/g)].map(m=>m[1]));
 // Non-reader navigational pages may be linked on the home page, but they are not books.
-const nonReaders=new Set(['index.html','catalog.html','reader.html','support.html','music.html','get-the-app.html','my-bookshelf.html','jacques-the-fatalist.html']);
+const nonReaders=new Set(['index.html','catalog.html','reader.html','support.html','music.html','get-the-app.html','my-bookshelf.html']);
 const paths=[...new Set(hrefs)].filter(p=>!nonReaders.has(p));
 const series=new Set(['the-forsyte-saga.html','outline-of-history.html','leatherstocking-tales.html']);
 // Original-language companion editions intentionally have no audio or narrator controls.
