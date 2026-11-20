@@ -1,0 +1,34 @@
+name: Import original Strickland twelve-volume series
+on:
+  push:
+    paths:
+      - 'scripts/import-strickland-queens.mjs'
+      - '.github/workflows/import-strickland-queens.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import:
+    if: github.repository == 'OpheliasOpenBooks/website'
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Retrieve and validate all twelve complete original-volume transcriptions
+        run: node scripts/import-strickland-queens.mjs
+      - name: Publish source-verified original edition and catalog entry
+        run: |
+          git config user.name "Ophelia Library Import"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html public/books/lives-of-the-queens-of-england/
+          if [ -f public/art/strickland-queens-1840-cover.jpg ]; then git add public/art/strickland-queens-1840-cover.jpg; fi
+          git diff --cached --stat
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish twelve original Strickland volumes with historical OCR readers"
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
+          fi
