@@ -275,8 +275,44 @@ function addEditorDeskLink(){
  const share=host.querySelector('[data-ophelia-share]');
  if(share)share.insertAdjacentElement('afterend',link);else host.append(link);
 }
+
+/* Open the Victorian quotation form. A selected passage is copied into the
+ * form only by deliberate user action; never sent to any endpoint on click.
+ * Printed punctuation and spelling remain unchanged in the reader.
+ */
+function addFavoriteQuotationLink(){
+ const host=document.querySelector('.book-heading');
+ if(!host||document.querySelector('[data-ophelia-quote-link]'))return;
+ const link=document.createElement('a');
+ link.href='correspondence.html?kind=quotation';
+ link.dataset.opheliaQuoteLink='';
+ link.textContent='❦ Share a favorite passage';
+ link.style.cssText='display:inline-block;margin:8px 10px 5px 0;padding:5px 12px;color:#63543a;font:italic 13px/1.5 Georgia,serif;text-decoration:underline;text-underline-offset:4px';
+ let chosen='';
+ const selectionFromBook=()=>{
+  const root=document.querySelector('#prose')||document.querySelector('#content')||document.querySelector('.reading-layout main');
+  const selected=window.getSelection?.();
+  if(!root||!selected||selected.isCollapsed||
+     !root.contains(selected.anchorNode)||!root.contains(selected.focusNode))return '';
+  return selected.toString().replace(/\s+/g,' ').trim().slice(0,480);
+ };
+ link.addEventListener('pointerdown',()=>{chosen=selectionFromBook();});
+ link.addEventListener('click',()=>{
+  const passage=chosen||selectionFromBook();chosen='';
+  const url=new URL('correspondence.html',window.location.href);
+  url.searchParams.set('kind','quotation');
+  if(passage)url.searchParams.set('quote',passage);
+  const book=host.querySelector('h1')?.textContent?.trim()||document.title.split('·')[0].trim();
+  if(book)url.searchParams.set('book',book.slice(0,120));
+  url.searchParams.set('source',window.location.origin+window.location.pathname);
+  link.href=url.href;
+ });
+ const editor=host.querySelector('[data-ophelia-editor-link]');
+ if(editor)editor.insertAdjacentElement('beforebegin',link);
+ else host.append(link);
+}
 function initializePageButtons(){
-  addPageButton();addLibraryNavigation();addOriginalLanguageLinks();addEditorDeskLink();
+  addPageButton();addLibraryNavigation();addOriginalLanguageLinks();addEditorDeskLink();addFavoriteQuotationLink();
   // Personal shelf controls belong to reader pages only; keep the main site light.
   if(!document.getElementById('prose'))return;
   // Reuse the same reader-side completion detector and personal shelf

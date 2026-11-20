@@ -71,3 +71,11 @@ The public pages are already committed to the GitHub Pages site:
 Run `node tests/correspondence.test.cjs` from the repo root to check message validation. The worker uses native module syntax and Cloudflare D1; deployment/integration require a real Cloudflare account and binding.
 
 This feature has been intentionally designed for zero-cost startup. Cloudflare Workers, D1 and Turnstile offer free tiers subject to provider limits and terms; review those in your dashboard.
+
+## Sharing a line directly from a book
+
+A quiet **Share a favorite passage** link now appears below the book heading on ordinary reading pages. Readers may highlight a passage before clicking it; up to 480 characters are brought into the correspondence form with the book title and same-site source. If nothing is highlighted, the quotation form opens blank. The selection stays on the user's device unless the user explicitly submits the form. The original book is never modified.
+
+### Owner action still required
+
+At present, no Cloudflare account has been authorized for this project, so there is **no deployed Worker URL, no database ID, and no Turnstile sitekey**. Consequently `public/correspondence-config.js` is intentionally blank and the public/editor forms cannot deliver messages. The code alone is not a live message-storage connection. The owner must finish the Cloudflare setup instructions above, then supply the non-secret Worker URL and public sitekey to configure the static site. Do not share secret keys or passwords with anyone.

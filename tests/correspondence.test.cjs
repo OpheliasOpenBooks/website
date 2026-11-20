@@ -45,5 +45,10 @@ const path=require('node:path'),fs=require('node:fs');
  assert.ok(frontend.includes('[data-send]'),'offline send button disabled');
  assert.ok(editor.includes('name="book"')&&editor.includes('name="page"'));
  assert.ok(!/form action="mailto:/i.test(editor),'editor correspondence never sends email');
+ const share=fs.readFileSync(path.resolve(__dirname,'../public/js/ophelia-share.js'),'utf8');
+ assert.ok(share.includes('function addFavoriteQuotationLink()'));
+ assert.ok(share.includes('selectionFromBook()'));
+ assert.ok(share.includes("url.searchParams.set('quote',passage)"));
+
  console.log('Correspondence validation and page safety checks passed.');
 })().catch(e=>{console.error(e);process.exitCode=1});
