@@ -72,7 +72,7 @@ function identifyHeading(p) {
 function divide(work, raw) {
   // The 1897/1903 source transcriptions contain editorial image wrappers,
   // modern transcriber notes, and italic markup: these are not spoken prose.
-  const notes = /\n(?:[-]{8,}\n)?TRANSCRIBER[’']S NOTES\b/i.exec(raw);
+  const notes = /\n\s*(?:[-]{8,}\s*)?TRANSCRIBER[’']S NOTES\b/i.exec(raw);
   if (notes && notes.index > raw.length * 0.85) raw = raw.slice(0, notes.index);
   raw = raw.replace(/\[Illustration:\s*([\s\S]*?)\]/gi, (_, caption) => caption.trim())
            .replace(/\[Illustration\]/gi, '')
