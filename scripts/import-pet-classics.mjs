@@ -70,6 +70,14 @@ function identifyHeading(p) {
   return null;
 }
 function divide(work, raw) {
+  // The 1897/1903 source transcriptions contain editorial image wrappers,
+  // modern transcriber notes, and italic markup: these are not spoken prose.
+  const notes = /\n(?:[-]{8,}\n)?TRANSCRIBER[’']S NOTES\b/i.exec(raw);
+  if (notes && notes.index > raw.length * 0.85) raw = raw.slice(0, notes.index);
+  raw = raw.replace(/\[Illustration:\s*([\s\S]*?)\]/gi, (_, caption) => caption.trim())
+           .replace(/\[Illustration\]/gi, '')
+           .replace(/_([^_\n]{1,250})_/g, '$1')
+           .replace(/=([^=\n]{1,250})=/g, '$1');
   const paras = raw.split(/\n\s*\n+/).map(p => p.trim().replace(/\[(?:\d{1,3}|[*†‡])\]/g, '').trim())
     .filter(p => p && !/^\[(?:Illustration|Decoration|Page [^\]]+)\]$/i.test(p));
   if (paras.length < 100) throw Error('Suspiciously few paragraphs');
