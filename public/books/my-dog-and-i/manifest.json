@@ -1,0 +1,53 @@
+{
+  "title": "My Dog and I",
+  "author": "Harry Woodworth Huntington",
+  "firstPublished": 1897,
+  "projectGutenberg": "https://www.gutenberg.org/ebooks/73034",
+  "source": "https://gutenberg.pglaf.org/cache/epub/73034/pg73034.txt",
+  "wordCount": 27483,
+  "sha256": "ecbb4019bdfe681f1fd923672d8437aef314b42e83a5464f3075c83a891aab0d",
+  "parts": [
+    {
+      "part": 1,
+      "name": "Opening pages",
+      "words": 4688,
+      "sections": 24,
+      "file": "part-001.json"
+    },
+    {
+      "part": 2,
+      "name": "SCALE OF POINTS, ETC",
+      "words": 4623,
+      "sections": 8,
+      "file": "part-002.json"
+    },
+    {
+      "part": 3,
+      "name": "SCALE OF POINTS, ETC",
+      "words": 4658,
+      "sections": 4,
+      "file": "part-003.json"
+    },
+    {
+      "part": 4,
+      "name": "SCALE OF POINTS, ETC",
+      "words": 4695,
+      "sections": 3,
+      "file": "part-004.json"
+    },
+    {
+      "part": 5,
+      "name": "SCALE OF POINTS, ETC",
+      "words": 4689,
+      "sections": 29,
+      "file": "part-005.json"
+    },
+    {
+      "part": 6,
+      "name": "MANGE",
+      "words": 4130,
+      "sections": 40,
+      "file": "part-006.json"
+    }
+  ]
+}

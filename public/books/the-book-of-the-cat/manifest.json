@@ -1,0 +1,312 @@
+{
+  "title": "The Book of the Cat",
+  "author": "Frances Simpson",
+  "firstPublished": 1903,
+  "projectGutenberg": "https://www.gutenberg.org/ebooks/76311",
+  "source": "https://gutenberg.pglaf.org/cache/epub/76311/pg76311.txt",
+  "wordCount": 196197,
+  "sha256": "9052899d7f5b86476b9d0e6a6c64890d32ccc00ba49639053f1660712ef65e15",
+  "parts": [
+    {
+      "part": 1,
+      "name": "Chapter I · CATS OF THE PAST.",
+      "words": 4669,
+      "sections": 18,
+      "file": "part-001.json"
+    },
+    {
+      "part": 2,
+      "name": "AN EGYPTIAN TOY CAT",
+      "words": 4682,
+      "sections": 6,
+      "file": "part-002.json"
+    },
+    {
+      "part": 3,
+      "name": "Chapter II · CATS OF TO-DAY.",
+      "words": 4693,
+      "sections": 11,
+      "file": "part-003.json"
+    },
+    {
+      "part": 4,
+      "name": "CAT CALENDAR",
+      "words": 4628,
+      "sections": 12,
+      "file": "part-004.json"
+    },
+    {
+      "part": 5,
+      "name": "Chapter III · CARE AND MANAGEMENT.",
+      "words": 4649,
+      "sections": 10,
+      "file": "part-005.json"
+    },
+    {
+      "part": 6,
+      "name": "Chapter IV · HOUSING OF CATS.",
+      "words": 4434,
+      "sections": 7,
+      "file": "part-006.json"
+    },
+    {
+      "part": 7,
+      "name": "Chapter V · EXHIBITING.",
+      "words": 4592,
+      "sections": 4,
+      "file": "part-007.json"
+    },
+    {
+      "part": 8,
+      "name": "Chapter V · EXHIBITING.",
+      "words": 4688,
+      "sections": 7,
+      "file": "part-008.json"
+    },
+    {
+      "part": 9,
+      "name": "RICHMOND CAT SHOW: JUDGES AT WORK",
+      "words": 4458,
+      "sections": 11,
+      "file": "part-009.json"
+    },
+    {
+      "part": 10,
+      "name": "RICHMOND CAT SHOW: THE RING CLASS",
+      "words": 4417,
+      "sections": 5,
+      "file": "part-010.json"
+    },
+    {
+      "part": 11,
+      "name": "Chapter VI · THE “POINTS” OF A CAT.",
+      "words": 4671,
+      "sections": 8,
+      "file": "part-011.json"
+    },
+    {
+      "part": 12,
+      "name": "Chapter VI · THE “POINTS” OF A CAT.",
+      "words": 4318,
+      "sections": 6,
+      "file": "part-012.json"
+    },
+    {
+      "part": 13,
+      "name": "Chapter IX · BLACK PERSIANS.",
+      "words": 4689,
+      "sections": 5,
+      "file": "part-013.json"
+    },
+    {
+      "part": 14,
+      "name": "Chapter X · WHITE PERSIANS.",
+      "words": 4652,
+      "sections": 9,
+      "file": "part-014.json"
+    },
+    {
+      "part": 15,
+      "name": "Chapter XII · SILVER OR CHINCHILLA PERSIANS.",
+      "words": 4466,
+      "sections": 10,
+      "file": "part-015.json"
+    },
+    {
+      "part": 16,
+      "name": "BRED BY MRS. MIX, OLD FORT BATTERY, NEW YORK",
+      "words": 4674,
+      "sections": 10,
+      "file": "part-016.json"
+    },
+    {
+      "part": 17,
+      "name": "TWO VIEWS",
+      "words": 4643,
+      "sections": 2,
+      "file": "part-017.json"
+    },
+    {
+      "part": 18,
+      "name": "MRS. WALKER VISITING HER PETS",
+      "words": 4686,
+      "sections": 3,
+      "file": "part-018.json"
+    },
+    {
+      "part": 19,
+      "name": "Chapter XIII · SILVER TABBY PERSIANS.",
+      "words": 4474,
+      "sections": 6,
+      "file": "part-019.json"
+    },
+    {
+      "part": 20,
+      "name": "Chapter XIV · SMOKE PERSIANS.",
+      "words": 4519,
+      "sections": 4,
+      "file": "part-020.json"
+    },
+    {
+      "part": 21,
+      "name": "Chapter XV · ORANGE PERSIANS.",
+      "words": 4584,
+      "sections": 10,
+      "file": "part-021.json"
+    },
+    {
+      "part": 22,
+      "name": "Chapter XVI · CREAM OR FAWN PERSIANS.",
+      "words": 4299,
+      "sections": 7,
+      "file": "part-022.json"
+    },
+    {
+      "part": 23,
+      "name": "Chapter XVII · TORTOISESHELL PERSIANS.",
+      "words": 4659,
+      "sections": 7,
+      "file": "part-023.json"
+    },
+    {
+      "part": 24,
+      "name": "Chapter XVIII · TORTOISESHELL-AND-WHITE PERSIANS.",
+      "words": 4632,
+      "sections": 7,
+      "file": "part-024.json"
+    },
+    {
+      "part": 25,
+      "name": "BRED BY MRS. GREGORY",
+      "words": 4618,
+      "sections": 2,
+      "file": "part-025.json"
+    },
+    {
+      "part": 26,
+      "name": "Chapter XX · “ANY OTHER COLOUR” PERSIANS.",
+      "words": 4630,
+      "sections": 10,
+      "file": "part-026.json"
+    },
+    {
+      "part": 27,
+      "name": "Chapter XXI · NEUTER CATS.",
+      "words": 4675,
+      "sections": 8,
+      "file": "part-027.json"
+    },
+    {
+      "part": 28,
+      "name": "Chapter XXIII · SIAMESE CATS.",
+      "words": 4591,
+      "sections": 7,
+      "file": "part-028.json"
+    },
+    {
+      "part": 29,
+      "name": "POINTS OF THE SIAMESE",
+      "words": 4492,
+      "sections": 2,
+      "file": "part-029.json"
+    },
+    {
+      "part": 30,
+      "name": "Chapter XXIV · SHORT-HAIRED CATS.",
+      "words": 4536,
+      "sections": 7,
+      "file": "part-030.json"
+    },
+    {
+      "part": 31,
+      "name": "Chapter XXV · SHORT-HAIRED CATS.",
+      "words": 4688,
+      "sections": 8,
+      "file": "part-031.json"
+    },
+    {
+      "part": 32,
+      "name": "Chapter XXVI · SOME FOREIGN CATS.",
+      "words": 4666,
+      "sections": 12,
+      "file": "part-032.json"
+    },
+    {
+      "part": 33,
+      "name": "Chapter XXVII · CATS IN AMERICA.",
+      "words": 4669,
+      "sections": 8,
+      "file": "part-033.json"
+    },
+    {
+      "part": 34,
+      "name": "DISTRICT NO. 2",
+      "words": 4316,
+      "sections": 5,
+      "file": "part-034.json"
+    },
+    {
+      "part": 35,
+      "name": "Chapter XXVIII · MAINE CATS.",
+      "words": 4673,
+      "sections": 8,
+      "file": "part-035.json"
+    },
+    {
+      "part": 36,
+      "name": "Chapter XXVIII · MAINE CATS.",
+      "words": 4537,
+      "sections": 5,
+      "file": "part-036.json"
+    },
+    {
+      "part": 37,
+      "name": "Chapter XXX · REARING OF KITTENS.",
+      "words": 4651,
+      "sections": 7,
+      "file": "part-037.json"
+    },
+    {
+      "part": 38,
+      "name": "Chapter XXXI · COLOUR BREEDING.",
+      "words": 4639,
+      "sections": 7,
+      "file": "part-038.json"
+    },
+    {
+      "part": 39,
+      "name": "FIG. II.—SKULL OF THE GREAT SABRE-TOOTHED CAT",
+      "words": 4682,
+      "sections": 8,
+      "file": "part-039.json"
+    },
+    {
+      "part": 40,
+      "name": "WORMS, OR INTERNAL ANIMAL PARASITES",
+      "words": 4648,
+      "sections": 4,
+      "file": "part-040.json"
+    },
+    {
+      "part": 41,
+      "name": "DISTEMPER",
+      "words": 4689,
+      "sections": 3,
+      "file": "part-041.json"
+    },
+    {
+      "part": 42,
+      "name": "DISEASES OF THE EYE",
+      "words": 4638,
+      "sections": 5,
+      "file": "part-042.json"
+    },
+    {
+      "part": 43,
+      "name": "INDEX.",
+      "words": 3283,
+      "sections": 1,
+      "file": "part-043.json"
+    }
+  ]
+}
