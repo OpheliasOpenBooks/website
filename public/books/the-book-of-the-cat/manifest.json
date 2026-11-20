@@ -4,8 +4,8 @@
   "firstPublished": 1903,
   "projectGutenberg": "https://www.gutenberg.org/ebooks/76311",
   "source": "https://gutenberg.pglaf.org/cache/epub/76311/pg76311.txt",
-  "wordCount": 195482,
-  "sha256": "46e207d77174d6c3a10ba8d619a7254cde48bc216ee227ae2b35c729c72123d2",
+  "wordCount": 195433,
+  "sha256": "44263e1ee50b79316e525e8282567c3267bdfe8b788cff7f73a32cc8843ab05d",
   "parts": [
     {
       "part": 1,
@@ -304,7 +304,7 @@
     {
       "part": 43,
       "name": "INDEX.",
-      "words": 2165,
+      "words": 2116,
       "sections": 1,
       "file": "part-043.json"
     }
