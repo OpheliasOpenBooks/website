@@ -133,9 +133,9 @@
     // attached to an actual word/punctuation or isolated as ornamentation.
     // Protect mathematical expressions such as "2 * 3".
     text=text.replace(/([\p{L}\p{N}.,;:!?'”’)\]])[†‡‖⁂]+(?=\s|[.,;:!?'”’)\]]|$)/gu,'$1');
-    text=text.replace(/([\p{L}\p{N}.,;:!?'”’)\]])[ \t]*[*†‡‖⁂]+(?=\s|[.,;:!?'”’)\]]|$)/gu,'$1');
+    text=text.replace(/([\p{L}.,;:!?'”’)\]])[ \t]*[*†‡‖⁂]+(?=\s|[.,;:!?'”’)\]]|$)/gu,'$1');
     text=text.replace(/(^|\s)[†‡‖⁂]+(?=\s|$)/gu,'$1');
-    text=text.replace(/(^|\s)\*+(?=\s|$)/g,'$1');
+    text=text.replace(/(^|\s)\*+(?=\s|$)/g,(match,leading,offset,all)=>{const before=all.slice(0,offset).trimEnd(),after=all.slice(offset+match.length).trimStart();return /\d$/.test(before)&&/^\d/.test(after)?match:leading;});
     return text.replace(/[ \t]{2,}/g,' ').replace(/[ \t]+(?=[,.!?;:])/g,'');
   }
 
