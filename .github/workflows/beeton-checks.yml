@@ -1,0 +1,19 @@
+name: Mrs Beeton hosted-reader integrity checks
+on:
+  push:
+    paths:
+      - 'mrs-beetons-book-of-household-management.html'
+      - 'public/books/mrs-beeton-household-management/**'
+      - 'index.html'
+      - 'tests/beeton-integrity.test.cjs'
+      - '.github/workflows/beeton-checks.yml'
+  workflow_dispatch:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tests/beeton-integrity.test.cjs

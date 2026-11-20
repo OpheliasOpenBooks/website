@@ -18,7 +18,7 @@
 #prose p{white-space:pre-wrap;margin-bottom:22px;overflow-wrap:break-word}#prose p.speaker{font:700 .73em/1.5 Arial,sans-serif;letter-spacing:.13em;color:var(--gold);margin-bottom:8px}#prose p.stage{font-style:italic;color:var(--muted)}
 #prose p.argument{font:700 13px/1.6 Georgia,serif;letter-spacing:1.8px;color:var(--gold);text-align:center}#story-figure img{max-height:340px;object-fit:contain}
 
-#prose p{white-space:pre-line}
+#prose p{white-space:normal}#prose p.original-lines{white-space:pre-line}
 </style>
 <link rel="canonical" href="https://opheliasopenbooks.github.io/website/mrs-beetons-book-of-household-management.html">
 </head>
@@ -124,8 +124,14 @@ function getText(){
  const pg=pages[state.page];
  if(!pg)return '';
  const firstInSection=state.page===0||pages[state.page-1].section!==pg.section;
- const text=pg.paragraphs.join(' ').replace(/\[(?:Note\s*\d+|\d+|Illustration[^\]]*)\]/gi,'');
- return (firstInSection?pg.sectionName+'. ':'')+text;
+ // Gutenberg transcription credits are documentation, not Mrs Beeton’s
+ // 1861 prose; keep them in the archived source but never narrate them.
+ const passages=pg.paragraphs.filter(p=>!/^E-text prepared by\b/i.test(p.trim()));
+ const text=passages.join(' ').replace(/\[(?:Note\s*\d+|\d+|Illustration[^\]]*)\]/gi,'');
+ const first=(passages[0]||'').trim().replace(/\s+/g,' ').replace(/[. ]+$/,'').toLowerCase();
+ const spokenHeading=(pg.sectionName.split(' · ')[0]||'').trim().toLowerCase();
+ const alreadyPresent=first===spokenHeading||spokenHeading==='contents'&&first==='general contents';
+ return (firstInSection&&!alreadyPresent?pg.sectionName+'. ':'')+text;
 }
 function pickVoice(){return voiceList.find(v=>v.voiceURI===state.voice)||voiceList.find(v=>/^en-GB/i.test(v.lang))||voiceList.find(v=>/^en/i.test(v.lang))||null;}
 // This function is copied from the original Alice reader to preserve its exact
@@ -247,7 +253,7 @@ function render(){if(!pages.length)return;const page=pages[state.page];
  const isFirstRender=initialRender;initialRender=false;
  $('story-figure').hidden=state.book!==1||state.page!==0;
  $('progresslabel').textContent=Math.round((state.page+1)/pages.length*100)+'% read · '+page.sectionName;$('chaptername').textContent=page.sectionName;
- $('prose').replaceChildren(...page.paragraphs.map(p=>{const el=document.createElement('p');el.textContent=p;if(/^THE ARGUMENT\.$/.test(p.trim()))el.classList.add('argument');return el}));
+ $('prose').replaceChildren(...page.paragraphs.filter(p=>!/^E-text prepared by\b/i.test(p.trim())).map(p=>{const el=document.createElement('p');el.textContent=p;if((p.match(/\n/g)||[]).length>=2&&p.length<440)el.classList.add('original-lines');return el}));
  $('pagecount').textContent='Part '+state.book+' · Page '+(state.page+1)+' of '+pages.length;$('footcount').textContent=page.sectionName;
  ['prev','prev2'].forEach(id=>$(id).disabled=state.page<=0&&state.book===1);['next','next2'].forEach(id=>$(id).disabled=state.page>=pages.length-1&&state.book===COUNT);
  $('page').value=String(state.page);$('section').value=String(page.section);$('progressbar').style.width=((state.page+1)/pages.length*100).toFixed(2)+'%';
