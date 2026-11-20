@@ -14,11 +14,11 @@ const englishSources=[
  'https://raw.githubusercontent.com/GITenberg/The-Sonnets-Triumphs-and-Other-Poems-of-Petrarch_17650/master/17650.txt',
  'https://raw.githubusercontent.com/GITenberg/The-Sonnets-Triumphs-and-Other-Poems-of-Petrarch_17650/master/17650-8.txt'
 ];
-// Use editions published in the nineteenth or early twentieth century,
-// rather than a modern critical edition of the Italian text.
+// The historical 1883 OCR damaged original words and could not be verified.
+// Use the licensed digital transcription of Petrarch's 14th-century original
+// verse, with attribution; exclude modern editorial prefatory metadata.
 const italianSources=[
- 'https://archive.org/download/ilcanzonieredi00petruoft/ilcanzonieredi00petruoft_djvu.txt',
- 'https://archive.org/download/ilcanzoniere00petruoft/ilcanzoniere00petruoft_djvu.txt'
+ 'https://files.libridominiopubblico.it/livros/it/francesco-petrarca/canzoniere.txt'
 ];
 const count=s=>(s.match(/\S+/g)||[]).length;
 async function fetchText(urls, verify) {
@@ -51,7 +51,6 @@ function verifyEnglish(text){
  if(!/TRIUMPH OF LOVE/i.test(text)||!/SONNET\s+(?:I|1)[.\s]/i.test(text))throw Error('Petrarch sonnets and Triumphs missing');
 }
 function verifyItalian(text){
- console.log('HISTORICAL ITALIAN CHECK',JSON.stringify({chars:text.length,words:count(text),front:text.slice(0,650),firstPoem:text.search(/Voi\\s+ch[’']?\\s*ascoltate/i),lastPoem:text.search(/Vergine\\s+bella/i),petrarca:text.slice(0,25000).search(/Petrarc/i),end:text.slice(-450)}));
  // Includes the celebrated first and final Rerum vulgarium fragmenta poems.
  if(text.length<135000||count(text)<25000||!/Petrarc/i.test(text.slice(0,25000))||
  !/Voi ch[’']?ascoltate/i.test(text)||!/Vergine bella/i.test(text))throw Error('Unabridged Italian Canzoniere identity/length not verified');
@@ -105,8 +104,40 @@ function divide(text,lang){
  if(parts.length<5|| (lang==='en'&&total<75000) || (lang==='it'&&total<25000))throw Error(lang+' incomplete edition detected');
  return {parts,wordCount:total,sha256:createHash('sha256').update(restored).digest('hex')};
 }
+function divideItalian(original){
+ const raw=normalize(original,'it');
+ const paras=raw.split(/\n[ \t]*\n+/).map(p=>p.trim()).filter(Boolean);
+ // Source provides each Italian poem's first verse as a separate heading,
+ // followed by the complete poem, preserving stanza and verse line breaks.
+ const single=p=>p&&!p.includes('\n')&&p.length>4&&p.length<140;
+ const first=paras.findIndex(p=>single(p)&&/Voi ch[’']ascoltate/i.test(p));
+ if(first<0)throw Error('First Italian lyric missing');
+ const titles=[];
+ for(let i=first;i<paras.length;i++){
+  if(!single(paras[i])||single(paras[i+1]))continue;
+  titles.push(i);
+ }
+ if(titles.length!==366)throw Error('Expected the complete sequence of 366 Italian lyrics, found '+titles.length);
+ const poems=titles.map((start,i)=>{
+  const end=i+1<titles.length?titles[i+1]:paras.length;
+  const name='Poesia '+String(i+1).padStart(3,'0')+' · '+paras[start];
+  let text=paras.slice(start+1,end).filter(p=>!/^\d{1,3}$/.test(p));
+  if(text.length===0||count(text.join(' '))<16)throw Error('Empty Petrarch lyric '+(i+1));
+  return {name,paragraphs:text};
+ });
+ if(!/Vergine bella/i.test(poems[365].name))throw Error('Final Italian lyric does not match 366');
+ const parts=[];
+ for(let i=0;i<poems.length;i+=25){
+  const sections=poems.slice(i,i+25),words=count(sections.flatMap(p=>p.paragraphs).join(' '));
+  parts.push({part:parts.length+1,words,name:'Poesie '+(i+1)+'–'+Math.min(i+25,366),sections});
+ }
+ const text=poems.flatMap(s=>s.paragraphs).join('\n\n');
+ if(count(text)<25000)throw Error('Italian lyrics unexpectedly short');
+ console.log('VERIFIED ITALIAN LYRIC TITLES',poems.length,'first',poems[0].name,'last',poems.at(-1).name,'words',count(text));
+ return {parts,wordCount:count(text),sha256:createHash('sha256').update(text).digest('hex'),poemCount:poems.length};
+}
 function saveEdition(src,lang){
- const out=divide(normalize(src.text,lang),lang);
+ const out=lang==='it'?divideItalian(src.text):divide(normalize(src.text,lang),lang);
  const dir=path.join(ROOT,lang);
  fs.mkdirSync(dir,{recursive:true});
  const entries=out.parts.map(p=>{
@@ -116,7 +147,8 @@ function saveEdition(src,lang){
   return {part:p.part,file,name:p.name,sections:p.sections.length,words:p.words};
  });
  const manifest={title:lang==='en'?title:'Il Canzoniere',author,language:lang,readOnly:lang==='it',
-  publication:lang==='en'?'Bohn, 1859; Bell & Sons reprint, 1879':'Original Italian poetry, fourteenth century',
+  ...(lang==='it'?{poemCount:out.poemCount,transcriptionLicense:'CC BY-SA 4.0',attribution:'Wikisource contributors via Libri di Dominio Pubblico; ancient Petrarch verses only; modern editorial frontmatter excluded'}:{}),
+  publication:lang==='en'?'Bohn, 1859; Bell & Sons reprint, 1879':'Original Petrarch verses (fourteenth century), Wikisource digital transcription',
   source:src.url,wordCount:out.wordCount,sha256:out.sha256,parts:entries};
  fs.writeFileSync(path.join(dir,'manifest.json'),JSON.stringify(manifest,null,2)+'\n');
  if(entries.reduce((n,p)=>n+p.words,0)!==out.wordCount)throw Error('Part word count mismatch');
@@ -147,7 +179,6 @@ function catalog(){
 }
 const en=await fetchText(englishSources,verifyEnglish);
 const it=await fetchText(italianSources,verifyItalian);
-console.log('ITALIAN FIRST PARAGRAPHS',JSON.stringify(it.text.split(/\n\s*\n+/).slice(0,16).map(x=>x.slice(0,170))));
 saveEdition(en,'en');saveEdition(it,'it');
 await cover();
 catalog();
