@@ -5,8 +5,8 @@
   "readOnly": false,
   "publication": "Bohn, 1859; Bell & Sons reprint, 1879",
   "source": "https://gutenberg.pglaf.org/cache/epub/17650/pg17650.txt",
-  "wordCount": 191830,
-  "sha256": "e0a7db500e70bfe2194c708d5bc975e452fdaf62a9a34c07cdfcb6a979070bd0",
+  "wordCount": 188764,
+  "sha256": "1655056d32c342628360a1863a34486675428077dd22948d3adb1ebf53b5ec8d",
   "parts": [
     {
       "part": 1,
@@ -285,15 +285,8 @@
       "part": 40,
       "file": "part-040.json",
       "name": "TRIUMPH · OF ETERNITY.",
-      "sections": 3,
-      "words": 4899
-    },
-    {
-      "part": 41,
-      "file": "part-041.json",
-      "name": "TRIUMPH · of Chastity 361",
-      "sections": 3,
-      "words": 315
+      "sections": 2,
+      "words": 2148
     }
   ]
 }
