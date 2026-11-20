@@ -39,7 +39,7 @@ button.secondary{color:var(--ink);background:#ebeee3;border:1px solid var(--line
 .night button{background:#476a52}.night button.secondary{background:#3b4c3e}.night #settings-toggle{background:transparent}.night aside select,.night aside input{background:#2d4035;color:#fff}
 @media(max-width:770px){main{grid-template-columns:1fr;margin-top:14px;padding:0 12px}.book{padding:22px 20px}aside{grid-row:1;position:static;max-height:none}.intro h1{font-size:33px}}
 </style>
-<script defer src="public/js/ophelia-narration.js"></script>
+<script defer src="public/js/ophelia-narration.js?v=1.4.25-unified-fairytales"></script>
 <script defer src="public/js/ophelia-share.js"></script>
 </head>
 <body>
@@ -170,47 +170,68 @@ function advance(direction,quiet){
  return Promise.resolve();
 }
 function speechChunks(text){
- const words=text.split(/\s+/).filter(Boolean),chunks=[];let current='';
- for(const word of words){
-  if(current&&current.length+word.length+1>180){chunks.push(current);current='';}
-  current+=(current?' ':'')+word;
- }
- if(current)chunks.push(current);
- return chunks;
+ // Jane Eyre and every standard reader use this shared, grammar-aware
+ // tokenizer. Never divide fairy tales at arbitrary character counts.
+ return window.OpheliaNarration.speechChunks(text);
 }
 function readAloud(){
  if(!soundOn||!activeStory||!('speechSynthesis' in window))return;
  const synth=window.speechSynthesis;
  if(playing){
-  if(paused){synth.resume();paused=false;$('play').textContent='Ⅱ Pause';}
-  else{synth.pause();paused=true;$('play').textContent='▶ Resume';}
+  if(paused){
+   paused=false;
+   if(!window.OpheliaNarration?.resumeReading?.())synth.resume();
+   $('play').textContent='Ⅱ Pause';
+   status('Narration resumed.');
+  }else{
+   if(!window.OpheliaNarration?.pauseReading?.())synth.pause();
+   paused=true;
+   $('play').textContent='▶ Resume';
+   status('Narration paused at the current word.');
+  }
   return;
  }
+ if(!window.OpheliaNarration?.speechChunks||!window.OpheliaNarration?.speakWithPauses){
+  status('The shared narrator is unavailable. Please refresh this page.');return;
+ }
+ window.OpheliaNarration.clearReading();
+ synth.cancel();synth.resume();
  const label=pageNo===0?index.stories[storyNo].title+'. ':'';
  const content=label+(activePages[pageNo]||[]).join(' ');
- if(!content.trim())return;
  const chunks=speechChunks(content);
- const token=++speechToken;let at=0;
- const v=voices.find(v=>v.voiceURI===$('voice').value)||voices.find(v=>v.lang==='en-GB')||voices[0];
+ if(!chunks.length){status('No text to narrate on this page.');return;}
+ const token=++speechToken;
+ const voice=voices.find(v=>v.voiceURI===$('voice').value)||voices.find(v=>v.lang==='en-GB')||voices[0];
+ let completed=0;
  playing=true;paused=false;$('play').textContent='Ⅱ Pause';
- function next(){
-  if(token!==speechToken||!playing)return;
-  if(at>=chunks.length){
-   playing=false;$('play').textContent='▶ Read aloud';
-   if($('auto').checked){
-    const atLast=storyNo===index.stories.length-1&&pageNo===activePages.length-1;
-    if(!atLast)advance(1,true).then(function(){if(token===speechToken)readAloud();});
-   }
-   return;
-  }
-  const utterance=new SpeechSynthesisUtterance(chunks[at++]);
-  if(v){utterance.voice=v;utterance.lang=v.lang;}
+ const speechQueue=chunks.map(chunk=>{
+  const utterance=new SpeechSynthesisUtterance(chunk);
+  utterance.lang=voice?.lang||'en-GB';
+  if(voice)utterance.voice=voice;
   utterance.rate=Number($('speed').value);
-  utterance.onend=next;
-  utterance.onerror=function(){if(token===speechToken){stop();status('Narration paused by your browser. Select another voice or try again.');}};
-  synth.speak(utterance);
+  utterance.volume=1;
+  utterance.onstart=()=>{if(token===speechToken&&playing)$('play').textContent=paused?'▶ Resume':'Ⅱ Pause';};
+  utterance.onend=()=>{
+   if(token!==speechToken||!playing)return;
+   if(++completed!==chunks.length)return;
+   playing=false;paused=false;$('play').textContent='▶ Read aloud';
+   const last=storyNo===index.stories.length-1&&pageNo===activePages.length-1;
+   if($('auto').checked&&!last){
+    advance(1,true).then(()=>{if(token===speechToken&&!playing&&activeStory)readAloud();});
+   }else{status(last?'You have finished this collection.':'Page finished.');}
+  };
+  utterance.onerror=()=>{
+   if(token!==speechToken)return;
+   stop();status('Narration stopped. Choose another voice in Settings if needed.');
+  };
+  return utterance;
+ });
+ try{
+  window.OpheliaNarration.speakWithPauses(synth,speechQueue,()=>token===speechToken&&playing,()=>paused);
+  status('Reading with natural sentence and punctuation pacing.');
+ }catch(err){
+  stop();status('The narrator could not start. Please choose another English voice.');
  }
- next();
 }
 function loadVoices(){
  if(!('speechSynthesis' in window))return;

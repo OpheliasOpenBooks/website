@@ -12,7 +12,7 @@ const series=new Set(['the-forsyte-saga.html','outline-of-history.html','leather
 const readOnly=new Set(['king-james-bible-1611.html','du-contrat-social.html','emile-francais.html','kritik-der-reinen-vernunft-original-deutsch.html','les-liaisons-dangereuses-original-francais.html',
   'les-confessions-rousseau-original-francais.html','vathek-original-francais.html','jacques-le-fataliste-original-francais.html','die-raeuber-original-deutsch.html','wallenstein-original-deutsch.html','nathan-der-weise-original-deutsch.html']);
 const studio=new Set(['pride-and-prejudice.html']);
-const special=new Set(['grimms-fairy-tales.html','more-grimm-fairy-tales.html','andersen-fairy-tales.html']);
+const special=new Set(['grimms-fairy-tales.html','more-grimm-fairy-tales.html','andersen-fairy-tales.html','tales-of-mother-goose.html']);
 const legacy=['the-sun-also-rises.html','to-the-lighthouse.html','the-sound-and-the-fury.html'];
 let failed=0,standard=0,exception=0;
 for(const p of paths){

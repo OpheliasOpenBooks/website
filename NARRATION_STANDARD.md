@@ -225,3 +225,10 @@ paused-word marker still works.
 
 Shared module version 1.4.4 is loaded via cache-busting query parameter to
 apply the correction across all active standalone audiobook readers.
+
+
+## Fairy-tale readers aligned with Jane Eyre (November 2026)
+
+The fairy-tale collections `tales-of-mother-goose.html`, `andersen-fairy-tales.html`, `grimms-fairy-tales.html`, and `more-grimm-fairy-tales.html` must use the same shared `OpheliaNarration.speechChunks` grammar-based segmentation and `OpheliaNarration.speakWithPauses` sequential, punctuation-led scheduler as `jane-eyre.html`. Never reintroduce arbitrary 180-character or 200-character chunks or a book-specific `utterance.onend=next` loop. All four retain their original saved-progress and bookmark keys, narrator settings, and on-page historical prose. They use the common `pauseReading`, `resumeReading`, and `clearReading` controls so reported word boundaries are highlighted in yellow and narration resumes from the recorded position when supported by the voice.
+
+Speed and voice selections come from the shared `ophelia-library-settings-v1` preferences synchronization (the shared module binds the `speed`, `voice`, `size`, `night` and `auto` controls). Speech pacing follows actual punctuation: questions and exclamations, full stops, commas, colons, semicolons, em dashes, chapter/tale headings; short rhetorical punctuation rests instead of arbitrary line-break rests. The specific device voice still determines natural phrasing and can introduce pauses of its own. Browser playback must be tested separately in Edge and Chrome.
