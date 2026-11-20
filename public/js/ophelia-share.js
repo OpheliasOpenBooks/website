@@ -152,6 +152,7 @@ function addPageButton(){
  * Multi-volume sources list EVERY volume rather than silently truncating.
  */
 const originalLanguageSources={
+ 'tales-of-mother-goose.html':{language:'French',original:'Histoires ou Contes du temps passé, avec des moralités',links:[['Français · Contes de ma mère l’Oye (texte original, lecture seulement)','https://www.gutenberg.org/ebooks/20972']],note:'The linked French transcription is a later edition that includes an additional story attributed to Perrault but written by Marie-Jeanne L’Héritier. English narration is available only on this English reading page.'},
  'nathan-the-wise.html':{language:'German',original:'Nathan der Weise',links:[['Deutsch · Vollständiger Originaltext (nur lesen)','nathan-der-weise-original-deutsch.html']],note:'Complete German text locally hosted and read-only; the 1830 William Taylor English translation offers narration.'},
  'vathek.html':{language:'French',original:'Vathek',links:[['Français · Texte original intégral (lecture seulement)','vathek-original-francais.html']],note:'Vathek was written in French. The complete 1834 French edition, with historical notes, is hosted here in a read-only reader; English narration is available in Samuel Henley’s translation.'},
   'rousseau-confessions.html':{language:'French',original:'Les Confessions',links:[['Français · Les Confessions (texte intégral · lecture seulement)','les-confessions-rousseau-original-francais.html']],note:'All twelve French books are hosted here in a separate read-only reader. Audio narration remains available only for the historical 1903 English edition.'},
@@ -247,7 +248,7 @@ function addOriginalLanguageLinks(){
  box.appendChild(quiet);
  // Keep the quiet edition link above the share button, underneath the title.
  const share=heading.querySelector('.ob-share-holder');
- if(currentPage==='grimms-fairy-tales.html'&&heading.querySelector('img'))heading.insertBefore(box,heading.querySelector('img'));else if(share)heading.insertBefore(box,share);else heading.appendChild(box);
+ if((currentPage==='grimms-fairy-tales.html'||currentPage==='tales-of-mother-goose.html')&&heading.querySelector('img'))heading.insertBefore(box,heading.querySelector('img'));else if(share)heading.insertBefore(box,share);else heading.appendChild(box);
 }
 
 function initializePageButtons(){

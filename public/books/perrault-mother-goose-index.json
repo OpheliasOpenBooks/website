@@ -1,0 +1,74 @@
+{
+  "source": "https://www.gutenberg.org/ebooks/29021",
+  "storyCount": 10,
+  "originalCoreStories": 8,
+  "edition": "1922 Harrap; Robert Samber and J. E. Mansion English translation, Thomas Bodkin introduction, Harry Clarke illustrations",
+  "stories": [
+    {
+      "title": "Introduction by Thomas Bodkin",
+      "group": "part-01.json",
+      "groupIndex": 0,
+      "pages": 9
+    },
+    {
+      "title": "Little Red Riding-Hood",
+      "group": "part-02.json",
+      "groupIndex": 0,
+      "pages": 3
+    },
+    {
+      "title": "The Fairy",
+      "group": "part-03.json",
+      "groupIndex": 0,
+      "pages": 3
+    },
+    {
+      "title": "Blue Beard",
+      "group": "part-04.json",
+      "groupIndex": 0,
+      "pages": 6
+    },
+    {
+      "title": "The Sleeping Beauty in the Wood",
+      "group": "part-05.json",
+      "groupIndex": 0,
+      "pages": 12
+    },
+    {
+      "title": "The Master Cat; or, Puss in Boots",
+      "group": "part-06.json",
+      "groupIndex": 0,
+      "pages": 5
+    },
+    {
+      "title": "Cinderilla; or, The Little Glass Slipper",
+      "group": "part-07.json",
+      "groupIndex": 0,
+      "pages": 8
+    },
+    {
+      "title": "Riquet with the Tuft",
+      "group": "part-08.json",
+      "groupIndex": 0,
+      "pages": 8
+    },
+    {
+      "title": "Little Thumb",
+      "group": "part-09.json",
+      "groupIndex": 0,
+      "pages": 12
+    },
+    {
+      "title": "The Ridiculous Wishes",
+      "group": "part-10.json",
+      "groupIndex": 0,
+      "pages": 3
+    },
+    {
+      "title": "Donkey-skin",
+      "group": "part-11.json",
+      "groupIndex": 0,
+      "pages": 15
+    }
+  ]
+}
