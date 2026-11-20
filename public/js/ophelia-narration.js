@@ -862,7 +862,7 @@
   (function synchronizeReaderPreferences(){
     const preferenceKey='ophelia-library-settings-v1';
     const ids={speed:['speed','reader-speed'],size:['size','reader-size'],voice:['voice','reader-voice'],night:['dark','night'],auto:['autoturn','auto','auto-turn']};
-    const element=(key)=>ids[key].map(id=>document.getElementById(id)).find(Boolean);
+    const element=(key)=>typeof document.getElementById==='function'?ids[key].map(id=>document.getElementById(id)).find(Boolean):null;
     const getStored=()=>{try{return JSON.parse(localStorage.getItem(preferenceKey)||'{}')||{};}catch{return {};}};
     const commit=(key,value)=>{try{const state=getStored();state[key]=value;localStorage.setItem(preferenceKey,JSON.stringify(state));}catch{}};
     const bind=()=>{
