@@ -41,10 +41,29 @@ for(let i=1;i<=4;i++){
 assert.ok(frenchPassages>=75,'French quotes and literary phrases across the complete novel');
 assert.ok(counts[1]>=50,'French dialogue around Adèle and the page-134 passage is covered');
 const html=fs.readFileSync(path.join(root,'jane-eyre.html'),'utf8');
-assert.ok(html.includes('ophelia-jane-french.js?v=1.0'),'language module loaded in Jane reader');
+assert.ok(html.includes('ophelia-jane-french.js?v=1.1-voice-match'),'language module loaded in Jane reader');
 assert.ok(html.includes('OpheliaJaneFrench.spokenChunks(getText(),speechChunks)'),'language-aware speech segments');
 assert.ok(html.includes("u.lang=frenchVoice?.lang||'fr-FR'"),'French utterance locale is set');
 assert.ok(html.includes("u.lang=voice?.lang||'en-GB'"),'English narrator remains selected');
 assert.ok(html.includes('OpheliaNarration.speakWithPauses(synth,speechQueue'),'same punctuation pacing and word highlighting');
 assert.ok(html.includes("const STORAGE='ophelia-jane-eyre-1847-alice-voice-v1'"),'reading positions retained');
+
+// Same-family French voice is preferred without replacing the English voice.
+const english={voiceURI:'en',lang:'en-GB',name:'Microsoft English Online (Natural)',localService:false};
+const otherFrench={voiceURI:'frlocal',lang:'fr-FR',name:'Local French',localService:true};
+const familyFrench={voiceURI:'frms',lang:'fr-FR',name:'Microsoft French Online (Natural)',localService:false};
+assert.equal(f.chooseFrenchVoice([english,otherFrench,familyFrench],english,'').voiceURI,'frms');
+assert.equal(f.chooseFrenchVoice([english,otherFrench,familyFrench],english,'frlocal').voiceURI,'frlocal');
+assert.equal(f.chooseFrenchVoice([english],english,''),null);
+assert.equal(f.frenchDelivery(1,1,1).rate,1);
+assert.equal(f.frenchDelivery(1,1,1).pitch,1);
+assert.equal(f.frenchDelivery(1.2,1.25,.9).rate,1.5);
+assert.equal(f.frenchDelivery(1.2,1.25,.9).pitch,.9);
+assert.equal(f.frenchDelivery(2,1.35,1.25).rate,2);
+assert.ok(html.includes('id="french-voice"'));
+assert.ok(html.includes('id="french-tempo"'));
+assert.ok(html.includes('id="french-pitch"'));
+assert.ok(html.includes('u.rate=frenchDelivery.rate;u.pitch=frenchDelivery.pitch;u.volume=frenchDelivery.volume;'));
+assert.ok(html.includes('u.rate=state.speed;u.pitch=1;u.volume=1;'));
+
 console.log('Jane Eyre: '+frenchPassages+' French speech runs recognized across four source parts; English reading preserved.');

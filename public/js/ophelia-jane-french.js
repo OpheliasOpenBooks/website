@@ -97,6 +97,36 @@
   push('en',text.slice(after));
   return runs;
  }
+
+ // Browser TTS cannot clone voices; match synthesis family when available.
+ function chooseFrenchVoice(voices,english,preferredURI){
+  const list=Array.from(voices||[]).filter(v=>/^fr(?:-|$)/i.test(v.lang||''));
+  if(!list.length)return null;
+  const preferred=preferredURI&&list.find(v=>v.voiceURI===preferredURI);
+  if(preferred)return preferred;
+  const detail=v=>String(v?.name||'').toLowerCase()+' '+String(v?.voiceURI||'').toLowerCase();
+  const engine=v=>['microsoft','google','apple','samsung','espeak','mozilla']
+    .find(w=>detail(v).includes(w))||'';
+  const styles=v=>['natural','neural','enhanced','premium','online','compact']
+    .filter(w=>detail(v).includes(w));
+  const enEngine=english?engine(english):'',enStyles=english?styles(english):[];
+  return list.map((v,i)=>{
+   let score=/^fr-fr$/i.test(v.lang)?4:0;
+   if(english){
+    if(enEngine&&engine(v)===enEngine)score+=16;
+    if(typeof english.localService==='boolean'&&v.localService===english.localService)score+=6;
+    for(const s of enStyles)if(styles(v).includes(s))score+=5;
+    if(v.name===english.name)score+=18;
+   }
+   return {v,i,score};
+  }).sort((a,b)=>b.score-a.score||a.i-b.i)[0].v;
+ }
+ function frenchDelivery(englishRate,tempo=1,pitch=1){
+  const num=(n,def)=>Number.isFinite(Number(n))?Number(n):def;
+  const clamp=(n,low,high)=>Math.max(low,Math.min(high,n));
+  return {rate:clamp(num(englishRate,1)*clamp(num(tempo,1),.75,1.35),.5,2),
+   pitch:clamp(num(pitch,1),.75,1.25),volume:1};
+ }
  function spokenChunks(value,grammar){
   if(typeof grammar!=='function')throw new TypeError('Shared narrator required');
   const out=[];
@@ -111,6 +141,6 @@
   return out;
  }
  root.OpheliaJaneFrench=Object.freeze({
-  phrases:Object.freeze(frenchPhrases),languageRuns,spokenChunks
+  phrases:Object.freeze(frenchPhrases),languageRuns,spokenChunks,chooseFrenchVoice,frenchDelivery
  });
 })(window);

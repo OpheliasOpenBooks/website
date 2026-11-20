@@ -39,7 +39,15 @@
  <div id="reader-options" hidden>
   <label class="setting-label" for="page">Go to page</label><select id="page" aria-label="Choose reading page" disabled><option>—</option></select>
   <label class="setting-label" for="voice">Narrator (device voice)</label><select id="voice"><option value="">Automatic English voice</option></select>
-  <p id="french-voice-note" class="hint" style="margin:8px 0;font:12px/1.6 Arial,sans-serif">French dialogue uses a French device voice, when available. Your English narrator stays selected.</p>
+  <div role="group" aria-label="French voice matching">
+   <label class="setting-label" for="french-voice">French dialogue voice</label>
+   <select id="french-voice"><option value="">Automatic · closest available</option></select>
+   <label class="setting-label" for="french-tempo">French tempo adjustment <output id="french-tempo-view">1.00×</output></label>
+   <input id="french-tempo" type="range" min="0.75" max="1.35" value="1" step="0.05">
+   <label class="setting-label" for="french-pitch">French tone adjustment <output id="french-pitch-view">1.00×</output></label>
+   <input id="french-pitch" type="range" min="0.75" max="1.25" value="1" step="0.05">
+   <p id="french-voice-note" class="hint" style="margin:8px 0;font:12px/1.6 Arial,sans-serif">French dialogue follows your English speed and volume. Fine-tune the French voice to blend the two.</p>
+  </div>
   <label class="setting-label" for="speed">Narration speed <output id="speedview">1×</output></label><input id="speed" type="range" min="0.5" max="2" value="1" step="0.05">
   <label class="setting-label" for="size">Text size <output id="sizeview">20 px</output></label><input id="size" type="range" min="16" max="28" value="20" step="1">
   <label class="check"><input id="dark" type="checkbox"> Evening theme</label>
@@ -52,13 +60,13 @@
 <div class="source">The complete 1847 novel by Charlotte Brontë, including her preface and all 38 chapters. The locally hosted text is based on <a href="https://standardebooks.org/ebooks/charlotte-bronte/jane-eyre" target="_blank" rel="noopener">Standard Ebooks’ public-domain edition</a>. Historical pen-and-ink illustration by F. H. Townsend (1897), from <a href="https://www.gutenberg.org/ebooks/1260" target="_blank" rel="noopener">Project Gutenberg’s illustrated edition</a>. Narration uses the reader’s browser voices.</div>
 </div>
 <script src="public/js/ophelia-narration.js?v=1.4.23-maam"></script>
-<script src="public/js/ophelia-jane-french.js?v=1.0"></script>
+<script src="public/js/ophelia-jane-french.js?v=1.1-voice-match"></script>
 <script>
 'use strict';
 /* All source is editable. Narration reuses Alice’s grammar-aware sentence segmentation and queued speech strategy. Browser/device voices provide the actual spoken sound. */
 const $=id=>document.getElementById(id);
 const STORAGE='ophelia-jane-eyre-1847-alice-voice-v1';
-let state={page:0, voice:'', speed:1, size:20, night:false, autoTurn:true, bookmark:-1};
+let state={page:0, voice:'', speed:1, size:20, night:false, autoTurn:true, bookmark:-1, frenchVoice:'', frenchTempo:1, frenchPitch:1};
 try{Object.assign(state,JSON.parse(localStorage.getItem(STORAGE)||'{}'));}catch{}
 const save=()=>{try{localStorage.setItem(STORAGE,JSON.stringify(state));}catch{}};
 let soundOn=true;
@@ -189,17 +197,19 @@ function startSpeech(startAt=speechResumeAt){
  let started=false,completed=0;
  const voice=pickVoice();
  // Only a French passage changes language. English resumes automatically.
- const frenchVoice=voiceList.find(v=>/^fr-FR$/i.test(v.lang))||
-   voiceList.find(v=>/^fr(?:-|$)/i.test(v.lang))||null;
+ const frenchVoice=window.OpheliaJaneFrench?.chooseFrenchVoice(voiceList,voice,state.frenchVoice)||null;
+ const frenchDelivery=window.OpheliaJaneFrench?.frenchDelivery(state.speed,state.frenchTempo,state.frenchPitch)||
+  {rate:state.speed,pitch:1,volume:1};
  speechQueue=chunks.map((part,i)=>{
    const u=new SpeechSynthesisUtterance(part.text);let ended=false;
    if(part.lang==='fr-FR'){
      u.lang=frenchVoice?.lang||'fr-FR';
      if(frenchVoice)u.voice=frenchVoice;
+     u.rate=frenchDelivery.rate;u.pitch=frenchDelivery.pitch;u.volume=frenchDelivery.volume;
    }else{
      u.lang=voice?.lang||'en-GB';if(voice)u.voice=voice;
+     u.rate=state.speed;u.pitch=1;u.volume=1;
    }
-   u.rate=state.speed;u.volume=1;
    u.onstart=()=>{if(token!==speechToken||!speaking)return;
      started=true;utterance=u;speechCursor=startAt+i;clearTimeout(startTimer);
      note('Reading page '+(state.page+1)+' of '+pages.length+'…');updatePlay();};
@@ -252,18 +262,35 @@ function updateVoices(){
  $('voice').replaceChildren(new Option('Automatic English voice',''),
   ...voiceList.filter(v=>/^en/i.test(v.lang)).map(v=>new Option(v.name+' · '+v.lang,v.voiceURI)));
  $('voice').value=state.voice;
- const hasFrench=voiceList.some(v=>/^fr(?:-|$)/i.test(v.lang));
- $('french-voice-note').textContent=hasFrench
-  ?'French dialogue automatically uses an installed French narrator, then returns to your English voice.'
-  :'For reliable French pronunciation, install a French speech voice on this device. Your English narrator remains unchanged.';
+ const french=voiceList.filter(v=>/^fr(?:-|$)/i.test(v.lang));
+ $('french-voice').replaceChildren(new Option('Automatic · closest available',''),
+  ...french.map(v=>new Option(v.name+' · '+v.lang,v.voiceURI)));
+ $('french-voice').value=french.some(v=>v.voiceURI===state.frenchVoice)?state.frenchVoice:'';
+ const matched=window.OpheliaJaneFrench?.chooseFrenchVoice(voiceList,pickVoice(),state.frenchVoice);
+ $('french-voice-note').textContent=french.length
+  ?'French voice: '+(matched?.name||'installed voice')+'. Both voices share the same volume and base speed, but their natural timbres differ. Adjust French tempo and tone above to blend them.'
+  :'No French narrator is installed. Add a French speech voice in your device settings for reliable pronunciation. English narration is unaffected.';
 }
-function applySettings(){$('speed').value=state.speed;$('speedview').value=state.speed+'×';$('size').value=state.size;$('sizeview').value=state.size+' px';$('dark').checked=state.night;$('autoturn').checked=state.autoTurn;document.body.classList.toggle('night',state.night);document.documentElement.style.setProperty('--text-size',state.size+'px');}
+function applySettings(){$('speed').value=state.speed;$('speedview').value=state.speed+'×';$('size').value=state.size;$('sizeview').value=state.size+' px';$('dark').checked=state.night;$('autoturn').checked=state.autoTurn;document.body.classList.toggle('night',state.night);document.documentElement.style.setProperty('--text-size',state.size+'px');$('french-tempo').value=state.frenchTempo;$('french-tempo-view').value=Number(state.frenchTempo).toFixed(2)+'×';$('french-pitch').value=state.frenchPitch;$('french-pitch-view').value=Number(state.frenchPitch).toFixed(2)+'×';}
 ['prev','prev2'].forEach(id=>$(id).addEventListener('click',()=>go(state.page-1)));
 ['next','next2'].forEach(id=>$(id).addEventListener('click',()=>go(state.page+1)));
 $('play').onclick=togglePlay;
 $('section').onchange=()=>go(pages.findIndex(p=>p.section===Number($('section').value)));
 $('page').onchange=()=>go(Number($('page').value));
 $('voice').onchange=()=>{stop();speechResumeAt=0;state.voice=$('voice').value;save();note('Voice selected. Press Read aloud to hear this page.');};
+function refreshFrenchSettings(){
+ const hadSpeech=speaking,wasPlaying=speaking&&!paused,cursor=speechCursor;
+ if(hadSpeech){stop();speechResumeAt=cursor;}
+ state.frenchVoice=$('french-voice').value;
+ state.frenchTempo=Number($('french-tempo').value);
+ state.frenchPitch=Number($('french-pitch').value);
+ save();applySettings();
+ if(hadSpeech&&wasPlaying)startSpeech(cursor);
+ else if(hadSpeech)note('French delivery updated. Press Read aloud to resume this sentence.');
+}
+$('french-voice').onchange=()=>{refreshFrenchSettings();updateVoices();};
+['french-tempo','french-pitch'].forEach(id=>$(id).addEventListener('input',refreshFrenchSettings));
+
 $('speed').oninput=()=>{const hadSpeech=speaking,wasPlaying=speaking&&!paused,cursor=speechCursor;state.speed=Number($('speed').value);$('speedview').value=state.speed+'×';save();if(hadSpeech){stop();speechResumeAt=cursor;if(wasPlaying)startSpeech(cursor);else note('Speed changed. Press Read aloud to resume this spoken sentence.');}};
 $('size').oninput=()=>{state.size=Number($('size').value);applySettings();save();};
 $('dark').onchange=()=>{state.night=$('dark').checked;applySettings();save();};
