@@ -1,5 +1,5 @@
 /* Ophelia's Open Book — shared spoken-text preparation.
- * Version 1.4.23. Load before each reader's inline narration code.
+ * Version 1.4.25. Load before each reader's inline narration code.
  *
  * Normalize only the words sent to speech synthesis: the printed book,
  * headings, pagination, bookmarks and original manuscripts are unchanged.
@@ -100,27 +100,43 @@
     return text;
   }
 
-  // Remove editorial footnote cues from spoken text, not the source book.
-  // Keep bracketed dates (e.g. [1854]), chapter numbers, addresses and years.
+  // Library-wide narration filter (prose, plays, poetry, and scholarly works).
+  // Do NOT rewrite the displayed source: strip editorial note references only
+  // from the string passed to speech synthesis. Preserve meaningful bracketed
+  // stage directions ("[Enter Hamlet]"), verse text, and ordinary numbers.
   function removeFootnoteMarkersForSpeech(value){
     let text=String(value==null?'':value);
-    text=text.replace(/\[\s*(?:(?:footnote|note|fn\.?)\s*(?:no\.?\s*)?)?#?\s*\d{1,3}\s*\]/gi,'');
-    text=text.replace(/\[(?:footnote|note)\s+\d{1,3}\s*:\s*([^\]\r\n]+)\]/gi,'$1');
-    // Literal superscript markup and numbered manuscript annotation cues.
-    text=text.replace(/<sup\b[^>]*>\s*\[?\s*\d{1,3}\s*\]?\s*<\/sup>/gi,'');
-    text=text.replace(/([\p{L}\p{N}.,;:!?'”’)\]])\s*\^\{?\d{1,3}\}?(?=\s|[.,;:!?'”’)\]]|$)/gu,'$1');
-    text=text.replace(/([\p{L}\p{N}.,;:!?'”’)\]])\{\d{1,3}\}(?=\s|[.,;:!?'”’)\]]|$)/gu,'$1');
+    // Every purely numeric bracketed reference, including four-digit or
+    // longer markers, ranges, lists and optional labels: [1], [1082],
+    // [12, 13], [2–4], [Note 43], [Footnote #157]. The user specifically
+    // requests that even bracketed numbers resembling dates not be spoken.
+    text=text.replace(/\[\s*(?:(?:footnote|note|fn\.?|ref(?:erence)?\.?)\s*(?:no\.?\s*)?)?#?\s*\d+(?:\s*(?:,|;|[-–—])\s*\d+)*\s*\]/gi,'');
+    // Markup-like note cues should be silent; preserve the actual note text
+    // when it is provided as an editorial inline annotation.
+    text=text.replace(/\[(?:footnote|note)\s+\d+\s*:\s*([^\]\r\n]+)\]/gi,'$1');
+    text=text.replace(/\[\s*(?:[*†‡§¶‖⁂]|[*†‡§¶‖⁂]\s*[,;]\s*[*†‡§¶‖⁂])+\s*\]/gu,'');
+    text=text.replace(/<sup\b[^>]*>\s*(?:\[?\s*(?:\d+|[*†‡§¶‖⁂])\s*\]?)\s*<\/sup>/gi,'');
+    // Common export formats: reference^12, reference^{12}, reference{12},
+    // reference[^12], reference(12), reference⁽¹²⁾.
+    text=text.replace(/\[\^\s*\d+\s*\]/g,'');
+    text=text.replace(/([\p{L}\p{N}.,;:!?'”’)\]])\s*\^\{?\d+\}?(?=\s|[.,;:!?'”’)\]]|$)/gu,'$1');
+    text=text.replace(/([\p{L}\p{N}.,;:!?'”’)\]])\{\d+\}(?=\s|[.,;:!?'”’)\]]|$)/gu,'$1');
     text=text.replace(/⁽[⁰¹²³⁴⁵⁶⁷⁸⁹]+⁾/gu,'');
-    // Superscript footnote references after words or punctuation. Preserve
-    // conventional mathematical quantities such as m², cm³, x² and y³.
+    // Superscript note numbers. Do not alter mathematical m² or x³.
     text=text.replace(/\b([A-Za-z]+)([⁰¹²³⁴⁵⁶⁷⁸⁹]+)(?=\s|[.,;:!?'”’)\]]|$)/gu,
       (whole,word)=>/^(?:m|cm|mm|km|ft|in|yd|mi|x|y|z)$/i.test(word)?whole:word);
     text=text.replace(/([.!?;:,)"'’”])([⁰¹²³⁴⁵⁶⁷⁸⁹]+)(?=\s|[.,;:!?'”’)\]]|$)/gu,'$1');
-    // Attached parenthetical footnote markers and inline trailing numbers.
-    // Avoid standalone Arabic numerals: they may be important to the author.
-    text=text.replace(/([A-Za-z]["'’”.,;:!?]?)[ \t]*\(\d{1,3}\)(?=\s|[.,;:!?'”’)\]]|$)/g,'$1');
-    text=text.replace(/([A-Za-z]["'’”]?[.!?;:,])(\d{1,3})(?=\s|$)/g,'$1');
-    return text.replace(/[ \t]{2,}/g,' ');
+    text=text.replace(/([A-Za-z]["'’”.,;:!?]?)[ \t]*\(\d+\)(?=\s|[.,;:!?'”’)\]]|$)/g,'$1');
+    text=text.replace(/([A-Za-z]["'’”]?[.!?;:,])(\d+)(?=\s|$)/g,'$1');
+    // Symbol-only footnote markers (not meaningful dramatic punctuation).
+    // Strip dagger/double-dagger, section/paragraph note signs, and asterisks
+    // attached to an actual word/punctuation or isolated as ornamentation.
+    // Protect mathematical expressions such as "2 * 3".
+    text=text.replace(/([\p{L}\p{N}.,;:!?'”’)\]])[†‡‖⁂]+(?=\s|[.,;:!?'”’)\]]|$)/gu,'$1');
+    text=text.replace(/([\p{L}\p{N}.,;:!?'”’)\]])[ \t]*[*†‡‖⁂]+(?=\s|[.,;:!?'”’)\]]|$)/gu,'$1');
+    text=text.replace(/(^|\s)[†‡‖⁂]+(?=\s|$)/gu,'$1');
+    text=text.replace(/(^|\s)\*+(?=\s|$)/g,'$1');
+    return text.replace(/[ \t]{2,}/g,' ').replace(/[ \t]+(?=[,.!?;:])/g,'');
   }
 
   function normalizeForSpeech(value){
@@ -895,5 +911,5 @@
     // DOMContentLoaded precedes async book-text loading, but follows inline control setup.
     if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bind,{once:true});else bind();
   })();
-  root.OpheliaNarration=Object.freeze({version:'1.4.24',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
+  root.OpheliaNarration=Object.freeze({version:'1.4.25',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
 })(window);

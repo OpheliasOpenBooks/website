@@ -19,6 +19,23 @@ vm.runInNewContext(source,sandbox,{filename:'ophelia-narration.js'});
 const n=sandbox.window.OpheliaNarration;
 assert.ok(n&&n.speechChunks&&n.speakWithPauses,'shared narrator is available');
 
+// Global note-marker rules protect narration in prose, plays, and poetry.
+// Only the spoken string changes; source text and stage directions are intact.
+assert.equal(n.normalizeForSpeech('Thy love [12] remains.[1082]'),'Thy love remains.');
+assert.equal(n.normalizeForSpeech('O gentle spirit!† [3, 4]'),'O gentle spirit!');
+assert.equal(n.normalizeForSpeech('Hamlet. [Enter the Ghost] Speak to me.[4]'),
+  'Hamlet. [Enter the Ghost] Speak to me.');
+assert.equal(n.normalizeForSpeech('My heart* is free.‡'),'My heart is free.');
+assert.equal(n.normalizeForSpeech('The original date [1621] is printed here.'),
+  'The original date is printed here.');
+assert.equal(n.normalizeForSpeech('Footnotes [Note 156] and [Footnote #122] appear.'),
+  'Footnotes and appear.');
+assert.equal(n.normalizeForSpeech('The poet used 2 * 3 as an example.'),
+  'The poet used 2 * 3 as an example.');
+assert.equal(n.normalizeForSpeech('Area is m². [Act II, Scene I]'),
+  'Area is m². [Act II, Scene I]');
+assert.equal(n.speechChunks('For thee [25] I sing, a song.').join(' ').includes('[25]'),false);
+
 // Change spoken text, NEVER the visible historical manuscript.
 assert.equal(n.normalizeForSpeech('The others bow and call her Queen Eleanor.'),
   'The others bough and call her Queen Eleanor.');
