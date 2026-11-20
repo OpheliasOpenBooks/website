@@ -269,10 +269,14 @@ assert.deepEqual(Array.from(n.speechChunks('The Hon. Arthur Holmwood visited. Th
 // Sentence boundaries, honorifics and chapter/title pause handling.
 assert.equal(n.speechChunks('Mr. Darcy spoke. Then Elizabeth replied.').length,2);
 assert.equal(n.speechChunks('Chapter One. The evening fell.').length,2);
-assert.ok(n.pauseAfter('The Merry Adventures of Robin Hood.')>=550);
-assert.ok(n.pauseAfter('And then he left.')>=200);
-assert.ok(n.pauseAfter('Was he there?')>=300);
-assert.ok(n.pauseAfter('He said;')>=150);
+// Short punctuation-led rests avoid double-pausing on top of device TTS.
+// The historic long pauses here predated the library-wide pacing revision.
+assert.equal(n.pauseAfter('The Merry Adventures of Robin Hood.'),170);
+assert.equal(n.pauseAfter('And then he left.'),85);
+assert.equal(n.pauseAfter('Was he there?'),115);
+assert.equal(n.pauseAfter('He said;'),65);
+assert.equal(n.pauseAfter('The letter arrived,'),35);
+assert.equal(n.pauseAfter('He returned—'),65);
 
 // Speech must be started sequentially, with an observable delay.
 const heard=[],ended=[];
@@ -284,7 +288,7 @@ const utterances=[
 n.speakWithPauses(synth,utterances,()=>true,()=>false);
 assert.deepEqual(heard,['A Chapter Title.']);
 assert.equal(ended[0],'title');
-assert.ok(timers.length&&timers[0].ms>=250);
+assert.ok(timers.length&&timers[0].ms===170);
 timers.shift().fn();
 assert.deepEqual(heard,['A Chapter Title.','He made a low bow.']);
 assert.deepEqual(ended,['title','body']);

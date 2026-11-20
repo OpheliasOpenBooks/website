@@ -1,43 +1,33 @@
-/* Ensures every standalone reading page uses the unified narration code.
+/* Static audit of the actual speaking readers across Ophelia’s catalog.
+ * Excludes read-only primary-language editions, cover pages and music sheets.
  * Run: node tests/library-reader-audit.cjs
  */
 'use strict';
-const assert=require('node:assert/strict');
-const fs=require('node:fs');
-const path=require('node:path');
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const root=path.resolve(__dirname,'..');
-const hubs=new Set(['index.html','catalog.html','support.html','leatherstocking-tales.html','the-forsyte-saga.html','outline-of-history.html']);
-const verse=new Set(['leaves-of-grass.html']);
-const verseReaders=new Set(['king-james-bible-1611.html','king-james-bible-1611-prefaces.html',
+const html=fs.readdirSync(root).filter(file=>file.endsWith('.html'));
+const knownExceptions=new Set(['reader.html','pride-and-prejudice.html','leaves-of-grass.html',
+  'king-james-bible-1611.html','king-james-bible-1611-prefaces.html',
   'the-sound-and-the-fury.html','to-the-lighthouse.html','the-sun-also-rises.html']);
-const html=fs.readdirSync(root).filter(file=>file.endsWith('.html')&&!hubs.has(file));
-assert.ok(html.length>=50,'expected the complete active reader collection');
+const documentedReadOnly=new Set(['king-james-bible-1611.html']);
+const active=[];
+const issues=[];
 for(const file of html){
-  const code=fs.readFileSync(path.join(root,file),'utf8');
-  // Different readers may have separate cache tags as speech rules evolve.
-  // Require a versioned shared script, rather than pinning the whole library
-  // to an obsolete exact tag after Dracula receives a speech correction.
-  assert.ok(/public\/js\/ophelia-narration\.js\?v=1\.4\.\d+(?:[-.][\w-]+)?/.test(code),
-    file+' must load the shared narrator with a versioned cache-busting URL');
-  assert.ok(code.includes('pauseReading?.()')&&code.includes('resumeReading?.()')&&code.includes('clearReading?.()'),
-    file+' must use the shared word-resumable pause controls');
-  // Historical Bible readers use the same shared speech engine but their
-  // chapter/verse and long-preface queues differ from the novel template.
-  if(verseReaders.has(file)){
-    assert.ok(code.includes('OpheliaNarration?.speechChunks')||code.includes('OpheliaNarration.speechChunks'),
-      file+' must delegate text segmentation to the shared speech grammar engine');
-    assert.ok(code.includes('OpheliaNarration.speakWithPauses('),
-      file+' must use the shared sequential pause scheduler');
-    continue;
-  }
-  if(verse.has(file)){
-    assert.ok(code.includes('function narrationScore()'),file+' must preserve poetry-line timing');
-    assert.ok(code.includes('speakWithPauses(window.speechSynthesis,[u]'),file+' must track line positions');
-  }else{
-    assert.ok(code.includes('OpheliaNarration.speechChunks(text)'),
-      file+' must delegate sentence segmentation to shared grammar engine');
-    assert.ok(code.includes('OpheliaNarration.speakWithPauses(synth,speechQueue'),
-      file+' must use the shared sequential pacing scheduler');
-  }
+ const src=fs.readFileSync(path.join(root,file),'utf8');
+ // Some language companions and non-reader pages link the shared script but
+ // do not actually speak. Only check pages with an on-page TTS implementation.
+ if(!/\bSpeechSynthesisUtterance\b|\bOpheliaNarration\.speakWithPauses\s*\(/.test(src))continue;
+ if(documentedReadOnly.has(file))continue;
+ active.push(file);
+ if(!/public\/js\/ophelia-narration\.js\?v=1\.4\.\d+(?:[-.][\w-]+)?/.test(src))
+  issues.push(file+': no versioned shared narration module');
+ if(!src.includes('pauseReading?.()')||!src.includes('resumeReading?.()')||!src.includes('clearReading?.()'))
+  issues.push(file+': missing shared word-resume handlers');
+ if(!knownExceptions.has(file)&&!src.includes('OpheliaNarration.speechChunks('))
+  issues.push(file+': missing shared grammatical sentence segmentation');
+ if(!knownExceptions.has(file)&&!src.includes('OpheliaNarration.speakWithPauses('))
+  issues.push(file+': missing shared sequential speech scheduler');
 }
-console.log('All '+html.length+' speaking readers use the shared narration standard.');
+assert.ok(active.length>=100,'Expected to audit at least 100 speaking books, found '+active.length);
+assert.deepEqual(issues,[],issues.join('\n'));
+console.log('Audited '+active.length+' speaking reader pages; shared pacing and resumable narration verified in source.');

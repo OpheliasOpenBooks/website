@@ -22,6 +22,8 @@ jobs:
         run: node tests/narration.test.cjs
       - name: Check all speaking reader pages for shared implementation
         run: node tests/library-reader-audit.cjs
+      - name: Check Perrault, Andersen and Grimm against Jane Eyre narration standard
+        run: node tests/fairy-tale-narration.test.cjs
       - name: Verify Emerson volumes, essays and reading pagination
         run: node tests/emerson-essays.test.cjs
       - name: Verify the full 1927 Giants in the Earth novel and reader
