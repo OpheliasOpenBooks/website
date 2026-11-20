@@ -26,5 +26,7 @@ jobs:
           if [ -f public/art/the-fifth-queen-1906-cover.jpg ]; then git add public/art/the-fifth-queen-1906-cover.jpg; fi
           if ! git diff --cached --quiet; then
             git commit -m "Publish complete 1906 Fifth Queen novel with historic cover"
+            git fetch origin main
+            git rebase origin/main
             git push origin HEAD:main
           fi
