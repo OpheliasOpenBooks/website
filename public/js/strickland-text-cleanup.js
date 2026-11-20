@@ -33,6 +33,8 @@ function tidy(text){
  s=s.replace(/[¦|<>\\{}]/g,' ').replace(/_{2,}/g,' ');
  s=s.replace(/^(?:PREFACE|INTRODUCTION)[.]\s*(?:[ivxlcdm]{2,8})\s+(?=[a-z])/i,'');
  s=s.replace(/\bVOL[.,]?\s*[IVXLCDM¥]+[.,]?\s+B[2Z]?\b/gi,'');
+ s=s.replace(/^_+(?=[A-Z])/,'');
+ if(/^["“‘][A-Z][A-Z ,.'’\-]{5,78}[,.]?$/.test(s))s=s.replace(/^["“‘]/,'');
  return s.replace(/\s{2,}/g,' ').replace(/^[,;:.~*+\s]+(?=[A-Za-z])/,'').trim();
 }
 function cleanedSections(sections,volume,firstPart){

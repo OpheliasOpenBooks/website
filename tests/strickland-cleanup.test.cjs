@@ -22,6 +22,8 @@ const samples=[
 ];
 for(const [txt,expected] of samples)assert.equal(cleanup.furniture(txt),expected,txt);
 assert.equal(cleanup.tidy('She re- turned to the royal court.'),'She returned to the royal court.');
+assert.equal(cleanup.tidy('_KATHARINE PARR,'),'KATHARINE PARR,');
+assert.equal(cleanup.tidy('"HENRIETTA MARIA,'),'HENRIETTA MARIA,');
 assert.equal(cleanup.tidy('The glittering rooms | of the palace'),'The glittering rooms of the palace');
 const firstMarkers=[
  'PREFACE.','BERENGARIA OF NAVARRE,','PREFACE.','PREFACE.',
@@ -57,7 +59,7 @@ assert.equal(manifest.originalVolumes.length,12);
 assert.equal(manifest.parts.length,361);
 assert.ok(cleanCount>1500000);
 const reader=fs.readFileSync(path.resolve(__dirname,'../lives-of-the-queens-of-england.html'),'utf8');
-assert.match(reader,/strickland-text-cleanup\.js\?v=1/);
+assert.match(reader,/strickland-text-cleanup\.js\?v=1\.1/);
 assert.match(reader,/StricklandCleanup\.cleanedSections/);
 assert.match(reader,/OpheliaNarration\.speakWithPauses/);
 console.log('PASS all',manifest.parts.length,'reading parts across 12 volumes. Words before/after:',rawCount,cleanCount,'paragraphs filtered:',removed);
