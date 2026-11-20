@@ -57,5 +57,19 @@ const path=require('node:path'),fs=require('node:fs');
  assert.ok(share.includes('selectionFromBook()'));
  assert.ok(share.includes("url.searchParams.set('quote',passage)"));
 
+ const emojiJS=fs.readFileSync(path.resolve(__dirname,'../public/js/ophelia-emoji.js'),'utf8');
+ const emojiVM=require('node:vm');
+ const emojiContext={window:{}};
+ emojiVM.runInNewContext(emojiJS,emojiContext);
+ const insert=emojiContext.window.OpheliaEmoji.insertedAt;
+ assert.equal(insert('Jane',4,4,'🌹',2400).value,'Jane🌹','emoji appears at insertion point');
+ assert.equal(insert('Hello reader',6,12,'📚',2400).value,'Hello 📚','emoji can replace selected text');
+ assert.equal(insert('Hi',2,2,'😊',2),null,'emoji insert respects message length');
+ assert.equal(insert('abc',1,1,'❤️',2400).caret,3,'caret advances past multi-codepoint emoji');
+ assert.ok(html.includes('class="emoji-picker"'),'comment box contains emoji selection tray');
+ assert.ok(html.includes('data-emoji="🌹"'),'comment emoji tray includes the Victorian rose');
+ assert.ok(html.includes('ophelia-emoji.js'),'emoji tray script is loaded on public board');
+ assert.ok(!editor.includes('ophelia-emoji.js'),'editor report remains a separate, private form');
+
  console.log('Correspondence validation and page safety checks passed.');
 })().catch(e=>{console.error(e);process.exitCode=1});
