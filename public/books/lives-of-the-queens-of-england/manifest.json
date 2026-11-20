@@ -1,0 +1,3395 @@
+{
+  "title": "Lives of the Queens of England",
+  "author": "Agnes Strickland",
+  "additionalAuthor": "Elisabeth Strickland",
+  "firstPublished": "1840–1848",
+  "originalEdition": "Original twelve-volume series, with selected early corrected printings in volumes II–III",
+  "originalTextType": "Historical scan-derived OCR; individual transcription errors may remain",
+  "manuscriptStatus": "The twelve original volumes were digitized in full; OCR is not a critically proofread text",
+  "originalVolumes": [
+    {
+      "volume": 1,
+      "roman": "I",
+      "year": 1840,
+      "archiveId": "10281968bsb",
+      "source": "https://archive.org/download/10281968bsb/10281968bsb_djvu.txt",
+      "words": 110598,
+      "readableOcr": true,
+      "parts": 20,
+      "sha256": "d3d00dd645c1044dad2048a0e8414cc5039f93287dc09e90689b164ad255aa46"
+    },
+    {
+      "volume": 2,
+      "roman": "II",
+      "year": 1841,
+      "archiveId": "india.history.resource.70493",
+      "source": "https://archive.org/download/india.history.resource.70493/70493_djvu.txt",
+      "words": 119809,
+      "readableOcr": true,
+      "parts": 21,
+      "sha256": "04eda9b72cb31a74c022be46f52beb9701c9551fcfe0e50b2175cfe79926e18b"
+    },
+    {
+      "volume": 3,
+      "roman": "III",
+      "year": 1841,
+      "archiveId": "india.history.resource.70490",
+      "source": "https://archive.org/download/india.history.resource.70490/70490_djvu.txt",
+      "words": 138394,
+      "readableOcr": true,
+      "parts": 25,
+      "sha256": "114677ff20f1bcce076a14033917777a2e1eff573d794dcf8a19303cf320f407"
+    },
+    {
+      "volume": 4,
+      "roman": "IV",
+      "year": 1841,
+      "archiveId": "india.history.resource.70469",
+      "source": "https://archive.org/download/india.history.resource.70469/70469_djvu.txt",
+      "words": 177533,
+      "readableOcr": true,
+      "parts": 31,
+      "sha256": "a551a3d26fb5cc95d7c0f7c048d7f6f667ef27de1891758a51f6caf6d257ee3f"
+    },
+    {
+      "volume": 5,
+      "roman": "V",
+      "year": 1842,
+      "archiveId": "india.history.resource.70491",
+      "source": "https://archive.org/download/india.history.resource.70491/70491_djvu.txt",
+      "words": 162710,
+      "readableOcr": true,
+      "parts": 29,
+      "sha256": "5f73953f13ce7754aa1c2a05b001b19f2513cfa84963cc735ce4f8643096d782"
+    },
+    {
+      "volume": 6,
+      "roman": "VI",
+      "year": 1843,
+      "archiveId": "india.history.resource.70488",
+      "source": "https://archive.org/download/india.history.resource.70488/70488_djvu.txt",
+      "words": 201368,
+      "readableOcr": true,
+      "parts": 36,
+      "sha256": "dedd21d8e3735b932ae83cf3824b898ce9f4efdce0003bd5bbc40b745246b442"
+    },
+    {
+      "volume": 7,
+      "roman": "VII",
+      "year": 1844,
+      "archiveId": "india.history.resource.70461",
+      "source": "https://archive.org/download/india.history.resource.70461/70461_djvu.txt",
+      "words": 202627,
+      "readableOcr": true,
+      "parts": 36,
+      "sha256": "66ed86dbaf1e8cadabcb15d37820bb815667fbffcd471b6134862b6399da0162"
+    },
+    {
+      "volume": 8,
+      "roman": "VIII",
+      "year": 1845,
+      "archiveId": "india.history.resource.70463",
+      "source": "https://archive.org/download/india.history.resource.70463/70463_djvu.txt",
+      "words": 199443,
+      "readableOcr": true,
+      "parts": 35,
+      "sha256": "e4a9c161839d65f9ddb8bf3f9e177781f442c7173ac49d39c039737f33a58248"
+    },
+    {
+      "volume": 9,
+      "roman": "IX",
+      "year": 1846,
+      "archiveId": "india.history.resource.70462",
+      "source": "https://archive.org/download/india.history.resource.70462/70462_djvu.txt",
+      "words": 186443,
+      "readableOcr": true,
+      "parts": 33,
+      "sha256": "212a39126384ed72346e9bb21652cdb475282c3bfbfa5c9898dbb6c1c53f3cc2"
+    },
+    {
+      "volume": 10,
+      "roman": "X",
+      "year": 1847,
+      "archiveId": "india.history.resource.70460",
+      "source": "https://archive.org/download/india.history.resource.70460/70460_djvu.txt",
+      "words": 180982,
+      "readableOcr": true,
+      "parts": 32,
+      "sha256": "ee0316d0c7aef05b8c75951ed998f013576d40af88b4895d8ea73b6f4afe909b"
+    },
+    {
+      "volume": 11,
+      "roman": "XI",
+      "year": 1847,
+      "archiveId": "india.history.resource.70464",
+      "source": "https://archive.org/download/india.history.resource.70464/70464_djvu.txt",
+      "words": 157217,
+      "readableOcr": true,
+      "parts": 28,
+      "sha256": "9b09b008c99c5028cdd851b9fa4386710d0eda3ed8b535677d2d150ac7a261ae"
+    },
+    {
+      "volume": 12,
+      "roman": "XII",
+      "year": 1848,
+      "archiveId": "india.history.resource.70477",
+      "source": "https://archive.org/download/india.history.resource.70477/70477_djvu.txt",
+      "words": 197034,
+      "readableOcr": true,
+      "parts": 35,
+      "sha256": "47b62d0dd8eb1acc6d262646d1f9f9382814cf8f047a7a596f2590ad98939fe4"
+    }
+  ],
+  "wordCount": 2034158,
+  "parts": [
+    {
+      "part": 1,
+      "volume": 1,
+      "name": "Volume I · Reading part 1",
+      "words": 5632,
+      "sections": 1,
+      "source": "https://archive.org/download/10281968bsb/10281968bsb_djvu.txt",
+      "file": "part-001.json"
+    },
+    {
+      "part": 2,
+      "volume": 1,
+      "name": "Volume I · Reading part 2",
+      "words": 5632,
+      "sections": 1,
+      "source": "https://archive.org/download/10281968bsb/10281968bsb_djvu.txt",
+      "file": "part-002.json"
+    },
+    {
+      "part": 3,
+      "volume": 1,
+      "name": "Volume I · Reading part 3",
+      "words": 5774,
+      "sections": 1,
+      "source": "https://archive.org/download/10281968bsb/10281968bsb_djvu.txt",
+      "file": "part-003.json"
+    },
+    {
+      "part": 4,
+      "volume": 1,
+      "name": "Volume I · Reading part 4",
+      "words": 5774,
+      "sections": 1,
+      "source": "https://archive.org/download/10281968bsb/10281968bsb_djvu.txt",
+      "file": "part-004.json"
+    },
+    {
+      "part": 5,
+      "volume": 1,
+      "name": "Volume I · Reading part 5",
+      "words": 5796,
+      "sections": 1,
+      "source": "https://archive.org/download/10281968bsb/10281968bsb_djvu.txt",
+      "file": "part-005.json"
+    },
+    {
+      "part": 6,
+      "volume": 1,
+      "name": "Volume I · Reading part 6",
+      "words": 5780,
+      "sections": 1,
+      "source": "https://archive.org/download/10281968bsb/10281968bsb_djvu.txt",
+      "file": "part-006.json"
+    },
+    {
+      "part": 7,
+      "volume": 1,
+      "name": "Volume I · Reading part 7",
+      "words": 5797,
+      "sections": 1,
+      "source": "https://archive.org/download/10281968bsb/10281968bsb_djvu.txt",
+      "file": "part-007.json"
+    },
+    {
+      "part": 8,
+      "volume": 1,
+      "name": "Volume I · Reading part 8",
+      "words": 5766,
+      "sections": 1,
+      "source": "https://archive.org/download/10281968bsb/10281968bsb_djvu.txt",
+      "file": "part-008.json"
+    },
+    {
+      "part": 9,
+      "volume": 1,
+      "name": "Volume I · Reading part 9",
+      "words": 5786,
+      "sections": 1,
+      "source": "https://archive.org/download/10281968bsb/10281968bsb_djvu.txt",
+      "file": "part-009.json"
+    },
+    {
+      "part": 10,
+      "volume": 1,
+      "name": "Volume I · Reading part 10",
+      "words": 5775,
+      "sections": 1,
+      "source": "https://archive.org/download/10281968bsb/10281968bsb_djvu.txt",
+      "file": "part-010.json"
+    },
+    {
+      "part": 11,
+      "volume": 1,
+      "name": "Volume I · Reading part 11",
+      "words": 5763,
+      "sections": 1,
+      "source": "https://archive.org/download/10281968bsb/10281968bsb_djvu.txt",
+      "file": "part-011.json"
+    },
+    {
+      "part": 12,
+      "volume": 1,
+      "name": "Volume I · Reading part 12",
+      "words": 5698,
+      "sections": 1,
+      "source": "https://archive.org/download/10281968bsb/10281968bsb_djvu.txt",
+      "file": "part-012.json"
+    },
+    {
+      "part": 13,
+      "volume": 1,
+      "name": "Volume I · Reading part 13",
+      "words": 5712,
+      "sections": 1,
+      "source": "https://archive.org/download/10281968bsb/10281968bsb_djvu.txt",
+      "file": "part-013.json"
+    },
+    {
+      "part": 14,
+      "volume": 1,
+      "name": "Volume I · Reading part 14",
+      "words": 5778,
+      "sections": 1,
+      "source": "https://archive.org/download/10281968bsb/10281968bsb_djvu.txt",
+      "file": "part-014.json"
+    },
+    {
+      "part": 15,
+      "volume": 1,
+      "name": "Volume I · Reading part 15",
+      "words": 5775,
+      "sections": 1,
+      "source": "https://archive.org/download/10281968bsb/10281968bsb_djvu.txt",
+      "file": "part-015.json"
+    },
+    {
+      "part": 16,
+      "volume": 1,
+      "name": "Volume I · Reading part 16",
+      "words": 5795,
+      "sections": 1,
+      "source": "https://archive.org/download/10281968bsb/10281968bsb_djvu.txt",
+      "file": "part-016.json"
+    },
+    {
+      "part": 17,
+      "volume": 1,
+      "name": "Volume I · Reading part 17",
+      "words": 5738,
+      "sections": 1,
+      "source": "https://archive.org/download/10281968bsb/10281968bsb_djvu.txt",
+      "file": "part-017.json"
+    },
+    {
+      "part": 18,
+      "volume": 1,
+      "name": "Volume I · Reading part 18",
+      "words": 5796,
+      "sections": 1,
+      "source": "https://archive.org/download/10281968bsb/10281968bsb_djvu.txt",
+      "file": "part-018.json"
+    },
+    {
+      "part": 19,
+      "volume": 1,
+      "name": "Volume I · Reading part 19",
+      "words": 5799,
+      "sections": 1,
+      "source": "https://archive.org/download/10281968bsb/10281968bsb_djvu.txt",
+      "file": "part-019.json"
+    },
+    {
+      "part": 20,
+      "volume": 1,
+      "name": "Volume I · Reading part 20",
+      "words": 1232,
+      "sections": 1,
+      "source": "https://archive.org/download/10281968bsb/10281968bsb_djvu.txt",
+      "file": "part-020.json"
+    },
+    {
+      "part": 21,
+      "volume": 2,
+      "name": "Volume II · Reading part 1",
+      "words": 5790,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70493/70493_djvu.txt",
+      "file": "part-021.json"
+    },
+    {
+      "part": 22,
+      "volume": 2,
+      "name": "Volume II · Reading part 2",
+      "words": 5755,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70493/70493_djvu.txt",
+      "file": "part-022.json"
+    },
+    {
+      "part": 23,
+      "volume": 2,
+      "name": "Volume II · Reading part 3",
+      "words": 5776,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70493/70493_djvu.txt",
+      "file": "part-023.json"
+    },
+    {
+      "part": 24,
+      "volume": 2,
+      "name": "Volume II · Reading part 4",
+      "words": 5748,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70493/70493_djvu.txt",
+      "file": "part-024.json"
+    },
+    {
+      "part": 25,
+      "volume": 2,
+      "name": "Volume II · Reading part 5",
+      "words": 5789,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70493/70493_djvu.txt",
+      "file": "part-025.json"
+    },
+    {
+      "part": 26,
+      "volume": 2,
+      "name": "Volume II · Reading part 6",
+      "words": 5780,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70493/70493_djvu.txt",
+      "file": "part-026.json"
+    },
+    {
+      "part": 27,
+      "volume": 2,
+      "name": "Volume II · Reading part 7",
+      "words": 5727,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70493/70493_djvu.txt",
+      "file": "part-027.json"
+    },
+    {
+      "part": 28,
+      "volume": 2,
+      "name": "Volume II · Reading part 8",
+      "words": 5773,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70493/70493_djvu.txt",
+      "file": "part-028.json"
+    },
+    {
+      "part": 29,
+      "volume": 2,
+      "name": "Volume II · Reading part 9",
+      "words": 5765,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70493/70493_djvu.txt",
+      "file": "part-029.json"
+    },
+    {
+      "part": 30,
+      "volume": 2,
+      "name": "Volume II · Reading part 10",
+      "words": 5750,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70493/70493_djvu.txt",
+      "file": "part-030.json"
+    },
+    {
+      "part": 31,
+      "volume": 2,
+      "name": "Volume II · Reading part 11",
+      "words": 5683,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70493/70493_djvu.txt",
+      "file": "part-031.json"
+    },
+    {
+      "part": 32,
+      "volume": 2,
+      "name": "Volume II · Reading part 12",
+      "words": 5764,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70493/70493_djvu.txt",
+      "file": "part-032.json"
+    },
+    {
+      "part": 33,
+      "volume": 2,
+      "name": "Volume II · Reading part 13",
+      "words": 5779,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70493/70493_djvu.txt",
+      "file": "part-033.json"
+    },
+    {
+      "part": 34,
+      "volume": 2,
+      "name": "Volume II · Reading part 14",
+      "words": 5780,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70493/70493_djvu.txt",
+      "file": "part-034.json"
+    },
+    {
+      "part": 35,
+      "volume": 2,
+      "name": "Volume II · Reading part 15",
+      "words": 5768,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70493/70493_djvu.txt",
+      "file": "part-035.json"
+    },
+    {
+      "part": 36,
+      "volume": 2,
+      "name": "Volume II · Reading part 16",
+      "words": 5711,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70493/70493_djvu.txt",
+      "file": "part-036.json"
+    },
+    {
+      "part": 37,
+      "volume": 2,
+      "name": "Volume II · Reading part 17",
+      "words": 5777,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70493/70493_djvu.txt",
+      "file": "part-037.json"
+    },
+    {
+      "part": 38,
+      "volume": 2,
+      "name": "Volume II · Reading part 18",
+      "words": 5789,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70493/70493_djvu.txt",
+      "file": "part-038.json"
+    },
+    {
+      "part": 39,
+      "volume": 2,
+      "name": "Volume II · Reading part 19",
+      "words": 5727,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70493/70493_djvu.txt",
+      "file": "part-039.json"
+    },
+    {
+      "part": 40,
+      "volume": 2,
+      "name": "Volume II · Reading part 20",
+      "words": 5797,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70493/70493_djvu.txt",
+      "file": "part-040.json"
+    },
+    {
+      "part": 41,
+      "volume": 2,
+      "name": "Volume II · Reading part 21",
+      "words": 4581,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70493/70493_djvu.txt",
+      "file": "part-041.json"
+    },
+    {
+      "part": 42,
+      "volume": 3,
+      "name": "Volume III · Reading part 1",
+      "words": 5696,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70490/70490_djvu.txt",
+      "file": "part-042.json"
+    },
+    {
+      "part": 43,
+      "volume": 3,
+      "name": "Volume III · Reading part 2",
+      "words": 5784,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70490/70490_djvu.txt",
+      "file": "part-043.json"
+    },
+    {
+      "part": 44,
+      "volume": 3,
+      "name": "Volume III · Reading part 3",
+      "words": 5791,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70490/70490_djvu.txt",
+      "file": "part-044.json"
+    },
+    {
+      "part": 45,
+      "volume": 3,
+      "name": "Volume III · Reading part 4",
+      "words": 5771,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70490/70490_djvu.txt",
+      "file": "part-045.json"
+    },
+    {
+      "part": 46,
+      "volume": 3,
+      "name": "Volume III · Reading part 5",
+      "words": 5620,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70490/70490_djvu.txt",
+      "file": "part-046.json"
+    },
+    {
+      "part": 47,
+      "volume": 3,
+      "name": "Volume III · Reading part 6",
+      "words": 5774,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70490/70490_djvu.txt",
+      "file": "part-047.json"
+    },
+    {
+      "part": 48,
+      "volume": 3,
+      "name": "Volume III · Reading part 7",
+      "words": 5757,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70490/70490_djvu.txt",
+      "file": "part-048.json"
+    },
+    {
+      "part": 49,
+      "volume": 3,
+      "name": "Volume III · Reading part 8",
+      "words": 5784,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70490/70490_djvu.txt",
+      "file": "part-049.json"
+    },
+    {
+      "part": 50,
+      "volume": 3,
+      "name": "Volume III · Reading part 9",
+      "words": 5743,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70490/70490_djvu.txt",
+      "file": "part-050.json"
+    },
+    {
+      "part": 51,
+      "volume": 3,
+      "name": "Volume III · Reading part 10",
+      "words": 5787,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70490/70490_djvu.txt",
+      "file": "part-051.json"
+    },
+    {
+      "part": 52,
+      "volume": 3,
+      "name": "Volume III · Reading part 11",
+      "words": 5772,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70490/70490_djvu.txt",
+      "file": "part-052.json"
+    },
+    {
+      "part": 53,
+      "volume": 3,
+      "name": "Volume III · Reading part 12",
+      "words": 5726,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70490/70490_djvu.txt",
+      "file": "part-053.json"
+    },
+    {
+      "part": 54,
+      "volume": 3,
+      "name": "Volume III · Reading part 13",
+      "words": 5800,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70490/70490_djvu.txt",
+      "file": "part-054.json"
+    },
+    {
+      "part": 55,
+      "volume": 3,
+      "name": "Volume III · Reading part 14",
+      "words": 5770,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70490/70490_djvu.txt",
+      "file": "part-055.json"
+    },
+    {
+      "part": 56,
+      "volume": 3,
+      "name": "Volume III · Reading part 15",
+      "words": 5695,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70490/70490_djvu.txt",
+      "file": "part-056.json"
+    },
+    {
+      "part": 57,
+      "volume": 3,
+      "name": "Volume III · Reading part 16",
+      "words": 5771,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70490/70490_djvu.txt",
+      "file": "part-057.json"
+    },
+    {
+      "part": 58,
+      "volume": 3,
+      "name": "Volume III · Reading part 17",
+      "words": 5750,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70490/70490_djvu.txt",
+      "file": "part-058.json"
+    },
+    {
+      "part": 59,
+      "volume": 3,
+      "name": "Volume III · Reading part 18",
+      "words": 5792,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70490/70490_djvu.txt",
+      "file": "part-059.json"
+    },
+    {
+      "part": 60,
+      "volume": 3,
+      "name": "Volume III · Reading part 19",
+      "words": 5792,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70490/70490_djvu.txt",
+      "file": "part-060.json"
+    },
+    {
+      "part": 61,
+      "volume": 3,
+      "name": "Volume III · Reading part 20",
+      "words": 5765,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70490/70490_djvu.txt",
+      "file": "part-061.json"
+    },
+    {
+      "part": 62,
+      "volume": 3,
+      "name": "Volume III · Reading part 21",
+      "words": 5672,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70490/70490_djvu.txt",
+      "file": "part-062.json"
+    },
+    {
+      "part": 63,
+      "volume": 3,
+      "name": "Volume III · Reading part 22",
+      "words": 5720,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70490/70490_djvu.txt",
+      "file": "part-063.json"
+    },
+    {
+      "part": 64,
+      "volume": 3,
+      "name": "Volume III · Reading part 23",
+      "words": 5770,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70490/70490_djvu.txt",
+      "file": "part-064.json"
+    },
+    {
+      "part": 65,
+      "volume": 3,
+      "name": "Volume III · Reading part 24",
+      "words": 5735,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70490/70490_djvu.txt",
+      "file": "part-065.json"
+    },
+    {
+      "part": 66,
+      "volume": 3,
+      "name": "Volume III · Reading part 25",
+      "words": 357,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70490/70490_djvu.txt",
+      "file": "part-066.json"
+    },
+    {
+      "part": 67,
+      "volume": 4,
+      "name": "Volume IV · Reading part 1",
+      "words": 5738,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70469/70469_djvu.txt",
+      "file": "part-067.json"
+    },
+    {
+      "part": 68,
+      "volume": 4,
+      "name": "Volume IV · Reading part 2",
+      "words": 5795,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70469/70469_djvu.txt",
+      "file": "part-068.json"
+    },
+    {
+      "part": 69,
+      "volume": 4,
+      "name": "Volume IV · Reading part 3",
+      "words": 5612,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70469/70469_djvu.txt",
+      "file": "part-069.json"
+    },
+    {
+      "part": 70,
+      "volume": 4,
+      "name": "Volume IV · Reading part 4",
+      "words": 5718,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70469/70469_djvu.txt",
+      "file": "part-070.json"
+    },
+    {
+      "part": 71,
+      "volume": 4,
+      "name": "Volume IV · Reading part 5",
+      "words": 5760,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70469/70469_djvu.txt",
+      "file": "part-071.json"
+    },
+    {
+      "part": 72,
+      "volume": 4,
+      "name": "Volume IV · Reading part 6",
+      "words": 5777,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70469/70469_djvu.txt",
+      "file": "part-072.json"
+    },
+    {
+      "part": 73,
+      "volume": 4,
+      "name": "Volume IV · Reading part 7",
+      "words": 5749,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70469/70469_djvu.txt",
+      "file": "part-073.json"
+    },
+    {
+      "part": 74,
+      "volume": 4,
+      "name": "Volume IV · Reading part 8",
+      "words": 5577,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70469/70469_djvu.txt",
+      "file": "part-074.json"
+    },
+    {
+      "part": 75,
+      "volume": 4,
+      "name": "Volume IV · Reading part 9",
+      "words": 5799,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70469/70469_djvu.txt",
+      "file": "part-075.json"
+    },
+    {
+      "part": 76,
+      "volume": 4,
+      "name": "Volume IV · Reading part 10",
+      "words": 5572,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70469/70469_djvu.txt",
+      "file": "part-076.json"
+    },
+    {
+      "part": 77,
+      "volume": 4,
+      "name": "Volume IV · Reading part 11",
+      "words": 5687,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70469/70469_djvu.txt",
+      "file": "part-077.json"
+    },
+    {
+      "part": 78,
+      "volume": 4,
+      "name": "Volume IV · Reading part 12",
+      "words": 5734,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70469/70469_djvu.txt",
+      "file": "part-078.json"
+    },
+    {
+      "part": 79,
+      "volume": 4,
+      "name": "Volume IV · Reading part 13",
+      "words": 5776,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70469/70469_djvu.txt",
+      "file": "part-079.json"
+    },
+    {
+      "part": 80,
+      "volume": 4,
+      "name": "Volume IV · Reading part 14",
+      "words": 5727,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70469/70469_djvu.txt",
+      "file": "part-080.json"
+    },
+    {
+      "part": 81,
+      "volume": 4,
+      "name": "Volume IV · Reading part 15",
+      "words": 5571,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70469/70469_djvu.txt",
+      "file": "part-081.json"
+    },
+    {
+      "part": 82,
+      "volume": 4,
+      "name": "Volume IV · Reading part 16",
+      "words": 5716,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70469/70469_djvu.txt",
+      "file": "part-082.json"
+    },
+    {
+      "part": 83,
+      "volume": 4,
+      "name": "Volume IV · Reading part 17",
+      "words": 5737,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70469/70469_djvu.txt",
+      "file": "part-083.json"
+    },
+    {
+      "part": 84,
+      "volume": 4,
+      "name": "Volume IV · Reading part 18",
+      "words": 5742,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70469/70469_djvu.txt",
+      "file": "part-084.json"
+    },
+    {
+      "part": 85,
+      "volume": 4,
+      "name": "Volume IV · Reading part 19",
+      "words": 5735,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70469/70469_djvu.txt",
+      "file": "part-085.json"
+    },
+    {
+      "part": 86,
+      "volume": 4,
+      "name": "Volume IV · Reading part 20",
+      "words": 5792,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70469/70469_djvu.txt",
+      "file": "part-086.json"
+    },
+    {
+      "part": 87,
+      "volume": 4,
+      "name": "Volume IV · Reading part 21",
+      "words": 5779,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70469/70469_djvu.txt",
+      "file": "part-087.json"
+    },
+    {
+      "part": 88,
+      "volume": 4,
+      "name": "Volume IV · Reading part 22",
+      "words": 5800,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70469/70469_djvu.txt",
+      "file": "part-088.json"
+    },
+    {
+      "part": 89,
+      "volume": 4,
+      "name": "Volume IV · Reading part 23",
+      "words": 5765,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70469/70469_djvu.txt",
+      "file": "part-089.json"
+    },
+    {
+      "part": 90,
+      "volume": 4,
+      "name": "Volume IV · Reading part 24",
+      "words": 5739,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70469/70469_djvu.txt",
+      "file": "part-090.json"
+    },
+    {
+      "part": 91,
+      "volume": 4,
+      "name": "Volume IV · Reading part 25",
+      "words": 5765,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70469/70469_djvu.txt",
+      "file": "part-091.json"
+    },
+    {
+      "part": 92,
+      "volume": 4,
+      "name": "Volume IV · Reading part 26",
+      "words": 5796,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70469/70469_djvu.txt",
+      "file": "part-092.json"
+    },
+    {
+      "part": 93,
+      "volume": 4,
+      "name": "Volume IV · Reading part 27",
+      "words": 5770,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70469/70469_djvu.txt",
+      "file": "part-093.json"
+    },
+    {
+      "part": 94,
+      "volume": 4,
+      "name": "Volume IV · Reading part 28",
+      "words": 5749,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70469/70469_djvu.txt",
+      "file": "part-094.json"
+    },
+    {
+      "part": 95,
+      "volume": 4,
+      "name": "Volume IV · Reading part 29",
+      "words": 5653,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70469/70469_djvu.txt",
+      "file": "part-095.json"
+    },
+    {
+      "part": 96,
+      "volume": 4,
+      "name": "Volume IV · Reading part 30",
+      "words": 5781,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70469/70469_djvu.txt",
+      "file": "part-096.json"
+    },
+    {
+      "part": 97,
+      "volume": 4,
+      "name": "Volume IV · Reading part 31",
+      "words": 5622,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70469/70469_djvu.txt",
+      "file": "part-097.json"
+    },
+    {
+      "part": 98,
+      "volume": 5,
+      "name": "Volume V · Reading part 1",
+      "words": 5553,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70491/70491_djvu.txt",
+      "file": "part-098.json"
+    },
+    {
+      "part": 99,
+      "volume": 5,
+      "name": "Volume V · Reading part 2",
+      "words": 5786,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70491/70491_djvu.txt",
+      "file": "part-099.json"
+    },
+    {
+      "part": 100,
+      "volume": 5,
+      "name": "Volume V · Reading part 3",
+      "words": 5740,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70491/70491_djvu.txt",
+      "file": "part-100.json"
+    },
+    {
+      "part": 101,
+      "volume": 5,
+      "name": "Volume V · Reading part 4",
+      "words": 5790,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70491/70491_djvu.txt",
+      "file": "part-101.json"
+    },
+    {
+      "part": 102,
+      "volume": 5,
+      "name": "Volume V · Reading part 5",
+      "words": 5665,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70491/70491_djvu.txt",
+      "file": "part-102.json"
+    },
+    {
+      "part": 103,
+      "volume": 5,
+      "name": "Volume V · Reading part 6",
+      "words": 5736,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70491/70491_djvu.txt",
+      "file": "part-103.json"
+    },
+    {
+      "part": 104,
+      "volume": 5,
+      "name": "Volume V · Reading part 7",
+      "words": 5781,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70491/70491_djvu.txt",
+      "file": "part-104.json"
+    },
+    {
+      "part": 105,
+      "volume": 5,
+      "name": "Volume V · Reading part 8",
+      "words": 5732,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70491/70491_djvu.txt",
+      "file": "part-105.json"
+    },
+    {
+      "part": 106,
+      "volume": 5,
+      "name": "Volume V · Reading part 9",
+      "words": 5797,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70491/70491_djvu.txt",
+      "file": "part-106.json"
+    },
+    {
+      "part": 107,
+      "volume": 5,
+      "name": "Volume V · Reading part 10",
+      "words": 5710,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70491/70491_djvu.txt",
+      "file": "part-107.json"
+    },
+    {
+      "part": 108,
+      "volume": 5,
+      "name": "Volume V · Reading part 11",
+      "words": 5795,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70491/70491_djvu.txt",
+      "file": "part-108.json"
+    },
+    {
+      "part": 109,
+      "volume": 5,
+      "name": "Volume V · Reading part 12",
+      "words": 5754,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70491/70491_djvu.txt",
+      "file": "part-109.json"
+    },
+    {
+      "part": 110,
+      "volume": 5,
+      "name": "Volume V · Reading part 13",
+      "words": 5781,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70491/70491_djvu.txt",
+      "file": "part-110.json"
+    },
+    {
+      "part": 111,
+      "volume": 5,
+      "name": "Volume V · Reading part 14",
+      "words": 5768,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70491/70491_djvu.txt",
+      "file": "part-111.json"
+    },
+    {
+      "part": 112,
+      "volume": 5,
+      "name": "Volume V · Reading part 15",
+      "words": 5756,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70491/70491_djvu.txt",
+      "file": "part-112.json"
+    },
+    {
+      "part": 113,
+      "volume": 5,
+      "name": "Volume V · Reading part 16",
+      "words": 5656,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70491/70491_djvu.txt",
+      "file": "part-113.json"
+    },
+    {
+      "part": 114,
+      "volume": 5,
+      "name": "Volume V · Reading part 17",
+      "words": 5792,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70491/70491_djvu.txt",
+      "file": "part-114.json"
+    },
+    {
+      "part": 115,
+      "volume": 5,
+      "name": "Volume V · Reading part 18",
+      "words": 5797,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70491/70491_djvu.txt",
+      "file": "part-115.json"
+    },
+    {
+      "part": 116,
+      "volume": 5,
+      "name": "Volume V · Reading part 19",
+      "words": 5798,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70491/70491_djvu.txt",
+      "file": "part-116.json"
+    },
+    {
+      "part": 117,
+      "volume": 5,
+      "name": "Volume V · Reading part 20",
+      "words": 5731,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70491/70491_djvu.txt",
+      "file": "part-117.json"
+    },
+    {
+      "part": 118,
+      "volume": 5,
+      "name": "Volume V · Reading part 21",
+      "words": 5699,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70491/70491_djvu.txt",
+      "file": "part-118.json"
+    },
+    {
+      "part": 119,
+      "volume": 5,
+      "name": "Volume V · Reading part 22",
+      "words": 5747,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70491/70491_djvu.txt",
+      "file": "part-119.json"
+    },
+    {
+      "part": 120,
+      "volume": 5,
+      "name": "Volume V · Reading part 23",
+      "words": 5752,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70491/70491_djvu.txt",
+      "file": "part-120.json"
+    },
+    {
+      "part": 121,
+      "volume": 5,
+      "name": "Volume V · Reading part 24",
+      "words": 5790,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70491/70491_djvu.txt",
+      "file": "part-121.json"
+    },
+    {
+      "part": 122,
+      "volume": 5,
+      "name": "Volume V · Reading part 25",
+      "words": 5791,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70491/70491_djvu.txt",
+      "file": "part-122.json"
+    },
+    {
+      "part": 123,
+      "volume": 5,
+      "name": "Volume V · Reading part 26",
+      "words": 5799,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70491/70491_djvu.txt",
+      "file": "part-123.json"
+    },
+    {
+      "part": 124,
+      "volume": 5,
+      "name": "Volume V · Reading part 27",
+      "words": 5688,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70491/70491_djvu.txt",
+      "file": "part-124.json"
+    },
+    {
+      "part": 125,
+      "volume": 5,
+      "name": "Volume V · Reading part 28",
+      "words": 5798,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70491/70491_djvu.txt",
+      "file": "part-125.json"
+    },
+    {
+      "part": 126,
+      "volume": 5,
+      "name": "Volume V · Reading part 29",
+      "words": 1728,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70491/70491_djvu.txt",
+      "file": "part-126.json"
+    },
+    {
+      "part": 127,
+      "volume": 6,
+      "name": "Volume VI · Reading part 1",
+      "words": 5606,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70488/70488_djvu.txt",
+      "file": "part-127.json"
+    },
+    {
+      "part": 128,
+      "volume": 6,
+      "name": "Volume VI · Reading part 2",
+      "words": 5800,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70488/70488_djvu.txt",
+      "file": "part-128.json"
+    },
+    {
+      "part": 129,
+      "volume": 6,
+      "name": "Volume VI · Reading part 3",
+      "words": 5732,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70488/70488_djvu.txt",
+      "file": "part-129.json"
+    },
+    {
+      "part": 130,
+      "volume": 6,
+      "name": "Volume VI · Reading part 4",
+      "words": 5795,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70488/70488_djvu.txt",
+      "file": "part-130.json"
+    },
+    {
+      "part": 131,
+      "volume": 6,
+      "name": "Volume VI · Reading part 5",
+      "words": 5728,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70488/70488_djvu.txt",
+      "file": "part-131.json"
+    },
+    {
+      "part": 132,
+      "volume": 6,
+      "name": "Volume VI · Reading part 6",
+      "words": 5749,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70488/70488_djvu.txt",
+      "file": "part-132.json"
+    },
+    {
+      "part": 133,
+      "volume": 6,
+      "name": "Volume VI · Reading part 7",
+      "words": 5595,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70488/70488_djvu.txt",
+      "file": "part-133.json"
+    },
+    {
+      "part": 134,
+      "volume": 6,
+      "name": "Volume VI · Reading part 8",
+      "words": 5798,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70488/70488_djvu.txt",
+      "file": "part-134.json"
+    },
+    {
+      "part": 135,
+      "volume": 6,
+      "name": "Volume VI · Reading part 9",
+      "words": 5786,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70488/70488_djvu.txt",
+      "file": "part-135.json"
+    },
+    {
+      "part": 136,
+      "volume": 6,
+      "name": "Volume VI · Reading part 10",
+      "words": 5737,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70488/70488_djvu.txt",
+      "file": "part-136.json"
+    },
+    {
+      "part": 137,
+      "volume": 6,
+      "name": "Volume VI · Reading part 11",
+      "words": 5770,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70488/70488_djvu.txt",
+      "file": "part-137.json"
+    },
+    {
+      "part": 138,
+      "volume": 6,
+      "name": "Volume VI · Reading part 12",
+      "words": 5476,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70488/70488_djvu.txt",
+      "file": "part-138.json"
+    },
+    {
+      "part": 139,
+      "volume": 6,
+      "name": "Volume VI · Reading part 13",
+      "words": 5567,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70488/70488_djvu.txt",
+      "file": "part-139.json"
+    },
+    {
+      "part": 140,
+      "volume": 6,
+      "name": "Volume VI · Reading part 14",
+      "words": 5745,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70488/70488_djvu.txt",
+      "file": "part-140.json"
+    },
+    {
+      "part": 141,
+      "volume": 6,
+      "name": "Volume VI · Reading part 15",
+      "words": 5774,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70488/70488_djvu.txt",
+      "file": "part-141.json"
+    },
+    {
+      "part": 142,
+      "volume": 6,
+      "name": "Volume VI · Reading part 16",
+      "words": 5758,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70488/70488_djvu.txt",
+      "file": "part-142.json"
+    },
+    {
+      "part": 143,
+      "volume": 6,
+      "name": "Volume VI · Reading part 17",
+      "words": 5650,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70488/70488_djvu.txt",
+      "file": "part-143.json"
+    },
+    {
+      "part": 144,
+      "volume": 6,
+      "name": "Volume VI · Reading part 18",
+      "words": 5796,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70488/70488_djvu.txt",
+      "file": "part-144.json"
+    },
+    {
+      "part": 145,
+      "volume": 6,
+      "name": "Volume VI · Reading part 19",
+      "words": 5794,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70488/70488_djvu.txt",
+      "file": "part-145.json"
+    },
+    {
+      "part": 146,
+      "volume": 6,
+      "name": "Volume VI · Reading part 20",
+      "words": 5791,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70488/70488_djvu.txt",
+      "file": "part-146.json"
+    },
+    {
+      "part": 147,
+      "volume": 6,
+      "name": "Volume VI · Reading part 21",
+      "words": 5745,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70488/70488_djvu.txt",
+      "file": "part-147.json"
+    },
+    {
+      "part": 148,
+      "volume": 6,
+      "name": "Volume VI · Reading part 22",
+      "words": 5738,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70488/70488_djvu.txt",
+      "file": "part-148.json"
+    },
+    {
+      "part": 149,
+      "volume": 6,
+      "name": "Volume VI · Reading part 23",
+      "words": 5752,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70488/70488_djvu.txt",
+      "file": "part-149.json"
+    },
+    {
+      "part": 150,
+      "volume": 6,
+      "name": "Volume VI · Reading part 24",
+      "words": 5768,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70488/70488_djvu.txt",
+      "file": "part-150.json"
+    },
+    {
+      "part": 151,
+      "volume": 6,
+      "name": "Volume VI · Reading part 25",
+      "words": 5669,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70488/70488_djvu.txt",
+      "file": "part-151.json"
+    },
+    {
+      "part": 152,
+      "volume": 6,
+      "name": "Volume VI · Reading part 26",
+      "words": 5794,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70488/70488_djvu.txt",
+      "file": "part-152.json"
+    },
+    {
+      "part": 153,
+      "volume": 6,
+      "name": "Volume VI · Reading part 27",
+      "words": 5794,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70488/70488_djvu.txt",
+      "file": "part-153.json"
+    },
+    {
+      "part": 154,
+      "volume": 6,
+      "name": "Volume VI · Reading part 28",
+      "words": 5659,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70488/70488_djvu.txt",
+      "file": "part-154.json"
+    },
+    {
+      "part": 155,
+      "volume": 6,
+      "name": "Volume VI · Reading part 29",
+      "words": 5662,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70488/70488_djvu.txt",
+      "file": "part-155.json"
+    },
+    {
+      "part": 156,
+      "volume": 6,
+      "name": "Volume VI · Reading part 30",
+      "words": 5774,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70488/70488_djvu.txt",
+      "file": "part-156.json"
+    },
+    {
+      "part": 157,
+      "volume": 6,
+      "name": "Volume VI · Reading part 31",
+      "words": 5746,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70488/70488_djvu.txt",
+      "file": "part-157.json"
+    },
+    {
+      "part": 158,
+      "volume": 6,
+      "name": "Volume VI · Reading part 32",
+      "words": 5744,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70488/70488_djvu.txt",
+      "file": "part-158.json"
+    },
+    {
+      "part": 159,
+      "volume": 6,
+      "name": "Volume VI · Reading part 33",
+      "words": 5674,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70488/70488_djvu.txt",
+      "file": "part-159.json"
+    },
+    {
+      "part": 160,
+      "volume": 6,
+      "name": "Volume VI · Reading part 34",
+      "words": 5779,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70488/70488_djvu.txt",
+      "file": "part-160.json"
+    },
+    {
+      "part": 161,
+      "volume": 6,
+      "name": "Volume VI · Reading part 35",
+      "words": 5610,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70488/70488_djvu.txt",
+      "file": "part-161.json"
+    },
+    {
+      "part": 162,
+      "volume": 6,
+      "name": "Volume VI · Reading part 36",
+      "words": 1013,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70488/70488_djvu.txt",
+      "file": "part-162.json"
+    },
+    {
+      "part": 163,
+      "volume": 7,
+      "name": "Volume VII · Reading part 1",
+      "words": 5800,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70461/70461_djvu.txt",
+      "file": "part-163.json"
+    },
+    {
+      "part": 164,
+      "volume": 7,
+      "name": "Volume VII · Reading part 2",
+      "words": 5604,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70461/70461_djvu.txt",
+      "file": "part-164.json"
+    },
+    {
+      "part": 165,
+      "volume": 7,
+      "name": "Volume VII · Reading part 3",
+      "words": 5775,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70461/70461_djvu.txt",
+      "file": "part-165.json"
+    },
+    {
+      "part": 166,
+      "volume": 7,
+      "name": "Volume VII · Reading part 4",
+      "words": 5615,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70461/70461_djvu.txt",
+      "file": "part-166.json"
+    },
+    {
+      "part": 167,
+      "volume": 7,
+      "name": "Volume VII · Reading part 5",
+      "words": 5756,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70461/70461_djvu.txt",
+      "file": "part-167.json"
+    },
+    {
+      "part": 168,
+      "volume": 7,
+      "name": "Volume VII · Reading part 6",
+      "words": 5772,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70461/70461_djvu.txt",
+      "file": "part-168.json"
+    },
+    {
+      "part": 169,
+      "volume": 7,
+      "name": "Volume VII · Reading part 7",
+      "words": 5748,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70461/70461_djvu.txt",
+      "file": "part-169.json"
+    },
+    {
+      "part": 170,
+      "volume": 7,
+      "name": "Volume VII · Reading part 8",
+      "words": 5699,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70461/70461_djvu.txt",
+      "file": "part-170.json"
+    },
+    {
+      "part": 171,
+      "volume": 7,
+      "name": "Volume VII · Reading part 9",
+      "words": 5676,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70461/70461_djvu.txt",
+      "file": "part-171.json"
+    },
+    {
+      "part": 172,
+      "volume": 7,
+      "name": "Volume VII · Reading part 10",
+      "words": 5757,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70461/70461_djvu.txt",
+      "file": "part-172.json"
+    },
+    {
+      "part": 173,
+      "volume": 7,
+      "name": "Volume VII · Reading part 11",
+      "words": 5630,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70461/70461_djvu.txt",
+      "file": "part-173.json"
+    },
+    {
+      "part": 174,
+      "volume": 7,
+      "name": "Volume VII · Reading part 12",
+      "words": 5726,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70461/70461_djvu.txt",
+      "file": "part-174.json"
+    },
+    {
+      "part": 175,
+      "volume": 7,
+      "name": "Volume VII · Reading part 13",
+      "words": 5693,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70461/70461_djvu.txt",
+      "file": "part-175.json"
+    },
+    {
+      "part": 176,
+      "volume": 7,
+      "name": "Volume VII · Reading part 14",
+      "words": 5596,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70461/70461_djvu.txt",
+      "file": "part-176.json"
+    },
+    {
+      "part": 177,
+      "volume": 7,
+      "name": "Volume VII · Reading part 15",
+      "words": 5710,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70461/70461_djvu.txt",
+      "file": "part-177.json"
+    },
+    {
+      "part": 178,
+      "volume": 7,
+      "name": "Volume VII · Reading part 16",
+      "words": 5628,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70461/70461_djvu.txt",
+      "file": "part-178.json"
+    },
+    {
+      "part": 179,
+      "volume": 7,
+      "name": "Volume VII · Reading part 17",
+      "words": 5659,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70461/70461_djvu.txt",
+      "file": "part-179.json"
+    },
+    {
+      "part": 180,
+      "volume": 7,
+      "name": "Volume VII · Reading part 18",
+      "words": 5708,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70461/70461_djvu.txt",
+      "file": "part-180.json"
+    },
+    {
+      "part": 181,
+      "volume": 7,
+      "name": "Volume VII · Reading part 19",
+      "words": 5667,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70461/70461_djvu.txt",
+      "file": "part-181.json"
+    },
+    {
+      "part": 182,
+      "volume": 7,
+      "name": "Volume VII · Reading part 20",
+      "words": 5701,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70461/70461_djvu.txt",
+      "file": "part-182.json"
+    },
+    {
+      "part": 183,
+      "volume": 7,
+      "name": "Volume VII · Reading part 21",
+      "words": 5429,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70461/70461_djvu.txt",
+      "file": "part-183.json"
+    },
+    {
+      "part": 184,
+      "volume": 7,
+      "name": "Volume VII · Reading part 22",
+      "words": 5800,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70461/70461_djvu.txt",
+      "file": "part-184.json"
+    },
+    {
+      "part": 185,
+      "volume": 7,
+      "name": "Volume VII · Reading part 23",
+      "words": 5770,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70461/70461_djvu.txt",
+      "file": "part-185.json"
+    },
+    {
+      "part": 186,
+      "volume": 7,
+      "name": "Volume VII · Reading part 24",
+      "words": 5724,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70461/70461_djvu.txt",
+      "file": "part-186.json"
+    },
+    {
+      "part": 187,
+      "volume": 7,
+      "name": "Volume VII · Reading part 25",
+      "words": 5727,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70461/70461_djvu.txt",
+      "file": "part-187.json"
+    },
+    {
+      "part": 188,
+      "volume": 7,
+      "name": "Volume VII · Reading part 26",
+      "words": 5783,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70461/70461_djvu.txt",
+      "file": "part-188.json"
+    },
+    {
+      "part": 189,
+      "volume": 7,
+      "name": "Volume VII · Reading part 27",
+      "words": 5786,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70461/70461_djvu.txt",
+      "file": "part-189.json"
+    },
+    {
+      "part": 190,
+      "volume": 7,
+      "name": "Volume VII · Reading part 28",
+      "words": 5513,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70461/70461_djvu.txt",
+      "file": "part-190.json"
+    },
+    {
+      "part": 191,
+      "volume": 7,
+      "name": "Volume VII · Reading part 29",
+      "words": 5781,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70461/70461_djvu.txt",
+      "file": "part-191.json"
+    },
+    {
+      "part": 192,
+      "volume": 7,
+      "name": "Volume VII · Reading part 30",
+      "words": 5782,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70461/70461_djvu.txt",
+      "file": "part-192.json"
+    },
+    {
+      "part": 193,
+      "volume": 7,
+      "name": "Volume VII · Reading part 31",
+      "words": 5567,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70461/70461_djvu.txt",
+      "file": "part-193.json"
+    },
+    {
+      "part": 194,
+      "volume": 7,
+      "name": "Volume VII · Reading part 32",
+      "words": 5792,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70461/70461_djvu.txt",
+      "file": "part-194.json"
+    },
+    {
+      "part": 195,
+      "volume": 7,
+      "name": "Volume VII · Reading part 33",
+      "words": 5792,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70461/70461_djvu.txt",
+      "file": "part-195.json"
+    },
+    {
+      "part": 196,
+      "volume": 7,
+      "name": "Volume VII · Reading part 34",
+      "words": 5658,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70461/70461_djvu.txt",
+      "file": "part-196.json"
+    },
+    {
+      "part": 197,
+      "volume": 7,
+      "name": "Volume VII · Reading part 35",
+      "words": 5775,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70461/70461_djvu.txt",
+      "file": "part-197.json"
+    },
+    {
+      "part": 198,
+      "volume": 7,
+      "name": "Volume VII · Reading part 36",
+      "words": 3028,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70461/70461_djvu.txt",
+      "file": "part-198.json"
+    },
+    {
+      "part": 199,
+      "volume": 8,
+      "name": "Volume VIII · Reading part 1",
+      "words": 5677,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70463/70463_djvu.txt",
+      "file": "part-199.json"
+    },
+    {
+      "part": 200,
+      "volume": 8,
+      "name": "Volume VIII · Reading part 2",
+      "words": 5736,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70463/70463_djvu.txt",
+      "file": "part-200.json"
+    },
+    {
+      "part": 201,
+      "volume": 8,
+      "name": "Volume VIII · Reading part 3",
+      "words": 5737,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70463/70463_djvu.txt",
+      "file": "part-201.json"
+    },
+    {
+      "part": 202,
+      "volume": 8,
+      "name": "Volume VIII · Reading part 4",
+      "words": 5786,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70463/70463_djvu.txt",
+      "file": "part-202.json"
+    },
+    {
+      "part": 203,
+      "volume": 8,
+      "name": "Volume VIII · Reading part 5",
+      "words": 5629,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70463/70463_djvu.txt",
+      "file": "part-203.json"
+    },
+    {
+      "part": 204,
+      "volume": 8,
+      "name": "Volume VIII · Reading part 6",
+      "words": 5668,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70463/70463_djvu.txt",
+      "file": "part-204.json"
+    },
+    {
+      "part": 205,
+      "volume": 8,
+      "name": "Volume VIII · Reading part 7",
+      "words": 5689,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70463/70463_djvu.txt",
+      "file": "part-205.json"
+    },
+    {
+      "part": 206,
+      "volume": 8,
+      "name": "Volume VIII · Reading part 8",
+      "words": 5717,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70463/70463_djvu.txt",
+      "file": "part-206.json"
+    },
+    {
+      "part": 207,
+      "volume": 8,
+      "name": "Volume VIII · Reading part 9",
+      "words": 5754,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70463/70463_djvu.txt",
+      "file": "part-207.json"
+    },
+    {
+      "part": 208,
+      "volume": 8,
+      "name": "Volume VIII · Reading part 10",
+      "words": 5666,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70463/70463_djvu.txt",
+      "file": "part-208.json"
+    },
+    {
+      "part": 209,
+      "volume": 8,
+      "name": "Volume VIII · Reading part 11",
+      "words": 5756,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70463/70463_djvu.txt",
+      "file": "part-209.json"
+    },
+    {
+      "part": 210,
+      "volume": 8,
+      "name": "Volume VIII · Reading part 12",
+      "words": 5798,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70463/70463_djvu.txt",
+      "file": "part-210.json"
+    },
+    {
+      "part": 211,
+      "volume": 8,
+      "name": "Volume VIII · Reading part 13",
+      "words": 5775,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70463/70463_djvu.txt",
+      "file": "part-211.json"
+    },
+    {
+      "part": 212,
+      "volume": 8,
+      "name": "Volume VIII · Reading part 14",
+      "words": 5750,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70463/70463_djvu.txt",
+      "file": "part-212.json"
+    },
+    {
+      "part": 213,
+      "volume": 8,
+      "name": "Volume VIII · Reading part 15",
+      "words": 5728,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70463/70463_djvu.txt",
+      "file": "part-213.json"
+    },
+    {
+      "part": 214,
+      "volume": 8,
+      "name": "Volume VIII · Reading part 16",
+      "words": 5710,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70463/70463_djvu.txt",
+      "file": "part-214.json"
+    },
+    {
+      "part": 215,
+      "volume": 8,
+      "name": "Volume VIII · Reading part 17",
+      "words": 5800,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70463/70463_djvu.txt",
+      "file": "part-215.json"
+    },
+    {
+      "part": 216,
+      "volume": 8,
+      "name": "Volume VIII · Reading part 18",
+      "words": 5739,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70463/70463_djvu.txt",
+      "file": "part-216.json"
+    },
+    {
+      "part": 217,
+      "volume": 8,
+      "name": "Volume VIII · Reading part 19",
+      "words": 5780,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70463/70463_djvu.txt",
+      "file": "part-217.json"
+    },
+    {
+      "part": 218,
+      "volume": 8,
+      "name": "Volume VIII · Reading part 20",
+      "words": 5796,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70463/70463_djvu.txt",
+      "file": "part-218.json"
+    },
+    {
+      "part": 219,
+      "volume": 8,
+      "name": "Volume VIII · Reading part 21",
+      "words": 5556,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70463/70463_djvu.txt",
+      "file": "part-219.json"
+    },
+    {
+      "part": 220,
+      "volume": 8,
+      "name": "Volume VIII · Reading part 22",
+      "words": 5762,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70463/70463_djvu.txt",
+      "file": "part-220.json"
+    },
+    {
+      "part": 221,
+      "volume": 8,
+      "name": "Volume VIII · Reading part 23",
+      "words": 5725,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70463/70463_djvu.txt",
+      "file": "part-221.json"
+    },
+    {
+      "part": 222,
+      "volume": 8,
+      "name": "Volume VIII · Reading part 24",
+      "words": 5741,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70463/70463_djvu.txt",
+      "file": "part-222.json"
+    },
+    {
+      "part": 223,
+      "volume": 8,
+      "name": "Volume VIII · Reading part 25",
+      "words": 5648,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70463/70463_djvu.txt",
+      "file": "part-223.json"
+    },
+    {
+      "part": 224,
+      "volume": 8,
+      "name": "Volume VIII · Reading part 26",
+      "words": 5691,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70463/70463_djvu.txt",
+      "file": "part-224.json"
+    },
+    {
+      "part": 225,
+      "volume": 8,
+      "name": "Volume VIII · Reading part 27",
+      "words": 5765,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70463/70463_djvu.txt",
+      "file": "part-225.json"
+    },
+    {
+      "part": 226,
+      "volume": 8,
+      "name": "Volume VIII · Reading part 28",
+      "words": 5656,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70463/70463_djvu.txt",
+      "file": "part-226.json"
+    },
+    {
+      "part": 227,
+      "volume": 8,
+      "name": "Volume VIII · Reading part 29",
+      "words": 5782,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70463/70463_djvu.txt",
+      "file": "part-227.json"
+    },
+    {
+      "part": 228,
+      "volume": 8,
+      "name": "Volume VIII · Reading part 30",
+      "words": 5637,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70463/70463_djvu.txt",
+      "file": "part-228.json"
+    },
+    {
+      "part": 229,
+      "volume": 8,
+      "name": "Volume VIII · Reading part 31",
+      "words": 5779,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70463/70463_djvu.txt",
+      "file": "part-229.json"
+    },
+    {
+      "part": 230,
+      "volume": 8,
+      "name": "Volume VIII · Reading part 32",
+      "words": 5743,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70463/70463_djvu.txt",
+      "file": "part-230.json"
+    },
+    {
+      "part": 231,
+      "volume": 8,
+      "name": "Volume VIII · Reading part 33",
+      "words": 5734,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70463/70463_djvu.txt",
+      "file": "part-231.json"
+    },
+    {
+      "part": 232,
+      "volume": 8,
+      "name": "Volume VIII · Reading part 34",
+      "words": 5742,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70463/70463_djvu.txt",
+      "file": "part-232.json"
+    },
+    {
+      "part": 233,
+      "volume": 8,
+      "name": "Volume VIII · Reading part 35",
+      "words": 4791,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70463/70463_djvu.txt",
+      "file": "part-233.json"
+    },
+    {
+      "part": 234,
+      "volume": 9,
+      "name": "Volume IX · Reading part 1",
+      "words": 5687,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70462/70462_djvu.txt",
+      "file": "part-234.json"
+    },
+    {
+      "part": 235,
+      "volume": 9,
+      "name": "Volume IX · Reading part 2",
+      "words": 5798,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70462/70462_djvu.txt",
+      "file": "part-235.json"
+    },
+    {
+      "part": 236,
+      "volume": 9,
+      "name": "Volume IX · Reading part 3",
+      "words": 5724,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70462/70462_djvu.txt",
+      "file": "part-236.json"
+    },
+    {
+      "part": 237,
+      "volume": 9,
+      "name": "Volume IX · Reading part 4",
+      "words": 5772,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70462/70462_djvu.txt",
+      "file": "part-237.json"
+    },
+    {
+      "part": 238,
+      "volume": 9,
+      "name": "Volume IX · Reading part 5",
+      "words": 5789,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70462/70462_djvu.txt",
+      "file": "part-238.json"
+    },
+    {
+      "part": 239,
+      "volume": 9,
+      "name": "Volume IX · Reading part 6",
+      "words": 5776,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70462/70462_djvu.txt",
+      "file": "part-239.json"
+    },
+    {
+      "part": 240,
+      "volume": 9,
+      "name": "Volume IX · Reading part 7",
+      "words": 5795,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70462/70462_djvu.txt",
+      "file": "part-240.json"
+    },
+    {
+      "part": 241,
+      "volume": 9,
+      "name": "Volume IX · Reading part 8",
+      "words": 5732,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70462/70462_djvu.txt",
+      "file": "part-241.json"
+    },
+    {
+      "part": 242,
+      "volume": 9,
+      "name": "Volume IX · Reading part 9",
+      "words": 5783,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70462/70462_djvu.txt",
+      "file": "part-242.json"
+    },
+    {
+      "part": 243,
+      "volume": 9,
+      "name": "Volume IX · Reading part 10",
+      "words": 5771,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70462/70462_djvu.txt",
+      "file": "part-243.json"
+    },
+    {
+      "part": 244,
+      "volume": 9,
+      "name": "Volume IX · Reading part 11",
+      "words": 5630,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70462/70462_djvu.txt",
+      "file": "part-244.json"
+    },
+    {
+      "part": 245,
+      "volume": 9,
+      "name": "Volume IX · Reading part 12",
+      "words": 5548,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70462/70462_djvu.txt",
+      "file": "part-245.json"
+    },
+    {
+      "part": 246,
+      "volume": 9,
+      "name": "Volume IX · Reading part 13",
+      "words": 5639,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70462/70462_djvu.txt",
+      "file": "part-246.json"
+    },
+    {
+      "part": 247,
+      "volume": 9,
+      "name": "Volume IX · Reading part 14",
+      "words": 5628,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70462/70462_djvu.txt",
+      "file": "part-247.json"
+    },
+    {
+      "part": 248,
+      "volume": 9,
+      "name": "Volume IX · Reading part 15",
+      "words": 5519,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70462/70462_djvu.txt",
+      "file": "part-248.json"
+    },
+    {
+      "part": 249,
+      "volume": 9,
+      "name": "Volume IX · Reading part 16",
+      "words": 5715,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70462/70462_djvu.txt",
+      "file": "part-249.json"
+    },
+    {
+      "part": 250,
+      "volume": 9,
+      "name": "Volume IX · Reading part 17",
+      "words": 5777,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70462/70462_djvu.txt",
+      "file": "part-250.json"
+    },
+    {
+      "part": 251,
+      "volume": 9,
+      "name": "Volume IX · Reading part 18",
+      "words": 5710,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70462/70462_djvu.txt",
+      "file": "part-251.json"
+    },
+    {
+      "part": 252,
+      "volume": 9,
+      "name": "Volume IX · Reading part 19",
+      "words": 5796,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70462/70462_djvu.txt",
+      "file": "part-252.json"
+    },
+    {
+      "part": 253,
+      "volume": 9,
+      "name": "Volume IX · Reading part 20",
+      "words": 5606,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70462/70462_djvu.txt",
+      "file": "part-253.json"
+    },
+    {
+      "part": 254,
+      "volume": 9,
+      "name": "Volume IX · Reading part 21",
+      "words": 5588,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70462/70462_djvu.txt",
+      "file": "part-254.json"
+    },
+    {
+      "part": 255,
+      "volume": 9,
+      "name": "Volume IX · Reading part 22",
+      "words": 5743,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70462/70462_djvu.txt",
+      "file": "part-255.json"
+    },
+    {
+      "part": 256,
+      "volume": 9,
+      "name": "Volume IX · Reading part 23",
+      "words": 5740,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70462/70462_djvu.txt",
+      "file": "part-256.json"
+    },
+    {
+      "part": 257,
+      "volume": 9,
+      "name": "Volume IX · Reading part 24",
+      "words": 5789,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70462/70462_djvu.txt",
+      "file": "part-257.json"
+    },
+    {
+      "part": 258,
+      "volume": 9,
+      "name": "Volume IX · Reading part 25",
+      "words": 5762,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70462/70462_djvu.txt",
+      "file": "part-258.json"
+    },
+    {
+      "part": 259,
+      "volume": 9,
+      "name": "Volume IX · Reading part 26",
+      "words": 5694,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70462/70462_djvu.txt",
+      "file": "part-259.json"
+    },
+    {
+      "part": 260,
+      "volume": 9,
+      "name": "Volume IX · Reading part 27",
+      "words": 5687,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70462/70462_djvu.txt",
+      "file": "part-260.json"
+    },
+    {
+      "part": 261,
+      "volume": 9,
+      "name": "Volume IX · Reading part 28",
+      "words": 5777,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70462/70462_djvu.txt",
+      "file": "part-261.json"
+    },
+    {
+      "part": 262,
+      "volume": 9,
+      "name": "Volume IX · Reading part 29",
+      "words": 5789,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70462/70462_djvu.txt",
+      "file": "part-262.json"
+    },
+    {
+      "part": 263,
+      "volume": 9,
+      "name": "Volume IX · Reading part 30",
+      "words": 5623,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70462/70462_djvu.txt",
+      "file": "part-263.json"
+    },
+    {
+      "part": 264,
+      "volume": 9,
+      "name": "Volume IX · Reading part 31",
+      "words": 5795,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70462/70462_djvu.txt",
+      "file": "part-264.json"
+    },
+    {
+      "part": 265,
+      "volume": 9,
+      "name": "Volume IX · Reading part 32",
+      "words": 5739,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70462/70462_djvu.txt",
+      "file": "part-265.json"
+    },
+    {
+      "part": 266,
+      "volume": 9,
+      "name": "Volume IX · Reading part 33",
+      "words": 3522,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70462/70462_djvu.txt",
+      "file": "part-266.json"
+    },
+    {
+      "part": 267,
+      "volume": 10,
+      "name": "Volume X · Reading part 1",
+      "words": 5749,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70460/70460_djvu.txt",
+      "file": "part-267.json"
+    },
+    {
+      "part": 268,
+      "volume": 10,
+      "name": "Volume X · Reading part 2",
+      "words": 5730,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70460/70460_djvu.txt",
+      "file": "part-268.json"
+    },
+    {
+      "part": 269,
+      "volume": 10,
+      "name": "Volume X · Reading part 3",
+      "words": 5442,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70460/70460_djvu.txt",
+      "file": "part-269.json"
+    },
+    {
+      "part": 270,
+      "volume": 10,
+      "name": "Volume X · Reading part 4",
+      "words": 5642,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70460/70460_djvu.txt",
+      "file": "part-270.json"
+    },
+    {
+      "part": 271,
+      "volume": 10,
+      "name": "Volume X · Reading part 5",
+      "words": 5790,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70460/70460_djvu.txt",
+      "file": "part-271.json"
+    },
+    {
+      "part": 272,
+      "volume": 10,
+      "name": "Volume X · Reading part 6",
+      "words": 5659,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70460/70460_djvu.txt",
+      "file": "part-272.json"
+    },
+    {
+      "part": 273,
+      "volume": 10,
+      "name": "Volume X · Reading part 7",
+      "words": 5782,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70460/70460_djvu.txt",
+      "file": "part-273.json"
+    },
+    {
+      "part": 274,
+      "volume": 10,
+      "name": "Volume X · Reading part 8",
+      "words": 5760,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70460/70460_djvu.txt",
+      "file": "part-274.json"
+    },
+    {
+      "part": 275,
+      "volume": 10,
+      "name": "Volume X · Reading part 9",
+      "words": 5787,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70460/70460_djvu.txt",
+      "file": "part-275.json"
+    },
+    {
+      "part": 276,
+      "volume": 10,
+      "name": "Volume X · Reading part 10",
+      "words": 5754,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70460/70460_djvu.txt",
+      "file": "part-276.json"
+    },
+    {
+      "part": 277,
+      "volume": 10,
+      "name": "Volume X · Reading part 11",
+      "words": 5680,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70460/70460_djvu.txt",
+      "file": "part-277.json"
+    },
+    {
+      "part": 278,
+      "volume": 10,
+      "name": "Volume X · Reading part 12",
+      "words": 5664,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70460/70460_djvu.txt",
+      "file": "part-278.json"
+    },
+    {
+      "part": 279,
+      "volume": 10,
+      "name": "Volume X · Reading part 13",
+      "words": 5466,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70460/70460_djvu.txt",
+      "file": "part-279.json"
+    },
+    {
+      "part": 280,
+      "volume": 10,
+      "name": "Volume X · Reading part 14",
+      "words": 5776,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70460/70460_djvu.txt",
+      "file": "part-280.json"
+    },
+    {
+      "part": 281,
+      "volume": 10,
+      "name": "Volume X · Reading part 15",
+      "words": 5766,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70460/70460_djvu.txt",
+      "file": "part-281.json"
+    },
+    {
+      "part": 282,
+      "volume": 10,
+      "name": "Volume X · Reading part 16",
+      "words": 5784,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70460/70460_djvu.txt",
+      "file": "part-282.json"
+    },
+    {
+      "part": 283,
+      "volume": 10,
+      "name": "Volume X · Reading part 17",
+      "words": 5767,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70460/70460_djvu.txt",
+      "file": "part-283.json"
+    },
+    {
+      "part": 284,
+      "volume": 10,
+      "name": "Volume X · Reading part 18",
+      "words": 5794,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70460/70460_djvu.txt",
+      "file": "part-284.json"
+    },
+    {
+      "part": 285,
+      "volume": 10,
+      "name": "Volume X · Reading part 19",
+      "words": 5650,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70460/70460_djvu.txt",
+      "file": "part-285.json"
+    },
+    {
+      "part": 286,
+      "volume": 10,
+      "name": "Volume X · Reading part 20",
+      "words": 5790,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70460/70460_djvu.txt",
+      "file": "part-286.json"
+    },
+    {
+      "part": 287,
+      "volume": 10,
+      "name": "Volume X · Reading part 21",
+      "words": 5754,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70460/70460_djvu.txt",
+      "file": "part-287.json"
+    },
+    {
+      "part": 288,
+      "volume": 10,
+      "name": "Volume X · Reading part 22",
+      "words": 5733,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70460/70460_djvu.txt",
+      "file": "part-288.json"
+    },
+    {
+      "part": 289,
+      "volume": 10,
+      "name": "Volume X · Reading part 23",
+      "words": 5624,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70460/70460_djvu.txt",
+      "file": "part-289.json"
+    },
+    {
+      "part": 290,
+      "volume": 10,
+      "name": "Volume X · Reading part 24",
+      "words": 5691,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70460/70460_djvu.txt",
+      "file": "part-290.json"
+    },
+    {
+      "part": 291,
+      "volume": 10,
+      "name": "Volume X · Reading part 25",
+      "words": 5715,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70460/70460_djvu.txt",
+      "file": "part-291.json"
+    },
+    {
+      "part": 292,
+      "volume": 10,
+      "name": "Volume X · Reading part 26",
+      "words": 5769,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70460/70460_djvu.txt",
+      "file": "part-292.json"
+    },
+    {
+      "part": 293,
+      "volume": 10,
+      "name": "Volume X · Reading part 27",
+      "words": 5789,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70460/70460_djvu.txt",
+      "file": "part-293.json"
+    },
+    {
+      "part": 294,
+      "volume": 10,
+      "name": "Volume X · Reading part 28",
+      "words": 5784,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70460/70460_djvu.txt",
+      "file": "part-294.json"
+    },
+    {
+      "part": 295,
+      "volume": 10,
+      "name": "Volume X · Reading part 29",
+      "words": 5734,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70460/70460_djvu.txt",
+      "file": "part-295.json"
+    },
+    {
+      "part": 296,
+      "volume": 10,
+      "name": "Volume X · Reading part 30",
+      "words": 5742,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70460/70460_djvu.txt",
+      "file": "part-296.json"
+    },
+    {
+      "part": 297,
+      "volume": 10,
+      "name": "Volume X · Reading part 31",
+      "words": 5723,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70460/70460_djvu.txt",
+      "file": "part-297.json"
+    },
+    {
+      "part": 298,
+      "volume": 10,
+      "name": "Volume X · Reading part 32",
+      "words": 3692,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70460/70460_djvu.txt",
+      "file": "part-298.json"
+    },
+    {
+      "part": 299,
+      "volume": 11,
+      "name": "Volume XI · Reading part 1",
+      "words": 5723,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70464/70464_djvu.txt",
+      "file": "part-299.json"
+    },
+    {
+      "part": 300,
+      "volume": 11,
+      "name": "Volume XI · Reading part 2",
+      "words": 5776,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70464/70464_djvu.txt",
+      "file": "part-300.json"
+    },
+    {
+      "part": 301,
+      "volume": 11,
+      "name": "Volume XI · Reading part 3",
+      "words": 5760,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70464/70464_djvu.txt",
+      "file": "part-301.json"
+    },
+    {
+      "part": 302,
+      "volume": 11,
+      "name": "Volume XI · Reading part 4",
+      "words": 5737,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70464/70464_djvu.txt",
+      "file": "part-302.json"
+    },
+    {
+      "part": 303,
+      "volume": 11,
+      "name": "Volume XI · Reading part 5",
+      "words": 5680,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70464/70464_djvu.txt",
+      "file": "part-303.json"
+    },
+    {
+      "part": 304,
+      "volume": 11,
+      "name": "Volume XI · Reading part 6",
+      "words": 5787,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70464/70464_djvu.txt",
+      "file": "part-304.json"
+    },
+    {
+      "part": 305,
+      "volume": 11,
+      "name": "Volume XI · Reading part 7",
+      "words": 5714,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70464/70464_djvu.txt",
+      "file": "part-305.json"
+    },
+    {
+      "part": 306,
+      "volume": 11,
+      "name": "Volume XI · Reading part 8",
+      "words": 5688,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70464/70464_djvu.txt",
+      "file": "part-306.json"
+    },
+    {
+      "part": 307,
+      "volume": 11,
+      "name": "Volume XI · Reading part 9",
+      "words": 5784,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70464/70464_djvu.txt",
+      "file": "part-307.json"
+    },
+    {
+      "part": 308,
+      "volume": 11,
+      "name": "Volume XI · Reading part 10",
+      "words": 5764,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70464/70464_djvu.txt",
+      "file": "part-308.json"
+    },
+    {
+      "part": 309,
+      "volume": 11,
+      "name": "Volume XI · Reading part 11",
+      "words": 5771,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70464/70464_djvu.txt",
+      "file": "part-309.json"
+    },
+    {
+      "part": 310,
+      "volume": 11,
+      "name": "Volume XI · Reading part 12",
+      "words": 5794,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70464/70464_djvu.txt",
+      "file": "part-310.json"
+    },
+    {
+      "part": 311,
+      "volume": 11,
+      "name": "Volume XI · Reading part 13",
+      "words": 5590,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70464/70464_djvu.txt",
+      "file": "part-311.json"
+    },
+    {
+      "part": 312,
+      "volume": 11,
+      "name": "Volume XI · Reading part 14",
+      "words": 5719,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70464/70464_djvu.txt",
+      "file": "part-312.json"
+    },
+    {
+      "part": 313,
+      "volume": 11,
+      "name": "Volume XI · Reading part 15",
+      "words": 5528,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70464/70464_djvu.txt",
+      "file": "part-313.json"
+    },
+    {
+      "part": 314,
+      "volume": 11,
+      "name": "Volume XI · Reading part 16",
+      "words": 5799,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70464/70464_djvu.txt",
+      "file": "part-314.json"
+    },
+    {
+      "part": 315,
+      "volume": 11,
+      "name": "Volume XI · Reading part 17",
+      "words": 5615,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70464/70464_djvu.txt",
+      "file": "part-315.json"
+    },
+    {
+      "part": 316,
+      "volume": 11,
+      "name": "Volume XI · Reading part 18",
+      "words": 5724,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70464/70464_djvu.txt",
+      "file": "part-316.json"
+    },
+    {
+      "part": 317,
+      "volume": 11,
+      "name": "Volume XI · Reading part 19",
+      "words": 5754,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70464/70464_djvu.txt",
+      "file": "part-317.json"
+    },
+    {
+      "part": 318,
+      "volume": 11,
+      "name": "Volume XI · Reading part 20",
+      "words": 5784,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70464/70464_djvu.txt",
+      "file": "part-318.json"
+    },
+    {
+      "part": 319,
+      "volume": 11,
+      "name": "Volume XI · Reading part 21",
+      "words": 5781,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70464/70464_djvu.txt",
+      "file": "part-319.json"
+    },
+    {
+      "part": 320,
+      "volume": 11,
+      "name": "Volume XI · Reading part 22",
+      "words": 5800,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70464/70464_djvu.txt",
+      "file": "part-320.json"
+    },
+    {
+      "part": 321,
+      "volume": 11,
+      "name": "Volume XI · Reading part 23",
+      "words": 5733,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70464/70464_djvu.txt",
+      "file": "part-321.json"
+    },
+    {
+      "part": 322,
+      "volume": 11,
+      "name": "Volume XI · Reading part 24",
+      "words": 5610,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70464/70464_djvu.txt",
+      "file": "part-322.json"
+    },
+    {
+      "part": 323,
+      "volume": 11,
+      "name": "Volume XI · Reading part 25",
+      "words": 5753,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70464/70464_djvu.txt",
+      "file": "part-323.json"
+    },
+    {
+      "part": 324,
+      "volume": 11,
+      "name": "Volume XI · Reading part 26",
+      "words": 5786,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70464/70464_djvu.txt",
+      "file": "part-324.json"
+    },
+    {
+      "part": 325,
+      "volume": 11,
+      "name": "Volume XI · Reading part 27",
+      "words": 5650,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70464/70464_djvu.txt",
+      "file": "part-325.json"
+    },
+    {
+      "part": 326,
+      "volume": 11,
+      "name": "Volume XI · Reading part 28",
+      "words": 2613,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70464/70464_djvu.txt",
+      "file": "part-326.json"
+    },
+    {
+      "part": 327,
+      "volume": 12,
+      "name": "Volume XII · Reading part 1",
+      "words": 5601,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70477/70477_djvu.txt",
+      "file": "part-327.json"
+    },
+    {
+      "part": 328,
+      "volume": 12,
+      "name": "Volume XII · Reading part 2",
+      "words": 5658,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70477/70477_djvu.txt",
+      "file": "part-328.json"
+    },
+    {
+      "part": 329,
+      "volume": 12,
+      "name": "Volume XII · Reading part 3",
+      "words": 5710,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70477/70477_djvu.txt",
+      "file": "part-329.json"
+    },
+    {
+      "part": 330,
+      "volume": 12,
+      "name": "Volume XII · Reading part 4",
+      "words": 5800,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70477/70477_djvu.txt",
+      "file": "part-330.json"
+    },
+    {
+      "part": 331,
+      "volume": 12,
+      "name": "Volume XII · Reading part 5",
+      "words": 5711,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70477/70477_djvu.txt",
+      "file": "part-331.json"
+    },
+    {
+      "part": 332,
+      "volume": 12,
+      "name": "Volume XII · Reading part 6",
+      "words": 5795,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70477/70477_djvu.txt",
+      "file": "part-332.json"
+    },
+    {
+      "part": 333,
+      "volume": 12,
+      "name": "Volume XII · Reading part 7",
+      "words": 5769,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70477/70477_djvu.txt",
+      "file": "part-333.json"
+    },
+    {
+      "part": 334,
+      "volume": 12,
+      "name": "Volume XII · Reading part 8",
+      "words": 5666,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70477/70477_djvu.txt",
+      "file": "part-334.json"
+    },
+    {
+      "part": 335,
+      "volume": 12,
+      "name": "Volume XII · Reading part 9",
+      "words": 5795,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70477/70477_djvu.txt",
+      "file": "part-335.json"
+    },
+    {
+      "part": 336,
+      "volume": 12,
+      "name": "Volume XII · Reading part 10",
+      "words": 5742,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70477/70477_djvu.txt",
+      "file": "part-336.json"
+    },
+    {
+      "part": 337,
+      "volume": 12,
+      "name": "Volume XII · Reading part 11",
+      "words": 5701,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70477/70477_djvu.txt",
+      "file": "part-337.json"
+    },
+    {
+      "part": 338,
+      "volume": 12,
+      "name": "Volume XII · Reading part 12",
+      "words": 5787,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70477/70477_djvu.txt",
+      "file": "part-338.json"
+    },
+    {
+      "part": 339,
+      "volume": 12,
+      "name": "Volume XII · Reading part 13",
+      "words": 5722,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70477/70477_djvu.txt",
+      "file": "part-339.json"
+    },
+    {
+      "part": 340,
+      "volume": 12,
+      "name": "Volume XII · Reading part 14",
+      "words": 5734,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70477/70477_djvu.txt",
+      "file": "part-340.json"
+    },
+    {
+      "part": 341,
+      "volume": 12,
+      "name": "Volume XII · Reading part 15",
+      "words": 5773,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70477/70477_djvu.txt",
+      "file": "part-341.json"
+    },
+    {
+      "part": 342,
+      "volume": 12,
+      "name": "Volume XII · Reading part 16",
+      "words": 5767,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70477/70477_djvu.txt",
+      "file": "part-342.json"
+    },
+    {
+      "part": 343,
+      "volume": 12,
+      "name": "Volume XII · Reading part 17",
+      "words": 5777,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70477/70477_djvu.txt",
+      "file": "part-343.json"
+    },
+    {
+      "part": 344,
+      "volume": 12,
+      "name": "Volume XII · Reading part 18",
+      "words": 5791,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70477/70477_djvu.txt",
+      "file": "part-344.json"
+    },
+    {
+      "part": 345,
+      "volume": 12,
+      "name": "Volume XII · Reading part 19",
+      "words": 5727,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70477/70477_djvu.txt",
+      "file": "part-345.json"
+    },
+    {
+      "part": 346,
+      "volume": 12,
+      "name": "Volume XII · Reading part 20",
+      "words": 5786,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70477/70477_djvu.txt",
+      "file": "part-346.json"
+    },
+    {
+      "part": 347,
+      "volume": 12,
+      "name": "Volume XII · Reading part 21",
+      "words": 5701,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70477/70477_djvu.txt",
+      "file": "part-347.json"
+    },
+    {
+      "part": 348,
+      "volume": 12,
+      "name": "Volume XII · Reading part 22",
+      "words": 5738,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70477/70477_djvu.txt",
+      "file": "part-348.json"
+    },
+    {
+      "part": 349,
+      "volume": 12,
+      "name": "Volume XII · Reading part 23",
+      "words": 5789,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70477/70477_djvu.txt",
+      "file": "part-349.json"
+    },
+    {
+      "part": 350,
+      "volume": 12,
+      "name": "Volume XII · Reading part 24",
+      "words": 5778,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70477/70477_djvu.txt",
+      "file": "part-350.json"
+    },
+    {
+      "part": 351,
+      "volume": 12,
+      "name": "Volume XII · Reading part 25",
+      "words": 5711,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70477/70477_djvu.txt",
+      "file": "part-351.json"
+    },
+    {
+      "part": 352,
+      "volume": 12,
+      "name": "Volume XII · Reading part 26",
+      "words": 5778,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70477/70477_djvu.txt",
+      "file": "part-352.json"
+    },
+    {
+      "part": 353,
+      "volume": 12,
+      "name": "Volume XII · Reading part 27",
+      "words": 5676,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70477/70477_djvu.txt",
+      "file": "part-353.json"
+    },
+    {
+      "part": 354,
+      "volume": 12,
+      "name": "Volume XII · Reading part 28",
+      "words": 5795,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70477/70477_djvu.txt",
+      "file": "part-354.json"
+    },
+    {
+      "part": 355,
+      "volume": 12,
+      "name": "Volume XII · Reading part 29",
+      "words": 5708,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70477/70477_djvu.txt",
+      "file": "part-355.json"
+    },
+    {
+      "part": 356,
+      "volume": 12,
+      "name": "Volume XII · Reading part 30",
+      "words": 5668,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70477/70477_djvu.txt",
+      "file": "part-356.json"
+    },
+    {
+      "part": 357,
+      "volume": 12,
+      "name": "Volume XII · Reading part 31",
+      "words": 5786,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70477/70477_djvu.txt",
+      "file": "part-357.json"
+    },
+    {
+      "part": 358,
+      "volume": 12,
+      "name": "Volume XII · Reading part 32",
+      "words": 5712,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70477/70477_djvu.txt",
+      "file": "part-358.json"
+    },
+    {
+      "part": 359,
+      "volume": 12,
+      "name": "Volume XII · Reading part 33",
+      "words": 5688,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70477/70477_djvu.txt",
+      "file": "part-359.json"
+    },
+    {
+      "part": 360,
+      "volume": 12,
+      "name": "Volume XII · Reading part 34",
+      "words": 5788,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70477/70477_djvu.txt",
+      "file": "part-360.json"
+    },
+    {
+      "part": 361,
+      "volume": 12,
+      "name": "Volume XII · Reading part 35",
+      "words": 1906,
+      "sections": 1,
+      "source": "https://archive.org/download/india.history.resource.70477/70477_djvu.txt",
+      "file": "part-361.json"
+    }
+  ]
+}
