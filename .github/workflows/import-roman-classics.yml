@@ -47,7 +47,7 @@ jobs:
         run: |
           git config user.name "Ophelia Library Editions"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html public/books/suetonius/ public/books/annals/ public/art/suetonius-1883-title-page.jpg public/art/tacitus-1598-lipsius-titlepage.jpg
+          git add index.html public/books/suetonius/ public/books/annals/ public/art/
           if ! git diff --cached --quiet; then
             git commit -m "Host entire surviving Twelve Caesars and Annals in English and Latin"
             git fetch origin main
