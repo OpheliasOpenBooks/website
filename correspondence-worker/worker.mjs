@@ -11,18 +11,17 @@ const blockedWords=[
 ];
 const normalize=value=>String(value||'').normalize('NFKC').toLowerCase()
  .replace(/[\u200b-\u200f\u2060\uFEFF]/g,'')
- .replace(/[013457@\$]/g,ch=>({'0':'o','1':'i','3':'e','4':'a','5':'s','7':'t','@':'a','$':'s'}[ch]||ch));
+ .replace(/[013457@\$!]/g,ch=>({'0':'o','1':'i','3':'e','4':'a','5':'s','7':'t','@':'a','$':'s','!':'i'}[ch]||ch));
 export function screenedText(value){
  const raw=normalize(value);
  const letters=raw.replace(/[^a-z\s]/g,' ').replace(/\s+/g,' ');
- const compact=raw.replace(/[^a-z]/g,'');
- // Word boundaries prevent rejecting innocent terms that contain short fragments.
  const boundary='(?:^|[^a-z])(?:'+blockedWords.join('|')+')(?:$|[^a-z])';
  const expression=new RegExp(boundary,'i');
- const offensive=expression.test(letters)||blockedWords.some(w=>w.length>=4&&compact.includes(w));
+ const disguised=raw.replace(/\b(?:[a-z][.\s*_~-]+){2,}[a-z]\b/g,group=>group.replace(/[^a-z]/g,''));
+ const offensive=expression.test(letters)||expression.test(disguised);
  const links=/https?:\/\/|www\.|\b\S+@\S+\.[a-z]{2,}\b/i.test(String(value||''));
  const markup=/<\/?\s*(?:script|iframe|img|a|style|svg)\b/i.test(String(value||''));
- return {offensive,links,markup};
+  return {offensive,links,markup};
 }
 export function allowedOrigin(origin,siteOrigin=SITE_DEFAULT){
  try{return new URL(origin).origin===new URL(siteOrigin).origin}catch{return false}
@@ -78,7 +77,7 @@ async function withinLimit(request,env,limit){
  const row=await env.DB.prepare('SELECT total FROM daily_limits WHERE day=? AND ip_hash=?').bind(day,key).first();
  return row&&row.total<=limit;
 }
-const publicFields='id,name,topic,body,parent_id,created_at';
+const publicFields='id,name,topic,body,parent_id,created_at,letter_type,quote_text,quote_book,quote_author,source';
 async function publicLetters(env){
  const rows=await env.DB.prepare("SELECT "+publicFields+" FROM letters WHERE kind='public' AND status='approved' ORDER BY created_at DESC LIMIT 120").all();
  return response({letters:rows.results||[]},200,{'Cache-Control':'public, max-age=20'});
@@ -90,18 +89,25 @@ async function submitLetter(request,env){
  const kind=input.kind==='editor'?'editor':input.kind==='public'?'public':null;
  if(!kind)return response({error:'Choose public correspondence or private editor correspondence.'},400);
  const body=clean(input.body,kind==='editor'?3001:2401);
- if(body.length<4||body.length>(kind==='editor'?3000:2400))return response({error:'Write between 4 and '+(kind==='editor'?'3000':'2400')+' characters.'},400);
- const name=clean(input.name||'Anonymous',60),topic=clean(input.topic,90);
- const book=kind==='editor'?clean(input.book,120):'';
+ const letterType=kind==='public'&&input.letter_type==='quotation'?'quotation':'discussion';
+ const quoteText=letterType==='quotation'?clean(input.quote_text,481):'';
+ const quoteBook=letterType==='quotation'?clean(input.quote_book,121):'';
+ const quoteAuthor=letterType==='quotation'?clean(input.quote_author,91):'';
+ if(body.length>(kind==='editor'?3000:2400)||(!body&&letterType!=='quotation')||(body.length>0&&body.length<4))
+  return response({error:'Please write a complete letter, up to 2400 characters.'},400);
+ if(letterType==='quotation'&&(quoteText.length<8||quoteText.length>480||quoteBook.length<2||quoteBook.length>120||quoteAuthor.length>90))
+  return response({error:'Please provide a quotation and book title (maximum 480 characters).'},400);
+ const name=clean(input.name||'Anonymous',60),topic=clean(input.topic,90)||(letterType==='quotation'?'A favorite quotation':'');
+  const book=kind==='editor'?clean(input.book,120):'';
  const page=kind==='editor'?clean(input.page,70):'';
  let source='';
- if(kind==='editor'&&input.source){
+ if(input.source){
   try{const url=new URL(String(input.source));if(url.origin===SITE_DEFAULT&&url.pathname.startsWith('/website/'))source=url.href.slice(0,350);}
   catch{}
  }
  const parent=kind==='public'?clean(input.parent_id,36):'';
  if(kind==='public'){
-  const moderation=screenedText([name,topic,body].join(' '));
+  const moderation=screenedText([name,topic,body,quoteText,quoteBook,quoteAuthor].join(' '));
   if(moderation.offensive)return response({error:'Please revise your letter to remove vulgar or offensive language.'},422);
   if(moderation.links||moderation.markup)return response({error:'Please leave web links, contact details, and HTML out of public letters.'},422);
   if(parent){
@@ -113,8 +119,8 @@ async function submitLetter(request,env){
  if(!await withinLimit(request,env,kind==='editor'?5:10))return response({error:'Too many letters today. Please return tomorrow.'},429);
  const id=crypto.randomUUID();
  // Both forms are held for editorial review; no public message can bypass approval.
- await env.DB.prepare('INSERT INTO letters (id,kind,status,name,topic,book,page,source,body,parent_id) VALUES (?,?,?,?,?,?,?,?,?,?)')
-  .bind(id,kind,'pending',name||'Anonymous',topic,book,page,source,body,parent||null).run();
+ await env.DB.prepare('INSERT INTO letters (id,kind,status,name,topic,book,page,source,body,parent_id,letter_type,quote_text,quote_book,quote_author) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)')
+  .bind(id,kind,'pending',name||'Anonymous',topic,book,page,source,body,parent||null,letterType,quoteText,quoteBook,quoteAuthor).run();
  return response({accepted:true,status:'pending'},201);
 }
 async function flagLetter(request,env){
