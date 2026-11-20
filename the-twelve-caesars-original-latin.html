@@ -125,7 +125,7 @@ async function openPart(index,mode='saved'){
  busy=true;$('part').disabled=true;$('status').textContent='Loading part '+n+'…';
  try{
   const r=await fetch(DIR+entry.file,{cache:'no-store'});
-  if(!r.ok)throw Error('Part mancante ('+r.status+')');
+  if(!r.ok)throw Error('Missing reading part ('+r.status+')');
   const d=await r.json();
   if(d.title!=='The Twelve Caesars'||d.language!=='la'||d.readOnly!==true||d.part!==n||d.partCount!==manifest.parts.length||
     !Array.isArray(d.sections)||d.sections.length!==entry.sections)throw Error('Invalid original text');
@@ -135,7 +135,7 @@ async function openPart(index,mode='saved'){
   if(!pages.length)throw Error('Page vuota');
   state.part=n;state.page=mode==='start'?0:mode==='end'?pages.length-1:Number(state.parts[n]||0);
   $('section').replaceChildren(...sections.map((s,i)=>new Option(s.name,i)));$('section').disabled=false;
-  $('status').classList.remove('error');$('status').textContent='Complete original Latin · read only · parte '+n+' of '+manifest.parts.length;
+  $('status').classList.remove('error');$('status').textContent='Complete original Latin · read only · part '+n+' of '+manifest.parts.length;
   show();
  }catch(e){$('status').classList.add('error');$('status').textContent='Unable to load this reading part. Please try again.';$('retry').hidden=false;console.error(e);}
  finally{$('part').disabled=false;busy=false;}
@@ -156,7 +156,7 @@ $('return').onclick=()=>{if(!state.bookmarkPart)return;if(state.bookmarkPart===s
   if(!r.ok)throw Error('Manifesto non pubblicato');
   manifest=await r.json();$('retry').hidden=true;
   if(manifest.title!=='The Twelve Caesars'||manifest.author!=='Suetonius'||manifest.language!=='la'||
-    manifest.readOnly!==true||!Array.isArray(manifest.parts)||manifest.parts.length<5||manifest.wordCount<27000)throw Error('Edizione non completa');
+    manifest.readOnly!==true||!Array.isArray(manifest.parts)||manifest.parts.length<5||manifest.wordCount<27000)throw Error('Incomplete original-language edition');
   $('part').replaceChildren(...manifest.parts.map(p=>new Option('Part '+p.part+' · '+p.name,p.part)));
   await openPart(state.part);
  }catch(e){$('status').classList.add('error');$('status').textContent='Unable to load the complete book. Please try again.';$('retry').hidden=false;console.error(e);}
