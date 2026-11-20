@@ -1,0 +1,86 @@
+{
+  "title": "A Princess of Mars",
+  "author": "Edgar Rice Burroughs",
+  "firstPublished": 1912,
+  "firstBookEdition": 1917,
+  "language": "en",
+  "readOnly": false,
+  "source": "https://github.com/GITenberg/A-Princess-of-Mars_62/blob/master/62.txt",
+  "projectGutenberg": "https://www.gutenberg.org/ebooks/62",
+  "originalChapters": 28,
+  "foreword": true,
+  "dedication": true,
+  "wordCount": 67181,
+  "parts": [
+    {
+      "part": 1,
+      "file": "part-001.json",
+      "name": "Chapter I. On The Arizona Hills",
+      "sections": 5,
+      "words": 8287
+    },
+    {
+      "part": 2,
+      "file": "part-002.json",
+      "name": "Chapter IV. A Prisoner",
+      "sections": 3,
+      "words": 5243
+    },
+    {
+      "part": 3,
+      "file": "part-003.json",
+      "name": "Chapter VII. Child-Raising On Mars",
+      "sections": 3,
+      "words": 5444
+    },
+    {
+      "part": 4,
+      "file": "part-004.json",
+      "name": "Chapter X. Champion And Chief",
+      "sections": 3,
+      "words": 7774
+    },
+    {
+      "part": 5,
+      "file": "part-005.json",
+      "name": "Chapter XIII. Love-Making On Mars",
+      "sections": 3,
+      "words": 8723
+    },
+    {
+      "part": 6,
+      "file": "part-006.json",
+      "name": "Chapter XVI. We Plan Escape",
+      "sections": 3,
+      "words": 8286
+    },
+    {
+      "part": 7,
+      "file": "part-007.json",
+      "name": "Chapter XIX. Battling In The Arena",
+      "sections": 3,
+      "words": 8549
+    },
+    {
+      "part": 8,
+      "file": "part-008.json",
+      "name": "Chapter XXII. I Find Dejah",
+      "sections": 3,
+      "words": 8346
+    },
+    {
+      "part": 9,
+      "file": "part-009.json",
+      "name": "Chapter XXV. The Looting Of Zodanga",
+      "sections": 3,
+      "words": 5865
+    },
+    {
+      "part": 10,
+      "file": "part-010.json",
+      "name": "Chapter XXVIII. At The Arizona Cave",
+      "sections": 1,
+      "words": 664
+    }
+  ]
+}
