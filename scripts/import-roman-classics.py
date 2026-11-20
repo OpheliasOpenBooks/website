@@ -66,8 +66,12 @@ def root_xml(url):
         root=ET.fromstring(data)
     except ET.ParseError as e:raise ValueError("Source XML not parseable "+url+" "+str(e))
     copyright_info=" ".join(x.text or "" for x in root.iter(T+"licence"))
-    if "Creative Commons" not in copyright_info or "Attribution" not in copyright_info:
-        raise ValueError("Perseus digital text attribution or CC license absent: "+url)
+    # The repository README licenses every component CC BY-SA 4.0 unless otherwise
+    # indicated; older Perseus TEI files omit an inline licence element.
+    # See https://github.com/PerseusDL/canonical-latinLit/blob/master/README.md
+    if copyright_info and ("Creative Commons" not in copyright_info or "Attribution" not in copyright_info):
+        raise ValueError("Non-matching component license: "+url)
+    if not copyright_info:print("LICENSE inherited from Perseus repository README: CC BY-SA 4.0",url,flush=True)
     return root
 
 def chapters(root,subtype="chapter"):
