@@ -10,6 +10,10 @@ const path=require('node:path'),fs=require('node:fs');
  const {screenedText,allowedOrigin,publicationStatus}=backend;
  assert.equal(publicationStatus('public'),'approved','public letters must post instantly after safety checks');
  assert.equal(publicationStatus('editor'),'pending','private editorial correspondence waits in the inbox');
+ const workerSource=fs.readFileSync(path.resolve(__dirname,'../correspondence-worker/worker.mjs'),'utf8');
+ assert.ok(workerSource.includes("crypto.subtle.importKey('raw',encoder.encode(env.RATE_SALT),{name:'HMAC',hash:'SHA-256'},false,['sign'])"),
+  'WebCrypto HMAC importKey must use exactly five arguments');
+
  assert.equal(screenedText('A splendid book from Charlotte Brontë.').offensive,false);
  assert.equal(screenedText('Ash Wednesday is a notable poem.').offensive,false);
  assert.equal(screenedText('The narration of Jane Eyre needs attention.').offensive,false);

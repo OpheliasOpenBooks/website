@@ -66,7 +66,7 @@ async function turnstileValid(token,request,env){
 }
 async function ipKey(request,env){
  const ip=request.headers.get('CF-Connecting-IP')||'unknown';
- const key=await crypto.subtle.importKey('raw',encoder.encode(env.RATE_SALT),'HMAC',{hash:'SHA-256'},false,['sign']);
+ const key=await crypto.subtle.importKey('raw',encoder.encode(env.RATE_SALT),{name:'HMAC',hash:'SHA-256'},false,['sign']);
  const date=new Date().toISOString().slice(0,10);
  const bytes=await crypto.subtle.sign('HMAC',key,encoder.encode(date+'|'+ip));
  return {day:date,key:Array.from(new Uint8Array(bytes)).map(x=>x.toString(16).padStart(2,'0')).join('')};
