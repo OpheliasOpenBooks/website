@@ -52,3 +52,31 @@ try {
   if(/strickland|lives.*queen/i.test(x.title)&&(/Vol\.\s*[IVX]/i.test(x.title)||/102819/i.test(x.identifier)))console.log('EARLY',JSON.stringify(x));
  }
 }catch(e){console.log('EARLY ERROR',e.message)}
+
+
+console.log('VERIFY COMPLETE ORIGINAL TWELVE-VOLUME SCANS');
+const volumes=[
+ '10281968bsb','india.history.resource.70493','india.history.resource.70490',
+ 'india.history.resource.70469','india.history.resource.70491','india.history.resource.70488',
+ 'india.history.resource.70461','india.history.resource.70463','india.history.resource.70462',
+ 'india.history.resource.70460','india.history.resource.70464','india.history.resource.70477'
+];
+for(let n=0;n<volumes.length;n++){
+ const id=volumes[n];
+ try {
+  const rr=await fetch('https://archive.org/metadata/'+id,{signal:AbortSignal.timeout(16000)});
+  if(!rr.ok)throw Error('metadata HTTP '+rr.status);
+  const m=await rr.json();
+  const files=(m.files||[]).filter(f=>/_djvu.txt$|_full_text.txt$|_text.pdf$/i.test(f.name)).map(f=>({name:f.name,size:f.size}));
+  console.log('ORIGINAL VOLUME',n+1,JSON.stringify({id,title:m.metadata?.title,year:m.metadata?.year,date:m.metadata?.date,files}));
+ }catch(e){console.log('ORIGINAL VOLUME ERROR',n+1,id,e.message)}
+}
+for(const i of [0,3,11]){
+ const id=volumes[i];
+ try{
+  const url='https://archive.org/download/'+id+'/'+id+'_djvu.txt';
+  const r=await fetch(url,{signal:AbortSignal.timeout(30000)});
+  const t=await r.text();
+  console.log('TEXT EXAMPLE',i+1,r.status,'chars',t.length,'head',JSON.stringify(t.slice(0,1100)),'middle',JSON.stringify(t.slice(Math.floor(t.length/2),Math.floor(t.length/2)+700)),'tail',JSON.stringify(t.slice(-450)));
+ }catch(e){console.log('TEXT EXAMPLE ERROR',i+1,e.message)}
+}
