@@ -52,14 +52,15 @@ The public pages are already committed to the GitHub Pages site:
 
    Commit. GitHub Pages will then make the public and private forms interactive. **Never put `ADMIN_KEY`, `RATE_SALT`, `TURNSTILE_SECRET`, or other secret values in this file.**
 
-7. Test in this order: (a) editorial letter is accepted, (b) it is visible ONLY under `editors-inbox.html` after unlocking with `ADMIN_KEY`, (c) public letter is initially *pending*, (d) approve it in the inbox and confirm it displays on `correspondence.html`, (e) vulgar submission is rejected, and (f) public flagging removes an item after repeated flags until a moderator reviews it.
+7. Test in this order: (a) an editorial letter is accepted as *pending* and appears ONLY in `editors-inbox.html` after unlocking with `ADMIN_KEY`, (b) an ordinary public letter publishes immediately, (c) a favorite quotation or reply also publishes immediately, (d) vulgarity and link spam are rejected automatically, (e) two reports temporarily hide a post for editorial review, and (f) the editor can restore, reject, hide, or remove inappropriate public content.
 
 ## Moderation and privacy
 
 - The public board and editor reports use distinct database `kind` values.
-- No message is posted publicly without **your approval**. Clear vulgarities are rejected on the server before storage; links, email addresses, and suspected spam are rejected from public letters. This is a practical starter filter, not an exhaustive language-understanding system. Read and approve all new public letters; automated filters cannot recognize every evasion or literary context.
+- **Public letters and favorite quotations publish immediately after server-side automatic checks.** No editor approval is required for ordinary public posts. Clear vulgarities are rejected on the server; links, email addresses, and suspected spam are rejected. Automated filters cannot recognize every evasion or literary context, so readers may report posts. Two reports temporarily hide a published post for editorial review.
+- **Private editor reports remain pending and private.** Only the editor can view them through the authenticated inbox. The inbox's default view contains private reports and flagged/hidden public posts; a separate Recent public posts view is available for optional moderation.
 - Editor reports are private; quoted historical language in such reports is permitted, to allow proper proofreading.
-- Public replies require an approved parent letter.
+- Public replies require an already-published parent letter and, like all other public posts, appear immediately after automated checks.
 - Reports to the editor never require email or a user account. The only identifying information requested is an optional pen name. We do not store raw IP addresses: rate limits use daily HMAC hashes.
 - Private inbox login is handled by the Worker. A frontend-only passcode or a hidden URL alone would *not* be secure.
 - The site uses `textContent` to render messages, not raw HTML, to protect against script injection.
@@ -79,3 +80,7 @@ A quiet **Share a favorite passage** link now appears below the book heading on 
 ### Owner action still required
 
 At present, no Cloudflare account has been authorized for this project, so there is **no deployed Worker URL, no database ID, and no Turnstile sitekey**. Consequently `public/correspondence-config.js` is intentionally blank and the public/editor forms cannot deliver messages. The code alone is not a live message-storage connection. The owner must finish the Cloudflare setup instructions above, then supply the non-secret Worker URL and public sitekey to configure the static site. Do not share secret keys or passwords with anyone.
+
+## Public posting policy revised at the editor's request
+
+The public Readers’ Correspondence is designed to feel like a social discussion board rather than a curated letters column: safe messages, replies, and favorite quotations are immediately visible after server-side profanity/spam screening, Turnstile validation, and daily rate-limiting. The private Editor’s Desk uses pending correspondence and requires the editor to process reports. Readers may report objectionable public posts; the existing two-report threshold temporarily removes such posts from the public board until review. This is deliberately **post-publication moderation**, not advance approval. No backend is active until a Worker is deployed and configured with private secrets; never claim live submission support without verifying it.

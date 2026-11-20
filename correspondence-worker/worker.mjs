@@ -77,6 +77,9 @@ async function withinLimit(request,env,limit){
  const row=await env.DB.prepare('SELECT total FROM daily_limits WHERE day=? AND ip_hash=?').bind(day,key).first();
  return row&&row.total<=limit;
 }
+// Public correspondence is immediately visible after automated screening.
+// Private messages to the editor are never published and wait in the inbox.
+export function publicationStatus(kind){return kind==='public'?'approved':'pending'}
 const publicFields='id,name,topic,body,parent_id,created_at,letter_type,quote_text,quote_book,quote_author,source';
 async function publicLetters(env){
  const rows=await env.DB.prepare("SELECT "+publicFields+" FROM letters WHERE kind='public' AND status='approved' ORDER BY created_at DESC LIMIT 120").all();
@@ -118,10 +121,12 @@ async function submitLetter(request,env){
  if(!await turnstileValid(input.token,request,env))return response({error:'The spam check has expired. Please try again.'},403);
  if(!await withinLimit(request,env,kind==='editor'?5:10))return response({error:'Too many letters today. Please return tomorrow.'},429);
  const id=crypto.randomUUID();
- // Both forms are held for editorial review; no public message can bypass approval.
+ // Public messages publish automatically after profanity, link, Turnstile and
+ // rate-limit checks; editor reports always remain private and pending.
+ const newStatus=publicationStatus(kind);
  await env.DB.prepare('INSERT INTO letters (id,kind,status,name,topic,book,page,source,body,parent_id,letter_type,quote_text,quote_book,quote_author) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)')
-  .bind(id,kind,'pending',name||'Anonymous',topic,book,page,source,body,parent||null,letterType,quoteText,quoteBook,quoteAuthor).run();
- return response({accepted:true,status:'pending'},201);
+  .bind(id,kind,newStatus,name||'Anonymous',topic,book,page,source,body,parent||null,letterType,quoteText,quoteBook,quoteAuthor).run();
+ return response({accepted:true,status:newStatus},201);
 }
 async function flagLetter(request,env){
  const input=await readPayload(request);const id=clean(input.id,36);
@@ -133,8 +138,13 @@ async function flagLetter(request,env){
  await env.DB.prepare("UPDATE letters SET flags=flags+1,status=CASE WHEN flags+1>=2 THEN 'pending' ELSE status END WHERE id=? AND kind='public'").bind(id).run();
  return response({accepted:true},200);
 }
-async function adminList(env){
- const rows=await env.DB.prepare("SELECT * FROM letters WHERE status IN ('pending','approved') ORDER BY CASE WHEN status='pending' THEN 0 ELSE 1 END,created_at DESC LIMIT 150").all();
+async function adminList(env,view='inbox'){
+ // Keep the editor's daily inbox focused on private reports and flagged
+ // public notes; ordinary published discussion needs no approval.
+ const query=view==='recent'
+  ?"SELECT * FROM letters WHERE kind='public' AND status='approved' ORDER BY created_at DESC LIMIT 150"
+  :"SELECT * FROM letters WHERE status='pending' ORDER BY CASE WHEN kind='editor' THEN 0 ELSE 1 END, flags DESC, created_at DESC LIMIT 150";
+ const rows=await env.DB.prepare(query).all();
  return response({letters:rows.results||[]});
 }
 async function adminEdit(id,request,env){
@@ -147,9 +157,9 @@ async function adminEdit(id,request,env){
   await env.DB.prepare('DELETE FROM letters WHERE id=? OR parent_id=?').bind(id,id).run();
   return response({success:true});
  }
- const permitted=record.kind==='editor'?['close']:['approve','reject'];
+ const permitted=record.kind==='editor'?['close']:['approve','reject','hide'];
  if(!permitted.includes(action))return response({error:'That action is not permitted for this kind of letter.'},400);
- let next=action==='approve'?'approved':action==='reject'?'rejected':'closed';
+ const next=action==='approve'?'approved':action==='reject'?'rejected':action==='hide'?'pending':'closed';
  if(next==='approved'&&record.parent_id){
   const parent=await env.DB.prepare("SELECT status FROM letters WHERE id=? AND kind='public'").bind(record.parent_id).first();
   if(parent?.status!=='approved')return response({error:'The parent letter must be approved first.'},400);
@@ -186,7 +196,7 @@ export default {
    if(url.pathname==='/api/flag'&&request.method==='POST')return done(await flagLetter(request,env));
    if(url.pathname.startsWith('/api/admin/')){
     if(!authorize(request,env))return done(response({error:'The editor’s key was not accepted.'},401));
-    if(url.pathname==='/api/admin/letters'&&request.method==='GET')return done(await adminList(env));
+    if(url.pathname==='/api/admin/letters'&&request.method==='GET')return done(await adminList(env,url.searchParams.get('view')||'inbox'));
     const match=url.pathname.match(/^\/api\/admin\/letters\/([a-f0-9-]{36})$/i);
     if(match&&request.method==='POST')return done(await adminEdit(match[1],request,env));
    }

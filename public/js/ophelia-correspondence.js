@@ -103,7 +103,7 @@
   const proof=token();
   if(!proof){status('Complete the spam check below before reporting a letter.',true);$('new-letter').scrollIntoView({behavior:'smooth'});return}
   if(!window.confirm('Flag this letter for the editor to review?'))return;
-  try{await req('/api/flag',{method:'POST',body:JSON.stringify({id,token:proof})});status('Your concern has been sent for review. Thank you.');resetChallenge();}
+  try{await req('/api/flag',{method:'POST',body:JSON.stringify({id,token:proof})});status('Your concern has been sent for review. Thank you.');resetChallenge();await loadLetters();}
   catch(e){status(e.message,true);resetChallenge()}
  }
  function quoteMode(kind){
@@ -171,7 +171,7 @@
    try{
     const result=await req('/api/letters',{method:'POST',body:JSON.stringify(details)});
     status(mode==='editor'?'Your private letter has reached the editor’s inbox. Thank you.':
-      result.status==='approved'?'Your letter has been added to the correspondence board.':'Your letter is awaiting the editor’s approval. Thank you.');
+      result.status==='approved'?'Your letter is published! Other readers can see it now.':'Your letter was held for a safety review.');
     form.reset();replyTo=null;if($('reply-indicator'))$('reply-indicator').hidden=true;setBookContext();
     if(mode==='public'){quoteMode('discussion');if($('quote-source'))$('quote-source').value='';}
     if(mode==='public')await loadLetters();
@@ -180,22 +180,23 @@
   });
  }
  function authHeaders(){return {'Authorization':'Bearer '+adminKey}}
+ let adminView='inbox';
  async function loadInbox(){
-  const data=await req('/api/admin/letters',{headers:authHeaders()});
+  const data=await req('/api/admin/letters?view='+adminView,{headers:authHeaders()});
   $('moderation').hidden=false;
   const target=$('moderator-list');target.replaceChildren();
-  if(!data.letters?.length){target.append(el('p','empty','There are no letters in the inbox.'));return}
+  if(!data.letters?.length){target.append(el('p','empty',adminView==='recent'?'There are no published public letters to review.':'There are no private editor reports or reported posts awaiting attention.'));return}
   for(const letter of data.letters){
    const article=renderReply(letter);
    article.prepend(el('p','small','Kind: '+letter.kind+' · Status: '+letter.status+' · Book: '+(letter.book||'—')+' · Page: '+(letter.page||'—')));
    if(letter.source){const a=el('a','small','Original reading page');a.href=letter.source;a.target='_blank';a.rel='noopener noreferrer';article.append(a);}
    const bar=el('div','moderator-actions');
-   const actions=letter.kind==='public'?['approve','reject','delete']:['close','delete'];
+   const actions=letter.kind==='editor'?['close','delete']:(letter.status==='approved'?['hide','delete']:['approve','reject','delete']);
    for(const action of actions){
-    const b=el('button','button secondary',action[0].toUpperCase()+action.slice(1));b.type='button';
+    const b=el('button','button secondary',action==='approve'?'Restore to board':action==='hide'?'Hide for review':action[0].toUpperCase()+action.slice(1));b.type='button';
     b.addEventListener('click',async()=>{
      if(action==='delete'&&!confirm('Permanently delete this letter?'))return;
-     try{await req('/api/admin/letters/'+encodeURIComponent(letter.id),{method:'POST',headers:authHeaders(),body:JSON.stringify({action})});status(action==='approve'?'Letter approved.':action==='delete'?'Letter deleted.':action==='close'?'Report closed.':'Letter rejected.');await loadInbox();}
+     try{await req('/api/admin/letters/'+encodeURIComponent(letter.id),{method:'POST',headers:authHeaders(),body:JSON.stringify({action})});status(action==='approve'?'Letter restored to the public board.':action==='hide'?'Letter hidden for review.':action==='delete'?'Letter deleted.':action==='close'?'Report closed.':'Letter rejected.');await loadInbox();}
      catch(e){status(e.message,true,'admin-status')}
     });bar.append(b);
    }
@@ -203,6 +204,14 @@
   }
  }
  function setupAdmin(){
+  document.querySelectorAll('[data-admin-view]').forEach(button=>{
+   button.addEventListener('click',async()=>{
+    if(!adminKey)return;
+    adminView=button.dataset.adminView;
+    document.querySelectorAll('[data-admin-view]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
+    try{await loadInbox()}catch(e){status('Could not load correspondence: '+e.message,true,'admin-status')}
+   });
+  });
   $('admin-form')?.addEventListener('submit',async event=>{
    event.preventDefault();adminKey=$('admin-key').value.trim();if(!ready){status('Connect the message service before opening the private inbox.',true,'admin-status');return}
    try{await loadInbox();status('Editor’s inbox unlocked.',false,'admin-status');$('admin-key').value='';}
