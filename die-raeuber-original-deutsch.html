@@ -82,7 +82,7 @@ function render(scroll=true){
  state.page=Math.min(Math.max(0,Number(state.page)||0),pages.length-1);
  const page=pages[state.page],part=sections[page.section],box=$('reading');box.replaceChildren();
  const heading=document.createElement('h2');heading.textContent=part.name;box.append(heading);
- for(const paragraph of page.paragraphs){const p=document.createElement('p');p.lang='fr';p.className='notranslate';p.setAttribute('translate','no');p.textContent=paragraph.replace(/[_~=]/g,'');box.append(p)}
+ for(const paragraph of page.paragraphs){const p=document.createElement('p');p.lang='de';p.className='notranslate';p.setAttribute('translate','no');p.textContent=paragraph.replace(/[_~=]/g,'');box.append(p)}
  $('section').value=String(page.section);$('part').value=String(state.part);
  $('pages').textContent='Seite '+(state.page+1)+' / '+pages.length+' · Partie '+state.part+' / '+COUNT;
  const percent=Math.round((state.page+1)/pages.length*100);
