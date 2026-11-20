@@ -1,0 +1,30 @@
+name: Import complete Fifth Queen 1906
+on:
+  push:
+    paths:
+      - 'scripts/import-fifth-queen.mjs'
+      - '.github/workflows/import-fifth-queen.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import:
+    if: github.repository == 'OpheliasOpenBooks/website'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Audit and import complete English public-domain novel
+        run: node scripts/import-fifth-queen.mjs
+      - name: Commit only verified full book
+        run: |
+          git config user.name "Ophelia Library Import"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html public/books/the-fifth-queen/
+          if [ -f public/art/the-fifth-queen-1906-cover.jpg ]; then git add public/art/the-fifth-queen-1906-cover.jpg; fi
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish complete 1906 Fifth Queen novel with historic cover"
+            git push origin HEAD:main
+          fi
