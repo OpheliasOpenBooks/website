@@ -49,7 +49,7 @@ async function getSource(work) {
       const text = stripSource(new TextDecoder('utf-8').decode(bytes));
       if (countWords(text) < work.minWords) throw Error('Incomplete text, only ' + countWords(text) + ' words');
       // Historic title pages often split a title over multiple lines and ornaments.
-      const lead = text.slice(0, 30000).toUpperCase().replace(/\\s+/g, ' ');
+      const lead = text.slice(0, 30000).toUpperCase().replace(/\s+/g, ' ');
       const title = work.title.toUpperCase();
       if (!lead.includes(title) && !(lead.includes(work.author.toUpperCase()) && lead.includes(work.slug === 'my-dog-and-i' ? 'DOG' : 'BOOK OF THE CAT')))
         throw Error('Wrong title or author in text source');
