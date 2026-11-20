@@ -52,6 +52,12 @@ function decodeSections(raw){
 function paginate(parts){
  const result=[];
  parts.forEach((sec,section)=>{
+  if(cfg.verse){
+   const lines=sec.text.split(/\n/).map(x=>x.trimEnd());let chunk=[],lineCount=0;
+   const flushVerse=()=>{if(!chunk.length)return;result.push({section,sectionTitle:sec.title,paras:[chunk.join('\n')]});chunk=[];lineCount=0};
+   for(const line of lines){chunk.push(line);if(line.trim())lineCount++;if(lineCount>=48)flushVerse()}
+   flushVerse();return;
+  }
   const blocks=sec.text.split(/\n\s*\n+/).map(b=>b.trim()).filter(Boolean);
   let batch=[],words=0;
   const flush=()=>{if(batch.length){result.push({section,sectionTitle:sec.title,paras:batch});batch=[];words=0}};
