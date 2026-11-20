@@ -1,0 +1,11 @@
+# Shakespeare’s Sonnets — source documentation
+
+**Author/publication.** William Shakespeare (1564–1616); the complete sequence of 154 sonnets first appeared as `Shake-speares Sonnets` in London in 1609, published by Thomas Thorpe. The original English work is in the public domain in the United States.
+
+**Literary source.** Project Gutenberg eBook #1041, [Shakespeare’s Sonnets](https://www.gutenberg.org/ebooks/1041), prepared by Joseph S. Miller and Embry-Riddle Aeronautical University Library (eBook originally released 1997, project file dated March 2010 / posted April 2014). Our local `public/books/shakespeares-sonnets-1041.txt` reproduces the complete literary selection of this source from `THE SONNETS` through Sonnet CLIV’s closing couplet, without rearrangement, paraphrase, abridgement, or substitution. Nonliterary Gutenberg distribution and license boilerplate outside the collection is excluded, with LF line endings normalized.
+
+**Completeness QA.** Exactly **154** Roman-numeral sonnet headings, each appearing once in correct numerical order. Every poem retains its original verse lines and the original text of its final couplet. This edition's sonnets have between 12 and 15 lines, reflecting distinctive historical forms, including Sonnets 99 and 126, rather than incorrectly forcing every poem to 14 lines. File length 100270 characters and 17675 whitespace-delimited tokens. Narrated reader has 155 pages/sections (title + 154 separate poems) with continuous playback and sonnet selection.
+
+**Historical cover.** An authentic title page of the 1609 edition, [Wikimedia Commons: Sonnets1609titlepage.jpg](https://commons.wikimedia.org/wiki/File:Sonnets1609titlepage.jpg), public domain. Historic title page used in the image/catalog. The hosted literary transcription is not represented as facsimile orthography of the 1609 quarto. The 1609 collection was originally printed with `A Lover’s Complaint`; since this catalog entry is specifically the 154-sonnet sequence, that separate long poem is not included.
+
+**Reader.** Shares Ophelia’s existing English browser/device speech synthesis, pronunciation normalization, settings, bookmark, saved reading position, and share controls. Poem sequence is not excerpted or replaced by pre-recorded/LibriVox audio. Live browser audio and external art loading require separate verification.
