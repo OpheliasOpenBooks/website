@@ -11,7 +11,7 @@
     {
       "binding": "DB",
       "database_name": "ophelia-correspondence",
-      "database_id": "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+      "database_id": "eccd079d-e3d0-4116-8c1e-98afc9c2e7c4"
     }
   ]
 }
