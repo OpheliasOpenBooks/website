@@ -1,0 +1,13 @@
+# The Anatomy of Melancholy — Robert Burton: complete-source publication record
+
+Robert Burton (1577–1640), writing as Democritus Junior, first published the Anatomy of Melancholy in 1621. The literary work is in the United States public domain. Our stored text is not a diplomatic transcription of the original 1621 printing.
+
+COMPLETE SOURCE: Project Gutenberg eBook #10800, The Anatomy of Melancholy, https://www.gutenberg.org/ebooks/10800, released 2004, prepared by Karl Hagen, D. Moynihan, and Distributed Proofreaders. The electronic text is based on a nineteenth-century modernized edition; its textual editor checked problematic passages against a 1638 edition. The eBook includes a text reproduction of the expanded 1652 sixth-edition title page and an introduction, plus Burton’s prefaces, all three partitions, the complete index, and approximately 6,817 numbered source citations and scholarly notes. These are preserved in the reading room.
+
+INTEGRITY: Text from 'Introduction to the Project Gutenberg Edition.' through the final note '6817. Is. l. 4.' is preserved completely. Only the external Project Gutenberg license and distribution wrapper was omitted. 545,034 whitespace-delimited words, 3,376,958 source characters, 586 logically indexed sections, and 86 locally hosted JSON reading parts. White-space-normalized parity of concatenated displayed paragraphs and source text was verified before upload. Named sections remain organized under Burton’s principal divisions. Original footnote markers and numbered endnotes remain present on screen.
+
+HISTORICAL COVER: Engraved illustrated frontispiece of the 1628 third edition, https://commons.wikimedia.org/wiki/File:Anatomy-of-Melancholy-Frontispiece-3rd-edition-1628.png (public domain), deliberately labeled as 1628 rather than 1621. The image is from an actual historical edition and does not depict the exact source edition used for the electronic transcription.
+
+READER: the-anatomy-of-melancholy.html. HTML loads public/books/anatomy-of-melancholy-part-N.json using manifest-driven section counts and minimum word checks, and shares the Ophelia browser/device English narration, speed/voice controls, bookmarks, reader-size settings, continuous reading, and share functionality. The global OpheliaNarration speech filter skips bracketed numerical notes and stray editorial symbols for prose, plays and poetry while preserving the visible source. Browser playback and deployment visibility require separate verification.
+
+MANIFEST: public/books/anatomy-of-melancholy-manifest.json describes each reading part and the original partition boundaries. The index and extensive reference notes are included, not abridged.
