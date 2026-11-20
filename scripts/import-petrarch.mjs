@@ -51,6 +51,7 @@ function verifyEnglish(text){
  if(!/TRIUMPH OF LOVE/i.test(text)||!/SONNET\s+(?:I|1)[.\s]/i.test(text))throw Error('Petrarch sonnets and Triumphs missing');
 }
 function verifyItalian(text){
+ console.log('HISTORICAL ITALIAN CHECK',JSON.stringify({chars:text.length,words:count(text),front:text.slice(0,650),firstPoem:text.search(/Voi\\s+ch[’']?\\s*ascoltate/i),lastPoem:text.search(/Vergine\\s+bella/i),petrarca:text.slice(0,25000).search(/Petrarc/i),end:text.slice(-450)}));
  // Includes the celebrated first and final Rerum vulgarium fragmenta poems.
  if(text.length<135000||count(text)<25000||!/Petrarc/i.test(text.slice(0,25000))||
  !/Voi ch[’']?ascoltate/i.test(text)||!/Vergine bella/i.test(text))throw Error('Unabridged Italian Canzoniere identity/length not verified');
