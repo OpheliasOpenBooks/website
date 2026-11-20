@@ -1,0 +1,56 @@
+name: Import Suetonius and Tacitus — English and Latin
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/import-roman-classics.py'
+      - '.github/workflows/import-roman-classics.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: import-roman-classics-main
+  cancel-in-progress: false
+jobs:
+  host-roman-history:
+    if: github.repository == 'OpheliasOpenBooks/website'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify historic editions and build full local narrated and read-only texts
+        run: python scripts/import-roman-classics.py
+      - name: Validate all exported local parts
+        run: |
+          python - <<'PY'
+          import json,pathlib,re
+          for book in ("suetonius","annals"):
+            for lang in ("en","la"):
+              root=pathlib.Path("public/books")/book/lang
+              manifest=json.loads((root/"manifest.json").read_text())
+              assert len(manifest["parts"])>=5 and manifest["readOnly"]==(lang=="la")
+              words=0;sections=0
+              for row in manifest["parts"]:
+                d=json.loads((root/row["file"]).read_text())
+                assert d["part"]==row["part"] and len(d["sections"])==row["sections"]
+                w=len(" ".join(p for s in d["sections"] for p in s["paragraphs"]).split())
+                assert w==row["words"], (book,lang,row["part"],w,row["words"])
+                words+=w
+                sections+=len(d["sections"])
+              assert words==manifest["wordCount"] and sections==manifest["sections"]
+              print("VERIFIED",book,lang,words,"words",sections,"sections",len(manifest["parts"]),"locally hosted parts")
+          PY
+      - name: Commit historical text, covers, and catalog entries
+        run: |
+          git config user.name "Ophelia Library Editions"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html public/books/suetonius/ public/books/annals/ public/art/suetonius-1883-title-page.jpg public/art/tacitus-1598-lipsius-titlepage.jpg
+          if ! git diff --cached --quiet; then
+            git commit -m "Host entire surviving Twelve Caesars and Annals in English and Latin"
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
+          fi
