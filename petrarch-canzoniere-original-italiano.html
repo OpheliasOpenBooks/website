@@ -56,7 +56,7 @@ footer{padding:25px;max-width:1100px;margin:auto;text-align:center;color:var(--m
  <h1>Il Canzoniere</h1>
  <p class="byline">Francesco Petrarca · Rerum vulgarium fragmenta · XIV secolo</p>
  <img class="cover" src="https://commons.wikimedia.org/wiki/Special:FilePath/Petrarch_canzoniere.jpg" alt="Pagina originale di un manoscritto storico del Canzoniere di Petrarca, British Library" loading="eager" onerror="this.onerror=null;this.src='public/art/historical-cover-fallback.svg'">
- <p class="note"><strong>Il testo originale italiano, senza audio.</strong> I sonetti e le canzoni sono presentati in ordine, per la lettura. L'edizione inglese ottocentesca si trova <a href="petrarch-sonnets-triumphs.html">nel nostro lettore con narratore</a>. La trascrizione italiana proviene da un'edizione di pubblico dominio riprodotta da Wikisource e diffusa da Libri di Dominio Pubblico; la trascrizione digitale è attribuita nella nota bibliografica.</p>
+ <p class="note"><strong>Il testo originale italiano, senza audio.</strong> I sonetti e le canzoni sono presentati in ordine, per la lettura. L'edizione inglese ottocentesca si trova <a href="petrarch-sonnets-triumphs.html">nel nostro lettore con narratore</a>. Le 366 liriche originali di Petrarca sono conservate nella nostra biblioteca; la trascrizione digitale di Wikisource, distribuita da Libri di Dominio Pubblico, è citata in fondo alla pagina. Nessun commento editoriale moderno è stato riprodotto.</p>
 </header>
 <section id="reading" aria-label="Lettura"><h2>Preparazione del testo originale…</h2></section>
 <div class="lower"><button id="prev" type="button" disabled>← Precedente</button><span id="number" class="note-small">Pagina 1</span><button id="next" type="button" disabled>Successiva →</button></div>
@@ -72,7 +72,7 @@ footer{padding:25px;max-width:1100px;margin:auto;text-align:center;color:var(--m
  <p class="note-small">Sola lettura. Nessun lettore audio. La tua posizione resta salvata su questo dispositivo.</p>
 </aside>
 </main>
-<footer>Testo originale: <a href="https://it.wikisource.org/wiki/Canzoniere_(Rerum_vulgarium_fragmenta)" target="_blank" rel="noopener noreferrer">Wikisource · Il Canzoniere</a>; trascrizione digitale distribuita da <a href="https://libridominiopubblico.it/libri/canzoniere/" target="_blank" rel="noopener noreferrer">Libri di Dominio Pubblico</a>, attribuita secondo la licenza CC BY-SA indicata alla fonte. Il testo di Petrarca è di pubblico dominio. Questa pagina è ospitata su Ophelia’s Open Book.</footer>
+<footer>Il testo poetico originale di Petrarca è di pubblico dominio. Trascrizione digitale attribuita secondo CC BY-SA 4.0: <a href="https://it.wikisource.org/wiki/Canzoniere_(Rerum_vulgarium_fragmenta)" target="_blank" rel="noopener noreferrer">Wikisource · Il Canzoniere</a>; trascrizione digitale distribuita da <a href="https://libridominiopubblico.it/libri/canzoniere/" target="_blank" rel="noopener noreferrer">Libri di Dominio Pubblico</a>, attribuita secondo la licenza CC BY-SA indicata alla fonte. Il testo di Petrarca è di pubblico dominio. Questa pagina è ospitata su Ophelia’s Open Book.</footer>
 <script>
 'use strict';
 const $=id=>document.getElementById(id);
@@ -152,7 +152,7 @@ $('return').onclick=()=>{if(!state.bookmarkPart)return;if(state.bookmarkPart===s
   if(!r.ok)throw Error('Manifesto non pubblicato');
   manifest=await r.json();
   if(manifest.title!=='Il Canzoniere'||manifest.author!=='Francesco Petrarca'||manifest.language!=='it'||
-    manifest.readOnly!==true||!Array.isArray(manifest.parts)||manifest.parts.length<5||manifest.wordCount<25000)throw Error('Edizione non completa');
+    manifest.readOnly!==true||!Array.isArray(manifest.parts)||manifest.parts.length<12||manifest.wordCount<25000||manifest.poemCount!==366)throw Error('Edizione non completa');
   $('part').replaceChildren(...manifest.parts.map(p=>new Option('Parte '+p.part+' · '+p.name,p.part)));
   await openPart(state.part);
  }catch(e){$('status').classList.add('error');$('status').textContent='Il testo completo in italiano non è ancora disponibile. Ricarica questa pagina.';console.error(e);}
