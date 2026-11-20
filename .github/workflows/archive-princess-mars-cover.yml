@@ -1,0 +1,57 @@
+name: Archive original 1917 A Princess of Mars cover
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/archive-princess-mars-cover.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: archive-princess-mars-cover
+  cancel-in-progress: false
+jobs:
+  archive-cover:
+    if: github.repository == 'OpheliasOpenBooks/website'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Download and verify original Frank Schoonover 1917 McClurg cover
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import {createHash} from 'node:crypto';
+          const urls=[
+            'https://read.gov/books/images/princess_mars.jpg',
+            'https://commons.wikimedia.org/wiki/Special:FilePath/Princess_of_Mars.jpg'
+          ];
+          let last;
+          for(const url of urls){
+            try{
+              const response=await fetch(url,{headers:{'User-Agent':'OpheliaOpenBookLibrary/1.0 (public-domain art archival; website maintainer)'},signal:AbortSignal.timeout(40000)});
+              if(!response.ok)throw Error('HTTP '+response.status);
+              const bytes=Buffer.from(await response.arrayBuffer());
+              if(bytes.length<10000||bytes.length>1500000||bytes[0]!==0xff||bytes[1]!==0xd8||bytes.at(-2)!==0xff||bytes.at(-1)!==0xd9)throw Error('Not a valid complete JPEG');
+              fs.mkdirSync('public/art',{recursive:true});
+              fs.writeFileSync('public/art/a-princess-of-mars-1917-cover.jpg',bytes);
+              console.log('Verified historic McClurg 1917 Frank Schoonover artwork',bytes.length,'bytes, source:',url,'SHA256:',createHash('sha256').update(bytes).digest('hex'));
+              process.exit(0);
+            }catch(e){last=e;console.warn('Cover source unavailable:',url,e.message);}
+          }
+          throw Error('Could not archive complete original cover: '+last?.message);
+          NODE
+      - name: Publish archived historical artwork in library
+        run: |
+          git config user.name "Ophelia Library Artwork"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/art/a-princess-of-mars-1917-cover.jpg
+          if ! git diff --cached --quiet; then
+            git commit -m "Archive original 1917 A Princess of Mars cover locally"
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
+          fi
