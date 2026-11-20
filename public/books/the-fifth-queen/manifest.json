@@ -1,0 +1,166 @@
+{
+  "title": "The Fifth Queen: And How She Came to Court",
+  "author": "Ford Madox Ford",
+  "published": 1906,
+  "source": "https://raw.githubusercontent.com/GITenberg/The-Fifth-Queen--And-How-She-Came-to-Court_30188/master/30188.txt",
+  "projectGutenberg": "https://www.gutenberg.org/ebooks/30188",
+  "wordCount": 75377,
+  "chapterCount": 20,
+  "sha256": "195b66c12a08d2f316b176377de1fc88ef09b8ab9d6168d101bb61fac687a4af",
+  "parts": [
+    {
+      "part": 1,
+      "name": "Part ONE · Chapter I",
+      "words": 4509,
+      "sections": 6,
+      "file": "part-001.json"
+    },
+    {
+      "part": 2,
+      "name": "Part ONE · Chapter II",
+      "words": 3434,
+      "sections": 1,
+      "file": "part-002.json"
+    },
+    {
+      "part": 3,
+      "name": "Part ONE · Chapter III",
+      "words": 1559,
+      "sections": 1,
+      "file": "part-003.json"
+    },
+    {
+      "part": 4,
+      "name": "Part ONE · Chapter IV",
+      "words": 1664,
+      "sections": 1,
+      "file": "part-004.json"
+    },
+    {
+      "part": 5,
+      "name": "Part ONE · Chapter V",
+      "words": 3055,
+      "sections": 1,
+      "file": "part-005.json"
+    },
+    {
+      "part": 6,
+      "name": "Part ONE · Chapter VI",
+      "words": 4057,
+      "sections": 1,
+      "file": "part-006.json"
+    },
+    {
+      "part": 7,
+      "name": "Part ONE · Chapter VII",
+      "words": 1741,
+      "sections": 1,
+      "file": "part-007.json"
+    },
+    {
+      "part": 8,
+      "name": "Part TWO · Chapter I",
+      "words": 4936,
+      "sections": 2,
+      "file": "part-008.json"
+    },
+    {
+      "part": 9,
+      "name": "Part TWO · Chapter II",
+      "words": 2480,
+      "sections": 1,
+      "file": "part-009.json"
+    },
+    {
+      "part": 10,
+      "name": "Part TWO · Chapter III",
+      "words": 4151,
+      "sections": 1,
+      "file": "part-010.json"
+    },
+    {
+      "part": 11,
+      "name": "Part TWO · Chapter IV",
+      "words": 3456,
+      "sections": 1,
+      "file": "part-011.json"
+    },
+    {
+      "part": 12,
+      "name": "Part TWO · Chapter V",
+      "words": 2984,
+      "sections": 1,
+      "file": "part-012.json"
+    },
+    {
+      "part": 13,
+      "name": "Part TWO · Chapter VI",
+      "words": 3810,
+      "sections": 1,
+      "file": "part-013.json"
+    },
+    {
+      "part": 14,
+      "name": "Part TWO · Chapter VII",
+      "words": 5395,
+      "sections": 1,
+      "file": "part-014.json"
+    },
+    {
+      "part": 15,
+      "name": "Part TWO · Chapter VII",
+      "words": 2911,
+      "sections": 1,
+      "file": "part-015.json"
+    },
+    {
+      "part": 16,
+      "name": "Part TWO · Chapter VIII",
+      "words": 3647,
+      "sections": 1,
+      "file": "part-016.json"
+    },
+    {
+      "part": 17,
+      "name": "Part TWO · Chapter IX",
+      "words": 3786,
+      "sections": 1,
+      "file": "part-017.json"
+    },
+    {
+      "part": 18,
+      "name": "Part THREE · Chapter I",
+      "words": 2369,
+      "sections": 2,
+      "file": "part-018.json"
+    },
+    {
+      "part": 19,
+      "name": "Part THREE · Chapter II",
+      "words": 3443,
+      "sections": 1,
+      "file": "part-019.json"
+    },
+    {
+      "part": 20,
+      "name": "Part THREE · Chapter III",
+      "words": 5383,
+      "sections": 1,
+      "file": "part-020.json"
+    },
+    {
+      "part": 21,
+      "name": "Part THREE · Chapter III",
+      "words": 5400,
+      "sections": 2,
+      "file": "part-021.json"
+    },
+    {
+      "part": 22,
+      "name": "Part THREE · Chapter IV",
+      "words": 1207,
+      "sections": 1,
+      "file": "part-022.json"
+    }
+  ]
+}
