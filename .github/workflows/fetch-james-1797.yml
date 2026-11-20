@@ -1,0 +1,32 @@
+name: Fetch public-domain 1797 Diderot English volumes
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/fetch-james-1797.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+jobs:
+  fetch-archival-english:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Retrieve and validate all three archive source transcriptions
+        run: python3 scripts/fetch-james-1797.py
+      - name: Commit archived OCR sources for editorial verification
+        run: |
+          git config user.name "ophelia-archive-bot"
+          git config user.email "ophelia-archive-bot@users.noreply.github.com"
+          git add sources/james-the-fatalist-1797/
+          if ! git diff --cached --quiet; then
+            git commit -m "Stage all three 1797 James the Fatalist archival English OCR volumes for review"
+            git push
+          fi
