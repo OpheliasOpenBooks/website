@@ -55,10 +55,20 @@ footer{padding:25px;max-width:1100px;margin:auto;text-align:center;color:var(--m
  <div class="kicker">PETRARCA · TESTO ORIGINALE · SOLA LETTURA</div>
  <h1>Il Canzoniere</h1>
  <p class="byline">Francesco Petrarca · Rerum vulgarium fragmenta · XIV secolo</p>
- <img class="cover" src="https://commons.wikimedia.org/wiki/Special:FilePath/Petrarch_canzoniere.jpg" alt="Pagina originale di un manoscritto storico del Canzoniere di Petrarca, British Library" loading="eager" onerror="this.onerror=null;this.src='public/art/historical-cover-fallback.svg'">
+ <img class="cover" src="public/art/petrarch-1879-engraving.jpg" alt="Ritratto storico inciso di Francesco Petrarca nella raccolta ottocentesca di poesie" loading="eager" onerror="this.onerror=null;this.src='public/art/historical-cover-fallback.svg'">
  <p class="note"><strong>Il testo originale italiano, senza audio.</strong> I sonetti e le canzoni sono presentati in ordine, per la lettura. L'edizione inglese ottocentesca si trova <a href="petrarch-sonnets-triumphs.html">nel nostro lettore con narratore</a>. Le 366 liriche originali di Petrarca sono conservate nella nostra biblioteca; la trascrizione digitale di Wikisource, distribuita da Libri di Dominio Pubblico, è citata in fondo alla pagina. Nessun commento editoriale moderno è stato riprodotto.</p>
 </header>
-<section id="reading" aria-label="Lettura"><h2>Preparazione del testo originale…</h2></section>
+<section id="reading" aria-label="Lettura"><h2>Poesia 001 · Voi ch’ascoltate in rime sparse il suono</h2><p>Voi ch’ascoltate in rime sparse il suono
+di quei sospiri ond’io nudriva ’l core
+in sul mio primo giovenile errore
+quand’era in parte altr’uom da quel ch’i’ sono,</p><p>del vario stile in ch’io piango et ragiono
+fra le vane speranze e ’l van dolore,
+ove sia chi per prova intenda amore,
+spero trovar pietà, nonché perdono.</p><p>Ma ben veggio or sì come al popol tutto
+favola fui gran tempo, onde sovente
+di me medesmo meco mi vergogno;</p><p>et del mio vaneggiar vergogna è ’l frutto,
+e ’l pentersi, e ’l conoscer chiaramente
+che quanto piace al mondo è breve sogno.</p><p class="note-small">L’edizione completa contiene 366 poesie. Attendi il caricamento delle sezioni di lettura.</p></section>
 <div class="lower"><button id="prev" type="button" disabled>← Precedente</button><span id="number" class="note-small">Pagina 1</span><button id="next" type="button" disabled>Successiva →</button></div>
 </article>
 <aside aria-label="Impostazioni di lettura">
@@ -66,7 +76,7 @@ footer{padding:25px;max-width:1100px;margin:auto;text-align:center;color:var(--m
  <label for="part">Parte del volume</label><select id="part" disabled><option>Caricamento…</option></select>
  <label for="section">Sezione o poesia</label><select id="section" disabled><option>Caricamento…</option></select>
  <div class="progress" role="progressbar" aria-label="Progresso" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="bar"></span></div>
- <p id="status" role="status">Preparazione dell'opera completa…</p>
+ <p id="status" role="status">Preparazione dell'opera completa…</p><button id="retry" type="button" hidden>Ricarica il libro</button>
  <div class="actions"><button id="smaller" type="button" aria-label="Riduci caratteri">A−</button><button id="larger" type="button" aria-label="Ingrandisci caratteri">A+</button><button id="dark" type="button">Sera</button></div>
  <div class="actions"><button id="bookmark" type="button">♡ Segnalibro</button><button id="return" type="button">Vai al segnalibro</button></div>
  <p class="note-small">Sola lettura. Nessun lettore audio. La tua posizione resta salvata su questo dispositivo.</p>
@@ -80,6 +90,8 @@ const KEY='ophelia-petrarch-canzoniere-original-italiano-v1', DIR='public/books/
 const state={part:1,page:0,size:20,night:false,bookmarkPart:0,bookmarkPage:0,parts:{}};
 try{Object.assign(state,JSON.parse(localStorage.getItem(KEY)||'{}'))}catch{}
 let manifest=null,sections=[],pages=[],busy=false,opened=false;
+state.parts=state.parts&&typeof state.parts==='object'?state.parts:{};
+state.part=Math.max(1,Math.min(15,Number(state.part)||1));
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(state))}catch{}};
 const count=s=>(s.match(/\S+/g)||[]).length;
 function paginate(list){
@@ -121,7 +133,7 @@ async function openPart(index,mode='saved'){
  if(pages.length)state.parts[state.part]=state.page;
  busy=true;$('part').disabled=true;$('status').textContent='Caricamento della parte '+n+'…';
  try{
-  const r=await fetch(DIR+entry.file);
+  const r=await fetch(DIR+entry.file,{cache:'no-store'});
   if(!r.ok)throw Error('Parte mancante ('+r.status+')');
   const d=await r.json();
   if(d.title!=='Il Canzoniere'||d.language!=='it'||d.readOnly!==true||d.part!==n||d.partCount!==manifest.parts.length||
@@ -134,12 +146,13 @@ async function openPart(index,mode='saved'){
   $('section').replaceChildren(...sections.map((s,i)=>new Option(s.name,i)));$('section').disabled=false;
   $('status').classList.remove('error');$('status').textContent='Testo originale completo · solo lettura · parte '+n+' di '+manifest.parts.length;
   show();
- }catch(e){$('status').classList.add('error');$('status').textContent='Impossibile caricare il testo italiano. Ricarica questa pagina.';console.error(e);}
+ }catch(e){$('status').classList.add('error');$('status').textContent='Impossibile caricare una sezione. Il primo poema è ancora leggibile qui; puoi riprovare.';$('retry').hidden=false;console.error(e);}
  finally{$('part').disabled=false;busy=false;}
 }
 $('prev').onclick=()=>{if(state.page>0){state.page--;show()}else if(state.part>1)openPart(state.part-1,'end')};
 $('next').onclick=()=>{if(state.page<pages.length-1){state.page++;show()}else if(state.part<manifest.parts.length)openPart(state.part+1,'start')};
 $('part').onchange=()=>openPart($('part').value);
+$('retry').onclick=()=>location.reload();
 $('section').onchange=()=>{const next=pages.findIndex(p=>p.section===Number($('section').value));if(next>=0){state.page=next;show()}};
 $('smaller').onclick=()=>{state.size=Math.max(15,state.size-1);show(false)};
 $('larger').onclick=()=>{state.size=Math.min(30,state.size+1);show(false)};
@@ -150,12 +163,12 @@ $('return').onclick=()=>{if(!state.bookmarkPart)return;if(state.bookmarkPart===s
  try{
   const r=await fetch(DIR+'manifest.json',{cache:'no-store'});
   if(!r.ok)throw Error('Manifesto non pubblicato');
-  manifest=await r.json();
+  manifest=await r.json();$('retry').hidden=true;
   if(manifest.title!=='Il Canzoniere'||manifest.author!=='Francesco Petrarca'||manifest.language!=='it'||
     manifest.readOnly!==true||!Array.isArray(manifest.parts)||manifest.parts.length<12||manifest.wordCount<25000||manifest.poemCount!==366)throw Error('Edizione non completa');
   $('part').replaceChildren(...manifest.parts.map(p=>new Option('Parte '+p.part+' · '+p.name,p.part)));
   await openPart(state.part);
- }catch(e){$('status').classList.add('error');$('status').textContent='Il testo completo in italiano non è ancora disponibile. Ricarica questa pagina.';console.error(e);}
+ }catch(e){$('status').classList.add('error');$('status').textContent='Impossibile caricare l’indice completo. Il primo poema è visibile nella pagina; riprova.';$('retry').hidden=false;console.error(e);}
 })();
 </script>
 <script defer src="public/js/ophelia-share.js"></script>
