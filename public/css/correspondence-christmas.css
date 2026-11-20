@@ -1,0 +1,454 @@
+/*
+ * Victorian Christmas-card correspondence theme, shared by all three pages.
+ * Palette is inherited DIRECTLY from public/holiday-buttons.css, the exact
+ * seasonal stylesheet linked by the main Ophelia's Open Book homepage:
+ * holly #23513e; dark holly #173e30; cranberry #762d3c;
+ * dark cranberry #5c2030; gilt #c8a565; ivory #fffcf3.
+ *
+ * Visual-only. Reader messages, form fields, Turnstile, D1 data and
+ * editor-inbox permissions are intentionally untouched.
+ */
+
+body.ophelia-holiday {
+  --paper: #f8f5ed;                 /* Home page */
+  --cream: var(--holiday-ivory);
+  --forest: var(--holiday-holly);
+  --ink: #23463a;                   /* Home page */
+  --gold: #956b32;                  /* Home page */
+  --frame: var(--holiday-gilt);
+  --muted: #59665c;                 /* Home page */
+  --christmas-wine: var(--holiday-cranberry);
+  --christmas-wine-dark: var(--holiday-cranberry-hover);
+  --christmas-gold: var(--holiday-gilt);
+  --christmas-holly: var(--holiday-holly);
+  --christmas-holly-dark: var(--holiday-holly-hover);
+  --christmas-ivory: var(--holiday-ivory);
+  color: #304136;
+  background:
+    radial-gradient(ellipse at 50% 0, rgba(200,165,101,.24),transparent 58%),
+    repeating-linear-gradient(90deg,transparent 0 87px,rgba(98,79,49,.015) 87px 88px),
+    #f8f5ed;
+}
+
+/* The main library's holly, cream, and fine-gold masthead, with the same
+   branded 'O.' seal rather than a generic forum title bar. */
+body.ophelia-holiday .sitehead {
+  position: relative;
+  background:
+    linear-gradient(120deg,#173e30 0%,#23513e 57%,#194232 100%);
+  color: var(--christmas-ivory);
+  border-top: 5px solid var(--christmas-wine);
+  border-bottom: 3px solid var(--christmas-gold);
+  box-shadow: 0 8px 20px rgba(21,49,36,.16);
+}
+body.ophelia-holiday .sitehead::after {
+  content: "";
+  display: block;
+  height: 2px;
+  background: rgba(255,252,243,.3);
+}
+body.ophelia-holiday .sitehead .inner {
+  max-width: 1180px;
+  min-height: 100px;
+  padding: 19px 32px;
+  gap: 24px;
+}
+body.ophelia-holiday .wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 13px;
+  font: normal 25px/1.1 Georgia,"Times New Roman",serif;
+  color: var(--christmas-ivory);
+  white-space: nowrap;
+}
+body.ophelia-holiday .wordmark:hover {color:#fff;}
+body.ophelia-holiday .letter-seal {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  flex: 0 0 52px;
+  border-radius: 50%;
+  border: 1px solid var(--christmas-gold);
+  outline: 1px solid rgba(255,252,243,.36);
+  outline-offset: 3px;
+  font: italic 27px/1 Georgia,serif;
+  color: #f4e2ae;
+}
+body.ophelia-holiday .wordmark-text>span {
+  margin-top: 3px;
+  font: 600 10px/1.5 Arial,sans-serif;
+  letter-spacing: 2.8px;
+  color: #eadbb4;
+}
+body.ophelia-holiday .sitehead nav {
+  align-items:center;
+  justify-content: flex-end;
+  gap: 12px 22px;
+  line-height: 1.5;
+}
+body.ophelia-holiday .sitehead nav a {
+  color: #fff6e3;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding: 6px 0;
+}
+body.ophelia-holiday .sitehead nav a:hover,
+body.ophelia-holiday .sitehead nav a[aria-current="page"] {
+  color: #f4dca6;
+  border-bottom-color: var(--christmas-gold);
+}
+
+/* A framed holiday bookplate for each page's opening title. */
+body.ophelia-holiday main {
+  max-width: 1100px;
+  padding: 42px 30px 92px;
+}
+body.ophelia-holiday .letterhead {
+  position: relative;
+  max-width: 920px;
+  padding: 32px 36px 34px;
+  margin: 12px auto 38px;
+  border: 1px solid #c8a565;
+  outline: 1px solid rgba(118,45,60,.35);
+  outline-offset: 5px;
+  background:
+    radial-gradient(circle at 50% -14%,rgba(200,165,101,.19),transparent 60%),
+    #fffcf3;
+  box-shadow: 0 8px 22px rgba(35,81,62,.06);
+}
+body.ophelia-holiday .letterhead::before,
+body.ophelia-holiday .letterhead::after {
+  content: "❦";
+  position: absolute;
+  top: 11px;
+  color: var(--christmas-wine);
+  font: 25px Georgia,serif;
+  opacity:.78;
+}
+body.ophelia-holiday .letterhead::before {left: 19px;}
+body.ophelia-holiday .letterhead::after {right: 19px;transform:scaleX(-1);}
+body.ophelia-holiday .eyebrow {
+  font-size: 11px;
+  line-height: 1.5;
+  letter-spacing: 2.5px;
+  color: var(--christmas-wine);
+  font-weight: 700;
+}
+body.ophelia-holiday .letterhead .ornament {
+  color: var(--christmas-gold);
+  font-size: 23px;
+  line-height: 1.3;
+  margin: 12px 0 10px;
+}
+body.ophelia-holiday .letterhead h1 {
+  color: var(--christmas-holly-dark);
+  font-size: clamp(36px,5vw,57px);
+  line-height: 1.12;
+  letter-spacing: -.8px;
+  margin: 8px 0 12px;
+}
+body.ophelia-holiday .letterhead p {
+  font-size: 17px;
+  line-height: 1.7;
+  color: #59665c;
+  max-width: 680px;
+}
+body.ophelia-holiday .letterhead:has(+.two) {
+  margin-bottom: 38px;
+}
+
+/* Three inviting choices, like gilded cards on a reading-room desk. */
+body.ophelia-holiday .two {gap: 18px;}
+body.ophelia-holiday .cardlink {
+  position: relative;
+  padding: 25px 24px 23px;
+  min-height: 154px;
+  border: 2px solid var(--christmas-gold);
+  border-radius: 6px;
+  background: var(--christmas-holly);
+  color: var(--christmas-ivory);
+  box-shadow: inset 0 0 0 3px #23513e,inset 0 0 0 4px rgba(255,252,243,.42),0 6px 14px rgba(23,62,48,.14);
+  transition: transform .16s ease, box-shadow .16s ease, background-color .16s ease;
+}
+body.ophelia-holiday .cardlink[data-share-quote] {
+  background: var(--christmas-wine);
+  box-shadow: inset 0 0 0 3px #762d3c,inset 0 0 0 4px rgba(255,252,243,.42),0 6px 14px rgba(58,20,26,.13);
+}
+body.ophelia-holiday .cardlink[href="editor-desk.html"] {
+  background: var(--christmas-ivory);
+  color: var(--christmas-holly-dark);
+  box-shadow: inset 0 0 0 3px #fffcf3,inset 0 0 0 4px #ddc99c,0 6px 14px rgba(35,81,62,.09);
+}
+body.ophelia-holiday .cardlink::after {
+  content: "❦";
+  display: block;
+  margin-top: 13px;
+  font-size: 18px;
+  line-height: 1;
+  color: #ead3a1;
+}
+body.ophelia-holiday .cardlink[href="editor-desk.html"]::after {color: var(--christmas-wine);}
+body.ophelia-holiday .cardlink strong {
+  font-size: clamp(19px,2.2vw,23px);
+  line-height: 1.22;
+}
+body.ophelia-holiday .cardlink span {
+  color: inherit;
+  opacity:.93;
+  font-size: 14px;
+  line-height: 1.55;
+}
+body.ophelia-holiday .cardlink:hover {
+  background: var(--christmas-holly-dark);
+  color: #fff;
+  box-shadow: 0 9px 20px rgba(23,62,48,.21);
+  transform: translateY(-2px);
+}
+body.ophelia-holiday .cardlink[data-share-quote]:hover {background:var(--christmas-wine-dark);}
+body.ophelia-holiday .cardlink[href="editor-desk.html"]:hover {
+  background: #f5e6c6;
+  color: var(--christmas-wine-dark);
+}
+
+/* Double-ruled stationery panels; readable typography and warm ivory. */
+body.ophelia-holiday .panel {
+  position: relative;
+  border: 2px solid var(--christmas-gold);
+  border-radius: 5px;
+  background: var(--christmas-ivory);
+  box-shadow: inset 0 0 0 5px #fffcf3,inset 0 0 0 6px #dbc89e,0 10px 28px rgba(52,46,31,.09);
+  padding: clamp(27px,4vw,45px);
+  margin: 34px 0;
+}
+body.ophelia-holiday .panel::before {
+  content:"";
+  position:absolute;
+  left:27px;right:27px;top:19px;
+  border-top: 1px solid rgba(200,165,101,.44);
+  pointer-events:none;
+}
+body.ophelia-holiday .panel h2 {
+  font-size: clamp(28px,3.3vw,36px);
+  color: var(--christmas-holly-dark);
+}
+body.ophelia-holiday .panel h2::after {
+  content:"";
+  display:block;
+  margin-top:14px;
+  width: 85px;
+  height: 2px;
+  background: linear-gradient(90deg,var(--christmas-wine),var(--christmas-gold));
+}
+body.ophelia-holiday .panel .eyebrow {margin-top: 7px;}
+body.ophelia-holiday .panel>p:not(.hint) {
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+/* Published notes and nested replies: a clean Victorian card on parchment. */
+body.ophelia-holiday .entry {
+  position: relative;
+  border: 1px solid #c6b28d;
+  border-left: 4px solid var(--christmas-wine);
+  border-radius: 2px;
+  padding: 23px 24px;
+  background: linear-gradient(135deg,#fffdfa,#faf6ea);
+  box-shadow: 0 3px 11px rgba(58,42,28,.055);
+}
+body.ophelia-holiday .entry strong {
+  color: var(--christmas-holly-dark);
+  font-size: 21px;
+}
+body.ophelia-holiday .entry time {color: #6a675e;font-size: 12px;}
+body.ophelia-holiday .entry .topic {
+  font-size: 13px;
+  color: var(--christmas-wine);
+}
+body.ophelia-holiday .entry p {
+  color: #3b3c32;
+  font-size: 17px;
+  line-height: 1.7;
+}
+body.ophelia-holiday .entry button {
+  color: var(--christmas-holly);
+  font-size: 13px;
+  padding: 7px 6px;
+  margin: 5px 10px 0 0;
+  text-decoration-color: var(--christmas-gold);
+  text-underline-offset: 4px;
+}
+body.ophelia-holiday .entry button:hover {color:var(--christmas-wine);}
+body.ophelia-holiday .entry .replies {
+  border-left: 2px solid var(--christmas-gold);
+  padding-left: 17px;
+  margin: 19px 0 0 15px;
+  gap: 14px;
+}
+body.ophelia-holiday .entry .replies .entry {
+  border: 1px solid #cbd3be;
+  border-left: 4px solid var(--christmas-holly);
+  background: linear-gradient(115deg,#f7faef,#fffdf5);
+  padding: 17px 21px;
+}
+body.ophelia-holiday .entry.quotation {
+  background: #fffaf0;
+  border-left-color: var(--christmas-gold);
+}
+body.ophelia-holiday .quote-card {
+  color: var(--christmas-holly-dark);
+  border-left-color: var(--christmas-wine);
+}
+body.ophelia-holiday .quote-heading {color:var(--christmas-wine);}
+body.ophelia-holiday .quote-citation {color: #665542;}
+
+/* Tabs and call-to-action buttons use the EXACT Home page holiday palette. */
+body.ophelia-holiday .filter {
+  background: #f8f1e4;
+  color: var(--christmas-holly-dark);
+  border: 1px solid #b89c67;
+  padding: 10px 16px;
+  font-weight:600;
+  border-radius: 24px;
+  min-height: 43px;
+  transition: background-color .16s ease,color .16s ease;
+}
+body.ophelia-holiday .filter:hover {background: #e9eddf;}
+body.ophelia-holiday .filter[aria-pressed="true"] {
+  background: var(--christmas-holly);
+  border-color: var(--christmas-gold);
+  color: #fffcf3;
+  box-shadow: inset 0 0 0 2px var(--christmas-holly),inset 0 0 0 3px #d8c18c;
+}
+body.ophelia-holiday .filter[aria-pressed="true"]:hover {background:var(--christmas-holly-dark);}
+body.ophelia-holiday .button:not(.secondary) {
+  background: var(--christmas-wine);
+  color: var(--christmas-ivory);
+  border: 2px solid var(--christmas-gold);
+  border-radius: 7px;
+  font-size: 14px;
+  box-shadow: inset 0 0 0 3px var(--christmas-wine),inset 0 0 0 4px #e2c992,0 3px 9px rgba(68,31,34,.16);
+}
+body.ophelia-holiday .button:not(.secondary):hover {
+  background: var(--christmas-wine-dark);
+  box-shadow: inset 0 0 0 3px var(--christmas-wine-dark),inset 0 0 0 4px #e2c992,0 3px 10px rgba(68,31,34,.22);
+}
+body.ophelia-holiday .button.secondary {
+  background: #fffcf3;
+  color: var(--christmas-holly-dark);
+  border: 1px solid var(--christmas-gold);
+}
+body.ophelia-holiday .button.secondary:hover {
+  background: #f6e9cf;
+  color: var(--christmas-wine-dark);
+}
+body.ophelia-holiday .status {color:var(--christmas-holly-dark);}
+body.ophelia-holiday .status.error {color:var(--christmas-wine-dark);font-weight:600;}
+body.ophelia-holiday .reply-indicator {
+  background: #e9eddf;
+  border-left: 3px solid var(--christmas-holly);
+  color: var(--christmas-holly-dark);
+}
+
+/* Forms should feel like linen stationery without losing accessibility. */
+body.ophelia-holiday label {color:var(--christmas-holly-dark);font-size:13px;}
+body.ophelia-holiday input:not([type="hidden"]),
+body.ophelia-holiday select,
+body.ophelia-holiday textarea {
+  border: 1px solid #b7a47f;
+  border-radius: 4px;
+  background: #fffefa;
+  color: #303d34;
+  font-size:16px;
+  box-shadow: 0 1px 3px rgba(27,49,34,.04);
+}
+body.ophelia-holiday input::placeholder,
+body.ophelia-holiday textarea::placeholder {color:#6a6c62;opacity:1;}
+body.ophelia-holiday input:focus,
+body.ophelia-holiday select:focus,
+body.ophelia-holiday textarea:focus {
+  border-color:var(--christmas-wine);
+  box-shadow:0 0 0 3px rgba(118,45,60,.14);
+}
+body.ophelia-holiday #quotation-fields {
+  background: #f8f3e6;
+  border: 1px solid var(--christmas-gold);
+  box-shadow: inset 0 0 0 4px #f8f3e6,inset 0 0 0 5px rgba(118,45,60,.15);
+}
+body.ophelia-holiday .emoji-picker {
+  background: #f4f0e4;
+  border: 1px solid var(--christmas-gold);
+  box-shadow: inset 0 0 0 3px #f4f0e4,inset 0 0 0 4px rgba(118,45,60,.10);
+}
+body.ophelia-holiday .emoji-caption {color:var(--christmas-wine);font-weight:bold;}
+body.ophelia-holiday .emoji-button:hover,
+body.ophelia-holiday .emoji-button:focus-visible {
+  background: #e6e8d9;
+  border-color: var(--christmas-gold);
+}
+body.ophelia-holiday .notice {
+  background:#f5f0df;
+  border-left:4px solid var(--christmas-wine);
+  color:#344c3e;
+}
+
+/* The private inbox keeps its controls and readable correspondence list. */
+body.ophelia-holiday[data-correspondence="inbox"] #moderation {
+  border-top: 3px solid var(--christmas-wine);
+}
+body.ophelia-holiday .moderator-list .entry {margin: 16px 0;}
+body.ophelia-holiday .moderator-actions {gap:10px;}
+body.ophelia-holiday .moderator-actions button {margin:2px;}
+
+/* Matching page footer, with a simple card flourish. */
+body.ophelia-holiday .footer {
+  position: relative;
+  background: var(--christmas-holly-dark);
+  border-top: 3px solid var(--christmas-gold);
+  color: #f9efdb;
+  padding: 31px 18px 37px;
+}
+body.ophelia-holiday .footer a {
+  color: #fff4d8;
+  text-decoration-color: var(--christmas-gold);
+  text-underline-offset: 4px;
+  display:inline-block;
+  margin:6px 12px;
+}
+body.ophelia-holiday .footer a:hover {color:#f4d69b;}
+body.ophelia-holiday .footer p {margin:12px auto 0;font:italic 14px/1.6 Georgia,serif;}
+body.ophelia-holiday .footer::before {
+  content: "❦";
+  color:var(--christmas-gold);
+  font-size:20px;
+  display:block;
+  margin:0 auto 7px;
+}
+
+body.ophelia-holiday a:focus-visible,
+body.ophelia-holiday button:focus-visible,
+body.ophelia-holiday input:focus-visible,
+body.ophelia-holiday select:focus-visible,
+body.ophelia-holiday textarea:focus-visible {
+  outline: 3px solid #956b32;
+  outline-offset: 4px;
+}
+@media(max-width:900px){
+  body.ophelia-holiday .sitehead .inner {flex-direction:column;justify-content:center;align-items:center;}
+  body.ophelia-holiday .sitehead nav {justify-content:center;}
+}
+@media(max-width:720px){
+  body.ophelia-holiday main {padding:24px 18px 70px;}
+  body.ophelia-holiday .letterhead {padding:30px 23px;margin:12px 4px 31px;}
+  body.ophelia-holiday .letterhead::before,
+  body.ophelia-holiday .letterhead::after {font-size:19px;top:9px;}
+  body.ophelia-holiday .sitehead .inner {padding:18px 20px;}
+  body.ophelia-holiday .sitehead nav {gap:7px 16px;font-size:13px;}
+  body.ophelia-holiday .panel {padding:25px 18px;margin:24px 0;}
+  body.ophelia-holiday .entry {padding:19px 16px;}
+  body.ophelia-holiday .entry .replies {margin-left:4px;padding-left:11px;}
+}
+@media(prefers-reduced-motion:reduce){
+  body.ophelia-holiday .cardlink {transition:none;transform:none!important;}
+  body.ophelia-holiday .filter {transition:none;}
+}

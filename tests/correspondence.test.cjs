@@ -78,5 +78,24 @@ const path=require('node:path'),fs=require('node:fs');
  assert.ok(html.includes('ophelia-emoji.js'),'emoji tray script is loaded on public board');
  assert.ok(!editor.includes('ophelia-emoji.js'),'editor report remains a separate, private form');
 
+ // Seasonal correspondence must stay consistent with the established
+ // Victorian Christmas card colors on the main Home page.
+ const holidayCss=fs.readFileSync(path.resolve(__dirname,'../public/holiday-buttons.css'),'utf8');
+ const correspondenceTheme=fs.readFileSync(path.resolve(__dirname,'../public/css/correspondence-christmas.css'),'utf8');
+ const holidayVars=['--holiday-cranberry:#762d3c','--holiday-holly:#23513e','--holiday-gilt:#c8a565','--holiday-ivory:#fffcf3'];
+ for(const v of holidayVars)assert.ok(holidayCss.includes(v),'Home page seasonal palette still defines '+v);
+ for(const file of [html,editor,inbox]){
+  assert.ok(file.includes('class="ophelia-holiday"'),'all correspondence pages use seasonal class');
+  assert.ok(file.includes('public/holiday-buttons.css'),'shared Home seasonal colors are loaded');
+  assert.ok(file.includes('public/css/correspondence-christmas.css'),'seasonal correspondence styles are loaded');
+  assert.ok(file.includes('class="letter-seal"'),'Ophelia bookplate is on all three pages');
+ }
+ assert.ok(correspondenceTheme.includes('var(--holiday-cranberry)'),'cranberry is linked to the actual Home palette');
+ assert.ok(correspondenceTheme.includes('var(--holiday-holly)'),'holly is linked to the actual Home palette');
+ assert.ok(correspondenceTheme.includes('var(--holiday-gilt)'),'gilt is linked to the actual Home palette');
+ assert.ok(correspondenceTheme.includes('.entry .replies'),'reply cards retain their styling');
+ assert.ok(correspondenceTheme.includes('.emoji-picker'),'emoji tray stays part of the design');
+ assert.ok(correspondenceTheme.includes('.moderator-actions'),'private inbox moderation remains accessible');
+
  console.log('Correspondence validation and page safety checks passed.');
 })().catch(e=>{console.error(e);process.exitCode=1});
