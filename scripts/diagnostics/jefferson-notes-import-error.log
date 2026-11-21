@@ -1,0 +1,34 @@
+Imported Q1 453 words 3 blocks
+Imported Q2 4805 words 50 blocks
+Imported Q3 38 words 2 blocks
+Imported Q4 1067 words 4 blocks
+Imported Q5 1297 words 7 blocks
+Imported Q6 16594 words 67 blocks
+Imported Q7 3334 words 18 blocks
+Imported Q8 160 words 2 blocks
+Imported Q9 46 words 2 blocks
+Imported Q10 76 words 2 blocks
+Imported Q11 232 words 2 blocks
+Imported Q12 425 words 10 blocks
+Imported Q13 7999 words 38 blocks
+Imported Q14 7577 words 45 blocks
+Imported Q15 1851 words 8 blocks
+Imported Q16 510 words 3 blocks
+Imported Q17 1996 words 3 blocks
+Imported Q18 647 words 2 blocks
+Imported Q19 587 words 3 blocks
+Imported Q20 1254 words 5 blocks
+Imported Q21 479 words 4 blocks
+Imported Q22 1703 words 7 blocks
+Imported Q23 7135 words 15 blocks
+Imported A1 4725 words 14 blocks
+Traceback (most recent call last):
+  File "/home/runner/work/website/website/scripts/import_jefferson_notes.py", line 467, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/home/runner/work/website/website/scripts/import_jefferson_notes.py", line 139, in main
+    t=create_text()
+      ^^^^^^^^^^^^^
+  File "/home/runner/work/website/website/scripts/import_jefferson_notes.py", line 118, in create_text
+    raise ValueError(f'Appendix {n} not found in original transcription')
+ValueError: Appendix 2 not found in original transcription
