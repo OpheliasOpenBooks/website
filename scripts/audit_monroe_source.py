@@ -32,6 +32,12 @@ report.append("All View title occurrence offsets "+str([m.start() for m in match
 for m in matches[-15:]:
  i=m.start()
  report.append(f"---- OCCURRENCE {i} ----\n{text[max(0,i-350):i+850]}")
+appendix=list(re.finditer(r"(?im)^\\s*APPENDIX\\s*$",text))
+report.append("Standalone APPENDIX headings "+str([m.start() for m in appendix[-20:]]))
+for m in appendix[-14:]:
+ i=m.start()
+ report.append(f"---- APPENDIX HEADING {i} ----\\n{text[max(0,i-180):i+850]}")
+report.append("LAST 165000 CHARS PREVIEW FIRST 5000\\n"+text[-165000:-160000])
 report.append("------ FINAL 5000 CHARS OF 1898 VOLUME ------\n"+text[-5000:])
 OUT.write_text("\n\n".join(report),encoding="utf-8")
 print("\n".join(report[:7]),flush=True)
