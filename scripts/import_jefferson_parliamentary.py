@@ -70,12 +70,13 @@ def extract():
         if node.find_parent(["table","li","p"]):continue
         value=clean(node.get_text(" ",strip=True))
         if not value:continue
-        match=re.match(r"^SEC\.\s+([IVXLCDM]+)\.$",value,flags=re.I) if node.name.startswith("h") else None
+        match=re.match(r"^SEC\.?\s+([IVXLCDM]+)\.?(?:\s+(.+))?$",value,flags=re.I) if node.name.startswith("h") else None
         if match:
             count+=1
             if roman(count)!=match.group(1).upper():
                 raise ValueError(f"Missing or out-of-order section: expected {roman(count)}, saw {match.group(1)}")
             lines.append("SECTION "+roman(count)+".")
+            if match.group(2):lines.append(match.group(2))
             section_words.append(0)
         elif node.name.startswith("h"):
             lines.append(value)
