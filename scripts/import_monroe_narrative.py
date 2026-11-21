@@ -60,7 +60,21 @@ def normalize(txt):
  s="\n".join(lines)
  s=re.sub(r"(?<=\w)-[ \t]*\n[ \t]*(?=[a-z])","",s)
  ps=[re.sub(r"\s+"," ",p).strip() for p in re.split(r"\n\s*\n+",s)]
- return [re.sub(r"(?<!\w)[*†‡](?=\s|$)","",p).strip() for p in ps if p.strip() and not re.fullmatch(r"[\W_]+",p)]
+ ps=[re.sub(r"(?<!\w)[*†‡](?=\s|$)","",p).strip() for p in ps if p.strip() and not re.fullmatch(r"[\W_]+",p)]
+ # Printed running heads (odd/even pages) must not interrupt the narrator.
+ def header(p):
+  x=re.sub(r"\s+"," ",p.strip())
+  return (bool(re.fullmatch(r"APPENDIX[\s.0-9rl]*",x,flags=re.I)) or
+          bool(re.fullmatch(r"\d{3}\s+THE\s+WRITINGS\s+OF(?:\s+JAMES\s+MONROE)?\.",x,flags=re.I)) or
+          bool(re.fullmatch(r"THE\s+WRITINGS\s+OF(?:\s+JAMES\s+MONROE)?\.?\s+\d{3}",x,flags=re.I)) or
+          bool(re.fullmatch(r"A VIEW,\s*&C\.",x,flags=re.I)))
+ ps=[p for p in ps if not header(p)]
+ corrections=[(r"\bofifice\b","office"),(r"\brepubHc\b","republic"),
+              (r"\bI7g4\b","1794"),(r"\byames Monroe\b","James Monroe"),
+              (r"\bauthetttic\b","authentic")]
+ for regex,value in corrections:
+  ps=[re.sub(regex,value,p,flags=re.I) for p in ps]
+ return ps
 def prepare():
  txt=download()
  ps=normalize(locate(txt))
