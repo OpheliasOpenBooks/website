@@ -1,0 +1,13 @@
+Failed https://archive.org/download/writingsincludin03monruoft/writingsincludin03monruoft_djvu.txt: URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1011)'))
+
+Failed https://archive.org/download/writingsincludin03monruoft/writingsincludin03monruoft_full_text.txt: <HTTPError 404: 'Not Found'>
+
+Fetched https://archive.org/download/writingsincludin03monruoft/writingsincludin03monruoft.pdf bytes 21569748
+
+Failed https://archive.org/download/writingsincludin03monruoft/writingsincludin03monruoft.pdf: FileNotFoundError(2, 'No such file or directory')
+
+TOTAL characters 0 words 0
+
+All View title occurrence offsets []
+
+------ FINAL 5000 CHARS OF 1898 VOLUME ------
