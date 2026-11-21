@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800" viewBox="0 0 600 800">
+<rect width="600" height="800" fill="#e8dbc0"/><rect x="30" y="28" width="540" height="744" fill="#f7f0dc" stroke="#a48d64" stroke-width="3"/>
+<g fill="#2c2b25" font-family="Georgia,serif" text-anchor="middle">
+<text x="300" y="125" font-size="29" letter-spacing="5">A</text>
+<text x="300" y="191" font-size="49" letter-spacing="3">DEFENCE</text>
+<text x="300" y="236" font-size="23">OF THE</text>
+<text x="300" y="294" font-size="26" letter-spacing="1">CONSTITUTIONS</text>
+<text x="300" y="336" font-size="24">OF GOVERNMENT</text>
+<text x="300" y="381" font-size="21">OF THE</text>
+<text x="300" y="436" font-size="26" letter-spacing="1">UNITED STATES</text>
+<text x="300" y="474" font-size="23">OF AMERICA.</text>
+<path d="M180 518H420" stroke="#8c7852" stroke-width="2"/>
+<text x="300" y="562" font-size="22">BY JOHN ADAMS, LL. D.</text>
+<text x="300" y="650" font-size="18">LONDON:</text>
+<text x="300" y="685" font-size="17">PRINTED FOR C. DILLY</text>
+<text x="300" y="723" font-size="20">M.DCC.LXXXVII.</text></g></svg>
