@@ -1,0 +1,28 @@
+name: Import complete The Idiot public-domain text
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/import_the_idiot.py'
+permissions:
+  contents: write
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch and validate complete Eva Martin edition
+        run: python scripts/import_the_idiot.py
+      - name: Save only after successful validation
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/books/the-idiot-martin-1915.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Import complete 1915 English edition of The Idiot"
+            git push
+          fi
