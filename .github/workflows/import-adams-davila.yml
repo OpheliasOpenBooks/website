@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - '.github/workflows/import-adams-davila.yml'
+      - 'scripts/import_adams_davila.py'
   workflow_dispatch:
 permissions:
   contents: write
@@ -20,7 +21,20 @@ jobs:
       - name: Install source parser
         run: python -m pip install beautifulsoup4
       - name: Import complete source and build familiar Ophelia reader
-        run: python scripts/import_adams_davila.py
+        id: davila_import
+        run: |
+          set -o pipefail
+          python scripts/import_adams_davila.py 2>&1 | tee /tmp/ophelia-davila-import.log
+      - name: Record import diagnostics if validation failed
+        if: failure()
+        run: |
+          mkdir -p scripts/diagnostics
+          cp /tmp/ophelia-davila-import.log scripts/diagnostics/davila-import-error.log || echo "Import failed before diagnostics." > scripts/diagnostics/davila-import-error.log
+          git config user.name "Ophelia Library Importer"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/diagnostics/davila-import-error.log
+          git commit -m "Record Davila import validation issue" || true
+          git push || true
       - name: Refuse partial or externally-hosted reader
         run: |
           python - <<'PY'
