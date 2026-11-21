@@ -1,0 +1,73 @@
+name: Archive complete Handel Queen of Sheba orchestral score
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/cache-handel-queen-sheba-score.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Install PDF validation package
+        run: python3 -m pip install --disable-pip-version-check pypdf
+      - name: Archive and validate complete public-domain conductor score
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import io, pathlib, urllib.request
+          from pypdf import PdfReader
+          dest=pathlib.Path('public/scores/handel-arrival-queen-of-sheba-complete.pdf')
+          dest.parent.mkdir(parents=True,exist_ok=True)
+          def valid(data):
+              if not data.startswith(b'%PDF-') or not 40000<len(data)<6000000:
+                  return False
+              pdf=PdfReader(io.BytesIO(data))
+              if len(pdf.pages)!=13:
+                  return False
+              first=pdf.pages[0].extract_text() or ''
+              return 'Queen of Sheba' in first or 'Handel' in first
+          if dest.exists() and valid(dest.read_bytes()):
+              print('Existing complete 13-page score already verified.')
+              raise SystemExit(0)
+          candidates=[
+              'https://ks15.imslp.org/files/imglnks/usimg/9/96/IMSLP01067-Handel_-_sheba_HWV_67.pdf',
+              'https://s9.imslp.org/files/imglnks/usimg/9/96/IMSLP01067-Handel_-_sheba_HWV_67.pdf',
+              'https://ks4.imslp.org/files/imglnks/usimg/9/96/IMSLP01067-Handel_-_sheba_HWV_67.pdf',
+              'https://cvrad.narod.ru/mus/note/Handel/Handel_HWV_67_Arrival_of_the_Queen_of_Sheba.pdf',
+          ]
+          errors=[]
+          for url in candidates:
+              try:
+                  req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 (OpheliasOpenBooks archival score verification)','Accept':'application/pdf,*/*'})
+                  with urllib.request.urlopen(req,timeout=45) as response:
+                      data=response.read(6000001)
+                  if not valid(data):
+                      raise ValueError('Score not complete thirteen pages or invalid PDF')
+                  dest.write_bytes(data)
+                  print('Archived and validated all 13 pages:',url,len(data),'bytes')
+                  break
+              except Exception as exc:
+                  errors.append(url+': '+str(exc))
+          else:
+              raise SystemExit('No validated 13-page score found: '+' | '.join(errors))
+          PY
+      - name: Commit complete PDF to the website
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/scores/handel-arrival-queen-of-sheba-complete.pdf
+          if ! git diff --cached --quiet; then
+            git commit -m "Host verified thirteen-page Handel Queen of Sheba score"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
