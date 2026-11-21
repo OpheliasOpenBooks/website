@@ -20,7 +20,7 @@
 <div class="shell">
 <div class="reading-layout">
 <main class="book" aria-label="Thomas Jefferson parliamentary manual reader">
- <div class="book-heading"><div class="eyebrow">OPHELIA’S OPEN BOOK</div><h1>A Manual of Parliamentary Practice</h1><p class="byline">Thomas Jefferson · First published February 1801 · Presidential Library</p><p class="fine">Complete historic preface and 53 sections · For the Use of the Senate of the United States</p></div>
+ <div class="book-heading"><div class="eyebrow">OPHELIA’S OPEN BOOK</div><h1>A Manual of Parliamentary Practice</h1><p class="byline">Thomas Jefferson · First published 1801 · Complete 1812 edition · Presidential Library</p><p class="fine">Unabridged 1812 edition · Preface, 53 sections and notes · Presidential Library</p></div>
  <figure id="story-figure" hidden><img id="opening-art" src="public/art/jefferson-manual-1801-titlepage.svg" alt="Historically faithful typographic reconstruction of the title page of Jefferson’s 1801 Senate manual" loading="eager"><figcaption>Typographic reconstruction of the 1801 Washington City title page; not a photograph of an original copy</figcaption></figure>
  <article class="content" id="content"><div class="chapter-row"><span id="chaptername" class="chapter"></span></div><div id="prose"><p>Preparing all 53 sections of Jefferson’s Manual…</p></div><div class="endmark" aria-hidden="true">— ❧ —</div></article>
  <div class="footer-nav"><button type="button" id="prev2" disabled>← Previous page</button><span id="footcount">Thomas Jefferson · 1801</span><button type="button" id="next2" disabled>Next page →</button></div>
@@ -44,7 +44,7 @@
  <p class="status" id="message" role="status">Checking all 53 sections…</p>
  <div class="load hidden" id="loadbox"><strong>Complete historical text unavailable</strong><p>Please refresh the reader. The book is hosted in Ophelia’s library and will not redirect to an outside reading service.</p></div></aside>
 </div>
-<div class="source"><em>A Manual of Parliamentary Practice for the Use of the Senate of the United States</em> was first published in Washington City in 1801. This self-hosted reading transcription follows the public-domain manual as included in <em>The Writings of Thomas Jefferson</em>, Volume IX, edited by H. A. Washington (1861), digitized by <a href="https://www.gutenberg.org/ebooks/56578" target="_blank" rel="noopener">Project Gutenberg, eBook 56578</a>. This later reprint is distinguished from an exact diplomatic transcription of the first edition. All 53 sections and the preface are included. Page-number markers and footnote signs are excluded from spoken narration; historical wording is retained. The title-page image is a typography-based reconstruction of the 1801 Washington edition, not a facsimile. Ophelia’s narration uses the visitor’s browser voices.</div></div></div></div><script src="public/js/ophelia-narration.js?v=1.4.14-pacing-number"></script>
+<div class="source"><em>A Manual of Parliamentary Practice for the Use of the Senate of the United States</em> was first published in Washington City in 1801. The manual was first published in Washington City in 1801. This self-hosted text follows Jefferson’s <strong>1812 second edition, with his own later additions</strong>, transcribed in the public-domain edition available through the <a href="https://constitution.org/1-History/Founders/tj/tj-mpp.htm" target="_blank" rel="noopener">Constitution Society</a>. It is not represented as a word-for-word facsimile of the 1801 first printing. The preface, all 53 sections, and six historical notes are included. Page-number markers and footnote signs are excluded from spoken narration; historical wording is retained. The title-page image is a typography-based reconstruction of the 1801 Washington edition, not a facsimile. Ophelia’s narration uses the visitor’s browser voices.</div></div></div></div><script src="public/js/ophelia-narration.js?v=1.4.14-pacing-number"></script>
 <script>
 'use strict';
 /* All source is editable. Narration reuses Alice’s grammar-aware sentence segmentation and queued speech strategy. Browser/device voices provide the actual spoken sound. */
@@ -81,6 +81,11 @@ function parseText(raw){
       if(match[2]){current.name+=' · '+match[2].replace(/\.$/,'');afterHead=false;}
       continue;
    }
+   if(text==='NOTES.'&&count===53){
+      if(!current.paragraphs.length)throw Error('Final impeachment section missing.');
+      sections.push(current);current={name:'Historical Notes',paragraphs:[]};afterHead=false;
+      continue;
+   }
    if(afterHead && text.length<115 && /^[A-Z0-9 ,;:'—–.&()\-]+\.?$/.test(text) && !/^([IVXLCDM]+\.|[0-9]+)$/.test(text)){
       current.name+=' · '+text.replace(/\.$/,'');
       afterHead=false;
@@ -91,7 +96,7 @@ function parseText(raw){
    current.paragraphs.push(text.replace(/\[\s*(?:\d+|[*†‡])\s*\]/g,'').replace(/ {2,}/g,' '));
  }
  if(current.paragraphs.length)sections.push(current);
- if(count!==53||sections.length!==54||sections.some(s=>!s.paragraphs.length))throw Error('Expected the full preface and all fifty-three historical sections.');
+ if(count!==53||sections.length!==55||sections.some(s=>!s.paragraphs.length)||sections.at(-1).name!=='Historical Notes')throw Error('Expected the full preface, fifty-three sections and the historical notes.');
  return sections;
 }
 function paginate(sections){
@@ -246,13 +251,13 @@ function render(){if(!pages.length)return;const page=pages[state.page];
 }
 function setupBook(raw){
  const parsed=parseText(raw),paged=paginate(parsed);
- if(parsed.length!==54||paged.length<65)throw Error('Expected the complete preface and all 53 sections.');
+ if(parsed.length!==55||paged.length<65)throw Error('Expected the complete preface, all 53 sections, and historical notes.');
  segments=parsed;pages=paged;
  $('section').replaceChildren(...segments.map((s,i)=>new Option(s.name,String(i))));
  $('page').replaceChildren(...pages.map((_,i)=>new Option('Page '+(i+1),String(i))));
  $('section').disabled=$('page').disabled=$('play').disabled=false;
  state.page=Math.max(0,Math.min(state.page,pages.length-1));
- $('loadbox').classList.add('hidden');render();save();note('All 53 sections are ready. Press Read aloud to begin.');
+ $('loadbox').classList.add('hidden');render();save();note('All 53 sections and the historical notes are ready. Press Read aloud to begin.');
 }
 function updateVoices(){if(!('speechSynthesis' in window))return;voiceList=speechSynthesis.getVoices();$('voice').replaceChildren(new Option('Automatic English voice',''),...voiceList.filter(v=>/^en/i.test(v.lang)).map(v=>new Option(v.name+' · '+v.lang,v.voiceURI)));$('voice').value=state.voice;}
 function applySettings(){$('speed').value=state.speed;$('speedview').value=state.speed+'×';$('size').value=state.size;$('sizeview').value=state.size+' px';$('dark').checked=state.night;$('autoturn').checked=state.autoTurn;document.body.classList.toggle('night',state.night);document.documentElement.style.setProperty('--text-size',state.size+'px');}
