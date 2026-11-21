@@ -19,7 +19,7 @@ for entry in manifest['volumes']:
             req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 (OpheliasOpenBook archival project)'})
             with urllib.request.urlopen(req,timeout=60) as response:
                 candidate=response.read().decode('utf-8-sig')
-            if len(candidate)>50000 and re.search(r'THE WRITINGS OF THOMAS JEFFERSON',candidate,re.I):
+            if len(candidate)>50000 and re.search(r'THE\\s+WRITINGS\\s+OF\\s+THOMAS\\s+JEFFERSON',candidate,re.I):
                 raw=candidate
                 break
         except Exception as error:
