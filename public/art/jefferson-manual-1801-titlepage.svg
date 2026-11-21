@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800" viewBox="0 0 600 800">
+<rect width="600" height="800" fill="#e8dec9"/><rect x="25" y="25" width="550" height="750" fill="#fbf5e7" stroke="#a99572" stroke-width="2"/>
+<g text-anchor="middle" fill="#302c24" font-family="Georgia,serif">
+<text x="300" y="111" font-size="42" letter-spacing="7">A MANUAL</text>
+<text x="300" y="161" font-size="23" font-style="italic">OF</text>
+<text x="300" y="223" font-size="39" letter-spacing="2">PARLIAMENTARY</text>
+<text x="300" y="277" font-size="41" letter-spacing="3">PRACTICE.</text>
+<path d="M172 314H428" stroke="#927f5a" stroke-width="2"/>
+<text x="300" y="367" font-size="21">FOR THE USE OF THE</text>
+<text x="300" y="414" font-size="34" letter-spacing="4">SENATE</text>
+<text x="300" y="453" font-size="20">OF THE</text>
+<text x="300" y="504" font-size="29" letter-spacing="2">UNITED STATES.</text>
+<text x="300" y="570" font-size="21">BY THOMAS JEFFERSON.</text>
+<text x="300" y="653" font-size="22">WASHINGTON CITY:</text>
+<text x="300" y="696" font-size="18">PRINTED BY SAMUEL HARRISON SMITH.</text>
+<text x="300" y="740" font-size="22">1801.</text>
+</g></svg>
