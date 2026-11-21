@@ -56,8 +56,6 @@ def extract():
     ends=[i for i in range(start+1,len(nodes)) if nodes[i].name.startswith("h") and upper(nodes[i]) in ("THE END","THE END.")]
     if len(ends)!=1:raise ValueError(f"End of second edition ambiguous: {len(ends)}")
     end=ends[0]
-    print("DEBUG heading tags:",[(n.name,upper(n)[:95]) for n in nodes[start+1:end] if n.name.startswith("h")][:15],flush=True)
-    print("DEBUG short SEC candidates:",[(n.name,clean(n.get_text(" ",strip=True))[:105]) for n in nodes[start+1:end] if len(clean(n.get_text(" ",strip=True)))<140 and re.search(r"\bSEC\.",clean(n.get_text(" ",strip=True)),re.I)][:75],flush=True)
     lines=["A MANUAL OF PARLIAMENTARY PRACTICE.","PREFACE."]
     count=0
     section_words=[]
@@ -91,7 +89,6 @@ def extract():
     # Notes printed with the author's 1812 edition belong to the book; put them
     # in a separate section so the user can skip them during ordinary listening.
     # The original note callout symbols are not spoken with running paragraphs.
-    print("DEBUG note nodes:",[(n.name,n.parent.name if n.parent else None,clean(n.get_text(" ",strip=True))[:105]) for n in nodes[end+1:end+25]],flush=True)
     footnotes=[]
     started=False
     for node in nodes[end+1:]:
@@ -100,7 +97,7 @@ def extract():
         v=clean(node.get_text(" ",strip=True))
         if not v:continue
         if "Text Version" in v or "Rendered into HTML" in v:break
-        if re.match(r"^\d\.\s",v):
+        if re.match(r"^\d\s*\.\s+",v):
             index=int(v[0])
             if index==len(footnotes)+1 and index<=6:
                 footnotes.append(v)
