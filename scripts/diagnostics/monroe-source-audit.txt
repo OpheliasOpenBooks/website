@@ -1,13 +1,569 @@
-Failed https://archive.org/download/writingsincludin03monruoft/writingsincludin03monruoft_djvu.txt: URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1011)'))
+Fetched https://archive.org/download/writingsincludin03monruoft/writingsincludin03monruoft_djvu.txt bytes 992830
 
-Failed https://archive.org/download/writingsincludin03monruoft/writingsincludin03monruoft_full_text.txt: <HTTPError 404: 'Not Found'>
+TOTAL characters 991802 words 151458
 
-Fetched https://archive.org/download/writingsincludin03monruoft/writingsincludin03monruoft.pdf bytes 21569748
+All View title occurrence offsets [3839, 3930, 4011, 20547, 22745, 206259, 206704, 534642]
 
-Failed https://archive.org/download/writingsincludin03monruoft/writingsincludin03monruoft.pdf: FileNotFoundError(2, 'No such file or directory')
+---- OCCURRENCE 3839 ----
+ charges. 
 
-TOTAL characters 0 words 0
+To  the  Secretary  of  State,  Philadelphia,  July  31st 
 
-All View title occurrence offsets []
+Condemnation  of  Administration. 
+
+To  Timothy  Pickering,  July  31st 
+
+Refusal  to  receive  Colonel  Pickering's  communication. 
+
+To  Thomas  Jefferson,  Albemarle,  September  5th 
+Interference  of  State  Legislature. 
+
+To  James  Madison,  Albemarle,  September  24th 
+
+View  of  the  conduct  of  the  Executive. 
+
+To  Thomas  Jefferson,  October  15th    . 
+
+View  of  the  conduct  of  the  Executive. 
+
+To  Thomas  Jefferson,  November 
+
+View  of  the  conduct  of  the  Executive. 
+
+To  Thomas  Jefferson,  Albemarle,  December  25th 
+
+Settlement  of  accounts — Remittance  for  family  of  La  Fayette 
+
+Project  of  Address  on  Return  from  First  Mission 
+
+
+63 
+66 
+
+68 
+
+69 
+
+70 
+
+73 
+84 
+
+85 
+86 
+
+86 
+
+88 
+
+89 
+92 
+
+
+CONTENTS  OF  VOLUME  III.  vii 
+
+1798. 
+
+PAGE 
+
+To  Thomas  Jefferson,  Albemarle,  January  8th  .         .         95 
+
+Land  tax — Contest  in  Congress — Resolutions  of  Assembly — 
+Essay  on  French  Revolution. 
+
+To  Thomas  Jefferson,  Richmond,  January  27th  .         97 
+
+Personal  accounts — Assembly — Scipio's  attack. 
+
+To   Doctor   Enoch   Edwards,    Albemarle,    Fe
+
+---- OCCURRENCE 3930 ----
+dministration. 
+
+To  Timothy  Pickering,  July  31st 
+
+Refusal  to  receive  Colonel  Pickering's  communication. 
+
+To  Thomas  Jefferson,  Albemarle,  September  5th 
+Interference  of  State  Legislature. 
+
+To  James  Madison,  Albemarle,  September  24th 
+
+View  of  the  conduct  of  the  Executive. 
+
+To  Thomas  Jefferson,  October  15th    . 
+
+View  of  the  conduct  of  the  Executive. 
+
+To  Thomas  Jefferson,  November 
+
+View  of  the  conduct  of  the  Executive. 
+
+To  Thomas  Jefferson,  Albemarle,  December  25th 
+
+Settlement  of  accounts — Remittance  for  family  of  La  Fayette 
+
+Project  of  Address  on  Return  from  First  Mission 
+
+
+63 
+66 
+
+68 
+
+69 
+
+70 
+
+73 
+84 
+
+85 
+86 
+
+86 
+
+88 
+
+89 
+92 
+
+
+CONTENTS  OF  VOLUME  III.  vii 
+
+1798. 
+
+PAGE 
+
+To  Thomas  Jefferson,  Albemarle,  January  8th  .         .         95 
+
+Land  tax — Contest  in  Congress — Resolutions  of  Assembly — 
+Essay  on  French  Revolution. 
+
+To  Thomas  Jefferson,  Richmond,  January  27th  .         97 
+
+Personal  accounts — Assembly — Scipio's  attack. 
+
+To   Doctor   Enoch   Edwards,    Albemarle,    February 
+
+1 2th 98 
+
+Refutation  of  charges. 
+
+To  Thomas  Jefferson,  Albemarle,  February
+
+---- OCCURRENCE 4011 ----
+nel  Pickering's  communication. 
+
+To  Thomas  Jefferson,  Albemarle,  September  5th 
+Interference  of  State  Legislature. 
+
+To  James  Madison,  Albemarle,  September  24th 
+
+View  of  the  conduct  of  the  Executive. 
+
+To  Thomas  Jefferson,  October  15th    . 
+
+View  of  the  conduct  of  the  Executive. 
+
+To  Thomas  Jefferson,  November 
+
+View  of  the  conduct  of  the  Executive. 
+
+To  Thomas  Jefferson,  Albemarle,  December  25th 
+
+Settlement  of  accounts — Remittance  for  family  of  La  Fayette 
+
+Project  of  Address  on  Return  from  First  Mission 
+
+
+63 
+66 
+
+68 
+
+69 
+
+70 
+
+73 
+84 
+
+85 
+86 
+
+86 
+
+88 
+
+89 
+92 
+
+
+CONTENTS  OF  VOLUME  III.  vii 
+
+1798. 
+
+PAGE 
+
+To  Thomas  Jefferson,  Albemarle,  January  8th  .         .         95 
+
+Land  tax — Contest  in  Congress — Resolutions  of  Assembly — 
+Essay  on  French  Revolution. 
+
+To  Thomas  Jefferson,  Richmond,  January  27th  .         97 
+
+Personal  accounts — Assembly — Scipio's  attack. 
+
+To   Doctor   Enoch   Edwards,    Albemarle,    February 
+
+1 2th 98 
+
+Refutation  of  charges. 
+
+To  Thomas  Jefferson,  Albemarle,  February  12th        .       loo 
+
+Political  situation — Publication  of  book. 
+
+To  T
+
+---- OCCURRENCE 20547 ----
+sembly,    Rich- 
+mond, December  9th        ......       378 
+
+Correspondence  with  the  President  respecting  lands  for  penal 
+settlement — Maryland's  claim  to  territory. 
+
+To  Thomas  Jefferson,  Richmond,  December  17th      .       380 
+
+Introducing  General  Scott — Re-election  of  General  Mason. 
+Appendix     .........       383 
+
+A  View  of  the  Conduct  of  the  Executive  in  the  Foreign  Affairs 
+of  the  United  States,  etc.,  etc.,  etc. 
+
+
+ANNALS  OF  THE  LIFE 
+
+
+OF 
+
+
+JAMES  MONROE. 
+
+
+RECALL — GOVERNORSHIP. 
+
+
+1796.  Rufus  King  nominated  to  be  Minister  Plenipotenti- 
+
+May  19.     ary  to  Great  Britain  ;  David  Humphreys  to  Spain. 
+
+Passage  of  Act  for  relief  of  persons  imprisoned  for  debt ;  John 
+1796.         Quincy  Adams  nominated  to  be  Minister  Plenipoten- 
+tiary to  Portugal. 
+
+Tennessee  admitted  into  the  Union. 
+
+
+May  28. 
+1796. 
+June  I. 
+1796. 
+Aug.  22. 
+1796. 
+Sept.  26 
+
+1796. 
+Nov.  4. 
+
+
+Recalled  from  his  mission  to  France. 
+
+
+Washington's  Farewell  Address. 
+
+Treaty  of  Peace,  Friendship,  Navigation,  and  Ransom 
+of  American  Prisoners  with  Tripoli. 
+Third  Presidential  Election — John  Adams
+
+---- OCCURRENCE 22745 ----
+oys  Extraordinary  and  Min- 
+
+May  31.    isters  Plenipotentiary  to  France. 
+
+170*7  • 
+
+'^''  Elbndge  Gerry  nominated  vice  Dana  declmed. 
+
+June  7.  &  / 
+
+.' ,   *  Impeachment  of  William  Blount. 
+
+July  9.  ^ 
+
+1797.  Treaty  of  Peace,  Friendship,  Commerce,  and  Navi- 
+
+August.     gation  with  Tunis. 
+
+1797.  Publication  of  A  View  of  the  Conduct  of  the  Execu- 
+
+Dec.  2.      tive,  S^c. 
+
+Explanatory  Article  to  the  Treaty  with  Great  Britain  of  No- 
+vember  19,    1794,   releasing  Commissioners  under  the 
+
+jy  '  5th  Article  from  particularizing  the  latitude  and  longi- 
+
+tude of  the  River  St.  Croix,  signed  by  Lord  Grenville 
+
+and  Rufus  King. 
+
+.'    .J  Territory  of  Mississippi  organized. 
+
+.     ..'  Organization  of  the  Navy  Department. 
+
+Passage  of  Act  authorizing  the  President  to  raise  "Provisional 
+
+Army  "  ;  and  of  Act  more  effectually  to  protect  the  com- 
+
+Jr     '  o     merce  and  coasts  of  the  United   States  ;    to  authorize 
+May  20. 
+
+our  vessels  of  war  to  seize  French   armed  vessels  in 
+certain  cases. 
+
+,'     \  Passage  of  Act  abolishing  imprisonment  for  debt. 
+
+
+---- OCCURRENCE 206259 ----
+ither  of  these  in  the  appendix  ?^  Skipwith's  report 
+to  me  is  omitted  also  :  wod.  you  instruct  Bache  to 
+publish  it  in  the  appendix  the  one  I  refer  to  is  that 
+published  by  Pickering  with  Mr.  Adams's  message  to 
+the  last  Session  of  Congress. 
+
+Yours  respectfully, 
+
+Jas.  Monroe. 
+
+Sunday — Octr.  1797. 
+
+"  A  View  of  the  conduct  of  the  admn.  in  the  man- 
+agement of  our  foreign  affairs  for  the  year  1794,  5 
+
+*  See  Monroe's  View,  p.  406. 
+
+
+88  THE  WRITINGS  OF  [1797 
+
+and  6  by  an  appeal  to  the  official  instructions  &  cor- 
+respondence of  James  Monroe,  late  minister  p:  of  the 
+U.  States  to  the  French  republick  ;  to  wch.  is  prefix'd 
+an  introductory  narrative  by  the  sd.  James  M." 
+
+or 
+"  A  view  of  the  conduct  of  the  Executive  of  the  U. 
+States    in    the    management    of   the    affrs.    of   those 
+States  with  foreign  powers  for  the  years  1 794  &c." 
+as  above. 
+
+
+TO    THOMAS    JEFFERSON. 
+
+(Nov.  qu.  97.) ' 
+
+Dear  Sir, — I  have  a  letter  from  Mr.  Bache  with 
+the  printed  documents  complete  all  but  a  page  or  two 
+&  12  pages  of  "the  view 
+
+---- OCCURRENCE 206704 ----
+r  the  year  1794,  5 
+
+*  See  Monroe's  View,  p.  406. 
+
+
+88  THE  WRITINGS  OF  [1797 
+
+and  6  by  an  appeal  to  the  official  instructions  &  cor- 
+respondence of  James  Monroe,  late  minister  p:  of  the 
+U.  States  to  the  French  republick  ;  to  wch.  is  prefix'd 
+an  introductory  narrative  by  the  sd.  James  M." 
+
+or 
+"  A  view  of  the  conduct  of  the  Executive  of  the  U. 
+States    in    the    management    of   the    affrs.    of   those 
+States  with  foreign  powers  for  the  years  1 794  &c." 
+as  above. 
+
+
+TO    THOMAS    JEFFERSON. 
+
+(Nov.  qu.  97.) ' 
+
+Dear  Sir, — I  have  a  letter  from  Mr.  Bache  with 
+the  printed  documents  complete  all  but  a  page  or  two 
+&  12  pages  of  "the  view  &c."  I  enclose  a  note  to 
+correct  by  way  of  erratum  an  important  omission  of 
+almost  a  line  in  the  latter.  He  tells  me  the  late 
+expln.  at  Paris  has  produced  a  wonderful  effect  on 
+our  rascals  at  home,  who  he  thinks  were  in  harmony 
+with  those  there.  I  have  no  doubt  that  the  stronger 
+the  attack  upon  them  is,  hinting  a  belief  of  bribery  (I 
+mean  by  the  members  in  debate)  the  
+
+---- OCCURRENCE 534642 ----
+l,  &  was  answered  by  the  Secretary  of 
+State  that  a  succeeding  president  was  not  bound  to  answer  for  or  explain  the 
+motives  of  the  acts  of  his  predecessor,  intending  to  create  a  belief  there  was 
+just  cause  of  complaint  against  J.  M.  tho'  none  was  communicated  or  avowed. 
+
+J.  M.  then  published  his  view  of  the  conduct  of  the  administration  &c 
+
+Of  late  Mr.  A.  has  denounced  J.  M.  in  a  reply  to  an  address  to  the  people 
+of  Lancaster  as  a  person  "  disgraced  for  misconduct  &c."  But  no  example  of 
+misconduct  was  given  or  specific  charge  alleged. 
+
+In  this  state  of  things  ought  J.  M.  to  do  anything  more  than  he  has  already 
+done?  &  if  anything  what?  the  general  question  ought  to  be  first  decided  as 
+involving  a  principle  of  chief  importance. 
+
+The  merits  of  J.  Monroes  conduct,  as  likewise  of  that  of  the  administration, 
+seem  to  be  fully  before  the  public,  in  J.  M's  view  of  the  administration,  and 
+on  ground  favorable  to  J.  M.,  much  turpitude  being  shown  in  the  conduct  of 
+the  administration  &  none  in  that  of  J.  M.  The
 
 ------ FINAL 5000 CHARS OF 1898 VOLUME ------
+he  claim  of  merit  for  not  wishing  it. 
+But  the  fact  in  my  opinion  was  so.  I  speak  with  confidence  of 
+the  views  of  the  French  government,  in  that  respect,  after  I  got 
+there  ;    especially  whilst  our  footing  was  most  cordial.     Of  the 
+
+
+456  THE  WRITINGS  OF  JAMES  MONROE. 
+
+
+motive  I  say  nothing  ;  but  I  think  it  not  only  due  to  candor,  but 
+sound  policy,  to  admit  in  all  cases  the  motive  to  be  good,  when 
+the  effect  was  salutary. 
+
+Such  was  the  situation  of  America  in  the  commencement  of  this 
+war  !  Such  our  standing  with  the  French  nation,  so  advantageous 
+in  itself,  so  easy  to  preserve  !  And  yet  all  these  advantages  have 
+been  thrown  away,  and  instead  of  that  secure  and  tranquil  state 
+which  we  might  have  enjoyed  throughout,  we  have  been  likewise 
+plunged,  so  far  as  the  administration  could  plunge  us,  into  a  war 
+with  our  ancient  ally,  and  on  the  side  of  the  kings  of  Europe 
+contending  against  her  for  the  subversion  of  liberty  ! 
+
+Had  France  been  conquered,  to  what  objects  that  administra- 
+tion would  have  aspired,  has  fortunately,  by  her  victories,  been 
+left  a  subject  for  conjecture  only.  Of  its  zeal  to  push  things  to  a 
+dangerous  extremity  we  have  many  proofs  :  Of  its  moderation, 
+none. 
+
+We  have  heard  much  of  intrigues,  between  the  people  of  these 
+States  and  the  government  of  France.  But  free  people  seldom 
+intrigue  together  ;  because  there  is  no  motive  for  it.  Between 
+the  leaders  however  of  a  free  people,  and  the  neighbouring  mon- 
+archs,  such  intrigues  have  often  taken  place,  and  always  will  take 
+place,  whilst  liberty  is  odious  to  monarchs,  and  men  can  be 
+found  base  enough  to  betray  her.  If  we  read  the  history  of  the 
+ancient  Grecian  republics,  we  shall  see  many  examples  of  in- 
+trigues between  the  kings  of  Persia  and  the  leaders  of  those 
+republics  ;  whilst  none  are  to  be  seen  of  combinations  between 
+the  people  of  any  of  those  republics  and  the  free  governments  of 
+another,  except  of  the  purpose  of  overthrowing  their  tyrants.  But 
+in  America  we  have  no  tyrant  except  that  of  prejudice,  which 
+time  and  information  alone  will  overthrow. 
+
+The  contrast  between  the  situation  we  might  have  held, 
+through  the  whole  of  this  war,  and  that  which  we  have  held,  is  a 
+striking  one.  We  might  have  stood  well  with  France,  avoiding 
+all  the  losses  we  have  sustained  from  her  ;  enjoying  the  benefits 
+of  the  principles  of  free  trade,  and  even  appeared  as  an  advocate 
+for  those  principles,  and  without  going  to  any  extremity  :  We 
+might  have  preserved  our  ancient  renown  ;  bought  at  a  great  ex- 
+pence  of  blood  and  treasure,  in  a  long  war,  in  a  contest  for  liberty, 
+
+
+APPENDIX  457 
+
+
+and  even  appeared  as  a  defender  of  liberty,  and  without  fighting 
+for  her  :  We  might  too,  in  my  opinion,  have  commanded  a  better 
+fortune  in  our  negociation  with  Britain,  and  only  by  availing  our- 
+selves, in  a  suitable  manner,  of  the  fortunes  of  France.  And 
+instead  of  a  situation  so  advantageous,  so  honorable,  so  satis- 
+factory to  our  country,  what  is  that  into  which  our  government 
+has  conducted  us  ?  Our  navigation  destroyed,  commerce  laid 
+waste  and  a  general  bankruptcy  threatening  those  engaged  in  it  ; 
+the  friendship  of  a  nation  lost,  the  most  powerful  on  earth,  who 
+had  deserved  better  things  from  us,  and  had  offered  to  place  us, 
+our  vessels,  and  commodities  on  the  footing  of  its  native  citizens 
+in  all  its  dominions  ;  war  hanging  over  us,  and  that  not  on  the 
+side  of  liberty  and  the  just  affections  of  our  people,  but  of  mon- 
+archy and  our  late  most  deadly  foe  ;  and  we  are  made  fast,  by 
+treaty  and  by  the  spirit  of  those  at  the  helm,  to  a  nation  bankrupt 
+in  its  resources,  and  rapidly  verging  either  to  anarchy  or  despotism. 
+Nor  is  this  all.  Our  national  honor  is  in  the  dust ;  we  have  been 
+kicked,  cuffed,  and  plundered  all  over  the  ocean  ;  our  reputation 
+for  faith  scouted  ;  our  government  and  people  branded  as  cowards, 
+incapable  of  being  provoked  to  resist,  and  ready  to  receive  again 
+those  chains  we  had  taught  others  to  burst.  Long  will  it  be 
+before  we  shall  be  able  to  forget  what  we  are,  nor  will  centuries 
+suffice  to  raise  us  to  the  high  ground  from  which  we  have  fallen. 
+
+
+END   OF   VOLUME   III. 
+
+
+iiii 
+
+
+j;  i 
+
+
+:i.,i:l!i-'- 
+
+
+f( 
+
+
+iiiiiii 
+
+
+■  iMf    Ki  It     i 
+
+
+'      ..1 
+
+
+n 
+
+
+s^ 
+
+
+nil 
+'mm 
+
+
+!< 
+
+
+i 
+
+
+;'!•  -I 
+
+
+.(■  I'  'l 
+
+
+'^'i';. 
+
+
+'■^■1^', 
+
+
