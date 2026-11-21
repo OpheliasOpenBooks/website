@@ -24,3 +24,5 @@ destination=pathlib.Path('public/books/alexander-hamilton-conant-1901.txt')
 destination.parent.mkdir(parents=True,exist_ok=True)
 destination.write_text(body+'\n',encoding='utf-8')
 print('Complete locally hosted edition verified:',words,'words')
+
+# Trigger validated import after workflow installation.
