@@ -18,6 +18,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Install PDF text extractor
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
       - name: Inspect historical volume without publishing partial OCR
         run: python scripts/audit_monroe_source.py
       - name: Save source audit
