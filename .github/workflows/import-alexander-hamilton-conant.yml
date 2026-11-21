@@ -1,0 +1,26 @@
+name: Import complete Alexander Hamilton by Conant
+on:
+  push:
+    branches: [main]
+    paths: ['scripts/import_alexander_hamilton_conant.py']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Import and verify full 1901 biography
+        run: python scripts/import_alexander_hamilton_conant.py
+      - name: Commit verified local source
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/books/alexander-hamilton-conant-1901.txt
+          if ! git diff --cached --quiet; then
+            git commit -m "Import complete Alexander Hamilton by Conant"
+            git push
+          fi
