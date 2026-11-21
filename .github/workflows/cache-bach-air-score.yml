@@ -1,0 +1,91 @@
+name: Archive Bach Air original orchestral score
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/cache-bach-air-score.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Set up PDF checker
+        run: python3 -m pip install --disable-pip-version-check pypdf
+      - name: Cache the complete Air movement, not a piano arrangement
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import io, pathlib, urllib.request, zipfile
+          from pypdf import PdfReader
+
+          target=pathlib.Path('public/scores/bach-air-bwv1068-complete.pdf')
+          target.parent.mkdir(parents=True,exist_ok=True)
+          if target.exists():
+              old=target.read_bytes()
+              try:
+                  n=len(PdfReader(io.BytesIO(old)).pages)
+                  if 2<=n<=8:
+                      print('Full Bach Air score already hosted:',n,'pages')
+                      raise SystemExit(0)
+              except Exception:
+                  pass
+
+          def get(url):
+              req=urllib.request.Request(url,headers={
+                  'User-Agent':'OpheliasOpenBook/1.0 archival-free-sheetmusic',
+                  'Accept':'application/pdf,application/zip,application/octet-stream,*/*'})
+              with urllib.request.urlopen(req,timeout=60) as resp:
+                  return resp.read(6_000_000)
+
+          def check(data,where):
+              if not data.startswith(b'%PDF-'):raise ValueError(where+': not a PDF')
+              pdf=PdfReader(io.BytesIO(data))
+              n=len(pdf.pages)
+              if not (2<=n<=8):raise ValueError(f'{where}: unexpected score length {n}')
+              first=(pdf.pages[0].extract_text() or '').lower()
+              if not ('air' in first and ('bach' in first or 'bwv' in first)):
+                  raise ValueError(where+': no Bach Air title in the score')
+              print('Validated',where,'pages',n,'bytes',len(data))
+              return data
+
+          errors=[]
+          try:
+              archived=get('https://www.mutopiaproject.org/ftp/BachJS/BWV1068/bach-air/bach-air-a4-pdfs.zip')
+              with zipfile.ZipFile(io.BytesIO(archived)) as z:
+                  names=[n for n in z.namelist() if n.lower().endswith('.pdf')]
+                  print('Mutopia package contains',names)
+                  exact=[n for n in names if pathlib.PurePosixPath(n).name.lower() in
+                    ('bach-air-a4.pdf','bach-air-score-a4.pdf','bach-air-a4-score.pdf')]
+                  if not exact:
+                      exact=[n for n in names if 'score' in n.lower() and 'air' in n.lower()]
+                  if not exact:raise ValueError('Cannot identify original-orchestra conductor score in Mutopia package')
+                  data=check(z.read(exact[0]),'Mutopia orchestra PDF '+exact[0])
+          except Exception as exc:
+              errors.append(str(exc))
+              try:
+                  data=check(get('https://s9.imslp.org/files/imglnks/usimg/5/5f/IMSLP04192-Bach-air-a4.pdf'),'IMSLP Mutopia 2002 original-orchestra score')
+              except Exception as exc2:
+                  errors.append(str(exc2))
+                  raise SystemExit('Unable to validate a complete Bach Air score: '+' | '.join(errors))
+          target.write_bytes(data)
+          print('Saved verified, full original-orchestra Air movement score:',target)
+          PY
+      - name: Commit local, verified PDF
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/scores/bach-air-bwv1068-complete.pdf
+          if ! git diff --cached --quiet; then
+            git commit -m "Host verified Bach Air full original-orchestra conductor score"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
