@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800" viewBox="0 0 600 800">
+<rect width="600" height="800" fill="#e3d7bd"/><rect x="28" y="24" width="544" height="750" fill="#f5efdf" stroke="#9b8662" stroke-width="3"/>
+<g fill="#302920" font-family="Georgia,serif" text-anchor="middle">
+<text x="300" y="95" font-size="32" font-style="italic" letter-spacing="4">DISCOURSES</text>
+<text x="300" y="140" font-size="22" letter-spacing="3">ON</text>
+<text x="300" y="201" font-size="53" letter-spacing="10">D A V I L A.</text>
+<text x="300" y="250" font-size="21">A SERIES OF PAPERS,</text>
+<text x="300" y="284" font-size="22" font-style="italic">ON</text>
+<text x="300" y="338" font-size="37" font-style="italic">POLITICAL HISTORY.</text>
+<text x="300" y="407" font-size="18">WRITTEN IN THE YEAR 1790,</text>
+<text x="300" y="438" font-size="17">AND THEN PUBLISHED IN THE</text>
+<text x="300" y="472" font-size="18">GAZETTE OF THE UNITED STATES.</text>
+<path d="M160 505H440" stroke="#8b7959" stroke-width="1.5"/>
+<text x="300" y="558" font-size="21" font-style="italic">BY AN AMERICAN CITIZEN.</text>
+<text x="300" y="618" font-size="24">JOHN ADAMS.</text>
+<text x="300" y="692" font-size="18">BOSTON:</text>
+<text x="300" y="724" font-size="17">RUSSELL AND CUTLER. 1805.</text>
+</g></svg>
