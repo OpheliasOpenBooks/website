@@ -51,15 +51,11 @@ def source_pages():
         raise ValueError('Historical source TOC is missing '+', '.join(k for k in required if k not in urls))
     return [(k,urls[k]) for k in required]
 def content_text(soup,url):
-    root=(soup.select_one('.prp-pages-output')
-          or soup.select_one('#mw-content-text .mw-parser-output')
+    # Each Query comprises MANY proofread-page transclusion elements.
+    # Select the entire content area, NEVER just the first .prp-pages-output.
+    root=(soup.select_one('#mw-content-text .mw-parser-output')
           or soup.select_one('main .mw-parser-output'))
     if root is None: raise ValueError('Unable to locate original page transcription: '+url)
-    if url.rstrip('/').endswith('Query_09'):
-        print('Q9 DEBUG selected root:',root.name,'words:',len(root.get_text(' ',strip=True).split()),'HTML chars:',len(str(root)),
-              'tables:',len(root.find_all('table')),'divs:',len(root.find_all('div')),'paragraphs:',len(root.find_all('p')),flush=True)
-        print('Q9 DEBUG first 900 chars:',str(root)[:900],flush=True)
-        print('Q9 DEBUG last 900 chars:',str(root)[-900:],flush=True)
     for el in root.select('script, style, nav, footer, .mw-editsection, .pagenum, .ws-pagenum, .prp-pages-output .pagenum, .reference, sup.reference, .reflist, .mw-references-wrap, .thumb, .mw-empty-elt, .noprint, .ws-noexport, .ws-header, #headerContainer, #ws-data, .headerContainer, .wikisource-header, .mw-parser-output .navbox'):
         el.decompose()
     # Handle published tables as individual readable rows, rather than discarding the data.
@@ -114,6 +110,8 @@ def create_text():
         wc=len(' '.join(pars).split())
         if wc<18 and key!='Q3':raise ValueError(f'{key} appears truncated ({wc} words)')
         if key=='Q9' and wc<120:raise ValueError('Military census table was not extracted; Query IX is incomplete')
+        if key=='Q11' and wc<900:raise ValueError('Aborigines query is truncated: multiple historical source pages missing')
+        if key=='Q13' and wc<7000:raise ValueError('Constitution query appears truncated')
         if key=='Q3' and wc<10:raise ValueError('Short Query III is missing')
         if key.startswith('Q'):
             n=int(key[1:])
