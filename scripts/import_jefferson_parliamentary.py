@@ -91,6 +91,7 @@ def extract():
     # Notes printed with the author's 1812 edition belong to the book; put them
     # in a separate section so the user can skip them during ordinary listening.
     # The original note callout symbols are not spoken with running paragraphs.
+    print("DEBUG note nodes:",[(n.name,n.parent.name if n.parent else None,clean(n.get_text(" ",strip=True))[:105]) for n in nodes[end+1:end+25]],flush=True)
     footnotes=[]
     started=False
     for node in nodes[end+1:]:
