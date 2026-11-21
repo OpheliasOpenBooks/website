@@ -1,0 +1,76 @@
+name: Host Smetana Vltava complete historical orchestral score
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/cache-smetana-vltava-score.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  cache-vltava-score:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install score validator
+        run: python -m pip install --disable-pip-version-check pypdf
+      - name: Retrieve historical complete orchestral score and validate its 66 pages
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import io, pathlib, urllib.request, time
+          from pypdf import PdfReader
+          dest=pathlib.Path('public/scores/smetana-vltava-complete-orchestral-score.pdf')
+          dest.parent.mkdir(parents=True,exist_ok=True)
+          def verify(data,source):
+              if not data.startswith(b'%PDF-'): raise ValueError('Source returned an HTML or non-PDF response')
+              reader=PdfReader(io.BytesIO(data),strict=False)
+              n=len(reader.pages)
+              if n!=66: raise ValueError(f'Expected 66 pages, got {n}')
+              if len(data)<500000 or len(data)>28000000: raise ValueError(f'Unexpected PDF length {len(data)}')
+              print('Verified complete public-domain 66-page historical full score:',source,len(data),'bytes')
+              return data
+          if dest.exists():
+              try:
+                  verify(dest.read_bytes(),'existing local copy')
+                  raise SystemExit(0)
+              except ValueError:
+                  pass
+          urls=[
+              'https://s9.imslp.org/files/imglnks/usimg/3/3f/IMSLP20152-PMLP05549-Smetana-VltavaFSbh.pdf',
+              'https://vmirror.imslp.org/files/imglnks/usimg/3/3f/IMSLP20152-PMLP05549-Smetana-VltavaFSbh.pdf',
+              'https://ks15.imslp.org/files/imglnks/usimg/3/3f/IMSLP20152-PMLP05549-Smetana-VltavaFSbh.pdf'
+          ]
+          errors=[]
+          for url in urls:
+              try:
+                  req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 (compatible; OpheliasOpenBooks/1.0; score preservation)','Accept':'application/pdf,*/*'})
+                  with urllib.request.urlopen(req, timeout=60) as response:
+                      data=response.read(29000000)
+                  data=verify(data,url)
+                  dest.write_bytes(data)
+                  break
+              except Exception as e:
+                  print('Unable to validate from',url,repr(e))
+                  errors.append(str(e))
+                  time.sleep(2)
+          else:
+              raise SystemExit('All score sources failed; no incomplete file committed: '+' | '.join(errors))
+          PY
+      - name: Commit and publish hosted score
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/scores/smetana-vltava-complete-orchestral-score.pdf
+          if ! git diff --cached --quiet; then
+            git commit -m "Host complete public-domain 66-page historical Smetana Vltava conductor score"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
