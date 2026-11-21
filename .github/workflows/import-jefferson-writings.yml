@@ -1,0 +1,29 @@
+name: Verify and import Jefferson nine-volume edition
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/import_jefferson_writings.py
+      - editorial/presidential-library/jefferson-writings-source-manifest.json
+permissions:
+  contents: write
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify complete nine-volume original text
+        run: python scripts/import_jefferson_writings.py
+      - name: Commit verified volumes without public catalog entry
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/books/presidents/jefferson-washington/
+          if ! git diff --cached --quiet; then
+            git commit -m "Archive complete Jefferson nine-volume public-domain text"
+            git push
+          fi
