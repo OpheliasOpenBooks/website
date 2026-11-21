@@ -1,0 +1,86 @@
+name: Host Vivaldi Summer complete conductor score
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/cache-vivaldi-summer-score.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cache-score:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Install PDF integrity checker
+        run: python3 -m pip install --disable-pip-version-check pypdf
+      - name: Download and validate complete, open-licensed 27-page score
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import io, pathlib, urllib.request, zipfile
+          from pypdf import PdfReader
+
+          destination = pathlib.Path('public/scores/vivaldi-summer-conductor-score.pdf')
+          destination.parent.mkdir(parents=True, exist_ok=True)
+          if destination.exists():
+              existing = destination.read_bytes()
+              try:
+                  if len(PdfReader(io.BytesIO(existing)).pages) == 27:
+                      print('Already archived valid 27-page conductor score.')
+                      raise SystemExit(0)
+              except Exception:
+                  pass
+
+          def retrieve(url):
+              req = urllib.request.Request(url, headers={
+                  'User-Agent': 'OpheliasOpenBook/1.0 (public-domain score preservation; GitHub Actions)',
+                  'Accept': 'application/pdf,application/zip,application/octet-stream,*/*',
+              })
+              with urllib.request.urlopen(req, timeout=55) as response:
+                  return response.read(8000000)
+
+          def validate(data, label):
+              if not data.startswith(b'%PDF-'):
+                  raise ValueError(f'{label}: response was not PDF')
+              pagecount = len(PdfReader(io.BytesIO(data)).pages)
+              if pagecount != 27:
+                  raise ValueError(f'{label}: expected 27 full-score pages; got {pagecount}')
+              print('Validated complete 27-page conductor score from', label, 'bytes', len(data))
+              return data
+
+          errors=[]
+          try:
+              data=validate(retrieve('https://s9.imslp.org/files/imglnks/usimg/8/84/IMSLP11098-SummerScore_Vivaldi.pdf'), 'IMSLP / Mutopia 2010')
+          except Exception as exc:
+              errors.append(str(exc))
+              try:
+                  archive=retrieve('https://www.mutopiaproject.org/ftp/VivaldiA/O8/summer/summer-let-pdfs.zip')
+                  with zipfile.ZipFile(io.BytesIO(archive)) as z:
+                      options=[n for n in z.namelist() if n.lower().endswith('.pdf') and 'score' in n.lower()]
+                      if not options:
+                          raise ValueError('Mutopia archive contained no conductor score PDF')
+                      data=validate(z.read(options[0]), 'Official Mutopia archive: '+options[0])
+              except Exception as exc2:
+                  errors.append(str(exc2))
+                  raise SystemExit('Unable to archive score; sources returned: '+' | '.join(errors))
+
+          destination.write_bytes(data)
+          print('Saved public-domain composition, CC BY-SA 3.0 typesetting:',destination)
+          PY
+      - name: Commit verified local PDF score
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/scores/vivaldi-summer-conductor-score.pdf
+          if ! git diff --cached --quiet; then
+            git commit -m "Host complete open-licensed 27-page Vivaldi Summer conductor score"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
