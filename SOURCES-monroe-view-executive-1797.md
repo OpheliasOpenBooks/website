@@ -24,3 +24,7 @@ This volume reprints Monroe's introductory narrative **without the full body of 
 
 ## Locally hosted abbreviated narrative
 Only the 1898 reprinted Monroe narrative is hosted, at public/texts/monroe-executive-1797/narrative-1898-reprint.txt, comprising 31268 OCR-derived words across 365 paragraphs. The complete 1797 diplomatic and document appendix has not been reproduced.
+
+
+## Locally hosted abbreviated narrative
+Only the 1898 reprinted Monroe narrative is hosted, at public/texts/monroe-executive-1797/narrative-1898-reprint.txt, comprising 31013 OCR-derived words across 297 paragraphs. The complete 1797 diplomatic and document appendix has not been reproduced.
