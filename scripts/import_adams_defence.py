@@ -79,6 +79,25 @@ def main():
         text(s5[start2:start3]),
         text(s5[start3:]) + "\n" + text(s6[cont3:stop3]),
     ]
+    # The EPUBs contain site-imposed page navigation and current-publisher information.
+    # Preserve Adams's writings while stripping only this unrelated material.
+    boiler = "\n\nLiberty Fund, Inc.\n\n"
+    if boiler not in volumes[0] or len(volumes[0]) - volumes[0].index(boiler) > 15000:
+        raise ValueError("Volume I OLL footer boundary not found")
+    volumes[0] = volumes[0].split(boiler, 1)[0].strip() + "\n"
+    duplicate = "\n\nA\n\nDEFENCE\n\nof the\n\nCONSTITUTIONS OF GOVERNMENT"
+    boundary = volumes[1].rfind(duplicate)
+    if boundary < len(volumes[1]) - 2000:
+        raise ValueError("Volume II duplicate Volume III title not found")
+    volumes[1] = volumes[1][:boundary].strip() + "\n"
+    boundary = volumes[2].find(boiler)
+    continuation = "\n\nA DEFENCE OF THE CONSTITUTIONS OF GOVERNMENT OF THE UNITED STATES OF AMERICA.\n\nCHAPTER FIRST."
+    restart = volumes[2].find(continuation, boundary)
+    if boundary < 400000 or restart < boundary:
+        raise ValueError("Volume III OLL boilerplate boundary not found")
+    volumes[2] = volumes[2][:boundary].strip() + "\n\n" + volumes[2][restart:].strip() + "\n"
+    volumes = [re.sub(r"Edition:\s*current;\s*Page:\s*\[\s*\d+\s*\]", " ", v) for v in volumes]
+    volumes = [re.sub(r" {2,}", " ", v) for v in volumes]
     required = [
         ("PRELIMINARY OBSERVATIONS", "SAN MARINO", "CARTHAGE", "CONCLUSION"),
         ("FLORENCE", "MACHIAVEL", "SIENA", "BOLOGNA"),
