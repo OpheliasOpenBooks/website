@@ -1,0 +1,53 @@
+name: Import verified Notes on the State of Virginia (Jefferson)
+on:
+  push:
+    paths:
+      - '.github/workflows/import-jefferson-notes.yml'
+      - 'scripts/import_jefferson_notes.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  publish-complete-edition:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install historical text parsing dependencies
+        run: python -m pip install beautifulsoup4
+      - name: Import and validate complete Jefferson historical edition
+        run: |
+          set -o pipefail
+          python scripts/import_jefferson_notes.py 2>&1 | tee /tmp/jefferson-notes-import.log
+      - name: Verify published edition, navigation and full-featured listening controls
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          root=Path('.')
+          t=(root/'public/texts/jefferson-notes-virginia/complete.txt').read_text(encoding='utf-8')
+          h=(root/'notes-on-the-state-of-virginia.html').read_text(encoding='utf-8')
+          c=(root/'catalog.html').read_text(encoding='utf-8')
+          assert len(t.split())>=30000 and 'ſ' not in t
+          assert sum(1 for l in t.splitlines() if re.fullmatch(r'QUERY\s+[IVXLCDM]+\.\s+.+',l))==23
+          assert sum(1 for l in t.splitlines() if re.fullmatch(r'APPENDIX\s+[IVXLCDM]+\.',l))==4
+          assert all('id="'+x+'"' in h for x in ['section','page','voice','speed','size','dark','settings-toggle','autoturn','bookmark','play'])
+          assert 'ophelia-narration.js' in h
+          assert 'notes-on-the-state-of-virginia.html' in c
+          assert (root/'public/art/jefferson-notes-virginia-1802-titlepage.svg').exists()
+          print('Verified: 23 historical Queries, 4 appendices, standard Ophelia reader',flush=True)
+          PY
+      - name: Publish verified edition
+        run: |
+          git config user.name "Ophelia Library Importer"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/import_jefferson_notes.py public/texts/jefferson-notes-virginia/ notes-on-the-state-of-virginia.html public/art/jefferson-notes-virginia-1802-titlepage.svg catalog.html sitemap.xml
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish complete Jefferson Notes on State of Virginia with Ophelia reader"
+            git push
+          fi
