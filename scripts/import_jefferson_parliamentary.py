@@ -56,6 +56,8 @@ def extract():
     ends=[i for i in range(start+1,len(nodes)) if nodes[i].name.startswith("h") and upper(nodes[i]) in ("THE END","THE END.")]
     if len(ends)!=1:raise ValueError(f"End of second edition ambiguous: {len(ends)}")
     end=ends[0]
+    print("DEBUG heading tags:",[(n.name,upper(n)[:95]) for n in nodes[start+1:end] if n.name.startswith("h")][:15],flush=True)
+    print("DEBUG short SEC candidates:",[(n.name,clean(n.get_text(" ",strip=True))[:105]) for n in nodes[start+1:end] if len(clean(n.get_text(" ",strip=True)))<140 and re.search(r"\bSEC\.",clean(n.get_text(" ",strip=True)),re.I)][:75],flush=True)
     lines=["A MANUAL OF PARLIAMENTARY PRACTICE.","PREFACE."]
     count=0
     section_words=[]
