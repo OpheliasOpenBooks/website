@@ -1,0 +1,76 @@
+name: Archive complete Handel Royal Fireworks 1788 score
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/cache-handel-royal-fireworks-score.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  archive-score:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --disable-pip-version-check pypdf
+      - name: Retrieve and validate complete Samuel Arnold 1788 conductor score
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from io import BytesIO
+          import urllib.request
+          from pypdf import PdfReader
+          dest=Path('public/scores/handel-royal-fireworks-complete-1788.pdf')
+          dest.parent.mkdir(parents=True,exist_ok=True)
+          if dest.exists():
+              try:
+                  if len(PdfReader(BytesIO(dest.read_bytes()),strict=False).pages)==20:
+                      print('Already present: complete 20-page Royal Fireworks score')
+                      raise SystemExit(0)
+              except Exception:
+                  pass
+          name='IMSLP305053-PMLP12548-Handel_-_The_Musick_for_the_Royal_Fireworks_%28Arnold%29.pdf'
+          base='files/imglnks/usimg/3/37/'+name
+          errors=[]
+          for host in ('https://s9.imslp.org/','https://imslp.eu/'):
+              try:
+                  req=urllib.request.Request(host+base,headers={
+                      'User-Agent':'Mozilla/5.0 (compatible; OpheliasOpenBookScoreArchiver/1.0)',
+                      'Accept':'application/pdf,*/*'
+                  })
+                  with urllib.request.urlopen(req,timeout=65) as r:
+                      data=r.read(12000000)
+                  if not data.startswith(b'%PDF-'):
+                      raise ValueError('Not a PDF response')
+                  reader=PdfReader(BytesIO(data),strict=False)
+                  if len(reader.pages)!=20:
+                      raise ValueError('Expected 20-page complete historical score, received '+str(len(reader.pages)))
+                  final=reader.pages[-1].extract_text() or ''
+                  if 'FINIS' not in final.upper():
+                      print('Note: FINIS was not extractable from page text; confirm by historical facsimile')
+                  dest.write_bytes(data)
+                  print('Archived complete 20-page 1788 Handel score:',len(data),'bytes from',host)
+                  break
+              except Exception as exc:
+                  errors.append(host+': '+str(exc))
+          else:
+              raise SystemExit('Unable to obtain validated historical score: '+' | '.join(errors))
+          PY
+      - name: Commit the locally hosted sheet music
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/scores/handel-royal-fireworks-complete-1788.pdf
+          if ! git diff --cached --quiet; then
+            git commit -m "Archive complete 1788 Handel Royal Fireworks score locally"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
