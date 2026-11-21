@@ -40,3 +40,5 @@ for name,body in staged.items():
     destination.parent.mkdir(parents=True,exist_ok=True)
     destination.write_text(body,encoding='utf-8')
 print('All nine volumes imported:',sum(len(x.split()) for x in staged.values()),'words')
+
+# Trigger initial source validation after the workflow has been registered.
