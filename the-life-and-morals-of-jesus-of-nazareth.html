@@ -86,6 +86,7 @@ function parseText(raw){
      n=num;current={name:'Section '+n+' · '+chapter[2],paragraphs:[]};
      continue;
    }
+   if(!current&&(/^(THE LIFE AND MORALS OF JESUS OF NAZARETH\.|1902 ENGLISH EDITION\.)/.test(block)))continue;
    if(!current)throw Error('Front matter is missing its source heading.');
    block=block.replace(/\[\s*(?:\d+|[*†‡])\s*\]/g,'').replace(/[†‡↑]/g,'').trim();
    current.paragraphs.push(block);
