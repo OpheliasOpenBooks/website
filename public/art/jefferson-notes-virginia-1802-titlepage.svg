@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800" viewBox="0 0 600 800">
+<rect width="600" height="800" fill="#e5d8ba"/><rect x="27" y="24" width="546" height="752" fill="#f9f1df" stroke="#a9936f" stroke-width="3"/>
+<g font-family="Georgia,serif" fill="#332b20" text-anchor="middle">
+<text x="300" y="105" font-size="33" letter-spacing="5">NOTES</text>
+<text x="300" y="157" font-size="25" font-style="italic">ON THE</text>
+<text x="300" y="213" font-size="38" letter-spacing="3">STATE OF</text>
+<text x="300" y="270" font-size="46" letter-spacing="5">VIRGINIA.</text>
+<path d="M146 316H454" stroke="#998160" stroke-width="2"/>
+<text x="300" y="370" font-size="22">WITH AN</text>
+<text x="300" y="409" font-size="28" letter-spacing="3">APPENDIX.</text>
+<text x="300" y="480" font-size="24">BY THOMAS JEFFERSON.</text>
+<text x="300" y="571" font-size="21" letter-spacing="2">NINTH AMERICAN EDITION.</text>
+<text x="300" y="662" font-size="25" letter-spacing="3">BOSTON:</text>
+<text x="300" y="706" font-size="18">PRINTED BY H. SPRAGUE.</text>
+<text x="300" y="746" font-size="24">1802.</text></g></svg>
