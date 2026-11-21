@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """Import complete 53-section parliamentary manual by Thomas Jefferson.
-Source: Project Gutenberg eBook 56578, THE WRITINGS OF THOMAS JEFFERSON,
-vol. IX, edited by H. A. Washington (1861); source work first printed 1801.
-The 1861 transcription is not represented as a facsimile of the first edition.
+Source: public-domain 1812 second edition, with Jefferson's later additions;
+first edition appeared 1801. Never label the 1812 text as an 1801 facsimile.
 No catalog change is made unless all 53 historical sections verify.
 """
 from __future__ import annotations
@@ -16,25 +15,22 @@ ROOT=Path(__file__).resolve().parents[1]
 PAGE="a-manual-of-parliamentary-practice-jefferson.html"
 TEXT=ROOT/"public/texts/jefferson-parliamentary-manual/complete.txt"
 COVER=ROOT/"public/art/jefferson-manual-1801-titlepage.svg"
-URLS=[
- "https://www.gutenberg.org/files/56578/56578-h/56578-h.htm",
- "https://www.gutenberg.org/cache/epub/56578/pg56578-images.html",
- "https://www.gutenberg.org/cache/epub/56578/pg56578.html",
-]
+SOURCE_URL="https://constitution.org/1-History/Founders/tj/tj-mpp.htm"
 def download():
-    for url in URLS:
-        for attempt in range(2):
-            try:
-                request=Request(url, headers={"User-Agent":"OpheliasOpenBook/1.0 (historical public-domain library; reader import)", "Accept":"text/html"})
-                with urlopen(request,timeout=75) as response:
-                    content=response.read()
-                if len(content)<500000:raise ValueError(f"Unusually short source HTML: {len(content)} bytes")
-                print("Downloaded:",url,len(content),"bytes",flush=True)
-                return BeautifulSoup(content,"html.parser")
-            except Exception as exc:
-                print("Source unavailable:",url,str(exc),flush=True)
-                time.sleep(2)
-    raise RuntimeError("Could not retrieve Gutenberg eBook 56578.")
+    request=Request(SOURCE_URL,headers={
+       "User-Agent":"OpheliasOpenBook/1.0 (historical public-domain reading library)",
+       "Accept":"text/html,application/xhtml+xml"})
+    for attempt in range(3):
+        try:
+            with urlopen(request,timeout=75) as response:blob=response.read()
+            if len(blob)<70000:raise ValueError(f"1812 historical text appears too small: {len(blob)} bytes")
+            print("Downloaded 1812 second edition, with author's additions:",len(blob),"bytes",flush=True)
+            return BeautifulSoup(blob,"html.parser")
+        except Exception as exc:
+            print("Historical source retrieval failed:",repr(exc),flush=True)
+            time.sleep((attempt+1)*3)
+    raise RuntimeError("1812 source was not available; no partial edition will be published.")
+
 def roman(n):
     values=[(1000,"M"),(900,"CM"),(500,"D"),(400,"CD"),(100,"C"),(90,"XC"),(50,"L"),(40,"XL"),(10,"X"),(9,"IX"),(5,"V"),(4,"IV"),(1,"I")]
     out=""
@@ -48,67 +44,89 @@ def clean(s):
     return s.strip()
 def extract():
     soup=download()
-    # Constrain the extraction to Book IV, Part IV alone.
-    # The other hundreds of pages in Gutenberg's anthology MUST NOT enter our copy.
-    for tag in soup.select("script,style,noscript,.pagenum,.pgnum,.footnote,.footnotes,.fnanchor,sup.footnote"):
-        tag.decompose()
-    nodes=soup.find_all(["h2","h3","h4","h5","h6","p","table"])
-    header=lambda x:clean(x.get_text(" ",strip=True)).upper()
-    starts=[i for i,tag in enumerate(nodes) if tag.name=="h2" and re.match(r"^PART\s+IV\.$",header(tag))]
-    if len(starts)!=1:raise ValueError(f"Expected one main Part IV heading, found {len(starts)}.")
-    start=starts[0]
-    ends=[i for i in range(start+1,len(nodes)) if nodes[i].name=="h2" and re.match(r"^PART\s+V\.$",header(nodes[i]))]
-    if not ends:raise ValueError("Next independent work (Part V) boundary not found.")
+    for node in soup.select("script,style,noscript,iframe,nav,footer, .footnote-ref, .fnanchor"):
+        node.decompose()
+    # Original 1812 manual starts at its own Preface, after the table of contents,
+    # and closes at THE END; the six contemporary notes follow that line.
+    nodes=soup.find_all(["h1","h2","h3","h4","h5","h6","p","li","table"])
+    upper=lambda x:clean(x.get_text(" ",strip=True)).upper()
+    prefaces=[i for i,n in enumerate(nodes) if n.name.startswith("h") and upper(n) in ("PREFACE","PREFACE.")]
+    if len(prefaces)!=1:raise ValueError(f"Historical preface heading missing: {len(prefaces)}")
+    start=prefaces[0]
+    ends=[i for i in range(start+1,len(nodes)) if nodes[i].name.startswith("h") and upper(nodes[i]) in ("THE END","THE END.")]
+    if len(ends)!=1:raise ValueError(f"End of second edition ambiguous: {len(ends)}")
     end=ends[0]
-    prefaces=[i for i in range(start,end) if nodes[i].name in ("h3","h4") and header(nodes[i])=="PREFACE."]
-    if len(prefaces)!=1:raise ValueError("Jefferson's manual preface missing or duplicated.")
-    # Distinguish section headings from references in prose, and verify strict
-    # sequence: I, II, III, ... LIII (53).
     lines=["A MANUAL OF PARLIAMENTARY PRACTICE.","PREFACE."]
     count=0
     section_words=[]
-    for tag in nodes[prefaces[0]+1:end]:
-        if tag.name=="table":
-            rows=[]
-            for tr in tag.find_all("tr"):
-                cells=[clean(c.get_text(" ",strip=True)) for c in tr.find_all(["td","th"],recursive=False)]
-                if any(cells):rows.append(" — ".join(c for c in cells if c))
-            if rows:lines.extend(rows)
+    for node in nodes[start+1:end]:
+        if node.name=="table":
+            for tr in node.find_all("tr"):
+                cells=[clean(c.get_text(" ",strip=True)) for c in tr.find_all(["th","td"],recursive=False)]
+                if any(cells):lines.append(" — ".join(c for c in cells if c))
             continue
-        if tag.find_parent("table"):continue
-        value=header(tag) if tag.name.startswith("h") else clean(tag.get_text(" ",strip=True))
+        if node.find_parent(["table","li","p"]):continue
+        value=clean(node.get_text(" ",strip=True))
         if not value:continue
-        match=re.match(r"^SECTION\s+([IVXLCDM]+)\.$",value) if tag.name.startswith("h") else None
+        match=re.match(r"^SEC\.\s+([IVXLCDM]+)\.$",value,flags=re.I) if node.name.startswith("h") else None
         if match:
             count+=1
-            if roman(count)!=match.group(1):
-                raise ValueError(f"Missing or unordered section: expected {roman(count)}, saw {match.group(1)}")
+            if roman(count)!=match.group(1).upper():
+                raise ValueError(f"Missing or out-of-order section: expected {roman(count)}, saw {match.group(1)}")
             lines.append("SECTION "+roman(count)+".")
             section_words.append(0)
-        elif tag.name.startswith("h"):
-            if re.match(r"^A MANUAL OF PARLIAMENTARY PRACTICE",value):
-                continue
+        elif node.name.startswith("h"):
             lines.append(value)
         else:
-            # Table of contents is excluded because scanning begins at Preface.
-            # Printed pagination and Gutenberg-only decorations are omitted.
-            if re.match(r"^\d{1,3}$",value):continue
+            if value in ("* * *","—","---") or re.fullmatch(r"\d{1,3}",value):continue
             lines.append(value)
             if section_words:section_words[-1]+=len(value.split())
-    if count!=53:raise ValueError(f"Expected 53 numbered sections; found {count}")
-    if any(n<20 for n in section_words):raise ValueError(f"One or more sections appear truncated: {section_words}")
+    if count!=53:raise ValueError(f"Expected 53 complete sections; got {count}.")
+    if any(n<18 for n in section_words):raise ValueError(f"One or more sections are truncated: {section_words}")
+    if not any("IMPEACHMENT" in x for x in lines[-70:]):
+        raise ValueError("Final impeachment chapter missing.")
+    # Notes printed with the author's 1812 edition belong to the book; put them
+    # in a separate section so the user can skip them during ordinary listening.
+    # The original note callout symbols are not spoken with running paragraphs.
+    footnotes=[]
+    started=False
+    for node in nodes[end+1:]:
+        if node.find_parent(["p","li","table"]):continue
+        if node.name.startswith("h"):break
+        v=clean(node.get_text(" ",strip=True))
+        if not v:continue
+        if "Text Version" in v or "Rendered into HTML" in v:break
+        if re.match(r"^\d\.\s",v):
+            index=int(v[0])
+            if index==len(footnotes)+1 and index<=6:
+                footnotes.append(v)
+                started=True
+                continue
+        if started and footnotes and not re.fullmatch(r"[\W_]+",v):
+            if re.match(r"^[A-Za-z]",v) and len(v)>30:
+                footnotes[-1]+=" "+v
+        if len(footnotes)==6:
+            # Some original notes continue over several paragraphs; preserve
+            # their continued prose until publisher footer, but not web ads.
+            continue
+    if len(footnotes)!=6:
+        raise ValueError(f"Expected six historical notes from 1812 edition; found {len(footnotes)}")
+    lines.append("NOTES.")
+    lines.extend(footnotes)
     full="\n\n".join(lines)+"\n"
-    if len(full.split())<17000:raise ValueError(f"Manual appears incomplete: {len(full.split())} words")
-    if "IMPEACHMENT." not in full[-12000:].upper():raise ValueError("Final impeachment section absent")
-    if "THE ANAS" in full.upper() or "END OF THE PROJECT GUTENBERG" in full:
-        raise ValueError("Unrelated material from the anthology was imported.")
+    if len(full.split())<16000:
+        raise ValueError(f"Manual source incomplete: only {len(full.split())} words")
+    if "THE ANAS" in full.upper() or "LSAT" in full.upper() or "TEST KING" in full.upper():
+        raise ValueError("Non-manual source content included in text.")
     for n in range(1,54):
         if full.count("\n\nSECTION "+roman(n)+".\n\n")!=1:
             raise ValueError(f"Section {n} missing or duplicated")
-    print("VERIFIED:",count,"sections;",len(full.split()),"words; source 1861 historical anthology",flush=True)
-    print("Opening:",full[:160].replace("\n"," / "),flush=True)
-    print("Closing:",full[-230:].replace("\n"," / "),flush=True)
+    if full.count("\n\nNOTES.\n\n")!=1:raise ValueError("Historical notes missing")
+    print(f"VERIFIED: 1812 second edition of 1801 Manual: 53 sections, preface, six historical notes; {len(full.split()):,} words",flush=True)
+    print("Opening:",full[:150].replace("\n"," / "),flush=True)
+    print("Closing:",full[-150:].replace("\n"," / "),flush=True)
     return full
+
 def main():
     full=extract()
     # Import only after every source and completeness condition passed.
@@ -125,7 +143,7 @@ def main():
     if PAGE not in contents:
         marker="const catalogOnlyBooks=["
         if contents.count(marker)!=1:raise ValueError("Catalog insertion marker changed.")
-        entry="""\n {title:'A Manual of Parliamentary Practice',author:'Thomas Jefferson · 1801 · 1861 historical transcription',href:'a-manual-of-parliamentary-practice-jefferson.html',image:'public/art/jefferson-manual-1801-titlepage.svg',alt:'Period-faithful reconstruction of the 1801 Washington City title page of Jefferson’s parliamentary manual',description:'Jefferson explains fair and orderly legislative proceedings across 53 sections, including debate, petitions, amendments, treaties, and impeachment. The complete manual is narrated in our own reader.',genre:'American History & Political Thought'},\n"""
+        entry="""\n {title:'A Manual of Parliamentary Practice',author:'Thomas Jefferson · 1801 · 1812 second edition',href:'a-manual-of-parliamentary-practice-jefferson.html',image:'public/art/jefferson-manual-1801-titlepage.svg',alt:'Period-faithful reconstruction of the 1801 Washington City title page of Jefferson’s parliamentary manual',description:'Jefferson explains fair and orderly legislative proceedings across 53 sections, including debate, petitions, amendments, treaties, and impeachment. The complete manual is narrated in our own reader.',genre:'American History & Political Thought'},\n"""
         catalog.write_text(contents.replace(marker,marker+entry,1),encoding="utf-8")
     sitemap=ROOT/"sitemap.xml"
     xml=sitemap.read_text(encoding="utf-8")
