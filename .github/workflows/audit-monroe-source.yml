@@ -1,0 +1,30 @@
+name: Audit complete public-domain Monroe source before publication
+on:
+  push:
+    paths:
+      - '.github/workflows/audit-monroe-source.yml'
+      - 'scripts/audit_monroe_source.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Inspect historical volume without publishing partial OCR
+        run: python scripts/audit_monroe_source.py
+      - name: Save source audit
+        if: always()
+        run: |
+          git config user.name "Ophelia Source Auditor"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/diagnostics/monroe-source-audit.txt || true
+          git commit -m "Document Monroe 1797 complete text availability" || true
+          git push || true
