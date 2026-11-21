@@ -253,7 +253,7 @@ function parseText(raw){
  "This locally hosted reader preserves the twenty-three queries and four appendices of the 1802 Ninth American Edition. Period spelling is generally retained, while archaic long-s typography has been normalized for ease of listening."
  ]}, query=0, appendices=0;
  for(let paragraph of paras){
-   paragraph=paragraph.replace(/\[\s*\d{1,3}\s*\]/g,'').replace(/[_]+/g,' ').trim();
+   paragraph=paragraph.replace(/\[\s*\d{1,3}\s*\]/g,'').replace(/↑\s*/g,'Note: ').replace(/[_]+/g,' ').trim();
    const m=paragraph.match(/^QUERY\s+([IVXLCDM]+)\.\s*(.*)$/i);
    const a=paragraph.match(/^APPENDIX\s+([IVXLCDM]+)\.\s*(.*)$/i);
    if(m){
@@ -301,7 +301,7 @@ function getText(){
  const first=state.page===0||pages[state.page-1].section!==page.section;
  const intro=first?segments[page.section].name.replace(/\s*[·×]\s*/g,'. ').replace(/\s+/g,' ').trim()+'. ':'';
  const spoken=first&&page.section>0&&page.paragraphs[0]===segments[page.section].heading?page.paragraphs.slice(1):page.paragraphs;
- return intro+spoken.map(p=>/^[IVXLCDM]+$/.test(p.trim())?'Section '+romanToNumber(p.trim())+'.':p.replace(/_([^_]+)_/g,'$1')).join(' ');
+ return (intro+spoken.map(p=>/^[IVXLCDM]+$/.test(p.trim())?'Section '+romanToNumber(p.trim())+'.':p.replace(/_([^_]+)_/g,'$1')).join(' ')).replace(/[†‡]/g,'');
 }
 function pickVoice(){return voiceList.find(v=>v.voiceURI===state.voice)||voiceList.find(v=>/^en-GB/i.test(v.lang))||voiceList.find(v=>/^en/i.test(v.lang))||null;}
 // This function is copied from the original Alice reader to preserve its exact
