@@ -6,14 +6,23 @@ Imported Q5 1297 words 7 blocks
 Imported Q6 16594 words 67 blocks
 Imported Q7 3334 words 18 blocks
 Imported Q8 160 words 2 blocks
+Q9 DEBUG selected root: div words: 47 HTML chars: 16213 tables: 0 divs: 2 paragraphs: 6
+Q9 DEBUG first 900 chars: <div about="#mwt13" class="prp-pages-output" data-mw='{"name":"pages","attrs":{"index":"Notes on the State of Virginia (1802).djvu","include":"134","onlysection":"part1"}}' id="mwBA" lang="en" typeof="mw:Extension/pages"><style about="#mwt11" data-mw='{"name":"templatestyles","attrs":{"src":"Index:Notes on the State of Virginia (1802).djvu/styles.css","wrapper":".prp-pages-output"},"body":{"extsrc":""}}' data-mw-deduplicate="TemplateStyles:r14927993/mw-parser-output/.prp-pages-output" id="mwBQ" typeof="mw:Extension/templatestyles">.mw-parser-output .prp-pages-output ._rules_all tbody td{border:1px solid}.mw-parser-output .prp-pages-output ._rules-cols tbody td{border-left:1px solid;border-right:1px solid}.mw-parser-output .prp-pages-output ._rules_all tbody tr:first-child td{border-top:none;border-left:1px solid;border-right:1px solid}.mw-parser-output .prp-pages-output ._rules_all tbody
+Q9 DEBUG last 900 chars: height:1em;text-indent:0;font-size:3em;margin:0 0.1em 0 0}.mw-parser-output .dropinitial-firstword{text-transform:uppercase}html.skin-theme-clientpref-night .mw-parser-output .wst-drop-initial-night-mode-invert{filter:invert(1)hue-rotate(180deg)}@media(prefers-color-scheme:dark){html.skin-theme-clientpref-os .mw-parser-output .wst-drop-initial-night-mode-invert{filter:invert(1)hue-rotate(180deg)}}</style><span class="dropinitial drop-initial-no-image" id="mwSw"><span class="dropinitial-mid" id="mwTA"><span class="dropinitial-initial" id="mwTQ">T</span></span></span>HE number and condition of the militia and 
+regular troops, and their pay?</p><span about="#mwt5" id="mwTg">
+</span><p about="#mwt5" id="mwTw">The following is a ſtate of the militia, taken 
+from returns of 1780 and 1781, except in thoſe 
+counties marked with an aſteriſk, the returns from 
+which is ſomewhat older. 
+ </p></div>
 Traceback (most recent call last):
-  File "/home/runner/work/website/website/scripts/import_jefferson_notes.py", line 476, in <module>
+  File "/home/runner/work/website/website/scripts/import_jefferson_notes.py", line 481, in <module>
     if __name__=='__main__':main()
                             ^^^^^^
-  File "/home/runner/work/website/website/scripts/import_jefferson_notes.py", line 148, in main
+  File "/home/runner/work/website/website/scripts/import_jefferson_notes.py", line 153, in main
     t=create_text()
       ^^^^^^^^^^^^^
-  File "/home/runner/work/website/website/scripts/import_jefferson_notes.py", line 111, in create_text
+  File "/home/runner/work/website/website/scripts/import_jefferson_notes.py", line 116, in create_text
     if key=='Q9' and wc<120:raise ValueError('Military census table was not extracted; Query IX is incomplete')
                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ValueError: Military census table was not extracted; Query IX is incomplete
