@@ -283,7 +283,7 @@ async function openBook(number,place='saved'){
  state.page=place==='start'||place==='end'?0:Number(state.bookPages[n]??(n===old?oldPage:0));
  note('Loading Part '+n+' from Ophelia’s library…');
  try{
-  if(!bookCache[n]){const response=await fetch(BOOK_PATH(n));if(!response.ok)throw Error('Part '+n+' is missing (HTTP '+response.status+').');bookCache[n]=await response.text();const keys=Object.keys(bookCache);if(keys.length>2)delete bookCache[keys[0]];}
+  if(!bookCache[n]){const response=await fetch(BOOK_PATH(n)+'?edition=20261120',{cache:'no-store'});if(!response.ok)throw Error('Part '+n+' is missing (HTTP '+response.status+').');bookCache[n]=await response.text();const keys=Object.keys(bookCache);if(keys.length>2)delete bookCache[keys[0]];}
   setupBook(bookCache[n]);
   if(place==='end'){state.page=pages.length-1;render();}
   save();
@@ -316,7 +316,7 @@ applySettings();
 (async()=>{
  try{
   note('Preparing the complete hosted ancient history…');
-  const response=await fetch('public/books/annals/en/manifest.json',{cache:'no-store'});
+  const response=await fetch('public/books/annals/en/manifest.json?edition=20261120',{cache:'no-store'});
   if(!response.ok)throw Error('Book manifest unavailable: HTTP '+response.status);
   MANIFEST=await response.json();
   if(MANIFEST.title!=='The Annals'||MANIFEST.author!=='Tacitus'||!Array.isArray(MANIFEST.parts)||MANIFEST.parts.length<5||MANIFEST.wordCount<60000)throw Error('The complete surviving historical text has not finished publishing');
