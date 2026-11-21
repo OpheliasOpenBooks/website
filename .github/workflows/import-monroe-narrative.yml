@@ -1,0 +1,58 @@
+name: Publish James Monroe narrative (explicitly abridged historical reprint)
+on:
+  push:
+    paths:
+      - '.github/workflows/import-monroe-narrative.yml'
+      - 'scripts/import_monroe_narrative.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  verify-and-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Download and validate the narrative-only public-domain reprint
+        run: |
+          set -o pipefail
+          python scripts/import_monroe_narrative.py
+      - name: Preserve source import diagnostics if validation fails
+        if: failure()
+        run: |
+          git config user.name "Ophelia Library Importer"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/diagnostics/monroe-narrative-import.log
+          git commit -m "Record Monroe narrative source-validation results" || true
+          git push || true
+      - name: Verify clearly labeled abridged edition and standard reader
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          root=Path('.')
+          txt=(root/'public/texts/monroe-executive-1797/narrative-1898-reprint.txt').read_text(encoding='utf-8')
+          html=(root/'a-view-of-the-conduct-of-the-executive-james-monroe.html').read_text(encoding='utf-8')
+          cat=(root/'catalog.html').read_text(encoding='utf-8')
+          assert 11500<len(txt.split())<50000
+          assert '=== EDITORIAL NOTE ===' in txt and '=== MONROE NARRATIVE ===' in txt
+          assert 'not the complete 1797 book' in txt
+          assert 'ABRIDGED:' in cat and 'abridged' in html.lower()
+          assert 'a-view-of-the-conduct-of-the-executive-james-monroe.html' in cat
+          assert 'ophelia-narration.js' in html
+          assert all('id="'+x+'"' in html for x in ('voice','speed','size','dark','autoturn','bookmark','settings-toggle','play'))
+          print('Validated Monroe abridged narrative with in-house full-featured reader.')
+          PY
+      - name: Commit verified hosted narrative, reader and catalog
+        run: |
+          git config user.name "Ophelia Library Importer"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/import_monroe_narrative.py public/texts/monroe-executive-1797/ a-view-of-the-conduct-of-the-executive-james-monroe.html public/art/monroe-view-executive-1797-titlepage.svg SOURCES-monroe-view-executive-1797.md catalog.html sitemap.xml
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish Monroe narrative as abridged reprint with Ophelia listening reader"
+            git push
+          fi
