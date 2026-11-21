@@ -26,3 +26,5 @@ dest=pathlib.Path('public/books/the-idiot-martin-1915.json')
 dest.parent.mkdir(parents=True,exist_ok=True)
 dest.write_text(json.dumps(out,ensure_ascii=False,separators=(',',':'))+'\n',encoding='utf-8')
 print('Validated complete text:',len(paras),'paragraphs',words,'words',dest)
+
+# Trigger automated source validation after workflow installation.
