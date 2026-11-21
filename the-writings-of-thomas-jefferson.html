@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Writings of Thomas Jefferson · Presidential Library · Ophelia’s Open Book</title>
+<meta name="description" content="Read the nine-volume historical edition of Thomas Jefferson's writings, edited by Henry Augustine Washington, in Ophelia's own reader.">
+<style>
+:root{--paper:#faf4e7;--ink:#294638;--wine:#752e3d;--gold:#a1844b;--line:#d6c8ac}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:18px/1.7 Georgia,serif}a{color:var(--wine)}
+header{background:#244435;color:#f5e9d6;border-bottom:5px solid #a1844b;padding:15px 24px}header a{color:inherit}
+main{max-width:980px;margin:25px auto;padding:0 16px 70px}.sheet{border:1px solid var(--line);background:#fffdf7;box-shadow:0 10px 25px #302e2019;padding:clamp(22px,5vw,56px);border-radius:5px}.eyebrow{text-align:center;text-transform:uppercase;font:700 12px Arial,sans-serif;letter-spacing:2px;color:var(--wine)}
+h1{text-align:center;font:normal clamp(30px,5vw,45px) Georgia,serif;margin:16px auto 8px;line-height:1.2}.by{text-align:center;font-style:italic;margin:0 0 25px}.titleplate{margin:25px auto 35px;max-width:410px;border:6px double var(--gold);background:#f2e6ce;padding:30px 20px;text-align:center}.titleplate strong{display:block;font:normal 34px/1.3 Georgia,serif;padding:35px 0}.titleplate span{font:italic 15px/1.8 Georgia,serif}
+.controls{display:flex;flex-wrap:wrap;gap:9px;align-items:center;border-block:1px solid var(--line);padding:13px 0;margin:18px 0}button,select{font:14px Georgia,serif;color:var(--ink);background:#fff8e9;border:1px solid var(--gold);border-radius:4px;padding:10px;cursor:pointer}button:disabled,select:disabled{opacity:.5;cursor:not-allowed}.pagecount{font:14px Arial,sans-serif;margin-inline:auto}
+#prose{font:var(--reader-size,21px)/1.85 Georgia,serif;overflow-wrap:break-word;min-height:220px}#prose p{margin:0 0 1.05em;text-indent:1.2em}#prose p.heading{text-align:center;font-weight:700;text-indent:0}
+.status{font:14px/1.55 Arial,sans-serif;color:#536456}.status.error{color:#a32b34}.foot{border-top:1px solid var(--line);padding-top:20px;margin-top:35px;font-size:13px}.night{--paper:#172b23;--ink:#ebe8d9;--wine:#ecc19f;--line:#617265}.night .sheet{background:#283e34}.night .titleplate{background:#365043}.night button,.night select{background:#365043;color:#f6eddb}.night .status{color:#ddd9c8}
+</style></head>
+<body><header><a href="catalog.html">← Back to Library</a> · Presidential Reading Room</header>
+<main><article class="sheet">
+<div class="eyebrow">The Presidential Library · Historical edition</div>
+<h1>The Writings of Thomas Jefferson</h1><p class="by">Edited by Henry Augustine Washington · Nine-volume edition · 1853–1854</p>
+<div class="titleplate"><span>From the Original Manuscripts</span><strong>THE WRITINGS<br>OF<br>THOMAS JEFFERSON</strong><span>Autobiography · Correspondence · Reports · Messages · Addresses<br>Edited by Henry Augustine Washington</span><p>WASHINGTON · 1853–1854</p></div>
+<p>This complete nine-volume historical edition preserves the original text. It is not a claim to include every surviving Jefferson document. Original English, with browser-based narration and private saved reading progress.</p>
+<div class="controls">
+<label for="volume">Volume</label><select id="volume" disabled><option>Verifying nine complete volumes…</option></select>
+<label for="page">Page</label><select id="page" disabled><option>Loading…</option></select>
+<button id="prev" disabled>← Previous</button><span id="pagecount" class="pagecount">Not yet loaded</span><button id="next" disabled>Next →</button>
+<button id="play" disabled>▶ Read aloud</button><button id="stop" disabled>■ Stop</button>
+<label for="speed">Speed</label><select id="speed"><option value=".85">0.85×</option><option value="1" selected>1×</option><option value="1.15">1.15×</option><option value="1.3">1.3×</option></select>
+<button id="night">Night mode</button>
+</div>
+<p role="status" class="status" id="status">Checking locally hosted source files…</p>
+<div id="prose" aria-label="Reading text"></div>
+<div class="controls"><button id="prev2" disabled>← Previous</button><button id="next2" disabled>Next →</button><a href="catalog.html">Back to Library</a></div>
+<p class="foot">This reader uses the complete nine-volume historical edition edited by Henry Augustine Washington. Source transcriptions: Project Gutenberg eBooks 45847, 50046, 52878, 53603, 53767, 55075, 56035, 56313, and 56578. A reader is enabled only after all nine locally stored files are validated.</p>
+</article></main>
+<script>
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id);
+const folder='public/books/presidents/jefferson-washington/';
+const storage='ophelia-jefferson-washington-9-volumes-v1';
+const texts={},pageSets={};
+let volume=1,page=0,active=false,position=0;
+function stored(){try{return JSON.parse(localStorage.getItem(storage)||'{}')}catch{return {}}}
+function save(){try{localStorage.setItem(storage,JSON.stringify({volume,page,night:document.body.classList.contains('night')}))}catch{}}
+function stop(){if('speechSynthesis'in window)speechSynthesis.cancel();active=false;$('play').textContent='▶ Read aloud'}
+function paragraphs(t){return t.trim().split(/\n\s*\n/).map(x=>x.replace(/\s*\n\s*/g,' ').trim()).filter(Boolean)}
+function paginate(t){const out=[];let current=[],words=0;for(const p of paragraphs(t)){const a=p.match(/\S+\s*/g)||[];if(current.length&&words+a.length>265){out.push(current);current=[];words=0}if(a.length>310){if(current.length){out.push(current);current=[];words=0}for(let i=0;i<a.length;i+=250)out.push([a.slice(i,i+250).join('').trim()])}else{current.push(p);words+=a.length}}if(current.length)out.push(current);return out}
+function pages(){return pageSets[volume]||[]}
+function show(){stop();position=0;const group=pages();const paras=group[page]||[];const nodes=paras.map(s=>{const p=document.createElement('p');p.textContent=s;if(/^(CHAPTER|CONTENTS|PREFACE|INTRODUCTION|AUTOBIOGRAPHY|LETTERS|VOLUME|INDEX)\b/i.test(s)&&s.length<110)p.className='heading';return p});$('prose').replaceChildren(...nodes);$('pagecount').textContent='Volume '+volume+' of 9 · Page '+(page+1)+' of '+group.length;$('page').replaceChildren(...group.map((_,i)=>new Option('Page '+(i+1),String(i))));$('page').value=String(page);$('volume').value=String(volume);for(const id of ['prev','prev2'])$(id).disabled=volume===1&&page===0;for(const id of ['next','next2'])$(id).disabled=volume===9&&page===group.length-1;save()}
+function open(n,p=0){stop();volume=n;if(!pageSets[n])pageSets[n]=paginate(texts[n]);page=Math.min(Math.max(0,p),pages().length-1);show();document.querySelector('.sheet').scrollIntoView({block:'start'})}
+function move(change){if(page+change<0&&volume>1)open(volume-1,999999);else if(page+change>=pages().length&&volume<9)open(volume+1,0);else open(volume,Math.min(pages().length-1,Math.max(0,page+change)))}
+function speak(){if(!('speechSynthesis'in window)){$('status').textContent='Speech narration is not supported by this browser.';return}stop();active=true;$('play').textContent='■ Stop reading';const paras=pages()[page]||[];const segments=paras.flatMap(x=>x.match(/.{1,170}(?:\s|$)/g)||[x]);const next=()=>{if(!active)return;if(position>=segments.length){stop();return}const u=new SpeechSynthesisUtterance(segments[position]);u.lang='en-US';u.rate=Number($('speed').value);u.onend=()=>{position++;next()};u.onerror=()=>stop();speechSynthesis.speak(u)};next()}
+$('prev').onclick=$('prev2').onclick=()=>move(-1);
+$('next').onclick=$('next2').onclick=()=>move(1);
+$('play').onclick=()=>active?stop():speak();$('stop').onclick=()=>{stop();position=0};
+$('volume').onchange=()=>open(Number($('volume').value));$('page').onchange=()=>open(volume,Number($('page').value));
+$('night').onclick=()=>{document.body.classList.toggle('night');save()};window.addEventListener('pagehide',stop);
+(async()=>{try{
+ const files=Array.from({length:9},(_,i)=>folder+'volume-'+String(i+1).padStart(2,'0')+'.txt');
+ const responses=await Promise.all(files.map(path=>fetch(path,{cache:'no-store'})));
+ if(responses.some(r=>!r.ok))throw Error('The nine-volume edition is not fully imported yet. No partial edition will be displayed.');
+ const raws=await Promise.all(responses.map(r=>r.text()));
+ if(raws.some(t=>t.split(/\s+/).length<12000))throw Error('One or more volumes failed completeness validation.');
+ raws.forEach((t,i)=>texts[i+1]=t);
+ $('volume').replaceChildren(...Array.from({length:9},(_,i)=>new Option('Volume '+(i+1),String(i+1))));
+ $('volume').disabled=$('page').disabled=$('play').disabled=$('stop').disabled=false;
+ const old=stored();if(old.night)document.body.classList.add('night');
+ open(Math.min(9,Math.max(1,Number(old.volume)||1)),Number(old.page)||0);
+ $('status').textContent='All nine locally hosted volumes verified. Your reading progress is saved on this device.';
+}catch(error){$('status').classList.add('error');$('status').textContent=error.message;console.error('Jefferson verification:',error)}
+})();
+})();
+</script></body></html>
