@@ -1,0 +1,72 @@
+name: Archive Grieg Morning Mood complete orchestral score
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/cache-grieg-morning-mood-score.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  archive-score:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python3 -m pip install --disable-pip-version-check pypdf
+      - name: Fetch and validate complete public-domain 1888 orchestral movement
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import io, pathlib, urllib.request
+          from pypdf import PdfReader
+
+          path=pathlib.Path('public/scores/grieg-morning-mood-complete.pdf')
+          path.parent.mkdir(parents=True,exist_ok=True)
+          if path.exists() and len(PdfReader(io.BytesIO(path.read_bytes())).pages)==14:
+              print('Complete 14-page score already cached.')
+              raise SystemExit(0)
+
+          sources=[
+              'https://s9.imslp.org/files/imglnks/usimg/7/74/IMSLP02014-Grieg_-_Peer_Gynt_Suite_No.1-1%2C_Op.46-1_%28Full_Score%29.pdf',
+              'https://vmirror.imslp.org/files/imglnks/usimg/7/74/IMSLP02014-Grieg_-_Peer_Gynt_Suite_No.1-1%2C_Op.46-1_%28Full_Score%29.pdf',
+          ]
+          errors=[]
+          for url in sources:
+              try:
+                  request=urllib.request.Request(url,headers={'User-Agent':'OpheliasOpenBook/1.0 archival score (contact via GitHub)', 'Accept':'application/pdf,*/*'})
+                  with urllib.request.urlopen(request,timeout=55) as response:
+                      data=response.read(12000000)
+                  if not data.startswith(b'%PDF-'):
+                      raise ValueError('The source was not a PDF')
+                  score=PdfReader(io.BytesIO(data),strict=False)
+                  if len(score.pages)!=14:
+                      raise ValueError(f'Expected complete 14-page Morning Mood movement; got {len(score.pages)} pages')
+                  if len(data)<30000:
+                      raise ValueError('PDF unexpectedly small')
+                  path.write_bytes(data)
+                  print('Verified 14 pages. Saved:',path,'size:',len(data))
+                  break
+              except Exception as exc:
+                  errors.append(f'{url}: {exc}')
+          else:
+              raise SystemExit('Score download/validation failed: '+' | '.join(errors))
+          PY
+      - name: Commit verified local score
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/scores/grieg-morning-mood-complete.pdf
+          if ! git diff --cached --quiet; then
+            git commit -m "Host complete historic 14-page Grieg Morning Mood orchestral score"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
