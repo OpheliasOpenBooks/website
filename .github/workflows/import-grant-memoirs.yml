@@ -1,0 +1,67 @@
+name: Publish complete U. S. Grant Personal Memoirs, volumes I and II
+on:
+  push:
+    paths:
+      - '.github/workflows/import-grant-memoirs.yml'
+      - 'scripts/import_grant_memoirs.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  verify-and-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install HTML text parser
+        run: python -m pip install beautifulsoup4
+      - name: Import BOTH complete public-domain Grant volumes
+        run: |
+          set -o pipefail
+          python scripts/import_grant_memoirs.py
+      - name: Preserve diagnostics if transcription verification fails
+        if: failure()
+        run: |
+          git config user.name "Ophelia Library Importer"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/diagnostics/grant-memoirs-import.log
+          git commit -m "Record Grant Memoirs source validation issue" || true
+          git push || true
+      - name: Verify complete two-volume text, reader and historical cover
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          root=Path('.')
+          txt=(root/'public/texts/grant-memoirs/complete-1885-1886.txt').read_text(encoding='utf-8')
+          h=(root/'personal-memoirs-of-u-s-grant.html').read_text(encoding='utf-8')
+          cat=(root/'catalog.html').read_text(encoding='utf-8')
+          chapters=re.findall(r'(?m)^CHAPTER\s+([IVXLCDM]+)\. .+',txt)
+          assert len(chapters)==70 and chapters[0]=='I' and chapters[38]=='XXXIX'
+          assert chapters[39]=='XL' and chapters[-1]=='LXX'
+          assert len(txt.split())>125000
+          assert txt.count('VOLUME I.')==1 and txt.count('VOLUME II.')==1
+          assert txt.count('\n\nCONCLUSION.\n\n')==1
+          assert txt.count('\n\nAPPENDIX.\n\n')==1
+          assert 'PREFACE.' in txt
+          assert all('id="'+x+'"' in h for x in ('volume','section','page','voice','speed','size','dark','autoturn','bookmark','settings-toggle','play'))
+          assert 'ophelia-narration.js' in h
+          assert 'personal-memoirs-of-u-s-grant.html' in cat
+          cover=(root/'public/art/grant-memoirs-1885-cover.jpg')
+          assert cover.exists() and cover.stat().st_size>35000
+          print('Verified entire two-volume Grant memoir, all 70 chapters and historical cover.')
+          PY
+      - name: Commit verified full-text reader and catalog
+        run: |
+          git config user.name "Ophelia Library Importer"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/import_grant_memoirs.py public/texts/grant-memoirs/ public/art/grant-memoirs-1885-cover.jpg personal-memoirs-of-u-s-grant.html catalog.html sitemap.xml
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish unabridged Personal Memoirs of U. S. Grant, 1885–86, with Ophelia narration"
+            git push
+          fi
