@@ -2,7 +2,7 @@
 
 **Requested work:** *A View of the Conduct of the Executive, in the Foreign Affairs of the United States, connected with the Mission to the French Republic, during the years 1794, 5, & 6* (James Monroe; Philadelphia, Benjamin Franklin Bache, 1797).
 
-**Publication status:** NOT YET PUBLISHED. Do not add the work to `catalog.html` or `sitemap.xml` until a complete, locally hosted, readable transcript exists and is verified against the historical edition.
+**Publication status:** ABRIDGED historical narrative (1898 reprint) published; original complete 1797 edition remains absent. Do not add the work to `catalog.html` or `sitemap.xml` until a complete, locally hosted, readable transcript exists and is verified against the historical edition.
 
 ## Full original
 - Princeton University Library, Sid Lapidus Collection, first edition (1797), preliminary lxvi and 407 numbered pages. https://digital-collections.princeton.edu/i/view-conduct-executive-foreign-affa/item/90037390-5cb5-415b-bddf-8e401211dd38
@@ -20,3 +20,7 @@ This volume reprints Monroe's introductory narrative **without the full body of 
 3. Host the entire English text on this website, rather than sending visitors to an outside reader.
 4. Use the established reader from `hard-times.html` or `a-manual-of-parliamentary-practice-jefferson.html` including OpheliaNarration, Settings, narrator voice, speed, text size, evening mode, auto-turn, bookmarks and resume.
 5. Catalog entry and sitemap must be created *only after* completion checks pass. Keep the book free.
+
+
+## Locally hosted abbreviated narrative
+Only the 1898 reprinted Monroe narrative is hosted, at public/texts/monroe-executive-1797/narrative-1898-reprint.txt, comprising 31268 OCR-derived words across 365 paragraphs. The complete 1797 diplomatic and document appendix has not been reproduced.
