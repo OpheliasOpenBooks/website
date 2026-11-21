@@ -75,8 +75,13 @@ def content_text(soup,url):
     for node in root.select('sup, .ws-pagenum, span.pagenum, .prp-pagequality'):
         node.decompose()
     paras=[]
-    for node in root.find_all(['p','h2','h3','h4','li']):
-        if node.find_parent(['p','li']):continue
+    # Preserve directly transcribed text, including tables and the historical
+    # aligned statistical lists rendered as nested <div> rather than <table>.
+    block_elements=['p','h2','h3','h4','li','pre','blockquote','div']
+    for node in root.find_all(block_elements):
+        if node.name in ('div','blockquote'):
+            if node.find(block_elements+['table']):continue
+        elif node.find_parent(['p','li','pre','blockquote']):continue
         s=node.get_text(' ',strip=True).replace('ſ','s').replace('\u200b','').replace('\ufeff','')
         s=re.sub(r'\s+',' ',s).strip()
         if not s or s in ['* * *','•','◊'] or re.fullmatch(r'[\W_]+',s):continue
@@ -103,6 +108,7 @@ def create_text():
         pars=content_text(soup,url)
         wc=len(' '.join(pars).split())
         if wc<18 and key!='Q3':raise ValueError(f'{key} appears truncated ({wc} words)')
+        if key=='Q9' and wc<120:raise ValueError('Military census table was not extracted; Query IX is incomplete')
         if key=='Q3' and wc<10:raise ValueError('Short Query III is missing')
         if key.startswith('Q'):
             n=int(key[1:])
@@ -114,8 +120,11 @@ def create_text():
         else:
             n=int(key[1:])
             name=f'APPENDIX {roman(n)}.'
-            if not any('APPENDIX' in p.upper() for p in pars[:8]):
-                raise ValueError(f'Appendix {n} not found in original transcription')
+            # The historic appendices often open with their own descriptive
+            # headings instead of "Appendix II", etc. The source TOC identifies
+            # their order and expected page, and completeness checks apply below.
+            if wc<70:
+                raise ValueError(f'Appendix {n} appears truncated')
         # Chapter names supplied as controlled labels; the historic Query header
         # remains in the book's source transcription but is not repeated verbatim.
         if pars and (re.match(r'^(?:QUERY|QUEARY|APPENDIX)\b',pars[0],re.I) or
