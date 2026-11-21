@@ -55,6 +55,11 @@ def content_text(soup,url):
           or soup.select_one('#mw-content-text .mw-parser-output')
           or soup.select_one('main .mw-parser-output'))
     if root is None: raise ValueError('Unable to locate original page transcription: '+url)
+    if url.rstrip('/').endswith('Query_09'):
+        print('Q9 DEBUG selected root:',root.name,'words:',len(root.get_text(' ',strip=True).split()),'HTML chars:',len(str(root)),
+              'tables:',len(root.find_all('table')),'divs:',len(root.find_all('div')),'paragraphs:',len(root.find_all('p')),flush=True)
+        print('Q9 DEBUG first 900 chars:',str(root)[:900],flush=True)
+        print('Q9 DEBUG last 900 chars:',str(root)[-900:],flush=True)
     for el in root.select('script, style, nav, footer, .mw-editsection, .pagenum, .ws-pagenum, .prp-pages-output .pagenum, .reference, sup.reference, .reflist, .mw-references-wrap, .thumb, .mw-empty-elt, .noprint, .ws-noexport, .ws-header, #headerContainer, #ws-data, .headerContainer, .wikisource-header, .mw-parser-output .navbox'):
         el.decompose()
     # Handle published tables as individual readable rows, rather than discarding the data.
