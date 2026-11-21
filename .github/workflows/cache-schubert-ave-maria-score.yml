@@ -1,0 +1,71 @@
+name: Host Schubert Ave Maria complete piano-vocal score
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/cache-schubert-ave-maria-score.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  cache-score:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Install PDF validation tools
+        run: python3 -m pip install --disable-pip-version-check pypdf
+      - name: Download and validate all ten pages of the public-domain score
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import io,pathlib,urllib.request
+          from pypdf import PdfReader
+          out=pathlib.Path('public/scores/schubert-ave-maria-d839-complete.pdf')
+          out.parent.mkdir(parents=True,exist_ok=True)
+          sources=[
+            'https://www.mutopiaproject.org/ftp/SchubertF/D839/SchubertF-D839_AveMaria/SchubertF-D839_AveMaria-let.pdf',
+            'https://www.ibiblio.org/mutopia/ftp/SchubertF/D839/SchubertF-D839_AveMaria/SchubertF-D839_AveMaria-a4.pdf',
+          ]
+          def validate(data):
+            if not data.startswith(b'%PDF-'): raise ValueError('Not a PDF')
+            reader=PdfReader(io.BytesIO(data))
+            if len(reader.pages)!=10:
+              raise ValueError(f'Incomplete score: expected 10 pages, found {len(reader.pages)}')
+            last=reader.pages[-1].extract_text() or ''
+            if 'Mutopia' not in last and 'Schubert' not in last:
+              raise ValueError('Unexpected final page of score')
+          if out.exists():
+            try:
+              validate(out.read_bytes())
+              print('Already archived complete ten-page score')
+              raise SystemExit(0)
+            except Exception: pass
+          errors=[]
+          for url in sources:
+            try:
+              req=urllib.request.Request(url,headers={'User-Agent':'OpheliasOpenBook/1.0 (public-domain score archiving)'})
+              with urllib.request.urlopen(req,timeout=60) as resp:
+                data=resp.read(8000000)
+              validate(data)
+              out.write_bytes(data)
+              print('Verified and saved full ten-page piano-vocal score:',len(data),'bytes from',url)
+              break
+            except Exception as exc:
+              errors.append(f'{url}: {exc}')
+          else:
+            raise SystemExit('No verified source found; no incomplete PDF was published: '+ ' | '.join(errors))
+          PY
+      - name: Commit validated score to website
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/scores/schubert-ave-maria-d839-complete.pdf
+          if ! git diff --cached --quiet; then
+            git commit -m "Host verified complete ten-page Schubert Ave Maria score"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
