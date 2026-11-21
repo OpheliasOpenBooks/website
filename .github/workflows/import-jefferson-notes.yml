@@ -24,6 +24,16 @@ jobs:
         run: |
           set -o pipefail
           python scripts/import_jefferson_notes.py 2>&1 | tee /tmp/jefferson-notes-import.log
+      - name: Preserve source-import diagnostic if it fails
+        if: failure()
+        run: |
+          mkdir -p scripts/diagnostics
+          cp /tmp/jefferson-notes-import.log scripts/diagnostics/jefferson-notes-import-error.log || echo "The import failed before a log could be written." > scripts/diagnostics/jefferson-notes-import-error.log
+          git config user.name "Ophelia Library Importer"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/diagnostics/jefferson-notes-import-error.log
+          git commit -m "Record verification issue in Jefferson Notes import" || true
+          git push || true
       - name: Verify published edition, navigation and full-featured listening controls
         run: |
           python - <<'PY'
