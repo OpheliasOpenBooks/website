@@ -1,0 +1,66 @@
+{
+  "collection": "Presidential Library",
+  "title": "The Writings of Thomas Jefferson",
+  "author": "Thomas Jefferson",
+  "editor": "Henry Augustine Washington",
+  "edition": "Nine-volume Washington edition (1853 onward)",
+  "publicDomainUS": true,
+  "publicationStatus": "unpublished_until_all_nine_volumes_locally_verified",
+  "note": "Complete nine-volume edition, not the entirety of Jefferson's surviving papers. Historical editor's notes and original documents should be preserved distinctly.",
+  "volumes": [
+    {
+      "volume": 1,
+      "gutenbergEbook": 45847,
+      "sourceUrl": "https://www.gutenberg.org/ebooks/45847",
+      "localFile": "public/books/presidents/jefferson-washington/volume-01.txt"
+    },
+    {
+      "volume": 2,
+      "gutenbergEbook": 50046,
+      "sourceUrl": "https://www.gutenberg.org/ebooks/50046",
+      "localFile": "public/books/presidents/jefferson-washington/volume-02.txt"
+    },
+    {
+      "volume": 3,
+      "gutenbergEbook": 52878,
+      "sourceUrl": "https://www.gutenberg.org/ebooks/52878",
+      "localFile": "public/books/presidents/jefferson-washington/volume-03.txt"
+    },
+    {
+      "volume": 4,
+      "gutenbergEbook": 53603,
+      "sourceUrl": "https://www.gutenberg.org/ebooks/53603",
+      "localFile": "public/books/presidents/jefferson-washington/volume-04.txt"
+    },
+    {
+      "volume": 5,
+      "gutenbergEbook": 53767,
+      "sourceUrl": "https://www.gutenberg.org/ebooks/53767",
+      "localFile": "public/books/presidents/jefferson-washington/volume-05.txt"
+    },
+    {
+      "volume": 6,
+      "gutenbergEbook": 55075,
+      "sourceUrl": "https://www.gutenberg.org/ebooks/55075",
+      "localFile": "public/books/presidents/jefferson-washington/volume-06.txt"
+    },
+    {
+      "volume": 7,
+      "gutenbergEbook": 56035,
+      "sourceUrl": "https://www.gutenberg.org/ebooks/56035",
+      "localFile": "public/books/presidents/jefferson-washington/volume-07.txt"
+    },
+    {
+      "volume": 8,
+      "gutenbergEbook": 56313,
+      "sourceUrl": "https://www.gutenberg.org/ebooks/56313",
+      "localFile": "public/books/presidents/jefferson-washington/volume-08.txt"
+    },
+    {
+      "volume": 9,
+      "gutenbergEbook": 56578,
+      "sourceUrl": "https://www.gutenberg.org/ebooks/56578",
+      "localFile": "public/books/presidents/jefferson-washington/volume-09.txt"
+    }
+  ]
+}
