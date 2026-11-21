@@ -1,4 +1,5 @@
 name: Import Jefferson parliamentary manual and verify all 53 sections
+# Revision: extract verified 1812 author-revised public-domain edition
 on:
   push:
     paths:
