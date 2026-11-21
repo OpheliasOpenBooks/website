@@ -1,0 +1,62 @@
+name: Publish verified Jefferson Life and Morals (1902 English edition)
+on:
+  push:
+    paths:
+      - '.github/workflows/import-jefferson-life-morals.yml'
+      - 'scripts/import_jefferson_life_morals.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install HTML parser
+        run: python -m pip install beautifulsoup4
+      - name: Import complete 1902 public-domain English edition
+        run: |
+          set -o pipefail
+          python scripts/import_jefferson_life_morals.py 2>&1 | tee /tmp/ophelia-jefferson-life-morals.log
+      - name: Record failed source validation for review
+        if: failure()
+        run: |
+          mkdir -p scripts/diagnostics
+          cp /tmp/ophelia-jefferson-life-morals.log scripts/diagnostics/jefferson-life-morals-import-error.log || echo "No text-import diagnostic available" > scripts/diagnostics/jefferson-life-morals-import-error.log
+          git config user.name "Ophelia Library Importer"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/diagnostics/jefferson-life-morals-import-error.log
+          git commit -m "Record Jefferson Life and Morals text-verification issue" || true
+          git push || true
+      - name: Check all historical narrative sections, reader and catalog
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          root=Path('.')
+          txt=(root/'public/texts/jefferson-life-morals/complete-1902-english.txt').read_text(encoding='utf-8')
+          html=(root/'the-life-and-morals-of-jesus-of-nazareth.html').read_text(encoding='utf-8')
+          cat=(root/'catalog.html').read_text(encoding='utf-8')
+          assert len(re.findall(r'(?m)^CHAPTER [IVXLCDM]+\. .+$',txt))==69
+          assert len(txt.split())>=14000 and 'laid they Jesus' in txt[-800:]
+          assert txt.count('EDITORIAL SECTION:')>=3
+          assert all('id="'+id+'"' in html for id in ('section','page','voice','speed','size','dark','autoturn','bookmark','settings-toggle','play'))
+          assert 'ophelia-narration.js' in html and 'complete-1902-english.txt' in html
+          assert "href:'the-life-and-morals-of-jesus-of-nazareth.html'" in cat
+          print('All 69 sections, 1902 editorial front matter, local reader and catalog verified.')
+          PY
+      - name: Publish only successfully verified edition
+        run: |
+          git config user.name "Ophelia Library Importer"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/import_jefferson_life_morals.py public/texts/jefferson-life-morals/ the-life-and-morals-of-jesus-of-nazareth.html catalog.html sitemap.xml
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish Jefferson Life and Morals: complete 69-section self-hosted English reader"
+            git push
+          fi
