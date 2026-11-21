@@ -1,0 +1,85 @@
+name: Host Dvorak New World Largo complete score
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/cache-dvorak-largo-score.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  archive-score:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Install PDF validator
+        run: python3 -m pip install --disable-pip-version-check pypdf
+      - name: Download complete Mutopia orchestral Largo score
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import io, pathlib, urllib.request, zipfile, re
+          from pypdf import PdfReader
+
+          target=pathlib.Path('public/scores/dvorak-new-world-largo-orchestra.pdf')
+          target.parent.mkdir(parents=True,exist_ok=True)
+
+          def check_pdf(b,name):
+              if not b.startswith(b'%PDF-'): raise ValueError(f'Not a PDF: {name}')
+              reader=PdfReader(io.BytesIO(b))
+              count=len(reader.pages)
+              if not (8<=count<=45): raise ValueError(f'Unexpected page count {count} in {name}')
+              first=' '.join((p.extract_text() or '') for p in list(reader.pages)[:2])
+              if not re.search(r'Largo',first,re.I): raise ValueError(f'PDF does not identify Largo: {name}')
+              # Check that the final pages are not missing; this is a movement-only score.
+              if len(b)<50000: raise ValueError(f'Unexpectedly small PDF: {len(b)} bytes')
+              return count
+
+          if target.exists():
+              try:
+                  count=check_pdf(target.read_bytes(),'existing local score')
+                  print(f'Existing complete {count}-page score validated.')
+                  raise SystemExit(0)
+              except ValueError:
+                  pass
+
+          url='https://www.mutopiaproject.org/ftp/DvorakA/O95/Sym9/Sym9-let-pdfs.zip'
+          req=urllib.request.Request(url,headers={'User-Agent':'OpheliasOpenBook/1.0 public-domain archive','Accept':'application/zip,*/*'})
+          with urllib.request.urlopen(req,timeout=70) as stream:
+              archive=stream.read(18000000)
+          print('Downloaded official Mutopia archive bytes:',len(archive))
+          with zipfile.ZipFile(io.BytesIO(archive)) as z:
+              names=[n for n in z.namelist() if n.lower().endswith('.pdf')]
+              print('PDF names in official Mutopia archive:',names)
+              matching=[n for n in names if ('mvt2' in n.lower() or 'largo' in n.lower())]
+              if not matching: raise SystemExit('No second-movement Largo PDFs found: '+repr(names))
+              matching.sort(key=lambda n:(('score' not in n.lower() and 'full' not in n.lower()),-z.getinfo(n).file_size))
+              errors=[]
+              for name in matching:
+                  try:
+                      data=z.read(name)
+                      pages=check_pdf(data,name)
+                      target.write_bytes(data)
+                      print(f'VALIDATED complete Largo orchestral movement score: {name} ({pages} pages; {len(data)} bytes)')
+                      break
+                  except Exception as e:
+                      errors.append(str(e))
+              else:
+                  raise SystemExit('No valid full orchestral Largo found: '+ ' | '.join(errors))
+          PY
+      - name: Commit verified score PDF
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/scores/dvorak-new-world-largo-orchestra.pdf
+          if ! git diff --cached --quiet; then
+            git commit -m "Host complete Mutopia Dvorak Largo orchestral score"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
