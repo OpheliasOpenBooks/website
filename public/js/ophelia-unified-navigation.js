@@ -70,7 +70,7 @@
       anchor.textContent = label;
       anchor.href = current === 'index.html' && target.startsWith('index.html#') ? target.substring(10) : target;
       const targetPage = target.split('#')[0];
-      if (targetPage === current) anchor.setAttribute('aria-current', 'page');
+      if (targetPage === current && (!target.includes('#') || target.endsWith(location.hash) && location.hash)) anchor.setAttribute('aria-current', 'page');
       if (targetPage === 'support.html') anchor.className = 'ophelia-support-link';
       items.appendChild(anchor);
     }
