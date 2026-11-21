@@ -1,0 +1,206 @@
+#!/usr/bin/env python3
+"""Import the complete 1787–88 Defence from the 1851–56 public-domain edited Works.
+Run only in an isolated checkout. This script refuses to publish partial texts.
+Sources: Online Library of Liberty, John Adams Works, vols 4, 5 and 6.
+"""
+from __future__ import annotations
+import io, json, pathlib, posixpath, re, urllib.parse, urllib.request, zipfile
+from xml.etree import ElementTree as ET
+from bs4 import BeautifulSoup
+
+ROOT = pathlib.Path(__file__).resolve().parents[1]
+OUT = ROOT / "public" / "texts" / "adams-defence"
+BASE = "https://oll-resources.s3.us-east-2.amazonaws.com/oll3/store/titles/"
+URLS = {
+    4: BASE + "2102/adams-the-works-of-john-adams-vol-4.epub",
+    5: BASE + "2103/adams-the-works-of-john-adams-vol-5-defence-of-the-constitutions-vols-ii-and-iii.epub",
+    6: BASE + "2104/adams-the-works-of-john-adams-vol-6.epub",
+}
+def compact(s):
+    return re.sub(r"\s+", " ", s).strip()
+def ordered_blocks(blob):
+    with zipfile.ZipFile(io.BytesIO(blob)) as z:
+        root = ET.fromstring(z.read("META-INF/container.xml"))
+        opfname = next(e.attrib["full-path"] for e in root.iter() if e.tag.endswith("rootfile"))
+        basedir = posixpath.dirname(opfname)
+        opf = ET.fromstring(z.read(opfname))
+        items = {x.attrib.get("id"): x.attrib for x in opf.iter() if x.tag.endswith("item")}
+        spine = [x.attrib["idref"] for x in opf.iter() if x.tag.endswith("itemref")]
+        sections = []
+        for item_id in spine:
+            m = items.get(item_id, {})
+            if "html" not in m.get("media-type", ""):
+                continue
+            href = urllib.parse.unquote(m.get("href", "").split("#")[0])
+            doc = posixpath.normpath(posixpath.join(basedir, href))
+            soup = BeautifulSoup(z.read(doc), "html.parser")
+            body = soup.body
+            if not body: continue
+            for unwanted in body.select("nav, aside, script, style, .footnotes, [epub\\:type='footnotes']"):
+                unwanted.decompose()
+            for node in body.find_all(re.compile(r"^h[1-6]$|^p$")):
+                if node.find_parent(["nav", "aside", "table", "blockquote"]): continue
+                for sup in node.find_all("sup"):
+                    if len(sup.get_text(" ", strip=True)) < 8: sup.decompose()
+                value = compact(node.get_text(" ", strip=True))
+                if not value: continue
+                sections.append((node.name.startswith("h"), value))
+        return sections
+
+def header(s):
+    return re.sub(r"[^A-Z0-9 ]+", " ", s.upper()).strip()
+def find_heading(seq, predicate, begin=0):
+    for i in range(begin, len(seq)):
+        is_h, s = seq[i]
+        if is_h and predicate(header(s)): return i
+    raise ValueError("Required source heading not found; nothing will be published.")
+def text(seq):
+    return "\n\n".join(s for _, s in seq).strip() + "\n"
+def words(s):
+    return len(s.split())
+def main():
+    source = {}
+    for v, url in URLS.items():
+        print("Downloading public-domain transcription", v, url, flush=True)
+        req = urllib.request.Request(url, headers={"User-Agent":"OpheliasOpenBook-PublicDomainImporter/1.0"})
+        with urllib.request.urlopen(req, timeout=90) as response:
+            blob = response.read()
+        if len(blob) < 25000: raise ValueError(f"Source {v} too small")
+        source[v] = ordered_blocks(blob)
+        print(f"Works volume {v}: {len(source[v])} text blocks", flush=True)
+    s4, s5, s6 = [source[k] for k in (4, 5, 6)]
+    start1 = find_heading(s4, lambda x: x == "THE DEFENCE")
+    start2 = find_heading(s5, lambda x: x.startswith("A DEFENCE OF THE CONSTITUTIONS") and "VOLUME II" in x)
+    start3 = find_heading(s5, lambda x: x.startswith("A DEFENCE OF THE CONSTITUTIONS") and "VOLUME III" in x, start2+1)
+    cont3 = find_heading(s6, lambda x: x.startswith("A DEFENCE OF THE CONSTITUTIONS"))
+    stop3 = find_heading(s6, lambda x: x.startswith("DISCOURSES ON DAVILA"), cont3+1)
+    volumes = [
+        text(s4[start1:]),
+        text(s5[start2:start3]),
+        text(s5[start3:]) + "\n" + text(s6[cont3:stop3]),
+    ]
+    required = [
+        ("PRELIMINARY OBSERVATIONS", "SAN MARINO", "CARTHAGE", "CONCLUSION"),
+        ("FLORENCE", "MACHIAVEL", "SIENA", "BOLOGNA"),
+        ("PISTOIA", "CREMONA", "PADUA", "MARCHAMONT NEDHAM", "OBJECTIONS ANSWERED"),
+    ]
+    minwords = [35000, 35000, 42000]
+    for i, data in enumerate(volumes):
+        wc = words(data)
+        print(f"Defence vol {i+1}: {wc:,} words")
+        if wc < minwords[i]: raise ValueError(f"Vol {i+1} incomplete, {wc} words")
+        missing = [m for m in required[i] if m not in data.upper()]
+        if missing: raise ValueError(f"Vol {i+1} missing: {missing}")
+        if "\ufffd" in data: raise ValueError(f"Vol {i+1} has corrupt text")
+    # All verification must succeed BEFORE touching any site files.
+    OUT.mkdir(parents=True, exist_ok=True)
+    for i, data in enumerate(volumes):
+        (OUT / f"volume-{i+1}.txt").write_text(data, encoding="utf-8")
+    reader = ROOT / "a-defence-of-the-constitutions-john-adams.html"
+    reader.write_text(HTML, encoding="utf-8")
+    artpath = ROOT / "public" / "art" / "adams-defence-1787-titlepage.svg"
+    artpath.parent.mkdir(parents=True, exist_ok=True)
+    artpath.write_text(ART, encoding="utf-8")
+    catalog = ROOT / "catalog.html"
+    doc = catalog.read_text(encoding="utf-8")
+    page = "a-defence-of-the-constitutions-john-adams.html"
+    if page not in doc:
+        entry = """ {title:'A Defence of the Constitutions of Government of the United States of America',author:'John Adams · 1787–1788 · Complete three-volume work',href:'a-defence-of-the-constitutions-john-adams.html',image:'public/art/adams-defence-1787-titlepage.svg',alt:'Period-faithful reproduction of the original 1787 London title page',description:'John Adams explores historical republics, the division of political authority, and the constitutional safeguards of liberty. The full three-volume work in our own narrated reader.',genre:'American History & Political Thought'},\n"""
+        needle = "const catalogOnlyBooks=["
+        if doc.count(needle) != 1: raise ValueError("Catalog insertion marker missing")
+        doc = doc.replace(needle, needle + "\n" + entry, 1)
+        catalog.write_text(doc, encoding="utf-8")
+    sitemap = ROOT / "sitemap.xml"
+    xml = sitemap.read_text(encoding="utf-8")
+    url = "https://opheliasopenbooks.github.io/website/" + page
+    if url not in xml:
+        assert xml.count("</urlset>") == 1
+        xml = xml.replace("</urlset>", f"  <url><loc>{url}</loc></url>\n</urlset>")
+        sitemap.write_text(xml, encoding="utf-8")
+    print("Validated and staged native reader, all 3 locally hosted volumes, cover, catalog, sitemap.")
+HTML = r'''<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A Defence of the Constitutions · John Adams · Ophelia’s Open Book</title>
+<meta name="description" content="Read and listen to the complete three-volume 1787–1788 Defence of the Constitutions by President John Adams. All text hosted locally.">
+<link rel="stylesheet" href="public/holiday-buttons.css">
+<style>
+:root{--paper:#f8f5ed;--green:#274738;--wine:#722c3a;--gold:#97713c;--text:#273c32}*{box-sizing:border-box}
+body{margin:0;background:var(--paper);font:17px/1.65 Georgia,serif;color:var(--text)}
+a{color:var(--green)}.top{background:var(--green);color:#fffdf8;padding:17px max(20px,calc((100vw - 1080px)/2));display:flex;gap:18px;justify-content:space-between;flex-wrap:wrap}
+.top a{color:#fffdf8}.shell{max-width:1130px;margin:34px auto;padding:0 18px;display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:23px;align-items:start}
+.paper,.controls{background:#fffdf8;border:1px solid #d6c9ad;box-shadow:0 5px 24px #233b2d12;border-radius:6px}
+.heading{text-align:center;padding:32px 20px;border-bottom:3px double #c5ab75}.heading small{letter-spacing:3px;color:var(--gold);font:12px Arial,sans-serif}.heading h1{font-size:clamp(27px,3.6vw,40px);font-weight:normal;line-height:1.2;margin:12px 0}
+.heading p{font:italic 15px Georgia,serif;color:#665c4b}.inner{padding:25px clamp(17px,5vw,51px)}#prose{font:20px/1.83 Georgia,serif;white-space:normal;min-height:280px}
+#prose p{margin:0 0 19px;white-space:pre-line;overflow-wrap:anywhere}#prose p.reading{background:#f8efd3;border-radius:3px}
+.controls{position:sticky;top:15px;padding:20px}label{display:block;font:700 12px Arial,sans-serif;margin:13px 0 6px}
+select,button{font:14px Arial,sans-serif;border:1px solid #beaf94;border-radius:4px;padding:10px;background:#f8f5ed;color:var(--text)}
+select{width:100%;max-width:100%}button{cursor:pointer}.play{background:var(--green);color:white}.buttons{display:flex;gap:8px;flex-wrap:wrap;margin:17px 0}.buttons button{flex:1}.progress{font:12px Arial,sans-serif;color:#675a46}.foot{display:flex;justify-content:space-between;gap:10px;margin-top:20px}.source{font:12px/1.7 Arial,sans-serif;color:#716655;margin:28px 0 10px}
+#status{font:12px/1.6 Arial,sans-serif;color:var(--wine)}.night{--paper:#19231d;--green:#385846;--text:#f0e6d3}.night .paper,.night .controls{background:#28382d;color:#f0e6d3}.night #prose p.reading{background:#41533d} 
+@media(max-width:730px){.shell{grid-template-columns:1fr}.controls{position:static;grid-row:1}.inner{padding:18px}.top{padding:15px 20px}}
+</style></head><body class="ophelia-holiday">
+<div class="top"><strong>Ophelia’s Open Book</strong><nav><a href="catalog.html">← Back to Library</a> · <a href="my-bookshelf.html">My Bookshelf</a></nav></div>
+<div class="shell"><main class="paper"><div class="heading"><small>THE PRESIDENTIAL LIBRARY</small><h1>A Defence of the Constitutions of Government of the United States of America</h1><p>John Adams · 1787–1788 · Complete in Three Volumes</p></div>
+<section class="inner"><div id="prose" aria-live="polite"><p>Opening the complete library edition…</p></div><div class="foot"><button id="prevbottom" disabled>← Previous</button><button id="nextbottom" disabled>Next →</button></div>
+<div class="source">Original work first published in London, 1787–1788. Text based on the public-domain edition edited by Charles Francis Adams in <em>The Works of John Adams</em> (1851–1856), vols. 4–6, as transcribed by the Online Library of Liberty. The text is stored on Ophelia’s website; narration is performed locally by your browser. The pictured title page is a typographic reproduction, not a scan.</div></section></main>
+<aside class="controls"><label for="volume">Choose a volume</label><select id="volume" disabled><option>Loading…</option></select>
+<label for="page">Reading page</label><select id="page" disabled><option>—</option></select>
+<p class="progress" id="progress">Preparing the complete text…</p>
+<div class="buttons"><button id="prev" disabled>←</button><button id="play" class="play" disabled>▶ Read aloud</button><button id="next" disabled>→</button></div>
+<div class="buttons"><button id="pause" disabled>Pause</button><button id="night">Evening theme</button></div>
+<p class="progress">Your reading place is saved on this device. New readers always begin with Volume I, Page 1.</p><p id="status" role="status"></p></aside></div>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id), KEY='ophelia-adams-defence-1787-88-v1';
+let state={v:0,p:0,night:false};try{Object.assign(state,JSON.parse(localStorage.getItem(KEY)||'{}'))}catch{}
+let texts=[],parts=[],speaking=false,paused=false,token=0,readIndex=0;
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(state))}catch{}};
+const stop=()=>{token++;speaking=false;paused=false;speechSynthesis.cancel();$('play').textContent='▶ Read aloud';$('pause').textContent='Pause'};
+const clean=s=>s.replace(/\[\d+\]/g,'').replace(/[†‡※]/g,'').replace(/[_]+/g,' ').trim();
+function paginate(t){
+const para=t.replace(/\r/g,'').split(/\n\s*\n/).map(clean).filter(Boolean),out=[];let pg=[],count=0;
+for(const p of para){const n=p.split(/\s+/).length;if(count+n>230&&pg.length){out.push(pg);pg=[];count=0}pg.push(p);count+=n}
+if(pg.length)out.push(pg);return out;
+}
+function display(){stop();const vol=parts[state.v],pg=vol[state.p]||[];
+$('prose').replaceChildren(...pg.map(line=>{const p=document.createElement('p');p.textContent=line;return p}));
+$('page').replaceChildren(...vol.map((_,i)=>new Option('Page '+(i+1),String(i))));$('page').value=String(state.p);$('volume').value=String(state.v);
+$('progress').textContent='Volume '+(state.v+1)+' of 3 · Page '+(state.p+1)+' of '+vol.length;
+$('prev').disabled=$('prevbottom').disabled=state.v===0&&state.p===0;
+$('next').disabled=$('nextbottom').disabled=state.v===2&&state.p===vol.length-1;
+save();window.scrollTo({top:0,behavior:'instant'});
+}
+function open(v,p=0){state.v=Math.min(2,Math.max(0,v));state.p=Math.min(parts[state.v].length-1,Math.max(0,p));display()}
+function move(n){const dest=state.p+n;if(dest<0&&state.v>0)open(state.v-1,parts[state.v-1].length-1);else if(dest>=parts[state.v].length&&state.v<2)open(state.v+1,0);else open(state.v,dest)}
+function speak(){if(!('speechSynthesis'in window)){$('status').textContent='Your browser has no narration support.';return}stop();speaking=true;$('play').textContent='■ Stop';const nodes=[...$('prose').querySelectorAll('p')];let paragraphs=nodes.flatMap(node=>clean(node.textContent).match(/.{1,190}(?:\s|$)/g)||[node.textContent]);let ix=0;const t=token;function next(){if(!speaking||t!==token)return;if(ix>=paragraphs.length){stop();return}const chunk=paragraphs[ix++],u=new SpeechSynthesisUtterance(chunk);u.lang='en-US';u.rate=1;u.onend=next;u.onerror=()=>stop();speechSynthesis.speak(u)}next()}
+['prev','prevbottom'].forEach(id=>$(id).onclick=()=>move(-1));['next','nextbottom'].forEach(id=>$(id).onclick=()=>move(1));
+$('play').onclick=()=>speaking?stop():speak();$('pause').onclick=()=>{if(!speaking)return;if(paused){speechSynthesis.resume();paused=false;$('pause').textContent='Pause'}else{speechSynthesis.pause();paused=true;$('pause').textContent='Resume'}};
+$('night').onclick=()=>{state.night=!state.night;document.body.classList.toggle('night',state.night);save()};
+$('volume').onchange=()=>open(Number($('volume').value),0);$('page').onchange=()=>open(state.v,Number($('page').value));window.addEventListener('pagehide',stop);
+(async()=>{try{
+const names=[1,2,3].map(i=>'public/texts/adams-defence/volume-'+i+'.txt');
+const r=await Promise.all(names.map(x=>fetch(x)));if(r.some(x=>!x.ok))throw Error('A volume is missing; this reader will not display an incomplete edition.');
+texts=await Promise.all(r.map(x=>x.text()));if(texts.some((t,i)=>t.split(/\s+/).length<[35000,35000,42000][i]))throw Error('The three-volume edition failed completeness checks.');
+parts=texts.map(paginate);$('volume').replaceChildren(...parts.map((_,i)=>new Option('Volume '+['I','II','III'][i],String(i))));
+['volume','page','play','pause'].forEach(id=>$(id).disabled=false);document.body.classList.toggle('night',!!state.night);
+open(Number(state.v)||0,Number(state.p)||0);$('status').textContent='Complete three-volume text hosted by Ophelia’s Open Book.';
+}catch(e){$('status').textContent=e.message;console.error(e)}})();
+})();
+</script></body></html>'''
+ART = r'''<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800" viewBox="0 0 600 800">
+<rect width="600" height="800" fill="#e8dbc0"/><rect x="30" y="28" width="540" height="744" fill="#f7f0dc" stroke="#a48d64" stroke-width="3"/>
+<g fill="#2c2b25" font-family="Georgia,serif" text-anchor="middle">
+<text x="300" y="125" font-size="29" letter-spacing="5">A</text>
+<text x="300" y="191" font-size="49" letter-spacing="3">DEFENCE</text>
+<text x="300" y="236" font-size="23">OF THE</text>
+<text x="300" y="294" font-size="26" letter-spacing="1">CONSTITUTIONS</text>
+<text x="300" y="336" font-size="24">OF GOVERNMENT</text>
+<text x="300" y="381" font-size="21">OF THE</text>
+<text x="300" y="436" font-size="26" letter-spacing="1">UNITED STATES</text>
+<text x="300" y="474" font-size="23">OF AMERICA.</text>
+<path d="M180 518H420" stroke="#8c7852" stroke-width="2"/>
+<text x="300" y="562" font-size="22">BY JOHN ADAMS, LL. D.</text>
+<text x="300" y="650" font-size="18">LONDON:</text>
+<text x="300" y="685" font-size="17">PRINTED FOR C. DILLY</text>
+<text x="300" y="723" font-size="20">M.DCC.LXXXVII.</text></g></svg>'''
+if __name__ == "__main__":
+    main()
