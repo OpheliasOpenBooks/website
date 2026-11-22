@@ -22,6 +22,12 @@ This is the default specification for **all current narrated books and every fut
 - `pride-and-prejudice.html`: existing studio plus its actual reader, retained until separately migrated.
 - `grimms-fairy-tales.html` and `more-grimm-fairy-tales.html`: specially indexed fairy-tale collections; they now adopt the key Les Mis reading controls and top original-language panel.
 
+## Editorial book descriptions
+
+Every published book must have a **brief, engaging, accurate description of its actual contents** in its library catalog entry (typically 2–4 sentences). Describe the premise or central questions, main subjects, and what readers will encounter. For fiction, introduce the setting, central characters, and conflict without spoilers. For nonfiction, explain the ideas, subject matter, and why the work is interesting; add historical context where appropriate. Do **not** substitute public-domain status, publication metadata, source details, hosted-text assurances, or reader-control descriptions for a genuine book description. Rights and edition information belongs in separate metadata or source notes. The assistant's publication announcement must also contain a concise, meaningful description of the book.
+
+New titles should appear in the **catalog only**, including `catalogOnlyBooks` where appropriate. Never insert featured book cards on the homepage or alter `index.html` without the editor's express instruction. Preserve the existing homepage exactly.
+
 ## Release checklist
 
 - Confirm original-language panel is near the **top**, never solely in the footer.
@@ -31,3 +37,5 @@ This is the default specification for **all current narrated books and every fut
 - Verify full text is accessible, including every tale/chapter; avoid third-party text fetches if the source is available locally.
 - Inspect a phone-width layout and ensure controls do not obstruct text.
 - Audit the catalog's linked pages using `node scripts/audit-reader-format.mjs`.
+- Verify each catalog listing contains a meaningful book summary rather than just public-domain and hosting notes; include a brief book description when announcing publication.
+- Verify the homepage file is unchanged when the editor requested catalog-only publication.
