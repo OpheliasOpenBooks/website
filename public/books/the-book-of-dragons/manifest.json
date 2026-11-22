@@ -1,0 +1,42 @@
+{
+  "title": "The Book of Dragons",
+  "author": "E. Nesbit",
+  "firstCollectedEdition": "1901",
+  "originalStories": 8,
+  "hasDedication": true,
+  "language": "en",
+  "readOnly": false,
+  "source": "https://github.com/GITenberg/The-Book-of-Dragons_23661/blob/master/23661.txt",
+  "projectGutenberg": "https://www.gutenberg.org/ebooks/23661",
+  "wordCount": 41610,
+  "parts": [
+    {
+      "part": 1,
+      "file": "part-001.json",
+      "name": "Dedication · To Rosamund",
+      "sections": 3,
+      "words": 10212
+    },
+    {
+      "part": 2,
+      "file": "part-002.json",
+      "name": "Story III · The Deliverers of Their Country",
+      "sections": 2,
+      "words": 10899
+    },
+    {
+      "part": 3,
+      "file": "part-003.json",
+      "name": "Story V · The Island of the Nine Whirlpools",
+      "sections": 2,
+      "words": 10525
+    },
+    {
+      "part": 4,
+      "file": "part-004.json",
+      "name": "Story VII · The Fiery Dragon, or The Heart of Stone and the Heart of Gold",
+      "sections": 2,
+      "words": 9974
+    }
+  ]
+}
