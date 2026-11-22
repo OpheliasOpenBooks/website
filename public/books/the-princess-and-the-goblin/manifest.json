@@ -1,0 +1,70 @@
+{
+  "title": "The Princess and the Goblin",
+  "author": "George MacDonald",
+  "firstPublished": 1872,
+  "sourceEdition": "1920 illustrated David McKay edition, Jessie Willcox Smith",
+  "language": "en",
+  "readOnly": false,
+  "source": "https://github.com/GITenberg/The-Princess-and-the-Goblin_34339/blob/master/34339.txt",
+  "projectGutenberg": "https://www.gutenberg.org/ebooks/34339",
+  "originalChapters": 32,
+  "wordCount": 51115,
+  "parts": [
+    {
+      "part": 1,
+      "file": "part-001.json",
+      "name": "Chapter I · WHY THE PRINCESS HAS A STORY ABOUT HER",
+      "sections": 4,
+      "words": 4957
+    },
+    {
+      "part": 2,
+      "file": "part-002.json",
+      "name": "Chapter V · THE PRINCESS LETS WELL ALONE",
+      "sections": 4,
+      "words": 7542
+    },
+    {
+      "part": 3,
+      "file": "part-003.json",
+      "name": "Chapter IX · THE HALL OF THE GOBLIN PALACE",
+      "sections": 4,
+      "words": 7406
+    },
+    {
+      "part": 4,
+      "file": "part-004.json",
+      "name": "Chapter XIII · THE COBS' CREATURES",
+      "sections": 4,
+      "words": 6285
+    },
+    {
+      "part": 5,
+      "file": "part-005.json",
+      "name": "Chapter XVII · SPRING-TIME",
+      "sections": 4,
+      "words": 6687
+    },
+    {
+      "part": 6,
+      "file": "part-006.json",
+      "name": "Chapter XXI · THE ESCAPE",
+      "sections": 4,
+      "words": 9035
+    },
+    {
+      "part": 7,
+      "file": "part-007.json",
+      "name": "Chapter XXV · CURDIE COMES TO GRIEF",
+      "sections": 4,
+      "words": 5485
+    },
+    {
+      "part": 8,
+      "file": "part-008.json",
+      "name": "Chapter XXIX · MASON-WORK",
+      "sections": 4,
+      "words": 3718
+    }
+  ]
+}
