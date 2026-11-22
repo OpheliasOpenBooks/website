@@ -78,7 +78,7 @@ let segments=[],pages=[],voiceList=[],speechToken=0, speaking=false,paused=false
 const note=text=>{$('message').textContent=text};
 function parseText(raw){
  const d=JSON.parse(raw),n=Number(state.book);
- if(!MANIFEST||d.title!=='The King of Elfland's Daughter'||d.author!=='Lord Dunsany'||d.language!=='en'||d.readOnly!==false||d.part!==n||d.partCount!==COUNT||!Array.isArray(d.sections)||d.sections.length!==BOOK_SECTIONS[n])throw Error('Incomplete reading part '+n);
+ if(!MANIFEST||d.title!=="The King of Elfland's Daughter"||d.author!=='Lord Dunsany'||d.language!=='en'||d.readOnly!==false||d.part!==n||d.partCount!==COUNT||!Array.isArray(d.sections)||d.sections.length!==BOOK_SECTIONS[n])throw Error('Incomplete reading part '+n);
  if(d.sections.some(x=>!x.name||!Array.isArray(x.paragraphs)||!x.paragraphs.length||x.paragraphs.some(p=>typeof p!=='string'||!p.trim())))throw Error('Original section missing');
  const words=(d.sections.flatMap(x=>x.paragraphs).join(' ').match(/\S+/g)||[]).length;
  if(words<BOOK_MIN_WORDS[n])throw Error('Reading part shorter than verified source');
@@ -207,7 +207,7 @@ function finishPage(token){
  note('Finished page '+(state.page+1)+'.');
  if(state.autoTurn&&state.page<pages.length-1){state.page++;save();render();startSpeech(0);}
  else if(state.autoTurn&&state.book<COUNT){const nextPart=state.book+1;openBook(nextPart,'start').then(()=>{if(state.book===nextPart&&pages.length&&state.autoTurn)startSpeech(0);});}
- else if(state.book===COUNT&&state.page===pages.length-1)note('You have finished The King of Elfland's Daughter. ❦ ❦');
+ else if(state.book===COUNT&&state.page===pages.length-1)note("You have finished The King of Elfland's Daughter. ❦ ❦");
 }
 function startSpeech(startAt=speechResumeAt){
  if(!soundOn){note('Sound is off. Select Sound on before starting narration.');return;}
@@ -327,7 +327,7 @@ applySettings();
   const response=await fetch('public/books/the-king-of-elflands-daughter/manifest.json',{cache:'no-store'});
   if(!response.ok)throw Error('Book manifest unavailable: HTTP '+response.status);
   MANIFEST=await response.json();
-  if(MANIFEST.title!=='The King of Elfland's Daughter'||MANIFEST.author!=='Lord Dunsany'||!Array.isArray(MANIFEST.parts)||MANIFEST.parts.length<9||MANIFEST.wordCount<60000||MANIFEST.originalChapters!==34)throw Error('All 34 original chapters have not finished publishing');
+  if(MANIFEST.title!=="The King of Elfland's Daughter"||MANIFEST.author!=='Lord Dunsany'||!Array.isArray(MANIFEST.parts)||MANIFEST.parts.length<9||MANIFEST.wordCount<60000||MANIFEST.originalChapters!==34)throw Error('All 34 original chapters have not finished publishing');
   COUNT=MANIFEST.parts.length;
   BOOK_SECTIONS=[0,...MANIFEST.parts.map(part=>part.sections)];
   BOOK_MIN_WORDS=[0,...MANIFEST.parts.map(part=>part.words)];
