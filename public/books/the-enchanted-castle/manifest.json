@@ -1,0 +1,56 @@
+{
+  "title": "The Enchanted Castle",
+  "author": "E. Nesbit",
+  "firstPublished": 1907,
+  "language": "en",
+  "readOnly": false,
+  "source": "https://github.com/GITenberg/The-Enchanted-Castle_34219/blob/master/34219-0.txt",
+  "projectGutenberg": "https://www.gutenberg.org/ebooks/34219",
+  "originalChapters": 12,
+  "dedication": true,
+  "wordCount": 67680,
+  "parts": [
+    {
+      "part": 1,
+      "file": "part-001.json",
+      "name": "Dedication · To Margaret Ostler",
+      "sections": 3,
+      "words": 10308
+    },
+    {
+      "part": 2,
+      "file": "part-002.json",
+      "name": "Chapter III",
+      "sections": 2,
+      "words": 10651
+    },
+    {
+      "part": 3,
+      "file": "part-003.json",
+      "name": "Chapter V",
+      "sections": 2,
+      "words": 11726
+    },
+    {
+      "part": 4,
+      "file": "part-004.json",
+      "name": "Chapter VII",
+      "sections": 2,
+      "words": 13167
+    },
+    {
+      "part": 5,
+      "file": "part-005.json",
+      "name": "Chapter IX",
+      "sections": 2,
+      "words": 11439
+    },
+    {
+      "part": 6,
+      "file": "part-006.json",
+      "name": "Chapter XI",
+      "sections": 2,
+      "words": 10389
+    }
+  ]
+}
