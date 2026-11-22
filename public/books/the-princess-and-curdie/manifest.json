@@ -1,0 +1,77 @@
+{
+  "title": "The Princess and Curdie",
+  "author": "George MacDonald",
+  "firstPublished": 1883,
+  "language": "en",
+  "readOnly": false,
+  "sourceEdition": "1883 illustrated J. B. Lippincott edition (James Allen)",
+  "source": "https://github.com/GITenberg/The-Princess-and-Curdie_36612/blob/master/36612.txt",
+  "projectGutenberg": "https://www.gutenberg.org/ebooks/36612",
+  "originalChapters": 35,
+  "wordCount": 55684,
+  "parts": [
+    {
+      "part": 1,
+      "file": "part-001.json",
+      "name": "Chapter I · THE MOUNTAIN",
+      "sections": 4,
+      "words": 8765
+    },
+    {
+      "part": 2,
+      "file": "part-002.json",
+      "name": "Chapter V · THE MINERS",
+      "sections": 4,
+      "words": 9269
+    },
+    {
+      "part": 3,
+      "file": "part-003.json",
+      "name": "Chapter IX · HANDS",
+      "sections": 4,
+      "words": 4460
+    },
+    {
+      "part": 4,
+      "file": "part-004.json",
+      "name": "Chapter XIII · THE BAKER'S WIFE",
+      "sections": 4,
+      "words": 6467
+    },
+    {
+      "part": 5,
+      "file": "part-005.json",
+      "name": "Chapter XVII · THE WINE-CELLAR",
+      "sections": 4,
+      "words": 6600
+    },
+    {
+      "part": 6,
+      "file": "part-006.json",
+      "name": "Chapter XXI · THE LOAF",
+      "sections": 4,
+      "words": 6775
+    },
+    {
+      "part": 7,
+      "file": "part-007.json",
+      "name": "Chapter XXV · THE AVENGERS",
+      "sections": 4,
+      "words": 6462
+    },
+    {
+      "part": 8,
+      "file": "part-008.json",
+      "name": "Chapter XXIX · BARBARA",
+      "sections": 4,
+      "words": 4031
+    },
+    {
+      "part": 9,
+      "file": "part-009.json",
+      "name": "Chapter XXXIII · THE BATTLE",
+      "sections": 3,
+      "words": 2855
+    }
+  ]
+}
