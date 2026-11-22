@@ -28,6 +28,10 @@ Every published book must have a **brief, engaging, accurate description of its 
 
 New titles should appear in the **catalog only**, including `catalogOnlyBooks` where appropriate. Never insert featured book cards on the homepage or alter `index.html` without the editor's express instruction. Preserve the existing homepage exactly.
 
+## Clean transcription presentation
+
+For every newly hosted edition, inspect the Project Gutenberg or transcription formatting before publication. Strip nonliterary inline formatting markers such as `#` for bold and raw underscore emphasis markers from the displayed reader (while preserving intended italics). Do not expose distribution boilerplate, scanner/transcription notes, publisher metadata or random transcription markup as story paragraphs. Keep the author's narrative wording and historical terminology intact. Make footnote markers silent in narration; keep scholarly source notes available without interrupting the main reader. Test the first rendered page for accidental markup and title-page clutter.
+
 ## Release checklist
 
 - Confirm original-language panel is near the **top**, never solely in the footer.
