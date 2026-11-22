@@ -1,0 +1,88 @@
+{
+  "title": "The Dragon of Wantley: His Tale",
+  "author": "Owen Wister",
+  "firstPublished": 1892,
+  "sourceEdition": "Second edition, J. B. Lippincott Company, Philadelphia, 1895",
+  "illustrator": "John Stewardson",
+  "language": "en",
+  "readOnly": false,
+  "source": "https://github.com/GITenberg/The-Dragon-of-Wantley--His-Tale_26448/blob/master/26448-8.txt",
+  "projectGutenberg": "https://www.gutenberg.org/ebooks/26448",
+  "originalChapters": 10,
+  "hasDedication": true,
+  "hasPrefaces": 2,
+  "hasEnvoi": true,
+  "wordCount": 29583,
+  "parts": [
+    {
+      "part": 1,
+      "file": "part-001.json",
+      "name": "Dedication, prefaces and Chapter I",
+      "sections": 4,
+      "words": 2800
+    },
+    {
+      "part": 2,
+      "file": "part-002.json",
+      "name": "Chapter II",
+      "sections": 1,
+      "words": 2437
+    },
+    {
+      "part": 3,
+      "file": "part-003.json",
+      "name": "Chapter III",
+      "sections": 1,
+      "words": 1442
+    },
+    {
+      "part": 4,
+      "file": "part-004.json",
+      "name": "Chapter IV",
+      "sections": 1,
+      "words": 2298
+    },
+    {
+      "part": 5,
+      "file": "part-005.json",
+      "name": "Chapter V",
+      "sections": 1,
+      "words": 2030
+    },
+    {
+      "part": 6,
+      "file": "part-006.json",
+      "name": "Chapter VI",
+      "sections": 1,
+      "words": 3305
+    },
+    {
+      "part": 7,
+      "file": "part-007.json",
+      "name": "Chapter VII",
+      "sections": 1,
+      "words": 3729
+    },
+    {
+      "part": 8,
+      "file": "part-008.json",
+      "name": "Chapter VIII",
+      "sections": 1,
+      "words": 5025
+    },
+    {
+      "part": 9,
+      "file": "part-009.json",
+      "name": "Chapter IX",
+      "sections": 1,
+      "words": 2919
+    },
+    {
+      "part": 10,
+      "file": "part-010.json",
+      "name": "Chapter X and L'Envoi",
+      "sections": 2,
+      "words": 3598
+    }
+  ]
+}
