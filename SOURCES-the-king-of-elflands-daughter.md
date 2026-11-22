@@ -1,0 +1,9 @@
+# The King of Elfland’s Daughter — editorial source note
+
+- **Author / original edition:** Lord Dunsany, *The King of Elfland's Daughter* (G. P. Putnam's Sons, 1924). The original novel and Sime’s illustration are public domain in the United States.
+- **Text:** Project Gutenberg #61077, https://www.gutenberg.org/ebooks/61077. GITenberg plaintext archival transcription: https://github.com/GITenberg/The-King-of-Elfland-s-Daughter_61077/blob/master/61077-8.txt
+- **Edition handling:** Gutenberg's source transcription includes a publisher's 1969 Ballantine reprint imprint, which is excluded here because it is not part of the original 1924 story. The author’s original preface and dedication to Lady Dunsany are retained.
+- **Complete work:** 69206 whitespace-delimited words across 34 original chapters I–XXXIV, plus dedication and preface. All 34 chapter titles preserved. First prose line begins “In their ruddy jackets of leather”; last prose line ends “they were no longer the fields we know.” The 36 sections are divided into nine locally hosted JSON reading parts, not shortened or externally fetched.
+- **Artwork:** The historical Sidney Sime 1924 frontispiece *The Hunting of the Unicorn* is displayed as the opening image, **not** falsely labeled as the first-edition jacket: https://commons.wikimedia.org/wiki/File:The_Hunting_of_the_Unicorn_by_Samuel_Simes,_Frontispiece_to_The_King_of_Elfland%27s_Daughter.png. The local neutral art fallback is used when image hosting fails.
+- **Reader:** `the-king-of-elflands-daughter.html`. Shared library narration engine, selectable device voice/speed, pause/resume, auto-turn, bookmarks, saved place, evening mode. The work is originally in English, so no foreign-language panel applies.
+- **Verification limit:** Source section structure, opening and ending, manifests, and repository state checked. Browser audio/image and GitHub Pages serving should be tested separately.

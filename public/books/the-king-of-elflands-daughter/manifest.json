@@ -1,0 +1,78 @@
+{
+  "title": "The King of Elfland's Daughter",
+  "author": "Lord Dunsany",
+  "firstPublished": 1924,
+  "language": "en",
+  "readOnly": false,
+  "source": "https://github.com/GITenberg/The-King-of-Elfland-s-Daughter_61077/blob/master/61077-8.txt",
+  "projectGutenberg": "https://www.gutenberg.org/ebooks/61077",
+  "originalChapters": 34,
+  "hasPreface": true,
+  "hasDedication": true,
+  "wordCount": 69206,
+  "parts": [
+    {
+      "part": 1,
+      "file": "part-001.json",
+      "name": "Dedication",
+      "sections": 4,
+      "words": 4609
+    },
+    {
+      "part": 2,
+      "file": "part-002.json",
+      "name": "Chapter III · The Magical Sword Meets Some of the Swords of Elfland",
+      "sections": 4,
+      "words": 7296
+    },
+    {
+      "part": 3,
+      "file": "part-003.json",
+      "name": "Chapter VII · The Coming of the Troll",
+      "sections": 4,
+      "words": 8016
+    },
+    {
+      "part": 4,
+      "file": "part-004.json",
+      "name": "Chapter XI · The Deep of the Woods",
+      "sections": 4,
+      "words": 8068
+    },
+    {
+      "part": 5,
+      "file": "part-005.json",
+      "name": "Chapter XV · The Retreat of the Elf King",
+      "sections": 4,
+      "words": 6875
+    },
+    {
+      "part": 6,
+      "file": "part-006.json",
+      "name": "Chapter XIX · Twelve Old Men Without Magic",
+      "sections": 4,
+      "words": 8949
+    },
+    {
+      "part": 7,
+      "file": "part-007.json",
+      "name": "Chapter XXIII · Lurulu Watches the Restlessness of Earth",
+      "sections": 4,
+      "words": 10190
+    },
+    {
+      "part": 8,
+      "file": "part-008.json",
+      "name": "Chapter XXVII · The Return of Lurulu",
+      "sections": 4,
+      "words": 7323
+    },
+    {
+      "part": 9,
+      "file": "part-009.json",
+      "name": "Chapter XXXI · The Cursing of Elfin Things",
+      "sections": 4,
+      "words": 7880
+    }
+  ]
+}
