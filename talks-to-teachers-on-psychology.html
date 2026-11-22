@@ -70,14 +70,20 @@ function parseText(raw){
  const headings=[...body.matchAll(/^([IVXLCDM]+)\.\s+([A-Z][A-Z ,?'\-]+)\s*$/gm)];
  const expected=['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV','I','II','III'];
  if(headings.length!==18||headings.some((h,i)=>h[1]!==expected[i]))throw Error('Expected fifteen talks to teachers and three to students');
- const parts=[{name:'Title, Preface & Contents',start:0,end:bodyStart}];
+ const prefaceStart=t.indexOf('\nPREFACE.\n');
+ if(prefaceStart<0||prefaceStart>bodyStart)throw Error('Preface not found');
+ const parts=[{name:'Preface & Contents',start:prefaceStart,end:bodyStart}];
  for(let i=0;i<headings.length;i++){
   const name=(i<15?'Teachers · ':'Students · ')+headings[i][1]+'. '+headings[i][2].replace(/[.?!]+$/,'');
   parts.push({name,start:bodyStart+headings[i].index,end:bodyStart+(headings[i+1]?.index??body.length)});
  }
- const paras=s=>s.trim().split(/\n\s*\n+/).map(b=>b.trim().split('\n').map(x=>x.trim()).join(' ').replace(/\s{2,}/g,' ').trim()).filter(Boolean);
+ const paras=s=>s.trim().split(/\n\s*\n+/)
+  .map(b=>b.trim().split('\n').map(x=>x.trim()).join(' ').replace(/\s{2,}/g,' ').trim())
+  .filter(Boolean)
+  .filter(p=>!/^\[[A-Z]{1,2}\]\s/.test(p)) // keep full notes in the downloadable source, but do not interrupt the narrative
+  .map(p=>p.replace(/\[([A-Z]{1,2})\]/g,'').replace(/\s{2,}/g,' ').trim());
  const sections=parts.map(p=>({name:p.name,paragraphs:paras(t.slice(p.start,p.end))})).filter(p=>p.paragraphs.length);
- if(sections.length!==19||sections.reduce((n,s)=>n+s.paragraphs.join(' ').split(/\s+/).length,0)<58000)throw Error('Source is incomplete');
+ if(sections.length!==19||sections.reduce((n,s)=>n+s.paragraphs.join(' ').split(/\s+/).length,0)<57000)throw Error('Source is incomplete');
  return sections;
 }
 function paginate(sections){
