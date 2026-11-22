@@ -63,12 +63,11 @@ function romanToNumber(s){
 function parseText(raw){
  const t=raw.replace(/\r\n?/g,'\n').trim();
  if(!t.startsWith('THE CROWD')||!t.includes('GUSTAVE LE BON')||!t.includes('BOOK III')||t.length<300000)throw Error('Complete text not found');
- const bodyStart=t.indexOf('\nINTRODUCTION\n',t.indexOf('\nCONTENTS\n')+10);
- // The contents list repeats headings. Keep preface and contents while using the actual chapter positions.
- const realStart=t.indexOf('\nINTRODUCTION\n',bodyStart+14);
- const mainStart=realStart>0?realStart:Math.floor(t.length/15);
- const parts=[{name:'Title, Preface & Contents',start:0,end:mainStart}];
- const heads=[...t.slice(mainStart).matchAll(/^BOOK\s+(I|II|III)\s*$/gm)].map(m=>({index:mainStart+m.index,name:'Book '+m[1]}));
+ const bookMatches=[...t.matchAll(/^BOOK\s+(I|II|III)\s*$/gm)].map(m=>({index:m.index,name:'Book '+m[1]}));
+ // The table of contents lists the three books once; use their last three actual text positions.
+ const heads=bookMatches.slice(-3);
+ const mainStart=heads[0]?.index??0;
+ const parts=[{name:'Title, Introduction & Contents',start:0,end:mainStart}];
  if(heads.length!==3)throw Error('Expected three complete books');
  parts[0].end=heads[0].index;
  for(let i=0;i<heads.length;i++){
