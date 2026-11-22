@@ -1,0 +1,58 @@
+{
+  "title": "Five Children and It",
+  "author": "E. Nesbit",
+  "firstPublished": 1902,
+  "sourceEdition": "1905 Dodd Mead illustrated printing; first published 1902",
+  "language": "en",
+  "readOnly": false,
+  "source": "https://github.com/GITenberg/Five-Children-and-It_17314/blob/master/17314.txt",
+  "projectGutenberg": "https://www.gutenberg.org/ebooks/17314",
+  "originalChapters": 11,
+  "dedication": true,
+  "publicationNote": true,
+  "wordCount": 52460,
+  "parts": [
+    {
+      "part": 1,
+      "file": "part-001.json",
+      "name": "Dedication · To John Bland",
+      "sections": 3,
+      "words": 6179
+    },
+    {
+      "part": 2,
+      "file": "part-002.json",
+      "name": "Chapter II · GOLDEN GUINEAS",
+      "sections": 2,
+      "words": 12322
+    },
+    {
+      "part": 3,
+      "file": "part-003.json",
+      "name": "Chapter IV · WINGS",
+      "sections": 2,
+      "words": 8698
+    },
+    {
+      "part": 4,
+      "file": "part-004.json",
+      "name": "Chapter VI · A CASTLE AND NO DINNER",
+      "sections": 2,
+      "words": 7241
+    },
+    {
+      "part": 5,
+      "file": "part-005.json",
+      "name": "Chapter VIII · BIGGER THAN THE BAKER'S BOY",
+      "sections": 2,
+      "words": 9720
+    },
+    {
+      "part": 6,
+      "file": "part-006.json",
+      "name": "Chapter X · SCALPS",
+      "sections": 2,
+      "words": 8300
+    }
+  ]
+}
