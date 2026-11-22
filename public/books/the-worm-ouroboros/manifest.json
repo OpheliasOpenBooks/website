@@ -1,0 +1,152 @@
+{
+  "title": "The Worm Ouroboros",
+  "author": "E. R. Eddison",
+  "firstPublished": 1922,
+  "sourceEdition": "Original 1922 work; illustrated Jonathan Cape 1924 edition",
+  "language": "en",
+  "readOnly": false,
+  "source": "https://github.com/GITenberg/The-Worm-Ouroboros-A-Romance_67090/blob/master/67090-0.txt",
+  "projectGutenberg": "https://www.gutenberg.org/ebooks/67090",
+  "originalChapters": 33,
+  "hasInduction": true,
+  "hasAuthorNote": true,
+  "hasEpigraph": true,
+  "hasDedication": true,
+  "hasHistoricalAppendices": true,
+  "wordCount": 169683,
+  "parts": [
+    {
+      "part": 1,
+      "file": "part-001.json",
+      "name": "Epigraph & dedication",
+      "sections": 2,
+      "words": 280
+    },
+    {
+      "part": 2,
+      "file": "part-002.json",
+      "name": "The Induction",
+      "sections": 2,
+      "words": 6776
+    },
+    {
+      "part": 3,
+      "file": "part-003.json",
+      "name": "Chapter II · THE WRASTLING FOR DEMONLAND",
+      "sections": 2,
+      "words": 11107
+    },
+    {
+      "part": 4,
+      "file": "part-004.json",
+      "name": "Chapter IV · CONJURING IN THE IRON TOWER",
+      "sections": 2,
+      "words": 9252
+    },
+    {
+      "part": 5,
+      "file": "part-005.json",
+      "name": "Chapter VI · THE CLAWS OF WITCHLAND",
+      "sections": 2,
+      "words": 12831
+    },
+    {
+      "part": 6,
+      "file": "part-006.json",
+      "name": "Chapter VIII · THE FIRST EXPEDITION TO IMPLAND",
+      "sections": 2,
+      "words": 12251
+    },
+    {
+      "part": 7,
+      "file": "part-007.json",
+      "name": "Chapter X · THE MARCHLANDS OF THE MORUNA",
+      "sections": 2,
+      "words": 9119
+    },
+    {
+      "part": 8,
+      "file": "part-008.json",
+      "name": "Chapter XII · KOSHTRA PIVRARCHA",
+      "sections": 2,
+      "words": 15716
+    },
+    {
+      "part": 9,
+      "file": "part-009.json",
+      "name": "Chapter XIV · THE LAKE OF RAVARY",
+      "sections": 2,
+      "words": 6886
+    },
+    {
+      "part": 10,
+      "file": "part-010.json",
+      "name": "Chapter XVI · THE LADY SRIVA’S EMBASSAGE",
+      "sections": 2,
+      "words": 9154
+    },
+    {
+      "part": 11,
+      "file": "part-011.json",
+      "name": "Chapter XVIII · THE MURTHER OF GALLANDUS BY CORSUS",
+      "sections": 2,
+      "words": 9394
+    },
+    {
+      "part": 12,
+      "file": "part-012.json",
+      "name": "Chapter XX · KING CORINIUS",
+      "sections": 2,
+      "words": 4227
+    },
+    {
+      "part": 13,
+      "file": "part-013.json",
+      "name": "Chapter XXII · AURWATH AND SWITCHWATER",
+      "sections": 2,
+      "words": 6473
+    },
+    {
+      "part": 14,
+      "file": "part-014.json",
+      "name": "Chapter XXIV · A KING IN KROTHERING",
+      "sections": 2,
+      "words": 9748
+    },
+    {
+      "part": 15,
+      "file": "part-015.json",
+      "name": "Chapter XXVI · THE BATTLE OF KROTHERING SIDE",
+      "sections": 2,
+      "words": 13022
+    },
+    {
+      "part": 16,
+      "file": "part-016.json",
+      "name": "Chapter XXVIII · ZORA RACH NAM PSARRION",
+      "sections": 2,
+      "words": 5574
+    },
+    {
+      "part": 17,
+      "file": "part-017.json",
+      "name": "Chapter XXX · TIDINGS OF MELIKAPHKHAZ",
+      "sections": 2,
+      "words": 13077
+    },
+    {
+      "part": 18,
+      "file": "part-018.json",
+      "name": "Chapter XXXII · THE LATTER END OF ALL THE LORDS OF WITCHLAND",
+      "sections": 2,
+      "words": 13129
+    },
+    {
+      "part": 19,
+      "file": "part-019.json",
+      "name": "Historical argument · With dates",
+      "sections": 2,
+      "words": 1667
+    }
+  ]
+}
