@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Psychologie des foules · Gustave Le Bon · Ophelia’s Open Book</title>
+<meta name="description" content="Texte intégral original en français de Psychologie des foules (1895) de Gustave Le Bon, hébergé par Ophelia’s Open Book.">
+<link rel="canonical" href="https://opheliasopenbooks.github.io/website/psychologie-des-foules-original-francais.html">
+<link rel="stylesheet" href="public/holiday-buttons.css">
+<style>
+:root{--paper:#f7f1e6;--card:#fffdf7;--ink:#2c4337;--wine:#712d3c;--gold:#a48351;--line:#d8cdb8;--muted:#687369}*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 Georgia,serif}a{color:var(--wine)}button,select{font:inherit}button{cursor:pointer}button:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid #bb8842;outline-offset:3px}
+header{background:#254438;color:#fff5e4;border-bottom:4px solid var(--gold);padding:14px max(18px,calc((100% - 1100px)/2));display:flex;align-items:center;gap:17px;justify-content:space-between;flex-wrap:wrap;font:14px Arial,sans-serif}header a{color:inherit;text-decoration:none}header a:hover{text-decoration:underline}header nav{display:flex;gap:15px;flex-wrap:wrap}.shell{max-width:1140px;margin:24px auto 54px;padding:0 18px;display:grid;grid-template-columns:minmax(0,1fr) 255px;gap:22px;align-items:start}
+.paper,.controls{background:var(--card);border:1px solid var(--line);border-radius:7px;box-shadow:0 5px 18px #303e3012}.paper{min-width:0}.heading{text-align:center;border-bottom:1px solid var(--line);padding:32px 22px}.eyebrow{font:700 11px Arial,sans-serif;letter-spacing:2px;color:#916a42;text-transform:uppercase}
+.heading h1{font:normal clamp(36px,5vw,55px)/1.15 Georgia,serif;margin:12px 0}.byline{font-style:italic;margin:0 0 12px}.language-link{display:inline-block;padding:8px 13px;border:1px solid #bb9e6c;border-radius:22px;text-decoration:none;margin-top:14px}.source-note{font:12px/1.6 Arial,sans-serif;color:var(--muted);max-width:650px;margin:12px auto 0}
+.reading{padding:30px clamp(18px,5vw,46px)}#prose{font:var(--reader-size,20px)/1.8 Georgia,serif;overflow-wrap:break-word;min-height:400px}#prose p{margin:0 0 1.2em}#prose p:first-child{margin-top:0}.chapter-label{font:700 12px Arial,sans-serif;color:var(--wine);letter-spacing:1px;padding-bottom:12px}.footer{border-top:1px solid var(--line);padding:16px 22px;display:flex;align-items:center;justify-content:space-between;gap:10px}.footer button,.controls button{padding:9px 12px;border:1px solid var(--line);border-radius:20px;color:var(--ink);background:#f3edde}.footer button:disabled,.controls button:disabled{opacity:.45;cursor:not-allowed}
+.controls{position:sticky;top:14px;padding:20px;font:13px/1.6 Arial,sans-serif}.controls label{display:block;font-weight:bold;margin:12px 0 7px}.controls select,.controls input[type=range]{width:100%}.controls select{padding:9px 7px;background:var(--card);border:1px solid var(--line);color:var(--ink)}.controls button{margin:8px 0}.progress{height:5px;background:#e7e0d3;border-radius:9px;margin:18px 0 8px}.progress>div{background:#6c8d74;height:100%;width:0;border-radius:9px}.status{font-size:12px;color:var(--muted);min-height:36px}.night{--paper:#15201d;--card:#27352e;--ink:#eeeade;--line:#526253;--muted:#b4b9ae;--wine:#e4b2af}.night .controls button,.night .footer button{background:#39473d;color:#eeeade}.night .controls select{background:#27352e}
+@media(max-width:800px){.shell{grid-template-columns:1fr}.controls{position:static;order:-1}.reading{padding:20px}.footer{flex-wrap:wrap}}
+</style></head>
+<body><header><a href="index.html">❦ Ophelia’s Open Book</a><nav aria-label="Navigation"><a href="index.html">Home</a><a href="catalog.html">Library</a><a href="music.html">Music Room</a><a href="my-bookshelf.html">Bookshelf</a><a href="correspondence.html">Letters</a></nav></header>
+<div class="shell"><main class="paper"><div class="heading"><div class="eyebrow">Édition originale française · Lecture seule</div><h1>Psychologie des foules</h1><p class="byline">Gustave Le Bon · 1895</p><a class="language-link" href="the-crowd.html">❦ Read the English edition with narration</a><p class="source-note">Texte intégral en français, hébergé sur ce site. Aucun enregistrement audio n'est fourni pour l'édition originale.</p></div>
+<article class="reading"><div id="chapter-label" class="chapter-label">Texte intégral</div><div id="prose"><p>Chargement du livre …</p></div></article>
+<div class="footer"><button id="previous" disabled type="button">← Page précédente</button><span id="footer-page">Page 1</span><button id="next" disabled type="button">Page suivante →</button></div></main>
+<aside class="controls"><strong>Psychologie des foules</strong><p>Texte français intégral · sans narration</p>
+<label for="part">Partie</label><select id="part" disabled><option>Chargement …</option></select><label for="page">Page</label><select id="page" disabled><option>—</option></select>
+<div class="progress" role="progressbar" aria-label="Progression" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="bar"></div></div><div id="counter">Page 1</div>
+<label for="size">Taille des caractères</label><input id="size" type="range" min="16" max="28" step="1" value="20">
+<label><input id="night" type="checkbox"> Mode soirée</label><p><button id="bookmark" type="button" disabled>♡ Enregistrer la page</button></p>
+<p class="status" id="status" role="status">Chargement du texte …</p>
+<p class="source-note">Source historique : <a href="https://www.gutenberg.org/ebooks/24007" target="_blank" rel="noopener">Project Gutenberg #24007</a>. Texte hébergé localement. Les théories sociales de cet ouvrage ne représentent pas nécessairement les connaissances scientifiques actuelles.</p>
+</aside></div>
+<script>
+'use strict';
+const $=id=>document.getElementById(id),KEY='ophelia-psychologie-des-foules-fr-1895-v1';
+let state={page:0,bookmark:-1,size:20,night:false};try{Object.assign(state,JSON.parse(localStorage.getItem(KEY)||'{}'))}catch{}
+let pages=[],sections=[];
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(state))}catch{}};
+const wordCount=s=>(s.match(/\S+/g)||[]).length;
+function paginate(html){
+ const d=new DOMParser().parseFromString(html,'text/html');const nodes=[...d.body.querySelectorAll('h1,h2,h3,h4,p')];
+ const all=nodes.map(n=>({text:n.textContent.replace(/\s+/g,' ').trim(),heading:/^H[1-4]$/.test(n.tagName)})).filter(n=>n.text);
+ if(all.length<300||all.reduce((n,x)=>n+wordCount(x.text),0)<40000)throw Error('Texte incomplet');
+ const result=[];let group=[],count=0,section='Début du livre';
+ const flush=()=>{if(group.length){result.push({paragraphs:group,section});group=[];count=0}};
+ for(const part of all){
+  if(part.heading&&part.text.length<130){flush();section=part.text}
+  const n=wordCount(part.text);
+  if(count+n>290&&group.length)flush();
+  if(n>360){const sentences=part.text.split(/(?<=[.!?;])\s+(?=[A-ZÀÂÇÉÈÊÎÔÙÛ])/);let chunk=[],w=0;
+   for(const sentence of sentences){const k=wordCount(sentence);if(w+k>250&&chunk.length){group.push(chunk.join(' '));flush();chunk=[];w=0}chunk.push(sentence);w+=k}
+   if(chunk.length){group.push(chunk.join(' '));count=w}
+  }else{group.push(part.text);count+=n}
+ }flush();
+ if(result.length<100)throw Error('Pagination incomplète');
+ return result;
+}
+function render(initial=false){
+ const current=pages[state.page];if(!current)return;
+ $('prose').replaceChildren(...current.paragraphs.map(p=>{const e=document.createElement('p');e.textContent=p;return e}));
+ $('chapter-label').textContent=current.section;$('page').value=String(state.page);
+ $('counter').textContent='Page '+(state.page+1)+' sur '+pages.length;$('footer-page').textContent='Page '+(state.page+1);
+ $('bar').style.width=(100*(state.page+1)/pages.length)+'%';document.querySelector('.progress').setAttribute('aria-valuenow',String(Math.round(100*(state.page+1)/pages.length)));
+ $('previous').disabled=state.page===0;$('next').disabled=state.page===pages.length-1;
+ $('bookmark').textContent=state.bookmark===state.page?'♥ Page enregistrée':'♡ Enregistrer la page';
+ $('status').textContent='Position mémorisée sur cet appareil · Lecture seule';
+ if(!initial)document.querySelector('.paper').scrollIntoView({block:'start',behavior:'instant'});
+}
+function go(n,initial=false){state.page=Math.min(pages.length-1,Math.max(0,n));save();render(initial)}
+$('previous').onclick=()=>go(state.page-1);$('next').onclick=()=>go(state.page+1);$('page').onchange=()=>go(Number($('page').value));
+$('part').onchange=()=>go(sections[Number($('part').value)]?.page||0);
+$('bookmark').onclick=()=>{state.bookmark=state.page;save();render(true)};
+$('size').oninput=()=>{state.size=Number($('size').value);document.documentElement.style.setProperty('--reader-size',state.size+'px');save()};
+$('night').onchange=()=>{state.night=$('night').checked;document.body.classList.toggle('night',state.night);save()};
+document.documentElement.style.setProperty('--reader-size',state.size+'px');$('size').value=state.size;$('night').checked=state.night;document.body.classList.toggle('night',state.night);
+(async()=>{try{
+ const r=await fetch('public/books/psychologie-des-foules-gustave-le-bon-original-francais.html');if(!r.ok)throw Error('Fichier non disponible');
+ pages=paginate(await r.text());
+ $('page').replaceChildren(...pages.map((_,i)=>new Option('Page '+(i+1),String(i))));$('page').disabled=false;$('bookmark').disabled=false;
+ sections=pages.reduce((out,p,i)=>{if(!out.length||out[out.length-1].name!==p.section)out.push({name:p.section,page:i});return out},[]);
+ $('part').replaceChildren(...sections.map((s,i)=>new Option(s.name,String(i))));$('part').disabled=false;
+ go(state.page,true);
+}catch(e){$('prose').textContent='Impossible de charger le texte français.';$('status').textContent='Erreur: '+e.message;}})();
+</script></body></html>
