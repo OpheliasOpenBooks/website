@@ -1,0 +1,48 @@
+name: Publish complete 1858 Benjamin Tallmadge memoir
+on:
+  push:
+    paths:
+      - '.github/workflows/import-tallmadge-1858.yml'
+      - 'scripts/import_tallmadge_1858.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import-original:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Import the verified complete 1858 edition (fail closed on missing pages)
+        run: python scripts/import_tallmadge_1858.py
+      - name: Check native reader, word count and catalog while preserving homepage
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          book=json.loads(Path('public/books/memoir-of-col-benjamin-tallmadge.json').read_text())
+          reader=Path('memoir-of-col-benjamin-tallmadge.html').read_text()
+          catalog=Path('catalog.html').read_text()
+          txt=Path('public/books/memoir-of-col-benjamin-tallmadge-1858-transcription.txt').read_text()
+          assert len(book['sections'])==2
+          assert sum(len(' '.join(x['paragraphs']).split()) for x in book['sections'])>10000
+          assert 'PREFACE.' in txt and 'F. A.' in txt and len(txt)>80000
+          assert 'ophelia-narration.js' in reader and 'settings-toggle' in reader
+          assert 'memoir-of-col-benjamin-tallmadge.html' in catalog
+          assert Path('public/art/memoir-of-col-benjamin-tallmadge-1858-titlepage.svg').exists()
+          print('1858 memoir verified with hosted source, original reader and historical edition.')
+          PY
+      - name: Publish only if all original source checks pass
+        run: |
+          git config user.name "Ophelia Library Importer"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/books/memoir-of-col-benjamin-tallmadge.json public/books/memoir-of-col-benjamin-tallmadge-1858-transcription.txt SOURCES-memoir-of-col-benjamin-tallmadge.md catalog.html sitemap.xml
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish locally hosted complete Tallmadge memoir (1858) and catalog entry"
+            git push
+          fi
