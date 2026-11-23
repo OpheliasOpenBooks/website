@@ -1,0 +1,12 @@
+# General Washington’s Spies — editorial provenance and publication checks
+
+- **Work:** Morton Pennypacker, *General Washington’s Spies on Long Island and in New York*, Brooklyn: Long Island Historical Society, 1939.
+- **U.S. copyright:** Project Gutenberg explicitly identifies the 1939 edition as public domain in the United States: https://www.gutenberg.org/ebooks/70129 (Project Gutenberg #70129, released 2023).
+- **Text source:** https://github.com/GITenberg/General-Washington-s-spies-on-Long-Island-and-in-New-York_70129/blob/master/70129-0.txt (Project Gutenberg transcription).
+- **Locally hosted original transcription:** `public/books/general-washingtons-spies-long-island-new-york-original-transcription.txt` includes the 1939 title pages, publisher information, illustrations captions, preface, foreword, the main chapters, notes and index; Gutenberg licensing boilerplate and transcriber notes are excluded.
+- **Locally hosted narrated reader:** `general-washingtons-spies-long-island-new-york.html` loads `public/books/general-washingtons-spies-long-island-new-york.json`. Source counts: 14 verified divisions, 86,711 rendered words, 65 extracted and silent historical footnotes.
+- **Read-only historical material:** The original printed Notes and Amplification and Index are available in the chapter selector but deliberately not spoken; short footnotes attached to each chapter appear behind an optional expandable control.
+- **Text integrity:** Historic spellings and cipher details are preserved. Inline bracketed footnote numbers and endnote references are excluded from narration. The public-domain original source remains linked for readers.
+- **Artwork:** `public/art/general-washingtons-spies-long-island-new-york-1939-titleplate.svg` is a period-inspired typographic recreation, *not* an original first-edition cover scan. The original complete transcription retains book illustration captions.
+- **Publication scope:** Updated only the book reader, locally hosted text, catalog and sitemap; homepage `index.html` unchanged.
+- **Editorial description:** Who kept George Washington informed inside British-occupied New York? Morton Pennypacker follows the covert intelligence networks operating on Long Island and in New York during the American Revolution. He traces Nathan Hale’s fate, the secret identities of Robert Townsend and Abraham Woodhull, the Culper Ring’s codes and couriers, and the treason of Benedict Arnold, drawing on letters and historical records.
