@@ -18,22 +18,22 @@ jobs:
           import urllib.request, json
           urls=[
            'https://archive.org/metadata/2571053R.nlm.nih.gov',
-           'https://archive.org/download/2571053R.nlm.nih.gov/2571053R.nlm.nih.gov_djvu.txt',
-           'https://archive.org/download/2571053R.nlm.nih.gov/2571053R.nlm.nih.gov_full_text.txt',
-           'https://www.biodiversitylibrary.org/itemtext/2571053R',
+           'https://archive.org/download/2571053R.nlm.nih.gov/2571053R_djvu.txt',
+           'https://archive.org/download/2571053R.nlm.nih.gov/2571053R_djvu.xml',
+           'https://ia800109.us.archive.org/25/items/2571053R.nlm.nih.gov/2571053R_djvu.txt',
           ]
           for url in urls:
            try:
             r=urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':'OpheliasOpenBook/1.0 public domain research'}),timeout=28)
-            b=r.read(2000000)
+            b=r.read(3000000)
             text=b.decode('utf8','replace')
-            print('PROBE',url,'STATUS',r.status,'LENGTH',len(b),'FIRST',repr(text[:600]),flush=True)
+            print('PROBE',url,'STATUS',r.status,'LENGTH',len(b),'WORDS',len(text.split()),'FIRST',repr(text[:2200]),'MIDDLE',repr(text[len(text)//2:len(text)//2+1100]),'END',repr(text[-2000:]),flush=True)
             if 'metadata/' in url and text.lstrip().startswith('{'):
              j=json.loads(text)
              print('ARCHIVE',j.get('is_dark'),j.get('metadata',{}).get('title'),json.dumps([(f.get('name'),f.get('size')) for f in j.get('files',[]) if 'txt' in f.get('name','').lower() or 'pdf' in f.get('name','').lower()][:25]),flush=True)
            except Exception as e:print('FAILED',url,repr(e),flush=True)
           PY
-      - name: Download original 1806 scan and assess embedded text (non-OCR)
+      - name: Confirm text delivery and PDF fallback if available
         run: |
           python - <<'PY'
           import urllib.request
