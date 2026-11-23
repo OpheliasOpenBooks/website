@@ -6,7 +6,7 @@
 - 1904 IA facsimile reprint OCR transcription: https://archive.org/stream/memoirofcolonelb027409mbp/memoirofcolonelb027409mbp_djvu.txt
 - The complete original 1858 preface, Tallmadge autobiographical memoir and signed family remarks are transcribed from the 1904 public-domain reprint; later 1904 editorial notes excluded.
 - Local hosted transcription: public/books/memoir-of-col-benjamin-tallmadge-1858-transcription.txt.
-- Local read-aloud content: public/books/memoir-of-col-benjamin-tallmadge.json, two sections with 25103 transcribed words.
+- Local read-aloud content: public/books/memoir-of-col-benjamin-tallmadge.json, two sections with 25098 transcribed words.
 - Reader: memoir-of-col-benjamin-tallmadge.html, uses original Ophelia narrator, bookmark, saved reading position, chapter selector and settings.
 - Historic title page art is a clearly labeled period-inspired reconstruction, not an original scanned cover.
 - The 1904 reprint OCR has some period-type errors; common unambiguous errors are normalized, and further proofreading may still be needed.
