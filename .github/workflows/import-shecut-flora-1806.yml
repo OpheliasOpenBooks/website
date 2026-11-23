@@ -1,0 +1,51 @@
+name: Publish complete 1806 Shecut Flora Volume I
+on:
+  push:
+    paths:
+      - '.github/workflows/import-shecut-flora-1806.yml'
+      - 'scripts/import_shecut_flora_1806.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  publish-historical-original:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Recover and verify the entire public-domain 1806 original
+        run: python scripts/import_shecut_flora_1806.py
+      - name: Audit complete book, distinct original edition and working internal links
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          slug='flora-carolinaeensis-shecut-1806'
+          j=json.loads(Path('public/books/'+slug+'.json').read_text())
+          orig=Path('public/books/'+slug+'-original-ocr.txt').read_text()
+          html=Path(slug+'.html').read_text()
+          cat=Path('catalog.html').read_text()
+          assert len(orig.split())>250000
+          assert len(j['sections'])>=30
+          assert sum(len(' '.join(s['paragraphs']).split()) for s in j['sections'])>210000
+          assert 'ophelia-narration.js' in html and 'Volume I' in html
+          assert slug+'.json' in html and "href:'"+slug+".html'" in cat
+          assert Path('public/art/'+slug+'-1806-titleplate.svg').exists()
+          assert Path('SOURCES-'+slug+'.md').exists()
+          print('SHECUT FULL HISTORICAL TEXT VERIFIED',flush=True)
+          PY
+      - name: Publish only verified original and catalog entry
+        run: |
+          git config user.name "Ophelia Library Importer"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/books/flora-carolinaeensis-shecut-1806.json public/books/flora-carolinaeensis-shecut-1806-original-ocr.txt SOURCES-flora-carolinaeensis-shecut-1806.md catalog.html sitemap.xml
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish complete surviving 1806 Shecut Flora botanical encyclopedia"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
