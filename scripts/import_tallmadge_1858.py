@@ -134,7 +134,13 @@ def extract(source):
       (r"\bi6th\b", "16th"),
       (r"\bist\b", "1st"),
       (r"\bCoL\b", "Col."),
-      (r"\bTheii\b", "Their")
+      (r"\bTheii\b", "Their"),
+      (r"\bBEN-\s+JAMIN\b", "Benjamin"),
+      (r"\bBENJAMIN\s+TALLMADGE\b", "Benjamin Tallmadge"),
+      (r"\bCol\.\.", "Col."),
+      (r"\b1\s+6th\b", "16th"),
+      (r"\b1\s+8\s+1\s+2\b", "1812"),
+      (r"\bhimseli\b", "himself")
     ]
     for parts in (pre,main,post):
         for i,p in enumerate(parts):
