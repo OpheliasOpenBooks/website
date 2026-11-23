@@ -23,7 +23,7 @@ def get_original():
             req = Request(SOURCE, headers={"User-Agent": "Mozilla/5.0 (noncommercial public-domain archival transcription)"})
             with urlopen(req, timeout=80) as response:
                 text = response.read().decode("utf-8", "replace")
-            embedded = re.search(r"<pre[^>]*>([\\s\\S]*?)</pre>", text, re.I)
+            embedded = re.search(r"<pre[^>]*>([\s\S]*?)</pre>", text, re.I)
             if embedded:
                 text = html.unescape(embedded.group(1))
             else:
