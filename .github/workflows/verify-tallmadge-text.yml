@@ -1,0 +1,37 @@
+name: Probe original 1858 Tallmadge memoir text (historical-source verification)
+on:
+  push:
+    paths:
+      - '.github/workflows/verify-tallmadge-text.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test original public-domain transcription sources
+        run: |
+          python - <<'PY'
+          from urllib.request import Request,urlopen
+          urls=[
+           'https://archive.org/download/memoirofcolbenja00tall/memoirofcolbenja00tall_djvu.txt',
+           'https://archive.org/download/memoircolbenjam00taligoog/memoircolbenjam00taligoog_djvu.txt',
+           'https://archive.org/download/memoirofcolonelb027409mbp/memoirofcolonelb027409mbp_djvu.txt',
+           'https://archive.org/stream/memoirofcolbenja00tall/memoirofcolbenja00tall_djvu.txt'
+          ]
+          for u in urls:
+           try:
+            req=Request(u,headers={'User-Agent':'Mozilla/5.0 (public domain historical book import; noncommercial)'})
+            with urlopen(req,timeout=35) as h:
+             b=h.read()
+             c=b.decode('utf-8','replace')
+             print('SOURCE',u,'STATUS',h.status,'SIZE',len(b),'WORDS',len(c.split()),flush=True)
+             print('FIRST',repr(c[:3500]),flush=True)
+             print('LAST',repr(c[-2500:]),flush=True)
+             print('MATCHES',[(word,[(i+1) for i,l in enumerate(c.splitlines()) if word.lower() in l.lower()][:12]) for word in ['PREFACE','MEMOIR','WASHINGTON','F. A. TALLMADGE','TALLMADGE','1835','1812']],flush=True)
+           except Exception as e:
+            print('FAILED',u,repr(e),flush=True)
+          PY
