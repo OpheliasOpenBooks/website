@@ -99,7 +99,7 @@ def extract(source):
     memoir_start = starts[0]
     prefaces = [i for i,line in enumerate(lines[:memoir_start]) if re.fullmatch(r"\s*PREFACE\.?\s*",line,re.I)]
     # Skip duplicate running heads 'PREFACE' between physical pages.
-    preface_start = next((i for i in reversed(prefaces) if i < memoir_start - 20), None)
+    preface_start = next((i for i in prefaces if 20 < memoir_start - i < 160), None)
     if preface_start is None:
         raise ValueError("Original family preface missing")
     remarks = [i for i,line in enumerate(lines) if memoir_start+500 < i and re.fullmatch(r"\s*REMARKS\.?\s*",line,re.I)]
