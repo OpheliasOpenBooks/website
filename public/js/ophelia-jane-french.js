@@ -6,6 +6,7 @@
 (function(root){
  'use strict';
  const frenchPhrases=[
+  "Mdlle. Varens",
   "Il faut que je l’essaie!",
   "et à l’instant même!",
   "qu’il y aura là dedans un cadeau pour moi, et peut-être pour vous aussi, mademoiselle. Monsieur a parlé de vous: il m’a demandé le nom de ma gouvernante, et si elle n’était pas une petite personne, assez mince et un peu pâle. J’ai dit qu’oui: car c’est vrai, n’est-ce pas, mademoiselle?",
@@ -78,7 +79,9 @@
   '(?<![\\p{L}\\p{N}])(?:'+frenchPhrases.map(escapeRegex).join('|')+')(?![\\p{L}\\p{N}])',
   'giu');
  function languageRuns(value){
-  const text=String(value||'').replace(/\u2060/g,'');
+  // Normalize nonbreaking spaces in the narration copy, not in the book.
+  // The original prints "Mdlle. Varens" with a nonbreaking space.
+  const text=String(value||'').replace(/\u2060/g,'').replace(/[\u00A0\u202F]/g,' ');
   let after=0;const runs=[];
   const push=(lang,segment)=>{
    if(!segment)return;
@@ -135,7 +138,7 @@
   for(const run of languageRuns(value)){
    // The printed nineteenth-century abbreviation is untouched.
    // Expand only the off-screen French utterance for natural speech.
-   const voiced=run.lang==='fr-FR'?run.text.replace(/\bMdlle\./g,'Mademoiselle'):run.text;
+   const voiced=run.text.replace(/\bMdlle\.(?=\s+\p{L})/giu,'Mademoiselle');
    for(const chunk of grammar(voiced)){
     if(/[\p{L}\p{N}]/u.test(chunk))out.push({text:chunk,lang:run.lang});
    }
