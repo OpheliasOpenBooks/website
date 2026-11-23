@@ -90,8 +90,19 @@ def extract(source):
     memoir_headers = find_title_marker(lines, "MEMOIR", preface + 10, stop=min(len(lines), 1000))
     # There should be a stand-alone 'MEMOIR.' heading after the 1858 signed preface.
     if not memoir_headers:
-        raise ValueError("Original memoir heading not verified")
-    memoir_start = memoir_headers[0]
+        # The historical 1858 scan OCR turns the decorated MEMOIR heading into
+        # separated or corrupted capitals. Locate the beginning of the actual
+        # prose instead of requiring machine-perfect typography.
+        starts = [i for i, line in enumerate(lines)
+                  if preface + 12 < i < min(len(lines), 1050)
+                  and re.search(r"subject\s+of\s+this\s+memoir", line, re.I)]
+        if not starts:
+            print("OCR heading diagnostic:", repr("\\n".join(lines[preface+1:preface+85])), flush=True)
+            raise ValueError("Opening of Tallmadge's original memoir not found")
+        memoir_start = starts[0]
+        print("Recovered memoir opening by original prose, source line", memoir_start, flush=True)
+    else:
+        memoir_start = memoir_headers[0]
     if memoir_start - preface < 12:
         raise ValueError("Preface appears too short; suspect incorrect source page boundaries")
     signatures = [i for i, l in enumerate(lines) if i > memoir_start + 250
