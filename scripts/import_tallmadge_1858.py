@@ -2,10 +2,11 @@
 """Import the complete original 1858 public-domain Tallmadge memoir and publish only if verified."""
 from pathlib import Path
 from urllib.request import Request, urlopen
-import re, json, time
+import re, json, time, html
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = "https://archive.org/download/memoirofcolbenja00tall/memoirofcolbenja00tall_djvu.txt"
+SOURCE = "https://archive.org/stream/memoirofcolonelb027409mbp/memoirofcolonelb027409mbp_djvu.txt"
+ORIGINAL_1858 = "https://archive.org/download/memoirofcolbenja00tall/memoirofcolbenja00tall_djvu.txt"
 SOURCE_PAGE = "https://www.loc.gov/item/08006924/"
 SLUG = "memoir-of-col-benjamin-tallmadge"
 READER = ROOT / (SLUG + ".html")
@@ -22,9 +23,14 @@ def get_original():
             req = Request(SOURCE, headers={"User-Agent": "Mozilla/5.0 (noncommercial public-domain archival transcription)"})
             with urlopen(req, timeout=80) as response:
                 text = response.read().decode("utf-8", "replace")
+            embedded = re.search(r"<pre[^>]*>([\\s\\S]*?)</pre>", text, re.I)
+            if embedded:
+                text = html.unescape(embedded.group(1))
+            else:
+                print("HTML extraction diagnostic", repr(text[:1000]), flush=True)
             if len(text) < 90000 or len(text.split()) < 14000:
                 raise ValueError("Historical source too small or incomplete")
-            if "THOMAS" not in text.upper() or "1858" not in text or "PREFACE." not in text:
+            if "THOMAS" not in text.upper() or "1858" not in text or "PREFACE" not in text:
                 raise ValueError("The source does not look like the original 1858 Thomas Holman edition")
             print("Verified source bytes", len(text.encode()), "words", len(text.split()), flush=True)
             return text
@@ -50,7 +56,7 @@ def normalize_segment(raw, label):
             out.append("")
             continue
         # Scan page numbers and running heads are not part of the work.
-        if re.fullmatch(r"(?:[0-9]{1,3}|MEMOIR|PREFACE|TALLMADGE|SKETCH OF COL\. TALLMADGE)\.?", clean, re.I):
+        if re.fullmatch(r"(?:[0-9]{1,3}|MEMOIR|MEMOIR OF|COLONEL BENJAMIN TALLMADGE|PREFACE|REMARKS|TALLMADGE|SKETCH OF COL\. TALLMADGE)\.?", clean, re.I):
             dropped += 1
             continue
         alpha = sum(ch.isalpha() for ch in clean)
@@ -83,59 +89,75 @@ def normalize_segment(raw, label):
 
 def extract(source):
     lines = source.replace("\r", "").split("\n")
-    prefaces = find_title_marker(lines, "PREFACE", stop=min(len(lines), 650))
-    if not prefaces:
-        raise ValueError("The original 1858 Preface page was not found")
-    preface = prefaces[0]
-    memoir_headers = find_title_marker(lines, "MEMOIR", preface + 10, stop=min(len(lines), 1000))
-    # There should be a stand-alone 'MEMOIR.' heading after the 1858 signed preface.
-    if not memoir_headers:
-        # The historical 1858 scan OCR turns the decorated MEMOIR heading into
-        # separated or corrupted capitals. Locate the beginning of the actual
-        # prose instead of requiring machine-perfect typography.
-        starts = [i for i, line in enumerate(lines)
-                  if preface + 12 < i < min(len(lines), 1050)
-                  and re.search(r"subject\s+of\s+this\s+memoir", line, re.I)]
-        if not starts:
-            print("OCR heading diagnostic:", repr("\\n".join(lines[preface+1:preface+85])), flush=True)
-            raise ValueError("Opening of Tallmadge's original memoir not found")
-        memoir_start = starts[0]
-        print("Recovered memoir opening by original prose, source line", memoir_start, flush=True)
-    else:
-        memoir_start = memoir_headers[0]
-    if memoir_start - preface < 12:
-        raise ValueError("Preface appears too short; suspect incorrect source page boundaries")
-    signatures = [i for i, l in enumerate(lines) if i > memoir_start + 250
-                  and re.fullmatch(r"\s*F[\s.]*A[\s.]*TALLMADGE[\s.]*", l, re.I)]
-    # The last signed biographical sketch follows the memoir. It is part of the 1858 publication.
-    after = max(signatures) + 1 if signatures else len(lines)
-    # Strip the scannner's trailing image/processing artifacts without removing any prose.
-    tail = "\n".join(lines[memoiR_start:after]) if False else "\n".join(lines[memoir_start:after])
-    pre = normalize_segment("\n".join(lines[preface+1:memoir_start]), "Editor's original 1858 preface")
-    memoir = normalize_segment(tail, "Tallmadge memoir + 1858 biographical afterword")
-    pre_words = len(" ".join(pre).split())
-    main_words = len(" ".join(memoir).split())
-    combined = " ".join(memoir).lower()
-    terms = ["washington", "arnold", "long island", "british", "revolution", "1780"]
-    missing = [term for term in terms if term not in combined]
-    print("MAIN FIRST", repr(" ".join(memoir)[:460]), flush=True)
-    print("MAIN LAST", repr(" ".join(memoir)[-720:]), flush=True)
-    print("Source terms missing", missing, "signature lines", signatures[-4:], flush=True)
-    if pre_words < 180 or pre_words > 1500 or not (9000 < main_words < 30000):
-        raise ValueError(f"Unexpected work length; preface={pre_words}, memoir={main_words}")
-    if missing:
-        raise ValueError("OCR is too damaged or incomplete to publish: " + ", ".join(missing))
-    if len(memoir) < 35:
-        raise ValueError("Paragraph boundaries are not usable")
-    if "brookhaven" not in " ".join(memoir[:25]).lower() or "1754" not in " ".join(memoir[:25]):
-        raise ValueError("Opening personal history is absent or damaged")
-    if "lafayette" not in combined[-6000:] and "lafayet" not in combined[-6000:]:
-        raise ValueError("1858 concluding biographical afterword appears missing")
-    raw_original = "\n".join(lines[preface:after]).strip()
+    # The 1904 Gilliss Press facsimile republishes the original 1858 memoir,
+    # signed preface and postscript, followed by clearly distinct 1904 notes.
+    # Read only the original work, not the newer editorial additions.
+    starts = [i for i, line in enumerate(lines)
+              if re.search(r"\bHE\s+subject\s+of\s+this\s+memoir\s+was\s+born", line, re.I)]
+    if not starts:
+        raise ValueError("Opening of the 1858 memoir is missing in the 1904 historical reprint")
+    memoir_start = starts[0]
+    prefaces = [i for i,line in enumerate(lines[:memoir_start]) if re.fullmatch(r"\s*PREFACE\.?\s*",line,re.I)]
+    # Skip duplicate running heads 'PREFACE' between physical pages.
+    preface_start = next((i for i in reversed(prefaces) if i < memoir_start - 20), None)
+    if preface_start is None:
+        raise ValueError("Original family preface missing")
+    remarks = [i for i,line in enumerate(lines) if memoir_start+500 < i and re.fullmatch(r"\s*REMARKS\.?\s*",line,re.I)]
+    if not remarks:
+        raise ValueError("Original family biographical remarks missing")
+    remarks_start = remarks[0]
+    note_candidates = [i for i,line in enumerate(lines) if i > remarks_start+35 and re.fullmatch(r"\s*NOTES\.?\s*",line,re.I)]
+    if not note_candidates:
+        raise ValueError("Cannot safely locate the end of 1858 work before 1904 notes")
+    after = note_candidates[0]
+    signature_lines = [i for i,line in enumerate(lines) if remarks_start < i < after and re.fullmatch(r"\s*F\.\s*A\.\s*TALLMADGE\.?\s*",line,re.I)]
+    if not signature_lines:
+        raise ValueError("Original 1858 biographical afterword ending not found")
+    after = signature_lines[-1]+1
+    print("Historical source section lines", preface_start, memoir_start, remarks_start, after, flush=True)
+    pre = normalize_segment("\n".join(lines[preface_start+1:memoir_start]), "1858 preface (1904 reprint)")
+    main = normalize_segment("\n".join(lines[memoir_start:remarks_start]), "Tallmadge memoir (1904 original-text reprint)")
+    post = normalize_segment("\n".join(lines[remarks_start+1:after]), "1858 family biographical remarks")
+    if pre:
+        pre[0]=re.sub(r"^HE\s+following", "The following", pre[0], flags=re.I)
+    if main:
+        main[0]=re.sub(r"^HE\s+subject", "The subject", main[0], flags=re.I)
+    if post:
+        post[0]=re.sub(r"^HE\s+foregoing", "The foregoing", post[0], flags=re.I)
+    # Fix demonstrable OCR rendering errors in dates and the original name,
+    # never rewrite the author's historical assertions.
+    fixes = [
+      (r"\b1\s+(?=\d{3}\b)", "1"),
+      (r"\bTallmstdge\b", "Tallmadge"),
+      (r"\bNew Tork\b", "New York"),
+      (r"\b2ist\b", "21st"),
+      (r"\bi6th\b", "16th"),
+      (r"\bist\b", "1st"),
+      (r"\bCoL\b", "Col."),
+      (r"\bTheii\b", "Their")
+    ]
+    for parts in (pre,main,post):
+        for i,p in enumerate(parts):
+            for pat,val in fixes:
+                p=re.sub(pat, val, p, flags=re.I)
+            parts[i]=p
+    lengths = [len(" ".join(p).split()) for p in (pre,main,post)]
+    check = " ".join(main).lower()
+    missing=[w for w in ("washington","british","arnold","long island","1780") if w not in check]
+    print("Edition section word counts",lengths,"missing",missing,flush=True)
+    print("MAIN FIRST",repr(" ".join(main)[:450]),flush=True)
+    print("LAST POST",repr(" ".join(post)[-480:]),flush=True)
+    if not (180 < lengths[0] < 1500 and 10000 < lengths[1] < 35000 and 300 < lengths[2] < 2500):
+        raise ValueError("The original preface, memoir or concluding remarks may be incomplete: "+str(lengths))
+    if missing or len(main)<90 or "brookhaven" not in " ".join(main[:3]).lower():
+        raise ValueError("Original memoir content completeness failed, missing "+repr(missing))
+    if "lafayette" not in " ".join(post).lower():
+        raise ValueError("The final 1858 remarks are incomplete")
     return [
-        {"name": "Preface · F. A. Tallmadge (1858)", "paragraphs": pre},
-        {"name": "Memoir · Benjamin Tallmadge, with 1858 biographical afterword", "paragraphs": memoir}
-    ], raw_original
+       {"name":"Preface · F. A. Tallmadge (1858)", "paragraphs":pre},
+       {"name":"Memoir · Benjamin Tallmadge", "paragraphs":main},
+       {"name":"Family remarks · F. A. Tallmadge (1858)", "paragraphs":post}
+    ], "\n".join(lines[preface_start:after]).strip()
 
 def publish():
     original = get_original()
@@ -154,7 +176,7 @@ def publish():
         "title": "Memoir of Col. Benjamin Tallmadge",
         "author": "Benjamin Tallmadge",
         "edition": "1858, New York: Thomas Holman, Book and Job Printer",
-        "source": "Library of Congress scan and original 1858 Internet Archive OCR, public domain",
+        "source": "1904 public-domain Gilliss Press facsimile reprint of Tallmadge’s original 1858 memoir, preface, and afterword",
         "sections": parts
     }, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
     catalog = CATALOG.read_text(encoding="utf-8")
@@ -178,14 +200,15 @@ def publish():
     PROVENANCE.write_text(
         "# Memoir of Col. Benjamin Tallmadge — edition provenance\n\n"
         "- Author: Benjamin Tallmadge (1754–1835); book published posthumously in 1858 by Thomas Holman, New York.\n"
-        "- Original library exemplar: " + SOURCE_PAGE + "\n"
-        "- IA archival OCR transcription: " + SOURCE + "\n"
-        "- Full original 1858 Preface, original autobiographical Memoir, and 1858 family biographical afterword retained; no modern editorial additions.\n"
+        "- Original 1858 library exemplar: " + SOURCE_PAGE + "\n"
+        "- Additional original 1858 scan OCR for comparison: " + ORIGINAL_1858 + "\n"
+        "- 1904 IA facsimile reprint OCR transcription: " + SOURCE + "\n"
+        "- The complete original 1858 preface, Tallmadge autobiographical memoir and signed family remarks are transcribed from the 1904 public-domain reprint; later 1904 editorial notes excluded.\n"
         "- Local hosted transcription: public/books/" + SLUG + "-1858-transcription.txt.\n"
         "- Local read-aloud content: public/books/" + SLUG + ".json, two sections with " + str(displayed) + " transcribed words.\n"
         "- Reader: " + filename + ", uses original Ophelia narrator, bookmark, saved reading position, chapter selector and settings.\n"
         "- Historic title page art is a clearly labeled period-inspired reconstruction, not an original scanned cover.\n"
-        "- Historical scan-based OCR is imperfect; occasional original OCR character errors may remain; no claim of exhaustive proofreading.\n"
+        "- The 1904 reprint OCR has some period-type errors; common unambiguous errors are normalized, and further proofreading may still be needed.\n"
         "- This import leaves index.html (homepage) exactly unchanged, adding a catalog-only entry after validation.\n",
         encoding="utf-8"
     )

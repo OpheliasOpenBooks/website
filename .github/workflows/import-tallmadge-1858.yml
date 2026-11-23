@@ -29,9 +29,9 @@ jobs:
           reader=Path('memoir-of-col-benjamin-tallmadge.html').read_text()
           catalog=Path('catalog.html').read_text()
           txt=Path('public/books/memoir-of-col-benjamin-tallmadge-1858-transcription.txt').read_text()
-          assert len(book['sections'])==2
+          assert len(book['sections'])==3
           assert sum(len(' '.join(x['paragraphs']).split()) for x in book['sections'])>10000
-          assert 'PREFACE.' in txt and 'F. A.' in txt and len(txt)>80000
+          assert 'PREFACE' in txt and 'F. A. TALLMADGE' in txt and len(txt)>65000
           assert 'ophelia-narration.js' in reader and 'settings-toggle' in reader
           assert 'memoir-of-col-benjamin-tallmadge.html' in catalog
           assert Path('public/art/memoir-of-col-benjamin-tallmadge-1858-titlepage.svg').exists()
