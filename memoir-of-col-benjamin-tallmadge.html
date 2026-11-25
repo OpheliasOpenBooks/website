@@ -121,7 +121,7 @@ function getText(){
  const pg=pages[state.page];
  if(!pg)return '';
  const firstInSection=state.page===0||pages[state.page-1].section!==pg.section;
- const text=pg.paragraphs.filter(p=>!/^Plan of Fort St\. George, Captured on Long Island/i.test(p)).join(' ');
+ const text=pg.paragraphs.filter(p=>!/^Plan of Fort St\. George, Captured on Long Island/i.test(p)).map(p=>/^(?:CAMPAIGNS? OF \d{4}(?:[–-]\d{4})?|WASHINGTON'S FAREWELLS TO THE ARMY|PERSONAL)$/.test(p.trim())?'\n'+p.trim()+'\n':p).join(' ');
  return (firstInSection?pg.sectionName+'. ':'')+text;
 }
 function pickVoice(){return voiceList.find(v=>v.voiceURI===state.voice)||voiceList.find(v=>/^en-GB/i.test(v.lang))||voiceList.find(v=>/^en/i.test(v.lang))||null;}
@@ -206,11 +206,12 @@ function startSpeech(startAt=speechResumeAt){
  const yearWords=n=>under100(Math.floor(n/100))+(n%100===0?' hundred':n%100<10?' oh '+units[n%100]:' '+under100(n%100));
  const spoken=getText().replace(/\bquorum pars fui\b/gi,'in which I took part').replace(/\bviz\.(?:\s*[:,])?/gi,'namely,').replace(/\bSetauket\b/gi,'Seh-toe-ket').replace(/\bMemoir;\s+and\b/g,'Memoir and').replace(/\bSouth\s+Bay\b/g,'South-Bay').replace(/\bGov\.\s+(?=[A-Z])/g,'Governor ').replace(/\bR\.\s*I\.(?=\s|[,;)\]]|$)/g,'Rhode Island').replace(/\bN\.\s*J\.(?=\s|[,;)\]]|$)/g,'New Jersey').replace(/\bApril 1, 1825\b/g,'April first, eighteen twenty-five')
   .replace(/\b(17|18)(\d{2})[-–](\d{2})\b/g,(_,century,first,last)=>yearWords(Number(century+first))+' to '+yearWords(Number(century+last)))
+  .replace(/\b((?:17|18)\d{2})[–-]((?:17|18)\d{2})\b/g,(_,first,last)=>yearWords(Number(first))+' to '+yearWords(Number(last)))
   .replace(/\b((?:17|18)\d{2})\b/g,(_,year)=>yearWords(Number(year)))
   .replace(/\b(\d{1,2})(?:st|nd|rd|th|d)\b/g,(whole,n)=>ordinals[Number(n)]||whole);
  const allChunks=[], headingPauseIndices=new Set();
  let offset=0;
- for(const match of spoken.matchAll(/\b(CAMPAIGN OF seventeen seventy-(?:six|seven))\s+(?=HAVING\b|AT the opening\b)/gi)){
+ for(const match of spoken.matchAll(/\n([^\n]+)\n/g)){
    allChunks.push(...speechChunks(spoken.slice(offset,match.index)));
    allChunks.push(...speechChunks(match[1]+'.'));
    headingPauseIndices.add(allChunks.length-1);
