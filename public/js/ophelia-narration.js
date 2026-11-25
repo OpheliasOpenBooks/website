@@ -141,6 +141,8 @@
 
   function normalizeForSpeech(value){
     let text=removeFootnoteMarkersForSpeech(value);
+    // Read the historical courtesy title in full, without changing print.
+    text=text.replace(/\bEsq\.(?=\s|[,;:!?\)\]”’"']|$)/gi,'Esquire');
     // Expand historical Latin abbreviation in speech only; retain printed text.
     text=text.replace(/\bviz\.(?:\s*[:,])?/gi,word=>word[0]==='V'?'Namely,':'namely,');
     // Sleepy Hollow: the reader pronounces "Ichabod" as requested ("Eakabod").
