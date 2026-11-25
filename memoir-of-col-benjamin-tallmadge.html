@@ -274,7 +274,7 @@ window.addEventListener('pagehide',stop);if('speechSynthesis' in window){updateV
 applySettings();
 (async()=>{
  // The entire original published book is served from this website. Speech uses device voices.
- try{const r=await fetch('public/books/memoir-of-col-benjamin-tallmadge.json?v=20261124-date-fix',{cache:'no-store'});if(!r.ok)throw Error('Local text file not found');setupBook(await r.text());}
+ try{const r=await fetch('public/books/memoir-of-col-benjamin-tallmadge.json?v=20261124-hyphen-fix',{cache:'no-store'});if(!r.ok)throw Error('Local text file not found');setupBook(await r.text());}
  catch(e){$('loadbox').classList.remove('hidden');note('The complete book could not be loaded. Refresh or read from the source linked below.');console.error(e);}
 })();
 
