@@ -208,8 +208,15 @@ function startSpeech(startAt=speechResumeAt){
   .replace(/\b(17|18)(\d{2})[-–](\d{2})\b/g,(_,century,first,last)=>yearWords(Number(century+first))+' to '+yearWords(Number(century+last)))
   .replace(/\b((?:17|18)\d{2})\b/g,(_,year)=>yearWords(Number(year)))
   .replace(/\b(\d{1,2})(?:st|nd|rd|th|d)\b/g,(whole,n)=>ordinals[Number(n)]||whole);
- const headingMatch=/^(CAMPAIGN OF seventeen seventy-six)\s+(?=HAVING\b)/i.exec(spoken);
- const allChunks=headingMatch?[...speechChunks(headingMatch[1]+'.'),...speechChunks(spoken.slice(headingMatch[0].length))]:speechChunks(spoken);
+ const allChunks=[], headingPauseIndices=new Set();
+ let offset=0;
+ for(const match of spoken.matchAll(/\b(CAMPAIGN OF seventeen seventy-(?:six|seven))\s+(?=HAVING\b|AT the opening\b)/gi)){
+   allChunks.push(...speechChunks(spoken.slice(offset,match.index)));
+   allChunks.push(...speechChunks(match[1]+'.'));
+   headingPauseIndices.add(allChunks.length-1);
+   offset=match.index+match[0].length;
+ }
+ allChunks.push(...speechChunks(spoken.slice(offset)));
  const chunks=allChunks.slice(startAt);
  speechResumeAt=0;speechCursor=startAt;pageSpeechDone=false;
  if(!chunks.length){note('There is no text to narrate on this page.');return;}
@@ -221,7 +228,7 @@ function startSpeech(startAt=speechResumeAt){
    const u=new SpeechSynthesisUtterance(t);let ended=false;
    u.lang=voice?.lang||'en-GB';if(voice)u.voice=voice;
    u.rate=state.speed;u.volume=1;
-   if(headingMatch&&startAt+i===0)u.__opheliaPauseMs=850;
+   if(headingPauseIndices.has(startAt+i))u.__opheliaPauseMs=850;
    u.onstart=()=>{if(token!==speechToken||!speaking)return;
      started=true;utterance=u;speechCursor=startAt+i;clearTimeout(startTimer);
      note('Reading page '+(state.page+1)+' of '+pages.length+'…');updatePlay();};
