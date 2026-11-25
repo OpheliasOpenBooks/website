@@ -141,6 +141,8 @@
 
   function normalizeForSpeech(value){
     let text=removeFootnoteMarkersForSpeech(value);
+    // Expand historical Latin abbreviation in speech only; retain printed text.
+    text=text.replace(/\bviz\.(?:\s*[:,])?/gi,word=>word[0]==='V'?'Namely,':'namely,');
     // Sleepy Hollow: the reader pronounces "Ichabod" as requested ("Eakabod").
     // This changes speech only; Irving's original spelling stays visible.
     // Constrain the cue to this book so other titles are unaffected.
