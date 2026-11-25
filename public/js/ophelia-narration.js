@@ -717,10 +717,10 @@
       return '';
     return announcement;
   }
-  function speakWithPauses(synth,utterances,isCurrent,isPaused){
+  function speakWithPauses(synth,utterances,isCurrent,isPaused,options={}){
     clearReading();
     if(!utterances||!utterances.length)return null;
-    const intro=openingSectionAnnouncement(utterances);
+    const intro=options.sectionAnnouncement===false?'':openingSectionAnnouncement(utterances);
     if(intro){
       const first=utterances[0];
       // A separate source keeps existing onend/page-turn counts unchanged.
