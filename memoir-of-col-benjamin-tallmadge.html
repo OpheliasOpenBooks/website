@@ -203,7 +203,7 @@ function startSpeech(startAt=speechResumeAt){
  const tens=['','','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety'];
  const under100=n=>n<20?units[n]:tens[Math.floor(n/10)]+(n%10?'-'+units[n%10]:'');
  const yearWords=n=>under100(Math.floor(n/100))+(n%100===0?' hundred':n%100<10?' oh '+units[n%100]:' '+under100(n%100));
- const spoken=getText().replace(/\bviz\.(?:\s*:)?/gi,'namely,').replace(/\bSetauket\b/gi,'Seh-toe-ket').replace(/\bMemoir;\s+and\b/g,'Memoir and').replace(/\bSouth\s+Bay\b/g,'South-Bay').replace(/\bGov\.\s+(?=[A-Z])/g,'Governor ').replace(/\bR\.\s*I\.(?=\s|[,;)\]]|$)/g,'Rhode Island').replace(/\bN\.\s*J\.(?=\s|[,;)\]]|$)/g,'New Jersey').replace(/\bApril 1, 1825\b/g,'April first, eighteen twenty-five')
+ const spoken=getText().replace(/\bviz\.(?:\s*[:,])?/gi,'namely,').replace(/\bSetauket\b/gi,'Seh-toe-ket').replace(/\bMemoir;\s+and\b/g,'Memoir and').replace(/\bSouth\s+Bay\b/g,'South-Bay').replace(/\bGov\.\s+(?=[A-Z])/g,'Governor ').replace(/\bR\.\s*I\.(?=\s|[,;)\]]|$)/g,'Rhode Island').replace(/\bN\.\s*J\.(?=\s|[,;)\]]|$)/g,'New Jersey').replace(/\bApril 1, 1825\b/g,'April first, eighteen twenty-five')
   .replace(/\b(17|18)(\d{2})[-–](\d{2})\b/g,(_,century,first,last)=>yearWords(Number(century+first))+' to '+yearWords(Number(century+last)))
   .replace(/\b((?:17|18)\d{2})\b/g,(_,year)=>yearWords(Number(year)))
   .replace(/\b(\d{1,2})(?:st|nd|rd|th|d)\b/g,(whole,n)=>ordinals[Number(n)]||whole);
