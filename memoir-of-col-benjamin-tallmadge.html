@@ -119,7 +119,7 @@ function getText(){
  const pg=pages[state.page];
  if(!pg)return '';
  const firstInSection=state.page===0||pages[state.page-1].section!==pg.section;
- const text=pg.paragraphs.join(' ');
+ const text=pg.paragraphs.filter(p=>!/^Plan of Fort St\. George, Captured on Long Island/i.test(p)).join(' ');
  return (firstInSection?pg.sectionName+'. ':'')+text;
 }
 function pickVoice(){return voiceList.find(v=>v.voiceURI===state.voice)||voiceList.find(v=>/^en-GB/i.test(v.lang))||voiceList.find(v=>/^en/i.test(v.lang))||null;}
@@ -245,7 +245,7 @@ function render(){if(!pages.length)return;const page=pages[state.page];
  const isFirstRender=initialRender;initialRender=false;
  $('story-figure').hidden=state.page!==0;
  $('progresslabel').textContent=Math.round((state.page+1)/pages.length*100)+'% read · '+page.sectionName;$('chaptername').textContent=page.sectionName;
- $('prose').replaceChildren(...page.paragraphs.map(p=>{const el=document.createElement('p');el.textContent=p;if(/^THE ARGUMENT\.$/.test(p.trim()))el.classList.add('argument');return el}));
+ $('prose').replaceChildren(...page.paragraphs.map(p=>{if(/^Plan of Fort St\. George, Captured on Long Island/i.test(p)){const f=document.createElement('figure');f.style.cssText='margin:1.5em auto;text-align:center;max-width:420px';const img=document.createElement('img');img.src='https://upload.wikimedia.org/wikipedia/commons/7/7a/FortSaintGeorgeLongIslandByTallmadge.jpg';img.alt='Historical sketch of Fort St. George, attributed to Benjamin Tallmadge, 1780';img.style.cssText='max-width:100%;height:auto;border:1px solid #b5a58c';img.loading='lazy';const cap=document.createElement('figcaption');cap.style.cssText='font-size:.8em;line-height:1.5';cap.textContent='Plan of Fort St. George, Captured on Long Island. Historical sketch attributed to Benjamin Tallmadge, 1780. ';const link=document.createElement('a');link.href='https://commons.wikimedia.org/wiki/File:FortSaintGeorgeLongIslandByTallmadge.jpg';link.textContent='Source: Wikimedia Commons · Public domain';cap.append(link);f.append(img,cap);return f;}const el=document.createElement('p');el.textContent=p;if(/^THE ARGUMENT\.$/.test(p.trim()))el.classList.add('argument');return el}));
  $('pagecount').textContent='Page '+(state.page+1)+' of '+pages.length;$('footcount').textContent=page.sectionName;
  ['prev','prev2'].forEach(id=>$(id).disabled=state.page<=0);['next','next2'].forEach(id=>$(id).disabled=state.page>=pages.length-1);
  $('page').value=String(state.page);$('section').value=String(page.section);$('progressbar').style.width=((state.page+1)/pages.length*100).toFixed(2)+'%';
