@@ -81,7 +81,7 @@ function parseText(raw){
   if(!Array.isArray(paragraphs)||!paragraphs.length||!part.name)throw Error('A published section is missing');
   const words=paragraphs.join(' ').split(/\s+/).length;
   if(words<150)throw Error('Section '+part.name+' is incomplete');
-  return {name:part.name,paragraphs};
+  return {name:part.name,paragraphs:paragraphs.map(p=>p.replace(/\bApril\s+[iI]\s*,\s*1825\b/g,'April 1, 1825'))};
  });
  const totalWords=parts.reduce((n,p)=>n+p.paragraphs.join(' ').split(/\s+/).length,0);
  if(totalWords<9000)throw Error('This source appears truncated');
@@ -197,7 +197,7 @@ function startSpeech(startAt=speechResumeAt){
  stop();
  const synth=window.speechSynthesis;
  synth.resume();
- const chunks=speechChunks(getText()).slice(startAt);
+ const chunks=speechChunks(getText().replace(/\bApril 1, 1825\b/g,'April first, eighteen twenty-five')).slice(startAt);
  speechResumeAt=0;speechCursor=startAt;pageSpeechDone=false;
  if(!chunks.length){note('There is no text to narrate on this page.');return;}
  speaking=true;paused=false;const token=speechToken;
@@ -274,7 +274,7 @@ window.addEventListener('pagehide',stop);if('speechSynthesis' in window){updateV
 applySettings();
 (async()=>{
  // The entire original published book is served from this website. Speech uses device voices.
- try{const r=await fetch('public/books/memoir-of-col-benjamin-tallmadge.json');if(!r.ok)throw Error('Local text file not found');setupBook(await r.text());}
+ try{const r=await fetch('public/books/memoir-of-col-benjamin-tallmadge.json?v=20261124-date-fix',{cache:'no-store'});if(!r.ok)throw Error('Local text file not found');setupBook(await r.text());}
  catch(e){$('loadbox').classList.remove('hidden');note('The complete book could not be loaded. Refresh or read from the source linked below.');console.error(e);}
 })();
 
