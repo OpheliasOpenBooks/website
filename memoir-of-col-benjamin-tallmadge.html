@@ -198,7 +198,14 @@ function startSpeech(startAt=speechResumeAt){
  const synth=window.speechSynthesis;
  synth.resume();
  const ordinals=['','first','second','third','fourth','fifth','sixth','seventh','eighth','ninth','tenth','eleventh','twelfth','thirteenth','fourteenth','fifteenth','sixteenth','seventeenth','eighteenth','nineteenth','twentieth','twenty-first','twenty-second','twenty-third','twenty-fourth','twenty-fifth','twenty-sixth','twenty-seventh','twenty-eighth','twenty-ninth','thirtieth','thirty-first'];
- const spoken=getText().replace(/\bApril 1, 1825\b/g,'April first, eighteen twenty-five').replace(/\b(\d{1,2})(?:st|nd|rd|th|d)\b/g,(whole,n)=>ordinals[Number(n)]||whole);
+ const units=['','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];
+ const tens=['','','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety'];
+ const under100=n=>n<20?units[n]:tens[Math.floor(n/10)]+(n%10?'-'+units[n%10]:'');
+ const yearWords=n=>under100(Math.floor(n/100))+(n%100===0?' hundred':n%100<10?' oh '+units[n%100]:' '+under100(n%100));
+ const spoken=getText().replace(/\bApril 1, 1825\b/g,'April first, eighteen twenty-five')
+  .replace(/\b(17|18)(\d{2})[-–](\d{2})\b/g,(_,century,first,last)=>yearWords(Number(century+first))+' to '+yearWords(Number(century+last)))
+  .replace(/\b((?:17|18)\d{2})\b/g,(_,year)=>yearWords(Number(year)))
+  .replace(/\b(\d{1,2})(?:st|nd|rd|th|d)\b/g,(whole,n)=>ordinals[Number(n)]||whole);
  const chunks=speechChunks(spoken).slice(startAt);
  speechResumeAt=0;speechCursor=startAt;pageSpeechDone=false;
  if(!chunks.length){note('There is no text to narrate on this page.');return;}
