@@ -51,7 +51,7 @@
 </div>
 <div class="source">Complete original 1858 text as reprinted in the public-domain 1904 edition, including the family preface and afterword. <a href="https://www.loc.gov/item/08006924/" target="_blank" rel="noopener noreferrer">Library of Congress 1858 original</a> · <a href="public/books/memoir-of-col-benjamin-tallmadge-1858-transcription.txt">Hosted original transcription</a>. Historic reprint OCR may contain occasional errors; narration uses device voices.</div>
 </div>
-<script src="public/js/ophelia-narration.js?v=1.4.14-pacing-number"></script>
+<script src="public/js/ophelia-narration.js?v=1.4.25-tallmadge-heading-once"></script>
 <script>
 'use strict';
 /* All source is editable. Narration reuses Alice’s grammar-aware sentence segmentation and queued speech strategy. Browser/device voices provide the actual spoken sound. */
@@ -219,7 +219,7 @@ function startSpeech(startAt=speechResumeAt){
    return u;
  });
  note('Starting narration…');
- try{if(window.OpheliaNarration&&window.OpheliaNarration.speakWithPauses){window.OpheliaNarration.speakWithPauses(synth,speechQueue,()=>token===speechToken,()=>paused);}else{for(const u of speechQueue){if(token!==speechToken)break;synth.speak(u);}}}
+ try{if(window.OpheliaNarration&&window.OpheliaNarration.speakWithPauses){window.OpheliaNarration.speakWithPauses(synth,speechQueue,()=>token===speechToken,()=>paused,{sectionAnnouncement:false});}else{for(const u of speechQueue){if(token!==speechToken)break;synth.speak(u);}}}
  catch{stop();note('Narration could not start in this browser.');return;}
  if(token===speechToken&&!started)startTimer=setTimeout(()=>{if(token===speechToken&&!started&&!paused){stop();note('No narration started. Choose another English voice in Settings.');}},10000);
  updatePlay();
