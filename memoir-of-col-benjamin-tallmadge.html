@@ -95,6 +95,7 @@ function paginate(sections){
   function flush(){if(current.length){out.push({section,sectionName:part.name,paragraphs:current});current=[];words=0;}}
   function add(par){const n=(par.match(/\S+/g)||[]).length;if(words+n>330&&current.length)flush();current.push(par);words+=n;}
   for(const par of part.paragraphs){
+   if(/^CAMPAIGN OF 1776$/.test(par.trim()))flush();
    const n=(par.match(/\S+/g)||[]).length;
    if(n<=330){add(par);continue;}
    // Split only unusually long paragraphs at complete sentence boundaries.
