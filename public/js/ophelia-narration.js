@@ -717,6 +717,38 @@
       return '';
     return announcement;
   }
+  // Shared word-position control. The slider uses the actual speech queue, so
+  // moving it never changes the printed manuscript or page bookmark.
+  let wordPositionControl=null;
+  function showWordPosition(session,words){
+    if(typeof document==='undefined'||typeof document.createElement!=='function'||!document.getElementById)return;
+    const playButton=document.getElementById('play')||document.getElementById('read-play');
+    if(!playButton||!words.length)return;
+    if(!wordPositionControl){
+      const wrap=document.createElement('div');
+      wrap.id='ophelia-word-position';wrap.style.cssText='margin:12px 0;min-width:0;font:12px/1.4 Arial,sans-serif;color:inherit';
+      const label=document.createElement('label');label.htmlFor='ophelia-word-slider';label.textContent='Narration word position';
+      const input=document.createElement('input');input.type='range';input.id='ophelia-word-slider';input.min='0';input.step='1';
+      input.style.cssText='display:block;width:100%;accent-color:#58735e;margin:7px 0';
+      const output=document.createElement('output');output.style.cssText='display:block;overflow-wrap:anywhere';
+      wrap.append(label,input,output);
+      const group=playButton.closest?.('.transport,.actions,.player-controls,.playback-controls')||playButton.parentElement;
+      if(!group?.parentNode)return;
+      group.insertAdjacentElement('afterend',wrap);
+      wordPositionControl={wrap,input,output};
+    }
+    const {wrap,input,output}=wordPositionControl;
+    wrap.hidden=false;input.disabled=false;input.max=String(words.length-1);
+    let dragging=false;
+    const display=(i)=>{i=Math.max(0,Math.min(words.length-1,i));output.textContent='Word '+(i+1)+' of '+words.length+' · '+words[i].word;input.setAttribute('aria-valuetext',output.textContent);};
+    input.oninput=()=>{dragging=true;display(Number(input.value));session.previewWord(Number(input.value));};
+    input.onchange=()=>{dragging=false;session.seekWord(Number(input.value));};
+    session.updateWordControl=i=>{if(dragging)return;input.value=String(i);display(i);};
+    session.updateWordControl(0);
+  }
+  function hideWordPosition(){
+    if(wordPositionControl){wordPositionControl.wrap.hidden=true;wordPositionControl.input.disabled=true;}
+  }
   function speakWithPauses(synth,utterances,isCurrent,isPaused,options={}){
     clearReading();
     if(!utterances||!utterances.length)return null;
@@ -732,6 +764,10 @@
       });
     }
     let index=0,offset=0,paused=false,disposed=false,serial=0,timer=null;
+    const wordPositions=utterances.flatMap((u,i)=>u.__opheliaChapterIntro?[]:wordSpans(String(u.text)).map(w=>({...w,index:i})));
+    const completedSources=new Set();
+    const currentWord=()=>{let n=wordPositions.findIndex(w=>w.index===index&&w.end>lastBoundary);if(n<0)n=wordPositions.findIndex(w=>w.index>index);return n<0?Math.max(0,wordPositions.length-1):n;};
+
     let current=null,lastBoundary=0;
     // Unlock Web Audio from the reader's Play gesture, but only on the
     // page containing the hiss. Other books and pages use ordinary TTS.
@@ -761,6 +797,21 @@
       }
     }
     const session={
+      previewWord(n){
+        const w=wordPositions[n];if(!w||disposed)return;
+        markPausedWord(utterances,w.index,w.start);
+      },
+      seekWord(n){
+        const w=wordPositions[n];if(!w||disposed||!isCurrent())return false;
+        serial++;
+        if(timer!==null){clearTimeout(timer);timer=null;}
+        current=null;stopHiss();try{synth.cancel();}catch{}
+        index=w.index;offset=w.start;lastBoundary=offset;
+        session.updateWordControl?.(n);
+        if(paused||isPaused()){markPausedWord(utterances,index,offset);return true;}
+        clearPausedHighlight();try{synth.resume();}catch{}
+        play();return true;
+      },
       pause(){
         if(disposed||paused||!isCurrent())return false;
         paused=true;
@@ -772,6 +823,7 @@
           try{synth.cancel();}catch{}
         }
         markPausedWord(utterances,index,offset);
+        session.updateWordControl?.(currentWord());
         return true;
       },
       resume(){
@@ -788,6 +840,7 @@
       getPosition(){return {index,offset,paused};}
     };
     activeReading=session;
+    showWordPosition(session,wordPositions);
     function play(){
       if(disposed||paused||!isCurrent()||index>=utterances.length)return;
       const source=utterances[index],raw=String(source.text);
@@ -837,12 +890,12 @@
       if(/\?[”’"')\]]*\s*$/.test(spoken))
         u.pitch=Math.min(1.15,Math.max(1.11,u.pitch||1));
       // Preserve the original book's narration lifecycle and controls.
-      u.onstart=e=>{if(id!==serial||disposed)return;source.onstart?.(e);};
+      u.onstart=e=>{if(id!==serial||disposed)return;session.updateWordControl?.(currentWord());source.onstart?.(e);};
       u.onboundary=e=>{
         if(id!==serial||disposed||paused)return;
         if(typeof e?.charIndex==='number'&&e.charIndex>=0&&
           (!e.name||e.name==='word')){
-          lastBoundary=base+e.charIndex;
+          lastBoundary=base+e.charIndex;session.updateWordControl?.(currentWord());
         }
         source.onboundary?.(e);
       };
@@ -856,13 +909,17 @@
       const original=utterances[index];
       current=null;offset=0;index++;
       // A double dash is a short rhetorical beat, not a 430 ms silence.
-      const delay=original.__opheliaChapterIntro?110:pauseAfter(original.text);
-      original.onend?.(e||{});
+      const delay=original.__opheliaChapterIntro?110:(original.__opheliaPauseMs??pauseAfter(original.text));
+      // A seek may skip or replay sources. Count each callback exactly once;
+      // account for skipped sources only when the actual queue reaches its end.
+      const done=source=>{if(completedSources.has(source))return;completedSources.add(source);source.onend?.(e||{});};
+      if(index>=utterances.length){for(const source of utterances){if(disposed||!isCurrent())break;done(source);}}
+      else done(original);
       if(disposed||!isCurrent())return;
       if(index<utterances.length){
         timer=setTimeout(()=>{timer=null;play();},delay);
       }else if(activeReading===session){
-        activeReading=null;closeHiss();
+        activeReading=null;hideWordPosition();clearPausedHighlight();closeHiss();
       }
     }
     play();
@@ -878,6 +935,7 @@
     const session=activeReading;activeReading=null;
     if(session)session.clear();
     else clearPausedHighlight();
+    hideWordPosition();
   }
 
   // Shared reader preferences across the library, independent of each book's bookmark.
