@@ -141,6 +141,8 @@
 
   function normalizeForSpeech(value){
     let text=removeFootnoteMarkersForSpeech(value);
+    // Expand plural military rank without changing the printed text.
+    text=text.replace(/\bGens\./gi,'Generals');
     // Keep compound military ranks together in narration.
     text=text.replace(/\b(?:Lieut|Lt)\.\s*Col\./gi,'Lieutenant Colonel');
     // Read the historical courtesy title in full, without changing print.
