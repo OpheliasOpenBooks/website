@@ -141,6 +141,8 @@
 
   function normalizeForSpeech(value){
     let text=removeFootnoteMarkersForSpeech(value);
+    // Keep compound military ranks together in narration.
+    text=text.replace(/\b(?:Lieut|Lt)\.\s*Col\./gi,'Lieutenant Colonel');
     // Read the historical courtesy title in full, without changing print.
     text=text.replace(/\bEsq\.(?=\s|[,;:!?\)\]”’"']|$)/gi,'Esquire');
     // Expand historical Latin abbreviation in speech only; retain printed text.
