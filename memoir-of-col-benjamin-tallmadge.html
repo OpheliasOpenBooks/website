@@ -197,7 +197,9 @@ function startSpeech(startAt=speechResumeAt){
  stop();
  const synth=window.speechSynthesis;
  synth.resume();
- const chunks=speechChunks(getText().replace(/\bApril 1, 1825\b/g,'April first, eighteen twenty-five')).slice(startAt);
+ const ordinals=['','first','second','third','fourth','fifth','sixth','seventh','eighth','ninth','tenth','eleventh','twelfth','thirteenth','fourteenth','fifteenth','sixteenth','seventeenth','eighteenth','nineteenth','twentieth','twenty-first','twenty-second','twenty-third','twenty-fourth','twenty-fifth','twenty-sixth','twenty-seventh','twenty-eighth','twenty-ninth','thirtieth','thirty-first'];
+ const spoken=getText().replace(/\bApril 1, 1825\b/g,'April first, eighteen twenty-five').replace(/\b(\d{1,2})(?:st|nd|rd|th|d)\b/g,(whole,n)=>ordinals[Number(n)]||whole);
+ const chunks=speechChunks(spoken).slice(startAt);
  speechResumeAt=0;speechCursor=startAt;pageSpeechDone=false;
  if(!chunks.length){note('There is no text to narrate on this page.');return;}
  speaking=true;paused=false;const token=speechToken;
@@ -274,7 +276,7 @@ window.addEventListener('pagehide',stop);if('speechSynthesis' in window){updateV
 applySettings();
 (async()=>{
  // The entire original published book is served from this website. Speech uses device voices.
- try{const r=await fetch('public/books/memoir-of-col-benjamin-tallmadge.json?v=20261124-hyphen-fix',{cache:'no-store'});if(!r.ok)throw Error('Local text file not found');setupBook(await r.text());}
+ try{const r=await fetch('public/books/memoir-of-col-benjamin-tallmadge.json?v=20261124-ordinal-fix',{cache:'no-store'});if(!r.ok)throw Error('Local text file not found');setupBook(await r.text());}
  catch(e){$('loadbox').classList.remove('hidden');note('The complete book could not be loaded. Refresh or read from the source linked below.');console.error(e);}
 })();
 
