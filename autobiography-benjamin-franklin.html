@@ -65,10 +65,24 @@ let soundOn=true;
 let initialRender=true;
 let segments=[],pages=[],voiceList=[],speechToken=0, speaking=false,paused=false, speechQueue=[],speechCursor=0,speechResumeAt=0,pageSpeechDone=false,startTimer=null,utterance=null;
 const note=text=>{$('message').textContent=text};
-function parseText(raw){
- // Remove only numbered editorial footnote markers from the reader and speech text.
- // The complete historical source TXT (and its notes) remains unchanged.
- const t=raw.replace(/\r\n?/g,'\n').replace(/\u00ad/g,'').replace(/\[\d+\]/g,'');
+function stripFranklinFootnotes(value){
+ const kept=[];let inNote=false;
+ for(const line of value.split('\n')){
+  if(/^[ \t]+\[\d+\](?:\s|$)/.test(line)){inNote=true;continue;}
+  if(inNote){
+   if(!line.trim()||/^[ \t]+\S/.test(line))continue;
+   // Preserve a paragraph break before the next unindented narrative.
+   kept.push('');inNote=false;
+  }
+  kept.push(line);
+ }
+ return kept.join('\n');
+}
+function parseText(raw,includeNotes=false){
+ // Strip editorial note paragraphs before removing inline reference markers.
+ // Keep the complete source TXT and its historical notes unchanged.
+ const normalized=raw.replace(/\r\n?/g,'\n').replace(/\u00ad/g,'');
+ const t=(includeNotes?normalized:stripFranklinFootnotes(normalized)).replace(/\[\d+\]/g,'');
  const heading=/^(EDITOR'S INTRODUCTION|CHAPTER (?:I|II|III|IV|V|VI|VII|VIII|IX|X|XI|XII|XIII|XIV|XV|XVI|XVII|XVIII|XIX) — .+|HISTORICAL APPENDIX|EDITOR'S BIBLIOGRAPHY|PERIOD NEWSPAPER TRANSCRIPTIONS)$/gm;
  const matches=[...t.matchAll(heading)];
  const roman=['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV','XVI','XVII','XVIII','XIX'];
@@ -392,9 +406,39 @@ function render(){if(!pages.length)return;const page=pages[state.page];
  $('bookmark').textContent=state.bookmark===state.page?'♥ Bookmarked':'♡ Bookmark this page';$('bookmarkhint').textContent=state.bookmark>=0?'Saved bookmark: page '+(state.bookmark+1):'No bookmark set';
  if(!isFirstRender)document.querySelector('.book').scrollIntoView({behavior:'instant',block:'start'});
 }
+function remapFranklinPage(index,oldPages,newPages){
+ if(!Number.isInteger(index)||index<0)return -1;
+ const oldPage=oldPages[Math.min(index,oldPages.length-1)];
+ if(!oldPage)return 0;
+ const sectionPages=newPages.map((p,i)=>({p,i})).filter(x=>x.p.section===oldPage.section);
+ if(!sectionPages.length)return 0;
+ const match=page=>{
+  for(const paragraph of page.paragraphs){
+   const found=sectionPages.find(x=>x.p.paragraphs.includes(paragraph));
+   if(found)return found.i;
+  }
+  return -1;
+ };
+ const direct=match(oldPage);
+ if(direct>=0)return direct;
+ for(let i=index+1;i<oldPages.length&&oldPages[i].section===oldPage.section;i++){
+  const found=match(oldPages[i]);if(found>=0)return found;
+ }
+ for(let i=Math.min(index,oldPages.length-1)-1;i>=0&&oldPages[i].section===oldPage.section;i--){
+  const found=match(oldPages[i]);if(found>=0)return found;
+ }
+ return sectionPages[0].i;
+}
 function setupBook(raw){
  const parsed=parseText(raw),paged=paginate(parsed);
- if(parsed.length!==23||paged.length<155)throw Error("Franklin’s autobiography appears incomplete.");
+ if(parsed.length!==23||paged.length<140)throw Error("Franklin’s autobiography appears incomplete.");
+ // One-time migration from the previous footnote-inclusive pagination.
+ if(state.footnoteFreePagination!==1){
+  const oldPages=paginate(parseText(raw,true));
+  state.page=Math.max(0,remapFranklinPage(state.page,oldPages,paged));
+  state.bookmark=remapFranklinPage(state.bookmark,oldPages,paged);
+  state.footnoteFreePagination=1;
+ }
  segments=parsed;pages=paged;
  $('section').replaceChildren(...segments.map((s,i)=>new Option(s.name,i)));
  $('page').replaceChildren(...pages.map((_,i)=>new Option('Page '+(i+1),i)));
