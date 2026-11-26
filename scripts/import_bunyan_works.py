@@ -12,13 +12,15 @@ def download(n, ebook, sha):
     for url in urls:
         try:
             raw=urlopen(Request(url,headers={'User-Agent':'OpheliaOpenBooks public domain text importer'}),timeout=60).read()
-            text=raw.decode('utf-8-sig').replace('\r\n','\n').replace('\r','\n')
+            try: decoded=raw.decode('utf-8-sig')
+            except UnicodeDecodeError: decoded=raw.decode('cp1252')
+            text=decoded.replace('\r\n','\n').replace('\r','\n')
             start=re.search(r'(?im)^\s*\*{3}\s*START OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[^\n]*\*{3}\s*$',text)
             end=re.search(r'(?im)^\s*\*{3}\s*END OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[^\n]*\*{3}',text)
             if not start or not end or end.start()<=start.end():
                 raise ValueError('Missing Gutenberg boundaries')
             body=text[start.end():end.start()].strip()
-            title=re.search(r'(?im)^\s*THE WORKS OF JOHN BUNYAN\s*$',body)
+            title=re.search(r'(?im)^\s*THE WORKS OF JOHN BUNYAN\.?\s*$',body)
             if title: body=body[title.start():].strip()
             else: raise ValueError('Missing title')
             if len(body.split())<350000 or not re.search(r'VOLUME\s+'+volumes[n-1][1],body[:10000],re.I) or 'GEORGE OFFOR' not in body[:10000].upper():
