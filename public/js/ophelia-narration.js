@@ -1,5 +1,5 @@
 /* Ophelia's Open Book — shared spoken-text preparation.
- * Version 1.4.25. Load before each reader's inline narration code.
+ * Version 1.4.27. Load before each reader's inline narration code.
  *
  * Normalize only the words sent to speech synthesis: the printed book,
  * headings, pagination, bookmarks and original manuscripts are unchanged.
@@ -432,10 +432,29 @@
   // Grammar-led speech units: complete sentences when possible; natural
   // breaths at selected clause punctuation for very long Victorian sentences.
   // Do not split within a word, abbreviation, decimal number, or quote tag.
+  // Preserve the sentence period when an abbreviation ends a thought.
+  // Rendered paragraph boundaries recover endings in readers that join prose
+  // with spaces before passing it to the shared narrator.
+  function preserveEtcEndings(value){
+    let text=String(value||'');
+    const ending=/\b[eE][tT][cC]\.([”’"')\]]*)(?=\s*$|\s+(?:[“‘"']\s*)?\p{Lu})/gu;
+    text=text.replace(ending,'et cetera.$1');
+    if(typeof document!=='undefined'&&typeof document.querySelectorAll==='function'){
+      for(const node of document.querySelectorAll('#prose p, #passage p')){
+        const p=String(node.textContent||'').replace(/\s+/g,' ').trim();
+        if(!/\betc\.[”’"')\]]*$/i.test(p))continue;
+        const previous=p.replace(/\betc\.([”’"')\]]*)$/i,'et cetera.$1');
+        // Match the complete paragraph, not an unrelated occurrence of etc.
+        if(text.includes(p))text=text.replace(p,previous);
+      }
+    }
+    return text;
+  }
+  const etcSentenceEnd=/\bet cetera\.[”’"')\]]*\s*$/i;
   function speechChunks(value){
     // Gutenberg uses "--" for a typographic em dash. Normalize the punctuation
     // only in narration; never alter the printed manuscript.
-    const clean=normalizeForSpeech(value).replace(/\*+\s*/g,'')
+    const clean=normalizeForSpeech(preserveEtcEndings(value)).replace(/\*+\s*/g,'')
       .replace(/--+/g,' — ').replace(/\s+/g,' ').trim();
     if(!clean)return [];
     const protectedText=clean
@@ -451,10 +470,12 @@
       while((m=ends.exec(protectedText))){pieces.push(clean.slice(start,ends.lastIndex).trim());start=ends.lastIndex;}
       if(start<clean.length)pieces.push(clean.slice(start).trim());
     }
+    // Force a speech boundary even when a following paragraph starts lowercase.
+    pieces=pieces.flatMap(part=>part.split(/(?<=\bet cetera\.[”’"')\]]*)\s+/i));
     const sentences=[];
     for(const part of pieces.filter(Boolean)){
       const last=sentences.at(-1)||'';
-      if(last&&(/^[a-z,;:—–)\]]/.test(part)||/(?:\.\.\.|…)\s*[”’"']?$/.test(last)))sentences[sentences.length-1]+=' '+part;
+      if(last&&!etcSentenceEnd.test(last)&&(/^[a-z,;:—–)\]]/.test(part)||/(?:\.\.\.|…)\s*[”’"']?$/.test(last)))sentences[sentences.length-1]+=' '+part;
       else sentences.push(part);
     }
     const result=[];
@@ -524,6 +545,7 @@
   function pauseAfter(text){
     const value=String(text||'').trim();
     if(!value)return 15;
+    if(etcSentenceEnd.test(value))return 350;
     // Speech engines already include punctuation intonation and a natural
     // end-of-utterance breath. Avoid stacking a second long scripted pause.
     const clean=value.replace(/[”’"' )\]]+$/,'').trim();
@@ -776,7 +798,7 @@
     const completedSources=new Set();
     const currentWord=()=>{let n=wordPositions.findIndex(w=>w.index===index&&w.end>lastBoundary);if(n<0)n=wordPositions.findIndex(w=>w.index>index);return n<0?Math.max(0,wordPositions.length-1):n;};
 
-    let current=null,lastBoundary=0;
+    let current=null,lastBoundary=0,pendingFinalEtc=null;
     // Unlock Web Audio from the reader's Play gesture, but only on the
     // page containing the hiss. Other books and pages use ordinary TTS.
     let hissContext=null,hissNode=null;
@@ -814,7 +836,7 @@
         serial++;
         if(timer!==null){clearTimeout(timer);timer=null;}
         current=null;stopHiss();try{synth.cancel();}catch{}
-        index=w.index;offset=w.start;lastBoundary=offset;
+        pendingFinalEtc=null;index=w.index;offset=w.start;lastBoundary=offset;
         session.updateWordControl?.(n);
         if(paused||isPaused()){markPausedWord(utterances,index,offset);return true;}
         clearPausedHighlight();try{synth.resume();}catch{}
@@ -851,6 +873,7 @@
     showWordPosition(session,wordPositions);
     function play(){
       if(disposed||paused||!isCurrent()||index>=utterances.length)return;
+      if(pendingFinalEtc){const event=pendingFinalEtc.event;pendingFinalEtc=null;complete(event,true);return;}
       const source=utterances[index],raw=String(source.text);
       // A sustained sibilant must sound like air escaping, not the names
       // of several letters. High-passed soft noise gives one long /s/.
@@ -912,9 +935,13 @@
       current=u;lastBoundary=base;
       synth.speak(u);
     }
-    function complete(e){
+    function complete(e,afterEtc=false){
       if(disposed||paused)return;
       const original=utterances[index];
+      // Delay a page-turn callback too, unless a book already manages it.
+      if(!afterEtc&&index===utterances.length-1&&original.__opheliaPauseMs==null&&etcSentenceEnd.test(original.text)){
+        current=null;pendingFinalEtc={event:e};timer=setTimeout(()=>{timer=null;play();},350);return;
+      }
       current=null;offset=0;index++;
       // A double dash is a short rhetorical beat, not a 430 ms silence.
       const delay=original.__opheliaChapterIntro?110:(original.__opheliaPauseMs??pauseAfter(original.text));
@@ -984,5 +1011,5 @@
     // DOMContentLoaded precedes async book-text loading, but follows inline control setup.
     if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bind,{once:true});else bind();
   })();
-  root.OpheliaNarration=Object.freeze({version:'1.4.25',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
+  root.OpheliaNarration=Object.freeze({version:'1.4.27',normalizeForSpeech,speechChunks,speakWithPauses,pauseAfter,pauseReading,resumeReading,clearReading});
 })(window);
