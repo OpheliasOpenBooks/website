@@ -216,6 +216,7 @@ function franklinNarrationChunks(paragraphs,introduction,grammar){
     .replace(/\breli['’]d\b/gi,word=>word[0]==='R'?'Relied':'relied')
     .replace(/\btho['’](?![A-Za-z])/gi,word=>word[0]==='T'?'Though':'though')
     .replace(/\bbr\.\s+(?=Holmes\b)/gi,'brother ')
+    .replace(/\bgov['’]r\.?(?![A-Za-z])/gi,word=>word[0]==='G'?'Governor':'governor')
     // Read is a surname pronounced Reed; preserve ordinary verb readings.
     .replace(/(\b(?:Mr\.?|Mrs\.?|Miss|John|Deborah)\s+)Read\b/g,'$1Reed');
   const pieces=grammar(spokenParagraph);
