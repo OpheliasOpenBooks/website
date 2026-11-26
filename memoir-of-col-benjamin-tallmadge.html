@@ -91,15 +91,16 @@ function parseText(raw){
 function paginate(sections){
  const out=[];
  sections.forEach((part,section)=>{
-  let current=[],words=0,quoteIndices=[],inCincinnati=false,isQuoted=false;
+  let current=[],words=0,quoteIndices=[],quoteKind='',isQuoted=false;
   function flush(){if(current.length){out.push({section,sectionName:part.name,paragraphs:current,quoteIndices});current=[];quoteIndices=[];words=0;}}
-  function add(par){const n=(par.match(/\S+/g)||[]).length;if(words+n>330&&current.length)flush();if(isQuoted)quoteIndices.push(current.length);current.push(par);words+=n;}
+  function add(par){const n=(par.match(/\S+/g)||[]).length;const keepWithIntro=isQuoted&&/^It only remains for the Commander-in-Chief/.test(par)&&/he adds:$/.test(current.at(-1)||'');if(words+n>330&&current.length&&!keepWithIntro)flush();if(isQuoted)quoteIndices.push(current.length);current.push(par);words+=n;}
   for(const original of part.paragraphs){
-   if(/^"\s*It has pleased the Supreme Governor of the Universe/.test(original))inCincinnati=true;
-   isQuoted=inCincinnati;
-   const finalQuote=isQuoted&&/America and Fame\."\s*$/.test(original);
-   const par=isQuoted?original.replace(/^"\s*/,'').replace(finalQuote?/"\s*$/:/$^/,''):original;
-   if(finalQuote)inCincinnati=false;
+   if(/^"\s*It has pleased the Supreme Governor of the Universe/.test(original))quoteKind='cincinnati';
+   if(/^"\s*It only remains for the Commander-in-Chief to address himself once more/.test(original))quoteKind='farewell';
+   isQuoted=Boolean(quoteKind);
+   const finalQuote=quoteKind==='cincinnati'&&/America and Fame\."\s*$/.test(original)||quoteKind==='farewell'&&/military scene to him will be closed forever(?:\.|\/)[/"'’”]*\s*$/.test(original);
+   let par=isQuoted?original.replace(/^"\s*/,''):original;
+   if(finalQuote){par=par.replace(/(?:\.|\/)[/"'’”]*\s*$/,'.');quoteKind='';}
    if(/^(?:CAMPAIGN OF 177[67]|CAMPAIGNS OF 1780)$/.test(par.trim()))flush();
    const n=(par.match(/\S+/g)||[]).length;
    if(n<=330){add(par);continue;}
