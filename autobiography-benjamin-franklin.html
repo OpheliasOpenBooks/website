@@ -198,28 +198,113 @@ function finishPage(token){
 }
 // Use the shared, current pronunciation rules, but let the selected browser
 // voice carry short consecutive clauses together rather than restart each time.
+// Complete edition-specific speech dictionary, extracted from the published 1916 text.
+// Keep historical spelling on the page; only the speech queue receives modern pronunciation.
+const franklinHistoricalWords=Object.freeze({
+ "abandon'd":"abandoned","abat'd":"abated","accompani'd":"accompanied","accompany'd":"accompanied","accomplish'd":"accomplished","acknowledg'd":"acknowledged",
+ "acquiesc'd":"acquiesced","acquir'd":"acquired","address'd":"addressed","admir'd":"admired","advanc'd":"advanced","advis'd":"advised",
+ "ag'd":"aged","alarm'd":"alarmed","alledg'd":"alleged","allow'd":"allowed","amus'd":"amused","anchor'd":"anchored",
+ "annex'd":"annexed","answer'd":"answered","appear'd":"appeared","appli'd":"applied","apply'd":"applied","approv'd":"approved",
+ "arraign'd":"arraigned","arrang'd":"arranged","arriv'd":"arrived","ascrib'd":"ascribed","asham'd":"ashamed","ask'd":"asked",
+ "assess'd":"assessed","assum'd":"assumed","assur'd":"assured","attach'd":"attached","attack'd":"attacked","avail'd":"availed",
+ "balanc'd":"balanced","becalm'd":"becalmed","beforemention'd":"before-mentioned","behav'd":"behaved","believ'd":"believed","belong'd":"belonged",
+ "blam'd":"blamed","brick'd":"bricked","burlesqu'd":"burlesqued","call'd":"called","cancell'd":"canceled","carri'd":"carried",
+ "carry'd":"carried","caus'd":"caused","censur'd":"censured","chagrin'd":"chagrined","characteriz'd":"characterized","charg'd":"charged",
+ "charm'd":"charmed","chas'd":"chased","checquer'd":"checkered","claim'd":"claimed","clos'd":"closed","colour'd":"colored",
+ "combin'd":"combined","commission'd":"commissioned","complain'd":"complained","compos'd":"composed","conceiv'd":"conceived","concern'd":"concerned",
+ "condol'd":"condoled","conferr'd":"conferred","confin'd":"confined","consider'd":"considered","contain'd":"contained","content'd":"contented",
+ "continu'd":"continued","contriv'd":"contrived","control'd":"controlled","convers'd":"conversed","convinc'd":"convinced","copy'd":"copied",
+ "counsell'd":"counseled","cover'd":"covered","crav'd":"craved","cross'd":"crossed","cruis'd":"cruised","crumb'd":"crumbed",
+ "cur'd":"cured","damn'd":"damned","debauch'd":"debauched","deceas'd":"deceased","deceiv'd":"deceived","declar'd":"declared",
+ "declin'd":"declined","decreas'd":"decreased","deduc'd":"deduced","demean'd":"demeaned","deny'd":"denied","depriv'd":"deprived",
+ "derang'd":"deranged","deriv'd":"derived","deserv'd":"deserved","design'd":"designed","desir'd":"desired","despis'd":"despised",
+ "destroy'd":"destroyed","detain'd":"detained","determin'd":"determined","devolv'd":"devolved","din'd":"dined","disapprov'd":"disapproved",
+ "disciplin'd":"disciplined","discourag'd":"discouraged","discover'd":"discovered","discuss'd":"discussed","dislik'd":"disliked","disobey'd":"disobeyed",
+ "dispatch'd":"dispatched","dispers'd":"dispersed","displac'd":"displaced","dispos'd":"disposed","dissolv'd":"dissolved","distinguish'd":"distinguished",
+ "distress'd":"distressed","distribut'd":"distributed","divulg'd":"divulged","drain'd":"drained","dress'd":"dressed","dry'd":"dried",
+ "dy'd":"died","embark'd":"embarked","embarrass'd":"embarrassed","embrac'd":"embraced","employ'd":"employed","empty'd":"emptied",
+ "enclos'd":"enclosed","encourag'd":"encouraged","encumber'd":"encumbered","endeavour'd":"endeavored","enforc'd":"enforced","engag'd":"engaged",
+ "engrav'd":"engraved","enjoy'd":"enjoyed","enrag'd":"enraged","ensu'd":"ensued","enter'd":"entered","entertain'd":"entertained",
+ "escap'd":"escaped","establish'd":"established","esteem'd":"esteemed","examin'd":"examined","exchang'd":"exchanged","exclaim'd":"exclaimed",
+ "excus'd":"excused","explain'd":"explained","expos'd":"exposed","express'd":"expressed","fail'd":"failed","fill'd":"filled",
+ "finish'd":"finished","fir'd":"fired","fix'd":"fixed","flatter'd":"flattered","follow'd":"followed","forc'd":"forced",
+ "form'd":"formed","fram'd":"framed","fulfill'd":"fulfilled","furnish'd":"furnished","gain'd":"gained","gam'd":"gamed",
+ "glaz'd":"glazed","govern'd":"governed","gratify'd":"gratified","hallow'd":"hallowed","happen'd":"happened","harass'd":"harassed",
+ "hop'd":"hoped","imagin'd":"imagined","impos'd":"imposed","impress'd":"impressed","imprison'd":"imprisoned","improv'd":"improved",
+ "inclin'd":"inclined","increas'd":"increased","induc'd":"induced","influenc'd":"influenced","inform'd":"informed","inquir'd":"inquired",
+ "inspir'd":"inspired","interchang'd":"interchanged","interr'd":"interred","interven'd":"intervened","introduc'd":"introduced","join'd":"joined",
+ "judg'd":"judged","justify'd":"justified","laugh'd":"laughed","leak'd":"leaked","lectur'd":"lectured","lik'd":"liked",
+ "lin'd":"lined","liv'd":"lived","lodg'd":"lodged","long'd":"longed","look'd":"looked","lov'd":"loved",
+ "manag'd":"managed","march'd":"marched","mark'd":"marked","mention'd":"mentioned","mill'd":"milled","misbehav'd":"misbehaved",
+ "miss'd":"missed","mix'd":"mixed","money'd":"moneyed","mov'd":"moved","natur'd":"natured","oblig'd":"obliged",
+ "obscur'd":"obscured","observ'd":"observed","obtain'd":"obtained","occasion'd":"occasioned","occurr'd":"occurred","offer'd":"offered",
+ "open'd":"opened","oppos'd":"opposed","order'd":"ordered","ow'd":"owed","own'd":"owned","pack'd":"packed",
+ "pass'd":"passed","pav'd":"paved","pawn'd":"pawned","perceiv'd":"perceived","perform'd":"performed","pick'd":"picked",
+ "piqu'd":"piqued","piti'd":"pitied","plac'd":"placed","plann'd":"planned","play'd":"played","pleas'd":"pleased",
+ "plough'd":"plowed","poison'd":"poisoned","possess'd":"possessed","practis'd":"practiced","prais'd":"praised","preach'd":"preached",
+ "preferr'd":"preferred","prefix'd":"prefixed","prepar'd":"prepared","preserv'd":"preserved","press'd":"pressed","prevail'd":"prevailed",
+ "procur'd":"procured","produc'd":"produced","profess'd":"professed","promis'd":"promised","proportion'd":"proportioned","propos'd":"proposed",
+ "prov'd":"proved","publish'd":"published","pull'd":"pulled","punish'd":"punished","purchas'd":"purchased","purpos'd":"purposed",
+ "pursu'd":"pursued","qualifi'd":"qualified","qualify'd":"qualified","quarrel'd":"quarreled","quarrell'd":"quarreled","quarter'd":"quartered",
+ "rain'd":"rained","rais'd":"raised","rak'd":"raked","rang'd":"ranged","reach'd":"reached","reap'd":"reaped",
+ "rebuk'd":"rebuked","recall'd":"recalled","receiv'd":"received","reconcil'd":"reconciled","recover'd":"recovered","recurr'd":"recurred",
+ "reduc'd":"reduced","referr'd":"referred","refus'd":"refused","reli'd":"relied","reliev'd":"relieved","remain'd":"remained",
+ "remark'd":"remarked","remov'd":"removed","repair'd":"repaired","repli'd":"replied","reply'd":"replied","repuls'd":"repulsed",
+ "requir'd":"required","resign'd":"resigned","resolv'd":"resolved","restor'd":"restored","restrain'd":"restrained","resum'd":"resumed",
+ "retain'd":"retained","retal'd":"retailed","return'd":"returned","revolv'd":"revolved","ridicul'd":"ridiculed","row'd":"rowed",
+ "ruin'd":"ruined","rul'd":"ruled","sail'd":"sailed","satisfi'd":"satisfied","satisfy'd":"satisfied","scamper'd":"scampered",
+ "scatter'd":"scattered","scrap'd":"scraped","seal'd":"sealed","secur'd":"secured","seem'd":"seemed","seiz'd":"seized",
+ "serv'd":"served","shap'd":"shaped","shatter'd":"shattered","show'd":"showed","sign'd":"signed","silenc'd":"silenced",
+ "skirmish'd":"skirmished","slacken'd":"slackened","smil'd":"smiled","smooth'd":"smoothed","soak'd":"soaked","star'd":"stared",
+ "stay'd":"stayed","stor'd":"stored","strengthen'd":"strengthened","stuff'd":"stuffed","su'd":"sued","subscrib'd":"subscribed",
+ "suffer'd":"suffered","suppli'd":"supplied","supply'd":"supplied","suppos'd":"supposed","surpris'd":"surprised","swell'd":"swelled",
+ "talk'd":"talked","thank'd":"thanked","tir'd":"tired","toe'd":"toeed","topp'd":"topped","transcrib'd":"transcribed",
+ "transferr'd":"transferred","trepann'd":"trepanned","tri'd":"tried","trimm'd":"trimmed","try'd":"tried","turn'd":"turned",
+ "unfinish'd":"unfinished","unparallell'd":"unparalleled","unpav'd":"unpaved","unperceiv'd":"unperceived","unus'd":"unused","urg'd":"urged",
+ "us'd":"used","valu'd":"valued","vanquish'd":"vanquished","ventur'd":"ventured","verifi'd":"verified","vow'd":"vowed",
+ "walk'd":"walked","wash'd":"washed","watch'd":"watched","weaken'd":"weakened","wip'd":"wiped","wish'd":"wished",
+ "wonder'd":"wondered","work'd":"worked","wrong'd":"wronged","bro't":"brought","tho't":"thought","mayn't":"may not",
+ "ne'er":"never","t'other":"the other","in'trest":"interest","philad'a":"Philadelphia","hwit'field":"Whitfield","can't":"cannot",
+ "don't":"do not","won't":"will not","i'll":"I will","i've":"I have","she'll":"she will","she's":"she is",
+ "that's":"that is","there's":"there is","he'd":"he would"
+});
+function franklinCase(word,replacement){
+ return /^[A-Z]/.test(word)?replacement[0].toUpperCase()+replacement.slice(1):replacement;
+}
+function normalizeFranklinSpeech(paragraph){
+ return paragraph
+  .replace(/\b(two quarto volumes,\s*)MS\.(?=\s*,\s*of his own poetry\b)/gi,'$1in manuscript')
+  .replace(/\b1810\.\s*(?:--+|[—–])\s*Griffin\./g,'1810. Griffin.')
+  .replace(/(\bwhen\s+I\s+could\s+not\s+)read\b/gi,'$1reed')
+  .replace(/(\b(?:Mr\.?|Mrs\.?|Miss|John|Deborah)\s+)Read\b/g,'$1Reed')
+  // Exact word matches only; never change possessives or unrelated words.
+  .replace(/\b[A-Za-z]+['’][A-Za-z]+\b/g,word=>{
+    const key=word.toLowerCase().replace(/’/g,"'");
+    return Object.prototype.hasOwnProperty.call(franklinHistoricalWords,key)?franklinCase(word,franklinHistoricalWords[key]):word;
+  })
+  .replace(/\b(tho|thro|o)['’](?![A-Za-z])/gi,(word,stem)=>franklinCase(word,({tho:'though',thro:'through',o:'of'})[stem.toLowerCase()]))
+  .replace(/(^|[^A-Za-z])['’]tis\b/gi,(_,lead)=>lead+'it is')
+  .replace(/\bgov['’]r\.?(?![A-Za-z])/gi,word=>franklinCase(word,'governor'))
+  .replace(/\bbr\.(?=\s+Holmes\b)/gi,word=>franklinCase(word,'brother'))
+  .replace(/\b(Mr|Mrs|Dr|Capt|Rev|Esqr|St|Wm|Jas|Geo|Vol|Epist|Co|Numb|Brigt|Aug|Sept|Oct|MS)\.(?=\s|[,;:!?)]|$)/g,(word,abbr)=>({
+    Mr:'Mister',Mrs:'Missus',Dr:'Doctor',Capt:'Captain',Rev:'Reverend',Esqr:'Esquire',St:'Saint',Wm:'William',Jas:'James',Geo:'George',Vol:'Volume',Epist:'Epistle',Co:'Company',Numb:'Number',Brigt:'Brigantine',Aug:'August',Sept:'September',Oct:'October',MS:'Manuscript'
+  })[abbr])
+  .replace(/\b(\d+)\s+(lbs?)\.(?=\s|[,;:]|$)/gi,(_,n,unit)=>n+' '+(unit.toLowerCase()==='lb'&&n==='1'?'pound':'pounds'))
+  .replace(/\b(Muscovado|bohea|green|ground|common)\s+do\.(?=\s|$)/gi,'$1 ditto.')
+  .replace(/&c\.(?=\s*[,;:])/gi,'et cetera')
+  .replace(/&c\./gi,'etc.')
+  .replace(/\b(Merc|Ven|Jup|Sat|Sund|Trin|Bap|Cn)\.(?=\s|[,;:]|$)/g,(_,abbr)=>({Merc:'Mercury',Ven:'Venus',Jup:'Jupiter',Sat:'Saturn',Sund:'Sunday',Trin:'Trinity',Bap:'Baptist',Cn:'Cancer'})[abbr])
+  .replace(/\b(\d+)\s*(h|m|mi)\.(?=\s|$)/g,(_,n,unit)=>n+' '+(unit==='h'?(n==='1'?'hour':'hours'):(n==='1'?'minute':'minutes')))
+  .replace(/\b(?:aft\.?|af\.|aftern)\b\.?(?=\s|$)/g,word=>/^af(?:t|tern)\.?$|^af\.$/.test(word)?'afternoon':word)
+  .replace(/\bmorn\.(?=\s|$)/g,'morning');
+}
 function franklinNarrationChunks(paragraphs,introduction,grammar){
  const chunks=[];
  const etcEnd=/\bet cetera\.[”’"')\]]*\s*$/i;
  const questionEnd=/\?[”’"')\]]*\s*$/;
  if(introduction)chunks.push({text:introduction,heading:true});
  for(const paragraph of paragraphs){
-  // Expand Franklin's historical abbreviation and clean the Griffin note's punctuation for speech only.
-  const spokenParagraph=paragraph
-    .replace(/\b(two quarto volumes,\s*)MS\.(?=\s*,\s*of his own poetry\b)/gi,'$1in manuscript')
-    .replace(/\b1810\.\s*(?:--+|[—–])\s*Griffin\./g,'1810. Griffin.')
-    // After modal 'could', read is a base-form verb pronounced /riːd/.
-    .replace(/(\bwhen\s+I\s+could\s+not\s+)read\b/gi,'$1reed')
-    // Historical elision dy'd is pronounced exactly like modern died.
-    .replace(/\bdy['’]d\b/gi,word=>word[0]==='D'?'Died':'died')
-    .replace(/\b(continu|liv|refus|natur|inclin|desir|arriv|surpris|lik|introduc|us|unus|blam|star|poison|propos|assur|oblig|return|lin|produc|advis|lov|expos|escap|convinc|promis|scrap|acquir|behav|gam|prov|suppos|balanc|din|trepann|dislik|prepar)['’]d\b/gi,(_word,stem)=>stem+'ed')
-    .replace(/\breli['’]d\b/gi,word=>word[0]==='R'?'Relied':'relied')
-    .replace(/\bmayn['’]t\b/gi,word=>word[0]==='M'?'May not':'may not')
-    .replace(/\btho['’](?![A-Za-z])/gi,word=>word[0]==='T'?'Though':'though')
-    .replace(/\bbr\.\s+(?=Holmes\b)/gi,'brother ')
-    .replace(/\bgov['’]r\.?(?![A-Za-z])/gi,word=>word[0]==='G'?'Governor':'governor')
-    // Read is a surname pronounced Reed; preserve ordinary verb readings.
-    .replace(/(\b(?:Mr\.?|Mrs\.?|Miss|John|Deborah)\s+)Read\b/g,'$1Reed');
+  const spokenParagraph=normalizeFranklinSpeech(paragraph);
   const pieces=grammar(spokenParagraph);
   const batch=[];
   for(const text of pieces){
