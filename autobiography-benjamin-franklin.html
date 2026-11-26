@@ -52,7 +52,7 @@
 </div>
 <div class="source">Franklin’s surviving, unfinished autobiography presented in the 1916 public-domain edition edited by Frank Woodworth Pine, including the introduction, nineteen chapters, historical appendix, bibliography, and period newspaper transcriptions. The printed edition’s illustration placeholders are omitted in this online text. Portrait by Joseph-Siffred Duplessis, circa 1785, from the National Portrait Gallery (Smithsonian), public domain. <a href="https://www.gutenberg.org/ebooks/20203" target="_blank" rel="noopener">Historical edition and public-domain text</a> · <a href="https://commons.wikimedia.org/wiki/File:Benjamin_Franklin_by_Joseph_Duplessis_1778.jpg" target="_blank" rel="noopener">Portrait source and rights</a>.</div>
 </div>
-<script src="public/js/ophelia-narration.js?v=1.4.14-pacing-number"></script>
+<script src="public/js/ophelia-narration.js?v=1.4.27-franklin-flow"></script>
 <script>
 'use strict';
 /* All source is editable. Narration reuses Alice’s grammar-aware sentence segmentation and queued speech strategy. Browser/device voices provide the actual spoken sound. */
@@ -190,9 +190,42 @@ function finishPage(token){
  if(token!==speechToken)return;
  speaking=false;paused=false;pageSpeechDone=false;speechQueue=[];updatePlay();
  note('Finished page '+(state.page+1)+'.');
- if(state.autoTurn&&state.page<pages.length-1){state.page++;save();render();startSpeech(0);}
+ if(state.autoTurn&&state.page<pages.length-1){
+  const advance=()=>{if(token!==speechToken)return;state.page++;save();render();startSpeech(0);};
+  if(franklinPageEndPause)startTimer=setTimeout(advance,franklinPageEndPause);else advance();
+ }
  else if(state.page===pages.length-1)note('You have finished The Autobiography of Benjamin Franklin.');
 }
+// Use the shared, current pronunciation rules, but let the selected browser
+// voice carry short consecutive clauses together rather than restart each time.
+function franklinNarrationChunks(paragraphs,introduction,grammar){
+ const chunks=[];
+ const etcEnd=/\bet cetera\.[”’"')\]]*\s*$/i;
+ const questionEnd=/\?[”’"')\]]*\s*$/;
+ if(introduction)chunks.push({text:introduction,heading:true});
+ for(const paragraph of paragraphs){
+  const pieces=grammar(paragraph);
+  const batch=[];
+  for(const text of pieces){
+   const prev=batch.at(-1);
+   if(prev&&!etcEnd.test(prev.text)&&!questionEnd.test(prev.text)&&
+      !/[\uE000-\uF8FF]/.test(prev.text+text)&&prev.text.length+1+text.length<=300){
+    prev.text+=' '+text;
+   }else batch.push({text});
+  }
+  chunks.push(...batch);
+ }
+ return chunks;
+}
+function franklinPauseAfter(part){
+ if(part.heading)return 350;
+ if(/\bet cetera\.[”’"')\]]*\s*$/i.test(part.text))return 350;
+ const end=part.text.trim().replace(/[”’"' )\]]+$/,'');
+ if(/[.!?]$/.test(end))return 25;
+ if(/[;:—–,]$/.test(end))return 15;
+ return 0;
+}
+let franklinPageEndPause=0;
 function startSpeech(startAt=speechResumeAt){
  if(!soundOn){note('Sound is off. Select Sound on before starting narration.');return;}
  if(!pages.length)return;
@@ -204,15 +237,18 @@ function startSpeech(startAt=speechResumeAt){
  // An opening section announcement is one utterance, followed by the original prose.
  // Keeping it in the same queue preserves pause/resume, speech speed and auto-turn.
  const introduction=chapterAnnouncementForSpeech();
- const chunks=(introduction?[introduction,...speechChunks(getText())]:speechChunks(getText())).slice(startAt);
+ const allChunks=franklinNarrationChunks(pages[state.page]?.paragraphs||[],introduction,speechChunks);
+ franklinPageEndPause=/\bet cetera\.[”’"')\]]*\s*$/i.test(allChunks.at(-1)?.text||'')?350:0;
+ const chunks=allChunks.slice(startAt);
  speechResumeAt=0;speechCursor=startAt;pageSpeechDone=false;
  if(!chunks.length){note('There is no text to narrate on this page.');return;}
  speaking=true;paused=false;const token=speechToken;
  let started=false,completed=0;
  const voice=pickVoice();
  // Queue all grammatical sentences for this page, as Alice does.
- speechQueue=chunks.map((t,i)=>{
-   const u=new SpeechSynthesisUtterance(t);let ended=false;
+ speechQueue=chunks.map((part,i)=>{
+   const u=new SpeechSynthesisUtterance(part.text);let ended=false;
+   u.__opheliaPauseMs=franklinPauseAfter(part);
    u.lang=voice?.lang||'en-GB';if(voice)u.voice=voice;
    u.rate=state.speed;u.volume=1;
    u.onstart=()=>{if(token!==speechToken||!speaking)return;
@@ -226,7 +262,7 @@ function startSpeech(startAt=speechResumeAt){
    return u;
  });
  note('Starting narration…');
- try{if(window.OpheliaNarration&&window.OpheliaNarration.speakWithPauses){window.OpheliaNarration.speakWithPauses(synth,speechQueue,()=>token===speechToken,()=>paused);}else{for(const u of speechQueue){if(token!==speechToken)break;synth.speak(u);}}}
+ try{if(window.OpheliaNarration&&window.OpheliaNarration.speakWithPauses){window.OpheliaNarration.speakWithPauses(synth,speechQueue,()=>token===speechToken,()=>paused,{sectionAnnouncement:false});}else{for(const u of speechQueue){if(token!==speechToken)break;synth.speak(u);}}}
  catch{stop();note('Narration could not start in this browser.');return;}
  if(token===speechToken&&!started)startTimer=setTimeout(()=>{if(token===speechToken&&!started&&!paused){stop();note('No narration started. Choose another English voice in Settings.');}},10000);
  updatePlay();
