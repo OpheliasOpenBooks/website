@@ -204,8 +204,11 @@ function franklinNarrationChunks(paragraphs,introduction,grammar){
  const questionEnd=/\?[”’"')\]]*\s*$/;
  if(introduction)chunks.push({text:introduction,heading:true});
  for(const paragraph of paragraphs){
-  // Expand Franklin's historical abbreviation for the spoken copy only.
-  const pieces=grammar(paragraph.replace(/\b(two quarto volumes,\s*)MS\.(?=\s*,\s*of his own poetry\b)/gi,'$1in manuscript'));
+  // Expand Franklin's historical abbreviation and clean the Griffin note's punctuation for speech only.
+  const spokenParagraph=paragraph
+    .replace(/\b(two quarto volumes,\s*)MS\.(?=\s*,\s*of his own poetry\b)/gi,'$1in manuscript')
+    .replace(/\b1810\.\s*(?:--+|[—–])\s*Griffin\./g,'1810. Griffin.');
+  const pieces=grammar(spokenParagraph);
   const batch=[];
   for(const text of pieces){
    const prev=batch.at(-1);
