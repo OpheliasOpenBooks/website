@@ -1,0 +1,26 @@
+[
+  {
+    "volume": 1,
+    "ebook": 6046,
+    "url": "https://raw.githubusercontent.com/GITenberg/Works-of-John-Bunyan-Volume-01_6046/master/6046.txt",
+    "sha256": "6942d951a267d5b02035d248cf6e1324586b5b02a4d6a661f60eb58c8a4e3cd1",
+    "words": 880357,
+    "sections": 274
+  },
+  {
+    "volume": 2,
+    "ebook": 6047,
+    "url": "https://raw.githubusercontent.com/GITenberg/Works-of-John-Bunyan-Volume-02_6047/master/6047.txt",
+    "sha256": "703e2b490e7012c5d3cbdaade2f22654da34831cc44d0958995a3902037586bb",
+    "words": 745520,
+    "sections": 148
+  },
+  {
+    "volume": 3,
+    "ebook": 6048,
+    "url": "https://raw.githubusercontent.com/GITenberg/Works-of-John-Bunyan-Volume-03_6048/master/6048.txt",
+    "sha256": "807b51df3f3c402850b7106bb44b10cff5eb58f9c70be7c9d296e1a897fa202e",
+    "words": 603507,
+    "sections": 190
+  }
+]
