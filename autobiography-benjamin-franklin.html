@@ -212,7 +212,7 @@ function franklinNarrationChunks(paragraphs,introduction,grammar){
     .replace(/(\bwhen\s+I\s+could\s+not\s+)read\b/gi,'$1reed')
     // Historical elision dy'd is pronounced exactly like modern died.
     .replace(/\bdy['’]d\b/gi,word=>word[0]==='D'?'Died':'died')
-    .replace(/\b(continu|liv|refus|natur|inclin|desir|arriv|surpris|lik|introduc|us|unus|blam|star|poison|propos|assur|oblig|return|lin)['’]d\b/gi,(_word,stem)=>stem+'ed')
+    .replace(/\b(continu|liv|refus|natur|inclin|desir|arriv|surpris|lik|introduc|us|unus|blam|star|poison|propos|assur|oblig|return|lin|produc)['’]d\b/gi,(_word,stem)=>stem+'ed')
     .replace(/\breli['’]d\b/gi,word=>word[0]==='R'?'Relied':'relied')
     .replace(/\bbr\.\s+(?=Holmes\b)/gi,'brother ')
     // Read is a surname pronounced Reed; preserve ordinary verb readings.
