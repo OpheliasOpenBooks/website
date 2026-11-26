@@ -295,6 +295,8 @@ function normalizeFranklinSpeech(paragraph){
   .replace(/\btranscrib(?:['’]d|ed)\s+it\b/gi,word=>franklinCase(word,'tran-scribed it'))
   // Speech-only pronunciation: improved rhymes with moved, with a long oo.
   .replace(/\bimprov(?:['’]d|ed)\b/gi,word=>franklinCase(word,'im-prooved'))
+  // Modernize the archaic occupation spelling for speech only.
+  .replace(/\bsope(?=-boiler\b)/gi,word=>franklinCase(word,'soap'))
   // Exact word matches only; never change possessives or unrelated words.
   .replace(/\b[A-Za-z]+['’][A-Za-z]+\b/g,word=>{
     const key=word.toLowerCase().replace(/’/g,"'");
