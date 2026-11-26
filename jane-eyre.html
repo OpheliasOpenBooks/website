@@ -177,7 +177,10 @@ function finishPage(token){
  if(token!==speechToken)return;
  speaking=false;paused=false;pageSpeechDone=false;speechQueue=[];updatePlay();
  note('Finished page '+(state.page+1)+'.');
- if(state.autoTurn&&state.page<pages.length-1){state.page++;save();render();startSpeech(0);}
+ if(state.autoTurn&&state.page<pages.length-1){
+  const advance=()=>{if(token!==speechToken)return;state.page++;save();render();startSpeech(0);};
+  if(janePageEndPause)startTimer=setTimeout(advance,janePageEndPause);else advance();
+ }
  else if(state.page===pages.length-1)note('You have finished Jane Eyre.');
 }
 // Keep consecutive same-language phrases together so the browser supplies
@@ -194,6 +197,7 @@ function flowingJaneChunks(parts){
  return result;
 }
 function janePauseAfter(part,next){
+ if(part.pauseMs!=null)return part.pauseMs;
  if(!next)return 0;
  if(part.lang!==next.lang)return 15;
  const clean=part.text.trim().replace(/[”’"' )\]]+$/,'');
@@ -201,6 +205,20 @@ function janePauseAfter(part,next){
  if(/[;:—–,]$/.test(clean))return 15;
  return 0;
 }
+// Preserve a brief breath where "etc." ends a sentence or paragraph.
+function janeNarrationChunks(paragraphs,prepare){
+ const boundary=/\b[eE][tT][cC]\.[”’"')\]]*(?=\s*$|\s+(?:[“‘"']\s*)?\p{Lu})/gu;
+ const marker='\uE221';
+ const source=paragraphs.map(p=>p.replace(boundary,m=>m+marker)).join(' ');
+ const sections=source.split(marker),out=[];
+ for(let i=0;i<sections.length;i++){
+  const parts=flowingJaneChunks(prepare(sections[i]));
+  if(i<sections.length-1&&parts.length)parts.at(-1).pauseMs=350;
+  out.push(...parts);
+ }
+ return out;
+}
+let janePageEndPause=0;
 function startSpeech(startAt=speechResumeAt){
  if(!soundOn){note('Sound is off. Select Sound on before starting narration.');return;}
  if(!pages.length)return;
@@ -209,9 +227,11 @@ function startSpeech(startAt=speechResumeAt){
  stop();
  const synth=window.speechSynthesis;
  synth.resume();
- const chunks=flowingJaneChunks(window.OpheliaJaneFrench
-  ?window.OpheliaJaneFrench.spokenChunks(getText(),speechChunks)
-  :speechChunks(getText()).map(text=>({text,lang:'en'}))).slice(startAt);
+ const allChunks=janeNarrationChunks(pages[state.page]?.paragraphs||[],text=>window.OpheliaJaneFrench
+  ?window.OpheliaJaneFrench.spokenChunks(text,speechChunks)
+  :speechChunks(text).map(text=>({text,lang:'en'})));
+ janePageEndPause=allChunks.at(-1)?.pauseMs||0;
+ const chunks=allChunks.slice(startAt);
  speechResumeAt=0;speechCursor=startAt;pageSpeechDone=false;
  if(!chunks.length){note('There is no text to narrate on this page.');return;}
  speaking=true;paused=false;const token=speechToken;
