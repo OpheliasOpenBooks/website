@@ -180,6 +180,27 @@ function finishPage(token){
  if(state.autoTurn&&state.page<pages.length-1){state.page++;save();render();startSpeech(0);}
  else if(state.page===pages.length-1)note('You have finished Jane Eyre.');
 }
+// Keep consecutive same-language phrases together so the browser supplies
+// its own natural punctuation rhythm, without restarting at every clause.
+// Short batches stay safely below the shared engine's 340-character limit.
+function flowingJaneChunks(parts){
+ const result=[];
+ for(const part of parts){
+  const prev=result.at(-1);
+  if(prev&&prev.lang===part.lang&&!/[\uE000-\uF8FF]/.test(prev.text+part.text)&&prev.text.length+1+part.text.length<=300){
+   prev.text+=' '+part.text;
+  }else result.push({...part});
+ }
+ return result;
+}
+function janePauseAfter(part,next){
+ if(!next)return 0;
+ if(part.lang!==next.lang)return 15;
+ const clean=part.text.trim().replace(/[”’"' )\]]+$/,'');
+ if(/[.!?]$/.test(clean))return 25;
+ if(/[;:—–,]$/.test(clean))return 15;
+ return 0;
+}
 function startSpeech(startAt=speechResumeAt){
  if(!soundOn){note('Sound is off. Select Sound on before starting narration.');return;}
  if(!pages.length)return;
@@ -188,7 +209,7 @@ function startSpeech(startAt=speechResumeAt){
  stop();
  const synth=window.speechSynthesis;
  synth.resume();
- const chunks=(window.OpheliaJaneFrench
+ const chunks=flowingJaneChunks(window.OpheliaJaneFrench
   ?window.OpheliaJaneFrench.spokenChunks(getText(),speechChunks)
   :speechChunks(getText()).map(text=>({text,lang:'en'}))).slice(startAt);
  speechResumeAt=0;speechCursor=startAt;pageSpeechDone=false;
@@ -202,6 +223,7 @@ function startSpeech(startAt=speechResumeAt){
   {rate:state.speed,pitch:1,volume:1};
  speechQueue=chunks.map((part,i)=>{
    const u=new SpeechSynthesisUtterance(part.text);let ended=false;
+   u.__opheliaPauseMs=janePauseAfter(part,chunks[i+1]);
    if(part.lang==='fr-FR'){
      u.lang=frenchVoice?.lang||'fr-FR';
      if(frenchVoice)u.voice=frenchVoice;
