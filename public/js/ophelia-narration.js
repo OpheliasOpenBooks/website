@@ -161,6 +161,8 @@
     // Keep original orthography in the book and do not affect other titles.
     if(/(?:^|\/)jane-eyre\.html$/i.test(root.location?.pathname||'')){
       text=text.replace(/\bSphynx\b/gi,word=>word[0]===word[0].toUpperCase()?'Sfinx':'sfinx');
+      // Speech-only long A and ee in lady, including the possessive.
+      text=text.replace(/\blady\b/gi,word=>word[0]==='L'?'Laydee':'laydee');
     }
 
     // Across the library, the address "ma'am" is one syllable, rhyming
