@@ -277,6 +277,8 @@ function normalizeFranklinSpeech(paragraph){
   .replace(/\b1810\.\s*(?:--+|[—–])\s*Griffin\./g,'1810. Griffin.')
   .replace(/(\bwhen\s+I\s+could\s+not\s+)read\b/gi,'$1reed')
   .replace(/(\b(?:Mr\.?|Mrs\.?|Miss|John|Deborah)\s+)Read\b/g,'$1Reed')
+  // Speech-only syllable cue: transcribed has the long I of scribe.
+  .replace(/\btranscrib(?:['’]d|ed)\s+it\b/gi,word=>franklinCase(word,'tran-scribed it'))
   // Exact word matches only; never change possessives or unrelated words.
   .replace(/\b[A-Za-z]+['’][A-Za-z]+\b/g,word=>{
     const key=word.toLowerCase().replace(/’/g,"'");
