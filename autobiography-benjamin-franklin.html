@@ -204,7 +204,8 @@ function franklinNarrationChunks(paragraphs,introduction,grammar){
  const questionEnd=/\?[”’"')\]]*\s*$/;
  if(introduction)chunks.push({text:introduction,heading:true});
  for(const paragraph of paragraphs){
-  const pieces=grammar(paragraph);
+  // Expand Franklin's historical abbreviation for the spoken copy only.
+  const pieces=grammar(paragraph.replace(/\b(two quarto volumes,\s*)MS\.(?=\s*,\s*of his own poetry\b)/gi,'$1in manuscript'));
   const batch=[];
   for(const text of pieces){
    const prev=batch.at(-1);
