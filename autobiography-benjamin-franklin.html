@@ -214,6 +214,7 @@ function franklinNarrationChunks(paragraphs,introduction,grammar){
     .replace(/\bdy['’]d\b/gi,word=>word[0]==='D'?'Died':'died')
     .replace(/\b(continu|liv|refus|natur|inclin|desir|arriv|surpris|lik|introduc|us|unus|blam|star|poison|propos|assur|oblig|return|lin|produc|advis|lov|expos|escap|convinc|promis|scrap|acquir|behav|gam|prov|suppos|balanc)['’]d\b/gi,(_word,stem)=>stem+'ed')
     .replace(/\breli['’]d\b/gi,word=>word[0]==='R'?'Relied':'relied')
+    .replace(/\bmayn['’]t\b/gi,word=>word[0]==='M'?'May not':'may not')
     .replace(/\btho['’](?![A-Za-z])/gi,word=>word[0]==='T'?'Though':'though')
     .replace(/\bbr\.\s+(?=Holmes\b)/gi,'brother ')
     .replace(/\bgov['’]r\.?(?![A-Za-z])/gi,word=>word[0]==='G'?'Governor':'governor')
