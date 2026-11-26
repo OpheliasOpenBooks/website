@@ -211,7 +211,8 @@ function franklinNarrationChunks(paragraphs,introduction,grammar){
     // After modal 'could', read is a base-form verb pronounced /riːd/.
     .replace(/(\bwhen\s+I\s+could\s+not\s+)read\b/gi,'$1reed')
     // Historical elision dy'd is pronounced exactly like modern died.
-    .replace(/\bdy['’]d\b/gi,word=>word[0]==='D'?'Died':'died');
+    .replace(/\bdy['’]d\b/gi,word=>word[0]==='D'?'Died':'died')
+    .replace(/\b(continu|liv)['’]d\b/gi,(_word,stem)=>stem+'ed');
   const pieces=grammar(spokenParagraph);
   const batch=[];
   for(const text of pieces){
