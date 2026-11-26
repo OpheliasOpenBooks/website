@@ -101,7 +101,7 @@ function paginate(sections){
    const finalQuote=quoteKind==='cincinnati'&&/America and Fame\."\s*$/.test(original)||quoteKind==='farewell'&&/military scene to him will be closed forever(?:\.|\/)[/"'’”]*\s*$/.test(original);
    let par=isQuoted?original.replace(/^"\s*/,''):original;
    if(finalQuote){par=par.replace(/(?:\.|\/)[/"'’”]*\s*$/,'.');quoteKind='';}
-   if(/^(?:CAMPAIGN OF 177[67]|CAMPAIGNS OF 1780)$/.test(par.trim()))flush();
+   if(/^(?:CAMPAIGN OF 177[67]|CAMPAIGNS OF 1780|PERSONAL)$/.test(par.trim()))flush();
    const n=(par.match(/\S+/g)||[]).length;
    if(n<=330){add(par);continue;}
    // Split only unusually long paragraphs at complete sentence boundaries.
