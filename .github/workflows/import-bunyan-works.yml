@@ -1,0 +1,46 @@
+name: Import and publish John Bunyan collected works
+on:
+  push:
+    paths:
+      - '.github/workflows/import-bunyan-works.yml'
+      - 'scripts/import_bunyan_works.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  verify-and-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Download and validate all three public-domain volumes
+        run: python scripts/import_bunyan_works.py
+      - name: Check reader JavaScript and catalog
+        run: |
+          python - <<'PY'
+          import re, pathlib, json
+          root=pathlib.Path('.')
+          for n in (1,2,3):
+              path=root/('works-of-john-bunyan.html' if n==1 else f'works-of-john-bunyan-volume-{n}.html')
+              h=path.read_text()
+              for i,js in enumerate(re.findall(r'<script>(.*?)</script>',h,re.S)):
+                  pathlib.Path(f'/tmp/bunyan-{n}-{i}.js').write_text(js)
+              assert f'volume-{n}.json' in h
+              assert len(json.loads((root/f'public/books/bunyan-works/volume-{n}.json').read_text()))>=10
+          PY
+          for file in /tmp/bunyan-*.js; do node --check "$file"; done
+          python scripts/build_sitemap.py
+      - name: Publish validated readers and catalog
+        run: |
+          git config user.name "Ophelia Library Importer"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/books/bunyan-works/ public/art/bunyan-collected-works-titleplate.svg works-of-john-bunyan*.html SOURCES-works-of-john-bunyan.md catalog.html sitemap.xml
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish three verified volumes of John Bunyan's collected works"
+            git push
+          fi
