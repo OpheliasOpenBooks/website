@@ -121,7 +121,7 @@ function getText(){
  const pg=pages[state.page];
  if(!pg)return '';
  const firstInSection=state.page===0||pages[state.page-1].section!==pg.section;
- const text=pg.paragraphs.filter(p=>!/^Plan of Fort St\. George, Captured on Long Island/i.test(p)).map((p,i,pars)=>/^(?:CAMPAIGNS? OF \d{4}(?:[–-]\d{4})?|WASHINGTON'S FAREWELLS TO THE ARMY|PERSONAL)$/.test(p.trim())?'\n'+p.trim()+'\n':i<pars.length-1&&/\betc\.$/i.test(p.trim())?p.trim().replace(/\betc\.$/i,'et cetera.')+'\uE001':p).join(' ');
+ const text=pg.paragraphs.filter(p=>!/^Plan of Fort St\. George, Captured on Long Island/i.test(p)).map((p,i,pars)=>/^(?:CAMPAIGNS? OF \d{4}(?:[–-]\d{4})?|WASHINGTON'S FAREWELLS TO THE ARMY|PERSONAL)$/.test(p.trim())?'\n'+p.trim()+'\n':i<pars.length-1&&/\b(?:etc\.|[AP]\.\s*M\.)$/i.test(p.trim())?p.trim().replace(/\betc\.$/i,'et cetera.').replace(/\b([AP])\.\s*M\.$/i,(_,letter)=>letter.toUpperCase()+'.M.')+'\uE001':p).join(' ');
  return (firstInSection?pg.sectionName+'. ':'')+text;
 }
 function pickVoice(){return voiceList.find(v=>v.voiceURI===state.voice)||voiceList.find(v=>/^en-GB/i.test(v.lang))||voiceList.find(v=>/^en/i.test(v.lang))||null;}
