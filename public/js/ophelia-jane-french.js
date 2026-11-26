@@ -9,6 +9,7 @@
   "Mdlle. Varens",
   "Il faut que je l’essaie!",
   "et à l’instant même!",
+  "et alors quel dommage!",
   "qu’il y aura là dedans un cadeau pour moi, et peut-être pour vous aussi, mademoiselle. Monsieur a parlé de vous: il m’a demandé le nom de ma gouvernante, et si elle n’était pas une petite personne, assez mince et un peu pâle. J’ai dit qu’oui: car c’est vrai, n’est-ce pas, mademoiselle?",
   "quand il y avait du monde, je le suivais partout, au salon et à leurs chambres; souvent je regardais les femmes de chambre coiffer et habiller les dames, et c’était si amusant: comme cela on apprend.",
   "Est-ce que je ne puis pas prendrie une seule de ces fleurs magnifiques, mademoiselle? Seulement pour completer ma toilette.",
