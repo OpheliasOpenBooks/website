@@ -212,7 +212,7 @@ function franklinNarrationChunks(paragraphs,introduction,grammar){
     .replace(/(\bwhen\s+I\s+could\s+not\s+)read\b/gi,'$1reed')
     // Historical elision dy'd is pronounced exactly like modern died.
     .replace(/\bdy['’]d\b/gi,word=>word[0]==='D'?'Died':'died')
-    .replace(/\b(continu|liv|refus|natur|inclin)['’]d\b/gi,(_word,stem)=>stem+'ed');
+    .replace(/\b(continu|liv|refus|natur|inclin|desir)['’]d\b/gi,(_word,stem)=>stem+'ed');
   const pieces=grammar(spokenParagraph);
   const batch=[];
   for(const text of pieces){
