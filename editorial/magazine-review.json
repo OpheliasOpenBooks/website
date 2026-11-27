@@ -8857,5 +8857,170 @@
         "source": "https://digitalcommons.gardner-webb.edu/etude/76"
       }
     ]
+  },
+  {
+    "id": "screenland",
+    "title": "Screenland",
+    "subject": "Stars & studios",
+    "description": "Step behind the studio gates for a fan’s view of the people who made the movies.",
+    "reference": "https://guides.library.upenn.edu/c.php?g=1002823&p=7265008",
+    "status": "needs_editing",
+    "approved": false,
+    "volumes": [],
+    "sourceStatus": "Title identified; individual issues await review."
+  },
+  {
+    "id": "picture-play-magazine",
+    "title": "Picture-Play Magazine",
+    "subject": "Screen personalities",
+    "description": "Meet the faces on the screen and discover the stories moviegoers took home from the picture palace.",
+    "reference": "https://guides.library.upenn.edu/c.php?g=1002823&p=7265008",
+    "status": "needs_editing",
+    "approved": false,
+    "volumes": [],
+    "sourceStatus": "Title identified; individual issues await review."
+  },
+  {
+    "id": "motion-picture-magazine",
+    "title": "Motion Picture Magazine",
+    "subject": "Stories of the screen",
+    "description": "Before audiences could hear the actors speak, readers could follow their screen adventures in print.",
+    "reference": "https://guides.lib.umich.edu/c.php?g=282863&p=1884859",
+    "status": "needs_editing",
+    "approved": false,
+    "volumes": [],
+    "sourceStatus": "Title identified; individual issues await review."
+  },
+  {
+    "id": "motion-picture-classic",
+    "title": "Motion Picture Classic",
+    "subject": "Stage & screen",
+    "description": "Explore the world of actors who moved between the footlights and the camera as movies came into their own.",
+    "reference": "https://guides.lib.umich.edu/c.php?g=282863&p=1884859",
+    "status": "needs_editing",
+    "approved": false,
+    "volumes": [],
+    "sourceStatus": "Title identified; individual issues await review."
+  },
+  {
+    "id": "the-new-movie-magazine",
+    "title": "The New Movie Magazine",
+    "subject": "The talkie era",
+    "description": "Arriving in 1929, this magazine met movie fans just as their favorite stars were finding their voices.",
+    "reference": "https://guides.library.upenn.edu/c.php?g=1002823&p=7265008",
+    "status": "needs_editing",
+    "approved": false,
+    "volumes": [],
+    "sourceStatus": "Title identified; individual issues await review."
+  },
+  {
+    "id": "film-fun",
+    "title": "Film Fun",
+    "subject": "Movie entertainment",
+    "description": "A playful corner of the movie newsstand for readers who wanted to take a little screen entertainment home.",
+    "reference": "https://www.thehenryford.org/collections/explore/articles/detail/articles/2014/02/27/going-hollywood-movie-fan-magazines",
+    "status": "needs_editing",
+    "approved": false,
+    "volumes": [],
+    "sourceStatus": "Title identified; individual issues await review."
+  },
+  {
+    "id": "movie-weekly",
+    "title": "Movie Weekly",
+    "subject": "Moviegoing",
+    "description": "A week could bring a new picture and a new favorite star. This weekly belonged to readers who followed both.",
+    "reference": "https://www.thehenryford.org/collections/explore/articles/detail/articles/2014/02/27/going-hollywood-movie-fan-magazines",
+    "status": "needs_editing",
+    "approved": false,
+    "volumes": [],
+    "sourceStatus": "Title identified; individual issues await review."
+  },
+  {
+    "id": "cinema-art",
+    "title": "Cinema Art",
+    "subject": "Cinema culture",
+    "description": "Discover a title that shared newsstand space with the fan magazines of the silent-film years.",
+    "reference": "https://www.thehenryford.org/collections/explore/articles/detail/articles/2014/02/27/going-hollywood-movie-fan-magazines",
+    "status": "needs_editing",
+    "approved": false,
+    "volumes": [],
+    "sourceStatus": "Title identified; individual issues await review."
+  },
+  {
+    "id": "motion-picture-journal",
+    "title": "Motion Picture Journal",
+    "subject": "Early film periodicals",
+    "description": "Another stop on the 1920s newsstand, when the audience for writing about movies was growing alongside the audience in theaters.",
+    "reference": "https://www.thehenryford.org/collections/explore/articles/detail/articles/2014/02/27/going-hollywood-movie-fan-magazines",
+    "status": "needs_editing",
+    "approved": false,
+    "volumes": [],
+    "sourceStatus": "Title identified; individual issues await review."
+  },
+  {
+    "id": "variety",
+    "title": "Variety",
+    "subject": "Show business",
+    "description": "See the entertainment world through the eyes of the people booking acts, staging shows, and selling tickets.",
+    "reference": "https://davidpiercefilm.com/projects/media-history-digital-library/",
+    "status": "needs_editing",
+    "approved": false,
+    "volumes": [],
+    "sourceStatus": "Title identified; individual issues await review."
+  },
+  {
+    "id": "the-film-daily",
+    "title": "The Film Daily",
+    "subject": "Industry news",
+    "description": "Follow the day’s business in motion pictures, from the studios making films to the theaters booking them.",
+    "reference": "https://davidpiercefilm.com/projects/media-history-digital-library/",
+    "status": "needs_editing",
+    "approved": false,
+    "volumes": [],
+    "sourceStatus": "Title identified; individual issues await review."
+  },
+  {
+    "id": "moving-picture-world",
+    "title": "Moving Picture World",
+    "subject": "Theater & exhibition",
+    "description": "Look inside the picture business from the exhibitor’s side, where choosing the next attraction was part of running a theater.",
+    "reference": "https://davidpiercefilm.com/projects/media-history-digital-library/",
+    "status": "needs_editing",
+    "approved": false,
+    "volumes": [],
+    "sourceStatus": "Title identified; individual issues await review."
+  },
+  {
+    "id": "the-melody-maker",
+    "title": "The Melody Maker",
+    "subject": "Dance bands & popular music",
+    "description": "Step onto the British dance floor with bandleaders, popular tunes, and the musicians who kept the dancers on their feet.",
+    "reference": "https://nationaljazzarchive.org.uk/explore/journals/the-dance-band-diaries",
+    "status": "needs_editing",
+    "approved": false,
+    "volumes": [],
+    "sourceStatus": "Title identified; individual issues await review."
+  },
+  {
+    "id": "the-talking-machine-world",
+    "title": "The Talking Machine World",
+    "subject": "Records & phonographs",
+    "description": "Imagine a record dealer opening the morning post to discover the latest discs and the machines that played them.",
+    "reference": "https://www.worldradiohistory.com/Talking_Machine_World.htm",
+    "status": "needs_editing",
+    "approved": false,
+    "volumes": [],
+    "sourceStatus": "Title identified; individual issues await review."
+  },
+  {
+    "id": "musical-america",
+    "title": "Musical America",
+    "subject": "Concerts & performers",
+    "description": "Follow performers from one concert engagement to the next and meet the people who brought music to audiences on both sides of the Atlantic.",
+    "reference": "https://www.musicalamerica.com/archives/",
+    "status": "needs_editing",
+    "approved": false,
+    "volumes": [],
+    "sourceStatus": "Title identified; individual issues await review."
   }
 ]
