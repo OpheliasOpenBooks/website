@@ -61,3 +61,8 @@ Every new title added to Ophelia's Open Book must be **the complete, unabridged 
 - Do not register a new work in `index.html#books`, the catalog fallback, or sitemap, or enable an auto-publishing importer before the owner explicitly approves the edited edition for public release. Source validation alone does not constitute editorial approval.
 - After explicit approval, verify the exact edition, source completeness, narration and book links; then publish and remove its pink ribbon from the queue. Do not remove existing published works without identifying the specific title and obtaining the editor’s direction.
 - Beeton queue: `editorial/samuel-beeton-review.json` contains only non-sensitive title/status metadata. All entries are unapproved. The earlier automatic Beeton importer is retired.
+
+
+## Historical Magazine Library
+
+The separate `magazines.html` catalog is part of the same Ophelia website and app, not a separate app or duplicated book library. Editorial title metadata lives in `editorial/magazine-review.json`. Organize approved periodicals by title, year, volume and issue. Each individual issue or bound volume requires completeness, source and public-domain verification (including artwork) and explicit owner approval before public reading or listening is enabled. Preserve original plates, advertisements and literary contents where available. Unapproved issue text, scans, audio and draft reader files must never be committed to the public repository or deployed to GitHub Pages. A pink ribbon on a periodical title is a notice of preparation, not a claim that its volumes have been acquired. Keep metadata, public notices and private drafts distinct. Do not duplicate periodicals in the main book catalog.

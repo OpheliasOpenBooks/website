@@ -1,8 +1,9 @@
 /* Ophelia's Open Book app shell; full books remain online-only by design. */
-const CACHE_NAME = 'ophelia-open-book-shell-2026-11-v6';
+const CACHE_NAME = 'ophelia-open-book-shell-2026-11-v7';
 const SHELL = [
   './index.html',
   './catalog.html',
+  './magazines.html',
   './my-bookshelf.html',
   './get-the-app.html',
   './offline.html',
@@ -28,7 +29,7 @@ self.addEventListener('fetch', event => {
   if (req.mode === 'navigate') {
     event.respondWith(
       fetch(req).then(response => {
-        if (response.ok && (url.pathname.endsWith('/index.html') || url.pathname.endsWith('/catalog.html') || url.pathname.endsWith('/my-bookshelf.html') || url.pathname.endsWith('/get-the-app.html'))) {
+        if (response.ok && (url.pathname.endsWith('/index.html') || url.pathname.endsWith('/catalog.html') || url.pathname.endsWith('/magazines.html') || url.pathname.endsWith('/my-bookshelf.html') || url.pathname.endsWith('/get-the-app.html'))) {
           const copy = response.clone();
           event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.put(req,copy)));
         }

@@ -1,0 +1,86 @@
+[
+  {
+    "id": "englishwomans-domestic-magazine",
+    "title": "The Englishwoman’s Domestic Magazine",
+    "firstPublished": 1852,
+    "subject": "Domestic life & fashion",
+    "description": "A window into the Victorian home, with practical household advice, dressmaking, recipes and literary entertainment.",
+    "associatedWith": "Samuel Orchart Beeton — founding publisher",
+    "status": "needs_editing",
+    "approved": false,
+    "volumes": [],
+    "sourceStatus": "Individual issue or volume not yet acquired and validated"
+  },
+  {
+    "id": "boys-own-magazine",
+    "title": "The Boy’s Own Magazine",
+    "firstPublished": 1855,
+    "subject": "Adventure & discovery",
+    "description": "An illustrated world of stories, history, science, exploration and adventures for young readers.",
+    "associatedWith": "Samuel Orchart Beeton — founding publisher",
+    "status": "needs_editing",
+    "approved": false,
+    "volumes": [],
+    "sourceStatus": "Individual issue or volume not yet acquired and validated"
+  },
+  {
+    "id": "boys-own-journal",
+    "title": "The Boy’s Own Journal",
+    "firstPublished": 1856,
+    "subject": "Youth & education",
+    "description": "A periodical for young readers, from Beeton’s early ventures in juvenile publishing.",
+    "associatedWith": "Samuel Orchart Beeton — founding publisher",
+    "status": "needs_editing",
+    "approved": false,
+    "volumes": [],
+    "sourceStatus": "Individual issue or volume not yet acquired and validated"
+  },
+  {
+    "id": "boys-penny-magazine",
+    "title": "The Boy’s Penny Magazine",
+    "firstPublished": 1860,
+    "subject": "Youth & affordable reading",
+    "description": "An inexpensive periodical from an era when printed entertainment was reaching a wider audience.",
+    "associatedWith": "Samuel Orchart Beeton — founding publisher",
+    "status": "needs_editing",
+    "approved": false,
+    "volumes": [],
+    "sourceStatus": "Individual issue or volume not yet acquired and validated"
+  },
+  {
+    "id": "beetons-christmas-annual",
+    "title": "Beeton’s Christmas Annual",
+    "firstPublished": 1860,
+    "subject": "Seasonal literature",
+    "description": "A festive annual of literary entertainment, later celebrated for publishing the first Sherlock Holmes novel.",
+    "associatedWith": "Samuel Orchart Beeton — founding publisher",
+    "status": "needs_editing",
+    "approved": false,
+    "volumes": [],
+    "sourceStatus": "Individual issue or volume not yet acquired and validated"
+  },
+  {
+    "id": "the-queen",
+    "title": "The Queen",
+    "firstPublished": 1861,
+    "subject": "Fashion & society",
+    "description": "Explore the fashions, customs and social world of nineteenth-century Britain through a pioneering women’s periodical.",
+    "associatedWith": "Samuel Orchart Beeton — founding publisher",
+    "status": "needs_editing",
+    "approved": false,
+    "volumes": [],
+    "sourceStatus": "Individual issue or volume not yet acquired and validated"
+  },
+  {
+    "id": "young-englishwoman",
+    "title": "The Young Englishwoman",
+    "firstPublished": 1864,
+    "subject": "Needlework & literature",
+    "description": "A magazine for young women, blending useful instruction, creative pursuits, handicrafts and literary reading.",
+    "associatedWith": "Samuel Orchart Beeton — founding publisher",
+    "status": "needs_editing",
+    "approved": false,
+    "volumes": [],
+    "sourceStatus": "Individual issue or volume not yet acquired and validated"
+  }
+]

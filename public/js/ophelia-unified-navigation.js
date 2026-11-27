@@ -6,6 +6,7 @@
   const links = [
     ['Browse all books', 'catalog.html'],
     ['Featured books', 'index.html#books'],
+    ['Magazine Library', 'magazines.html'],
     ['Music Room', 'music.html'],
     ['Braille resources', 'index.html#braille'],
     ['Our story', 'index.html#about'],
