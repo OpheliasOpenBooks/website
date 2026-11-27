@@ -8,8 +8,16 @@
     "associatedWith": "Samuel Orchart Beeton — founding publisher",
     "status": "needs_editing",
     "approved": false,
-    "volumes": [],
-    "sourceStatus": "Individual issue or volume not yet acquired and validated"
+    "volumes": [
+      {
+        "year": 1852,
+        "title": "May 1852 · Series 1, Volume 1, Number 1",
+        "source": "https://archive.org/details/sim_englishwomans-domestic-magazine_1852-1862_1",
+        "approved": false,
+        "status": "in_review"
+      }
+    ],
+    "sourceStatus": "May 1852 issue in editorial review"
   },
   {
     "id": "boys-own-magazine",
