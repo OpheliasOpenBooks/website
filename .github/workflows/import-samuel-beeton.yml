@@ -1,0 +1,26 @@
+name: Import Samuel Beeton public-domain work
+on:
+  push:
+    paths:
+      - 'scripts/import-samuel-beeton.py'
+      - '.github/workflows/import-samuel-beeton.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import:
+    if: github.repository == 'OpheliasOpenBooks/website'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify and import full edition
+        run: python3 scripts/import-samuel-beeton.py
+      - name: Publish validated edition
+        run: |
+          git config user.name "Ophelia Library Import"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html brave-british-soldiers-and-the-victoria-cross.html SOURCES-brave-british-soldiers-and-the-victoria-cross.md public/books/brave-british-soldiers-and-the-victoria-cross* public/art/brave-british-soldiers-and-the-victoria-cross*
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish verified Samuel Beeton edition"
+            git push origin HEAD:main
+          fi
