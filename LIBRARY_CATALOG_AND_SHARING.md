@@ -52,3 +52,12 @@ Every new title added to Ophelia's Open Book must be **the complete, unabridged 
 - Always add a direct home bookshelf entry so the catalog discovers the new book, and verify links after deploying. Do not claim live audio or image testing until actually performed.
 - **Existing titles have not been comprehensively audited for unabridged status.** Do not make a blanket completeness claim without checking each one.
 
+
+
+## Pink ribbon: editorial approval gate (2026-11-26)
+
+- All newly proposed or unedited works must remain in the editorial queue with status `needs_editing` and a pink **Needs editing** ribbon. The catalog may display title-only notices in its separate Awaiting the Editor’s Review section; these are not reading-library entries.
+- Do not publish draft reader HTML, draft text, audio, share links, or assets containing draft prose on the public website or public GitHub repository. A hidden page, unlisted URL, robots rule, or CSS-hidden card is not access control. Keep actual editing copies on the editor’s device or in a genuinely private workspace.
+- Do not register a new work in `index.html#books`, the catalog fallback, or sitemap, or enable an auto-publishing importer before the owner explicitly approves the edited edition for public release. Source validation alone does not constitute editorial approval.
+- After explicit approval, verify the exact edition, source completeness, narration and book links; then publish and remove its pink ribbon from the queue. Do not remove existing published works without identifying the specific title and obtaining the editor’s direction.
+- Beeton queue: `editorial/samuel-beeton-review.json` contains only non-sensitive title/status metadata. All entries are unapproved. The earlier automatic Beeton importer is retired.
