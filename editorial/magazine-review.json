@@ -4434,5 +4434,4428 @@
         "source": "https://archive.org/details/photoplay-april-1964"
       }
     ]
+  },
+  {
+    "id": "the-etude",
+    "title": "The Etude",
+    "firstPublished": 1883,
+    "subject": "Music & sheet music",
+    "description": "Pull up a chair at the piano. In The Etude, a teacher’s advice, a composer’s story, and a new piece to try could all turn up in the same issue.",
+    "associatedWith": "Theodore Presser Company",
+    "status": "needs_editing",
+    "approved": false,
+    "sourceStatus": "Issue metadata from Gardner-Webb University's John R. Dover Memorial Library, compiled by Dr. Pam Dennis. Archive scans are for research only. Editorial and reproduction review pending.",
+    "volumes": [
+      {
+        "year": 1883,
+        "title": "Volume 01, Number 01 (October 1883)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/266"
+      },
+      {
+        "year": 1883,
+        "title": "Volume 01, Number 02 (November 1883)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/267"
+      },
+      {
+        "year": 1883,
+        "title": "Volume 01, Number 03 (December 1883)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/2"
+      },
+      {
+        "year": 1884,
+        "title": "Volume 02, Number 01 (January 1884)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/268"
+      },
+      {
+        "year": 1884,
+        "title": "Volume 02, Number 02 (February 1884)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/269"
+      },
+      {
+        "year": 1884,
+        "title": "Volume 02, Number 03 (March 1884)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/270"
+      },
+      {
+        "year": 1884,
+        "title": "Volume 02, Number 04 (April 1884)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/271"
+      },
+      {
+        "year": 1884,
+        "title": "Volume 02, Number 05 (May 1884)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/272"
+      },
+      {
+        "year": 1884,
+        "title": "Volume 02, Number 06 (June 1884)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/273"
+      },
+      {
+        "year": 1884,
+        "title": "Volume 02, Number 07 (July 1884)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/274"
+      },
+      {
+        "year": 1884,
+        "title": "Volume 02, Number 08 (August 1884)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/275"
+      },
+      {
+        "year": 1884,
+        "title": "Volume 02, Number 09 (September 1884)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/276"
+      },
+      {
+        "year": 1884,
+        "title": "Volume 02, Number 10 (October 1884)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/277"
+      },
+      {
+        "year": 1884,
+        "title": "Volume 02, Number 11 (November 1884)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/278"
+      },
+      {
+        "year": 1884,
+        "title": "Volume 02, Number 12 (December 1884)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/3"
+      },
+      {
+        "year": 1885,
+        "title": "Volume 03, Number 01 (January 1885)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/279"
+      },
+      {
+        "year": 1885,
+        "title": "Volume 03, Number 02 (February 1885)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/280"
+      },
+      {
+        "year": 1885,
+        "title": "Volume 03, Number 03 (March 1885)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/281"
+      },
+      {
+        "year": 1885,
+        "title": "Volume 03, Number 04 (April 1885)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/282"
+      },
+      {
+        "year": 1885,
+        "title": "Volume 03, Number 05 (May 1885)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/283"
+      },
+      {
+        "year": 1885,
+        "title": "Volume 03, Number 06 (June 1885)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/284"
+      },
+      {
+        "year": 1885,
+        "title": "Volume 03, Number 07 (July 1885)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/285"
+      },
+      {
+        "year": 1885,
+        "title": "Volume 03, Number 08 (August 1885)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/286"
+      },
+      {
+        "year": 1885,
+        "title": "Volume 03, Number 09 (September 1885)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/287"
+      },
+      {
+        "year": 1885,
+        "title": "Volume 03, Number 10 (October 1885)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/288"
+      },
+      {
+        "year": 1885,
+        "title": "Volume 03, Number 11 (November 1885)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/289"
+      },
+      {
+        "year": 1885,
+        "title": "Volume 03, Number 12 (December 1885)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/4"
+      },
+      {
+        "year": 1886,
+        "title": "Volume 04, Number 01 (January 1886)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/290"
+      },
+      {
+        "year": 1886,
+        "title": "Volume 04, Number 02 (February 1886)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/291"
+      },
+      {
+        "year": 1886,
+        "title": "Volume 04, Number 03 (March 1886)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/292"
+      },
+      {
+        "year": 1886,
+        "title": "Volume 04, Number 04 (April 1886)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/293"
+      },
+      {
+        "year": 1886,
+        "title": "Volume 04, Number 05 (May 1886)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/294"
+      },
+      {
+        "year": 1886,
+        "title": "Volume 04, Number 06 (June 1886)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/295"
+      },
+      {
+        "year": 1886,
+        "title": "Volume 04, Number 07 (July 1886)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/296"
+      },
+      {
+        "year": 1886,
+        "title": "Volume 04, Number 08 (August 1886)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/297"
+      },
+      {
+        "year": 1886,
+        "title": "Volume 04, Number 09 (September 1886)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/298"
+      },
+      {
+        "year": 1886,
+        "title": "Volume 04, Number 10 (October 1886)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/299"
+      },
+      {
+        "year": 1886,
+        "title": "Volume 04, Number 11 (November 1886)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/300"
+      },
+      {
+        "year": 1886,
+        "title": "Volume 04, Number 12 (December 1886)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/5"
+      },
+      {
+        "year": 1887,
+        "title": "Volume 05, Number 01 (January 1887)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/301"
+      },
+      {
+        "year": 1887,
+        "title": "Volume 05, Number 02 (February 1887)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/302"
+      },
+      {
+        "year": 1887,
+        "title": "Volume 05, Number 03 (March 1887)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/303"
+      },
+      {
+        "year": 1887,
+        "title": "Volume 05, Number 04 (April 1887)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/304"
+      },
+      {
+        "year": 1887,
+        "title": "Volume 05, Number 05 (May 1887)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/305"
+      },
+      {
+        "year": 1887,
+        "title": "Volume 05, Number 06 (June 1887)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/306"
+      },
+      {
+        "year": 1887,
+        "title": "Volume 05, Number 07 (July 1887)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/307"
+      },
+      {
+        "year": 1887,
+        "title": "Volume 05, Number 08 (August 1887)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/308"
+      },
+      {
+        "year": 1887,
+        "title": "Volume 05, Number 09 (September 1887)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/309"
+      },
+      {
+        "year": 1887,
+        "title": "Volume 05, Number 10 (October 1887)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/310"
+      },
+      {
+        "year": 1887,
+        "title": "Volume 05, Number 11 (November 1887)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/311"
+      },
+      {
+        "year": 1887,
+        "title": "Volume 05, Number 12 (December 1887)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/6"
+      },
+      {
+        "year": 1888,
+        "title": "Volume 06, Number 01 (January 1888)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/312"
+      },
+      {
+        "year": 1888,
+        "title": "Volume 06, Number 02 (February 1888)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/313"
+      },
+      {
+        "year": 1888,
+        "title": "Volume 06, Number 03 (March 1888)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/314"
+      },
+      {
+        "year": 1888,
+        "title": "Volume 06, Number 04 (April 1888)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/315"
+      },
+      {
+        "year": 1888,
+        "title": "Volume 06, Number 05 (May 1888)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/316"
+      },
+      {
+        "year": 1888,
+        "title": "Volume 06, Number 06 (June 1888)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/317"
+      },
+      {
+        "year": 1888,
+        "title": "Volume 06, Number 07 (July 1888)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/318"
+      },
+      {
+        "year": 1888,
+        "title": "Volume 06, Number 08 (August 1888)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/319"
+      },
+      {
+        "year": 1888,
+        "title": "Volume 06, Number 09 (September 1888)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/320"
+      },
+      {
+        "year": 1888,
+        "title": "Volume 06, Number 10 (October 1888)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/321"
+      },
+      {
+        "year": 1888,
+        "title": "Volume 06, Number 11 (November 1888)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/322"
+      },
+      {
+        "year": 1888,
+        "title": "Volume 06, Number 12 (December 1888)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/7"
+      },
+      {
+        "year": 1889,
+        "title": "Volume 07, Number 01 (January 1889)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/323"
+      },
+      {
+        "year": 1889,
+        "title": "Volume 07, Number 02 (February 1889)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/324"
+      },
+      {
+        "year": 1889,
+        "title": "Volume 07, Number 03 (March 1889)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/325"
+      },
+      {
+        "year": 1889,
+        "title": "Volume 07, Number 04 (April 1889)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/326"
+      },
+      {
+        "year": 1889,
+        "title": "Volume 07, Number 05 (May 1889)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/327"
+      },
+      {
+        "year": 1889,
+        "title": "Volume 07, Number 06 (June 1889)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/328"
+      },
+      {
+        "year": 1889,
+        "title": "Volume 07, Number 07 (July 1889)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/329"
+      },
+      {
+        "year": 1889,
+        "title": "Volume 07, Number 08 (August 1889)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/330"
+      },
+      {
+        "year": 1889,
+        "title": "Volume 07, Number 09 (September 1889)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/331"
+      },
+      {
+        "year": 1889,
+        "title": "Volume 07, Number 10 (October 1889)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/332"
+      },
+      {
+        "year": 1889,
+        "title": "Volume 07, Number 11 (November 1889)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/333"
+      },
+      {
+        "year": 1889,
+        "title": "Volume 07, Number 12 (December 1889)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/8"
+      },
+      {
+        "year": 1890,
+        "title": "Volume 08, Number 01 (January 1890)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/334"
+      },
+      {
+        "year": 1890,
+        "title": "Volume 08, Number 02 (February 1890)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/335"
+      },
+      {
+        "year": 1890,
+        "title": "Volume 08, Number 03 (March 1890)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/336"
+      },
+      {
+        "year": 1890,
+        "title": "Volume 08, Number 04 (April 1890)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/337"
+      },
+      {
+        "year": 1890,
+        "title": "Volume 08, Number 05 (May 1890)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/338"
+      },
+      {
+        "year": 1890,
+        "title": "Volume 08, Number 06 (June 1890)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/339"
+      },
+      {
+        "year": 1890,
+        "title": "Volume 08, Number 07 (July 1890)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/340"
+      },
+      {
+        "year": 1890,
+        "title": "Volume 08, Number 08 (August 1890)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/341"
+      },
+      {
+        "year": 1890,
+        "title": "Volume 08, Number 09 (September 1890)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/342"
+      },
+      {
+        "year": 1890,
+        "title": "Volume 08, Number 10 (October 1890)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/343"
+      },
+      {
+        "year": 1890,
+        "title": "Volume 08, Number 11 (November 1890)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/344"
+      },
+      {
+        "year": 1890,
+        "title": "Volume 08, Number 12 (December 1890)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/9"
+      },
+      {
+        "year": 1891,
+        "title": "Volume 09, Number 01 (January 1891)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/345"
+      },
+      {
+        "year": 1891,
+        "title": "Volume 09, Number 02 (February 1891)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/346"
+      },
+      {
+        "year": 1891,
+        "title": "Volume 09, Number 03 (March 1891)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/347"
+      },
+      {
+        "year": 1891,
+        "title": "Volume 09, Number 04 (April 1891)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/348"
+      },
+      {
+        "year": 1891,
+        "title": "Volume 09, Number 05 (May 1891)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/349"
+      },
+      {
+        "year": 1891,
+        "title": "Volume 09, Number 06 (June 1891)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/350"
+      },
+      {
+        "year": 1891,
+        "title": "Volume 09, Number 07 (July 1891)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/351"
+      },
+      {
+        "year": 1891,
+        "title": "Volume 09, Number 08 (August 1891)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/352"
+      },
+      {
+        "year": 1891,
+        "title": "Volume 09, Number 09 (September 1891)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/353"
+      },
+      {
+        "year": 1891,
+        "title": "Volume 09, Number 10 (October 1891)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/354"
+      },
+      {
+        "year": 1891,
+        "title": "Volume 09, Number 11 (November 1891)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/355"
+      },
+      {
+        "year": 1891,
+        "title": "Volume 09, Number 12 (December 1891)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/10"
+      },
+      {
+        "year": 1892,
+        "title": "Volume 10, Number 01 (January 1892)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/356"
+      },
+      {
+        "year": 1892,
+        "title": "Volume 10, Number 02 (February 1892)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/357"
+      },
+      {
+        "year": 1892,
+        "title": "Volume 10, Number 03 (March 1892)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/358"
+      },
+      {
+        "year": 1892,
+        "title": "Volume 10, Number 04 (April 1892)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/359"
+      },
+      {
+        "year": 1892,
+        "title": "Volume 10, Number 05 (May 1892)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/360"
+      },
+      {
+        "year": 1892,
+        "title": "Volume 10, Number 06 (June 1892)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/361"
+      },
+      {
+        "year": 1892,
+        "title": "Volume 10, Number 07 (July 1892)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/362"
+      },
+      {
+        "year": 1892,
+        "title": "Volume 10, Number 08 (August 1892)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/363"
+      },
+      {
+        "year": 1892,
+        "title": "Volume 10, Number 09 (September 1892)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/364"
+      },
+      {
+        "year": 1892,
+        "title": "Volume 10, Number 10 (October 1892)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/365"
+      },
+      {
+        "year": 1892,
+        "title": "Volume 10, Number 11 (November 1892)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/366"
+      },
+      {
+        "year": 1892,
+        "title": "Volume 10, Number 12 (December 1892)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/11"
+      },
+      {
+        "year": 1893,
+        "title": "Volume 11, Number 01 (January 1893)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/367"
+      },
+      {
+        "year": 1893,
+        "title": "Volume 11, Number 02 (February 1893)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/368"
+      },
+      {
+        "year": 1893,
+        "title": "Volume 11, Number 03 (March 1893)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/369"
+      },
+      {
+        "year": 1893,
+        "title": "Volume 11, Number 04 (April 1893)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/370"
+      },
+      {
+        "year": 1893,
+        "title": "Volume 11, Number 05 (May 1893)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/371"
+      },
+      {
+        "year": 1893,
+        "title": "Volume 11, Number 06 (June 1893)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/372"
+      },
+      {
+        "year": 1893,
+        "title": "Volume 11, Number 07 (July 1893)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/373"
+      },
+      {
+        "year": 1893,
+        "title": "Volume 11, Number 08 (August 1893)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/374"
+      },
+      {
+        "year": 1893,
+        "title": "Volume 11, Number 09 (September 1893)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/375"
+      },
+      {
+        "year": 1893,
+        "title": "Volume 11, Number 10 (October 1893)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/376"
+      },
+      {
+        "year": 1893,
+        "title": "Volume 11, Number 11 (November 1893)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/377"
+      },
+      {
+        "year": 1893,
+        "title": "Volume 11, Number 12 (December 1893)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/12"
+      },
+      {
+        "year": 1894,
+        "title": "Volume 12, Number 01 (January 1894)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/378"
+      },
+      {
+        "year": 1894,
+        "title": "Volume 12, Number 02 (February 1894)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/379"
+      },
+      {
+        "year": 1894,
+        "title": "Volume 12, Number 03 (March 1894)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/380"
+      },
+      {
+        "year": 1894,
+        "title": "Volume 12, Number 04 (April 1894)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/381"
+      },
+      {
+        "year": 1894,
+        "title": "Volume 12, Number 05 (May 1894)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/382"
+      },
+      {
+        "year": 1894,
+        "title": "Volume 12, Number 06 (June 1894)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/383"
+      },
+      {
+        "year": 1894,
+        "title": "Volume 12, Number 07 (July 1894)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/384"
+      },
+      {
+        "year": 1894,
+        "title": "Volume 12, Number 08 (August 1894)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/385"
+      },
+      {
+        "year": 1894,
+        "title": "Volume 12, Number 09 (September 1894)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/386"
+      },
+      {
+        "year": 1894,
+        "title": "Volume 12, Number 10 (October 1894)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/387"
+      },
+      {
+        "year": 1894,
+        "title": "Volume 12, Number 11 (November 1894)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/388"
+      },
+      {
+        "year": 1894,
+        "title": "Volume 12, Number 12 (December 1894)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/13"
+      },
+      {
+        "year": 1895,
+        "title": "Volume 13, Number 01 (January 1895)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/389"
+      },
+      {
+        "year": 1895,
+        "title": "Volume 13, Number 02 (February 1895)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/390"
+      },
+      {
+        "year": 1895,
+        "title": "Volume 13, Number 03 (March 1895)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/391"
+      },
+      {
+        "year": 1895,
+        "title": "Volume 13, Number 04 (April 1895)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/392"
+      },
+      {
+        "year": 1895,
+        "title": "Volume 13, Number 05 (May 1895)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/393"
+      },
+      {
+        "year": 1895,
+        "title": "Volume 13, Number 06 (June 1895)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/394"
+      },
+      {
+        "year": 1895,
+        "title": "Volume 13, Number 07 (July 1895)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/395"
+      },
+      {
+        "year": 1895,
+        "title": "Volume 13, Number 08 (August 1895)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/396"
+      },
+      {
+        "year": 1895,
+        "title": "Volume 13, Number 09 (September 1895)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/397"
+      },
+      {
+        "year": 1895,
+        "title": "Volume 13, Number 10 (October 1895)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/398"
+      },
+      {
+        "year": 1895,
+        "title": "Volume 13, Number 11 (November 1895)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/399"
+      },
+      {
+        "year": 1895,
+        "title": "Volume 13, Number 12 (December 1895)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/14"
+      },
+      {
+        "year": 1896,
+        "title": "Volume 14, Number 01 (January 1896)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/400"
+      },
+      {
+        "year": 1896,
+        "title": "Volume 14, Number 02 (February 1896)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/401"
+      },
+      {
+        "year": 1896,
+        "title": "Volume 14, Number 03 (March 1896)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/402"
+      },
+      {
+        "year": 1896,
+        "title": "Volume 14, Number 04 (April 1896)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/403"
+      },
+      {
+        "year": 1896,
+        "title": "Volume 14, Number 05 (May 1896)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/404"
+      },
+      {
+        "year": 1896,
+        "title": "Volume 14, Number 06 (June 1896)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/405"
+      },
+      {
+        "year": 1896,
+        "title": "Volume 14, Number 07 (July 1896)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/406"
+      },
+      {
+        "year": 1896,
+        "title": "Volume 14, Number 08 (August 1896)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/407"
+      },
+      {
+        "year": 1896,
+        "title": "Volume 14, Number 09 (September 1896)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/408"
+      },
+      {
+        "year": 1896,
+        "title": "Volume 14, Number 10 (October 1896)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/409"
+      },
+      {
+        "year": 1896,
+        "title": "Volume 14, Number 11 (November 1896)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/410"
+      },
+      {
+        "year": 1896,
+        "title": "Volume 14, Number 12 (December 1896)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/15"
+      },
+      {
+        "year": 1897,
+        "title": "Volume 15, Number 01 (January 1897)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/411"
+      },
+      {
+        "year": 1897,
+        "title": "Volume 15, Number 02 (February 1897)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/412"
+      },
+      {
+        "year": 1897,
+        "title": "Volume 15, Number 03 (March 1897)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/413"
+      },
+      {
+        "year": 1897,
+        "title": "Volume 15, Number 04 (April 1897)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/414"
+      },
+      {
+        "year": 1897,
+        "title": "Volume 15, Number 05 (May 1897)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/415"
+      },
+      {
+        "year": 1897,
+        "title": "Volume 15, Number 06 (June 1897)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/416"
+      },
+      {
+        "year": 1897,
+        "title": "Volume 15, Number 07 (July 1897)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/417"
+      },
+      {
+        "year": 1897,
+        "title": "Volume 15, Number 08 (August 1897)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/418"
+      },
+      {
+        "year": 1897,
+        "title": "Volume 15, Number 09 (September 1897)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/419"
+      },
+      {
+        "year": 1897,
+        "title": "Volume 15, Number 10 (October 1897)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/420"
+      },
+      {
+        "year": 1897,
+        "title": "Volume 15, Number 11 (November 1897)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/421"
+      },
+      {
+        "year": 1897,
+        "title": "Volume 15, Number 12 (December 1897)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/16"
+      },
+      {
+        "year": 1898,
+        "title": "Volume 16, Number 01 (January 1898)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/422"
+      },
+      {
+        "year": 1898,
+        "title": "Volume 16, Number 02 (February 1898)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/423"
+      },
+      {
+        "year": 1898,
+        "title": "Volume 16, Number 03 (March 1898)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/424"
+      },
+      {
+        "year": 1898,
+        "title": "Volume 16, Number 04 (April 1898)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/425"
+      },
+      {
+        "year": 1898,
+        "title": "Volume 16, Number 05 (May 1898)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/426"
+      },
+      {
+        "year": 1898,
+        "title": "Volume 16, Number 06 (June 1898)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/427"
+      },
+      {
+        "year": 1898,
+        "title": "Volume 16, Number 07 (July 1898)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/428"
+      },
+      {
+        "year": 1898,
+        "title": "Volume 16, Number 08 (August 1898)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/429"
+      },
+      {
+        "year": 1898,
+        "title": "Volume 16, Number 09 (September 1898)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/430"
+      },
+      {
+        "year": 1898,
+        "title": "Volume 16, Number 10 (October 1898)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/431"
+      },
+      {
+        "year": 1898,
+        "title": "Volume 16, Number 11 (November 1898)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/432"
+      },
+      {
+        "year": 1898,
+        "title": "Volume 16, Number 12 (December 1898)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/17"
+      },
+      {
+        "year": 1899,
+        "title": "Volume 17, Number 01 (January 1899)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/433"
+      },
+      {
+        "year": 1899,
+        "title": "Volume 17, Number 02 (February 1899)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/434"
+      },
+      {
+        "year": 1899,
+        "title": "Volume 17, Number 03 (March 1899)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/435"
+      },
+      {
+        "year": 1899,
+        "title": "Volume 17, Number 04 (April 1899)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/436"
+      },
+      {
+        "year": 1899,
+        "title": "Volume 17, Number 05 (May 1899)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/437"
+      },
+      {
+        "year": 1899,
+        "title": "Volume 17, Number 06 (June 1899)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/438"
+      },
+      {
+        "year": 1899,
+        "title": "Volume 17, Number 07 (July 1899)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/439"
+      },
+      {
+        "year": 1899,
+        "title": "Volume 17, Number 08 (August 1899)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/440"
+      },
+      {
+        "year": 1899,
+        "title": "Volume 17, Number 09 (September 1899)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/441"
+      },
+      {
+        "year": 1899,
+        "title": "Volume 17, Number 10 (October 1899)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/442"
+      },
+      {
+        "year": 1899,
+        "title": "Volume 17, Number 11 (November 1899)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/443"
+      },
+      {
+        "year": 1899,
+        "title": "Volume 17, Number 12 (December 1899)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/18"
+      },
+      {
+        "year": 1900,
+        "title": "Volume 18, Number 01 (January 1900)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/444"
+      },
+      {
+        "year": 1900,
+        "title": "Volume 18, Number 02 (February 1900)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/445"
+      },
+      {
+        "year": 1900,
+        "title": "Volume 18, Number 03 (March 1900)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/446"
+      },
+      {
+        "year": 1900,
+        "title": "Volume 18, Number 04 (April 1900)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/447"
+      },
+      {
+        "year": 1900,
+        "title": "Volume 18, Number 05 (May 1900)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/448"
+      },
+      {
+        "year": 1900,
+        "title": "Volume 18, Number 06 (June 1900)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/449"
+      },
+      {
+        "year": 1900,
+        "title": "Volume 18, Number 07 (July 1900)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/450"
+      },
+      {
+        "year": 1900,
+        "title": "Volume 18, Number 08 (August 1900)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/451"
+      },
+      {
+        "year": 1900,
+        "title": "Volume 18, Number 09 (September 1900)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/452"
+      },
+      {
+        "year": 1900,
+        "title": "Volume 18, Number 10 (October 1900)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/453"
+      },
+      {
+        "year": 1900,
+        "title": "Volume 18, Number 11 (November 1900)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/454"
+      },
+      {
+        "year": 1900,
+        "title": "Volume 18, Number 12 (December 1900)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/19"
+      },
+      {
+        "year": 1901,
+        "title": "Volume 19, Number 01 (January 1901)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/455"
+      },
+      {
+        "year": 1901,
+        "title": "Volume 19, Number 02 (February 1901)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/456"
+      },
+      {
+        "year": 1901,
+        "title": "Volume 19, Number 03 (March 1901)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/457"
+      },
+      {
+        "year": 1901,
+        "title": "Volume 19, Number 04 (April 1901)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/458"
+      },
+      {
+        "year": 1901,
+        "title": "Volume 19, Number 05 (May 1901)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/459"
+      },
+      {
+        "year": 1901,
+        "title": "Volume 19, Number 06 (June 1901)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/460"
+      },
+      {
+        "year": 1901,
+        "title": "Volume 19, Number 07 (July 1901)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/461"
+      },
+      {
+        "year": 1901,
+        "title": "Volume 19, Number 08 (August 1901)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/462"
+      },
+      {
+        "year": 1901,
+        "title": "Volume 19, Number 09 (September 1901)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/463"
+      },
+      {
+        "year": 1901,
+        "title": "Volume 19, Number 10 (October 1901)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/464"
+      },
+      {
+        "year": 1901,
+        "title": "Volume 19, Number 11 (November 1901)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/465"
+      },
+      {
+        "year": 1901,
+        "title": "Volume 19, Number 12 (December 1901)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/20"
+      },
+      {
+        "year": 1902,
+        "title": "Volume 20, Number 01 (January 1902)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/466"
+      },
+      {
+        "year": 1902,
+        "title": "Volume 20, Number 02 (February 1902)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/467"
+      },
+      {
+        "year": 1902,
+        "title": "Volume 20, Number 03 (March 1902)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/468"
+      },
+      {
+        "year": 1902,
+        "title": "Volume 20, Number 04 (April 1902)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/469"
+      },
+      {
+        "year": 1902,
+        "title": "Volume 20, Number 05 (May 1902)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/470"
+      },
+      {
+        "year": 1902,
+        "title": "Volume 20, Number 06 (June 1902)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/471"
+      },
+      {
+        "year": 1902,
+        "title": "Volume 20, Number 07 (July 1902)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/472"
+      },
+      {
+        "year": 1902,
+        "title": "Volume 20, Number 08 (August 1902)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/473"
+      },
+      {
+        "year": 1902,
+        "title": "Volume 20, Number 09 (September 1902)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/474"
+      },
+      {
+        "year": 1902,
+        "title": "Volume 20, Number 10 (October 1902)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/475"
+      },
+      {
+        "year": 1902,
+        "title": "Volume 20, Number 11 (November 1902)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/476"
+      },
+      {
+        "year": 1902,
+        "title": "Volume 20, Number 12 (December 1902)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/21"
+      },
+      {
+        "year": 1903,
+        "title": "Volume 21, Number 01 (january 1903)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/477"
+      },
+      {
+        "year": 1903,
+        "title": "Volume 21, Number 02 (February 1903)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/478"
+      },
+      {
+        "year": 1903,
+        "title": "Volume 21, Number 03 (March 1903)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/479"
+      },
+      {
+        "year": 1903,
+        "title": "Volume 21, Number 04 (April 1903)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/480"
+      },
+      {
+        "year": 1903,
+        "title": "Volume 21, Number 05 (May 1903)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/481"
+      },
+      {
+        "year": 1903,
+        "title": "Volume 21, Number 06 (June 1903)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/482"
+      },
+      {
+        "year": 1903,
+        "title": "Volume 21, Number 07 (July 1903)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/483"
+      },
+      {
+        "year": 1903,
+        "title": "Volume 21, Number 08 (August 1903)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/484"
+      },
+      {
+        "year": 1903,
+        "title": "Volume 21, Number 09 (September 1903)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/485"
+      },
+      {
+        "year": 1903,
+        "title": "Volume 21, Number 10 (October 1903)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/486"
+      },
+      {
+        "year": 1903,
+        "title": "Volume 21, Number 11 (November 1903)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/487"
+      },
+      {
+        "year": 1903,
+        "title": "Volume 21, Number 12 (December 1903)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/22"
+      },
+      {
+        "year": 1904,
+        "title": "Volume 22, Number 01 (January 1904)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/488"
+      },
+      {
+        "year": 1904,
+        "title": "Volume 22, Number 02 (February 1904)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/489"
+      },
+      {
+        "year": 1904,
+        "title": "Volume 22, Number 03 (March 1904)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/490"
+      },
+      {
+        "year": 1904,
+        "title": "Volume 22, Number 04 (April 1904)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/491"
+      },
+      {
+        "year": 1904,
+        "title": "Volume 22, Number 05 (May 1904)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/492"
+      },
+      {
+        "year": 1904,
+        "title": "Volume 22, Number 06 (June 1904)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/493"
+      },
+      {
+        "year": 1904,
+        "title": "Volume 22, Number 07 (July 1904)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/494"
+      },
+      {
+        "year": 1904,
+        "title": "Volume 22, Number 08 (August 1904)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/495"
+      },
+      {
+        "year": 1904,
+        "title": "Volume 22, Number 09 (September 1904)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/496"
+      },
+      {
+        "year": 1904,
+        "title": "Volume 22, Number 10 (October 1904)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/497"
+      },
+      {
+        "year": 1904,
+        "title": "Volume 22, Number 11 (November 1904)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/498"
+      },
+      {
+        "year": 1904,
+        "title": "Volume 22, Number 12 (December 1904)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/23"
+      },
+      {
+        "year": 1905,
+        "title": "Volume 23, Number 01 (January 1905)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/499"
+      },
+      {
+        "year": 1905,
+        "title": "Volume 23, Number 02 (February 1905)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/500"
+      },
+      {
+        "year": 1905,
+        "title": "Volume 23, Number 03 (March 1905)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/501"
+      },
+      {
+        "year": 1905,
+        "title": "Volume 23, Number 04 (April 1905)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/502"
+      },
+      {
+        "year": 1905,
+        "title": "Volume 23, Number 05 (May 1905)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/503"
+      },
+      {
+        "year": 1905,
+        "title": "Volume 23, Number 06 (June 1905)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/504"
+      },
+      {
+        "year": 1905,
+        "title": "Volume 23, Number 07 (July 1905)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/505"
+      },
+      {
+        "year": 1905,
+        "title": "Volume 23, Number 08 (August 1905)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/506"
+      },
+      {
+        "year": 1905,
+        "title": "Volume 23, Number 09 (September 1905)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/507"
+      },
+      {
+        "year": 1905,
+        "title": "Volume 23, Number 10 (October 1905)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/508"
+      },
+      {
+        "year": 1905,
+        "title": "Volume 23, Number 11 (November 1905)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/509"
+      },
+      {
+        "year": 1905,
+        "title": "Volume 23, Number 12 (December 1905)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/24"
+      },
+      {
+        "year": 1906,
+        "title": "Volume 24, Number 01 (January 1906)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/510"
+      },
+      {
+        "year": 1906,
+        "title": "Volume 24, Number 02 (February 1906)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/511"
+      },
+      {
+        "year": 1906,
+        "title": "Volume 24, Number 03 (March 1906)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/512"
+      },
+      {
+        "year": 1906,
+        "title": "Volume 24, Number 04 (April 1906)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/513"
+      },
+      {
+        "year": 1906,
+        "title": "Volume 24, Number 05 (May 1906)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/514"
+      },
+      {
+        "year": 1906,
+        "title": "Volume 24, Number 06 (June 1906)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/515"
+      },
+      {
+        "year": 1906,
+        "title": "Volume 24, Number 07 (July 1906)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/516"
+      },
+      {
+        "year": 1906,
+        "title": "Volume 24, Number 08 (August 1906)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/517"
+      },
+      {
+        "year": 1906,
+        "title": "Volume 24, Number 09 (September 1906)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/518"
+      },
+      {
+        "year": 1906,
+        "title": "Volume 24, Number 10 (October 1906)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/519"
+      },
+      {
+        "year": 1906,
+        "title": "Volume 24, Number 11 (November 1906)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/520"
+      },
+      {
+        "year": 1906,
+        "title": "Volume 24, Number 12 (December 1906)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/25"
+      },
+      {
+        "year": 1907,
+        "title": "Volume 25, Number 01 (January 1907)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/521"
+      },
+      {
+        "year": 1907,
+        "title": "Volume 25, Number 02 (February 1907)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/522"
+      },
+      {
+        "year": 1907,
+        "title": "Volume 25, Number 03 (March 1907)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/523"
+      },
+      {
+        "year": 1907,
+        "title": "Volume 25, Number 04 (April 1907)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/524"
+      },
+      {
+        "year": 1907,
+        "title": "Volume 25, Number 05 (May 1907)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/525"
+      },
+      {
+        "year": 1907,
+        "title": "Volume 25, Number 06 (June 1907)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/526"
+      },
+      {
+        "year": 1907,
+        "title": "Volume 25, Number 07 (July 1907)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/527"
+      },
+      {
+        "year": 1907,
+        "title": "Volume 25, Number 08 (August 1907)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/528"
+      },
+      {
+        "year": 1907,
+        "title": "Volume 25, Number 09 (September 1907)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/529"
+      },
+      {
+        "year": 1907,
+        "title": "Volume 25, Number 10 (October 1907)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/530"
+      },
+      {
+        "year": 1907,
+        "title": "Volume 25, Number 11 (November 1907)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/531"
+      },
+      {
+        "year": 1907,
+        "title": "Volume 25, Number 12 (December 1907)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/26"
+      },
+      {
+        "year": 1908,
+        "title": "Volume 26, Number 01 (January 1908)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/532"
+      },
+      {
+        "year": 1908,
+        "title": "Volume 26, Number 02 (February 1908)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/533"
+      },
+      {
+        "year": 1908,
+        "title": "Volume 26, Number 03 (March 1908)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/534"
+      },
+      {
+        "year": 1908,
+        "title": "Volume 26, Number 04 (April 1908)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/535"
+      },
+      {
+        "year": 1908,
+        "title": "Volume 26, Number 05 (May 1908)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/536"
+      },
+      {
+        "year": 1908,
+        "title": "Volume 26, Number 06 (June 1908)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/537"
+      },
+      {
+        "year": 1908,
+        "title": "Volume 26, Number 07 (July 1908)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/538"
+      },
+      {
+        "year": 1908,
+        "title": "Volume 26, Number 08 (August 1908)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/539"
+      },
+      {
+        "year": 1908,
+        "title": "Volume 26, Number 09 (September 1908)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/540"
+      },
+      {
+        "year": 1908,
+        "title": "Volume 26, Number 10 (October 1908)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/541"
+      },
+      {
+        "year": 1908,
+        "title": "Volume 26, Number 11 (November 1908)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/542"
+      },
+      {
+        "year": 1908,
+        "title": "Volume 26, Number 12 (December 1908)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/27"
+      },
+      {
+        "year": 1909,
+        "title": "Volume 27, Number 01 (January 1909)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/543"
+      },
+      {
+        "year": 1909,
+        "title": "Volume 27, Number 02 (February 1909)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/544"
+      },
+      {
+        "year": 1909,
+        "title": "Volume 27, Number 03 (March 1909)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/545"
+      },
+      {
+        "year": 1909,
+        "title": "Volume 27, Number 04 (April 1909)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/546"
+      },
+      {
+        "year": 1909,
+        "title": "Volume 27, Number 05 (May 1909)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/547"
+      },
+      {
+        "year": 1909,
+        "title": "Volume 27, Number 06 (June 1909)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/548"
+      },
+      {
+        "year": 1909,
+        "title": "Volume 27, Number 07 (July 1909)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/549"
+      },
+      {
+        "year": 1909,
+        "title": "Volume 27, Number 08 (August 1909)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/550"
+      },
+      {
+        "year": 1909,
+        "title": "Volume 27, Number 09 (September 1909)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/551"
+      },
+      {
+        "year": 1909,
+        "title": "Volume 27, Number 10 (October 1909)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/552"
+      },
+      {
+        "year": 1909,
+        "title": "Volume 27, Number 11 (November 1909)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/553"
+      },
+      {
+        "year": 1909,
+        "title": "Volume 27, Number 12 (December 1909)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/28"
+      },
+      {
+        "year": 1910,
+        "title": "Volume 28, Number 01 (January 1910)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/554"
+      },
+      {
+        "year": 1910,
+        "title": "Volume 28, Number 02 (February 1910)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/555"
+      },
+      {
+        "year": 1910,
+        "title": "Volume 28, Number 03 (March 1910)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/556"
+      },
+      {
+        "year": 1910,
+        "title": "Volume 28, Number 04 (April 1910)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/557"
+      },
+      {
+        "year": 1910,
+        "title": "Volume 28, Number 05 (May 1910)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/558"
+      },
+      {
+        "year": 1910,
+        "title": "Volume 28, Number 06 (June 1910)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/559"
+      },
+      {
+        "year": 1910,
+        "title": "Volume 28, Number 07 (July 1910)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/560"
+      },
+      {
+        "year": 1910,
+        "title": "Volume 28, Number 08 (August 1910)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/561"
+      },
+      {
+        "year": 1910,
+        "title": "Volume 28, Number 09 (September 1910)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/562"
+      },
+      {
+        "year": 1910,
+        "title": "Volume 28, Number 10 (October 1910)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/563"
+      },
+      {
+        "year": 1910,
+        "title": "Volume 28, Number 11 (November 1910)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/564"
+      },
+      {
+        "year": 1910,
+        "title": "Volume 28, Number 12 (December 1910)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/29"
+      },
+      {
+        "year": 1911,
+        "title": "Volume 29, Number 01 (January 1911)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/565"
+      },
+      {
+        "year": 1911,
+        "title": "Volume 29, Number 02 (February 1911)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/566"
+      },
+      {
+        "year": 1911,
+        "title": "Volume 29, Number 03 (March 1911)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/567"
+      },
+      {
+        "year": 1911,
+        "title": "Volume 29, Number 04 (April 1911)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/568"
+      },
+      {
+        "year": 1911,
+        "title": "Volume 29, Number 05 (May 1911)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/569"
+      },
+      {
+        "year": 1911,
+        "title": "Volume 29, Number 06 (June 1911)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/570"
+      },
+      {
+        "year": 1911,
+        "title": "Volume 29, Number 07 (July 1911)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/571"
+      },
+      {
+        "year": 1911,
+        "title": "Volume 29, Number 08 (August 1911)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/572"
+      },
+      {
+        "year": 1911,
+        "title": "Volume 29, Number 09 (September 1911)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/573"
+      },
+      {
+        "year": 1911,
+        "title": "Volume 29, Number 10 (October 1911)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/574"
+      },
+      {
+        "year": 1911,
+        "title": "Volume 29, Number 11 (November 1911)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/575"
+      },
+      {
+        "year": 1911,
+        "title": "Volume 29, Number 12 (December 1911)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/30"
+      },
+      {
+        "year": 1912,
+        "title": "Volume 30, Number 01 (January 1912)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/576"
+      },
+      {
+        "year": 1912,
+        "title": "Volume 30, Number 02 (February 1912)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/577"
+      },
+      {
+        "year": 1912,
+        "title": "Volume 30, Number 03 (March 1912)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/578"
+      },
+      {
+        "year": 1912,
+        "title": "Volume 30, Number 04 (April 1912)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/579"
+      },
+      {
+        "year": 1912,
+        "title": "Volume 30, Number 05 (May 1912)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/580"
+      },
+      {
+        "year": 1912,
+        "title": "Volume 30, Number 06 (June 1912)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/581"
+      },
+      {
+        "year": 1912,
+        "title": "Volume 30, Number 07 (July 1912)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/582"
+      },
+      {
+        "year": 1912,
+        "title": "Volume 30, Number 08 (August 1912)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/583"
+      },
+      {
+        "year": 1912,
+        "title": "Volume 30, Number 09 (September 1912)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/584"
+      },
+      {
+        "year": 1912,
+        "title": "Volume 30, Number 10 (October 1912)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/585"
+      },
+      {
+        "year": 1912,
+        "title": "Volume 30, Number 11 (November 1912)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/586"
+      },
+      {
+        "year": 1912,
+        "title": "Volume 30, Number 12 (December 1912)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/31"
+      },
+      {
+        "year": 1913,
+        "title": "Volume 31, Number 01 (January 1913)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/587"
+      },
+      {
+        "year": 1913,
+        "title": "Volume 31, Number 02 (February 1913)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/588"
+      },
+      {
+        "year": 1913,
+        "title": "Volume 31, Number 03 (March 1913)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/589"
+      },
+      {
+        "year": 1913,
+        "title": "Volume 31, Number 04 (April 1913)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/590"
+      },
+      {
+        "year": 1913,
+        "title": "Volume 31, Number 05 (May 1913)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/591"
+      },
+      {
+        "year": 1913,
+        "title": "Volume 31, Number 06 (June 1913)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/592"
+      },
+      {
+        "year": 1913,
+        "title": "Volume 31, Number 07 (July 1913)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/593"
+      },
+      {
+        "year": 1913,
+        "title": "Volume 31, Number 08 (August 1913)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/594"
+      },
+      {
+        "year": 1913,
+        "title": "Volume 31, Number 09 (September 1913)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/595"
+      },
+      {
+        "year": 1913,
+        "title": "Volume 31, Number 10 (October 1913)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/596"
+      },
+      {
+        "year": 1913,
+        "title": "Volume 31, Number 11 (November 1913)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/597"
+      },
+      {
+        "year": 1913,
+        "title": "Volume 31, Number 12 (December 1913)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/32"
+      },
+      {
+        "year": 1914,
+        "title": "Volume 32, Number 01 (January 1914)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/598"
+      },
+      {
+        "year": 1914,
+        "title": "Volume 32, Number 02 (February 1914)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/599"
+      },
+      {
+        "year": 1914,
+        "title": "Volume 32, Number 03 (March 1914)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/600"
+      },
+      {
+        "year": 1914,
+        "title": "Volume 32, Number 04 (April 1914)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/601"
+      },
+      {
+        "year": 1914,
+        "title": "Volume 32, Number 05 (May 1914)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/602"
+      },
+      {
+        "year": 1914,
+        "title": "Volume 32, Number 06 (June 1914)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/603"
+      },
+      {
+        "year": 1914,
+        "title": "Volume 32, Number 07 (July 1914)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/604"
+      },
+      {
+        "year": 1914,
+        "title": "Volume 32, Number 08 (August 1914)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/605"
+      },
+      {
+        "year": 1914,
+        "title": "Volume 32, Number 09 (September 1914)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/606"
+      },
+      {
+        "year": 1914,
+        "title": "Volume 32, Number 10 (October 1914)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/607"
+      },
+      {
+        "year": 1914,
+        "title": "Volume 32, Number 11 (November 1914)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/608"
+      },
+      {
+        "year": 1914,
+        "title": "Volume 32, Number 12 (December 1914)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/33"
+      },
+      {
+        "year": 1915,
+        "title": "Volume 33, Number 01 (January 1915)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/609"
+      },
+      {
+        "year": 1915,
+        "title": "Volume 33, Number 02 (February 1915)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/610"
+      },
+      {
+        "year": 1915,
+        "title": "Volume 33, Number 03 (March 1915)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/611"
+      },
+      {
+        "year": 1915,
+        "title": "Volume 33, Number 04 (April 1915)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/612"
+      },
+      {
+        "year": 1915,
+        "title": "Volume 33, Number 05 (May 1915)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/613"
+      },
+      {
+        "year": 1915,
+        "title": "Volume 33, Number 06 (June 1915)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/614"
+      },
+      {
+        "year": 1915,
+        "title": "Volume 33, Number 07 (July 1915)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/615"
+      },
+      {
+        "year": 1915,
+        "title": "Volume 33, Number 08 (August 1915)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/616"
+      },
+      {
+        "year": 1915,
+        "title": "Volume 33, Number 09 (September 1915)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/617"
+      },
+      {
+        "year": 1915,
+        "title": "Volume 33, Number 10 (October 1915)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/618"
+      },
+      {
+        "year": 1915,
+        "title": "Volume 33, Number 11 (November 1915)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/619"
+      },
+      {
+        "year": 1915,
+        "title": "Volume 33, Number 12 (December 1915)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/34"
+      },
+      {
+        "year": 1916,
+        "title": "Volume 34, Number 01 (January 1916)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/620"
+      },
+      {
+        "year": 1916,
+        "title": "Volume 34, Number 02 (February 1916)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/621"
+      },
+      {
+        "year": 1916,
+        "title": "Volume 34, Number 03 (March 1916)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/622"
+      },
+      {
+        "year": 1916,
+        "title": "Volume 34, Number 04 (April 1916)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/623"
+      },
+      {
+        "year": 1916,
+        "title": "Volume 34, Number 05 (May 1916)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/624"
+      },
+      {
+        "year": 1916,
+        "title": "Volume 34, Number 06 (June 1916)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/625"
+      },
+      {
+        "year": 1916,
+        "title": "Volume 34, Number 07 (July 1916)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/626"
+      },
+      {
+        "year": 1916,
+        "title": "Volume 34, Number 08 (August 1916)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/627"
+      },
+      {
+        "year": 1916,
+        "title": "Volume 34, Number 09 (September 1916)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/628"
+      },
+      {
+        "year": 1916,
+        "title": "Volume 34, Number 10 (October 1916)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/629"
+      },
+      {
+        "year": 1916,
+        "title": "Volume 34, Number 11 (November 1916)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/630"
+      },
+      {
+        "year": 1916,
+        "title": "Volume 34, Number 12 (December 1916)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/35"
+      },
+      {
+        "year": 1917,
+        "title": "Volume 35, Number 01 (January 1917)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/631"
+      },
+      {
+        "year": 1917,
+        "title": "Volume 35, Number 02 (February 1917)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/632"
+      },
+      {
+        "year": 1917,
+        "title": "Volume 35, Number 03 (March 1917)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/633"
+      },
+      {
+        "year": 1917,
+        "title": "Volume 35, Number 04 (April 1917)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/634"
+      },
+      {
+        "year": 1917,
+        "title": "Volume 35, Number 05 (May 1917)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/635"
+      },
+      {
+        "year": 1917,
+        "title": "Volume 35, Number 06 (June 1917)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/636"
+      },
+      {
+        "year": 1917,
+        "title": "Volume 35, Number 07 (July 1917)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/637"
+      },
+      {
+        "year": 1917,
+        "title": "Volume 35, Number 08 (August 1917)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/638"
+      },
+      {
+        "year": 1917,
+        "title": "Volume 35, Number 09 (September 1917)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/639"
+      },
+      {
+        "year": 1917,
+        "title": "Volume 35, Number 10 (October 1917)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/640"
+      },
+      {
+        "year": 1917,
+        "title": "Volume 35, Number 11 (November 1917)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/641"
+      },
+      {
+        "year": 1917,
+        "title": "Volume 35, Number 12 (December 1917)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/36"
+      },
+      {
+        "year": 1918,
+        "title": "Volume 36, Number 01 (January 1918)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/642"
+      },
+      {
+        "year": 1918,
+        "title": "Volume 36, Number 02 (February 1918)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/643"
+      },
+      {
+        "year": 1918,
+        "title": "Volume 36, Number 03 (March 1918)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/644"
+      },
+      {
+        "year": 1918,
+        "title": "Volume 36, Number 04 (April 1918)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/645"
+      },
+      {
+        "year": 1918,
+        "title": "Volume 36, Number 05 (May 1918)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/646"
+      },
+      {
+        "year": 1918,
+        "title": "Volume 36, Number 06 (June 1918)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/647"
+      },
+      {
+        "year": 1918,
+        "title": "Volume 36, Number 07 (July 1918)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/648"
+      },
+      {
+        "year": 1918,
+        "title": "Volume 36, Number 08 (August 1918)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/649"
+      },
+      {
+        "year": 1918,
+        "title": "Volume 36, Number 09 (September 1918)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/650"
+      },
+      {
+        "year": 1918,
+        "title": "Volume 36, Number 10 (October 1918)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/651"
+      },
+      {
+        "year": 1918,
+        "title": "Volume 36, Number 11 (November 1918)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/652"
+      },
+      {
+        "year": 1918,
+        "title": "Volume 36, Number 12 (December 1918)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/37"
+      },
+      {
+        "year": 1919,
+        "title": "Volume 37, Number 01 (January 1919)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/653"
+      },
+      {
+        "year": 1919,
+        "title": "Volume 37, Number 02 (February 1919)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/654"
+      },
+      {
+        "year": 1919,
+        "title": "Volume 37, Number 03 (March 1919)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/655"
+      },
+      {
+        "year": 1919,
+        "title": "Volume 37, Number 04 (April 1919)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/656"
+      },
+      {
+        "year": 1919,
+        "title": "Volume 37, Number 05 (May 1919)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/657"
+      },
+      {
+        "year": 1919,
+        "title": "Volume 37, Number 06 (June 1919)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/658"
+      },
+      {
+        "year": 1919,
+        "title": "Volume 37, Number 07 (July 1919)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/659"
+      },
+      {
+        "year": 1919,
+        "title": "Volume 37, Number 08 (August 1919)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/660"
+      },
+      {
+        "year": 1919,
+        "title": "Volume 37, Number 09 (September 1919)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/661"
+      },
+      {
+        "year": 1919,
+        "title": "Volume 37, Number 10 (October 1919)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/662"
+      },
+      {
+        "year": 1919,
+        "title": "Volume 37, Number 11 (November 1919)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/663"
+      },
+      {
+        "year": 1919,
+        "title": "Volume 37, Number 12 (December 1919)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/38"
+      },
+      {
+        "year": 1920,
+        "title": "Volume 38, Number 01 (January 1920)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/664"
+      },
+      {
+        "year": 1920,
+        "title": "Volume 38, Number 02 (February 1920)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/665"
+      },
+      {
+        "year": 1920,
+        "title": "Volume 38, Number 03 (March 1920)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/666"
+      },
+      {
+        "year": 1920,
+        "title": "Volume 38, Number 04 (April 1920)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/667"
+      },
+      {
+        "year": 1920,
+        "title": "Volume 38, Number 05 (May 1920)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/668"
+      },
+      {
+        "year": 1920,
+        "title": "Volume 38, Number 06 (June 1920)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/669"
+      },
+      {
+        "year": 1920,
+        "title": "Volume 38, Number 07 (July 1920)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/670"
+      },
+      {
+        "year": 1920,
+        "title": "Volume 38, Number 08 (August 1920)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/671"
+      },
+      {
+        "year": 1920,
+        "title": "Volume 38, Number 09 (September 1920)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/672"
+      },
+      {
+        "year": 1920,
+        "title": "Volume 38, Number 10 (October 1920)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/673"
+      },
+      {
+        "year": 1920,
+        "title": "Volume 38, Number 11 (November 1920)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/674"
+      },
+      {
+        "year": 1920,
+        "title": "Volume 38, Number 12 (December 1920)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/39"
+      },
+      {
+        "year": 1921,
+        "title": "Volume 39, Number 01 (January 1921)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/675"
+      },
+      {
+        "year": 1921,
+        "title": "Volume 39, Number 02 (February 1921)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/676"
+      },
+      {
+        "year": 1921,
+        "title": "Volume 39, Number 03 (March 1921)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/677"
+      },
+      {
+        "year": 1921,
+        "title": "Volume 39, Number 04 (April 1921)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/678"
+      },
+      {
+        "year": 1921,
+        "title": "Volume 39, Number 05 (May 1921)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/679"
+      },
+      {
+        "year": 1921,
+        "title": "Volume 39, Number 06 (June 1921)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/680"
+      },
+      {
+        "year": 1921,
+        "title": "Volume 39, Number 07 (July 1921)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/681"
+      },
+      {
+        "year": 1921,
+        "title": "Volume 39, Number 08 (August 1921)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/682"
+      },
+      {
+        "year": 1921,
+        "title": "Volume 39, Number 09 (September 1921)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/683"
+      },
+      {
+        "year": 1921,
+        "title": "Volume 39, Number 10 (October 1921)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/684"
+      },
+      {
+        "year": 1921,
+        "title": "Volume 39, Number 11 (November 1921)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/685"
+      },
+      {
+        "year": 1921,
+        "title": "Volume 39, Number 12 (December 1921)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/40"
+      },
+      {
+        "year": 1922,
+        "title": "Volume 40, Number 01 (January 1922)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/686"
+      },
+      {
+        "year": 1922,
+        "title": "Volume 40, Number 02 (February 1922)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/687"
+      },
+      {
+        "year": 1922,
+        "title": "Volume 40, Number 03 (March 1922)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/688"
+      },
+      {
+        "year": 1922,
+        "title": "Volume 40, Number 04 (April 1922)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/689"
+      },
+      {
+        "year": 1922,
+        "title": "Volume 40, Number 05 (May 1922)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/690"
+      },
+      {
+        "year": 1922,
+        "title": "Volume 40, Number 06 (June 1922)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/691"
+      },
+      {
+        "year": 1922,
+        "title": "Volume 40, Number 07 (July 1922)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/692"
+      },
+      {
+        "year": 1922,
+        "title": "Volume 40, Number 08 (August 1922)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/693"
+      },
+      {
+        "year": 1922,
+        "title": "Volume 40, Number 09 (September 1922)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/694"
+      },
+      {
+        "year": 1922,
+        "title": "Volume 40, Number 10 (October 1922)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/695"
+      },
+      {
+        "year": 1922,
+        "title": "Volume 40, Number 11 (November 1922)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/696"
+      },
+      {
+        "year": 1922,
+        "title": "Volume 40, Number 12 (December 1922)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/41"
+      },
+      {
+        "year": 1923,
+        "title": "Volume 41, Number 01 (January 1923)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/697"
+      },
+      {
+        "year": 1923,
+        "title": "Volume 41, Number 02 (February 1923)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/698"
+      },
+      {
+        "year": 1923,
+        "title": "Volume 41, Number 03 (March 1923)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/699"
+      },
+      {
+        "year": 1923,
+        "title": "Volume 41, Number 04 (April 1923)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/700"
+      },
+      {
+        "year": 1923,
+        "title": "Volume 41, Number 05 (May 1923)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/701"
+      },
+      {
+        "year": 1923,
+        "title": "Volume 41, Number 06 (June 1923)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/702"
+      },
+      {
+        "year": 1923,
+        "title": "Volume 41, Number 07 (July 1923)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/703"
+      },
+      {
+        "year": 1923,
+        "title": "Volume 41, Number 08 (August 1923)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/704"
+      },
+      {
+        "year": 1923,
+        "title": "Volume 41, Number 09 (September 1923)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/705"
+      },
+      {
+        "year": 1923,
+        "title": "Volume 41, Number 10 (October 1923)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/706"
+      },
+      {
+        "year": 1923,
+        "title": "Volume 41, Number 11 (November 1923)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/707"
+      },
+      {
+        "year": 1923,
+        "title": "Volume 41, Number 12 (December 1923)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/42"
+      },
+      {
+        "year": 1924,
+        "title": "Volume 42, Number 01 (January 1924)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/708"
+      },
+      {
+        "year": 1924,
+        "title": "Volume 42, Number 02 (February 1924)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/709"
+      },
+      {
+        "year": 1924,
+        "title": "Volume 42, Number 03 (March 1924)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/710"
+      },
+      {
+        "year": 1924,
+        "title": "Volume 42, Number 04 (April 1924)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/711"
+      },
+      {
+        "year": 1924,
+        "title": "Volume 42, Number 05 (May 1924)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/712"
+      },
+      {
+        "year": 1924,
+        "title": "Volume 42, Number 06 (June 1924)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/713"
+      },
+      {
+        "year": 1924,
+        "title": "Volume 42, Number 07 (July 1924)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/714"
+      },
+      {
+        "year": 1924,
+        "title": "Volume 42, Number 08 (August 1924)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/715"
+      },
+      {
+        "year": 1924,
+        "title": "Volume 42, Number 09 (September 1924)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/716"
+      },
+      {
+        "year": 1924,
+        "title": "Volume 42, Number 10 (October 1924)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/717"
+      },
+      {
+        "year": 1924,
+        "title": "Volume 42, Number 11 (November 1924)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/718"
+      },
+      {
+        "year": 1924,
+        "title": "Volume 42, Number 12 (December 1924)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/43"
+      },
+      {
+        "year": 1925,
+        "title": "Volume 43, Number 01 (January 1925)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/719"
+      },
+      {
+        "year": 1925,
+        "title": "Volume 43, Number 02 (February 1925)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/720"
+      },
+      {
+        "year": 1925,
+        "title": "Volume 43, Number 03 (March 1925)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/721"
+      },
+      {
+        "year": 1925,
+        "title": "Volume 43, Number 04 (April 1925)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/722"
+      },
+      {
+        "year": 1925,
+        "title": "Volume 43, Number 05 (May 1925)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/723"
+      },
+      {
+        "year": 1925,
+        "title": "Volume 43, Number 06 (June 1925)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/724"
+      },
+      {
+        "year": 1925,
+        "title": "Volume 43, Number 07 (July 1925)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/725"
+      },
+      {
+        "year": 1925,
+        "title": "Volume 43, Number 08 (August 1925)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/726"
+      },
+      {
+        "year": 1925,
+        "title": "Volume 43, Number 09 (September 1925)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/727"
+      },
+      {
+        "year": 1925,
+        "title": "Volume 43, Number 10 (October 1925)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/728"
+      },
+      {
+        "year": 1925,
+        "title": "Volume 43, Number 11 (November 1925)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/729"
+      },
+      {
+        "year": 1925,
+        "title": "Volume 43, Number 12 (December 1925)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/44"
+      },
+      {
+        "year": 1926,
+        "title": "Volume 44, Number 01 (January 1926)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/730"
+      },
+      {
+        "year": 1926,
+        "title": "Volume 44, Number 02 (February 1926)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/731"
+      },
+      {
+        "year": 1926,
+        "title": "Volume 44, Number 03 (March 1926)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/732"
+      },
+      {
+        "year": 1926,
+        "title": "Volume 44, Number 04 (April 1926)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/733"
+      },
+      {
+        "year": 1926,
+        "title": "Volume 44, Number 05 (May 1926)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/734"
+      },
+      {
+        "year": 1926,
+        "title": "Volume 44, Number 06 (June 1926)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/735"
+      },
+      {
+        "year": 1926,
+        "title": "Volume 44, Number 07 (July 1926)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/736"
+      },
+      {
+        "year": 1926,
+        "title": "Volume 44, Number 08 (August 1926)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/737"
+      },
+      {
+        "year": 1926,
+        "title": "Volume 44, Number 09 (September 1926)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/738"
+      },
+      {
+        "year": 1926,
+        "title": "Volume 44, Number 10 (October 1926)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/739"
+      },
+      {
+        "year": 1926,
+        "title": "Volume 44, Number 11 (November 1926)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/740"
+      },
+      {
+        "year": 1926,
+        "title": "Volume 44, Number 12 (December 1926)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/45"
+      },
+      {
+        "year": 1927,
+        "title": "Volume 45, Number 01 (January 1927)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/741"
+      },
+      {
+        "year": 1927,
+        "title": "Volume 45, Number 02 (February 1927)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/742"
+      },
+      {
+        "year": 1927,
+        "title": "Volume 45, Number 03 (March 1927)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/743"
+      },
+      {
+        "year": 1927,
+        "title": "Volume 45, Number 04 (April 1927)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/744"
+      },
+      {
+        "year": 1927,
+        "title": "Volume 45, Number 05 (May 1927)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/745"
+      },
+      {
+        "year": 1927,
+        "title": "Volume 45, Number 06 (June 1927)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/746"
+      },
+      {
+        "year": 1927,
+        "title": "Volume 45, Number 07 (July 1927)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/747"
+      },
+      {
+        "year": 1927,
+        "title": "Volume 45, Number 08 (August 1927)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/748"
+      },
+      {
+        "year": 1927,
+        "title": "Volume 45, Number 09 (September 1927)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/749"
+      },
+      {
+        "year": 1927,
+        "title": "Volume 45, Number 10 (October 1927)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/750"
+      },
+      {
+        "year": 1927,
+        "title": "Volume 45, Number 11 (November 1927)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/751"
+      },
+      {
+        "year": 1927,
+        "title": "Volume 45, Number 12 (December 1927)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/46"
+      },
+      {
+        "year": 1928,
+        "title": "Volume 46, Number 01 (January 1928)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/752"
+      },
+      {
+        "year": 1928,
+        "title": "Volume 46, Number 02 (February 1928)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/753"
+      },
+      {
+        "year": 1928,
+        "title": "Volume 46, Number 03 (March 1928)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/754"
+      },
+      {
+        "year": 1928,
+        "title": "Volume 46, Number 04 (April 1928)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/755"
+      },
+      {
+        "year": 1928,
+        "title": "Volume 46, Number 05 (May 1928)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/756"
+      },
+      {
+        "year": 1928,
+        "title": "Volume 46, Number 06 (June 1928)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/757"
+      },
+      {
+        "year": 1928,
+        "title": "Volume 46, Number 07 (July 1928)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/758"
+      },
+      {
+        "year": 1928,
+        "title": "Volume 46, Number 08 (August 1928)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/759"
+      },
+      {
+        "year": 1928,
+        "title": "Volume 46, Number 09 (September 1928)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/760"
+      },
+      {
+        "year": 1928,
+        "title": "Volume 46, Number 10 (October 1928)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/761"
+      },
+      {
+        "year": 1928,
+        "title": "Volume 46, Number 11 (November 1928)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/762"
+      },
+      {
+        "year": 1928,
+        "title": "Volume 46, Number 12 (December 1928)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/47"
+      },
+      {
+        "year": 1929,
+        "title": "Volume 47, Number 01 (January 1929)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/763"
+      },
+      {
+        "year": 1929,
+        "title": "Volume 47, Number 02 (February 1929)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/764"
+      },
+      {
+        "year": 1929,
+        "title": "Volume 47, Number 03 (March 1929)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/765"
+      },
+      {
+        "year": 1929,
+        "title": "Volume 47, Number 04 (April 1929)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/766"
+      },
+      {
+        "year": 1929,
+        "title": "Volume 47, Number 05 (May 1929)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/767"
+      },
+      {
+        "year": 1929,
+        "title": "Volume 47, Number 06 (June 1929)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/768"
+      },
+      {
+        "year": 1929,
+        "title": "Volume 47, Number 07 (July 1929)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/769"
+      },
+      {
+        "year": 1929,
+        "title": "Volume 47, Number 08 (August 1929)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/770"
+      },
+      {
+        "year": 1929,
+        "title": "Volume 47, Number 09 (September 1929)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/771"
+      },
+      {
+        "year": 1929,
+        "title": "Volume 47, Number 10 (October 1929)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/772"
+      },
+      {
+        "year": 1929,
+        "title": "Volume 47, Number 11 (November 1929)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/773"
+      },
+      {
+        "year": 1929,
+        "title": "Volume 47, Number 12 (December 1929)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/48"
+      },
+      {
+        "year": 1930,
+        "title": "Volume 48, Number 01 (January 1930)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/774"
+      },
+      {
+        "year": 1930,
+        "title": "Volume 48, Number 02 (February 1930)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/775"
+      },
+      {
+        "year": 1930,
+        "title": "Volume 48, Number 03 (March 1930)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/776"
+      },
+      {
+        "year": 1930,
+        "title": "Volume 48, Number 04 (April 1930)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/777"
+      },
+      {
+        "year": 1930,
+        "title": "Volume 48, Number 05 (May 1930)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/778"
+      },
+      {
+        "year": 1930,
+        "title": "Volume 48, Number 06 (June 1930)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/779"
+      },
+      {
+        "year": 1930,
+        "title": "Volume 48, Number 07 (July 1930)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/780"
+      },
+      {
+        "year": 1930,
+        "title": "Volume 48, Number 08 (August 1930)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/781"
+      },
+      {
+        "year": 1930,
+        "title": "Volume 48, Number 09 (September 1930)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/782"
+      },
+      {
+        "year": 1930,
+        "title": "Volume 48, Number 10 (October 1930)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/783"
+      },
+      {
+        "year": 1930,
+        "title": "Volume 48, Number 11 (November 1930)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/784"
+      },
+      {
+        "year": 1930,
+        "title": "Volume 48, Number 12 (December 1930)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/49"
+      },
+      {
+        "year": 1931,
+        "title": "Volume 49, Number 01 (January 1931)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/785"
+      },
+      {
+        "year": 1931,
+        "title": "Volume 49, Number 02 (February 1931)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/786"
+      },
+      {
+        "year": 1931,
+        "title": "Volume 49, Number 03 (March 1931)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/787"
+      },
+      {
+        "year": 1931,
+        "title": "Volume 49, Number 04 (April 1931)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/788"
+      },
+      {
+        "year": 1931,
+        "title": "Volume 49, Number 05 (May 1931)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/789"
+      },
+      {
+        "year": 1931,
+        "title": "Volume 49, Number 06 (June 1931)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/790"
+      },
+      {
+        "year": 1931,
+        "title": "Volume 49, Number 07 (July 1931)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/791"
+      },
+      {
+        "year": 1931,
+        "title": "Volume 49, Number 08 (August 1931)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/792"
+      },
+      {
+        "year": 1931,
+        "title": "Volume 49, Number 09 (September 1931)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/793"
+      },
+      {
+        "year": 1931,
+        "title": "Volume 49, Number 10 (October 1931)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/794"
+      },
+      {
+        "year": 1931,
+        "title": "Volume 49, Number 11 (November 1931)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/795"
+      },
+      {
+        "year": 1931,
+        "title": "Volume 49, Number 12 (December 1931)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/50"
+      },
+      {
+        "year": 1932,
+        "title": "Volume 50, Number 01 (January 1932)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/796"
+      },
+      {
+        "year": 1932,
+        "title": "Volume 50, Number 02 (February 1932)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/797"
+      },
+      {
+        "year": 1932,
+        "title": "Volume 50, Number 03 (March 1932)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/798"
+      },
+      {
+        "year": 1932,
+        "title": "Volume 50, Number 04 (April 1932)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/799"
+      },
+      {
+        "year": 1932,
+        "title": "Volume 50, Number 05 (May 1932)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/800"
+      },
+      {
+        "year": 1932,
+        "title": "Volume 50, Number 06 (June 1932)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/801"
+      },
+      {
+        "year": 1932,
+        "title": "Volume 50, Number 07 (July 1932)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/802"
+      },
+      {
+        "year": 1932,
+        "title": "Volume 50, Number 08 (August 1932)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/803"
+      },
+      {
+        "year": 1932,
+        "title": "Volume 50, Number 09 (September 1932)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/804"
+      },
+      {
+        "year": 1932,
+        "title": "Volume 50, Number 10 (October 1932)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/805"
+      },
+      {
+        "year": 1932,
+        "title": "Volume 50, Number 11 (November 1932)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/806"
+      },
+      {
+        "year": 1932,
+        "title": "Volume 50, Number 12 (December 1932)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/51"
+      },
+      {
+        "year": 1933,
+        "title": "Volume 51, Number 01 (January 1933)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/807"
+      },
+      {
+        "year": 1933,
+        "title": "Volume 51, Number 02 (February 1933)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/808"
+      },
+      {
+        "year": 1933,
+        "title": "Volume 51, Number 03 (March 1933)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/809"
+      },
+      {
+        "year": 1933,
+        "title": "Volume 51, Number 04 (April 1933)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/810"
+      },
+      {
+        "year": 1933,
+        "title": "Volume 51, Number 05 (May 1933)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/811"
+      },
+      {
+        "year": 1933,
+        "title": "Volume 51, Number 06 (June 1933)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/812"
+      },
+      {
+        "year": 1933,
+        "title": "Volume 51, Number 07 (July 1933)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/813"
+      },
+      {
+        "year": 1933,
+        "title": "Volume 51, Number 08 (August 1933)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/814"
+      },
+      {
+        "year": 1933,
+        "title": "Volume 51, Number 09 (September 1933)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/815"
+      },
+      {
+        "year": 1933,
+        "title": "Volume 51, Number 10 (October 1933)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/816"
+      },
+      {
+        "year": 1933,
+        "title": "Volume 51, Number 11 (November 1933)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/817"
+      },
+      {
+        "year": 1933,
+        "title": "Volume 51, Number 12 (December 1933)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/52"
+      },
+      {
+        "year": 1934,
+        "title": "Volume 52, Number 01 (January 1934)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/818"
+      },
+      {
+        "year": 1934,
+        "title": "Volume 52, Number 02 (February 1934)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/819"
+      },
+      {
+        "year": 1934,
+        "title": "Volume 52, Number 03 (March 1934)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/820"
+      },
+      {
+        "year": 1934,
+        "title": "Volume 52, Number 04 (April 1934)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/821"
+      },
+      {
+        "year": 1934,
+        "title": "Volume 52, Number 05 (May 1934)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/822"
+      },
+      {
+        "year": 1934,
+        "title": "Volume 52, Number 06 (June 1934)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/823"
+      },
+      {
+        "year": 1934,
+        "title": "Volume 52, Number 07 (July 1934)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/824"
+      },
+      {
+        "year": 1934,
+        "title": "Volume 52, Number 08 (August 1934)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/825"
+      },
+      {
+        "year": 1934,
+        "title": "Volume 52, Number 09 (September 1934)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/826"
+      },
+      {
+        "year": 1934,
+        "title": "Volume 52, Number 10 (October 1934)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/827"
+      },
+      {
+        "year": 1934,
+        "title": "Volume 52, Number 11 (November 1934)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/828"
+      },
+      {
+        "year": 1934,
+        "title": "Volume 52, Number 12 (December 1934)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/53"
+      },
+      {
+        "year": 1935,
+        "title": "Volume 53, Number 01 (January 1935)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/829"
+      },
+      {
+        "year": 1935,
+        "title": "Volume 53, Number 02 (February 1935)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/830"
+      },
+      {
+        "year": 1935,
+        "title": "Volume 53, Number 03 (March 1935)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/831"
+      },
+      {
+        "year": 1935,
+        "title": "Volume 53, Number 04 (April 1935)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/832"
+      },
+      {
+        "year": 1935,
+        "title": "Volume 53, Number 05 (May 1935)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/833"
+      },
+      {
+        "year": 1935,
+        "title": "Volume 53, Number 06 (June 1935)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/834"
+      },
+      {
+        "year": 1935,
+        "title": "Volume 53, Number 07 (July 1935)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/835"
+      },
+      {
+        "year": 1935,
+        "title": "Volume 53, Number 08 (August 1935)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/836"
+      },
+      {
+        "year": 1935,
+        "title": "Volume 53, Number 09 (September 1935)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/837"
+      },
+      {
+        "year": 1935,
+        "title": "Volume 53, Number 10 (October 1935)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/838"
+      },
+      {
+        "year": 1935,
+        "title": "Volume 53, Number 11 (November 1935)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/839"
+      },
+      {
+        "year": 1935,
+        "title": "Volume 53, Number 12 (December 1935)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/54"
+      },
+      {
+        "year": 1936,
+        "title": "Volume 54, Number 01 (January 1936)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/840"
+      },
+      {
+        "year": 1936,
+        "title": "Volume 54, Number 02 (February 1936)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/841"
+      },
+      {
+        "year": 1936,
+        "title": "Volume 54, Number 03 (March 1936)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/842"
+      },
+      {
+        "year": 1936,
+        "title": "Volume 54, Number 04 (April 1936)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/843"
+      },
+      {
+        "year": 1936,
+        "title": "Volume 54, Number 05 (May 1936)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/844"
+      },
+      {
+        "year": 1936,
+        "title": "Volume 54, Number 06 (June 1936)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/845"
+      },
+      {
+        "year": 1936,
+        "title": "Volume 54, Number 07 (July 1936)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/846"
+      },
+      {
+        "year": 1936,
+        "title": "Volume 54, Number 08 (August 1936)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/847"
+      },
+      {
+        "year": 1936,
+        "title": "Volume 54, Number 09 (September 1936)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/848"
+      },
+      {
+        "year": 1936,
+        "title": "Volume 54, Number 10 (October 1936)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/849"
+      },
+      {
+        "year": 1936,
+        "title": "Volume 54, Number 11 (November 1936)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/850"
+      },
+      {
+        "year": 1936,
+        "title": "Volume 54, Number 12 (December 1936)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/55"
+      },
+      {
+        "year": 1937,
+        "title": "Volume 55, Number 01 (January 1937)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/851"
+      },
+      {
+        "year": 1937,
+        "title": "Volume 55, Number 02 (February 1937)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/852"
+      },
+      {
+        "year": 1937,
+        "title": "Volume 55, Number 03 (March 1937)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/853"
+      },
+      {
+        "year": 1937,
+        "title": "Volume 55, Number 04 (April 1937)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/854"
+      },
+      {
+        "year": 1937,
+        "title": "Volume 55, Number 05 (May 1937)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/855"
+      },
+      {
+        "year": 1937,
+        "title": "Volume 55, Number 06 (June 1937)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/856"
+      },
+      {
+        "year": 1937,
+        "title": "Volume 55, Number 07 (July 1937)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/857"
+      },
+      {
+        "year": 1937,
+        "title": "Volume 55, Number 08 (August 1937)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/858"
+      },
+      {
+        "year": 1937,
+        "title": "Volume 55, Number 09 (September 1937)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/859"
+      },
+      {
+        "year": 1937,
+        "title": "Volume 55, Number 10 (October 1937)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/860"
+      },
+      {
+        "year": 1937,
+        "title": "Volume 55, Number 11 (November 1937)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/861"
+      },
+      {
+        "year": 1937,
+        "title": "Volume 55, Number 12 (December 1937)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/56"
+      },
+      {
+        "year": 1938,
+        "title": "Volume 56, Number 01 (January 1938)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/862"
+      },
+      {
+        "year": 1938,
+        "title": "Volume 56, Number 02 (February 1938)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/863"
+      },
+      {
+        "year": 1938,
+        "title": "Volume 56, Number 03 (March 1938)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/864"
+      },
+      {
+        "year": 1938,
+        "title": "Volume 56, Number 04 (April 1938)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/865"
+      },
+      {
+        "year": 1938,
+        "title": "Volume 56, Number 05 (May 1938)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/866"
+      },
+      {
+        "year": 1938,
+        "title": "Volume 56, Number 06 (June 1938)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/867"
+      },
+      {
+        "year": 1938,
+        "title": "Volume 56, Number 07 (July 1938)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/868"
+      },
+      {
+        "year": 1938,
+        "title": "Volume 56, Number 08 (August 1938)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/869"
+      },
+      {
+        "year": 1938,
+        "title": "Volume 56, Number 09 (September 1938)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/870"
+      },
+      {
+        "year": 1938,
+        "title": "Volume 56, Number 10 (October 1938)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/871"
+      },
+      {
+        "year": 1938,
+        "title": "Volume 56, Number 11 (November 1938)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/872"
+      },
+      {
+        "year": 1938,
+        "title": "Volume 56, Number 12 (December 1938)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/57"
+      },
+      {
+        "year": 1939,
+        "title": "Volume 57, Number 01 (January 1939)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/873"
+      },
+      {
+        "year": 1939,
+        "title": "Volume 57, Number 02 (February 1939)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/874"
+      },
+      {
+        "year": 1939,
+        "title": "Volume 57, Number 03 (March 1939)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/875"
+      },
+      {
+        "year": 1939,
+        "title": "Volume 57, Number 04 (April 1939)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/876"
+      },
+      {
+        "year": 1939,
+        "title": "Volume 57, Number 05 (May 1939)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/877"
+      },
+      {
+        "year": 1939,
+        "title": "Volume 57, Number 06 (June 1939)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/878"
+      },
+      {
+        "year": 1939,
+        "title": "Volume 57, Number 07 (July 1939)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/879"
+      },
+      {
+        "year": 1939,
+        "title": "Volume 57, Number 08 (August 1939)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/880"
+      },
+      {
+        "year": 1939,
+        "title": "Volume 57, Number 09 (September 1939)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/881"
+      },
+      {
+        "year": 1939,
+        "title": "Volume 57, Number 10 (October 1939)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/882"
+      },
+      {
+        "year": 1939,
+        "title": "Volume 57, Number 11 (November 1939)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/883"
+      },
+      {
+        "year": 1939,
+        "title": "Volume 57, Number 12 (December 1939)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/58"
+      },
+      {
+        "year": 1940,
+        "title": "Volume 58, Number 01 (January 1940)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/265"
+      },
+      {
+        "year": 1940,
+        "title": "Volume 58, Number 02 (February 1940)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/264"
+      },
+      {
+        "year": 1940,
+        "title": "Volume 58, Number 03 (March 1940)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/263"
+      },
+      {
+        "year": 1940,
+        "title": "Volume 58, Number 04 (April 1940)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/262"
+      },
+      {
+        "year": 1940,
+        "title": "Volume 58, Number 05 (May 1940)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/261"
+      },
+      {
+        "year": 1940,
+        "title": "Volume 58, Number 06 (June 1940)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/260"
+      },
+      {
+        "year": 1940,
+        "title": "Volume 58, Number 07 (July 1940)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/259"
+      },
+      {
+        "year": 1940,
+        "title": "Volume 58, Number 08 (August 1940)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/258"
+      },
+      {
+        "year": 1940,
+        "title": "Volume 58, Number 09 (September 1940)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/257"
+      },
+      {
+        "year": 1940,
+        "title": "Volume 58, Number 10 (October 1940)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/256"
+      },
+      {
+        "year": 1940,
+        "title": "Volume 58, Number 11 (November 1940)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/255"
+      },
+      {
+        "year": 1940,
+        "title": "Volume 58, Number 12 (December 1940)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/59"
+      },
+      {
+        "year": 1941,
+        "title": "Volume 59, Number 01 (January 1941)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/254"
+      },
+      {
+        "year": 1941,
+        "title": "Volume 59, Number 02 (February 1941)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/253"
+      },
+      {
+        "year": 1941,
+        "title": "Volume 59, Number 03 (March 1941)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/252"
+      },
+      {
+        "year": 1941,
+        "title": "Volume 59, Number 04 (April 1941)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/251"
+      },
+      {
+        "year": 1941,
+        "title": "Volume 59, Number 05 (May 1941)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/250"
+      },
+      {
+        "year": 1941,
+        "title": "Volume 59, Number 06 (June 1941)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/249"
+      },
+      {
+        "year": 1941,
+        "title": "Volume 59, Number 07 (July 1941)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/248"
+      },
+      {
+        "year": 1941,
+        "title": "Volume 59, Number 08 (August 1941)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/247"
+      },
+      {
+        "year": 1941,
+        "title": "Volume 59, Number 09 (September 1941)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/246"
+      },
+      {
+        "year": 1941,
+        "title": "Volume 59, Number 10 (October 1941)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/245"
+      },
+      {
+        "year": 1941,
+        "title": "Volume 59, Number 11 (November 1941)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/244"
+      },
+      {
+        "year": 1941,
+        "title": "Volume 59, Number 12 (December 1941)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/60"
+      },
+      {
+        "year": 1942,
+        "title": "Volume 60, Number 01 (January 1942)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/243"
+      },
+      {
+        "year": 1942,
+        "title": "Volume 60, Number 02 (February 1942)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/242"
+      },
+      {
+        "year": 1942,
+        "title": "Volume 60, Number 03 (March 1942)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/241"
+      },
+      {
+        "year": 1942,
+        "title": "Volume 60, Number 04 (April 1942)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/240"
+      },
+      {
+        "year": 1942,
+        "title": "Volume 60, Number 05 (May 1942)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/239"
+      },
+      {
+        "year": 1942,
+        "title": "Volume 60, Number 06 (June 1942)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/238"
+      },
+      {
+        "year": 1942,
+        "title": "Volume 60, Number 07 (July 1942)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/237"
+      },
+      {
+        "year": 1942,
+        "title": "Volume 60, Number 08 (August 1942)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/236"
+      },
+      {
+        "year": 1942,
+        "title": "Volume 60, Number 09 (September 1942)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/235"
+      },
+      {
+        "year": 1942,
+        "title": "Volume 60, Number 10 (October 1942)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/234"
+      },
+      {
+        "year": 1942,
+        "title": "Volume 60, Number 11 (November 1942)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/233"
+      },
+      {
+        "year": 1942,
+        "title": "Volume 60, Number 12 (December 1942)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/61"
+      },
+      {
+        "year": 1943,
+        "title": "Volume 61, Number 01 (January 1943)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/232"
+      },
+      {
+        "year": 1943,
+        "title": "Volume 61, Number 02 (February 1943)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/231"
+      },
+      {
+        "year": 1943,
+        "title": "Volume 61, Number 03 (March 1943)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/230"
+      },
+      {
+        "year": 1943,
+        "title": "Volume 61, Number 04 (April 1943)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/229"
+      },
+      {
+        "year": 1943,
+        "title": "Volume 61, Number 05 (May 1943)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/228"
+      },
+      {
+        "year": 1943,
+        "title": "Volume 61, Number 06 (June 1943)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/227"
+      },
+      {
+        "year": 1943,
+        "title": "Volume 61, Number 07 (July 1943)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/226"
+      },
+      {
+        "year": 1943,
+        "title": "Volume 61, Number 08 (August 1943)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/225"
+      },
+      {
+        "year": 1943,
+        "title": "Volume 61, Number 09 (September 1943)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/224"
+      },
+      {
+        "year": 1943,
+        "title": "Volume 61, Number 10 (October 1943)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/223"
+      },
+      {
+        "year": 1943,
+        "title": "Volume 61, Number 11 (November 1943)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/222"
+      },
+      {
+        "year": 1943,
+        "title": "Volume 61, Number 12 (December 1943)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/62"
+      },
+      {
+        "year": 1944,
+        "title": "Volume 62, Number 01 (January 1944)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/221"
+      },
+      {
+        "year": 1944,
+        "title": "Volume 62, Number 02 (February 1944)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/220"
+      },
+      {
+        "year": 1944,
+        "title": "Volume 62, Number 03 (March 1944)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/219"
+      },
+      {
+        "year": 1944,
+        "title": "Volume 62, Number 04 (April 1944)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/218"
+      },
+      {
+        "year": 1944,
+        "title": "Volume 62, Number 05 (May 1944)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/217"
+      },
+      {
+        "year": 1944,
+        "title": "Volume 62, Number 06 (June 1944)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/216"
+      },
+      {
+        "year": 1944,
+        "title": "Volume 62, Number 07 (July 1944)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/215"
+      },
+      {
+        "year": 1944,
+        "title": "Volume 62, Number 08 (August 1944)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/214"
+      },
+      {
+        "year": 1944,
+        "title": "Volume 62, Number 09 (September 1944)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/213"
+      },
+      {
+        "year": 1944,
+        "title": "Volume 62, Number 10 (October 1944)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/212"
+      },
+      {
+        "year": 1944,
+        "title": "Volume 62, Number 11 (November 1944)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/211"
+      },
+      {
+        "year": 1944,
+        "title": "Volume 62, Number 12 (December 1944)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/63"
+      },
+      {
+        "year": 1945,
+        "title": "Volume 63, Number 01 (January 1945)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/210"
+      },
+      {
+        "year": 1945,
+        "title": "Volume 63, Number 02 (February 1945)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/209"
+      },
+      {
+        "year": 1945,
+        "title": "Volume 63, Number 03 (March 1945)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/208"
+      },
+      {
+        "year": 1945,
+        "title": "Volume 63, Number 04 (April 1945)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/207"
+      },
+      {
+        "year": 1945,
+        "title": "Volume 63, Number 05 (May 1945)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/206"
+      },
+      {
+        "year": 1945,
+        "title": "Volume 63, Number 06 (June 1945)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/205"
+      },
+      {
+        "year": 1945,
+        "title": "Volume 63, Number 07 (July 1945)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/204"
+      },
+      {
+        "year": 1945,
+        "title": "Volume 63, Number 08 (August 1945)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/203"
+      },
+      {
+        "year": 1945,
+        "title": "Volume 63, Number 09 (September 1945)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/202"
+      },
+      {
+        "year": 1945,
+        "title": "Volume 63, Number 10 (October 1945)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/201"
+      },
+      {
+        "year": 1945,
+        "title": "Volume 63, Number 11 (November 1945)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/200"
+      },
+      {
+        "year": 1945,
+        "title": "Volume 63, Number 12 (December 1945)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/64"
+      },
+      {
+        "year": 1946,
+        "title": "Volume 64, Number 01 (January 1946)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/199"
+      },
+      {
+        "year": 1946,
+        "title": "Volume 64, Number 02 (February 1946)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/198"
+      },
+      {
+        "year": 1946,
+        "title": "Volume 64, Number 03 (March 1946)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/197"
+      },
+      {
+        "year": 1946,
+        "title": "Volume 64, Number 04 (April 1946)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/196"
+      },
+      {
+        "year": 1946,
+        "title": "Volume 64, Number 05 (May 1946)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/195"
+      },
+      {
+        "year": 1946,
+        "title": "Volume 64, Number 06 (June 1946)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/194"
+      },
+      {
+        "year": 1946,
+        "title": "Volume 64, Number 07 (July 1946)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/193"
+      },
+      {
+        "year": 1946,
+        "title": "Volume 64, Number 08 (August 1946)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/192"
+      },
+      {
+        "year": 1946,
+        "title": "Volume 64, Number 09 (September 1946)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/191"
+      },
+      {
+        "year": 1946,
+        "title": "Volume 64, Number 10 (October 1946)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/190"
+      },
+      {
+        "year": 1946,
+        "title": "Volume 64, Number 11 (November 1946)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/189"
+      },
+      {
+        "year": 1946,
+        "title": "Volume 64, Number 12 (December 1946)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/65"
+      },
+      {
+        "year": 1947,
+        "title": "Volume 65, Number 01 (January 1947)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/188"
+      },
+      {
+        "year": 1947,
+        "title": "Volume 65, Number 02 (February 1947)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/187"
+      },
+      {
+        "year": 1947,
+        "title": "Volume 65, Number 03 (March 1947)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/186"
+      },
+      {
+        "year": 1947,
+        "title": "Volume 65, Number 04 (April 1947)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/185"
+      },
+      {
+        "year": 1947,
+        "title": "Volume 65, Number 05 (May 1947)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/184"
+      },
+      {
+        "year": 1947,
+        "title": "Volume 65, Number 06 (June 1947)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/183"
+      },
+      {
+        "year": 1947,
+        "title": "Volume 65, Number 07 (July 1947)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/182"
+      },
+      {
+        "year": 1947,
+        "title": "Volume 65, Number 08 (August 1947)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/181"
+      },
+      {
+        "year": 1947,
+        "title": "Volume 65, Number 09 (September 1947)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/180"
+      },
+      {
+        "year": 1947,
+        "title": "Volume 65, Number 10 (October 1947)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/179"
+      },
+      {
+        "year": 1947,
+        "title": "Volume 65, Number 11 (November 1947)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/178"
+      },
+      {
+        "year": 1947,
+        "title": "Volume 65, Number 12 (December 1947)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/66"
+      },
+      {
+        "year": 1948,
+        "title": "Volume 66, Number 01 (January 1948)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/177"
+      },
+      {
+        "year": 1948,
+        "title": "Volume 66, Number 02 (February 1948)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/176"
+      },
+      {
+        "year": 1948,
+        "title": "Volume 66, Number 03 (March 1948)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/175"
+      },
+      {
+        "year": 1948,
+        "title": "Volume 66, Number 04 (April 1948)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/174"
+      },
+      {
+        "year": 1948,
+        "title": "Volume 66, Number 05 (May 1948)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/173"
+      },
+      {
+        "year": 1948,
+        "title": "Volume 66, Number 06 (June 1948)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/172"
+      },
+      {
+        "year": 1948,
+        "title": "Volume 66, Number 07 (July 1948)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/171"
+      },
+      {
+        "year": 1948,
+        "title": "Volume 66, Number 08 (August 1948)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/170"
+      },
+      {
+        "year": 1948,
+        "title": "Volume 66, Number 09 (September 1948)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/169"
+      },
+      {
+        "year": 1948,
+        "title": "Volume 66, Number 10 (October 1948)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/168"
+      },
+      {
+        "year": 1948,
+        "title": "Volume 66, Number 11 (November 1948)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/167"
+      },
+      {
+        "year": 1948,
+        "title": "Volume 66, Number 12 (December 1948)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/67"
+      },
+      {
+        "year": 1949,
+        "title": "Volume 67, Number 01 (January 1949)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/166"
+      },
+      {
+        "year": 1949,
+        "title": "Volume 67, Number 02 (February 1949)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/165"
+      },
+      {
+        "year": 1949,
+        "title": "Volume 67, Number 03 (March 1949)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/164"
+      },
+      {
+        "year": 1949,
+        "title": "Volume 67, Number 04 (April 1949)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/163"
+      },
+      {
+        "year": 1949,
+        "title": "Volume 67, Number 05 (May 1949)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/162"
+      },
+      {
+        "year": 1949,
+        "title": "Volume 67, Number 06 (June 1949)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/161"
+      },
+      {
+        "year": 1949,
+        "title": "Volume 67, Number 07 (July 1949)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/160"
+      },
+      {
+        "year": 1949,
+        "title": "Volume 67, Number 08 (August 1949)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/159"
+      },
+      {
+        "year": 1949,
+        "title": "Volume 67, Number 09 (September 1949)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/158"
+      },
+      {
+        "year": 1949,
+        "title": "Volume 67, Number 10 (October 1949)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/157"
+      },
+      {
+        "year": 1949,
+        "title": "Volume 67, Number 11 (November 1949)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/156"
+      },
+      {
+        "year": 1949,
+        "title": "Volume 67, Number 12 (December 1949)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/68"
+      },
+      {
+        "year": 1950,
+        "title": "Volume 68, Number 01 (January 1950)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/155"
+      },
+      {
+        "year": 1950,
+        "title": "Volume 68, Number 02 (February 1950)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/154"
+      },
+      {
+        "year": 1950,
+        "title": "Volume 68, Number 03 (March 1950)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/153"
+      },
+      {
+        "year": 1950,
+        "title": "Volume 68, Number 04 (April 1950)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/152"
+      },
+      {
+        "year": 1950,
+        "title": "Volume 68, Number 05 (May 1950)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/151"
+      },
+      {
+        "year": 1950,
+        "title": "Volume 68, Number 06 (June 1950)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/150"
+      },
+      {
+        "year": 1950,
+        "title": "Volume 68, Number 07 (July 1950)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/149"
+      },
+      {
+        "year": 1950,
+        "title": "Volume 68, Number 08 (August 1950)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/148"
+      },
+      {
+        "year": 1950,
+        "title": "Volume 68, Number 09 (September 1950)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/147"
+      },
+      {
+        "year": 1950,
+        "title": "Volume 68, Number 10 (October 1950)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/146"
+      },
+      {
+        "year": 1950,
+        "title": "Volume 68, Number 11 (November 1950)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/145"
+      },
+      {
+        "year": 1950,
+        "title": "Volume 68, Number 12 (December 1950)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/69"
+      },
+      {
+        "year": 1951,
+        "title": "Volume 69, Number 01 (January 1951)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/144"
+      },
+      {
+        "year": 1951,
+        "title": "Volume 69, Number 02 (February 1951)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/143"
+      },
+      {
+        "year": 1951,
+        "title": "Volume 69, Number 03 (March 1951)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/142"
+      },
+      {
+        "year": 1951,
+        "title": "Volume 69, Number 04 (April 1951)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/141"
+      },
+      {
+        "year": 1951,
+        "title": "Volume 69, Number 05 (May 1951)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/140"
+      },
+      {
+        "year": 1951,
+        "title": "Volume 69, Number 06 (June 1951)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/139"
+      },
+      {
+        "year": 1951,
+        "title": "Volume 69, Number 07 (July 1951)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/138"
+      },
+      {
+        "year": 1951,
+        "title": "Volume 69, Number 08 (August 1951)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/137"
+      },
+      {
+        "year": 1951,
+        "title": "Volume 69, Number 09 (September 1951)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/136"
+      },
+      {
+        "year": 1951,
+        "title": "Volume 69, Number 10 (October 1951)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/135"
+      },
+      {
+        "year": 1951,
+        "title": "Volume 69, Number 11 (November 1951)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/134"
+      },
+      {
+        "year": 1951,
+        "title": "Volume 69, Number 12 (December 1951)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/70"
+      },
+      {
+        "year": 1952,
+        "title": "Volume 70, Number 01 (January 1952)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/133"
+      },
+      {
+        "year": 1952,
+        "title": "Volume 70, Number 02 (February 1952)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/132"
+      },
+      {
+        "year": 1952,
+        "title": "Volume 70, Number 03 (March 1952)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/131"
+      },
+      {
+        "year": 1952,
+        "title": "Volume 70, Number 04 (April 1952)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/130"
+      },
+      {
+        "year": 1952,
+        "title": "Volume 70, Number 05 (May 1952)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/129"
+      },
+      {
+        "year": 1952,
+        "title": "Volume 70, Number 06 (June 1952)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/128"
+      },
+      {
+        "year": 1952,
+        "title": "Volume 70, Number 07 (July 1952)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/127"
+      },
+      {
+        "year": 1952,
+        "title": "Volume 70, Number 08 (August 1952)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/126"
+      },
+      {
+        "year": 1952,
+        "title": "Volume 70, Number 09 (September 1952)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/125"
+      },
+      {
+        "year": 1952,
+        "title": "Volume 70, Number 10 (October 1952)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/124"
+      },
+      {
+        "year": 1952,
+        "title": "Volume 70, Number 11 (November 1952)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/123"
+      },
+      {
+        "year": 1952,
+        "title": "Volume 70, Number 12 (December 1952)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/71"
+      },
+      {
+        "year": 1953,
+        "title": "Volume 71, Number 01 (January 1953)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/122"
+      },
+      {
+        "year": 1953,
+        "title": "Volume 71, Number 02 (February 1953)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/121"
+      },
+      {
+        "year": 1953,
+        "title": "Volume 71, Number 03 (March 1953)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/120"
+      },
+      {
+        "year": 1953,
+        "title": "Volume 71, Number 04 (April 1953)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/119"
+      },
+      {
+        "year": 1953,
+        "title": "Volume 71, Number 05 (May 1953)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/118"
+      },
+      {
+        "year": 1953,
+        "title": "Volume 71, Number 06 (June 1953)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/117"
+      },
+      {
+        "year": 1953,
+        "title": "Volume 71, Number 07 (July 1953)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/116"
+      },
+      {
+        "year": 1953,
+        "title": "Volume 71, Number 08 (August 1953)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/115"
+      },
+      {
+        "year": 1953,
+        "title": "Volume 71, Number 09 (September 1953)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/114"
+      },
+      {
+        "year": 1953,
+        "title": "Volume 71, Number 10 (October 1953)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/113"
+      },
+      {
+        "year": 1953,
+        "title": "Volume 71, Number 11 (November 1953)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/112"
+      },
+      {
+        "year": 1953,
+        "title": "Volume 71, Number 12 (December 1953)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/72"
+      },
+      {
+        "year": 1954,
+        "title": "Volume 72, Number 01 (January 1954)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/111"
+      },
+      {
+        "year": 1954,
+        "title": "Volume 72, Number 02 (February 1954)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/110"
+      },
+      {
+        "year": 1954,
+        "title": "Volume 72, Number 03 (March 1954)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/109"
+      },
+      {
+        "year": 1954,
+        "title": "Volume 72, Number 04 (April 1954)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/108"
+      },
+      {
+        "year": 1954,
+        "title": "Volume 72, Number 05 (May 1954)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/107"
+      },
+      {
+        "year": 1954,
+        "title": "Volume 72, Number 06 (June 1954)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/106"
+      },
+      {
+        "year": 1954,
+        "title": "Volume 72, Number 07 (July 1954)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/105"
+      },
+      {
+        "year": 1954,
+        "title": "Volume 72, Number 08 (August 1954)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/104"
+      },
+      {
+        "year": 1954,
+        "title": "Volume 72, Number 09 (September 1954)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/103"
+      },
+      {
+        "year": 1954,
+        "title": "Volume 72, Number 10 (October 1954)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/102"
+      },
+      {
+        "year": 1954,
+        "title": "Volume 72, Number 11 (November 1954)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/101"
+      },
+      {
+        "year": 1954,
+        "title": "Volume 72, Number 12 (December 1954)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/73"
+      },
+      {
+        "year": 1955,
+        "title": "Volume 73, Number 01 (January 1955)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/90"
+      },
+      {
+        "year": 1955,
+        "title": "Volume 73, Number 02 (February 1955)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/91"
+      },
+      {
+        "year": 1955,
+        "title": "Volume 73, Number 03 (March 1955)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/92"
+      },
+      {
+        "year": 1955,
+        "title": "Volume 73, Number 04 (April 1955)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/93"
+      },
+      {
+        "year": 1955,
+        "title": "Volume 73, Number 05 (May 1955)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/94"
+      },
+      {
+        "year": 1955,
+        "title": "Volume 73, Number 06 (June 1955)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/95"
+      },
+      {
+        "year": 1955,
+        "title": "Volume 73, Number 07 (July 1955)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/96"
+      },
+      {
+        "year": 1955,
+        "title": "Volume 73, Number 08 (August 1955)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/97"
+      },
+      {
+        "year": 1955,
+        "title": "Volume 73, Number 09 (September 1955)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/98"
+      },
+      {
+        "year": 1955,
+        "title": "Volume 73, Number 10 (October 1955)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/99"
+      },
+      {
+        "year": 1955,
+        "title": "Volume 73, Number 11 (November 1955)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/100"
+      },
+      {
+        "year": 1955,
+        "title": "Volume 73, Number 12 (December 1955)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/74"
+      },
+      {
+        "year": 1956,
+        "title": "Volume 74, Number 01 (January 1956)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/81"
+      },
+      {
+        "year": 1956,
+        "title": "Volume 74, Number 02 (February 1956)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/82"
+      },
+      {
+        "year": 1956,
+        "title": "Volume 74, Number 03 (March 1956)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/83"
+      },
+      {
+        "year": 1956,
+        "title": "Volume 74, Number 04 (April 1956)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/84"
+      },
+      {
+        "year": 1956,
+        "title": "Volume 74, Number 05 (May-June 1956)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/85"
+      },
+      {
+        "year": 1956,
+        "title": "Volume 74, Number 06 (July-August 1956)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/86"
+      },
+      {
+        "year": 1956,
+        "title": "Volume 74, Number 07 (September 1956)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/87"
+      },
+      {
+        "year": 1956,
+        "title": "Volume 74, Number 08 (October 1956)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/88"
+      },
+      {
+        "year": 1956,
+        "title": "Volume 74, Number 09 (November 1956)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/89"
+      },
+      {
+        "year": 1956,
+        "title": "Volume 74, Number 10 (December 1956)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/75"
+      },
+      {
+        "year": 1957,
+        "title": "Volume 75, Number 01 (January 1957)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/79"
+      },
+      {
+        "year": 1957,
+        "title": "Volume 75, Number 02 (February 1957)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/80"
+      },
+      {
+        "year": 1957,
+        "title": "Volume 75, Number 03 (March 1957)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/78"
+      },
+      {
+        "year": 1957,
+        "title": "Volume 75, Number 04 (April 1957)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/77"
+      },
+      {
+        "year": 1957,
+        "title": "Volume 75, Number 05 (May-June 1957)",
+        "source": "https://digitalcommons.gardner-webb.edu/etude/76"
+      }
+    ]
   }
 ]
