@@ -47,7 +47,7 @@
 <div class="source">May 1852 · Editorial transcription, original pages 1–32. Some uncorrected scan errors remain. Narration uses your browser’s speech voices. <a href="https://archive.org/details/sim_englishwomans-domestic-magazine_1852-1862_1" target="_blank" rel="noopener">Original volume</a> · <a href="https://archive.org/details/sim_englishwomans-domestic-magazine_1852-1862_1/page/n32/mode/2up" target="_blank" rel="noopener">Next issue: June 1852 (original scan)</a> · <a href="https://jmsw.github.io/edm-index/" target="_blank" rel="noopener">Browse all issues, 1852–1879</a>.</div>
 </div>
 <script src="public/js/ophelia-narration.js?v=1.4.27-magazine"></script>
-<script src="public/js/ophelia-magazine-reader.js?v=1.0"></script>
+<script src="public/js/ophelia-magazine-reader.js?v=1.1"></script>
 <script>
 'use strict';
 /* All source is editable. Narration reuses Alice’s grammar-aware sentence segmentation and queued speech strategy. Browser/device voices provide the actual spoken sound. */
@@ -63,6 +63,7 @@ let segments=[],pages=[],voiceList=[],speechToken=0, speaking=false,paused=false
 const note=text=>{$('message').textContent=text};
 // Running heads and printed folios are visual only. Actual article titles remain in the prose.
 const runningHeads = {"3":"ESSAY—FEMALE EDUCATION\n3 ","4":"4 THE MAGIC OF MILDNESS; OK, ","5":"TUE TOWER OF A GENTLE SPIRIT,\n6 ","6":"6\nTHE MAGIC OF MILDNESS: OP.\n","7":"THE POWER OF A GENTLE SPIRIT.\n7 ","8":"8 TUE MAGIC OF\n","9":"THE POWER OF A GENTLE SPIRIT.\n","10":"10 L.V GRANDE BI'ETKCHE. ","11":"11 LA. GRADE\n","12":"12 LA 6KA\\DE BBETECHE.\n","13":"LA OEAlfDE BBETECHE. 13 ","14":"14 LA GRANDF, BRETECUE.\n","15":"LA GRANDE BRETECHE.\n15 ","16":"DESIGN FOR A DWARF WINDOW-CURTAIN. ","19":"OUR PRACTICAL DRESS INSTRUCTOR.\n19 ","20":"90 LA ORANDE BRETECHE.\n(^Continued from page 15.) ","21":"REVIEWS.\n21 ","22":"REVIEWS.\n","23":"TO “NIGHT.”\n23 ","24":"24\nA COUNTRY CURATE.\n","25":"LADIES IX BOND. ","26":"26 SELECTED EXTRACTS.\n","27":"THE GLOW-WORMS.\n27 ","28":"WIT.—WISDOM.\nss ","30":"30 RECEIPTS FOU COOKERY.—THE SICK ROOM AND nursery ","31":"THE TOILETTE.—THINGS WORTH KNOWING.\n31 ","32":"32\nMANAGEMENT OF HOUSEHOLD PETS.\n"};
+const storyContinuations={15:{to:20,title:'La Grande Brèteche'}};
 function magazinePages(){return window.OpheliaMagazineReader.preparePages(issueText,{runningHeads,scanOnlyPages:[18]});}
 // Shared magazine adapter keeps running heads and original folios outside the speech queue.
 function stop(){window.OpheliaNarration?.clearReading?.();
@@ -194,7 +195,8 @@ function render(){if(!pages.length)return;const page=pages[state.page];
  $('running-head').textContent=page.runningHead;$('running-head').hidden=!page.runningHead;
  const art=$('magazine-story-art'),artImg=$('magazine-story-img');art.hidden=true;if(state.page===9){artImg.onload=()=>{if(state.page===9)art.hidden=false;};artImg.onerror=()=>{art.hidden=true;};if(artImg.getAttribute('src')!=='la-grande-breteche-watercolor.webp')artImg.src='la-grande-breteche-watercolor.webp';else if(artImg.complete&&artImg.naturalWidth>0)art.hidden=false;}
  $('prose').replaceChildren(...page.paragraphs.map(p=>{const isTitle=p==='A Bride Show in Russia.';const el=document.createElement(isTitle?'h2':'p');if(isTitle)el.className='magazine-article-heading';else if(p==='The End.')el.className='magazine-article-end';el.textContent=p;return el}));
- $('story-continuation').hidden=page.originalPage!==14;
+ const continuation=window.OpheliaMagazineReader.continuationFor(page,storyContinuations,pages.length);
+ $('story-continuation').hidden=!continuation;if(continuation){$('story-continuation-link').href=continuation.href;$('story-continuation-link').textContent=continuation.label;}
  $('pagecount').textContent='Page '+(state.page+1)+' of '+pages.length;$('footcount').textContent=page.sectionName;
  ['prev','prev2'].forEach(id=>$(id).disabled=state.page<=0);['next','next2'].forEach(id=>$(id).disabled=state.page>=pages.length-1);
  $('page').value=String(state.page);$('section').value=String(page.originalPage);$('progressbar').style.width=((state.page+1)/pages.length*100).toFixed(2)+'%';
@@ -213,7 +215,7 @@ function updateVoices(){if(!('speechSynthesis' in window))return;voiceList=speec
 function applySettings(){$('speed').value=state.speed;$('speedview').value=state.speed+'×';$('size').value=state.size;$('sizeview').value=state.size+' px';$('dark').checked=state.night;$('autoturn').checked=state.autoTurn;document.body.classList.toggle('night',state.night);document.documentElement.style.setProperty('--text-size',state.size+'px');}
 ['prev','prev2'].forEach(id=>$(id).addEventListener('click',()=>go(state.page-1)));
 ['next','next2'].forEach(id=>$(id).addEventListener('click',()=>go(state.page+1)));
-$('story-continuation-link').addEventListener('click',event=>{if(event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;event.preventDefault();if(location.hash==='#20')go(19);else location.hash='20';});
+$('story-continuation-link').addEventListener('click',event=>{if(event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;event.preventDefault();const target=window.OpheliaMagazineReader.continuationFor(pages[state.page],storyContinuations,pages.length);if(!target)return;if(location.hash===target.href)go(target.to-1);else location.hash=target.href;});
 $('play').onclick=togglePlay;
 $('section').onchange=()=>go(pages.findIndex(p=>p.originalPage===Number($('section').value)));
 $('page').onchange=()=>go(Number($('page').value));
