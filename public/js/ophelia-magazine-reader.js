@@ -1,4 +1,4 @@
-/* Ophelia's Open Book — Magazine Library narration standard (v1.0).
+/* Ophelia's Open Book — Magazine Library narration and navigation standard (v1.1).
  * All published issues must use the standard book reader controls and
  * public/js/ophelia-narration.js, plus this adapter.
  *
@@ -12,6 +12,12 @@
  * Never assign section/ci to these page objects: the shared book narrator
  * would otherwise automatically announce original page labels as chapters.
  * Keep originalPage for navigation and scan links. Preserve the source array.
+ * For interrupted stories, join incomplete passages at their verified continuation.
+ * Record {printedFromPage:{to:printedTargetPage,title:'Article title'}} in issue metadata.
+ * Use continuationFor(page, metadata, pages.length) to render a centered Victorian-style
+ * link below #prose and above the end ornament. Keep it silent and separate from narration.
+ * Preserve ordinary Previous/Next and auto-turn, original folios, and intervening articles.
+ * Confirm all links against the original issue and test source and destination pages.
  * Review and approve every issue before unlocking its public catalog entry.
  */
 (function(root){
@@ -31,5 +37,15 @@
   });
  }
  function spokenText(page){return !page||page.scanOnly?'':page.paragraphs.join(' ');}
- root.OpheliaMagazineReader=Object.freeze({version:'1.0',preparePages,spokenText});
+ // Editorially reviewed continuation metadata uses printed (one-based) pages.
+ // A link is optional navigation only: never skip intervening articles automatically.
+ function continuationFor(page, continuations={}, pageCount){
+  if(!page)return null;
+  const from=page.originalPage+1;
+  const item=continuations[from];
+  if(!item)return null;
+  if(!Number.isInteger(item.to)||item.to<=from||item.to>pageCount||typeof item.title!=='string'||!item.title.trim())throw Error('Check story continuation on original page '+from+'.');
+  return {href:'#'+item.to,to:item.to,label:'Continue '+item.title+' on page '+item.to+' →'};
+ }
+ root.OpheliaMagazineReader=Object.freeze({version:'1.1',preparePages,spokenText,continuationFor});
 })(window);
