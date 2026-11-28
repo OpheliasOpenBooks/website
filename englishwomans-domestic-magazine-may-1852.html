@@ -69,7 +69,7 @@ function stop(){window.OpheliaNarration?.clearReading?.();
  speaking=false;paused=false;speechQueue=[];speechCursor=0;pageSpeechDone=false;utterance=null;updatePlay();
 }
 function updatePlay(){$('play').textContent=speaking?(paused?'▶ Resume':'Ⅱ Pause'):'▶ Read aloud';}
-function getText(){return window.OpheliaMagazineReader.spokenText(pages[state.page]).replace(/\bs[’']pose\b/gi, 'suppose').replace(/\bUz\b/g, 'uzz').replace(/\bYug\b/g, 'Yoog').replace(/\bSukhona\b/g, 'Soo-kho-na').replace(/\bM\.\s+(?=(?:Regnault|de\s+Merret)\b)/g, 'Monsieur ').replace(/\bgendarmes\b/gi, 'zhahn-darm');}
+function getText(){return window.OpheliaMagazineReader.spokenText(pages[state.page]).replace(/\bs[’']pose\b/gi, 'suppose').replace(/\bUz\b/g, 'uzz').replace(/\bYug\b/g, 'Yoog').replace(/\bSukhona\b/g, 'Soo-kho-na').replace(/\bM\.\s+(?=(?:Regnault|de\s+(?:Merret|Feredia))\b)/g, 'Monsieur ').replace(/\bgendarmes\b/gi, 'zhahn-darm');}
 // Announce a section only on its first reading page, never on subsequent pages.
 function openingAnnouncementForSpeech(){return '';}
 function pickVoice(){return voiceList.find(v=>v.voiceURI===state.voice)||voiceList.find(v=>/^en-GB/i.test(v.lang))||voiceList.find(v=>/^en/i.test(v.lang))||null;}
