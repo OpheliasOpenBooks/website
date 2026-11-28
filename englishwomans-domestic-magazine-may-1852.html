@@ -44,6 +44,7 @@
 <div class="source">May 1852 · Editorial transcription, original pages 1–32. Some uncorrected scan errors remain. Narration uses your browser’s speech voices. <a href="https://archive.org/details/sim_englishwomans-domestic-magazine_1852-1862_1" target="_blank" rel="noopener">Original volume</a> · <a href="https://archive.org/details/sim_englishwomans-domestic-magazine_1852-1862_1/page/n32/mode/2up" target="_blank" rel="noopener">Next issue: June 1852 (original scan)</a> · <a href="https://jmsw.github.io/edm-index/" target="_blank" rel="noopener">Browse all issues, 1852–1879</a>.</div>
 </div>
 <script src="public/js/ophelia-narration.js?v=1.4.27-magazine"></script>
+<script src="public/js/ophelia-magazine-reader.js?v=1.0"></script>
 <script>
 'use strict';
 /* All source is editable. Narration reuses Alice’s grammar-aware sentence segmentation and queued speech strategy. Browser/device voices provide the actual spoken sound. */
@@ -59,14 +60,14 @@ let segments=[],pages=[],voiceList=[],speechToken=0, speaking=false,paused=false
 const note=text=>{$('message').textContent=text};
 // Running heads and printed folios are visual only. Actual article titles remain in the prose.
 const runningHeads = {"3":"ESSAY—FEMALE EDUCATION\n3 ","4":"4 THE MAGIC OF MILDNESS; OK, ","5":"TUE TOWER OF A GENTLE SPIRIT,\n6 ","6":"6\nTHE MAGIC OF MILDNESS: OP.\n","7":"THE POWER OF A GENTLE SPIRIT.\n7 ","8":"8 TUE MAGIC OF\n","9":"THE POWER OF A GENTLE SPIRIT.\n","10":"10 L.V GRANDE BI'ETKCHE. ","11":"11 LA. GRADE\n","12":"12 LA 6KA\\DE BBETECHE.\n","13":"LA OEAlfDE BBETECHE. 13 ","14":"14 LA GRANDF, BRETECUE.\n","15":"LA GRANDE BRETECHE.\n15 ","16":"DESIGN FOR A DWARF WINDOW-CURTAIN. ","19":"OUR PRACTICAL DRESS INSTRUCTOR.\n19 ","20":"90 LA ORANDE BRETECHE.\n(^Continued from page 15.) ","21":"REVIEWS.\n21 ","22":"REVIEWS.\n","23":"TO “NIGHT.”\n23 ","24":"24\nA COUNTRY CURATE.\n","25":"LADIES IX BOND. ","26":"26 SELECTED EXTRACTS.\n","27":"THE GLOW-WORMS.\n27 ","28":"WIT.—WISDOM.\nss ","30":"30 RECEIPTS FOU COOKERY.—THE SICK ROOM AND nursery ","31":"THE TOILETTE.—THINGS WORTH KNOWING.\n31 ","32":"32\nMANAGEMENT OF HOUSEHOLD PETS.\n"};
-function magazinePages(){return issueText.map((text,i)=>{const prefix=runningHeads[i+1]||'';const runningHead=prefix&&text.startsWith(prefix)?prefix:'';const body=text.slice(runningHead.length);return {originalPage:i,sectionName:'Original page '+(i+1),runningHead:runningHead.trim(),paragraphs:body.split(/\n\s*\n+/).filter(Boolean)};});}
-// Original page numbers are not chapter announcements. The shared narrator sees no section/ci field; actual article titles are read from the body.
+function magazinePages(){return window.OpheliaMagazineReader.preparePages(issueText,{runningHeads,scanOnlyPages:[18]});}
+// Shared magazine adapter keeps running heads and original folios outside the speech queue.
 function stop(){window.OpheliaNarration?.clearReading?.();
  speechToken++;clearTimeout(startTimer);if('speechSynthesis' in window)window.speechSynthesis.cancel();
  speaking=false;paused=false;speechQueue=[];speechCursor=0;pageSpeechDone=false;utterance=null;updatePlay();
 }
 function updatePlay(){$('play').textContent=speaking?(paused?'▶ Resume':'Ⅱ Pause'):'▶ Read aloud';}
-function getText(){if(state.page===17)return '';return pages[state.page]?.paragraphs.join(' ')||'';}
+function getText(){return window.OpheliaMagazineReader.spokenText(pages[state.page]);}
 // Announce a section only on its first reading page, never on subsequent pages.
 function openingAnnouncementForSpeech(){return '';}
 function pickVoice(){return voiceList.find(v=>v.voiceURI===state.voice)||voiceList.find(v=>/^en-GB/i.test(v.lang))||voiceList.find(v=>/^en/i.test(v.lang))||null;}
