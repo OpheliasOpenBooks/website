@@ -167,7 +167,7 @@ function startSpeech(startAt=speechResumeAt){
  const bodyChunks=magazineSpeechChunks(pages[state.page]);
  const chunks=(announcement?[announcement,...bodyChunks]:bodyChunks).slice(startAt);
  speechResumeAt=0;speechCursor=startAt;pageSpeechDone=false;
- if(!chunks.length){if(state.page===17){note('Original page 18 has no machine-readable text. Open its scan to view the page.');if(state.autoTurn&&state.page<pages.length-1){state.page++;save();render();startSpeech(0);}}else note('There is no text to narrate on this page.');return;}
+ if(!chunks.length){if(state.page===17){note('View original page 18 using the button below, or continue to page 19.');if(state.autoTurn&&state.page<pages.length-1){state.page++;save();render();startSpeech(0);}}else note('There is no text to narrate on this page.');return;}
  speaking=true;paused=false;const token=speechToken;
  let started=false,completed=0;
  const voice=pickVoice();
@@ -204,12 +204,13 @@ function go(p){if(!pages.length)return;stop();speechResumeAt=0;state.page=Math.m
 function render(){if(!pages.length)return;const page=pages[state.page];
  const isFirstRender=initialRender;initialRender=false;
  $('scan').href='https://archive.org/details/sim_englishwomans-domestic-magazine_1852-1862_1/page/n'+state.page+'/mode/1up';
- if(state.page===17)note('Original page 18 is available in the scan only.');else if(!speaking)note('Press Read aloud to begin.');
+ if(state.page===17)note('View the original page, or continue to page 19.');else if(!speaking)note('Press Read aloud to begin.');
  $('progresslabel').textContent=Math.round((state.page+1)/pages.length*100)+'% read · '+page.sectionName;$('chaptername').textContent=page.sectionName;
  $('running-head').textContent=page.runningHead;$('running-head').hidden=!page.runningHead||page.originalPage===15;
- $('original-design-link').hidden=page.originalPage!==15;$('scan').hidden=page.originalPage===15;$('design-scan').href=$('scan').href;
+ const scanOnly=state.page===17;const showScanButton=page.originalPage===15||scanOnly;$('original-design-link').hidden=!showScanButton;$('scan').hidden=showScanButton;$('design-scan').href=$('scan').href;$('design-scan').textContent='View the original magazine page ↗';
  const art=$('magazine-story-art'),artImg=$('magazine-story-img');art.hidden=true;if(state.page===9){artImg.onload=()=>{if(state.page===9)art.hidden=false;};artImg.onerror=()=>{art.hidden=true;};if(artImg.getAttribute('src')!=='la-grande-breteche-watercolor.webp')artImg.src='la-grande-breteche-watercolor.webp';else if(artImg.complete&&artImg.naturalWidth>0)art.hidden=false;}
  $('prose').replaceChildren(...page.paragraphs.map(p=>{const isTitle=p==='A Bride Show in Russia.'||p==='Original Design for a Dwarf Window-Curtain.';const el=document.createElement(isTitle?'h2':'p');if(isTitle)el.className='magazine-article-heading';else if(p==='The End.')el.className='magazine-article-end';el.textContent=p;return el}));
+ if(scanOnly){const heading=document.createElement('h2');heading.className='magazine-article-heading';heading.textContent='From the Original Magazine';const description=document.createElement('p');description.style.textAlign='center';description.textContent='This page is available to view in its original 1852 form.';$('prose').replaceChildren(heading,description);}
  const continuation=window.OpheliaMagazineReader.continuationFor(page,storyContinuations,pages.length);
  $('story-continuation').hidden=!continuation;if(continuation){$('story-continuation-link').href=continuation.href;$('story-continuation-link').textContent=continuation.label;}
  $('pagecount').textContent='Page '+(state.page+1)+' of '+pages.length;$('footcount').textContent=page.sectionName;
