@@ -71,7 +71,7 @@ function stop(){window.OpheliaNarration?.clearReading?.();
  speaking=false;paused=false;speechQueue=[];speechCursor=0;pageSpeechDone=false;utterance=null;updatePlay();
 }
 function updatePlay(){$('play').textContent=speaking?(paused?'▶ Resume':'Ⅱ Pause'):'▶ Read aloud';}
-function getText(){return window.OpheliaMagazineReader.spokenText(pages[state.page]).replace(/\bs[’']pose\b/gi, 'suppose').replace(/\bUz\b/g, 'uzz').replace(/\bYug\b/g, 'Yoog').replace(/\bSukhona\b/g, 'Soo-kho-na').replace(/\bM\.\s+(?=(?:Regnault|de\s+(?:Merret|Feredia))\b)/g, 'Monsieur ').replace(/\bgendarmes\b/gi, 'zhahn-darm').replace(/\bM\.\s+(?=and Madame de Merret\b)/g, 'Monsieur ');}
+function getText(page=pages[state.page]){return window.OpheliaMagazineReader.spokenText(page).replace(/\bs[’']pose\b/gi, 'suppose').replace(/\bUz\b/g, 'uzz').replace(/\bYug\b/g, 'Yoog').replace(/\bSukhona\b/g, 'Soo-kho-na').replace(/\bM\.\s+(?=(?:Regnault|de\s+(?:Merret|Feredia))\b)/g, 'Monsieur ').replace(/\bgendarmes\b/gi, 'zhahn-darm').replace(/\bM\.\s+(?=and Madame de Merret\b)/g, 'Monsieur ');}
 // Announce a section only on its first reading page, never on subsequent pages.
 function openingAnnouncementForSpeech(){return '';}
 function pickVoice(){return voiceList.find(v=>v.voiceURI===state.voice)||voiceList.find(v=>/^en-GB/i.test(v.lang))||voiceList.find(v=>/^en/i.test(v.lang))||null;}
@@ -141,6 +141,17 @@ function finishPage(token){
  if(state.autoTurn&&state.page<pages.length-1){state.page++;save();render();startSpeech(0);}
  else if(state.page===pages.length-1)note('You have finished the May 1852 issue of The Englishwoman’s Domestic Magazine.');
 }
+// Treat an editorial story ending as its own utterance and give it a full two-second pause.
+function magazineSpeechChunks(page){
+ if(page.scanOnly)return [];
+ const chunks=[],group=[];
+ const flush=()=>{if(group.length){chunks.push(...speechChunks(getText({...page,paragraphs:group.splice(0)})));}};
+ for(const paragraph of page.paragraphs){
+  if(paragraph.trim()==='The End.'){flush();chunks.push('The End.');}
+  else group.push(paragraph);
+ }
+ flush();return chunks;
+}
 function startSpeech(startAt=speechResumeAt){
  if(!soundOn){note('Sound is off. Select Sound on before starting narration.');return;}
  if(!pages.length)return;
@@ -152,7 +163,8 @@ function startSpeech(startAt=speechResumeAt){
  // Queue the chapter announcement separately before the untouched prose.
  // It shares the same speech queue for pause, resume, voice changes and auto-turn.
  const announcement=openingAnnouncementForSpeech();
- const chunks=(announcement?[announcement,...speechChunks(getText())]:speechChunks(getText())).slice(startAt);
+ const bodyChunks=magazineSpeechChunks(pages[state.page]);
+ const chunks=(announcement?[announcement,...bodyChunks]:bodyChunks).slice(startAt);
  speechResumeAt=0;speechCursor=startAt;pageSpeechDone=false;
  if(!chunks.length){if(state.page===17){note('Original page 18 has no machine-readable text. Open its scan to view the page.');if(state.autoTurn&&state.page<pages.length-1){state.page++;save();render();startSpeech(0);}}else note('There is no text to narrate on this page.');return;}
  speaking=true;paused=false;const token=speechToken;
@@ -163,12 +175,13 @@ function startSpeech(startAt=speechResumeAt){
    const u=new SpeechSynthesisUtterance(t);let ended=false;
    u.lang=voice?.lang||'en-GB';if(voice)u.voice=voice;
    u.rate=state.speed;u.volume=1;
+   if(t==='The End.')u.__opheliaPauseMs=2000;
    u.onstart=()=>{if(token!==speechToken||!speaking)return;
      started=true;utterance=u;speechCursor=startAt+i;clearTimeout(startTimer);
      note('Reading page '+(state.page+1)+' of '+pages.length+'…');updatePlay();};
    u.onend=()=>{if(token!==speechToken||!speaking||ended)return;
      ended=true;completed++;
-     if(completed===chunks.length){clearTimeout(startTimer);pageSpeechDone=true;if(!paused)finishPage(token);}
+     if(completed===chunks.length){clearTimeout(startTimer);const done=()=>{if(token!==speechToken)return;pageSpeechDone=true;if(!paused)finishPage(token);};if(t==='The End.')startTimer=setTimeout(done,2000);else done();}
    };
    u.onerror=e=>{if(token!==speechToken)return;stop();note('Narration stopped ('+(e.error||'speech error')+'). Choose another voice and try again.');};
    return u;
